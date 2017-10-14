@@ -15,9 +15,10 @@
 
 - (float)desiredHeight;
 - (float)desiredHeightForWidth:(float)arg1;
-- (void)didEndDisplayingView;
 - (void)endEditingAndCorrect:(BOOL)arg1;
+- (void)endEditingAndCorrectByTouchPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (void)handleAceCommand:(AceObject *)arg1;
 - (NSString *)navigationTitle;
-- (void)willBeginDisplayingView;
+- (void)siriDidScrollVisible:(BOOL)arg1;
 
 @end

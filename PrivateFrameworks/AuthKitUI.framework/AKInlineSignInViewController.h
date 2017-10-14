@@ -3,24 +3,24 @@
  */
 
 @interface AKInlineSignInViewController : UIViewController <UITextFieldDelegate> {
-    AKTextField *_appleIDField;
-    AKAppleIDAuthenticationController *_authenticationController;
-    int _blurEffectStyle;
-    AKAppleIDAuthenticationInAppContext *_context;
-    UIButton *_createAppleIDButton;
-    <AKInlineSignInViewControllerDelegate> *_delegate;
-    UIButton *_iforgotButton;
-    BOOL _isAuthInProgress;
-    UIView *_loginFieldsContainer;
-    AKTextField *_passwordField;
-    NSString *_primaryButtonTitle;
-    NSString *_secondaryButtonTitle;
-    UIButton *_signInButton;
-    UIActivityIndicatorView *_spinner;
-    NSString *_tertiaryButtonTitle;
-    BOOL _usesDarkMode;
-    BOOL _usesVibrancy;
-    BOOL _wantsAuthenticationProgress;
+    AKTextField * _appleIDField;
+    AKAppleIDAuthenticationController * _authenticationController;
+    int  _blurEffectStyle;
+    AKAppleIDAuthenticationInAppContext * _context;
+    UIButton * _createAppleIDButton;
+    <AKInlineSignInViewControllerDelegate> * _delegate;
+    UIButton * _iforgotButton;
+    BOOL  _isAuthInProgress;
+    UIView * _loginFieldsContainer;
+    AKTextField * _passwordField;
+    NSString * _primaryButtonTitle;
+    NSString * _secondaryButtonTitle;
+    UIButton * _signInButton;
+    UIActivityIndicatorView * _spinner;
+    NSString * _tertiaryButtonTitle;
+    BOOL  _usesDarkMode;
+    BOOL  _usesVibrancy;
+    BOOL  _wantsAuthenticationProgress;
 }
 
 @property (retain) AKTextField *appleIDField;
@@ -47,14 +47,17 @@
 
 - (void).cxx_destruct;
 - (void)_appleIDTextFieldDidChange:(id)arg1;
-- (void)_beginAuthenticationIfPossibleNeedsNewPassword:(BOOL)arg1 needsNewAppleID:(BOOL)arg2;
+- (void)_beginAuthenticationIfPossibleWithOption:(unsigned int)arg1;
+- (BOOL)_canBeginAuthenticationWithOption:(unsigned int)arg1;
 - (void)_hidebusyWorkUI;
 - (BOOL)_isAccountModificationRestricted;
+- (BOOL)_isSignInAllowed;
 - (void)_passwordTextFieldDidChange:(id)arg1;
 - (void)_prefillAuthFields;
 - (void)_startBusyWorkUI;
 - (void)_updateFonts:(id)arg1;
 - (void)_updateSignInButtonState;
+- (void)_updateSignInFieldStatuses;
 - (void)_updateVibrancyAndBlurInTextFields;
 - (id)appleIDField;
 - (id)authenticationController;

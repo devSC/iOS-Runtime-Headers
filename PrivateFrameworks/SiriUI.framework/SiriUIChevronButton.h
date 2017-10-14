@@ -3,19 +3,21 @@
  */
 
 @interface SiriUIChevronButton : UIButton {
-    UIImageView *_chevronImageView;
-    float _chevronRightInset;
-    BOOL _hasChevron;
-    SiriUIKeyline *_keyline;
-    int _keylineType;
-    float _leftSubviewInset;
-    UIView *_subview;
+    UIImageView * _chevronImageView;
+    float  _chevronRightInset;
+    BOOL  _hasChevron;
+    SiriUIKeyline * _keyline;
+    int  _keylineType;
+    float  _leftSubviewInset;
+    float  _rightSubviewInset;
+    UIView * _subview;
 }
 
 @property (nonatomic) float chevronRightInset;
 @property (nonatomic) BOOL hasChevron;
 @property (nonatomic) int keylineType;
 @property (nonatomic) float leftSubviewInset;
+@property (nonatomic) float rightSubviewInset;
 @property (nonatomic, retain) UIView *subview;
 
 - (void).cxx_destruct;
@@ -25,11 +27,13 @@
 - (int)keylineType;
 - (void)layoutSubviews;
 - (float)leftSubviewInset;
+- (float)rightSubviewInset;
 - (void)setChevronRightInset:(float)arg1;
 - (void)setHasChevron:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setKeylineType:(int)arg1;
 - (void)setLeftSubviewInset:(float)arg1;
+- (void)setRightSubviewInset:(float)arg1;
 - (void)setSubview:(id)arg1;
 - (id)subview;
 

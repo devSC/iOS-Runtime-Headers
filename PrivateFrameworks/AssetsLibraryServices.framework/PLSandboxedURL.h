@@ -3,9 +3,10 @@
  */
 
 @interface PLSandboxedURL : NSURL {
-    long long _sandboxExtensionHandle;
+    long long  _sandboxExtensionHandle;
 }
 
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)initWithURL:(id)arg1 sandboxExtensionToken:(id)arg2;
 

@@ -2,18 +2,23 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@interface MPRemotePlaybackQueue : NSObject {
-    struct _MRSystemAppPlaybackQueue { } *_mediaRemotePlaybackQueue;
-    NSDictionary *_userInfo;
+@interface MPRemotePlaybackQueue : NSObject <MPCPlaybackContextCreating> {
+    struct _MRSystemAppPlaybackQueue { } * _mediaRemotePlaybackQueue;
+    NSDictionary * _userInfo;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property (getter=isRequestingImmediatePlayback, nonatomic, readonly) BOOL requestingImmediatePlayback;
 @property (nonatomic, readonly) BOOL shouldOverrideManuallyCuratedQueue;
+@property (readonly) Class superclass;
 @property (nonatomic, readonly) NSDictionary *userInfo;
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
 + (id)queueWithMediaRemotePlaybackQueue:(struct _MRSystemAppPlaybackQueue { }*)arg1;
++ (void)registerRemotePlaybackQueueClass:(Class)arg1 forPlaybackQueueType:(int)arg2;
 
 - (void).cxx_destruct;
 - (void)dealloc;
@@ -27,5 +32,6 @@
 // Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
 
 - (id)createPlaybackContext;
+- (void)createPlaybackContextWithCompletion:(id /* block */)arg1;
 
 @end

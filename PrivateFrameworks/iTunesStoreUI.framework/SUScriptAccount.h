@@ -3,7 +3,7 @@
  */
 
 @interface SUScriptAccount : SUScriptObject {
-    SSAccount *_account;
+    SSAccount * _account;
 }
 
 @property (readonly) NSString *ITunesPassSerialNumber;
@@ -32,6 +32,7 @@
 - (id)dsID;
 - (id)identifier;
 - (id)init;
+- (BOOL)isManagedAppleID;
 - (BOOL)isPrimaryAccount;
 - (id)isPrimaryLockerAccount;
 - (BOOL)isSecureTokenValid;

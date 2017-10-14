@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIViewController : UIResponder <GKContentRefresh, GKURLHandling, NSCoding, NSExtensionRequestHandling, UIAppearanceContainer, UIContentContainer, UIFocusEnvironment, UITraitEnvironment, UIViewControllerPresenting, _UIContentContainerInternal, _UIFocusEnvironmentInternal, _UIFocusRegion, _UITraitEnvironmentInternal, _UIViewServiceDeputy> {
-    UIViewController *__childControllerToIgnoreWhileLookingForTransitionCoordinator;
-    <_UIViewControllerContentViewEmbedding> *__embeddedDelegate;
-    UIView *__embeddedView;
+@interface UIViewController : UIResponder <GKContentRefresh, GKURLHandling, MKInfoCardThemeListener, NSCoding, NSExtensionRequestHandling, PXDiagnosticsEnvironment, UIAppearanceContainer, UIContentContainer, UIFocusEnvironment, UITraitEnvironment, UIViewControllerPresenting, _UIContentContainerInternal, _UIFocusEnvironmentInternal, _UITraitEnvironmentInternal, _UIViewServiceDeputy> {
+    UIViewController * __childControllerToIgnoreWhileLookingForTransitionCoordinator;
+    <_UIViewControllerContentViewEmbedding> * __embeddedDelegate;
+    UIView * __embeddedView;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -15,106 +15,106 @@
             float width; 
             float height; 
         } size; 
-    } __embeddedViewFrame;
-    UIView *__embeddingView;
-    NSArray *_addedKeyCommands;
-    id /* block */ _afterAppearance;
-    NSLayoutConstraint *_bottomBarInsetGuideConstraint;
-    <UILayoutSupport><_UILayoutItem> *_bottomLayoutGuide;
-    UIViewController *_childModalViewController;
-    NSMutableArray *_childViewControllers;
-    UIView *_containerViewInSheet;
-    float _contentMargin;
+    }  __embeddedViewFrame;
+    UIView * __embeddingView;
+    NSArray * _addedKeyCommands;
+    id /* block */  _afterAppearance;
+    NSLayoutConstraint * _bottomBarInsetGuideConstraint;
+    <UILayoutSupport><_UILayoutItem> * _bottomLayoutGuide;
+    UIViewController * _childModalViewController;
+    NSMutableArray * _childViewControllers;
+    UILayoutContainerView * _containerViewInSheet;
+    float  _contentMargin;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _contentOverlayInsets;
+    }  _contentOverlayInsets;
     struct CGSize { 
         float width; 
         float height; 
-    } _contentSizeForViewInPopover;
-    id _currentAction;
-    float _customNavigationInteractiveTransitionDuration;
-    float _customNavigationInteractiveTransitionPercentComplete;
-    UITransitionView *_customTransitioningView;
-    id _dimmingView;
-    id _dropShadowView;
-    unsigned int _edgesForExtendedLayout;
-    UIBarButtonItem *_editButtonItem;
-    int _explicitAppearanceTransitionLevel;
-    NSDictionary *_externalObjectsTableForViewLoading;
-    NSArray *_forceTouchPreviewingRegistrants;
+    }  _contentSizeForViewInPopover;
+    id  _currentAction;
+    float  _customNavigationInteractiveTransitionDuration;
+    float  _customNavigationInteractiveTransitionPercentComplete;
+    UITransitionView * _customTransitioningView;
+    id  _dimmingView;
+    BOOL  _disablesAutomaticKeyboardDismissal;
+    id  _dropShadowView;
+    unsigned int  _edgesForExtendedLayout;
+    UIBarButtonItem * _editButtonItem;
+    int  _explicitAppearanceTransitionLevel;
+    NSDictionary * _externalObjectsTableForViewLoading;
     struct CGSize { 
         float width; 
         float height; 
-    } _formSheetSize;
-    BOOL _ignoreAppSupportedOrientations;
-    BOOL _ignoresParentMargins;
-    NSArray *_interfaceBuilderKeyCommands;
-    int _lastKnownInterfaceOrientation;
-    UITraitCollection *_lastNotifiedTraitCollection;
-    _UILayoutGuide *_leftLayoutGuide;
-    NSLayoutConstraint *_leftMarginGuideConstraint;
-    BOOL _modalPresentationCapturesStatusBarAppearance;
-    int _modalPresentationStyle;
-    UIResponder *_modalPreservedFirstResponder;
-    UIViewController *_modalSourceViewController;
-    int _modalTransitionStyle;
-    UIView *_modalTransitionView;
+    }  _formSheetSize;
+    UITraitCollection * _frozenTraitCollection;
+    BOOL  _ignoreAppSupportedOrientations;
+    BOOL  _ignoresParentMargins;
+    NSArray * _interfaceBuilderKeyCommands;
+    int  _lastKnownInterfaceOrientation;
+    UITraitCollection * _lastNotifiedTraitCollection;
+    BOOL  _modalPresentationCapturesStatusBarAppearance;
+    int  _modalPresentationStyle;
+    UIResponder * _modalPreservedFirstResponder;
+    UIViewController * _modalSourceViewController;
+    int  _modalTransitionStyle;
+    UIView * _modalTransitionView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _navigationControllerContentInsetAdjustment;
-    float _navigationControllerContentOffsetAdjustment;
-    UINavigationItem *_navigationItem;
-    NSBundle *_nibBundle;
-    NSString *_nibName;
-    UIPresentationController *_originalPresentationController;
-    NSMapTable *_overrideTraitCollections;
-    <UIViewControllerTransitioningDelegate> *_overrideTransitioningDelegate;
-    UIViewController *_parentModalViewController;
-    UIViewController *_parentViewController;
-    UIPopoverController *_popoverController;
+    }  _navigationControllerContentInsetAdjustment;
+    float  _navigationControllerContentOffsetAdjustment;
+    UINavigationItem * _navigationItem;
+    NSBundle * _nibBundle;
+    NSString * _nibName;
+    UIPresentationController * _originalPresentationController;
+    NSMapTable * _overrideTraitCollections;
+    <UIViewControllerTransitioningDelegate> * _overrideTransitioningDelegate;
+    UIViewController * _parentModalViewController;
+    UIViewController * _parentViewController;
+    UIPopoverController * _popoverController;
     struct CGSize { 
         float width; 
         float height; 
-    } _preferredContentSize;
-    <UIFocusContainer> *_preferredFocusedItem;
-    UIPresentationController *_presentationController;
+    }  _preferredContentSize;
+    <UIFocusContainer> * _preferredFocusedItem;
+    UIPresentationController * _presentationController;
     struct { 
         int width; 
         int height; 
-    } _presentationSizeClassPair;
-    UIViewController *_presentedStatusBarViewController;
-    UIView *_presentingFocusedView;
-    NSMutableArray *_previewSourceViews;
-    UIViewController *_previousRootViewController;
-    UIScrollView *_recordedContentScrollView;
-    int _retainCount;
-    _UILayoutGuide *_rightLayoutGuide;
-    NSLayoutConstraint *_rightMarginGuideConstraint;
-    UIView *_savedFooterSuperview;
-    UIView *_savedHeaderSuperview;
-    UISearchDisplayController *_searchDisplayController;
-    UIStoryboardSegue *_segueResponsibleForModalPresentation;
-    UIViewController *_sourceViewControllerIfPresentedViaPopoverSegue;
-    UIStoryboard *_storyboard;
-    NSString *_storyboardIdentifier;
-    NSArray *_storyboardSegueTemplates;
-    UISearchDisplayController *_strongSearchDisplayController;
-    UITabBarItem *_tabBarItem;
-    UIPresentationController *_temporaryPresentationController;
-    NSString *_title;
-    NSArray *_toolbarItems;
-    NSLayoutConstraint *_topBarInsetGuideConstraint;
-    <UILayoutSupport><_UILayoutItem> *_topLayoutGuide;
-    NSArray *_topLevelObjectsToKeepAliveFromStoryboard;
-    <UIViewControllerTransitioningDelegate> *_transitioningDelegate;
-    UIView *_view;
+    }  _presentationSizeClassPair;
+    UIViewController * _presentedStatusBarViewController;
+    <UIFocusItem> * _presentingFocusedItem;
+    NSMutableArray * _previewSourceViews;
+    UIViewController * _previousRootViewController;
+    UIScrollView * _recordedContentScrollView;
+    int  _retainCount;
+    UIView * _savedFooterSuperview;
+    UIView * _savedHeaderSuperview;
+    UISearchDisplayController * _searchDisplayController;
+    UIStoryboardSegue * _segueResponsibleForModalPresentation;
+    UIViewController * _sourceViewControllerIfPresentedViaPopoverSegue;
+    UIStoryboard * _storyboard;
+    NSArray * _storyboardCommitSegueTemplates;
+    NSString * _storyboardIdentifier;
+    NSArray * _storyboardPreviewSegueTemplates;
+    NSArray * _storyboardPreviewingRegistrants;
+    NSArray * _storyboardSegueTemplates;
+    UISearchDisplayController * _strongSearchDisplayController;
+    UITabBarItem * _tabBarItem;
+    UIPresentationController * _temporaryPresentationController;
+    NSString * _title;
+    NSArray * _toolbarItems;
+    NSLayoutConstraint * _topBarInsetGuideConstraint;
+    <UILayoutSupport><_UILayoutItem> * _topLayoutGuide;
+    NSArray * _topLevelObjectsToKeepAliveFromStoryboard;
+    <UIViewControllerTransitioningDelegate> * _transitioningDelegate;
+    UIView * _view;
     struct { 
         unsigned int appearState : 2; 
         unsigned int isEditing : 1; 
@@ -160,13 +160,17 @@
         unsigned int automaticallyAdjustInsets : 1; 
         unsigned int previousShouldUnderlapUnderStatusBar : 1; 
         unsigned int freezeShouldUnderlapUnderStatusBar : 1; 
+        unsigned int shouldNotFreezeUnderlapsStatusBar : 1; 
         unsigned int monitorsSystemLayoutFittingSize : 1; 
         unsigned int shouldLoadInputAccessoryViewsOnAppearance : 1; 
         unsigned int useViewBasedTopAndBottomGuides : 1; 
         unsigned int didConfirmLayoutGuideClass : 1; 
-    } _viewControllerFlags;
-    BOOL _viewHostsLayoutEngine;
-    BOOL overrideUseCustomPresentation;
+        unsigned int overridesTraitCollectionDidChange : 1; 
+        unsigned int restoresFocusAfterTransition : 1; 
+        unsigned int freezeTraitsOnCounterRotationForPresentation : 1; 
+    }  _viewControllerFlags;
+    BOOL  _viewHostsLayoutEngine;
+    BOOL  overrideUseCustomPresentation;
 }
 
 @property (nonatomic, readonly) int ITunesStoreUIBarStyle;
@@ -193,37 +197,42 @@
 @property (nonatomic, readonly) BOOL _isModalSheet;
 @property (nonatomic, readonly) BOOL _isPresentedFormSheet;
 @property (setter=_setLastNotifiedTraitCollection:, nonatomic, retain) UITraitCollection *_lastNotifiedTraitCollection;
-@property (nonatomic, readonly, retain) _UILayoutGuide *_leftLayoutGuide;
-@property (nonatomic, readonly, retain) NSLayoutConstraint *_leftMarginGuideConstraint;
 @property (setter=_setModalSourceViewController:, nonatomic) UIViewController *_modalSourceViewController;
 @property (nonatomic, readonly) BOOL _monitorsSystemLayoutFittingSize;
+@property (nonatomic, readonly) UIMultiColumnViewController *_multiColumnViewController;
 @property (setter=_setNavigationControllerContentInsetAdjustment:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _navigationControllerContentInsetAdjustment;
 @property (setter=_setNavigationControllerContentOffsetAdjustment:, nonatomic) float _navigationControllerContentOffsetAdjustment;
 @property (nonatomic, readonly) UIViewController *_parentModalViewController;
 @property (nonatomic, readonly) UIViewController *_parentViewController;
+@property (nonatomic, readonly) NSArray *_preferredContentSizes;
 @property (setter=_setPresentationController:, nonatomic, retain) UIPresentationController *_presentationController;
 @property (setter=_setPresentedStatusBarViewController:, nonatomic, retain) UIViewController *_presentedStatusBarViewController;
 @property (setter=_setPreviousFittingSizeInfo:, nonatomic, retain) NSDictionary *_previousFittingSizeInfo;
-@property (nonatomic, readonly, retain) _UILayoutGuide *_rightLayoutGuide;
-@property (nonatomic, readonly, retain) NSLayoutConstraint *_rightMarginGuideConstraint;
 @property (setter=_setSegueResponsibleForModalPresentation:, nonatomic, retain) UIStoryboardSegue *_segueResponsibleForModalPresentation;
+@property (nonatomic, readonly) UIViewController *_sf_viewControllerToPresentFrom;
 @property (setter=_setSourceViewControllerIfPresentedViaPopoverSegue:, nonatomic) UIViewController *_sourceViewControllerIfPresentedViaPopoverSegue;
 @property (nonatomic, readonly, retain) NSLayoutConstraint *_topBarInsetGuideConstraint;
 @property (nonatomic, readonly) BOOL _transitionsChildViewControllers;
 @property (nonatomic, readonly) BOOL _useSheetRotation;
 @property (nonatomic, readonly) int _verticalSizeClass;
+@property (nonatomic, readonly) BOOL _viewHostsLayoutEngineAllowsTAMIC_NO;
 @property (nonatomic, readonly) BOOL ab_isDirectlyInPopover;
 @property (nonatomic, readonly) BOOL ab_isInPopover;
 @property (nonatomic, readonly) BOOL ab_isInSheet;
 @property (nonatomic, readonly) BOOL ab_shouldShowNavBarButtons;
 @property (nonatomic, readonly) BOOL ab_shouldUseTransparentBackgroundInPopovers;
+@property (nonatomic, readonly) _UIActionSheetPresentationController *actionSheetPresentationController;
 @property (nonatomic, copy) id /* block */ afterAppearanceBlock;
 @property (nonatomic, retain) NSString *aggregateStatisticsDisplayCountKey;
 @property (nonatomic) BOOL appearanceTransitionsAreDisabled;
 @property (nonatomic) BOOL automaticallyAdjustsScrollViewInsets;
+@property (getter=isBeingDismissed, nonatomic, readonly) BOOL beingDismissed;
+@property (getter=isBeingPresented, nonatomic, readonly) BOOL beingPresented;
 @property (nonatomic, readonly, retain) <UILayoutSupport><_UILayoutItem> *bottomLayoutGuide;
 @property (nonatomic) BOOL canDisplayBannerAds;
 @property (nonatomic, retain) UIViewController *childModalViewController;
+@property (nonatomic, readonly) UIViewController *childViewControllerForStatusBarHidden;
+@property (nonatomic, readonly) UIViewController *childViewControllerForStatusBarStyle;
 @property (nonatomic, readonly) NSArray *childViewControllers;
 @property (nonatomic, readonly) unsigned int childViewControllersCount;
 @property (nonatomic) struct CGSize { float x1; float x2; } contentSizeForViewInPopover;
@@ -234,6 +243,7 @@
 @property (nonatomic) BOOL definesPresentationContext;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) BOOL disableRootPromotion;
+@property (nonatomic) BOOL disablesAutomaticKeyboardDismissal;
 @property (getter=isDisplayingBannerAd, nonatomic, readonly) BOOL displayingBannerAd;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } documentBounds;
 @property (nonatomic, retain) UIDropShadowView *dropShadowView;
@@ -242,7 +252,7 @@
 @property (nonatomic, readonly) NSExtensionContext *extensionContext;
 @property (setter=_setExtensionContext:, nonatomic, retain) NSExtensionContext *extensionContext;
 @property (getter=isFinishingModalTransition, nonatomic) BOOL finishingModalTransition;
-@property (nonatomic, readonly) NSArray *forceTouchPreviewingRegistrants;
+@property (getter=_focusedItemRegionContainer, nonatomic, readonly) <_UIFocusRegionContainer> *focusedItemRegionContainer;
 @property (nonatomic) int gkFocusBubbleType;
 @property (readonly) unsigned int hash;
 @property (nonatomic) BOOL hidesBottomBarWhenPushed;
@@ -254,28 +264,30 @@
 @property (nonatomic, readonly) BOOL isPresentedInsidePopover;
 @property (nonatomic, readonly) BOOL isSettingAppearState;
 @property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } largerEdgeInsets;
-@property (getter=isLoaded, nonatomic, readonly) BOOL loaded;
-@property (getter=isLoading, nonatomic, readonly) BOOL loading;
+@property (getter=_linearFocusMovementSequences, nonatomic, readonly, copy) NSArray *linearFocusMovementSequences;
+@property (nonatomic, readonly) NCLongLookPresentationController *longLookPresentationController;
 @property (nonatomic) BOOL modalInPopover;
 @property (nonatomic) BOOL modalPresentationCapturesStatusBarAppearance;
 @property (nonatomic) int modalPresentationStyle;
 @property (nonatomic) int modalTransitionStyle;
 @property (nonatomic, retain) UITransitionView *modalTransitionView;
 @property (nonatomic, readonly) UIViewController *modalViewController;
-@property (nonatomic, readonly) UIBarButtonItem *music_accountEntryLeftBarButtonItem;
+@property (getter=isMovingFromParentViewController, nonatomic, readonly) BOOL movingFromParentViewController;
+@property (getter=isMovingToParentViewController, nonatomic, readonly) BOOL movingToParentViewController;
+@property (nonatomic, readonly) BOOL music_allowsMetricsEvents;
 @property (nonatomic, readonly, copy) NSString *music_effectiveReportingFeatureName;
 @property (nonatomic, readonly, copy) NSData *music_effectiveReportingRecommendationData;
 @property (setter=music_setReportingFeatureName:, nonatomic, copy) NSString *music_reportingFeatureName;
 @property (setter=music_setReportingRecommendationData:, nonatomic, copy) NSData *music_reportingRecommendationData;
 @property (nonatomic, readonly) UIBarButtonItem *music_searchEntryRightBarButtonItem;
 @property (setter=music_setSearchOptions:, nonatomic) unsigned int music_searchOptions;
-@property (setter=music_setWantsAccountEntryLeftBarButtonItem:, nonatomic) BOOL music_wantsAccountEntryLeftBarButtonItem;
 @property (setter=music_setWantsDefaultIndexBar:, nonatomic) BOOL music_wantsDefaultIndexBar;
 @property (setter=music_setWantsSearchEntryRightBarButtonItem:, nonatomic) BOOL music_wantsSearchEntryRightBarButtonItem;
 @property (setter=music_setWantsToOverrideRightBarButtonItem:, nonatomic) BOOL music_wantsToOverrideRightBarButtonItem;
 @property (nonatomic, retain) NSMutableArray *mutableChildViewControllers;
 @property (nonatomic, readonly) UINavigationController *navigationController;
 @property (nonatomic, readonly) UINavigationItem *navigationItem;
+@property (setter=setNCTransitionAnimationState:, nonatomic) int ncTransitionAnimationState;
 @property (nonatomic) BOOL needsDidMoveCleanup;
 @property (nonatomic, retain) NSBundle *nibBundle;
 @property (nonatomic, copy) NSString *nibName;
@@ -283,18 +295,26 @@
 @property (getter=_originalPresentationController, setter=_setOriginalPresentationController:, nonatomic, retain) UIPresentationController *originalPresentationController;
 @property (getter=_overrideTransitioningDelegate, setter=_setOverrideTransitioningDelegate:, nonatomic, retain) <UIViewControllerTransitioningDelegate> *overrideTransitioningDelegate;
 @property (getter=_overrideUseCustomPresentation, setter=_setOverrideUseCustomPresentation:, nonatomic) BOOL overrideUseCustomPresentation;
+@property (getter=_parentFocusEnvironment, nonatomic, readonly) <UIFocusEnvironment> *parentFocusEnvironment;
 @property (nonatomic) UIViewController *parentModalViewController;
 @property (nonatomic) UIViewController *parentViewController;
+@property (nonatomic, readonly) unsigned int ph_preferredChrome;
+@property (nonatomic, readonly) int ph_preferredChromeAnimation;
 @property (nonatomic, readonly) BOOL pl_isInPopover;
-@property (nonatomic) struct CGSize { float x1; float x2; } preferedContentSizeInModalItem;
 @property (nonatomic) struct CGSize { float x1; float x2; } preferredContentSize;
+@property (nonatomic, readonly, copy) NSArray *preferredFocusEnvironments;
+@property (getter=_preferredFocusMovementStyle, nonatomic, readonly) int preferredFocusMovementStyle;
 @property (nonatomic) <UIFocusContainer> *preferredFocusedItem;
 @property (nonatomic) UIView *preferredFocusedView;
+@property (nonatomic, readonly) int preferredStatusBarStyle;
+@property (nonatomic, readonly) int preferredStatusBarUpdateAnimation;
+@property (nonatomic, readonly) BOOL prefersStatusBarHidden;
 @property (getter=_presentationSizeClassPair, setter=_setPresentationSizeClassPair:, nonatomic) struct { int x1; int x2; } presentationSizeClassPair;
 @property (nonatomic, readonly) UIViewController *presentedViewController;
-@property (getter=_presentingFocusedView, nonatomic, readonly) UIView *presentingFocusedView;
+@property (getter=_presentingFocusedItem, setter=_setPresentingFocusedItem:, nonatomic) <UIFocusItem> *presentingFocusedItem;
 @property (getter=isPresentingFullScreenAd, nonatomic, readonly) BOOL presentingFullScreenAd;
 @property (nonatomic, readonly) UIViewController *presentingViewController;
+@property (nonatomic, readonly) NSArray *previewActionItems;
 @property (nonatomic) BOOL providesPresentationContextTransitionStyle;
 @property (nonatomic, readonly) PUModalTransition *pu_currentInteractiveModalTransition;
 @property (nonatomic, readonly) PUNavigationTransition *pu_currentInteractiveNavigationTransition;
@@ -311,18 +331,35 @@
 @property (nonatomic, readonly) BOOL pu_wantsNavigationBarVisible;
 @property (nonatomic, readonly) BOOL pu_wantsTabBarVisible;
 @property (nonatomic, readonly) BOOL pu_wantsToolbarVisible;
+@property (nonatomic, readonly) PXBarAppearance *px_barAppearance;
+@property (setter=px_setDefaultTransitionEndPoint:, nonatomic, retain) <PXUIViewControllerTransitionEndPoint> *px_defaultTransitionEndPoint;
+@property (nonatomic, readonly) PXExtendedTraitCollection *px_extendedTraitCollection;
+@property (nonatomic, readonly) BOOL px_isSnapBackDestination;
+@property (nonatomic, readonly) PXOneUpPresentation *px_oneUpPresentation;
+@property (nonatomic, readonly) BOOL px_photosUICategoriesAvailable;
+@property (nonatomic, readonly) NSString *px_snapBackHistorySubtitle;
+@property (nonatomic, readonly) NSString *px_snapBackHistoryTitle;
+@property (setter=px_setSubtitle:, nonatomic, copy) NSString *px_subtitle;
+@property (getter=px_isVisible, nonatomic, readonly) BOOL px_visible;
 @property (setter=rc_setScreenUpdatesDisabled:, nonatomic) BOOL rc_screenUpdatesDisabled;
+@property (nonatomic) BOOL restoresFocusAfterTransition;
 @property (nonatomic, readonly) UIView *savedHeaderSuperview;
 @property (nonatomic, readonly) SKUIScrollingSegmentedController *scrollingSegmentedController;
 @property (nonatomic, readonly) SKUIScrollingTabBarController *scrollingTabBarController;
 @property (nonatomic) BOOL searchBarHidNavBar;
 @property (nonatomic, retain) UISearchDisplayController *searchDisplayController;
+@property (nonatomic, readonly) BOOL shouldAutomaticallyForwardAppearanceMethods;
 @property (nonatomic, readonly) BOOL shouldInvalidateForMemoryPurge;
 @property (nonatomic, readonly) BOOL shouldPresentInterstitialAd;
-@property (nonatomic, readonly) FMSlidingPaneViewController *slidingPaneViewController;
+@property (getter=isSkLoaded, nonatomic, readonly) BOOL skLoaded;
+@property (getter=isSkLoading, nonatomic, readonly) BOOL skLoading;
+@property (readonly) FMSlidingPaneViewController *slidingPaneViewController;
 @property (nonatomic, readonly) UISplitViewController *splitViewController;
 @property (nonatomic, retain) SUStorePageProtocol *storePageProtocol;
-@property (nonatomic, retain) UIStoryboard *storyboard;
+@property (setter=_setStoryboard:, nonatomic, retain) UIStoryboard *storyboard;
+@property (nonatomic, readonly) NSArray *storyboardCommitSegueTemplates;
+@property (nonatomic, readonly) NSArray *storyboardPreviewSegueTemplates;
+@property (nonatomic, readonly) NSArray *storyboardPreviewingRegistrants;
 @property (nonatomic, readonly) NSArray *storyboardSegueTemplates;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UITabBarController *tabBarController;
@@ -332,9 +369,11 @@
 @property (nonatomic, readonly, retain) <UILayoutSupport><_UILayoutItem> *topLayoutGuide;
 @property (nonatomic, readonly) UITraitCollection *traitCollection;
 @property (nonatomic) <UIViewControllerTransitioningDelegate> *transitioningDelegate;
+@property (setter=tv_setIdentifier:, nonatomic, copy) NSString *tvIdentifier;
 @property (nonatomic, retain) UIView *view;
 @property (nonatomic, readonly) SUViewControllerFactory *viewControllerFactory;
 @property (nonatomic, readonly) UIView *viewIfLoaded;
+@property (getter=isViewLoaded, nonatomic, readonly) BOOL viewLoaded;
 @property (nonatomic) BOOL wantsFullScreenLayout;
 @property (getter=_window, nonatomic, readonly) UIWindow *window;
 
@@ -345,6 +384,7 @@
 + (BOOL)_allViewControllersInArray:(id)arg1 allowAutorotationToInterfaceOrientation:(int)arg2 predicate:(id /* block */)arg3;
 + (id)_currentStatusBarHiddenViewController;
 + (id)_currentStatusBarStyleViewController;
++ (id)_currentWhitePointAdaptivityStyleViewController;
 + (BOOL)_directlySetsContentOverlayInsetsForChildren;
 + (void)_disableNestedViewControllerSupport:(BOOL)arg1;
 + (BOOL)_doesOverrideLegacyFullScreenLayout;
@@ -358,7 +398,6 @@
 + (BOOL)_isViewSizeFullScreen:(id)arg1 inWindow:(id)arg2;
 + (BOOL)_isViewSizeFullScreen:(id)arg1 inWindow:(id)arg2 ignoreInWindowCheck:(BOOL)arg3;
 + (int)_keyboardDirectionForTransition:(int)arg1;
-+ (BOOL)_optsOutOfPopoverControllerHierarchyCheck;
 + (void)_performWithoutDeferringTransitions:(id /* block */)arg1;
 + (BOOL)_preventsAppearanceProxyCustomization;
 + (id)_printHierarchy;
@@ -439,18 +478,21 @@
 - (BOOL)_canBecomeDeepestUnambiguousResponder;
 - (BOOL)_canBecomeFirstResponder;
 - (BOOL)_canReloadView;
+- (BOOL)_canResignIfContainsFirstResponder;
 - (void)_cancelDelayedPresentation:(BOOL)arg1;
 - (struct CGPoint { float x1; float x2; })_centerForOrientation:(int)arg1;
 - (BOOL)_checkIfViewControllerIsBeingDismissed:(id)arg1;
 - (id)_childControllerToIgnoreWhileLookingForTransitionCoordinator;
-- (id)_childFocusRegions;
+- (id)_childViewControllerForWhitePointAdaptivityStyle;
 - (id)_childViewControllersToSendViewWillTransitionToSize;
 - (void)_cleanupLayoutGuides;
 - (void)_cleanupPresentation;
 - (void)_clearLastKnownInterfaceOrientation;
 - (void)_clearRecordedContentScrollView;
+- (void)_collapseSecondaryViewController:(id)arg1 forSplitViewController:(id)arg2 withTransitionCoordinator:(id)arg3;
 - (void)_commitPreviewTransitionAsDetailOfSplitViewController:(id)arg1 withDelegate:(id)arg2 completion:(id /* block */)arg3;
 - (id /* block */)_completionBlock;
+- (void)_containingAlertControllerDidChangeVisualStyle:(id)arg1;
 - (BOOL)_containsFirstResponder;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_contentInsetsInWindow;
 - (float)_contentMargin;
@@ -471,10 +513,11 @@
 - (id)_description;
 - (id)_descriptionForPrintingHierarchy;
 - (id)_descriptionWithChildren:(int)arg1;
-- (id)_destinationForUnwindingFromSource:(id)arg1;
+- (id)_destinationForUnwindingFromSource:(id)arg1 visitedViewControllers:(id)arg2;
 - (void)_didBecomeContentViewControllerOfPopover:(id)arg1;
 - (void)_didCancelDismissTransition:(id)arg1;
 - (void)_didCancelPresentTransition:(id)arg1;
+- (void)_didEndCounterRotationForPresentation;
 - (void)_didFinishDismissTransition;
 - (void)_didFinishPresentTransition;
 - (void)_didReceiveMemoryWarning:(id)arg1;
@@ -482,6 +525,7 @@
 - (void)_didRotateFromInterfaceOrientation;
 - (void)_didRotateFromInterfaceOrientation:(int)arg1 forwardToChildControllers:(BOOL)arg2 skipSelf:(BOOL)arg3;
 - (BOOL)_didSelfOrAncestorBeginAppearanceTransition;
+- (void)_didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (BOOL)_disallowMixedOrientationPresentations;
 - (void)_dismissViewControllerWithAnimationController:(id)arg1 interactionController:(id)arg2 completion:(id /* block */)arg3;
 - (void)_dismissViewControllerWithTransition:(int)arg1 from:(id)arg2 completion:(id /* block */)arg3;
@@ -491,6 +535,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_edgeInsetsForChildViewController:(id)arg1 insetsAreAbsolute:(BOOL*)arg2;
 - (id)_effectiveStatusBarHiddenViewController;
 - (id)_effectiveStatusBarStyleViewController;
+- (id)_effectiveWhitePointAdaptivityStyleViewController;
 - (void)_embedContentViewInView:(id)arg1 withContentFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 delegate:(id)arg3;
 - (id)_embeddedDelegate;
 - (id)_embeddedView;
@@ -510,13 +555,6 @@
 - (id)_existingView;
 - (id)_extensionContext;
 - (id)_firstResponder;
-- (id)_focusDebugOverlayParentView;
-- (BOOL)_focusRegionCanBecomeFocused;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_focusRegionFrame;
-- (id)_focusRegionGuides;
-- (BOOL)_focusRegionIsEligibleForFocus;
-- (id)_focusRegionItem;
-- (id)_focusRegionView;
 - (struct CGSize { float x1; float x2; })_formSheetSizeForWindowWithSize:(struct CGSize { float x1; float x2; })arg1;
 - (BOOL)_forwardAppearanceMethods;
 - (BOOL)_forwardRotationMethods;
@@ -526,8 +564,10 @@
 - (BOOL)_hackFor11408026_beginAppearanceTransition:(BOOL)arg1 animated:(BOOL)arg2;
 - (BOOL)_hackFor11408026_endAppearanceTransition;
 - (void)_handleTapToDismissModalCurl:(id)arg1;
+- (BOOL)_handlesCounterRotationForPresentation;
 - (BOOL)_hasAppeared;
 - (BOOL)_hasCurlUpTapGestureRecognizer;
+- (BOOL)_hasPreferredInterfaceOrientationForPresentation;
 - (int)_horizontalSizeClass;
 - (int)_horizontalSizeClassForChildViewController:(id)arg1;
 - (id)_hostApplicationBundleIdentifier;
@@ -549,6 +589,7 @@
 - (BOOL)_isInCustomTransition;
 - (BOOL)_isInPopoverPresentation;
 - (BOOL)_isInSheetPresentation;
+- (BOOL)_isInViewControllerThatHandlesKeyboardAvoidance;
 - (BOOL)_isInterfaceAutorotationDisabled;
 - (BOOL)_isMemberOfViewControllerHierarchy:(id)arg1;
 - (BOOL)_isModalSheet;
@@ -558,7 +599,6 @@
 - (BOOL)_isPresentingInWindow:(id)arg1;
 - (BOOL)_isRootViewController;
 - (BOOL)_isSupportedInterfaceOrientation:(int)arg1;
-- (BOOL)_isTransparentFocusRegion;
 - (BOOL)_isViewController;
 - (BOOL)_isViewControllerInWindowHierarchy;
 - (BOOL)_isViewInWindowWithoutParentViewController;
@@ -571,8 +611,6 @@
 - (id)_lastNotifiedTraitCollection;
 - (void)_layoutContainerViewDidMoveToWindow:(id)arg1;
 - (void)_layoutContainerViewWillMoveToWindow:(id)arg1;
-- (id)_leftLayoutGuide;
-- (id)_leftMarginGuideConstraint;
 - (void)_legacyDismissModalViewController:(id)arg1 withTransition:(int)arg2;
 - (int)_legacyInterfaceOrientation;
 - (void)_legacyModalDismissTransitionDidComplete;
@@ -580,14 +618,18 @@
 - (void)_legacyPresentModalViewController:(id)arg1 withTransition:(int)arg2;
 - (void)_loadHierarchyInputAccessoryViewIfNecessary;
 - (void)_loadViewFromNibNamed:(id)arg1 bundle:(id)arg2;
+- (BOOL)_modalPresentationStyleRequiresTemporaryPopoverPresentationController:(int)arg1;
 - (id)_modalPresenter:(int)arg1;
 - (id)_modalPresenterForPresentationController:(id)arg1;
 - (id)_modalPreservedFirstResponder;
 - (id)_modalSourceViewController;
 - (BOOL)_monitorsSystemLayoutFittingSize;
 - (id)_moreListTitle;
+- (id)_multiColumnViewController;
+- (id)_navigationBarForDragAffordance;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_navigationControllerContentInsetAdjustment;
 - (float)_navigationControllerContentOffsetAdjustment;
+- (id)_navigationItemCreatingDefaultIfNotSet;
 - (id)_nearestFullScreenAncestorViewController;
 - (id)_nextViewController;
 - (id)_nextViewControllerForUnwindSegueSearch;
@@ -595,11 +637,14 @@
 - (id)_nonModalAncestorViewControllerStopAtIsPresentationContext:(BOOL)arg1;
 - (id)_nonModalParentViewController;
 - (id)_nonPresentationAppearanceContainer;
+- (BOOL)_optsOutOfPopoverControllerHierarchyCheck;
 - (id)_originalPresentationController;
 - (void)_overlayPresentAnimationDidStop:(id)arg1 finished:(id)arg2 context:(id)arg3;
 - (int)_overrideInterfaceOrientationMechanics;
 - (id)_overrideTransitioningDelegate;
 - (BOOL)_overrideUseCustomPresentation;
+- (BOOL)_overridesTraitCollectionDidChange;
+- (id)_overridingDestinationEnvironmentForFocusUpdateInContext:(id)arg1;
 - (void)_parent:(id)arg1 willTransitionToTraitCollection:(id)arg2 withTransitionCoordinator:(id)arg3;
 - (id)_parentContentContainer;
 - (id)_parentFocusEnvironment;
@@ -609,19 +654,22 @@
 - (void)_performCoordinatedPresentOrDismiss:(id /* block */)arg1 animated:(BOOL)arg2;
 - (id)_popoverController;
 - (void)_populateArchivedChildViewControllers:(id)arg1;
-- (id)_preferredChildFocusRegionsForView;
 - (void)_preferredContentSizeDidChangeForChildViewController:(id)arg1;
+- (id)_preferredContentSizes;
 - (int)_preferredInterfaceOrientationForPresentationInWindow:(id)arg1 fromInterfaceOrientation:(int)arg2;
 - (int)_preferredInterfaceOrientationGivenCurrentOrientation:(int)arg1;
 - (int)_preferredInterfaceOrientationGivenStatusBarAndDeviceAndOrientation:(int)arg1;
 - (int)_preferredInterfaceOrientationGivenStatusBarAndDeviceOrientationAndMask:(unsigned int*)arg1;
 - (id)_preferredStatusBarHideAnimationParameters;
 - (id)_preferredStatusBarStyleAnimationParameters;
+- (int)_preferredWhitePointAdaptivityStyle;
+- (void)_prepareForContainerTransition:(id)arg1;
 - (void)_prepareForDismissalInPopover:(id)arg1;
 - (void)_prepareForNestedDisplayWithNavigationController:(id)arg1;
 - (void)_prepareForNormalDisplayWithNavigationController:(id)arg1;
 - (void)_prepareForPresentationInPopover:(id)arg1;
 - (void)_prepareForTapGesture:(id)arg1;
+- (void)_preparePresentationControllerForPresenting:(id)arg1;
 - (void)_presentViewController:(id)arg1 modalSourceViewController:(id)arg2 presentationController:(id)arg3 animationController:(id)arg4 interactionController:(id)arg5 completion:(id /* block */)arg6;
 - (void)_presentViewController:(id)arg1 withAnimationController:(id)arg2 completion:(id /* block */)arg3;
 - (void)_presentViewControllerForStateRestoration:(id)arg1 animated:(BOOL)arg2;
@@ -629,9 +677,8 @@
 - (id)_presentationControllerClassName;
 - (id)_presentationControllerForPresentedController:(id)arg1 presentingController:(id)arg2 sourceController:(id)arg3;
 - (struct { int x1; int x2; })_presentationSizeClassPair;
-- (id)_presentedFocusEnvironment;
 - (id)_presentedStatusBarViewController;
-- (id)_presentingFocusedView;
+- (id)_presentingFocusedItem;
 - (void)_presentingViewControllerDidChange:(id)arg1;
 - (void)_presentingViewControllerWillChange:(id)arg1;
 - (id)_previousFittingSizeInfo;
@@ -642,6 +689,7 @@
 - (id)_printHierarchy;
 - (BOOL)_reallyWantsFullScreenLayout;
 - (void)_recordContentScrollView;
+- (void)_rememberPresentingFocusedItem:(id)arg1;
 - (id)_remoteViewControllerProxy;
 - (id)_remoteViewControllerProxyWithErrorHandler:(id /* block */)arg1;
 - (void)_removeChildViewController:(id)arg1;
@@ -654,8 +702,7 @@
 - (struct CGSize { float x1; float x2; })_resolvedPreferredContentSize;
 - (id)_restorationClassName;
 - (void)_restoreInputViewsForPresentation;
-- (id)_rightLayoutGuide;
-- (id)_rightMarginGuideConstraint;
+- (BOOL)_restoresFocusAfterTransitionByDefault;
 - (id)_rootAncestorViewController;
 - (int)_rotatingFromInterfaceOrientation;
 - (int)_rotatingToInterfaceOrientation;
@@ -696,6 +743,7 @@
 - (void)_setNavigationControllerContentInsetAdjustment:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_setNavigationControllerContentOffsetAdjustment:(float)arg1;
 - (void)_setNeedsNonDeferredFocusUpdate;
+- (void)_setNeedsScreenWhitePointAdaptivityStyleUpdate;
 - (void)_setOriginalPresentationController:(id)arg1;
 - (void)_setOverrideTransitioningDelegate:(id)arg1;
 - (void)_setOverrideUseCustomPresentation:(BOOL)arg1;
@@ -703,6 +751,7 @@
 - (void)_setPresentationController:(id)arg1;
 - (void)_setPresentationSizeClassPair:(struct { int x1; int x2; })arg1;
 - (void)_setPresentedStatusBarViewController:(id)arg1;
+- (void)_setPresentingFocusedItem:(id)arg1;
 - (void)_setPreviousFittingSizeInfo:(id)arg1;
 - (void)_setPreviousRootViewController:(id)arg1;
 - (void)_setPreviousUnderlapsStatusBar:(BOOL)arg1;
@@ -711,6 +760,7 @@
 - (void)_setSearchDisplayControllerUnretained:(id)arg1;
 - (void)_setSegueResponsibleForModalPresentation:(id)arg1;
 - (void)_setSharedView:(id)arg1;
+- (void)_setShouldFreezeUnderlapsStatusBar:(BOOL)arg1;
 - (void)_setShouldLoadInputAccessoryViewOnAppearance:(BOOL)arg1;
 - (void)_setShouldSynthesizeSupportedOrientations:(BOOL)arg1;
 - (void)_setSourceViewControllerIfPresentedViaPopoverSegue:(id)arg1;
@@ -718,7 +768,6 @@
 - (void)_setSuppressesBottomBar:(BOOL)arg1;
 - (void)_setTemporaryPresentationController:(id)arg1;
 - (void)_setUpLayoutGuideConstraintIfNecessaryAtTop:(BOOL)arg1;
-- (void)_setUpLayoutGuideConstraintIfNecessaryOnLeft:(BOOL)arg1;
 - (void)_setUseTelephonyUI:(BOOL)arg1;
 - (void)_setUsesSharedView:(BOOL)arg1;
 - (void)_setViewAppearState:(int)arg1 isAnimating:(BOOL)arg2;
@@ -729,6 +778,7 @@
 - (BOOL)_shouldAutoPinInputViewsForModalFormSheet;
 - (BOOL)_shouldChildViewControllerUseFullScreenLayout:(id)arg1;
 - (BOOL)_shouldForwardSystemLayoutFittingSizeChanges;
+- (BOOL)_shouldFreezeUnderlapsStatusBar;
 - (BOOL)_shouldIgnoreTouchesForModalFormSheet;
 - (BOOL)_shouldLoadInputAccessoryViewsOnAppearance;
 - (BOOL)_shouldLoadViewDuringRestoration:(id)arg1;
@@ -743,11 +793,13 @@
 - (void)_showViewController:(id)arg1 withAction:(SEL)arg2 sender:(id)arg3;
 - (BOOL)_skipDefaultAppearStateCallbacks;
 - (id)_sourceViewControllerIfPresentedViaPopoverSegue;
+- (void)_splitViewControllerWillCollapseOntoPrimaryViewController:(id)arg1;
 - (void)_startModalPresentationInPopover;
 - (void)_startPresentCustomTransitionWithDuration:(double)arg1;
 - (void)_stateRestorationDidFinish:(BOOL)arg1;
 - (float)_statusBarHeightAdjustmentForCurrentOrientation;
 - (float)_statusBarHeightForCurrentInterfaceOrientation;
+- (void)_stopTransitionsImmediately;
 - (int)_supportedInterfaceOrientationForInterfaceOrientation:(int)arg1 givenMask:(unsigned int*)arg2;
 - (void)_supportedInterfaceOrientationsDidChange;
 - (BOOL)_suppressesBottomBar;
@@ -768,6 +820,8 @@
 - (void)_traverseViewControllerHierarchyFromLevel:(int)arg1 withBlock:(id /* block */)arg2;
 - (BOOL)_tryBecomeRootViewControllerInWindow:(id)arg1;
 - (BOOL)_tryRetain;
+- (BOOL)_tvTabBarShouldAutohide;
+- (BOOL)_tvTabBarShouldOverlap;
 - (id)_uiCollectionView;
 - (void)_unembedContentView;
 - (void)_unembedContentViewSettingDelegate:(id)arg1;
@@ -801,12 +855,15 @@
 - (id)_viewForContentInPopover;
 - (id)_viewForModalPresentationInPopover;
 - (BOOL)_viewHostsLayoutEngine;
+- (BOOL)_viewHostsLayoutEngineAllowsTAMIC_NO;
 - (id)_viewsWithDisabledInteractionGivenTransitionContext:(id)arg1;
 - (id)_visibleView;
+- (id)_visualStyleOfContainingAlertController;
 - (void)_willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2 forwardToChildControllers:(BOOL)arg3 skipSelf:(BOOL)arg4;
 - (void)_willAppearInRemoteViewController;
 - (void)_willAppearInRemoteViewController:(id)arg1;
 - (void)_willBecomeContentViewControllerOfPopover:(id)arg1;
+- (void)_willBeginCounterRotationForPresentation;
 - (void)_willChangeToIdiom:(int)arg1 onScreen:(id)arg2;
 - (void)_willResignContentViewControllerOfPopover:(id)arg1;
 - (void)_willRotateToInterfaceOrientation;
@@ -819,6 +876,7 @@
 - (void)_windowControllerDismissViewControllerWithTransition:(int)arg1 completion:(id /* block */)arg2;
 - (id)_windowForAutorotation;
 - (void)accessibilityLargeTextDidChange;
+- (id)actionSheetPresentationController;
 - (void)addChildViewController:(id)arg1;
 - (void)addKeyCommand:(id)arg1;
 - (id /* block */)afterAppearanceBlock;
@@ -846,6 +904,7 @@
 - (id)childViewControllerContainingSegueSource:(id)arg1;
 - (id)childViewControllerForStatusBarHidden;
 - (id)childViewControllerForStatusBarStyle;
+- (id)childViewControllerForWhitePointAdaptivityStyle;
 - (id)childViewControllers;
 - (unsigned int)childViewControllersCount;
 - (void)collapseSecondaryViewController:(id)arg1 forSplitViewController:(id)arg2;
@@ -868,7 +927,6 @@
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (BOOL)disableRootPromotion;
 - (BOOL)disablesAutomaticKeyboardDismissal;
-- (void)dismissModalItem:(id)arg1 withTappedButtonIndex:(int)arg2 animated:(BOOL)arg3;
 - (void)dismissModalViewControllerAnimated:(BOOL)arg1;
 - (void)dismissModalViewControllerWithTransition:(int)arg1;
 - (void)dismissViewControllerAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
@@ -885,7 +943,6 @@
 - (id)focusedView;
 - (void)focusedViewDidChange;
 - (void)focusedViewWillChange;
-- (id)forceTouchPreviewingRegistrants;
 - (void)forceUnloadView;
 - (struct CGSize { float x1; float x2; })formSheetSize;
 - (void)getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; float x6; int x7; }*)arg1 forWindow:(id)arg2;
@@ -915,8 +972,6 @@
 - (BOOL)isViewLoaded;
 - (id)keyCommands;
 - (id)leadingPreviewAction;
-- (id)leadingPreviewMenuItem;
-- (id)leadingPreviewQuickAction;
 - (void)loadView;
 - (void)loadViewIfNeeded;
 - (void)loadViewIfRequired;
@@ -944,17 +999,15 @@
 - (id)popoverPresentationController:(BOOL)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)preferredContentSizeDidChangeForChildContentContainer:(id)arg1;
+- (id)preferredFocusEnvironments;
 - (id)preferredFocusedItem;
 - (id)preferredFocusedView;
 - (int)preferredInterfaceOrientationForPresentation;
 - (int)preferredStatusBarStyle;
 - (int)preferredStatusBarUpdateAnimation;
+- (int)preferredWhitePointAdaptivityStyle;
 - (BOOL)prefersStatusBarHidden;
 - (void)prepareForSegue:(id)arg1 sender:(id)arg2;
-- (void)presentModalItem:(id)arg1 animated:(BOOL)arg2;
-- (void)presentModalItem:(id)arg1 animated:(BOOL)arg2 dontPresentAndAddToStack:(BOOL)arg3;
-- (void)presentModalItem:(id)arg1 replacing:(id)arg2 animated:(BOOL)arg3;
-- (void)presentModalItem:(id)arg1 replacing:(id)arg2 animated:(BOOL)arg3 dontPresentAndAddToStack:(BOOL)arg4;
 - (void)presentModalViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)presentModalViewController:(id)arg1 withTransition:(int)arg2;
 - (void)presentViewController:(id)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
@@ -977,6 +1030,7 @@
 - (void)removeKeyCommand:(id)arg1;
 - (Class)restorationClass;
 - (void)restoreUserActivityState:(id)arg1;
+- (BOOL)restoresFocusAfterTransition;
 - (id)retain;
 - (unsigned int)retainCount;
 - (id)rotatingContentViewForWindow:(id)arg1;
@@ -1002,6 +1056,7 @@
 - (void)setCustomTransitioningView:(id)arg1;
 - (void)setDefinesPresentationContext:(BOOL)arg1;
 - (void)setDisableRootPromotion:(BOOL)arg1;
+- (void)setDisablesAutomaticKeyboardDismissal:(BOOL)arg1;
 - (void)setDropShadowView:(id)arg1;
 - (void)setEdgesForExtendedLayout:(unsigned int)arg1;
 - (void)setEditing:(BOOL)arg1;
@@ -1025,6 +1080,7 @@
 - (void)setNeedsFocusUpdate;
 - (void)setNeedsPreferredFocusedItemUpdate;
 - (void)setNeedsStatusBarAppearanceUpdate;
+- (void)setNeedsWhitePointAdaptivityStyleUpdate;
 - (void)setNibBundle:(id)arg1;
 - (void)setNibName:(id)arg1;
 - (void)setOverrideTraitCollection:(id)arg1 forChildViewController:(id)arg2;
@@ -1036,6 +1092,7 @@
 - (void)setPreferredFocusedView:(id)arg1;
 - (void)setProvidesPresentationContextTransitionStyle:(BOOL)arg1;
 - (void)setRestorationClass:(Class)arg1;
+- (void)setRestoresFocusAfterTransition:(BOOL)arg1;
 - (void)setSearchBarHidNavBar:(BOOL)arg1;
 - (void)setSearchDisplayController:(id)arg1;
 - (void)setShouldForceNonAnimatedTransition:(BOOL)arg1;
@@ -1065,7 +1122,10 @@
 - (struct CGSize { float x1; float x2; })sizeForChildContentContainer:(id)arg1 withParentContainerSize:(struct CGSize { float x1; float x2; })arg2;
 - (id)splitViewController;
 - (id)storyboard;
+- (id)storyboardCommitSegueTemplates;
 - (id)storyboardIdentifier;
+- (id)storyboardPreviewSegueTemplates;
+- (id)storyboardPreviewingRegistrants;
 - (id)storyboardSegueTemplates;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(id)arg1;
@@ -1077,8 +1137,6 @@
 - (id)toolbarItems;
 - (id)topLayoutGuide;
 - (id)trailingPreviewAction;
-- (id)trailingPreviewMenuItem;
-- (id)trailingPreviewQuickAction;
 - (id)traitCollection;
 - (void)traitCollectionDidChange:(id)arg1;
 - (id)traitCollectionForChildViewController:(id)arg1;
@@ -1096,7 +1154,6 @@
 - (void)unregisterPreviewing:(id)arg1;
 - (void)unwindForSegue:(id)arg1 towardsViewController:(id)arg2;
 - (void)updateFocusIfNeeded;
-- (void)updateModaltem:(id)arg1 animated:(BOOL)arg2;
 - (void)updatePreferredFocusedItemIfNeeded;
 - (void)updateTabBarItemForViewController:(id)arg1;
 - (void)updateTitleForViewController:(id)arg1;
@@ -1164,21 +1221,17 @@
 
 // Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
 
-+ (Class)_ABPersonViewControllerClass;
-+ (id)eventDetailViewControllerWithEvent:(id)arg1 delegate:(id)arg2;
++ (id)eventDetailViewControllerWithEvent:(id)arg1 delegate:(id)arg2 context:(struct NSDictionary { Class x1; }*)arg3;
++ (id)eventDetailViewControllerWithEvent:(id)arg1 delegate:(id)arg2 context:(struct NSDictionary { Class x1; }*)arg3 allowInlinePreview:(BOOL)arg4 previewInline:(BOOL)arg5 minimalMode:(BOOL)arg6;
 
 - (BOOL)isPresentedInsidePopover;
 
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (void)infoCardThemeChanged:(id)arg1;
+
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
-+ (void)_beginAppearanceTransitionFromViewController:(id)arg1 toViewController:(id)arg2 animated:(BOOL)arg3;
-+ (void)_endAppearanceTransitionFromViewController:(id)arg1 toViewController:(id)arg2;
-
-- (void)_addChildViewAndViewController:(id)arg1;
-- (void)_addChildViewAndViewController:(id)arg1 asSubviewOfView:(id)arg2;
-- (void)_addChildViewAndViewController:(id)arg1 asSubviewOfView:(id)arg2 addSubviewBlock:(id /* block */)arg3;
-- (BOOL)_hasAncestorViewController:(id)arg1;
-- (void)_removeFromParentViewAndViewController;
 - (id)aggregateStatisticsDisplayCountKey;
 - (void)dismissMoviePlayerViewControllerAnimated;
 - (void)presentMoviePlayerViewControllerAnimated:(id)arg1;
@@ -1190,26 +1243,31 @@
 - (id)mf_keyPathsMapForUICustomization;
 - (void)mf_setDataForUICustomization:(id)arg1;
 
-// Image: /System/Library/Frameworks/PassKit.framework/PassKit
-
-- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; unsigned char x29; unsigned short x30; void*x31; short x32; short x33; int x34; out in void*x35; const int x36; void x37; void*x38; void*x39; void*x40; long doublex41; void*x42; long x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; void*x58; void*x59; void*x60; void*x61; void*x62; void*x63; void*x64; void*x65; void*x66; void*x67; void*x68; void*x69; void*x70; void*x71; void*x72; void*x73; void*x74; void*x75; void*x76; void*x77; void*x78; void*x79; void*x80; bycopy void*x81; void*x82; void*x83; void*x84; void*x85; void*x86; void*x87; void*x88; void*x89; void*x90; void*x91; void*x92; void*x93; void*x94; void*x95; void*x96; void*x97; void*x98; void*x99; void*x100; void*x101; void*x102; void*x103; void*x104; void*x105; oneway void*x106; long x107; void*x108; void*x109; SEL x110; union { int x_111_1_1; double x_111_1_2; } x111; void*x112; const void*x113; void*x114; void*x115; float x116; out const void*x117; void*x118; void*x119; SEL x120; union { int x_121_1_1; double x_121_1_2; } x121; void*x122; const void*x123; void*x124; void*x125; void*x126; in double x127; void*x128; in void*x129; void*x130; void*x131; void*x132; void*x133; long long x134; void*x135; void*x136; void*x137; void*x138; void*x139; void*x140; oneway int x141; void*x142; void*x143; SEL x144; void*x145; void*x146; void*x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; void*x156; void*x157; void*x158; void*x159; void*x160; void*x161; void*x162; void*x163; void*x164; void*x165; void*x166; void*x167; void*x168; void*x169; void*x170; void*x171; void*x172; void*x173; void*x174; void*x175; void*x176; void*x177; void*x178; void*x179; void*x180; bycopy void*x181; void*x182; void*x183; inout void*x184; void*x185; void*x186; void*x187; void*x188; void*x189; void*x190; void*x191; void*x192; void*x193; void*x194; void*x195; void*x196; void*x197; void*x198; void*x199; double x200; int x201; double x202; bool x203; void*x204; BOOL x205; out void*x206; void*x207; unsigned char x208; out in void*x209; void*x210; in void*x211; oneway int x212; void*x213; void*x214; unsigned char x215; out in void*x216; const out long x217; long x218; void*x219; const bycopy float x220; void*x221; out void*x222; out void x223; void*x224; const SEL x225; void*x226; void*x227; void*x228; void*x229; void*x230; void*x231; void*x232; void*x233; void*x234; void*x235; void*x236; void*x237; void*x238; void*x239; void*x240; void*x241; void*x242; void*x243; void*x244; void*x245; void*x246; void*x247; void*x248; void*x249; unsigned char x250; inout void*x251; void*x252; const unsigned int x253/* : ? */; void*x254; unsigned short x255; void*x256; const void x257; int x258; BOOL x259; void*x260; bool x261; const out void*x262; short x263; void*x264; const long doublex265; void*x266; long x267; void*x268; void*x269; void*x270; void*x271; void*x272; void*x273; void*x274; void*x275; void*x276; void*x277; void*x278; void*x279; void*x280; void*x281; void*x282; void*x283; void*x284; void*x285; void*x286; void*x287; void*x288; void*x289; void*x290; void*x291; void*x292; void*x293; void*x294; void*x295; void*x296; void*x297; void*x298; void*x299; void*x300; void*x301; void*x302; void*x303; void*x304; void*x305; void*x306; void*x307; void*x308; void*x309; void*x310; void*x311; void*x312; void*x313; void*x314; void*x315; void*x316; void*x317; void*x318; inout void*x319; void*x320; void*x321; bycopy void*x322; void*x323; void*x324; void*x325; void*x326; void*x327; void*x328; void*x329; void*x330; void*x331; void*x332; void*x333; void*x334; void*x335; void*x336; void*x337; void*x338; void*x339; void*x340; void*x341; void*x342; void*x343; void*x344; void*x345; void*x346; void*x347; void*x348; void*x349; void*x350; void*x351; void*x352; void*x353; long doublex354; int x355; BOOL x356; void*x357; void*x358; void*x359; int x360; out in bycopy void*x361; void*x362; int x363; out in short x364; void*x365; void*x366; void*x367; void*x368; void*x369; void*x370; void*x371; void*x372; void*x373; void*x374; void*x375; void*x376; void*x377; void*x378; void*x379; void*x380; void*x381; void*x382; void*x383; void*x384; void*x385; void*x386; void*x387; void*x388; void*x389; void*x390; void*x391; void*x392; void*x393; void*x394; void*x395; void*x396; void*x397; void*x398; void*x399; void*x400; void*x401; void*x402; void*x403; void*x404; void*x405; void*x406; void*x407; void*x408; void*x409; void*x410; void*x411; void*x412; void*x413; void*x414; void*x415; void*x416; void*x417; void*x418; void*x419; void*x420; void*x421; void*x422; void*x423; void*x424; void*x425; void*x426; void*x427; void*x428; void*x429; void*x430; void*x431; void*x432; void*x433; BOOL x434; void*x435; void*x436; void*x437; void*x438; void*x439; void*x440; id x441; unsigned int x442/* : ? */; void*x443; void*x444; void*x445; void*x446; void*x447; void*x448; void*x449; void*x450; void*x451; void*x452; bool x453; void*x454; void*x455; void*x456; void*x457; void*x458; void*x459; void*x460; void*x461; void*x462; void*x463; void*x464; void*x465; void*x466; void*x467; void*x468; void*x469; void*x470; void*x471; void*x472; void*x473; void*x474; void*x475; void*x476; void*x477; void*x478; void*x479; void*x480; void*x481; void*x482; void*x483; void*x484; void*x485; void*x486; void*x487; void*x488; void*x489; void*x490; void*x491; void*x492; void*x493; void*x494; void*x495; void*x496; unsigned long long x497; void*x498; void*x499; void*x500; void*x501; void*x502; void*x503; void*x504; void*x505; void*x506; void*x507; void*x508; void*x509; void*x510; void*x511; void*x512; void*x513; void*x514; void*x515; void*x516; void*x517; void*x518; void*x519; void*x520; void*x521; long doublex522; int x523; BOOL x524; void*x525; void*x526; void*x527; int x528; out in bycopy void*x529; void*x530; int x531; out in short x532; void*x533; void*x534; void*x535; void*x536; void*x537; void*x538; void*x539; void*x540; void*x541; void*x542; void*x543; void*x544; void*x545; bycopy void*x546; unsigned short x547; void*x548; short x549; void*x550; void*x551; void*x552; void*x553; unsigned long x554; int x555; unsigned int x556/* : ? */; const void*x557; const void*x558; void*x559; void*x560; const int x561; void x562; void*x563; void*x564; void*x565; void*x566; const void*x567; void*x568; void*x569; void*x570; out const void*x571; short x572; void*x573; short x574; short x575; int x576; short x577; void*x578; void*x579; in void*x580; unsigned short x581; void*x582; const void x583; int x584; BOOL x585; void*x586; short x587; void*x588; float x589; const void*x590; void*x591; void*x592; void*x593; out const void*x594; void*x595; short x596; short x597; int x598; short x599; void*x600; void*x601; in void*x602; unsigned short x603; void*x604; const void x605; int x606; BOOL x607; void*x608; short x609; void*x610; void*x611; void*x612; void*x613; void*x614; void*x615; void*x616; void*x617; void*x618; void*x619; void*x620; void*x621; void*x622; void*x623; void*x624; void*x625; void*x626; void*x627; void*x628; void*x629; void*x630; void*x631; void*x632; void*x633; void*x634; void*x635; void*x636; void*x637; void*x638; void*x639; void*x640; void*x641; void*x642; void*x643; void*x644; void*x645; void*x646; void*x647; void*x648; void*x649; void*x650; void*x651; void*x652; void*x653; void*x654; void*x655; void*x656; void*x657; void*x658; unsigned long long x659; void*x660; void*x661; void*x662; void*x663; void*x664; void*x665; void*x666; void*x667; void*x668; void*x669; void*x670; void*x671; void*x672; void*x673; void*x674; void*x675; void*x676; void*x677; void*x678; void*x679; void*x680; void*x681; void*x682; unsigned int x683; void*x684; void*x685; void*x686; union x687; void*x688; void*x689; void*x690; void*x691; void*x692; void*x693; void*x694; void*x695; void*x696; void*x697; void*x698; void*x699; void*x700; void*x701; void*x702; void*x703; void*x704; void*x705; void*x706; void*x707; void*x708; void*x709; void*x710; void*x711; void*x712; void*x713; void*x714; void*x715; void*x716; void*x717; void*x718; void*x719; void*x720; void*x721; void*x722; void*x723; void*x724; void*x725; void*x726; void*x727; void*x728; void*x729; void*x730; void*x731; void*x732; void*x733; void*x734; void*x735; void*x736; void*x737; void*x738; void*x739; void*x740; void*x741; void*x742; union x743; void*x744; void*x745; void*x746; void*x747; void*x748; void*x749; void*x750; void*x751; void*x752; void*x753; void*x754; void*x755; void*x756; void*x757; void*x758; void*x759; void*x760; void*x761; void*x762; void*x763; void*x764; void*x765; void*x766; void*x767; void*x768; void*x769; void*x770; void*x771; void*x772; void*x773; void*x774; void*x775; unsigned char x776; inout void*x777; void*x778; void*x779; void*x780; void*x781; void*x782; int x783; in void*x784; void*x785; const void*x786; double x787; int x788; void*x789; in void*x790; unsigned short x791; void*x792; void*x793; void*x794; const void*x795; void*x796; out const oneway int x797; void*x798; void*x799; void*x800; void*x801; void*x802; void*x803; void*x804; void*x805; void*x806; void*x807; void*x808; void*x809; void*x810; void*x811; void*x812; void*x813; void*x814; void*x815; unsigned char x816; inout void*x817; void*x818; void*x819; void*x820; void*x821; void*x822; int x823; in void*x824; void*x825; const void*x826; double x827; int x828; void*x829; in void*x830; unsigned short x831; void*x832; void*x833; void*x834; const void*x835; void*x836; out const oneway int x837; void*x838; void*x839; void*x840; void*x841; void*x842; void*x843; void*x844; void*x845; void*x846; void*x847; void*x848; void*x849; void*x850; void*x851; void*x852; void*x853; void*x854; void*x855; void*x856; out const int x857; void*x858; int x859; in void*x860; long x861; void*x862; const void*x863; short x864; void*x865; in void*x866; void*x867; void*x868; int x869; out in unsigned char x870; out in void*x871; const out long x872; long x873; void*x874; const void*x875; void*x876; void*x877; void*x878; void*x879; void*x880; void*x881; void*x882; void*x883; void*x884; void*x885; void*x886; void*x887; void*x888; void*x889; void*x890; void*x891; void*x892; unsigned short x893; void*x894; short x895; void*x896; void*x897; void*x898; void*x899; unsigned long x900; int x901; unsigned int x902/* : ? */; const void*x903; const void*x904; void*x905; void*x906; const int x907; void x908; void*x909; void*x910; void*x911; void*x912; const void*x913; void*x914; void*x915; void*x916; out const void*x917; short x918; void*x919; bycopy float x920; float x921; int x922; BOOL x923; void*x924; unsigned int x925; void*x926; void*x927; out const void*x928; void*x929; float x930; const void*x931; void*x932; void*x933; void*x934; out const void*x935; void*x936; bycopy float x937; float x938; int x939; BOOL x940; void*x941; unsigned int x942; void*x943; void*x944; out const void*x945; void*x946; void*x947; void*x948; void*x949; void*x950; void*x951; struct x952; void*x953; void*x954; void*x955; void*x956; void*x957; unsigned char x958; void*x959; void*x960; void*x961; void*x962; void*x963; out void*x964; int x965; void*x966; in void*x967; void*x968; void*x969; void*x970; void*x971; struct x972; void*x973; void*x974; void*x975; float x976; void*x977; long x978; void*x979; out void*x980; void*x981; void*x982; void*x983; void*x984; void*x985; void*x986; void*x987; void*x988; void*x989; void*x990; void*x991; void*x992; void*x993; void*x994; void*x995; void*x996; void*x997; void*x998; void*x999; void*x1000; void*x1001; void*x1002; void*x1003; void*x1004; float x1005; void*x1006; long x1007; void*x1008; out void*x1009; void*x1010; void*x1011; void*x1012; void*x1013; void*x1014; void*x1015; void*x1016; void*x1017; void*x1018; void*x1019; void*x1020; void*x1021; void*x1022; void*x1023; void*x1024; void*x1025; void*x1026; void*x1027; void*x1028; void*x1029; void*x1030; void*x1031; void*x1032; void*x1033; }*)arg1;
-- (id)pk_childrenForAppearance;
-
 // Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
 
 + (void)_pu_ensureLocalAssets:(id)arg1 forReason:(id)arg2 completion:(id /* block */)arg3;
 + (void)pu_copyAssets:(id)arg1 completionHandler:(id /* block */)arg2;
-+ (BOOL)pu_isSkiingBlackSlope;
++ (id)pu_currentViewControllerStack;
 
+- (void)_ph_updateBarAppearanceAnimated:(BOOL)arg1;
 - (void)_pu_animateBottomBarTransition:(id)arg1 withContext:(id)arg2;
 - (id)_pu_offersTableView;
 - (void)_pu_performBarsVisibilityUpdatesWithAnimationSettings:(struct PUBarAnimationSettings { int x1; double x2; })arg1 isStatusBarHidden:(BOOL)arg2;
-- (void)_pu_performBottomBarsMorphAnimations;
 - (void)_pu_setNavigationBarVisible:(BOOL)arg1 withAnimationSettings:(struct PUBarAnimationSettings { int x1; double x2; })arg2;
 - (void)_pu_setPreferredStatusBarUpdateAnimation:(int)arg1;
 - (void)_pu_setTabBarVisible:(BOOL)arg1 withAnimationSettings:(struct PUBarAnimationSettings { int x1; double x2; })arg2;
 - (void)_pu_setToolbarVisible:(BOOL)arg1 withAnimationSettings:(struct PUBarAnimationSettings { int x1; double x2; })arg2;
 - (void)_pu_updateStatusBarVisibilityWithAnimationSettings:(struct PUBarAnimationSettings { int x1; double x2; })arg1;
+- (void)ph_enableChromeManagement;
+- (BOOL)ph_isPreparedForTransition;
+- (BOOL)ph_isTransitionOverlayView:(id)arg1;
+- (void)ph_loadTransitionSourcePlaceholderViewUsingFactory:(id /* block */)arg1;
+- (unsigned int)ph_preferredChrome;
+- (int)ph_preferredChromeAnimation;
+- (void)ph_prepareForTransition;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })ph_rectOfInterestForTransitionInCoordinateSpace:(id)arg1;
+- (void)ph_setNeedsChromeUpdate;
+- (BOOL)ph_viewContainsTransitionSourcePlaceholderView;
 - (void)puRootSettings_dismissViewController:(id)arg1;
 - (void)pu_copyAssets:(id)arg1;
 - (id)pu_currentInteractiveModalTransition;
@@ -1223,11 +1281,12 @@
 - (id)pu_footerToolbar;
 - (BOOL)pu_handleSecondTabTap;
 - (void)pu_insertFooterToolbarWithItems:(id)arg1;
-- (BOOL)pu_isViewVisible;
+- (BOOL)pu_isForceTouchEnabled;
 - (id)pu_modalTransition;
 - (id)pu_navigationController;
 - (id)pu_navigationTransition;
 - (void)pu_performBarsVisibilityUpdatesWithAnimationSettings:(struct PUBarAnimationSettings { int x1; double x2; })arg1;
+- (void)pu_performBottomBarsMorphAnimations;
 - (int)pu_preferredBarStyle;
 - (int)pu_preferredStatusBarUpdateAnimation;
 - (void)pu_presentViewController:(id)arg1 transition:(id)arg2 animated:(BOOL)arg3 interactive:(BOOL)arg4 completion:(id /* block */)arg5;
@@ -1242,6 +1301,12 @@
 - (BOOL)pu_wantsNavigationBarVisible;
 - (BOOL)pu_wantsTabBarVisible;
 - (BOOL)pu_wantsToolbarVisible;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (void)_sf_animateAlongsideTransitionOrPerform:(id /* block */)arg1;
+- (void)_sf_presentViewControllerOnTopOfPresentedViewController:(id)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
+- (id)_sf_viewControllerToPresentFrom;
 
 // Image: /System/Library/Frameworks/iAd.framework/iAd
 
@@ -1259,6 +1324,19 @@
 - (void)setInterstitialPresentationPolicy:(int)arg1;
 - (BOOL)shouldPresentInterstitialAd;
 
+// Image: /System/Library/PrivateFrameworks/BaseBoardUI.framework/BaseBoardUI
+
+- (BOOL)bs_addChildViewController:(id)arg1;
+- (BOOL)bs_addChildViewController:(id)arg1 animated:(BOOL)arg2 transitionBlock:(id /* block */)arg3;
+- (BOOL)bs_beginAppearanceTransition:(BOOL)arg1 animated:(BOOL)arg2;
+- (BOOL)bs_beginAppearanceTransitionForChildViewController:(id)arg1 toVisible:(BOOL)arg2 animated:(BOOL)arg3;
+- (BOOL)bs_endAppearanceTransition;
+- (BOOL)bs_endAppearanceTransition:(BOOL)arg1;
+- (BOOL)bs_endAppearanceTransitionForChildViewController:(id)arg1;
+- (BOOL)bs_endAppearanceTransitionForChildViewController:(id)arg1 toVisible:(BOOL)arg2;
+- (BOOL)bs_removeChildViewController:(id)arg1;
+- (BOOL)bs_removeChildViewController:(id)arg1 animated:(BOOL)arg2 transitionBlock:(id /* block */)arg3;
+
 // Image: /System/Library/PrivateFrameworks/FMCoreUI.framework/FMCoreUI
 
 - (void)addConstraintsToFillSuperview;
@@ -1274,10 +1352,8 @@
 
 // Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
 
-- (void)_music_handleAccountButtonTapped:(id)arg1;
 - (void)_music_handleSearchButtonTapped:(id)arg1;
-- (void)dismissDetailViewController:(id)arg1;
-- (id)music_accountEntryLeftBarButtonItem;
+- (BOOL)music_allowsMetricsEvents;
 - (void)music_configureWithJSReportingInformation:(id)arg1;
 - (void)music_dismissViewController:(id)arg1 animated:(BOOL)arg2;
 - (id)music_effectiveReportingFeatureName;
@@ -1292,11 +1368,10 @@
 - (void)music_setReportingFeatureName:(id)arg1;
 - (void)music_setReportingRecommendationData:(id)arg1;
 - (void)music_setSearchOptions:(unsigned int)arg1;
-- (void)music_setWantsAccountEntryLeftBarButtonItem:(BOOL)arg1;
 - (void)music_setWantsDefaultIndexBar:(BOOL)arg1;
 - (void)music_setWantsSearchEntryRightBarButtonItem:(BOOL)arg1;
 - (void)music_setWantsToOverrideRightBarButtonItem:(BOOL)arg1;
-- (BOOL)music_wantsAccountEntryLeftBarButtonItem;
+- (void)music_viewInheritedLayoutInsetsDidChange;
 - (BOOL)music_wantsDefaultIndexBar;
 - (BOOL)music_wantsSearchEntryRightBarButtonItem;
 - (BOOL)music_wantsToOverrideRightBarButtonItem;
@@ -1366,6 +1441,11 @@
 - (id)_gkViewControllersForRestoringPopover;
 - (void)_gkWillTransitionModalPresentationForTraitCollection:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/HomeUI.framework/HomeUI
+
+- (id)hu_delegateForModalPresentation;
+- (id)hu_presentPreloadableViewController:(id)arg1 animated:(BOOL)arg2;
+
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
 
 - (id)MPUViewControllerConfiguration;
@@ -1391,12 +1471,6 @@
 
 - (void)MPU_prepareForNavigationController:(id)arg1 poppingToViewController:(id)arg2 animated:(BOOL)arg3 completion:(id /* block */)arg4;
 
-// Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
-
-+ (id)MCD_carDisplayIdentifierForIdentifier:(id)arg1;
-+ (id)MCD_queryForIdentifier:(id)arg1;
-+ (void)MCD_registerViewControllerIdentifiers;
-
 // Image: /System/Library/PrivateFrameworks/NetAppsUtilitiesUI.framework/NetAppsUtilitiesUI
 
 + (id)recursiveDescription;
@@ -1414,6 +1488,11 @@
 - (void)naui_loadViewIfNecessary;
 - (id)recursiveDescription;
 
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+
 // Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
 
 - (BOOL)pl_isInPopover;
@@ -1424,6 +1503,58 @@
 - (id)uiipc_imagePickerController;
 - (id)uiipc_imagePickerOptions;
 - (BOOL)uiipc_useTelephonyUI;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (void)_px_prepareClassForBarAppearance;
++ (void)_px_prepareClassForExtendedTraitCollection;
++ (void)_px_prepareClassForOneUpPresentation;
++ (id)px_viewControllerWithAsynchronousOutputProducer:(id /* block */)arg1;
++ (id)px_viewControllerWithContinuousOutputProducer:(id /* block */)arg1;
++ (id)px_viewControllerWithOutput:(id /* block */)arg1;
++ (id)px_viewControllerWithSettings:(id)arg1;
+
+- (void)_px_dismiss:(id)arg1;
+- (int)_pxswizzled_barAppearance_preferredStatusBarUpdateAnimation;
+- (BOOL)_pxswizzled_barAppearance_prefersStatusBarHidden;
+- (void)_pxswizzled_barAppearance_viewDidDisappear:(BOOL)arg1;
+- (void)_pxswizzled_barAppearance_viewWillAppear:(BOOL)arg1;
+- (void)_pxswizzled_oneUpPresentation_viewDidAppear:(BOOL)arg1;
+- (void)_pxswizzled_oneUpPresentation_viewDidDisappear:(BOOL)arg1;
+- (void)_pxswizzled_oneUpPresentation_viewWillAppear:(BOOL)arg1;
+- (void)_pxswizzled_oneUpPresentation_viewWillDisappear:(BOOL)arg1;
+- (void)_pxswizzled_viewControllerTraitCollection_traitCollectionDidChange:(id)arg1;
+- (void)_pxswizzled_viewControllerTraitCollection_viewDidLoad;
+- (void)_pxswizzled_viewControllerTraitCollection_viewWillAppear:(BOOL)arg1;
+- (void)_pxswizzled_viewControllerTraitCollection_viewWillLayoutSubviews;
+- (void)_pxswizzled_viewControllerTraitCollection_viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
+- (id)px_barAppearance;
+- (BOOL)px_canPerformPinchTransitionWithDetailViewController:(id)arg1;
+- (BOOL)px_canPerformPinchTransitionWithMasterViewController:(id)arg1;
+- (BOOL)px_canPerformZoomTransitionWithDetailViewController:(id)arg1;
+- (BOOL)px_canPerformZoomTransitionWithMasterViewController:(id)arg1;
+- (BOOL)px_canPresentViewControllerAnimated:(BOOL)arg1;
+- (id)px_defaultTransitionEndPoint;
+- (id)px_diagnosticsItemProvidersForPoint:(struct CGPoint { float x1; float x2; })arg1 inCoordinateSpace:(id)arg2;
+- (void)px_enableBarAppearance;
+- (void)px_enableExtendedTraitCollection;
+- (void)px_enableOneUpPresentation;
+- (id)px_endPointForTransition:(id)arg1;
+- (void)px_enumerateDescendantViewControllersWithOptions:(unsigned int)arg1 usingBlock:(id /* block */)arg2;
+- (id)px_extendedTraitCollection;
+- (id)px_gridPresentation;
+- (BOOL)px_isDescendantOfViewController:(id)arg1;
+- (BOOL)px_isSnapBackDestination;
+- (BOOL)px_isVisible;
+- (id)px_oneUpPresentation;
+- (BOOL)px_photosUICategoriesAvailable;
+- (void)px_presentViewControllerInNavigationController:(id)arg1 animated:(BOOL)arg2 dimissButtonLocation:(int)arg3 completion:(id /* block */)arg4;
+- (id)px_searchPresentation;
+- (void)px_setDefaultTransitionEndPoint:(id)arg1;
+- (void)px_setSubtitle:(id)arg1;
+- (id)px_snapBackHistorySubtitle;
+- (id)px_snapBackHistoryTitle;
+- (id)px_subtitle;
 
 // Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
 
@@ -1442,12 +1573,34 @@
 - (id)SKUIPinnedHeaderView;
 - (id)SKUIStackedBar;
 - (float)SKUIStackedBarSplit;
+- (id)_SKUIView;
+- (id)registerForPreviewingFromSourceView:(id)arg1 handler:(id /* block */)arg2;
 - (id)scrollingSegmentedController;
 - (id)scrollingTabBarController;
 - (void)setNeedsNavigationBarAppearanceUpdate;
 - (void)setNeedsNestedPagingScrollViewUpdate;
 - (void)setNeedsScrollingSegmentContentScrollViewUpdate;
 - (void)setSKUIStackedBarSplit:(float)arg1;
+- (void)unregisterForPreviewing:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (id)customAnimatorForNavigationControllerOperation:(int)arg1 fromViewController:(id)arg2;
+- (id)customAnimatorForNavigationControllerOperation:(int)arg1 toViewController:(id)arg2;
+- (id)tvIdentifier;
+- (float)tv_containedBottomLayoutGuideLength;
+- (float)tv_containedTopLayoutGuideLength;
+- (void)tv_setIdentifier:(id)arg1;
+- (void)tv_updateViewLayout;
+- (void)tvmlkit_setNeedsNavigationBarAppearanceUpdate;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsUIKit.framework/UserNotificationsUIKit
+
+- (id)longLookPresentationController;
+- (int)ncTransitionAnimationState;
+- (id)nc_bannerPresentationController;
+- (id)nc_presentationControllerIfPresented;
+- (id)nc_presentingBannerPresentationController;
 
 // Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
 
@@ -1474,6 +1627,13 @@
 - (void)rc_setScreenUpdatesDisabled:(BOOL)arg1;
 - (BOOL)rc_shouldAutoDisableUpdatesWhenInBackground;
 - (id)recursiveDescription;
+
+// Image: /System/Library/PrivateFrameworks/Widgets.framework/Widgets
+
+- (BOOL)wg_beginAppearanceTransitionIfNecessary:(BOOL)arg1 animated:(BOOL)arg2;
+- (BOOL)wg_endAppearanceTransitionIfNecessary;
+- (BOOL)wg_isAppearingOrAppeared;
+- (BOOL)wg_isDisappearingOrDisappeared;
 
 // Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
 
@@ -1502,9 +1662,9 @@
 - (id)iTunesStoreUI_searchFieldController;
 - (BOOL)isDescendantOfViewController:(id)arg1;
 - (BOOL)isInMoreList;
-- (BOOL)isLoaded;
-- (BOOL)isLoading;
 - (BOOL)isRootViewController;
+- (BOOL)isSkLoaded;
+- (BOOL)isSkLoading;
 - (void)keyboardDidHideWithInfo:(id)arg1;
 - (void)keyboardDidShowWithInfo:(id)arg1;
 - (void)keyboardWillHideWithInfo:(id)arg1;

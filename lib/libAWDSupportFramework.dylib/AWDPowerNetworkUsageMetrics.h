@@ -5,14 +5,16 @@
 @interface AWDPowerNetworkUsageMetrics : PBCodable <NSCopying> {
     struct { 
         unsigned int timestamp : 1; 
-    } _has;
-    unsigned long long _timestamp;
-    NSMutableArray *_usages;
+    }  _has;
+    unsigned long long  _timestamp;
+    NSMutableArray * _usages;
 }
 
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic) unsigned long long timestamp;
 @property (nonatomic, retain) NSMutableArray *usages;
+
++ (Class)usageType;
 
 - (void)addUsage:(id)arg1;
 - (void)clearUsages;

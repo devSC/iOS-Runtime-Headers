@@ -3,16 +3,16 @@
  */
 
 @interface ADEmbeddedAdServer : NSObject <HTSHTTPServerDelegate> {
-    NSArray *_adManifests;
-    NSString *_adPath;
-    BOOL _alwaysRegenerateWebArchives;
-    NSMutableDictionary *_authTokens;
-    NSDictionary *_defaultAdData;
-    BOOL _defaultsToNoQualifiedAds;
-    <ADEmbeddedAdServerDelegate> *_delegate;
-    NSString *_publicURLRoot;
-    HTSHTTPServer *_server;
-    struct __FSEventStream { } *_stream;
+    NSArray * _adManifests;
+    NSString * _adPath;
+    BOOL  _alwaysRegenerateWebArchives;
+    NSMutableDictionary * _authTokens;
+    NSDictionary * _defaultAdData;
+    BOOL  _defaultsToNoQualifiedAds;
+    <ADEmbeddedAdServerDelegate> * _delegate;
+    NSString * _publicURLRoot;
+    HTSHTTPServer * _server;
+    struct __FSEventStream { } * _stream;
 }
 
 @property (nonatomic, retain) NSArray *adManifests;
@@ -42,13 +42,16 @@
 + (int)creativeTypeForPlistType:(id)arg1;
 + (BOOL)creativeTypeMatches:(id)arg1 type:(int)arg2 creativeType:(id)arg3;
 + (id)creativesForAdBundleAtURL:(id)arg1 matchingRequest:(id)arg2;
++ (id)iAdDeviceModelForDeviceModel:(id)arg1;
 + (id)manifestForAdAtURL:(id)arg1;
++ (id)supportedDevicesForAdProperties:(id)arg1;
 
 - (id)_actionDictionaryFromProperties:(id)arg1 path:(id)arg2 error:(id*)arg3;
 - (id)_adDataForPath:(id)arg1 creative:(id)arg2 error:(id*)arg3;
 - (id)_defaultResponseForBatchRequest:(id)arg1;
 - (id)_handleAdSlotRequest:(id)arg1 message:(id)arg2;
 - (id)_handleBatchRequest:(id)arg1 message:(id)arg2;
+- (id)_handleConfigurationRequest:(id)arg1 message:(id)arg2;
 - (id)_handleGenericAnalyticsRequest:(id)arg1 message:(id)arg2 type:(int)arg3;
 - (id)_handleGenericPostRequest:(id)arg1;
 - (id)_handleHeartbeatTokenRequest:(id)arg1 message:(id)arg2;
@@ -57,7 +60,6 @@
 - (id)_handleLogAdEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogAggregateMetricsRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogImpressionRequest:(id)arg1 message:(id)arg2;
-- (id)_handleLogPassEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogStationClientEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogSysEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogTileImpressionEventRequest:(id)arg1 message:(id)arg2;
@@ -70,8 +72,10 @@
 - (id)_handleRewardsCodeResultRequest:(id)arg1 message:(id)arg2;
 - (id)_handleSegmentUpdateRequest:(id)arg1 message:(id)arg2;
 - (id)_handleServerErrorRequest:(id)arg1 message:(id)arg2;
+- (id)_handleUserTargetingRequest:(id)arg1 message:(id)arg2;
 - (id)_integerColorFromStringColor:(id)arg1;
 - (id)_mimeTypeForExtension:(id)arg1;
+- (BOOL)_tryAddingAdTagContentStringForCreative:(id)arg1 toAdReponse:(id)arg2 withAdPath:(id)arg3;
 - (id)_webArchiveFilenameForDirectory:(id)arg1 withBaseURL:(id)arg2;
 - (id)_webResourceForPath:(id)arg1 url:(id)arg2;
 - (id)_webResourcesInDirectory:(id)arg1 baseURL:(id)arg2;

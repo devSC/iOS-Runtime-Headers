@@ -7,12 +7,18 @@
 + (id)contentInfoTextWithAttachmentCount:(unsigned int)arg1;
 
 - (id)activityItems;
-- (void)generatePreviews;
+- (BOOL)canMarkup;
+- (void)generatePreviewsInOperation:(id)arg1;
 - (id /* block */)genericBrickThumbnailCreator;
 - (id /* block */)genericListThumbnailCreator;
 - (BOOL)hasPreviews;
 - (BOOL)hasThumbnailImage;
+- (BOOL)needToGeneratePreviews;
+- (BOOL)needsFullSizePreview;
+- (int)previewImageOrientation;
+- (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })previewImageOrientationTransform;
 - (BOOL)showThumbnailInNoteList;
+- (BOOL)supportsQuickLook;
 - (void)updateAttachmentSize;
 - (void)updateFileBasedAttributes;
 

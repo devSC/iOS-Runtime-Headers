@@ -3,18 +3,17 @@
  */
 
 @interface UIStackView : UIView {
-    NSMutableArray *__mutableArrangedSubviews;
-    _UIAlignedLayoutArrangement *_alignmentArrangement;
-    BOOL _didRequestTallestBaselineViewForFirst;
-    BOOL _didRequestTallestBaselineViewForLast;
-    _UIOrderedLayoutArrangement *_distributionArrangement;
-    BOOL _layoutMarginsRelativeArrangement;
-    NSMutableArray *_mutableLayoutArrangements;
-    BOOL _viewForFirstBaselineLayoutDidChange;
-    BOOL _viewForLastBaselineLayoutDidChange;
+    _UIAlignedLayoutArrangement * _alignmentArrangement;
+    BOOL  _didRequestTallestBaselineViewForFirst;
+    BOOL  _didRequestTallestBaselineViewForLast;
+    _UIOrderedLayoutArrangement * _distributionArrangement;
+    BOOL  _layoutMarginsRelativeArrangement;
+    NSMutableArray * _mutableLayoutArrangements;
+    BOOL  _viewForFirstBaselineLayoutDidChange;
+    BOOL  _viewForLastBaselineLayoutDidChange;
 }
 
-@property (nonatomic, retain) NSMutableArray *_mutableArrangedSubviews;
+@property (nonatomic) int _mk_axis;
 @property (nonatomic) int alignment;
 @property (nonatomic, readonly, copy) NSArray *arrangedSubviews;
 @property (nonatomic) int axis;
@@ -22,6 +21,8 @@
 @property (nonatomic) int distribution;
 @property (getter=isLayoutMarginsRelativeArrangement, nonatomic) BOOL layoutMarginsRelativeArrangement;
 @property (nonatomic) float spacing;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (Class)layerClass;
 
@@ -31,10 +32,11 @@
 - (void)_commonStackViewInitializationWithArrangedSubviews:(id)arg1;
 - (BOOL)_hasLayoutArrangements;
 - (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
-- (id)_mutableArrangedSubviews;
 - (id)_mutableLayoutArrangements;
+- (float)_proportionalFillLengthForOrderedArrangement:(id)arg1 relevantParentAxis:(int)arg2;
 - (BOOL)_recordBaselineLoweringInfo;
 - (BOOL)_shouldRequestTallestBaselineViewForFirst:(BOOL)arg1;
+- (struct CGSize { float x1; float x2; })_systemLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3 hasIntentionallyCollapsedHeight:(BOOL*)arg4;
 - (void)_vendedBaselineViewDidMoveForFirst:(BOOL)arg1;
 - (void)_vendedBaselineViewParametersDidChange;
 - (void)addArrangedSubview:(id)arg1;
@@ -52,6 +54,7 @@
 - (BOOL)isLayoutMarginsRelativeArrangement;
 - (void)removeArrangedSubview:(id)arg1;
 - (void)setAlignment:(int)arg1;
+- (void)setArrangedSubviews:(id)arg1;
 - (void)setAxis:(int)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setBaselineRelativeArrangement:(BOOL)arg1;
@@ -59,10 +62,15 @@
 - (void)setLayoutMarginsRelativeArrangement:(BOOL)arg1;
 - (void)setOpaque:(BOOL)arg1;
 - (void)setSpacing:(float)arg1;
-- (void)set_mutableArrangedSubviews:(id)arg1;
+- (void)setTranslatesAutoresizingMaskIntoConstraints:(BOOL)arg1;
 - (float)spacing;
 - (void)updateConstraints;
 - (id)viewForFirstBaselineLayout;
 - (id)viewForLastBaselineLayout;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (int)_mk_axis;
+- (void)set_mk_axis:(int)arg1;
 
 @end

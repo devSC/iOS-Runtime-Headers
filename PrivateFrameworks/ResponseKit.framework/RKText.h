@@ -3,12 +3,12 @@
  */
 
 @interface RKText : NSObject {
-    NSMutableArray *_annotations;
-    NSString *_languageID;
-    NSString *_processedText;
-    NSString *_string;
-    BOOL _trainVerbatim;
-    double _trainingWeight;
+    NSMutableArray * _annotations;
+    NSString * _languageID;
+    NSString * _processedText;
+    NSString * _string;
+    BOOL  _trainVerbatim;
+    double  _trainingWeight;
 }
 
 @property (retain) NSMutableArray *annotations;
@@ -22,6 +22,7 @@
 + (unsigned int)annotationTypeFromName:(id)arg1;
 + (BOOL)canClassifyPolarityForLanguageIdentifier:(id)arg1 withOptions:(unsigned int)arg2;
 + (BOOL)canClassifyPolarityForLanguageIdentifier:(id)arg1 withOptions:(unsigned int)arg2 dataProvider:(id)arg3;
++ (id)defaultDataProvider;
 + (void)initialize;
 + (id)polarityNameFromType:(unsigned int)arg1;
 + (unsigned int)polarityTypeFromName:(id)arg1;

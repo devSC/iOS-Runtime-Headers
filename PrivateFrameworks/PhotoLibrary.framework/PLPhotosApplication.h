@@ -3,21 +3,20 @@
  */
 
 @interface PLPhotosApplication : UIApplication <UIApplicationDelegate> {
-    NSString *_currentTestName;
-    NSDictionary *_currentTestOptions;
-    BLActivityAlert *_iPhotoMigrationActivityAlert;
-    BOOL _isOnWifi;
-    BOOL _isReachable;
-    int _observeForRechabilityChanges;
-    int _photoStreamActivityToken;
-    BOOL _photoStreamIsBusy;
-    BOOL _receivingRemoteControlEvents;
-    int _sharedPhotoStreamActivityToken;
-    int _sharedPhotoStreamInvitationFailureToken;
-    BOOL _sharedPhotoStreamIsBusy;
-    PLUIController *_uiController;
-    BOOL _urlNeedsHandling;
-    UIWindow *_window;
+    NSString * _currentTestName;
+    NSDictionary * _currentTestOptions;
+    BLActivityAlert * _iPhotoMigrationActivityAlert;
+    BOOL  _isOnWifi;
+    BOOL  _isReachable;
+    int  _observeForRechabilityChanges;
+    int  _photoStreamActivityToken;
+    BOOL  _photoStreamIsBusy;
+    BOOL  _receivingRemoteControlEvents;
+    int  _sharedPhotoStreamActivityToken;
+    int  _sharedPhotoStreamInvitationFailureToken;
+    BOOL  _sharedPhotoStreamIsBusy;
+    BOOL  _urlNeedsHandling;
+    UIWindow * _window;
 }
 
 @property (nonatomic, retain) NSString *currentTestName;
@@ -52,11 +51,12 @@
 - (void)applicationWillEnterForeground:(id)arg1;
 - (id)currentTestName;
 - (id)currentTestOptions;
-- (id)currentUIConfiguration;
 - (void)dealloc;
 - (void)disableNetworkObservation;
 - (void)enableNetworkObservation;
 - (void*)getSharedAddressBook;
+- (id)getSharedContactStore;
+- (void)handleImportCompleteAlertResponse:(struct __CFUserNotification { }*)arg1 flags:(unsigned long)arg2;
 - (id)iPhotoMigrationActivityAlert;
 - (BOOL)isOnWifi;
 - (BOOL)isReachable;

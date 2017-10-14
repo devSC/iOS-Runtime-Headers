@@ -3,16 +3,20 @@
  */
 
 @interface ADAdActionPublicAttributes : NSObject <NSSecureCoding> {
-    int _action;
-    BOOL _actionLeavesApplication;
-    BOOL _actionViewControllerHidesStatusBar;
-    unsigned int _actionViewControllerPresentationOrientationMask;
-    int _modalPresentationStyle;
-    int _transitionType;
+    ADMRAIDAction * _MRAIDAction;
+    int  _action;
+    BOOL  _actionLeavesApplication;
+    NSString * _actionURLString;
+    BOOL  _actionViewControllerHidesStatusBar;
+    unsigned int  _actionViewControllerPresentationOrientationMask;
+    int  _modalPresentationStyle;
+    int  _transitionType;
 }
 
+@property (nonatomic, copy) ADMRAIDAction *MRAIDAction;
 @property (nonatomic) int action;
 @property (nonatomic) BOOL actionLeavesApplication;
+@property (nonatomic, copy) NSString *actionURLString;
 @property (nonatomic) BOOL actionViewControllerHidesStatusBar;
 @property (nonatomic) unsigned int actionViewControllerPresentationOrientationMask;
 @property (nonatomic) int modalPresentationStyle;
@@ -20,9 +24,11 @@
 
 + (BOOL)supportsSecureCoding;
 
+- (id)MRAIDAction;
 - (id)_actionDescription;
 - (int)action;
 - (BOOL)actionLeavesApplication;
+- (id)actionURLString;
 - (BOOL)actionViewControllerHidesStatusBar;
 - (unsigned int)actionViewControllerPresentationOrientationMask;
 - (void)dealloc;
@@ -32,8 +38,10 @@
 - (int)modalPresentationStyle;
 - (void)setAction:(int)arg1;
 - (void)setActionLeavesApplication:(BOOL)arg1;
+- (void)setActionURLString:(id)arg1;
 - (void)setActionViewControllerHidesStatusBar:(BOOL)arg1;
 - (void)setActionViewControllerPresentationOrientationMask:(unsigned int)arg1;
+- (void)setMRAIDAction:(id)arg1;
 - (void)setModalPresentationStyle:(int)arg1;
 - (void)setTransitionType:(int)arg1;
 - (int)transitionType;

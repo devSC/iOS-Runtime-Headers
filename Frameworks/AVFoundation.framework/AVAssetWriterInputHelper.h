@@ -3,8 +3,8 @@
  */
 
 @interface AVAssetWriterInputHelper : NSObject {
-    AVAssetWriterInputConfigurationState *_configurationState;
-    AVWeakReference *_weakReferenceToAssetWriterInput;
+    AVAssetWriterInputConfigurationState * _configurationState;
+    AVWeakReference * _weakReferenceToAssetWriterInput;
 }
 
 @property (nonatomic) short alternateGroupID;
@@ -27,6 +27,7 @@
 @property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } preferredMediaChunkDuration;
 @property (nonatomic) int preferredMediaChunkSize;
 @property (nonatomic) float preferredVolume;
+@property (nonatomic) short provisionalAlternateGroupID;
 @property (getter=isReadyForMoreMediaData, nonatomic, readonly) BOOL readyForMoreMediaData;
 @property (nonatomic, copy) NSURL *sampleReferenceBaseURL;
 @property (nonatomic, readonly) BOOL shouldRespondToInitialPassDescription;
@@ -37,6 +38,7 @@
 @property (nonatomic, readonly) NSDictionary *trackReferences;
 @property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transform;
 @property (retain) AVWeakReference *weakReferenceToAssetWriterInput;
+@property (nonatomic) BOOL writesMediaDataToBeginningOfFile;
 
 - (void)addTrackAssociationWithTrackOfInput:(id)arg1 type:(id)arg2;
 - (short)alternateGroupID;
@@ -74,6 +76,7 @@
 - (float)preferredVolume;
 - (void)prepareToEndSession;
 - (BOOL)prepareToFinishWritingReturningError:(id*)arg1;
+- (short)provisionalAlternateGroupID;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(id /* block */)arg2;
 - (id)sampleReferenceBaseURL;
 - (void)setAlternateGroupID:(short)arg1;
@@ -90,10 +93,12 @@
 - (void)setPreferredMediaChunkDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)setPreferredMediaChunkSize:(int)arg1;
 - (void)setPreferredVolume:(float)arg1;
+- (void)setProvisionalAlternateGroupID:(short)arg1;
 - (void)setSampleReferenceBaseURL:(id)arg1;
 - (void)setSourcePixelBufferAttributes:(id)arg1;
 - (void)setTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
 - (void)setWeakReferenceToAssetWriterInput:(id)arg1;
+- (void)setWritesMediaDataToBeginningOfFile:(BOOL)arg1;
 - (BOOL)shouldRespondToInitialPassDescription;
 - (struct opaqueCMFormatDescription { }*)sourceFormatHint;
 - (id)sourcePixelBufferAttributes;
@@ -104,5 +109,6 @@
 - (void)transitionAssetWriterAndAllInputsToFailedStatusWithError:(id)arg1;
 - (id)transitionToAndReturnTerminalHelperWithTerminalStatus:(int)arg1;
 - (id)weakReferenceToAssetWriterInput;
+- (BOOL)writesMediaDataToBeginningOfFile;
 
 @end

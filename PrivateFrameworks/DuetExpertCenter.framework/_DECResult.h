@@ -3,11 +3,11 @@
  */
 
 @interface _DECResult : NSObject <NSSecureCoding> {
-    unsigned int _consumer;
-    NSUUID *_identifier;
-    int _reason;
-    NSDictionary *_reasonMetadata;
-    NSDictionary *_results;
+    unsigned int  _consumer;
+    NSUUID * _identifier;
+    int  _reason;
+    NSDictionary * _reasonMetadata;
+    NSDictionary * _results;
 }
 
 @property (nonatomic, readonly) unsigned int consumer;
@@ -26,12 +26,14 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithConsumer:(unsigned int)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isEquivalentToResult:(id)arg1;
 - (BOOL)isEquivalentToResult:(id)arg1 limit:(unsigned int)arg2;
 - (BOOL)isEquivalentToResultForSpotlight:(id)arg1;
 - (int)reason;
 - (id)reasonMetadata;
 - (id)resultForCategory:(unsigned int)arg1;
 - (id)results;
+- (id)searchFoundationResultsForCategory:(unsigned int)arg1;
 - (void)setReason:(int)arg1;
 - (void)setReasonMetadata:(id)arg1;
 - (void)setResults:(id)arg1;

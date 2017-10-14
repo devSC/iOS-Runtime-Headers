@@ -3,31 +3,37 @@
  */
 
 @interface BCBatteryDevice : NSObject <NSCoding, NSCopying> {
-    NSString *_baseIdentifier;
-    BOOL _charging;
-    BOOL _connected;
-    BOOL _fake;
-    NSDictionary *_glyphs;
-    NSString *_identifier;
-    BOOL _internal;
-    NSString *_matchIdentifier;
-    NSString *_name;
-    unsigned int _parts;
-    int _percentCharge;
-    BOOL _powerSource;
-    int _powerSourceState;
-    int _productIdentifier;
-    int _transportType;
-    int _vendor;
+    BOOL  _approximatesPercentCharge;
+    NSString * _baseIdentifier;
+    BOOL  _charging;
+    BOOL  _connected;
+    BOOL  _fake;
+    NSDictionary * _glyphs;
+    NSString * _groupName;
+    NSString * _identifier;
+    BOOL  _internal;
+    BOOL  _lowBattery;
+    NSString * _matchIdentifier;
+    NSString * _name;
+    unsigned int  _parts;
+    int  _percentCharge;
+    BOOL  _powerSource;
+    int  _powerSourceState;
+    int  _productIdentifier;
+    int  _transportType;
+    int  _vendor;
 }
 
+@property (nonatomic) BOOL approximatesPercentCharge;
 @property (nonatomic, copy) NSString *baseIdentifier;
 @property (getter=isCharging, nonatomic) BOOL charging;
 @property (getter=isConnected, nonatomic) BOOL connected;
 @property (getter=isFake, nonatomic) BOOL fake;
-@property (nonatomic, readonly, retain) UIImage *glyph;
-@property (nonatomic, readonly, copy) NSString *identifier;
+@property (nonatomic, readonly) UIImage *glyph;
+@property (nonatomic, copy) NSString *groupName;
+@property (nonatomic, copy) NSString *identifier;
 @property (getter=isInternal, nonatomic) BOOL internal;
+@property (getter=isLowBattery, nonatomic) BOOL lowBattery;
 @property (nonatomic, readonly, copy) NSString *matchIdentifier;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic) unsigned int parts;
@@ -38,23 +44,26 @@
 @property (nonatomic) int transportType;
 @property (nonatomic, readonly) int vendor;
 
-+ (id)batteryDeviceWithVendor:(int)arg1 productIdentifier:(int)arg2 baseIdentifier:(id)arg3 parts:(unsigned int)arg4 matchIdentifier:(id)arg5;
++ (id)batteryDeviceWithIdentifier:(id)arg1 vendor:(int)arg2 productIdentifier:(int)arg3 baseIdentifier:(id)arg4 parts:(unsigned int)arg5 matchIdentifier:(id)arg6;
 
+- (void).cxx_destruct;
 - (id)_lazyGlyphs;
+- (BOOL)approximatesPercentCharge;
 - (id)baseIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)glyph;
 - (id)glyphForPartKey:(id)arg1;
+- (id)groupName;
 - (id)identifier;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithVendor:(int)arg1 productIdentifier:(int)arg2 baseIdentifier:(id)arg3 parts:(unsigned int)arg4 matchIdentifier:(id)arg5;
+- (id)initWithIdentifier:(id)arg1 vendor:(int)arg2 productIdentifier:(int)arg3 baseIdentifier:(id)arg4 parts:(unsigned int)arg5 matchIdentifier:(id)arg6;
 - (BOOL)isCharging;
 - (BOOL)isConnected;
 - (BOOL)isFake;
 - (BOOL)isInternal;
+- (BOOL)isLowBattery;
 - (BOOL)isPowerSource;
 - (id)matchIdentifier;
 - (id)name;
@@ -62,11 +71,15 @@
 - (int)percentCharge;
 - (int)powerSourceState;
 - (int)productIdentifier;
+- (void)setApproximatesPercentCharge:(BOOL)arg1;
 - (void)setBaseIdentifier:(id)arg1;
 - (void)setCharging:(BOOL)arg1;
 - (void)setConnected:(BOOL)arg1;
 - (void)setFake:(BOOL)arg1;
+- (void)setGroupName:(id)arg1;
+- (void)setIdentifier:(id)arg1;
 - (void)setInternal:(BOOL)arg1;
+- (void)setLowBattery:(BOOL)arg1;
 - (void)setName:(id)arg1;
 - (void)setParts:(unsigned int)arg1;
 - (void)setPercentCharge:(int)arg1;

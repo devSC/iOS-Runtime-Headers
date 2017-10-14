@@ -3,22 +3,24 @@
  */
 
 @interface MusicContextualActionsHeaderLockupView : MusicEntityHorizontalLockupView {
-    UIButton *_addToLibraryButton;
-    unsigned int _addToLibraryState;
-    UIImageView *_disclosureImageView;
-    MusicContextualActionsHeaderBlendingHighlightView *_highlightView;
-    BOOL _highlighted;
-    UIButton *_likeButton;
-    unsigned int _likeState;
-    UIButton *_radioButton;
-    UIButton *_shareButton;
-    BOOL _supportsRadio;
-    BOOL _supportsSelection;
-    BOOL _supportsSharing;
+    UIImageView * _disclosureImageView;
+    float  _downloadProgress;
+    MusicDownloadProgressButton * _downloadProgressButton;
+    int  _downloadProgressType;
+    MusicContextualActionsHeaderBlendingHighlightView * _highlightView;
+    BOOL  _highlighted;
+    UIButton * _likeButton;
+    unsigned int  _likeState;
+    UIButton * _radioButton;
+    UIButton * _shareButton;
+    BOOL  _supportsRadio;
+    BOOL  _supportsSelection;
+    BOOL  _supportsSharing;
 }
 
-@property (nonatomic) unsigned int addToLibraryState;
 @property (nonatomic) <MusicContextualActionsHeaderLockupViewDelegate> *delegate;
+@property (nonatomic) float downloadProgress;
+@property (nonatomic) int downloadProgressType;
 @property (nonatomic) unsigned int likeState;
 @property (nonatomic) BOOL supportsRadio;
 @property (nonatomic) BOOL supportsSelection;
@@ -27,18 +29,21 @@
 + (float)defaultTextDescriptorHeightAdditionsForContentDescriptor:(id)arg1 width:(float)arg2 traitCollection:(id)arg3;
 
 - (void).cxx_destruct;
-- (void)_addToLibraryButtonAction:(id)arg1;
 - (void)_configureArtworkCatalog:(id)arg1;
+- (void)_downloadProgressButtonAction:(id)arg1;
 - (void)_likeButtonAction:(id)arg1;
-- (void)_radioButtonAction:(id)arg1;
 - (void)_setHighlighted:(BOOL)arg1;
 - (void)_shareButtonAction:(id)arg1;
 - (id)_touchForEvent:(id)arg1;
-- (unsigned int)addToLibraryState;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })layoutMargins;
+- (void)dealloc;
+- (float)downloadProgress;
+- (int)downloadProgressType;
 - (void)layoutSubviews;
 - (unsigned int)likeState;
-- (void)setAddToLibraryState:(unsigned int)arg1;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })music_inheritedLayoutInsets;
+- (void)music_inheritedLayoutInsetsDidChange;
+- (void)setDownloadProgress:(float)arg1;
+- (void)setDownloadProgressType:(int)arg1;
 - (void)setLikeState:(unsigned int)arg1;
 - (void)setSupportsRadio:(BOOL)arg1;
 - (void)setSupportsSelection:(BOOL)arg1;

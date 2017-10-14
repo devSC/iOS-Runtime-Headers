@@ -2,50 +2,91 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@interface MPStoreAVItem : MPAVItem {
-    NSString *_aggregateDictionaryItemIdentifier;
-    unsigned int _assetQuality;
-    BOOL _hasEverPrioritizedPlayerItem;
-    BOOL _hasPrioritizedPlayWhileDownloadSession;
-    BOOL _hasPrioritizedStreamingDownloadSession;
-    BOOL _hasValidAggregateDictionaryItemIdentifier;
-    BOOL _hasValidAssetQuality;
-    BOOL _isActivePlayerItem;
-    unsigned int _options;
-    MPStorePlayWhileDownloadSession *_playWhileDownloadSession;
-    MPMediaPlaybackItemMetadata *_playbackItemMetadata;
-    unsigned int _preferredAssetQuality;
-    MPStreamingDownloadSession *_streamingDownloadSession;
+@interface MPStoreAVItem : MPAVItem <AVAssetResourceLoaderDelegate, MPRTCReportingItemSessionCreating, SSVSecureKeyDeliveryRequestOperationDelegate> {
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    unsigned int  _assetQuality;
+    NSString * _assetSourceStoreFrontID;
+    NSNumber * _bookmarkTime;
+    BOOL  _didDeferLeaseStart;
+    long long  _equivalencySourceAdamID;
+    BOOL  _hasEverPrioritizedPlayerItem;
+    BOOL  _hasPrioritizedPlayWhileDownloadSession;
+    BOOL  _hasPrioritizedStreamingDownloadSession;
+    BOOL  _hasValidAssetQuality;
+    BOOL  _isActivePlayerItem;
+    NSError * _lastResourceLoadingError;
+    AVAssetResourceLoadingRequest * _loadingRequest;
+    NSOperationQueue * _operationQueue;
+    unsigned int  _options;
+    MPStorePlayWhileDownloadSession * _playWhileDownloadSession;
+    MPMediaPlaybackItemMetadata * _playbackItemMetadata;
+    double  _playbackStartTime;
+    unsigned int  _preferredAssetQuality;
+    BOOL  _rentalCheckoutRequired;
+    unsigned long long  _rentalID;
+    NSString * _requestingBundleIdentifier;
+    NSString * _requestingBundleVersion;
+    id  _rtcReportingParentHierarchyToken;
+    NSString * _rtcReportingServiceIdentifier;
+    NSData * _serverPlaybackContextDataForStoppingLease;
+    MPStreamingDownloadSession * _streamingDownloadSession;
 }
 
+@property (nonatomic, readonly) BOOL allowsStoreBagStreamingKeyURLsFallback;
+@property (nonatomic, copy) NSString *assetSourceStoreFrontID;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) long long equivalencySourceAdamID;
+@property (readonly) unsigned int hash;
+@property (getter=isiTunesStoreStream, nonatomic, readonly) BOOL iTunesStoreStream;
 @property (nonatomic, readonly) unsigned int options;
 @property (nonatomic, readonly) MPMediaPlaybackItemMetadata *playbackItemMetadata;
+@property (getter=isRentalCheckoutRequired, nonatomic, readonly) BOOL rentalCheckoutRequired;
+@property (nonatomic, readonly) unsigned long long rentalID;
+@property (nonatomic, copy) NSString *requestingBundleIdentifier;
+@property (nonatomic, copy) NSString *requestingBundleVersion;
+@property (nonatomic, readonly) int rtcReportingAssetType;
+@property (nonatomic, readonly) id rtcReportingParentHierarchyToken;
+@property (nonatomic, readonly, copy) NSString *rtcReportingServiceIdentifier;
+@property (nonatomic, retain) NSData *serverPlaybackContextDataForStoppingLease;
+@property (nonatomic, readonly) unsigned int streamType;
+@property (nonatomic, readonly, copy) NSURL *streamingKeyCertificateURL;
+@property (nonatomic, readonly, copy) NSURL *streamingKeyServerURL;
+@property (readonly) Class superclass;
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
 + (id)_assetURLForCachedLocalPlaybackAssetFilePathForPlaybackItemMetadata:(id)arg1 withMinimumAssetQuality:(unsigned int)arg2 assetOptions:(id)arg3 returningProtectionType:(unsigned int*)arg4 assetQuality:(unsigned int*)arg5 usesPurchaseBundle:(BOOL*)arg6;
 + (unsigned int)_currentPreferredAssetQualityForPlaybackItemMetadata:(id)arg1;
-+ (void)applyVolumeNormalizationForQueuedItems:(id)arg1;
++ (BOOL)hasNominalAmountBeenPlayedForElapsedTime:(double)arg1 startTime:(double)arg2 stopTime:(double)arg3;
 + (BOOL)isPlaybackItemMetadataStreamingForAssetCreation:(id)arg1 returningProtectionType:(unsigned int*)arg2;
 + (BOOL)isPlaybackItemMetadataValidForAssetCreation:(id)arg1;
++ (double)nominalHasBeenPlayedThresholdForDuration:(double)arg1;
++ (BOOL)shouldIncrementPlayCountForElapsedTime:(double)arg1 startTime:(double)arg2 stopTime:(double)arg3;
 
 - (void).cxx_destruct;
 - (void)_applyLoudnessInfo;
+- (id)_bookmarkTime;
 - (id)_chapterTitleForTime:(double)arg1;
 - (void)_currentPlaybackRateDidChange:(float)arg1;
+- (double)_expectedStartTimeWithPlaybackInfo:(id)arg1;
+- (double)_expectedStopTimeWithPlaybackInfo:(id)arg1;
 - (BOOL)_getAssetURL:(id*)arg1 playWhileDownloadSession:(id*)arg2 assetQuality:(unsigned int*)arg3 error:(id*)arg4 usingStoreDownload:(id)arg5 assetOptions:(id)arg6 shouldStartDownload:(BOOL)arg7;
 - (void)_handlePlaybackFinishedTime:(double)arg1 finishedByHittingEnd:(BOOL)arg2;
 - (void)_handleUpdatedLikedState:(int)arg1 completion:(id /* block */)arg2;
 - (void)_loadMediaItemWithCompletionHandler:(id /* block */)arg1;
 - (void)_mediaPlaybackItemMetadataDidChangeNotification:(id)arg1;
 - (void)_mediaPlaybackItemMetadataLikedStateDidChangeNotification:(id)arg1;
+- (id)_mediaSelectionOptionFromGroup:(id)arg1 withTrackID:(int)arg2;
 - (id)_newTimeMarkersForChapterType:(int)arg1;
+- (void)_persistPlaybackStartTime:(double)arg1;
 - (int)_persistedLikedState;
 - (void)_prioritizeDownloadSessionsIfNeeded;
+- (BOOL)_shouldRememberBookmarkTime;
+- (id)_storeUbiquitousIdentifier;
 - (void)_updateBookmarkTimeIfNecessary:(double)arg1 isCheckpoint:(BOOL)arg2;
 - (void)_willBecomeActivePlayerItem;
 - (void)_willResignActivePlayerItem;
-- (id)aggregateDictionaryItemIdentifier;
 - (id)album;
 - (id)albumArtist;
 - (long long)albumStoreID;
@@ -54,11 +95,13 @@
 - (BOOL)allowsAirPlayFromCloud;
 - (BOOL)allowsEQ;
 - (BOOL)allowsExternalPlayback;
+- (BOOL)allowsStoreBagStreamingKeyURLsFallback;
 - (void)applyVolumeNormalizationWithSoundCheckEnabled:(BOOL)arg1;
 - (id)artist;
 - (long long)artistStoreID;
 - (id)artworkCatalogForPlaybackTime:(double)arg1;
 - (id)artworkTimeMarkers;
+- (id)assetSourceStoreFrontID;
 - (BOOL)canSeedGenius;
 - (id)chapterTimeMarkers;
 - (id)composer;
@@ -66,58 +109,95 @@
 - (int)customAVEQPreset;
 - (void)dealloc;
 - (id)description;
+- (BOOL)didDeferLeaseStart;
 - (unsigned int)discCount;
 - (unsigned int)discNumber;
 - (id)displayableText;
 - (double)durationFromExternalMetadata;
+- (long long)equivalencySourceAdamID;
+- (id)externalContentIdentifier;
 - (id)genre;
 - (void)handlePlaybackFinishedTime:(double)arg1 finishedByHittingEnd:(BOOL)arg2;
 - (BOOL)hasAlternatesForTypes:(unsigned int)arg1;
+- (id)init;
 - (id)initWithPlaybackItemMetadata:(id)arg1 options:(unsigned int)arg2;
 - (BOOL)isAssetURLValid;
 - (BOOL)isCloudItem;
 - (BOOL)isExplicitTrack;
 - (BOOL)isLikedStateEnabled;
+- (BOOL)isRentalCheckoutRequired;
 - (BOOL)isStreamable;
 - (BOOL)isStreamingLowQualityAsset;
-- (BOOL)isSupportedDefaultPlaybackSpeed:(unsigned int)arg1;
+- (BOOL)isSupportedDefaultPlaybackSpeed:(int)arg1;
 - (BOOL)isValidPlayerSubstituteForItem:(id)arg1;
+- (BOOL)isiTunesStoreStream;
+- (id)lastResourceLoadingError;
 - (void)loadAssetAndPlayerItem;
 - (id)mainTitle;
 - (id)mediaItem;
+- (id)modelGenericObject;
+- (long long)mpcReporting_equivalencySourceAdamID;
+- (id)mpcReporting_requestingBundleIdentifier;
+- (id)mpcReporting_requestingBundleVersion;
 - (void)notePlaybackFinishedByHittingEnd;
 - (unsigned int)options;
 - (unsigned long long)persistentID;
-- (double)playbackCheckpointCurrentTime;
+- (id)playbackInfo;
 - (id)playbackItemMetadata;
+- (BOOL)prefersSeekOverSkip;
 - (void)prepareForRate:(float)arg1 completionHandler:(id /* block */)arg2;
 - (void)reevaluateType;
+- (unsigned long long)rentalID;
+- (id)requestingBundleIdentifier;
+- (id)requestingBundleVersion;
+- (BOOL)resourceLoader:(id)arg1 shouldWaitForLoadingOfRequestedResource:(id)arg2;
+- (BOOL)resourceLoader:(id)arg1 shouldWaitForRenewalOfRequestedResource:(id)arg2;
+- (int)rtcReportingAssetType;
+- (id)rtcReportingParentHierarchyToken;
+- (id)rtcReportingServiceIdentifier;
+- (id)rtcReportingServiceIdentifierWithAssetURL:(id)arg1;
+- (void)secureKeyDeliveryRequestOperationDidChangeServerPlaybackContextData:(id)arg1;
+- (id)serverPlaybackContextDataForStoppingLease;
 - (void)setAlternateAudioTrackID:(int)arg1;
+- (void)setAlternateAudioTrackLocale:(id)arg1;
+- (void)setAssetSourceStoreFrontID:(id)arg1;
+- (void)setEquivalencySourceAdamID:(long long)arg1;
 - (void)setLoudnessInfoVolumeNormalization:(float)arg1;
 - (void)setPlaybackCheckpointCurrentTime:(double)arg1;
 - (void)setPlaybackFinishedTime:(double)arg1;
 - (void)setPlaybackStoppedTime:(double)arg1;
 - (void)setRating:(float)arg1;
+- (void)setRequestingBundleIdentifier:(id)arg1;
+- (void)setRequestingBundleVersion:(id)arg1;
+- (void)setServerPlaybackContextDataForStoppingLease:(id)arg1;
+- (void)setupPlaybackInfo;
 - (id)storeDownload;
 - (long long)storeItemInt64ID;
+- (int)storePlaybackEndpointType;
 - (long long)storeSubscriptionAdamID;
+- (unsigned int)streamType;
+- (id)streamingKeyCertificateURL;
+- (id)streamingKeyServerURL;
 - (BOOL)supportsLikedState;
 - (BOOL)supportsRewindAndFastForward15Seconds;
 - (id)titlesForTime:(double)arg1;
-- (unsigned int)type;
+- (int)type;
 - (id)urlTimeMarkers;
 - (BOOL)useEmbeddedChapterData;
 - (float)userRating;
 - (BOOL)usesSubscriptionLease;
 
+// Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
+
++ (void)_registerCustomEntityValueHandlers;
+
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
 
 - (id)MPU_contentItemIdentifierCollection;
-- (long long)_mpuReporting_storeItemInt64ID;
-- (long long)_mpuReporting_storeItemInt64IDFromIdentifierCollection:(id)arg1;
-- (BOOL)mpuReporting_isValidReportingItem;
-- (unsigned int)mpuReporting_itemType;
-- (BOOL)mpuReporting_shouldReportPlayEventsToStore;
-- (id)mpuReporting_storeItemID;
+
+// Image: /System/Library/PrivateFrameworks/MediaPlaybackCore.framework/MediaPlaybackCore
+
+- (BOOL)mpcReporting_isValidReportingItem;
+- (BOOL)mpcReporting_shouldReportPlayEventsToStore;
 
 @end

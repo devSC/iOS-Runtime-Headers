@@ -3,21 +3,21 @@
  */
 
 @interface SKUIMetricsController : NSObject {
-    SKUIMetricsImpressionSession *_activeImpressionsSession;
-    NSString *_applicationIdentifier;
-    SSMetricsController *_controller;
-    BOOL _flushesImmediately;
-    SSMetricsConfiguration *_globalConfiguration;
-    NSString *_hostApplicationIdentifier;
-    BOOL _impressionsEnabled;
-    NSObject<OS_dispatch_source> *_impressionsTimer;
-    BOOL _loggingEnabled;
-    SSMetricsConfiguration *_pageConfiguration;
-    NSString *_pageContext;
-    NSString *_pageURL;
-    NSString *_topic;
-    NSString *_userAgent;
-    NSString *_windowOrientation;
+    SKUIMetricsImpressionSession * _activeImpressionsSession;
+    NSString * _applicationIdentifier;
+    SSMetricsController * _controller;
+    BOOL  _flushesImmediately;
+    SSMetricsConfiguration * _globalConfiguration;
+    NSString * _hostApplicationIdentifier;
+    BOOL  _impressionsEnabled;
+    NSObject<OS_dispatch_source> * _impressionsTimer;
+    BOOL  _loggingEnabled;
+    SSMetricsConfiguration * _pageConfiguration;
+    NSString * _pageContext;
+    NSString * _pageURL;
+    NSString * _topic;
+    NSString * _userAgent;
+    NSString * _windowOrientation;
 }
 
 @property (nonatomic, readonly) NSNumber *accountIdentifier;
@@ -62,6 +62,7 @@
 - (id)performActionForItem:(id)arg1 clientContext:(id)arg2;
 - (id)performActionForItem:(id)arg1 offer:(id)arg2 clientContext:(id)arg3;
 - (id)performActionForItem:(id)arg1 offer:(id)arg2 clientContext:(id)arg3 completionBlock:(id /* block */)arg4;
+- (id)performActionForSoftwareItem:(id)arg1 offer:(id)arg2 clientContext:(id)arg3 completionBlock:(id /* block */)arg4;
 - (void)pingURLs:(id)arg1;
 - (void)pingURLs:(id)arg1 withClientContext:(id)arg2;
 - (void)recordBuyConfirmedEventsForItems:(id)arg1 purchaseResponses:(id)arg2;

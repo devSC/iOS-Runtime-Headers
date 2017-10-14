@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSMutableArray : NSArray
+@interface NSMutableArray : NSArray <FCOrderedMutableCollectionAdditions>
 
 // Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
@@ -61,7 +61,6 @@
 - (void)replaceObjectsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withObjectsFromOrderedSet:(id)arg2;
 - (void)replaceObjectsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withObjectsFromOrderedSet:(id)arg2 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
 - (void)replaceObjectsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withObjectsFromSet:(id)arg2;
-- (void)rollObjectsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 by:(int)arg2;
 - (void)setArray:(id)arg1;
 - (void)setObject:(id)arg1 atIndex:(unsigned int)arg2;
 - (void)setObject:(id)arg1 atIndexedSubscript:(unsigned int)arg2;
@@ -83,14 +82,18 @@
 - (void)removeObjectsFromIndices:(unsigned int*)arg1 numIndices:(unsigned int)arg2;
 - (void)sortUsingDescriptors:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (void)hk_removeObjectsPassingTest:(id /* block */)arg1;
+
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (unsigned int)_mapkit_insertSortedAnnotationView:(id)arg1;
 - (unsigned int)_mapkit_insertSortedAnnotationView:(id)arg1 reverse:(BOOL)arg2;
 - (void)_mapkit_makeObjectsPerformSelector:(SEL)arg1;
 - (id)_mapkit_popLastObject;
-- (void)_mapkit_sortUsingDistanceFromCoordinate:(struct { double x1; double x2; })arg1;
-- (void)_mapkit_sortUsingDistanceFromCoordinate:(struct { double x1; double x2; })arg1 ascending:(BOOL)arg2;
+- (void)_mapkit_sortUsingDistanceFromCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1;
+- (void)_mapkit_sortUsingDistanceFromCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 ascending:(BOOL)arg2;
 - (void)_mapkit_sortUsingLatitude;
 - (void)_mapkit_sortUsingLatitudeAscending:(BOOL)arg1;
 - (void)_mapkit_sortUsingLongitude;
@@ -101,6 +104,12 @@
 - (void)moveItemFromIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2;
 - (void)removeItemAtIndex:(unsigned int)arg1;
 
+// Image: /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter
+
+- (id)nc_peek;
+- (id)nc_pop;
+- (void)nc_push:(id)arg1;
+
 // Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
 
 - (void)removeExactObject:(id)arg1;
@@ -110,10 +119,23 @@
 
 - (void)_addObjectsFromArray:(id)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)_kb_reverse;
+- (BOOL)_listContainsOrderedItems;
+- (void)_set_listContainsOrderedItems:(BOOL)arg1;
+- (void)_set_syncQueue:(id)arg1;
+- (id)_syncQueue;
 - (id)_ui_dequeue;
 - (void)_ui_enqueue:(id)arg1;
 - (id)_ui_peek;
+- (void)_uikbrtInsert:(id)arg1 after:(id)arg2;
+- (void)_uikbrtInsert:(id)arg1 before:(id)arg2;
+- (void)_uikbrtInsert:(id)arg1 beforeItemPassingTest:(id /* block */)arg2;
+- (void)_uikbrtRemove:(id)arg1;
 - (void)removeViewsFromSuperview;
+
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+
+- (void)un_safeAddObject:(id)arg1 class:(Class)arg2;
+- (void)un_safeAddObject:(id)arg1 classes:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
 
@@ -143,16 +165,18 @@
 // Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
 
 - (BOOL)bw_empty;
+- (id)bw_peek;
 - (id)bw_pop;
 - (void)bw_push:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
 
 - (void)_cn_addNonNilObject:(id)arg1;
+- (void)_cn_addNonNilObjectIfNotPresent:(id)arg1;
 - (void)_cn_addObject:(id)arg1 orPlaceholder:(id)arg2;
 - (void)_cn_insertNonNilObject:(id)arg1 atIndex:(unsigned int)arg2;
-- (id)_cn_popObject;
 - (void)_cn_removeObjectsPassingTest:(id /* block */)arg1;
+- (void)_cn_sortUsingAuxiliarySortOrder:(id)arg1 transform:(id /* block */)arg2;
 
 // Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 
@@ -183,6 +207,10 @@
 - (id)section_pop;
 - (void)section_push:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/FMCoreLite.framework/FMCoreLite
+
+- (void)fm_safeAddObject:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
 
 - (id)_gkMutableOrderedSet;
@@ -210,14 +238,42 @@
 - (void)mf_moveObjectAtIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2;
 - (unsigned int)mf_removeObject:(id)arg1 usingComparator:(id /* block */)arg2;
 - (unsigned int)mf_removeObject:(id)arg1 usingSortFunction:(int (*)arg2 context:(void*)arg3;
+- (void)mf_reverseObjects;
 
 // Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
 
 - (void)shuffle;
 
-// Image: /System/Library/PrivateFrameworks/NetAppsUtilitiesUI.framework/NetAppsUtilitiesUI
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
 
-- (void)naui_safeAddObject:(id)arg1;
+- (id)dequeueAtom;
+- (void)enqueueAtom:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilities.framework/NetAppsUtilities
+
+- (void)na_safeAddObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (void)fc_insertObject:(id)arg1 inOrderRelativeToContents:(unsigned int)arg2;
+- (void)fc_insertObject:(id)arg1 sortedUsingSelector:(SEL)arg2;
+- (void)fc_insertObjects:(id)arg1 atIndex:(unsigned int)arg2;
+- (void)fc_insertObjects:(id)arg1 inOrderRelativeToContents:(unsigned int)arg2;
+- (id)fc_mergeSortedOrderedCollection:(id)arg1 usingComparator:(id /* block */)arg2;
+- (id)fc_popFirstObject;
+- (id)fc_popLastObject;
+- (void)fc_removeFirstObject;
+- (void)fc_removeObject:(id)arg1 sortedUsingSelector:(SEL)arg2;
+- (void)fc_removeObjectsPassingTest:(id /* block */)arg1;
+- (void)fc_replaceObjectIdenticalTo:(id)arg1 withObject:(id)arg2;
+- (void)fc_replaceObjectIdenticalTo:(id)arg1 withObjects:(id)arg2;
+- (void)fc_reverseObjects;
+- (void)fc_rotateRightWithCount:(unsigned int)arg1;
+- (void)fc_safelyAddObject:(id)arg1;
+- (void)fc_safelyAddObjectsFromArray:(id)arg1;
+- (void)fc_safelyAddStringIfNonNilAndNotZeroLength:(id)arg1;
+- (void)fc_trimFromFrontToMaxCount:(unsigned int)arg1;
+- (void)fc_trimToMaxCount:(unsigned int)arg1;
 
 // Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
 
@@ -251,6 +307,7 @@
 
 // Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
 
+- (void)_pl_addNonNilObject:(id)arg1;
 - (void)pl_addCFString:(struct __CFString { }*)arg1;
 - (void)pl_valuesChanged:(BOOL)arg1 forKey:(struct __CFString { }*)arg2;
 
@@ -265,6 +322,10 @@
 
 - (void)setObject:(id)arg1 atIndex:(unsigned int)arg2;
 
+// Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
+
+- (void)_remoteUI_addObjectIfNotNil:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
 
 - (id)tk_dequeueObject;
@@ -272,6 +333,10 @@
 - (void)tk_ensureHasItemsOrNullUpToIndex:(unsigned int)arg1;
 - (id)tk_lastEnqueuedObject;
 - (id)tk_nextDequeuedObject;
+
+// Image: /System/Library/PrivateFrameworks/VideoProcessing.framework/VideoProcessing
+
+- (void)vcp_sortBySize;
 
 // Image: /System/Library/PrivateFrameworks/WebContentAnalysis.framework/WebContentAnalysis
 
@@ -291,6 +356,7 @@
 - (void)tsu_addObjectsFromNonNilArray:(id)arg1;
 - (id)tsu_dequeue;
 - (void)tsu_enqueue:(id)arg1;
+- (unsigned int)tsu_insertObject:(id)arg1 usingComparator:(id /* block */)arg2;
 - (id)tsu_pop;
 - (void)tsu_push:(id)arg1;
 - (void)tsu_removeObjectsIdenticalToObjectsInArray:(id)arg1;

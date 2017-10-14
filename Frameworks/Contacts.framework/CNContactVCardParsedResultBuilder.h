@@ -3,8 +3,8 @@
  */
 
 @interface CNContactVCardParsedResultBuilder : NSObject <CNVCardParsedResultBuilder> {
-    CNMutableContact *_contact;
-    BOOL _empty;
+    CNMutableContact * _contact;
+    BOOL  _empty;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -14,19 +14,15 @@
 
 + (id)contactKeyForVCardKey:(id)arg1;
 + (id /* block */)contactValueTransformForVCardKey:(id)arg1;
-+ (id /* block */)instantMessageAddressFromDictionaryTransform;
 + (id)labeledValuesWithValues:(id)arg1 transform:(id /* block */)arg2 labels:(id)arg3 isPrimaries:(id)arg4;
-+ (id /* block */)socialProfileFromDictionaryTransform;
 
 - (id)build;
 - (BOOL)canSetValueForProperty:(id)arg1;
 - (int)contactTypeFromPersonFlags:(int)arg1;
 - (void)dealloc;
-- (int)displayNameOrderFromPersonFlags:(int)arg1;
 - (id)init;
 - (int)personFlags;
 - (int)personFlagsByAddingContactType:(int)arg1 toFlags:(int)arg2;
-- (int)personFlagsByAddingDisplayNameOrder:(int)arg1 toFlags:(int)arg2;
 - (BOOL)setImageData:(id)arg1 forReference:(id)arg2 clipRects:(id)arg3;
 - (BOOL)setPersonFlags:(int)arg1;
 - (void)setUnknownProperties:(id)arg1;

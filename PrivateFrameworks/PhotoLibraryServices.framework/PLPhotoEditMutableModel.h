@@ -3,8 +3,8 @@
  */
 
 @interface PLPhotoEditMutableModel : PLPhotoEditModel {
-    _UIDynamicValueAnimation *_currentCopyAnimation;
-    int _transactionDepth;
+    _UIDynamicValueAnimation * _currentCopyAnimation;
+    int  _transactionDepth;
 }
 
 @property (nonatomic) int appliedOrientation;
@@ -33,6 +33,7 @@
 @property (nonatomic) float highlightsLevelOffset;
 @property (nonatomic, copy) NSArray *legacyAutoEnhanceFilters;
 @property (nonatomic) BOOL legacyAutoEnhanceIsOn;
+@property (nonatomic) float localLightLevelOffset;
 @property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } normalizedCropRect;
 @property (nonatomic, copy) NSArray *redEyeCorrections;
 @property (nonatomic) float shadowsLevelOffset;
@@ -46,6 +47,8 @@
 @property (nonatomic) float smartToneLevel;
 @property (nonatomic, copy) NSDictionary *smartToneStatistics;
 @property (nonatomic) float straightenAngle;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } trimEndTimeOffset;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } trimStartTimeOffset;
 @property (getter=isWhiteBalanceEnabled, nonatomic) BOOL whiteBalanceEnabled;
 @property (nonatomic) float whiteBalanceFaceI;
 @property (nonatomic) float whiteBalanceFaceQ;
@@ -89,6 +92,7 @@
 - (void)setHighlightsLevelOffset:(float)arg1;
 - (void)setLegacyAutoEnhanceFilters:(id)arg1;
 - (void)setLegacyAutoEnhanceIsOn:(BOOL)arg1;
+- (void)setLocalLightLevelOffset:(float)arg1;
 - (void)setNormalizedCropRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setRedEyeCorrections:(id)arg1;
 - (void)setShadowsLevelOffset:(float)arg1;
@@ -102,6 +106,8 @@
 - (void)setSmartToneLevel:(float)arg1;
 - (void)setSmartToneStatistics:(id)arg1;
 - (void)setStraightenAngle:(float)arg1;
+- (void)setTrimEndTimeOffset:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
+- (void)setTrimStartTimeOffset:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)setWhiteBalanceEnabled:(BOOL)arg1;
 - (void)setWhiteBalanceFaceI:(float)arg1;
 - (void)setWhiteBalanceFaceQ:(float)arg1;

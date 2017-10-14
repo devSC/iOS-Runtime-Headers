@@ -3,15 +3,15 @@
  */
 
 @interface ACDClient : NSObject {
-    struct __CFBundle { } *_bundle;
-    NSString *_bundleID;
-    NSXPCConnection *_connection;
-    ACDDatabase *_database;
-    BOOL _didManuallySetBundleID;
-    NSMutableDictionary *_entitlementChecks;
-    NSString *_localizedAppName;
-    NSString *_name;
-    NSNumber *_pid;
+    struct __CFBundle { } * _bundle;
+    NSString * _bundleID;
+    NSXPCConnection * _connection;
+    ACDDatabase * _database;
+    BOOL  _didManuallySetBundleID;
+    NSMutableDictionary * _entitlementChecks;
+    NSString * _localizedAppName;
+    NSString * _name;
+    NSNumber * _pid;
 }
 
 @property (nonatomic, readonly) NSString *adamOrDisplayID;
@@ -30,7 +30,7 @@
 
 - (void).cxx_destruct;
 - (id)_displayNameFromBundleInfoDictionaryForPID:(int)arg1;
-- (id)_displayNameFromSpringBoardForPID:(int)arg1;
+- (id)_displayNameFromLaunchServicesForPID:(int)arg1;
 - (id)adamOrDisplayID;
 - (struct __CFBundle { }*)bundle;
 - (id)bundleID;

@@ -3,36 +3,35 @@
  */
 
 @interface PKPass : PKObject <NSCopying, NSSecureCoding> {
-    NSSet *_associatedPassTypeIdentifiers;
-    NSString *_deviceName;
-    NSSet *_embeddedBeacons;
-    NSSet *_embeddedLocations;
-    NSDate *_expirationDate;
-    NSString *_groupingID;
-    BOOL _hasStoredValue;
-    NSString *_iAdReportingIdentifier;
-    NSDate *_ingestedDate;
-    NSURL *_localLocationsURL;
-    NSDate *_modifiedDate;
-    PKNFCPayload *_nfcPayload;
-    NSString *_organizationName;
-    PKImage *_partialFrontFaceImagePlaceholder;
-    NSString *_passLibraryMachServiceName;
-    unsigned int _passType;
-    NSString *_passTypeIdentifier;
-    NSURL *_passURL;
-    NSDate *_relevantDate;
-    BOOL _remotePass;
-    BOOL _revoked;
-    NSNumber *_sequenceCounter;
-    NSString *_serialNumber;
-    int _sharingMethod;
-    NSString *_sharingText;
-    NSURL *_sharingURL;
-    NSString *_teamID;
-    NSDictionary *_userInfo;
-    BOOL _voided;
-    NSURL *_webLocationsURL;
+    NSSet * _associatedPassTypeIdentifiers;
+    NSString * _deviceName;
+    NSSet * _embeddedBeacons;
+    NSSet * _embeddedLocations;
+    NSDate * _expirationDate;
+    NSString * _groupingID;
+    BOOL  _hasStoredValue;
+    NSDate * _ingestedDate;
+    NSURL * _localLocationsURL;
+    NSDate * _modifiedDate;
+    PKNFCPayload * _nfcPayload;
+    NSString * _organizationName;
+    PKImage * _partialFrontFaceImagePlaceholder;
+    NSString * _passLibraryMachServiceName;
+    unsigned int  _passType;
+    NSString * _passTypeIdentifier;
+    NSURL * _passURL;
+    NSDate * _relevantDate;
+    BOOL  _remotePass;
+    BOOL  _revoked;
+    NSNumber * _sequenceCounter;
+    NSString * _serialNumber;
+    int  _sharingMethod;
+    NSString * _sharingText;
+    NSURL * _sharingURL;
+    NSString * _teamID;
+    NSDictionary * _userInfo;
+    BOOL  _voided;
+    NSURL * _webLocationsURL;
 }
 
 @property (nonatomic, readonly) NSURL *appLaunchURL;
@@ -52,10 +51,10 @@
 @property (nonatomic, copy) NSString *groupingID;
 @property (readonly) BOOL hasLogoImageSet;
 @property (nonatomic) BOOL hasStoredValue;
-@property (setter=setiAdReportingIdentifier:, nonatomic, copy) NSString *iAdReportingIdentifier;
 @property (nonatomic, readonly, copy) UIImage *icon;
 @property (nonatomic, readonly) PKImage *iconImage;
 @property (nonatomic, retain) NSDate *ingestedDate;
+@property (nonatomic, readonly) BOOL isPersonalizable;
 @property (nonatomic, copy) NSURL *localLocationsURL;
 @property (nonatomic, readonly, copy) NSString *localizedDescription;
 @property (nonatomic, readonly, copy) NSString *localizedName;
@@ -65,6 +64,8 @@
 @property (nonatomic, retain) NSDate *modifiedDate;
 @property (setter=setNFCPayload:, nonatomic, copy) PKNFCPayload *nfcPayload;
 @property (getter=isNFCPayloadEncrypted, nonatomic, readonly) BOOL nfcPayloadEncrypted;
+@property (readonly) NSString *notificationCenterTitle;
+@property (nonatomic, readonly) PKImage *notificationIconImage;
 @property (readonly) NSData *npkCompleteHash;
 @property (readonly) BOOL npkExpired;
 @property (readonly) BOOL npkHasBarcode;
@@ -78,6 +79,8 @@
 @property (nonatomic, copy) NSString *passTypeIdentifier;
 @property (nonatomic, copy) NSURL *passURL;
 @property (nonatomic, readonly) PKPaymentPass *paymentPass;
+@property (nonatomic, readonly) PKPassPersonalization *personalization;
+@property (nonatomic, readonly) PKImage *personalizationLogoImage;
 @property (nonatomic, readonly) NSString *pluralLocalizedName;
 @property (nonatomic, copy) NSDate *relevantDate;
 @property (getter=isRemotePass, nonatomic) BOOL remotePass;
@@ -106,8 +109,8 @@
 + (BOOL)isValidObjectWithFileURL:(id)arg1 warnings:(id*)arg2 orError:(id*)arg3;
 + (BOOL)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (id)_changeMessageForFieldKey:(id)arg1;
-- (id)_groupingIDFromPassDictionary:(id)arg1;
 - (id)_localizationKeyForMultipleDiff;
 - (id)appLaunchURL;
 - (id)associatedPassTypeIdentifiers;
@@ -118,7 +121,6 @@
 - (id)backgroundImage;
 - (id)barcode;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)deviceName;
 - (id)diff:(id)arg1;
 - (void)downloadRemoteAssetsWithCompletion:(id /* block */)arg1;
@@ -126,6 +128,7 @@
 - (id)embeddedLocations;
 - (void)encodeWithCoder:(id)arg1;
 - (id)expirationDate;
+- (id)fieldForKey:(id)arg1;
 - (id)footerImage;
 - (id)frontFaceImage;
 - (id)frontFieldBuckets;
@@ -134,7 +137,6 @@
 - (BOOL)hasStoredValue;
 - (BOOL)hasTimeOrLocationRelevancyInfo;
 - (BOOL)hasValidNFCPayload;
-- (id)iAdReportingIdentifier;
 - (id)iconImage;
 - (id)ingestedDate;
 - (id)initWithCoder:(id)arg1;
@@ -143,6 +145,7 @@
 - (BOOL)isEqualToPassIncludingMetadata:(id)arg1;
 - (BOOL)isExpired;
 - (BOOL)isNFCPayloadEncrypted;
+- (BOOL)isPersonalizable;
 - (BOOL)isRelevantDateOld;
 - (BOOL)isRemotePass;
 - (BOOL)isRevoked;
@@ -159,6 +162,8 @@
 - (id)lowercaseLocalizedName;
 - (id)modifiedDate;
 - (id)nfcPayload;
+- (id)notificationCenterTitle;
+- (id)notificationIconImage;
 - (id)organizationName;
 - (id)partialFrontFaceImage;
 - (id)partialFrontFaceImagePlaceholder;
@@ -167,6 +172,8 @@
 - (id)passTypeIdentifier;
 - (id)passURL;
 - (id)paymentPass;
+- (id)personalization;
+- (id)personalizationLogoImage;
 - (id)pluralLocalizedName;
 - (id)relevantDate;
 - (id)sequenceCounter;
@@ -199,7 +206,6 @@
 - (void)setUserInfo:(id)arg1;
 - (void)setVoided:(BOOL)arg1;
 - (void)setWebLocationsURL:(id)arg1;
-- (void)setiAdReportingIdentifier:(id)arg1;
 - (int)sharingMethod;
 - (id)sharingText;
 - (id)sharingURL;
@@ -209,15 +215,11 @@
 - (int)style;
 - (BOOL)supportsSharing;
 - (id)teamID;
+- (id)thumbnailImage;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })thumbnailRect;
 - (int)transitType;
 - (id)userInfo;
 - (id)webLocationsURL;
-
-// Image: /System/Library/Frameworks/PassKit.framework/PassKit
-
-- (id)icon;
-- (id)mailAttachmentIcon;
 
 // Image: /System/Library/PrivateFrameworks/NanoPassKit.framework/NanoPassKit
 
@@ -229,5 +231,12 @@
 - (BOOL)npkHasBarcode;
 - (BOOL)npkSupportsHidingBarcode;
 - (id)npkWatchBarcode;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (id)_generateIcon:(id)arg1 withVariant:(int)arg2;
+- (id)_icon;
+- (id)icon;
+- (id)mailAttachmentIcon;
 
 @end

@@ -3,12 +3,13 @@
  */
 
 @interface PKAssertion : NSObject {
-    NSString *_identifier;
-    BOOL _invalidateWhenBackgrounded;
-    id /* block */ _invalidationHandler;
-    NSString *_reason;
-    int _state;
-    unsigned int _type;
+    NSString * _identifier;
+    BOOL  _invalidateWhenBackgrounded;
+    id /* block */  _invalidationHandler;
+    NSLock * _invalidationLock;
+    NSString * _reason;
+    int  _state;
+    unsigned int  _type;
 }
 
 @property (nonatomic, copy) NSString *identifier;
@@ -22,6 +23,7 @@
 + (BOOL)assertionExistsOfType:(unsigned int)arg1;
 + (void)preheatConnection;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
 - (id)identifier;

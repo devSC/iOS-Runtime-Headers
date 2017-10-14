@@ -3,24 +3,26 @@
  */
 
 @interface MFOutgoingMessageDelivery : NSObject {
-    MailAccount *_archiveAccount;
-    NSArray *_charsets;
-    NSDictionary *_compositionSpecification;
-    unsigned long long _conversationFlags;
-    MFMailDelivery *_currentDeliveryObject;
-    <MFDeliveryDelegate> *_delegate;
-    DeliveryAccount *_deliveryAccount;
-    MFMutableMessageHeaders *_headers;
-    NSString *_htmlBody;
-    BOOL _isUserRequested;
-    MFMessage *_message;
-    NSArray *_mixedContent;
-    long long _originalConversationId;
-    NSArray *_otherHTMLAndAttachments;
-    MFPlainTextDocument *_plainTextAlternative;
-    BOOL _textPartsAreHTML;
+    MailAccount * _archiveAccount;
+    MFAttachmentCompositionContext * _attachmentContext;
+    NSArray * _charsets;
+    NSDictionary * _compositionSpecification;
+    unsigned long long  _conversationFlags;
+    MFMailDelivery * _currentDeliveryObject;
+    <MFDeliveryDelegate> * _delegate;
+    DeliveryAccount * _deliveryAccount;
+    MFMutableMessageHeaders * _headers;
+    NSString * _htmlBody;
+    BOOL  _isUserRequested;
+    MFMessage * _message;
+    NSArray * _mixedContent;
+    long long  _originalConversationId;
+    NSArray * _otherHTMLAndAttachments;
+    MFPlainTextDocument * _plainTextAlternative;
+    BOOL  _textPartsAreHTML;
 }
 
+@property (nonatomic, retain) MFAttachmentCompositionContext *attachmentContext;
 @property (nonatomic, retain) NSDictionary *compositionSpecification;
 @property (nonatomic) unsigned long long conversationFlags;
 @property (nonatomic) BOOL isUserRequested;
@@ -34,10 +36,11 @@
 - (id)_deliverSynchronouslyWithCurrentSettings:(BOOL)arg1;
 - (id)_deliveryAccountForInitializers;
 - (id)account;
+- (id)attachmentContext;
 - (id)compositionSpecification;
 - (unsigned long long)conversationFlags;
 - (void)dealloc;
-- (id)deliverSynchronously;
+- (id)deliverSynchronouslyWithCompletion:(id /* block */)arg1;
 - (int)deliveryStatus;
 - (id)init;
 - (id)initWithHeaders:(id)arg1 HTML:(id)arg2 plainTextAlternative:(id)arg3 other:(id)arg4 charsets:(id)arg5;
@@ -49,6 +52,7 @@
 - (id)originalHeaders;
 - (void)setAccount:(id)arg1;
 - (void)setArchiveAccount:(id)arg1;
+- (void)setAttachmentContext:(id)arg1;
 - (void)setCompositionSpecification:(id)arg1;
 - (void)setConversationFlags:(unsigned long long)arg1;
 - (void)setDelegate:(id)arg1;

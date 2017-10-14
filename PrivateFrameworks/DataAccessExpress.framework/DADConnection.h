@@ -3,24 +3,26 @@
  */
 
 @interface DADConnection : NSObject {
-    NSMutableSet *_accountIdsWithAlreadyResetCerts;
-    NSMutableSet *_accountIdsWithAlreadyResetThrottleTimers;
-    NSObject<OS_xpc_object> *_conn;
-    NSMutableDictionary *_inFlightAttachmentDownloads;
-    NSMutableDictionary *_inFlightCalendarAvailabilityRequests;
-    NSMutableDictionary *_inFlightCalendarDirectorySearches;
-    NSMutableDictionary *_inFlightFolderChanges;
-    NSMutableDictionary *_inFlightOofSettingsRequests;
-    NSMutableDictionary *_inFlightSearchQueries;
-    NSMutableDictionary *_inFlightShareRequests;
-    NSObject<OS_dispatch_queue> *_muckingWithConn;
-    NSObject<OS_dispatch_queue> *_muckingWithInFlightCollections;
-    id /* block */ _statusReportBlock;
+    NSMutableSet * _accountIdsWithAlreadyResetCerts;
+    NSMutableSet * _accountIdsWithAlreadyResetThrottleTimers;
+    NSObject<OS_xpc_object> * _conn;
+    NSMutableDictionary * _inFlightAttachmentDownloads;
+    NSMutableDictionary * _inFlightCalendarAvailabilityRequests;
+    NSMutableDictionary * _inFlightCalendarDirectorySearches;
+    NSMutableDictionary * _inFlightFolderChanges;
+    NSMutableDictionary * _inFlightOofSettingsRequests;
+    NSMutableDictionary * _inFlightSearchQueries;
+    NSMutableDictionary * _inFlightShareRequests;
+    NSObject<OS_dispatch_queue> * _muckingWithConn;
+    NSObject<OS_dispatch_queue> * _muckingWithInFlightCollections;
+    BOOL  _registered;
+    id /* block */  _statusReportBlock;
 }
+
+@property (nonatomic) BOOL registered;
 
 + (void)setShouldIgnoreAccountChanges;
 + (id)sharedConnection;
-+ (id)sharedConnectionIfServerIsRunning;
 
 - (void).cxx_destruct;
 - (void)_calendarAvailabilityRequestFinished:(id)arg1;
@@ -41,7 +43,6 @@
 - (void)_oofSettingsRequestsFinished:(id)arg1;
 - (BOOL)_performOofSettingsRequest:(id)arg1 forAccountWithID:(id)arg2 forUpdate:(BOOL)arg3;
 - (void)_policyKeyChanged:(id)arg1;
-- (void)_reallyRegisterForInterrogation;
 - (void)_registerForAppResumedNotification;
 - (void)_requestDaemonChangeAgentMonitoringStatus:(BOOL)arg1 waitForReply:(BOOL)arg2;
 - (void)_requestDaemonStopMonitoringAgents_Sync;
@@ -65,14 +66,17 @@
 - (void)fillOutCurrentEASTimeZoneInfo;
 - (void)handleURL:(id)arg1;
 - (id)init;
-- (BOOL)isOofSettingsSupportedForAccountWithID:(id)arg1;
+- (void)isOofSettingsSupportedForAccountWithID:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)performCalendarDirectorySearchWithAccountID:(id)arg1 terms:(id)arg2 recordTypes:(id)arg3 resultLimit:(unsigned int)arg4 resultsBlock:(id /* block */)arg5 completionBlock:(id /* block */)arg6;
 - (BOOL)performServerContactsSearch:(id)arg1 forAccountWithID:(id)arg2;
 - (BOOL)processFolderChange:(id)arg1 forAccountWithID:(id)arg2;
 - (BOOL)processMeetingRequests:(id)arg1 deliveryIdsToClear:(id)arg2 deliveryIdsToSoftClear:(id)arg3 inFolderWithId:(id)arg4 forAccountWithId:(id)arg5;
+- (void)reallyRegisterForInterrogation;
 - (BOOL)registerForInterrogationWithBlock:(id /* block */)arg1;
+- (BOOL)registered;
 - (void)removeStoresForAccountWithID:(id)arg1;
 - (void)reportFolderItemsSyncSuccess:(BOOL)arg1 forFolderWithID:(id)arg2 withItemsCount:(unsigned int)arg3 andAccountWithID:(id)arg4;
+- (void)reportSharedCalendarInviteAsJunkForCalendarWithID:(id)arg1 accountID:(id)arg2 queue:(id)arg3 completionBlock:(id /* block */)arg4;
 - (id)requestCalendarAvailabilityWithAccountID:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 ignoredEventID:(id)arg4 addresses:(id)arg5 resultsBlock:(id /* block */)arg6 completionBlock:(id /* block */)arg7;
 - (void)requestDaemonShutdown;
 - (void)requestDaemonStartMonitoringAgents;
@@ -84,6 +88,7 @@
 - (BOOL)resumeWatchingFoldersWithKeys:(id)arg1 forAccountID:(id)arg2;
 - (BOOL)retrieveOofSettingsRequest:(id)arg1 forAccountWithID:(id)arg2;
 - (BOOL)setFolderIdsThatExternalClientsCareAboutAdded:(id)arg1 deleted:(id)arg2 foldersTag:(id)arg3 forAccountID:(id)arg4;
+- (void)setRegistered:(BOOL)arg1;
 - (id)statusReports;
 - (BOOL)stopWatchingFoldersWithKeys:(id)arg1 forAccountID:(id)arg2;
 - (BOOL)suspendWatchingFoldersWithKeys:(id)arg1 forAccountID:(id)arg2;
@@ -98,5 +103,6 @@
 - (BOOL)updateFolderListForAccountID:(id)arg1 andDataclasses:(int)arg2 requireChangedFolders:(BOOL)arg3 isUserRequested:(BOOL)arg4;
 - (BOOL)updateOofSettingsRequest:(id)arg1 forAccountWithID:(id)arg2;
 - (BOOL)watchFoldersWithKeys:(id)arg1 forAccountID:(id)arg2;
+- (BOOL)watchFoldersWithKeys:(id)arg1 forAccountID:(id)arg2 persistent:(BOOL)arg3;
 
 @end

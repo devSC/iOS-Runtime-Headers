@@ -3,12 +3,14 @@
  */
 
 @interface NSGrammarCheckingResult : NSTextCheckingResult {
-    NSArray *_details;
+    NSArray * _details;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    } _range;
+    }  _range;
 }
+
++ (BOOL)supportsSecureCoding;
 
 - (BOOL)_adjustRangesWithOffset:(int)arg1;
 - (void)dealloc;

@@ -3,8 +3,8 @@
  */
 
 @interface IDSProtobuf : NSObject <NSCoding> {
-    NSMutableDictionary *_protoBufParams;
-    NSData *_uncompressedData;
+    NSMutableDictionary * _protoBufParams;
+    NSData * _uncompressedData;
 }
 
 @property (nonatomic, retain) IDSMessageContext *context;
@@ -37,6 +37,10 @@
 - (unsigned short)type;
 - (id)uncompressedData;
 
+// Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
+
+- (id)extendedDescription;
+
 // Image: /System/Library/PrivateFrameworks/NanoLeash.framework/NanoLeash
 
 - (id)nfmDescription;
@@ -48,5 +52,9 @@
 // Image: /System/Library/PrivateFrameworks/PBBridgeSupport.framework/PBBridgeSupport
 
 - (id)pbDescription;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pkDescription;
 
 @end

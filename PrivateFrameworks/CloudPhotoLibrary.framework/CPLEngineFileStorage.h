@@ -3,14 +3,14 @@
  */
 
 @interface CPLEngineFileStorage : NSObject <CPLAbstractObject> {
-    NSURL *_baseURL;
-    NSURL *_crashMarkerURL;
-    BOOL _deleteImmediately;
-    BOOL _keepOriginals;
-    NSObject<OS_dispatch_queue> *_lock;
-    NSString *_logDomain;
-    CPLPlatformObject *_platformObject;
-    NSMutableArray *_uncommittedFiles;
+    NSURL * _baseURL;
+    NSURL * _crashMarkerURL;
+    BOOL  _deleteImmediately;
+    BOOL  _keepOriginals;
+    NSObject<OS_dispatch_queue> * _lock;
+    NSString * _logDomain;
+    CPLPlatformObject * _platformObject;
+    NSMutableArray * _uncommittedFiles;
 }
 
 @property (nonatomic, readonly) NSURL *baseURL;
@@ -50,7 +50,6 @@
 - (BOOL)hasFileWithIdentity:(id)arg1;
 - (id)initWithBaseURL:(id)arg1;
 - (BOOL)keepOriginals;
-- (BOOL)linkOrCopyFileWithIdentity:(id)arg1 destinationURL:(id)arg2 error:(id*)arg3;
 - (BOOL)openWithRecoveryHandler:(id /* block */)arg1 error:(id*)arg2;
 - (id)platformObject;
 - (BOOL)releaseFileURL:(id)arg1 error:(id*)arg2;

@@ -3,16 +3,18 @@
  */
 
 @interface NPKTransientPassAssertionServer : NSObject <NPKTransientPassAssertionConnectionDelegate, NSXPCListenerDelegate> {
-    BKSApplicationStateMonitor *_appStateMonitor;
-    NSMutableSet *_connections;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSMutableArray *_transientPaymentRequests;
-    NSXPCListener *_xpcListener;
+    BKSApplicationStateMonitor * _appStateMonitor;
+    NSMutableSet * _connections;
+    <NPKTransientPassAssertionServerDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSMutableArray * _transientPaymentRequests;
+    NSXPCListener * _xpcListener;
 }
 
 @property (nonatomic, retain) BKSApplicationStateMonitor *appStateMonitor;
 @property (nonatomic, retain) NSMutableSet *connections;
 @property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <NPKTransientPassAssertionServerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
@@ -21,22 +23,32 @@
 @property (nonatomic, retain) NSXPCListener *xpcListener;
 
 - (void).cxx_destruct;
+- (id)_activeTransientPassRequest;
+- (id)_bundleIDForXPCConnection:(id)arg1;
 - (void)_handleAppStateChangeWithStateDictionary:(id)arg1;
+- (void)_notifyDelegateOfTransientPassChangeToUniqueID:(id)arg1;
+- (BOOL)_queue_serviceModeRequested;
+- (id)_queue_transientPassUniqueID;
+- (void)_updateAppStateMonitor;
 - (id)appStateMonitor;
 - (void)connection:(id)arg1 hasNewTransientPassRequest:(id)arg2;
 - (void)connectionDied:(id)arg1;
 - (id)connections;
+- (id)delegate;
+- (void)getTransientPassUniqueID:(id*)arg1 transitServiceModeRequested:(BOOL*)arg2;
 - (void)handleNewConnection:(id)arg1;
 - (id)init;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (id)queue;
 - (void)setAppStateMonitor:(id)arg1;
 - (void)setConnections:(id)arg1;
+- (void)setDelegate:(id)arg1;
 - (void)setQueue:(id)arg1;
 - (void)setTransientPaymentRequests:(id)arg1;
 - (void)setXpcListener:(id)arg1;
 - (id)transientPassUniqueID;
 - (id)transientPaymentRequests;
+- (BOOL)transitServiceModeRequested;
 - (id)xpcListener;
 
 @end

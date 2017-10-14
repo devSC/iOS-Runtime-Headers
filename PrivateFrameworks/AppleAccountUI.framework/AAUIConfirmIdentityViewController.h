@@ -3,21 +3,21 @@
  */
 
 @interface AAUIConfirmIdentityViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
-    ACAccount *_account;
-    UIView *_contentView;
-    UIButton *_continueButton;
-    <AAUIConfirmIdentityViewControllerDelegate> *_delegate;
-    UILabel *_descriptionLabel;
-    UILabel *_emailLabel;
-    UIImagePickerController *_imagePicker;
-    UILabel *_nameLabel;
-    UIImage *_newProfilePicture;
-    NSValue *_newProfilePictureCropRect;
-    UIView *_profilePhotoView;
-    AAUIProfilePictureStore *_profilePictureStore;
-    UIScrollView *_scrollView;
-    UILabel *_titleLabel;
-    UIButton *_useDifferentIDButton;
+    ACAccount * _appleAccount;
+    UIView * _contentView;
+    UIButton * _continueButton;
+    <AAUIConfirmIdentityViewControllerDelegate> * _delegate;
+    UILabel * _descriptionLabel;
+    UILabel * _emailLabel;
+    UIImagePickerController * _imagePicker;
+    UILabel * _nameLabel;
+    UIImage * _newProfilePicture;
+    NSValue * _newProfilePictureCropRect;
+    UIView * _profilePhotoView;
+    AAUIProfilePictureStore * _profilePictureStore;
+    UIScrollView * _scrollView;
+    UILabel * _titleLabel;
+    UIButton * _useDifferentIDButton;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -41,7 +41,7 @@
 - (id)delegate;
 - (void)imagePickerController:(id)arg1 didFinishPickingMediaWithInfo:(id)arg2;
 - (void)imagePickerControllerDidCancel:(id)arg1;
-- (id)initWithGrandSlamSigner:(id)arg1;
+- (id)initWithAppleAccount:(id)arg1 grandSlamSigner:(id)arg2;
 - (id)instructions;
 - (void)loadView;
 - (id)pageTitle;

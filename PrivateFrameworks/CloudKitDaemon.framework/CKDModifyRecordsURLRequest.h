@@ -3,23 +3,25 @@
  */
 
 @interface CKDModifyRecordsURLRequest : CKDURLRequest {
-    BOOL _atomic;
-    NSData *_clientChangeTokenData;
-    NSDictionary *_conflictLosersToResolveByRecordID;
-    BOOL _oplock;
-    NSMutableDictionary *_recordByRequestID;
-    NSMutableDictionary *_recordIDByRequestID;
-    NSArray *_recordIDsToDelete;
-    NSDictionary *_recordIDsToDeleteToEtags;
-    id /* block */ _recordPostedBlock;
-    NSArray *_records;
-    BOOL _sendAllFields;
+    BOOL  _atomic;
+    NSData * _clientChangeTokenData;
+    NSDictionary * _conflictLosersToResolveByRecordID;
+    BOOL  _oplock;
+    NSDictionary * _pluginFieldsForRecordDeletesByID;
+    NSMutableDictionary * _recordByRequestID;
+    NSMutableDictionary * _recordIDByRequestID;
+    NSArray * _recordIDsToDelete;
+    NSDictionary * _recordIDsToDeleteToEtags;
+    id /* block */  _recordPostedBlock;
+    NSArray * _records;
+    BOOL  _sendAllFields;
 }
 
 @property (nonatomic) BOOL atomic;
 @property (nonatomic, retain) NSData *clientChangeTokenData;
 @property (nonatomic, retain) NSDictionary *conflictLosersToResolveByRecordID;
 @property (nonatomic) BOOL oplock;
+@property (nonatomic, retain) NSDictionary *pluginFieldsForRecordDeletesByID;
 @property (nonatomic, retain) NSMutableDictionary *recordByRequestID;
 @property (nonatomic, retain) NSMutableDictionary *recordIDByRequestID;
 @property (nonatomic, retain) NSArray *recordIDsToDelete;
@@ -36,6 +38,7 @@
 - (int)isolationLevel;
 - (int)operationType;
 - (BOOL)oplock;
+- (id)pluginFieldsForRecordDeletesByID;
 - (id)recordByRequestID;
 - (id)recordIDByRequestID;
 - (id)recordIDsToDelete;
@@ -51,6 +54,7 @@
 - (void)setClientChangeTokenData:(id)arg1;
 - (void)setConflictLosersToResolveByRecordID:(id)arg1;
 - (void)setOplock:(BOOL)arg1;
+- (void)setPluginFieldsForRecordDeletesByID:(id)arg1;
 - (void)setRecordByRequestID:(id)arg1;
 - (void)setRecordIDByRequestID:(id)arg1;
 - (void)setRecordIDsToDelete:(id)arg1;

@@ -3,7 +3,7 @@
  */
 
 @interface MPMusicPlayerController : NSObject <MPMediaPlayback> {
-    MPMusicPlayerControllerInternal *_internal;
+    MPMusicPlayerControllerInternal * _internal;
 }
 
 @property (nonatomic) float currentPlaybackRate;
@@ -11,6 +11,7 @@
 @property (nonatomic, readonly) BOOL isPreparedToPlay;
 
 + (id)applicationMusicPlayer;
++ (id)applicationQueuePlayer;
 + (id)iPodMusicPlayer;
 + (void)initialize;
 + (id)runLoopForNotifications;
@@ -18,6 +19,7 @@
 + (id)systemMusicPlayer;
 
 - (void).cxx_destruct;
+- (void)_cancelExistingPrepareToPlay;
 - (void)_clientCheckInUsingExistencePort:(BOOL)arg1;
 - (void)_isQueuePreparedDidChange:(BOOL)arg1;
 - (void)_itemPlaybackDidEnd:(unsigned long long)arg1;
@@ -25,6 +27,10 @@
 - (BOOL)_musicPlayerExistencePortIsValid;
 - (void)_nowPlayingItemDidChange:(unsigned long long)arg1;
 - (void)_playbackStateDidChange:(int)arg1;
+- (void)_queueDidInvalidate;
+- (void)_queuePreparationFailedWithErrorCode:(unsigned char)arg1;
+- (void)_queueRequestDidFinish;
+- (void)_queueUpdateDidFinish;
 - (void)_registerForLaunchNotifications;
 - (void)_repeatModeDidChange:(int)arg1;
 - (void)_runMigServerOnPort:(unsigned int)arg1;
@@ -35,6 +41,7 @@
 - (void)_systemVolumeDidChange:(id)arg1;
 - (void)_unregisterForLaunchNotifications;
 - (BOOL)allowsBackgroundVideo;
+- (void)appendQueueDescriptor:(id)arg1;
 - (void)beginGeneratingPlaybackNotifications;
 - (void)beginSeekingBackward;
 - (void)beginSeekingForward;
@@ -47,6 +54,7 @@
 - (void)forwardInvocation:(id)arg1;
 - (unsigned int)indexOfNowPlayingItem;
 - (id)init;
+- (id)internal;
 - (BOOL)isGeniusAvailable;
 - (BOOL)isGeniusAvailableForSeedItems:(id)arg1;
 - (BOOL)isNowPlayingItemFromGeniusMix;
@@ -58,9 +66,15 @@
 - (void)pause;
 - (void)pauseWithFadeoutDuration:(double)arg1;
 - (void)play;
+- (void)playItem:(id)arg1;
 - (int)playbackSpeed;
 - (int)playbackState;
+- (void)prepareQueueForPlayback;
 - (void)prepareToPlay;
+- (void)prepareToPlayWithCompletionHandler:(id /* block */)arg1;
+- (void)prependQueueDescriptor:(id)arg1;
+- (id)queueAsQuery;
+- (id)queueAsRadioStation;
 - (int)repeatMode;
 - (BOOL)serverIsAlive;
 - (void)setAllowsBackgroundVideo:(BOOL)arg1;
@@ -69,20 +83,26 @@
 - (void)setCurrentPlaybackTime:(double)arg1;
 - (void)setNowPlayingItem:(id)arg1;
 - (void)setPlaybackSpeed:(int)arg1;
+- (void)setQueueWithDescriptor:(id)arg1;
 - (void)setQueueWithGeniusMixPlaylist:(id)arg1;
 - (void)setQueueWithItemCollection:(id)arg1;
 - (void)setQueueWithQuery:(id)arg1;
 - (void)setQueueWithQuery:(id)arg1 firstItem:(id)arg2;
 - (void)setQueueWithRadioStation:(id)arg1;
 - (BOOL)setQueueWithSeedItems:(id)arg1;
+- (void)setQueueWithStoreIDs:(id)arg1;
 - (void)setRepeatMode:(int)arg1;
 - (void)setShuffleMode:(int)arg1;
 - (void)setUseCachedPlaybackState:(BOOL)arg1;
 - (void)setUserQueueModificationsDisabled:(BOOL)arg1;
 - (void)setVolume:(float)arg1;
 - (void)setVolumePrivate:(float)arg1;
+- (void)shuffle;
 - (int)shuffleMode;
 - (BOOL)skipInDirection:(int)arg1 error:(id*)arg2;
+- (void)skipToBeginningOrPreviousItem;
+- (void)skipToNextChapter;
+- (void)skipToPreviousChapter;
 - (void)stop;
 - (unsigned int)unshuffledIndexOfNowPlayingItem;
 - (BOOL)userQueueModificationsDisabled;

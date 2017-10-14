@@ -3,24 +3,25 @@
  */
 
 @interface IDSSocketPairResourceTransferSender : IDSSocketPairMessage {
-    BOOL _compressPayload;
-    BOOL _compressed;
-    BOOL _done;
-    BOOL _expectsPeerResponse;
-    int _fileDescriptor;
-    unsigned int _maxChunkSize;
-    NSString *_messageUUID;
-    NSDictionary *_metadata;
-    unsigned long long _nextByte;
-    NSString *_peerResponseIdentifier;
-    NSDictionary *_resourceAttributes;
-    NSString *_resourcePath;
-    BOOL _resumeResourceTransfers;
-    BOOL _sentFirstMessage;
-    unsigned int _sequenceNumber;
-    unsigned short _streamID;
-    unsigned long long _totalBytes;
-    BOOL _wantsAppAck;
+    BOOL  _compressPayload;
+    BOOL  _compressed;
+    BOOL  _done;
+    BOOL  _expectsPeerResponse;
+    NSDate * _expiryDate;
+    int  _fileDescriptor;
+    unsigned int  _maxChunkSize;
+    NSString * _messageUUID;
+    NSDictionary * _metadata;
+    unsigned long long  _nextByte;
+    NSString * _peerResponseIdentifier;
+    NSDictionary * _resourceAttributes;
+    NSString * _resourcePath;
+    BOOL  _resumeResourceTransfers;
+    BOOL  _sentFirstMessage;
+    unsigned int  _sequenceNumber;
+    unsigned short  _streamID;
+    unsigned long long  _totalBytes;
+    BOOL  _wantsAppAck;
 }
 
 @property (nonatomic, readonly) BOOL isDone;
@@ -32,10 +33,11 @@
 @property (nonatomic) unsigned int sequenceNumber;
 @property (nonatomic) unsigned short streamID;
 
+- (void)closeFileAndMarkDone;
 - (unsigned char)command;
 - (void)dealloc;
 - (id)description;
-- (id)initWithResourceAtPath:(id)arg1 metadata:(id)arg2 sequenceNumber:(unsigned int)arg3 streamID:(unsigned short)arg4 expectsPeerResponse:(BOOL)arg5 wantsAppAck:(BOOL)arg6 compressPayload:(BOOL)arg7 compressed:(BOOL)arg8 peerResponseIdentifier:(id)arg9 messageUUID:(id)arg10;
+- (id)initWithResourceAtPath:(id)arg1 metadata:(id)arg2 sequenceNumber:(unsigned int)arg3 streamID:(unsigned short)arg4 expectsPeerResponse:(BOOL)arg5 wantsAppAck:(BOOL)arg6 compressPayload:(BOOL)arg7 compressed:(BOOL)arg8 peerResponseIdentifier:(id)arg9 messageUUID:(id)arg10 expiryDate:(id)arg11;
 - (BOOL)isDone;
 - (unsigned int)maxChunkSize;
 - (id)messageUUID;

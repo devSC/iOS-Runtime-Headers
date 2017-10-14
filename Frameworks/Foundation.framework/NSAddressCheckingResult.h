@@ -3,15 +3,17 @@
  */
 
 @interface NSAddressCheckingResult : NSTextCheckingResult {
-    NSDictionary *_components;
+    NSDictionary * _components;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    } _range;
-    id _underlyingResult;
+    }  _range;
+    id  _underlyingResult;
 }
 
 @property (readonly) void*underlyingResult;
+
++ (BOOL)supportsSecureCoding;
 
 - (BOOL)_adjustRangesWithOffset:(int)arg1;
 - (id)components;

@@ -3,37 +3,49 @@
  */
 
 @interface PUTileViewController : PUTileController {
-    BOOL __edgeAntialiasingEnabled;
-    UIView *__maskView;
-    id /* block */ __onReadyToDisplayBlock;
-    NSTimer *__readinessTimer;
-    UIView *__tintView;
-    UIView *__visibleRectView;
-    NSArray *_gestureRecognizers;
-    BOOL _isReadyForDisplay;
-    UIView *_view;
+    BOOL  __edgeAntialiasingEnabled;
+    BOOL  __loadingView;
+    UIView * __maskView;
+    id /* block */  __onReadyToDisplayBlock;
+    NSTimer * __readinessTimer;
+    UIView * __tintView;
+    UIView * __visibleRectView;
+    UIView * _contentView;
+    BOOL  _contentViewEnabled;
+    NSArray * _gestureRecognizers;
+    BOOL  _isReadyForDisplay;
+    UIView * _loadedView;
+    UIView * _view;
 }
 
 @property (setter=_setEdgeAntialiasingEnabled:, nonatomic) BOOL _edgeAntialiasingEnabled;
+@property (getter=_isLoadingView, setter=_setLoadingView:, nonatomic) BOOL _loadingView;
 @property (setter=_setMaskView:, nonatomic, retain) UIView *_maskView;
 @property (setter=_setOnReadyToDisplayBlock:, nonatomic, copy) id /* block */ _onReadyToDisplayBlock;
 @property (setter=_setReadinessTimer:, nonatomic, retain) NSTimer *_readinessTimer;
 @property (setter=_setTintView:, nonatomic, retain) UIView *_tintView;
 @property (setter=_setVisibleRectView:, nonatomic, retain) UIView *_visibleRectView;
-@property (nonatomic, retain) NSArray *gestureRecognizers;
+@property (setter=_setContentView:, nonatomic, retain) UIView *contentView;
+@property (getter=isContentViewEnabled, nonatomic) BOOL contentViewEnabled;
+@property (setter=_setGestureRecognizers:, nonatomic, retain) NSArray *gestureRecognizers;
 @property (setter=_setReadyForDisplay:, nonatomic) BOOL isReadyForDisplay;
 @property (nonatomic, readonly) BOOL isViewLoaded;
-@property (nonatomic, retain) UIView *view;
+@property (setter=_setLoadedView:, nonatomic, retain) UIView *loadedView;
+@property (setter=_setView:, nonatomic, retain) UIView *view;
 
 - (void).cxx_destruct;
 - (BOOL)_edgeAntialiasingEnabled;
 - (void)_handleReadinessForced:(BOOL)arg1;
 - (void)_invalidateTintView;
+- (BOOL)_isLoadingView;
 - (id)_maskView;
 - (id /* block */)_onReadyToDisplayBlock;
 - (id)_readinessTimer;
+- (void)_setContentView:(id)arg1;
 - (void)_setEdgeAntialiasingEnabled:(BOOL)arg1;
 - (void)_setGestureRecognizers:(id)arg1;
+- (void)_setLoadedView:(id)arg1;
+- (void)_setLoadingView:(BOOL)arg1;
 - (void)_setMaskView:(id)arg1;
 - (void)_setOnReadyToDisplayBlock:(id /* block */)arg1;
 - (void)_setReadinessTimer:(id)arg1;
@@ -48,17 +60,21 @@
 - (void)addToTilingView:(id)arg1;
 - (void)applyLayoutInfo:(id)arg1;
 - (void)becomeReusable;
+- (id)contentView;
 - (void)dealloc;
 - (void)didChangeVisibleRect;
 - (id)gestureRecognizers;
+- (BOOL)isContentViewEnabled;
 - (BOOL)isPresentationActive;
 - (BOOL)isReadyForDisplay;
 - (BOOL)isViewLoaded;
-- (void)loadView;
+- (id)loadView;
+- (id)loadedView;
 - (void)notifyWhenReadyForDisplayWithTimeOut:(double)arg1 completionHandler:(id /* block */)arg2;
 - (void)prepareForReuse;
 - (id)presentationLayoutInfo;
 - (void)removeAllAnimations;
+- (void)setContentViewEnabled:(BOOL)arg1;
 - (void)setEdgeAntialiasingEnabled:(BOOL)arg1;
 - (id)view;
 - (void)viewDidLoad;

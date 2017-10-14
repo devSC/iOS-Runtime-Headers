@@ -3,17 +3,19 @@
  */
 
 @interface CoreDAVLeafDataPayload : NSObject <CoreDAVLeafDataPayload> {
-    NSData *_dataPayload;
-    NSURL *_serverID;
-    NSString *_syncKey;
+    NSData * _dataPayload;
+    NSURL * _serverID;
+    NSString * _syncKey;
 }
 
 @property (nonatomic, readonly) NSArray *childrenOrder;
 @property (nonatomic, readonly) NSData *dataPayload;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSURL *destinationURL;
 @property (readonly) unsigned int hash;
 @property (nonatomic, retain) NSURL *serverID;
+@property (nonatomic, retain) NSURL *sourceURL;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSString *syncKey;
 

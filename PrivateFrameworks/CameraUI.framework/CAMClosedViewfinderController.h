@@ -3,8 +3,8 @@
  */
 
 @interface CAMClosedViewfinderController : NSObject {
-    NSMutableSet *__reasonsForClosingViewfinder;
-    <CAMClosedViewfinderControllerDelegate> *_delegate;
+    NSMutableSet * __reasonsForClosingViewfinder;
+    <CAMClosedViewfinderControllerDelegate> * _delegate;
 }
 
 @property (nonatomic, readonly) NSMutableSet *_reasonsForClosingViewfinder;
@@ -12,12 +12,17 @@
 @property (getter=isViewfinderClosed, nonatomic, readonly) BOOL viewfinderClosed;
 
 - (void).cxx_destruct;
+- (id)_descriptionForReasons:(id)arg1;
+- (id)_descriptionStringForReason:(int)arg1;
+- (void)_performDelayedRemovalOfReason:(id)arg1;
 - (id)_reasonsForClosingViewfinder;
 - (void)addClosedViewfinderReason:(int)arg1;
+- (void)cancelDelayedRemovalOfReason:(int)arg1;
 - (id)delegate;
 - (id)init;
 - (BOOL)isViewfinderClosed;
 - (void)removeClosedViewfinderReason:(int)arg1;
+- (void)removeClosedViewfinderReason:(int)arg1 afterDelay:(double)arg2;
 - (void)setDelegate:(id)arg1;
 
 @end

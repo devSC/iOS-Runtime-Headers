@@ -3,8 +3,8 @@
  */
 
 @interface SBSStatusBarStyleOverridesAssertion : NSObject {
-    SBSStatusBarStyleOverridesAssertionData *_assertionData;
-    id /* block */ _invalidationHandler;
+    SBSStatusBarStyleOverridesAssertionData * _assertionData;
+    id /* block */  _invalidationHandler;
 }
 
 @property (nonatomic, retain) SBSStatusBarStyleOverridesAssertionData *assertionData;
@@ -19,6 +19,7 @@
 + (id)assertionWithStatusBarStyleOverrides:(int)arg1 forPID:(int)arg2 exclusive:(BOOL)arg3 showsWhenForeground:(BOOL)arg4;
 + (id)backgroundLocationAssertionForPID:(int)arg1;
 
+- (void).cxx_destruct;
 - (void)acquireWithHandler:(id /* block */)arg1 invalidationHandler:(id /* block */)arg2;
 - (void)acquireWithHandler:(id /* block */)arg1 onQueue:(id)arg2;
 - (id)assertionData;

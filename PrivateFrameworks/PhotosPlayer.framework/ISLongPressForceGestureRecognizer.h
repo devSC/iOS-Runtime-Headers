@@ -3,18 +3,16 @@
  */
 
 @interface ISLongPressForceGestureRecognizer : UILongPressGestureRecognizer {
-    float _is_force;
-    BOOL _longPressDidBeginForCurrentTouch;
-    float _maximumPressure;
-    float _minimumPressure;
-    NSMutableSet *_trackingTouches;
+    float  _is_force;
+    BOOL  _longPressDidBeginForCurrentTouch;
+    float  _maximumPressure;
+    float  _minimumPressure;
+    NSMutableSet * _trackingTouches;
 }
 
 @property (nonatomic, readonly) float is_force;
 @property (nonatomic) float maximumPressure;
 @property (nonatomic) float minimumPressure;
-
-+ (BOOL)isGlutenFree;
 
 - (void).cxx_destruct;
 - (void)_updateForce;

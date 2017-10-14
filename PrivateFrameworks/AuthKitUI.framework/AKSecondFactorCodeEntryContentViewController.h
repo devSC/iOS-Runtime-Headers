@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/AuthKitUI.framework/AuthKitUI
  */
 
-@interface AKSecondFactorCodeEntryContentViewController : UIViewController <AKJiggling> {
-    NSArray *_activeConstraints;
-    AKCodeEntryView *_codeGeneratorView;
-    AKBasicLoginContentViewController *_titleHeaderViewController;
+@interface AKSecondFactorCodeEntryContentViewController : UIViewController <AKSecondFactorCodeEntry> {
+    NSArray * _activeConstraints;
+    AKAppleIDAuthenticationContext * _authenticationContext;
+    AKCodeEntryView * _codeGeneratorView;
+    AKBasicLoginContentViewController * _titleHeaderViewController;
 }
 
 @property (nonatomic, retain) NSArray *activeConstraints;
+@property (nonatomic, retain) AKAppleIDAuthenticationContext *authenticationContext;
 @property (nonatomic, retain) AKCodeEntryView *codeGeneratorView;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -23,6 +25,8 @@
 - (void)_configureTitleHeaderView;
 - (void)_updateFontContstraints:(id)arg1;
 - (id)activeConstraints;
+- (id)authenticationContext;
+- (void)clearSecondFactorEntry;
 - (id)codeGeneratorView;
 - (void)dealloc;
 - (id)generatedCode;
@@ -30,7 +34,9 @@
 - (void)loadView;
 - (id)reason;
 - (void)setActiveConstraints:(id)arg1;
+- (void)setAuthenticationContext:(id)arg1;
 - (void)setCodeGeneratorView:(id)arg1;
+- (void)setPasscodeFieldDisabled:(BOOL)arg1;
 - (void)setReason:(id)arg1;
 - (void)setTitleHeaderViewController:(id)arg1;
 - (id)titleHeaderViewController;

@@ -3,12 +3,12 @@
  */
 
 @interface PLQuickActionManager : NSObject <PLCameraPreviewWellImageChangeObserver> {
-    Class __SBSApplicationShortcutCustomImageIconClass;
-    Class __SBSApplicationShortcutItemClass;
-    Class __SBSApplicationShortcutServiceClass;
-    SBSApplicationShortcutService *__appShortcutService;
-    NSData *__cachedMostRecentPhotoData;
-    BOOL __mostRecentPhotoIsInvalid;
+    Class  __SBSApplicationShortcutCustomImageIconClass;
+    Class  __SBSApplicationShortcutItemClass;
+    Class  __SBSApplicationShortcutServiceClass;
+    SBSApplicationShortcutService * __appShortcutService;
+    NSData * __cachedMostRecentPhotoData;
+    BOOL  __mostRecentPhotoIsInvalid;
 }
 
 @property (setter=_setSBSApplicationShortcutCustomImageIconClass:, nonatomic, retain) Class _SBSApplicationShortcutCustomImageIconClass;

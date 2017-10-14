@@ -3,19 +3,19 @@
  */
 
 @interface AWDCoreRoutineMagicalMomentsRecommendedAppsHistogramSet : PBCodable <NSCopying> {
-    int _confidenceOfMostConfidentModel;
-    int _durationSinceLastSuccessfulTraining;
-    int _fallbackModelConfidence;
+    int  _confidenceOfMostConfidentModel;
+    int  _durationSinceLastSuccessfulTraining;
+    int  _fallbackModelConfidence;
     struct { 
         unsigned int timestamp : 1; 
         unsigned int confidenceOfMostConfidentModel : 1; 
         unsigned int durationSinceLastSuccessfulTraining : 1; 
         unsigned int fallbackModelConfidence : 1; 
         unsigned int modelType : 1; 
-    } _has;
-    NSMutableArray *_instances;
-    int _modelType;
-    unsigned long long _timestamp;
+    }  _has;
+    NSMutableArray * _instances;
+    int  _modelType;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) int confidenceOfMostConfidentModel;
@@ -29,6 +29,8 @@
 @property (nonatomic, retain) NSMutableArray *instances;
 @property (nonatomic) int modelType;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)instanceType;
 
 - (void)addInstance:(id)arg1;
 - (void)clearInstances;

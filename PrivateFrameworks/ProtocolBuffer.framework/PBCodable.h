@@ -37,8 +37,23 @@
 
 - (void)sqliteBind:(struct sqlite3_stmt { }*)arg1 index:(int)arg2;
 
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
+- (id)initWithCPLArchiver:(id)arg1;
+- (id)plistArchiveWithCPLArchiver:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+
+- (id)mr_valueForPotentiallyUndefinedKey:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/NanoMediaRemote.framework/NanoMediaRemote
 
 - (id)nmr_valueForPotentiallyUndefinedKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriClientFlow.framework/SiriClientFlow
+
++ (id)fromJSONProtoDictionary:(id)arg1;
+
+- (id)toJSONProtoDictionary;
 
 @end

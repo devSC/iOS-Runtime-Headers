@@ -3,8 +3,8 @@
  */
 
 @interface _SBUIWidgetViewController : UIViewController <_SBUIWidgetHost> {
-    <_SBUIWidgetHost> *_widgetHost;
-    NSString *_widgetIdentifier;
+    <_SBUIWidgetHost> * _widgetHost;
+    NSString * _widgetIdentifier;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -15,7 +15,7 @@
 @property (nonatomic) <_SBUIWidgetHost> *widgetHost;
 @property (nonatomic, copy) NSString *widgetIdentifier;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)hostDidDismiss;
 - (void)hostDidPresent;
 - (void)hostWillDismiss;

@@ -2,16 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CompanionSync.framework/CompanionSync
  */
 
-@interface NMSOutgoingResponse : NSObject <NMSObfuscatableDescriptionProviding> {
-    NSData *_data;
-    NSDictionary *_extraIDSOptions;
-    NSString *_idsIdentifier;
-    id _pbResponse;
-    NSDictionary *_persistentUserInfo;
-    unsigned int _priority;
-    NMSIncomingRequest *_request;
-    double _sendTimeout;
-    BOOL _sent;
+@interface NMSOutgoingResponse : NSObject <NMSDeviceTargetable, NMSObfuscatableDescriptionProviding> {
+    NSData * _data;
+    NSDictionary * _extraIDSOptions;
+    NSString * _idsIdentifier;
+    id  _pbResponse;
+    NSDictionary * _persistentUserInfo;
+    unsigned int  _priority;
+    NMSIncomingRequest * _request;
+    double  _sendTimeout;
+    BOOL  _sent;
+    NSSet * targetDeviceIDs;
 }
 
 @property (nonatomic, retain) NSData *data;
@@ -27,6 +28,7 @@
 @property (nonatomic) double sendTimeout;
 @property (getter=isSent) BOOL sent;
 @property (readonly) Class superclass;
+@property (nonatomic, copy) NSSet *targetDeviceIDs;
 
 - (void).cxx_destruct;
 - (id)CPObfuscatedDescriptionObject;
@@ -53,5 +55,7 @@
 - (void)setRequest:(id)arg1;
 - (void)setSendTimeout:(double)arg1;
 - (void)setSent:(BOOL)arg1;
+- (void)setTargetDeviceIDs:(id)arg1;
+- (id)targetDeviceIDs;
 
 @end

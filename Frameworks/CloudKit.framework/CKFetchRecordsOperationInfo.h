@@ -3,22 +3,25 @@
  */
 
 @interface CKFetchRecordsOperationInfo : CKDatabaseOperationInfo <NSSecureCoding> {
-    unsigned int _URLOptions;
-    NSSet *_assetFieldNamesToPublishURLs;
-    NSArray *_desiredKeys;
-    NSDictionary *_desiredPackageFileIndices;
-    BOOL _isFetchCurrentUserOperation;
-    NSArray *_recordIDs;
-    NSDictionary *_recordIDsToETags;
-    NSDictionary *_recordIDsToVersionETags;
-    unsigned int _requestedTTL;
-    BOOL _shouldFetchAssetContent;
-    NSDictionary *_signaturesOfAssetsByRecordIDAndKey;
-    NSDictionary *_webSharingIdentityDataByRecordID;
+    unsigned int  _URLOptions;
+    NSSet * _assetFieldNamesToPublishURLs;
+    NSDictionary * _assetTransferOptionsByRecordTypeAndKey;
+    NSArray * _desiredKeys;
+    NSDictionary * _desiredPackageFileIndices;
+    BOOL  _isFetchCurrentUserOperation;
+    NSArray * _recordIDs;
+    NSDictionary * _recordIDsToETags;
+    NSDictionary * _recordIDsToVersionETags;
+    unsigned int  _requestedTTL;
+    BOOL  _shouldFetchAssetContent;
+    BOOL  _shouldFetchAssetContentInMemory;
+    NSDictionary * _signaturesOfAssetsByRecordIDAndKey;
+    NSDictionary * _webSharingIdentityDataByRecordID;
 }
 
 @property (nonatomic) unsigned int URLOptions;
 @property (nonatomic, retain) NSSet *assetFieldNamesToPublishURLs;
+@property (nonatomic, retain) NSDictionary *assetTransferOptionsByRecordTypeAndKey;
 @property (nonatomic, retain) NSArray *desiredKeys;
 @property (nonatomic, retain) NSDictionary *desiredPackageFileIndices;
 @property (nonatomic) BOOL isFetchCurrentUserOperation;
@@ -27,6 +30,7 @@
 @property (nonatomic, retain) NSDictionary *recordIDsToVersionETags;
 @property (nonatomic) unsigned int requestedTTL;
 @property (nonatomic) BOOL shouldFetchAssetContent;
+@property (nonatomic) BOOL shouldFetchAssetContentInMemory;
 @property (nonatomic, retain) NSDictionary *signaturesOfAssetsByRecordIDAndKey;
 @property (nonatomic, retain) NSDictionary *webSharingIdentityDataByRecordID;
 
@@ -35,6 +39,7 @@
 - (void).cxx_destruct;
 - (unsigned int)URLOptions;
 - (id)assetFieldNamesToPublishURLs;
+- (id)assetTransferOptionsByRecordTypeAndKey;
 - (id)desiredKeys;
 - (id)desiredPackageFileIndices;
 - (void)encodeWithCoder:(id)arg1;
@@ -45,6 +50,7 @@
 - (id)recordIDsToVersionETags;
 - (unsigned int)requestedTTL;
 - (void)setAssetFieldNamesToPublishURLs:(id)arg1;
+- (void)setAssetTransferOptionsByRecordTypeAndKey:(id)arg1;
 - (void)setDesiredKeys:(id)arg1;
 - (void)setDesiredPackageFileIndices:(id)arg1;
 - (void)setIsFetchCurrentUserOperation:(BOOL)arg1;
@@ -53,10 +59,12 @@
 - (void)setRecordIDsToVersionETags:(id)arg1;
 - (void)setRequestedTTL:(unsigned int)arg1;
 - (void)setShouldFetchAssetContent:(BOOL)arg1;
+- (void)setShouldFetchAssetContentInMemory:(BOOL)arg1;
 - (void)setSignaturesOfAssetsByRecordIDAndKey:(id)arg1;
 - (void)setURLOptions:(unsigned int)arg1;
 - (void)setWebSharingIdentityDataByRecordID:(id)arg1;
 - (BOOL)shouldFetchAssetContent;
+- (BOOL)shouldFetchAssetContentInMemory;
 - (id)signaturesOfAssetsByRecordIDAndKey;
 - (id)webSharingIdentityDataByRecordID;
 

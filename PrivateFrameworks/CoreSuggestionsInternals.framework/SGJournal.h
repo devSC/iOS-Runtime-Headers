@@ -3,18 +3,20 @@
  */
 
 @interface SGJournal : NSObject {
-    NSMutableArray *_calendarObservers;
-    NSMutableArray *_contactsObservers;
-    BOOL _observersFrozen;
-    NSMutableArray *_queuedOperations;
+    NSMutableArray * _calendarObservers;
+    NSMutableArray * _contactsObservers;
+    BOOL  _observersFrozen;
+    NSMutableArray * _queuedOperations;
 }
 
 - (void).cxx_destruct;
 - (void)_callCalendarObservers:(id)arg1 contactsObservers:(id)arg2 withEntry:(id)arg3;
-- (BOOL)_operationTypeWaitsForObserversToBeAdded:(unsigned int)arg1;
 - (void)addCalendarObserver:(id)arg1;
 - (void)addContactsObserver:(id)arg1;
 - (void)addEntry:(id)arg1;
+- (void)freezeObservers;
+- (BOOL)hasObserver:(id)arg1;
 - (id)init;
+- (void)thawObserversForTesting;
 
 @end

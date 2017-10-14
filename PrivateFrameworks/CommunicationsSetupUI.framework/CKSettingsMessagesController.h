@@ -3,8 +3,8 @@
  */
 
 @interface CKSettingsMessagesController : CNFRegListController <AKAppleIDAuthenticationDelegate, CNFRegWizardControllerDelegate> {
-    int _profileToken;
-    BOOL _showingChildViewController;
+    int  _profileToken;
+    BOOL  _showingChildViewController;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -17,6 +17,7 @@
 + (int)currentMessageAutoKeepOptionForType:(int)arg1;
 
 - (BOOL)_allAccountsAreDeactivated;
+- (void)_clearMessagesAppExtensionSalt;
 - (BOOL)_isMadridAccountOperational;
 - (BOOL)_isMadridSwitchOn;
 - (BOOL)_isRaiseGestureSupported;
@@ -32,6 +33,7 @@
 - (void)_startListeningForProfileChanges;
 - (void)_stopListeningForProfileChanges;
 - (id)_switchFooterText:(BOOL*)arg1;
+- (id)_syncManager;
 - (void)_updateSwitch;
 - (void)_updateSwitchDelayed;
 - (void)_updateUIWithError:(id)arg1;
@@ -41,6 +43,7 @@
 - (id)blacklistSettingsSpecifierIdentifiers;
 - (id)bundle;
 - (id)characterCountSpecifierIdentifiers;
+- (id)contactPhotoSettingsSpecifierIdentifiers;
 - (id)controllerForSpecifier:(id)arg1;
 - (void)dealloc;
 - (id)deliveryReceiptSpecifierIdentifiers;
@@ -49,9 +52,9 @@
 - (id)getAccountSummaryForSpecifier:(id)arg1;
 - (id)getAudioMessageAutoKeep:(id)arg1;
 - (id)getKeepMessages:(id)arg1;
+- (id)getPreviewTranscodingEnabled:(id)arg1;
 - (id)getRaiseToListenEnabled:(id)arg1;
 - (id)getSMSRelayDevicesSummary:(id)arg1;
-- (id)getVideoMessageAutoKeep:(id)arg1;
 - (id)iMessageFilteringSpecifierIdentifiers;
 - (id)init;
 - (id)isConversationListFilteringEnabled:(id)arg1;
@@ -74,15 +77,16 @@
 - (void)setKeepMessages:(id)arg1 specifier:(id)arg2;
 - (void)setMMSEnabled:(id)arg1 specifier:(id)arg2;
 - (void)setMadridEnabled:(id)arg1 specifier:(id)arg2;
+- (void)setPreviewTranscodingEnabled:(id)arg1 specifier:(id)arg2;
 - (void)setRaiseToListenEnabled:(id)arg1 specifier:(id)arg2;
 - (void)setReadReceiptsEnabled:(id)arg1 specifier:(id)arg2;
 - (void)setSpecifierLoading:(id)arg1 loading:(BOOL)arg2 animated:(BOOL)arg3;
-- (void)setVideoMessageAutoKeep:(id)arg1 specifier:(id)arg2;
 - (void)setWillSendGroupMMS:(id)arg1 specifier:(id)arg2;
 - (BOOL)shouldReloadSpecifiersOnResume;
 - (BOOL)shouldShowAudioMessageSettings;
 - (BOOL)shouldShowBlacklistSettings;
 - (BOOL)shouldShowCharacterCount;
+- (BOOL)shouldShowContactPhotoSettings;
 - (BOOL)shouldShowDeliveryReceipts;
 - (BOOL)shouldShowGenericSettings;
 - (BOOL)shouldShowMadridAccounts;
@@ -92,14 +96,12 @@
 - (BOOL)shouldShowReadReceipts;
 - (BOOL)shouldShowSMSRelaySettings;
 - (BOOL)shouldShowSendAsSMS;
-- (BOOL)shouldShowVideoMessageSettings;
 - (BOOL)shouldShowiMessageFilteringSettings;
 - (id)smsRelaySettingsSpecifierIdentifiers;
 - (id)specifiers;
 - (void)systemApplicationDidEnterBackground;
 - (void)systemApplicationWillEnterForeground;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
-- (id)videoMessageSettingsSpecifierIdentifiers;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;

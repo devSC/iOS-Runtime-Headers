@@ -9,6 +9,7 @@
 - (void)toolController:(PUPhotoEditToolController *)arg1 updateModelDependentControlsAnimated:(BOOL)arg2;
 - (CIImage *)toolControllerBaseCIImage:(PUPhotoEditToolController *)arg1;
 - (UIImage *)toolControllerBaseImage:(PUPhotoEditToolController *)arg1;
+- (PHLivePhoto *)toolControllerBaseLivePhoto:(PUPhotoEditToolController *)arg1;
 - (void)toolControllerDidChangeIsPerformingLiveInteraction:(PUPhotoEditToolController *)arg1;
 - (void)toolControllerDidChangePreferredAlternateToolbarButton:(PUPhotoEditToolController *)arg1;
 - (void)toolControllerDidChangePreferredRenderMode:(PUPhotoEditToolController *)arg1;

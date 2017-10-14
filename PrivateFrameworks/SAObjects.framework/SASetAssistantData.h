@@ -25,9 +25,11 @@
 @property (nonatomic) BOOL inRetailStoreDemoMode;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSArray *meCards;
+@property (nonatomic, retain) SAMediaContentRatingRestrictions *mediaContentRatingRestrictions;
 @property (nonatomic) BOOL mediaPlayerExplicitContentDisallowed;
 @property (nonatomic, copy) NSString *osVersion;
 @property (nonatomic, copy) NSArray *parentalRestrictions;
+@property (nonatomic, copy) NSString *preferredLanguage;
 @property (nonatomic, copy) NSString *refId;
 @property (nonatomic, copy) NSString *region;
 @property (nonatomic, copy) NSNumber *storefront;
@@ -64,9 +66,11 @@
 - (BOOL)inRetailStoreDemoMode;
 - (id)lastName;
 - (id)meCards;
+- (id)mediaContentRatingRestrictions;
 - (BOOL)mediaPlayerExplicitContentDisallowed;
 - (id)osVersion;
 - (id)parentalRestrictions;
+- (id)preferredLanguage;
 - (id)region;
 - (void)setAbSources:(id)arg1;
 - (void)setAllowUserGeneratedContent:(id)arg1;
@@ -85,9 +89,11 @@
 - (void)setInRetailStoreDemoMode:(BOOL)arg1;
 - (void)setLastName:(id)arg1;
 - (void)setMeCards:(id)arg1;
+- (void)setMediaContentRatingRestrictions:(id)arg1;
 - (void)setMediaPlayerExplicitContentDisallowed:(BOOL)arg1;
 - (void)setOsVersion:(id)arg1;
 - (void)setParentalRestrictions:(id)arg1;
+- (void)setPreferredLanguage:(id)arg1;
 - (void)setRegion:(id)arg1;
 - (void)setStorefront:(id)arg1;
 - (void)setTemperatureUnit:(id)arg1;

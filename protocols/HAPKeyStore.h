@@ -20,16 +20,16 @@
 - (BOOL)removeControllerKeyPairWithError:(id*)arg1;
 - (BOOL)saveKeyPair:(NSData *)arg1 username:(NSString *)arg2 syncable:(BOOL)arg3 error:(id*)arg4;
 - (BOOL)savePublicKey:(NSData *)arg1 forAccessoryName:(NSString *)arg2 error:(id*)arg3;
-- (void)updateActiveControllerPairingIdentifier:(NSString *)arg1;
+- (BOOL)updateActiveControllerPairingIdentifier:(NSString *)arg1;
 - (BOOL)updateCurrentiCloudIdentifier:(NSString *)arg1 controllerPairingIdentifier:(NSString *)arg2 error:(id*)arg3;
 
 @optional
 
 - (BOOL)deleteAllPeripheralIdentifiers:(id*)arg1;
-- (BOOL)deletePeripheralIdentifierForAccessoryName:(NSString *)arg1 error:(id*)arg2;
+- (BOOL)deletePeripheralIdentifierForAccessoryIdentifier:(NSString *)arg1 error:(id*)arg2;
 - (NSDictionary *)getPeripherialIdentifiersAndAccessoryNames;
-- (NSUUID *)readPeripheralIdentifierForAccessoryName:(NSString *)arg1 protocolVersion:(unsigned int*)arg2 error:(id*)arg3;
-- (BOOL)savePeripheralIdentifier:(NSUUID *)arg1 forAccessoryName:(NSString *)arg2 error:(id*)arg3;
-- (BOOL)updatePeripheralIdentifier:(NSUUID *)arg1 forAccessoryName:(NSString *)arg2 protocolVersion:(unsigned int)arg3 error:(id*)arg4;
+- (NSUUID *)readPeripheralIdentifierForAccessoryIdentifier:(NSString *)arg1 protocolVersion:(unsigned int*)arg2 resumeSessionID:(unsigned long long*)arg3 error:(id*)arg4;
+- (BOOL)savePeripheralIdentifier:(NSUUID *)arg1 forAccessoryIdentifier:(NSString *)arg2 error:(id*)arg3;
+- (BOOL)updatePeripheralIdentifier:(NSUUID *)arg1 forAccessoryIdentifier:(NSString *)arg2 protocolVersion:(unsigned int)arg3 previousVersion:(unsigned int*)arg4 resumeSessionID:(unsigned long long)arg5 error:(id*)arg6;
 
 @end

@@ -3,23 +3,23 @@
  */
 
 @interface SBUIPasscodeLockViewSIMLockKeypad : SBUIPasscodeLockViewLongNumericKeypad {
-    UIView *_entryFieldFiller;
-    BOOL _isShowingStatus;
-    UIView *_statusSpringView;
-    UIView *_statusSpringViewParent;
-    UILabel *_statusSubtitleView;
-    float _targetEntryFieldFillerAlpha;
+    UIView * _entryFieldFiller;
+    BOOL  _isShowingStatus;
+    UIView * _statusSpringView;
+    UIView * _statusSpringViewParent;
+    UILabel * _statusSubtitleView;
+    float  _targetEntryFieldFillerAlpha;
 }
 
 @property (nonatomic, copy) NSString *statusSubtitle;
 @property (nonatomic, copy) NSString *statusTitle;
 
+- (void).cxx_destruct;
 - (float)_distanceFromLastLineBaselineToTextFieldBoundsHeight:(id)arg1;
 - (float)_distanceToFirstLineBaseline:(id)arg1;
 - (float)_expectedDistanceBetweenTitleAndSubtitleBaselines;
 - (float)_expectedYOffsetBetweenTitleAndSubtitleViews;
 - (void)_layoutStatusView;
-- (BOOL)_needsToHideTextFieldForStatus;
 - (void)_setHasInput:(BOOL)arg1;
 - (void)_setText:(id)arg1 onLabel:(id)arg2;
 - (void)_shakeStatus;
@@ -28,11 +28,9 @@
 - (id)_statusSubtitleFont;
 - (float)_subtitleBaselineYOffsetFromTopOfEntryField;
 - (float)_subtitleBaselineYOffsetFromTopOfNumberPad;
-- (void)dealloc;
 - (void)forceShowStatus:(BOOL)arg1;
 - (id)initWithLightStyle:(BOOL)arg1;
 - (void)layoutSubviews;
-- (void)resetForFailedPasscode;
 - (void)setBackgroundAlpha:(float)arg1;
 - (void)setCustomBackgroundColor:(id)arg1;
 - (void)setStatusSubtitle:(id)arg1;

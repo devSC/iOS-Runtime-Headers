@@ -3,13 +3,15 @@
  */
 
 @interface _UIStatisticsIntegrator : NSObject {
-    NSObject<OS_dispatch_queue> *_reportingQueue;
+    NSObject<OS_dispatch_queue> * _reportingQueue;
 }
 
 + (void)createSharedInstanceIfNecessary;
++ (void)setSharedInstance:(id)arg1;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
+- (void)batchRecord:(id /* block */)arg1;
 - (void)incrementValueBy:(long long)arg1 forKey:(id)arg2;
 - (id)init;
 - (void)recordDistributionTime:(unsigned long long)arg1 forKey:(id)arg2;

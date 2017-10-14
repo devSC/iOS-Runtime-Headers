@@ -3,7 +3,8 @@
  */
 
 @interface AAFamilyRequest : AARequest {
-    AAGrandSlamSigner *_grandSlamSigner;
+    ACAccount * _appleAccount;
+    AAGrandSlamSigner * _grandSlamSigner;
 }
 
 @property (nonatomic, readonly) BOOL isUserInitiated;

@@ -3,30 +3,33 @@
  */
 
 @interface EKCalendarItemAlarmEditItem : EKCalendarItemEditItem {
-    CalendarEventAlarmTable *_alarmTable;
-    NSArray *_alarms;
-    BOOL _canHaveLeaveNowAlarm;
-    unsigned int _disclosedSubitem;
-    BOOL _hasLeaveNowAlarm;
-    int _lastSeenAllDayState;
-    BOOL _userChangedAlarm;
+    CalendarEventAlarmTable * _alarmTable;
+    NSArray * _alarms;
+    EKAlarmsViewModel * _alarmsViewModel;
+    BOOL  _canHaveLeaveNowAlarm;
+    unsigned int  _disclosedSubitem;
+    BOOL  _hasLeaveNowAlarm;
+    int  _lastSeenAllDayState;
+    BOOL  _userChangedAlarm;
 }
 
-+ (id)_labelTextForIndex:(unsigned int)arg1;
+@property (nonatomic, retain) EKAlarmsViewModel *alarmsViewModel;
 
 - (void).cxx_destruct;
 - (BOOL)_alarmsMatchCalendarItem;
 - (BOOL)_calendarItemHasLeaveNowAlarm;
 - (void)_updateAlarms;
 - (void)_updateDefaultAlarm;
+- (id)alarmsViewModel;
 - (id)cellForSubitemAtIndex:(unsigned int)arg1;
 - (BOOL)configureForCalendarConstraints:(id)arg1;
 - (id)detailViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSubitemAtIndex:(unsigned int)arg2;
-- (BOOL)editItemViewControllerCommit:(id)arg1;
+- (BOOL)editItemViewControllerSave:(id)arg1;
 - (id)init;
 - (unsigned int)numberOfSubitems;
 - (void)refreshFromCalendarItemAndStore;
 - (BOOL)saveAndDismissWithForce:(BOOL)arg1;
+- (void)setAlarmsViewModel:(id)arg1;
 - (void)setCalendarItem:(id)arg1 store:(id)arg2;
 - (void)updateInternalTravelTimeStateForCalendarItem:(id)arg1;
 

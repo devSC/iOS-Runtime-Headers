@@ -3,16 +3,18 @@
  */
 
 @interface MusicContextualActionsHeaderViewController : UIViewController <MusicContextualActionsHeaderLockupViewDelegate> {
-    MusicEntityViewHorizontalLockupContentDescriptor *_contentDescriptor;
-    NSArray *_contextualActions;
-    id /* block */ _dismissRequestHandler;
-    MusicEntityValueContext *_entityValueContext;
-    MusicContextualActionsHeaderLockupView *_lockupView;
+    MusicEntityProviderDownloadInformationController * _containerDownloadInformationController;
+    MusicEntityViewHorizontalLockupContentDescriptor * _contentDescriptor;
+    NSArray * _contextualActions;
+    id /* block */  _dismissRequestHandler;
+    MusicEntityValueContext * _entityValueContext;
+    MusicContextualActionsHeaderLockupView * _lockupView;
+    MusicContextualAlertAction * _pendingAlertAction;
     struct CGSize { 
         float width; 
         float height; 
-    } _previousBoundsSize;
-    id /* block */ _selectionHandler;
+    }  _previousBoundsSize;
+    id /* block */  _selectionHandler;
 }
 
 @property (nonatomic, readonly, copy) NSArray *contextualActions;
@@ -30,15 +32,16 @@
 - (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
 - (id)_contentTasteAlertAction;
 - (void)_getEntityValueProvider:(id*)arg1 identifierCollection:(id*)arg2;
+- (id)_keepLocalAlertAction;
+- (id)_libraryUpdateAlertActionPassingTest:(id /* block */)arg1;
 - (id)_newContentDescriptorForEntityValueContext:(id)arg1;
-- (id)_radioAlertAction;
+- (id)_removeFromLibraryAlertAction;
 - (void)_requestDismissalWithDelay:(double)arg1 completionHandler:(id /* block */)arg2;
 - (id)_shareAlertAction;
 - (void)_updatePreferredContentSizeForced:(BOOL)arg1;
 - (id)contextualActions;
-- (void)contextualActionsHeaderLockupViewDidSelectAddToLibraryButton:(id)arg1;
+- (void)contextualActionsHeaderLockupViewDidSelectDownloadButton:(id)arg1;
 - (void)contextualActionsHeaderLockupViewDidSelectLikeButton:(id)arg1;
-- (void)contextualActionsHeaderLockupViewDidSelectRadioButton:(id)arg1;
 - (void)contextualActionsHeaderLockupViewDidSelectShareButton:(id)arg1;
 - (void)contextualActionsHeaderLockupViewWasSelected:(id)arg1;
 - (void)dealloc;
@@ -49,6 +52,7 @@
 - (void)setDismissRequestHandler:(id /* block */)arg1;
 - (void)setSelectionHandler:(id /* block */)arg1;
 - (void)traitCollectionDidChange:(id)arg1;
+- (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 

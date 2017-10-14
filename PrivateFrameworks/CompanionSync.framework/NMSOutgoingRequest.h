@@ -2,18 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CompanionSync.framework/CompanionSync
  */
 
-@interface NMSOutgoingRequest : NSObject <NMSObfuscatableDescriptionProviding> {
-    NSData *_data;
-    NSDictionary *_extraIDSOptions;
-    NSString *_idsIdentifier;
-    NMSMessageCenter *_messageCenter;
-    unsigned short _messageID;
-    id _pbRequest;
-    NSDictionary *_persistentUserInfo;
-    unsigned int _priority;
-    double _responseTimeout;
-    double _sendTimeout;
-    BOOL _shouldEncrypt;
+@interface NMSOutgoingRequest : NSObject <NMSDeviceTargetable, NMSObfuscatableDescriptionProviding> {
+    NSData * _data;
+    NSDictionary * _extraIDSOptions;
+    NSString * _idsIdentifier;
+    NMSMessageCenter * _messageCenter;
+    unsigned short  _messageID;
+    id  _pbRequest;
+    NSDictionary * _persistentUserInfo;
+    unsigned int  _priority;
+    double  _responseTimeout;
+    double  _sendTimeout;
+    BOOL  _shouldEncrypt;
+    NSSet * targetDeviceIDs;
 }
 
 @property (nonatomic, retain) NSData *data;
@@ -31,6 +32,7 @@
 @property (nonatomic) double sendTimeout;
 @property (nonatomic) BOOL shouldEncrypt;
 @property (readonly) Class superclass;
+@property (nonatomic, copy) NSSet *targetDeviceIDs;
 
 + (id)requestWithMessageID:(unsigned short)arg1;
 
@@ -59,6 +61,8 @@
 - (void)setResponseTimeout:(double)arg1;
 - (void)setSendTimeout:(double)arg1;
 - (void)setShouldEncrypt:(BOOL)arg1;
+- (void)setTargetDeviceIDs:(id)arg1;
 - (BOOL)shouldEncrypt;
+- (id)targetDeviceIDs;
 
 @end

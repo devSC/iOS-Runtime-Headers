@@ -3,13 +3,13 @@
  */
 
 @interface AWDAppBBPower : PBCodable <NSCopying> {
-    NSString *_bundleName;
+    NSString * _bundleName;
     struct { 
         unsigned int powerMicroWatt : 1; 
         unsigned int rAT : 1; 
-    } _has;
-    unsigned int _powerMicroWatt;
-    int _rAT;
+    }  _has;
+    unsigned int  _powerMicroWatt;
+    int  _rAT;
 }
 
 @property (nonatomic, retain) NSString *bundleName;
@@ -19,6 +19,7 @@
 @property (nonatomic) unsigned int powerMicroWatt;
 @property (nonatomic) int rAT;
 
+- (int)StringAsRAT:(id)arg1;
 - (id)bundleName;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -33,6 +34,7 @@
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)powerMicroWatt;
 - (int)rAT;
+- (id)rATAsString:(int)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setBundleName:(id)arg1;
 - (void)setHasPowerMicroWatt:(BOOL)arg1;

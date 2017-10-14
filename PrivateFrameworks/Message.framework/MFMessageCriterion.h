@@ -2,35 +2,51 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@interface MFMessageCriterion : NSObject {
-    unsigned int _allCriteriaMustBeSatisfied;
-    NSArray *_criteria;
-    NSString *_criterionIdentifier;
-    unsigned int _dateIsRelative;
-    int _dateUnitType;
-    NSString *_expression;
-    BOOL _expressionIsSanitized;
-    unsigned int _includeRelatedMessages;
-    NSIndexSet *_libraryIdentifiers;
-    NSString *_name;
-    int _qualifier;
-    NSArray *_requiredHeaders;
-    int _type;
-    NSString *_uniqueId;
-    BOOL _useFlaggedForUnreadCount;
+@interface MFMessageCriterion : NSObject <NSCopying> {
+    unsigned int  _allCriteriaMustBeSatisfied;
+    NSArray * _criteria;
+    NSString * _criterionIdentifier;
+    unsigned int  _dateIsRelative;
+    int  _dateUnitType;
+    NSString * _expression;
+    BOOL  _expressionIsSanitized;
+    unsigned int  _includeRelatedMessages;
+    BOOL  _includeRemoteBodyContent;
+    NSIndexSet * _libraryIdentifiers;
+    NSString * _name;
+    BOOL  _preferFullTextSearch;
+    int  _qualifier;
+    NSArray * _requiredHeaders;
+    int  _type;
+    NSString * _uniqueId;
+    BOOL  _useFlaggedForUnreadCount;
 }
 
+@property (nonatomic, copy) NSArray *criteria;
+@property (nonatomic, retain) NSString *criterionIdentifier;
+@property (nonatomic) int criterionType;
+@property (nonatomic, copy) NSString *expression;
 @property (nonatomic) BOOL expressionIsSanitized;
 @property (nonatomic) BOOL includeRelatedMessages;
+@property (nonatomic) BOOL includeRemoteBodyContent;
 @property (nonatomic, retain) NSIndexSet *libraryIdentifiers;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic) BOOL preferFullTextSearch;
+@property (nonatomic) int qualifier;
 @property (nonatomic) BOOL useFlaggedForUnreadCount;
 
 + (id)VIPSenderMessageCriterion;
++ (id)_daSearchPredicateForCriterion:(id)arg1;
++ (id)_daSimplifiedCompoundPredicateOfType:(unsigned int)arg1 forSubqueries:(id)arg2;
 + (void)_updateAddressComments:(id)arg1;
 + (id)andCompoundCriterionWithCriteria:(id)arg1;
++ (id)ccMeCriterion;
 + (id)criteriaFromDefaultsArray:(id)arg1;
 + (id)criteriaFromDefaultsArray:(id)arg1 removingRecognizedKeys:(BOOL)arg2;
++ (id)criterionForConversationID:(long long)arg1;
++ (id)criterionForMailbox:(id)arg1;
 + (id)criterionForMailboxURL:(id)arg1;
++ (id)criterionForNotDeletedConversationID:(long long)arg1;
 + (int)criterionTypeForString:(id)arg1;
 + (id)defaultsArrayFromCriteria:(id)arg1;
 + (id)flaggedMessageCriterion;
@@ -40,9 +56,11 @@
 + (id)messageIsServerSearchResultCriterion:(BOOL)arg1;
 + (id)notCriterionWithCriterion:(id)arg1;
 + (id)orCompoundCriterionWithCriteria:(id)arg1;
++ (id)readMessageCriterion;
 + (id)stringForCriterionType:(int)arg1;
 + (id)threadMuteMessageCriterion;
 + (id)threadNotifyMessageCriterion;
++ (id)toMeCriterion;
 + (id)todayMessageCriterion;
 + (id)unreadMessageCriterion;
 
@@ -53,11 +71,17 @@
 - (id)_collapsedMessageNumberCriterion:(id)arg1 allMustBeSatisfied:(BOOL)arg2 collapsedIndexes:(id*)arg3;
 - (id)_comparisonOperationMatchingValue:(id)arg1;
 - (id)_criterionForSQL;
+- (id)_daAttributesForHeaderCriterion;
+- (id)_daKeysRequiringContainsOperatorType;
+- (id)_daOrPredicateForAttributes:(id)arg1 matchingValue:(id)arg2 qualifier:(int)arg3;
+- (id)_daPredicateForKey:(id)arg1 value:(id)arg2 qualifier:(int)arg3;
+- (id)_daWordPredicateWithAttributes:(id)arg1 matchingValue:(id)arg2 qualifier:(int)arg3;
 - (BOOL)_evaluateAccountCriterion:(id)arg1;
 - (BOOL)_evaluateAddressBookCriterion:(id)arg1;
 - (BOOL)_evaluateAddressHistoryCriterion:(id)arg1;
 - (BOOL)_evaluateAttachmentCriterion:(id)arg1;
 - (BOOL)_evaluateCompoundCriterion:(id)arg1;
+- (BOOL)_evaluateConversationIDCriterion:(id)arg1;
 - (BOOL)_evaluateDateCriterion:(id)arg1;
 - (id)_evaluateFTSCriterionWithIndex:(id)arg1 mailboxIDs:(id)arg2;
 - (BOOL)_evaluateFlagCriterion:(id)arg1;
@@ -77,12 +101,16 @@
 - (id)_wordQueryWithAttributes:(id)arg1 matchingValue:(id)arg2;
 - (BOOL)allCriteriaMustBeSatisfied;
 - (unsigned int)bestBaseTable;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)criteria;
 - (id)criteriaSatisfyingPredicate:(int (*)arg1;
 - (id)criterionByApplyingTransform:(id /* block */)arg1;
 - (id)criterionForSQL;
 - (id)criterionIdentifier;
 - (int)criterionType;
+- (id)daBasicSearchString;
+- (id)daSearchPredicate;
+- (id)dateFromExpression;
 - (BOOL)dateIsRelative;
 - (int)dateUnits;
 - (void)dealloc;
@@ -90,7 +118,6 @@
 - (id)descriptionWithDepth:(unsigned int)arg1;
 - (id)dictionaryRepresentation;
 - (BOOL)doesMessageSatisfyCriterion:(id)arg1;
-- (id)emailAddressesForGroupCriterion;
 - (id)expression;
 - (BOOL)expressionIsSanitized;
 - (id)extractedDateCriterion;
@@ -100,6 +127,7 @@
 - (BOOL)hasNonFullTextSearchableCriterion;
 - (unsigned int)hash;
 - (BOOL)includeRelatedMessages;
+- (BOOL)includeRemoteBodyContent;
 - (BOOL)includesCriterionSatisfyingPredicate:(int (*)arg1 restrictive:(BOOL)arg2;
 - (id)init;
 - (id)initWithCriterion:(id)arg1 expression:(id)arg2;
@@ -108,9 +136,11 @@
 - (id)initWithType:(int)arg1 qualifier:(int)arg2 expression:(id)arg3;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isFullTextSearchableCriterion;
+- (BOOL)isVIPCriterion;
 - (id)libraryIdentifiers;
 - (int)messageRuleQualifierForString:(id)arg1;
 - (id)name;
+- (BOOL)preferFullTextSearch;
 - (int)qualifier;
 - (void)setAllCriteriaMustBeSatisfied:(BOOL)arg1;
 - (void)setCriteria:(id)arg1;
@@ -121,8 +151,10 @@
 - (void)setExpression:(id)arg1;
 - (void)setExpressionIsSanitized:(BOOL)arg1;
 - (void)setIncludeRelatedMessages:(BOOL)arg1;
+- (void)setIncludeRemoteBodyContent:(BOOL)arg1;
 - (void)setLibraryIdentifiers:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setPreferFullTextSearch:(BOOL)arg1;
 - (void)setQualifier:(int)arg1;
 - (void)setUseFlaggedForUnreadCount:(BOOL)arg1;
 - (id)simplifiedCriterion;

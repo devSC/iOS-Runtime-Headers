@@ -3,8 +3,8 @@
  */
 
 @interface PKAssertionCoordinator : NSObject <PKXPCServiceDelegate> {
-    NSHashTable *_acquiredAssertions;
-    PKXPCService *_remoteService;
+    NSHashTable * _acquiredAssertions;
+    PKXPCService * _remoteService;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -14,11 +14,13 @@
 
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (id)_existingRemoteObjectProxy;
 - (id)_remoteObjectProxy;
 - (id)_remoteObjectProxyWithErrorHandler:(id /* block */)arg1;
 - (id)_remoteObjectProxyWithFailureHandler:(id /* block */)arg1;
 - (id)_remoteObjectProxyWithSemaphore:(id)arg1;
+- (void)_removeAssertionWithIdentifier:(id)arg1;
 - (void)acquireAssertionOfType:(unsigned int)arg1 withReason:(id)arg2 completion:(id /* block */)arg3;
 - (BOOL)assertionExistsOfType:(unsigned int)arg1;
 - (void)dealloc;

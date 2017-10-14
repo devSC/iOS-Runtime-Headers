@@ -3,47 +3,56 @@
  */
 
 @interface SUPreferences : NSObject {
-    BOOL _allowSameBuildUpdates;
-    struct __asl_object_s { } *_aslHandle;
-    BOOL _disableAutoDownload;
-    BOOL _disableAutoSU;
-    BOOL _disableAvailabilityAlerts;
-    BOOL _disableBuildNumberComparison;
-    BOOL _disableUserWiFiOnlyPeriod;
-    int _logLevel;
-    BOOL _scanWeeklyInternally;
-    BOOL _simulateAutoDownload;
+    BOOL  _allowSameBuildUpdates;
+    BOOL  _disableAutoDownload;
+    BOOL  _disableAutoSU;
+    BOOL  _disableAvailabilityAlerts;
+    BOOL  _disableBuildNumberComparison;
+    BOOL  _disableFullReplacementFallback;
+    BOOL  _disableUserWiFiOnlyPeriod;
+    BOOL  _forceFullReplacement;
+    BOOL  _scanWeeklyInternally;
+    BOOL  _shouldDelayUpdates;
+    BOOL  _simulateAutoDownload;
+    NSNumber * _unmetConstraints;
+    NSNumber * _updateDelayInterval;
 }
 
 @property (nonatomic, readonly) BOOL allowSameBuildUpdates;
-@property (nonatomic, readonly) struct __asl_object_s { }*aslHandle;
 @property (getter=isAutoDownloadDisabled, nonatomic, readonly) BOOL disableAutoDownload;
 @property (getter=isAutoSUDisabled, nonatomic, readonly) BOOL disableAutoSU;
 @property (nonatomic, readonly) BOOL disableAvailabilityAlerts;
 @property (nonatomic, readonly) BOOL disableBuildNumberComparison;
+@property (nonatomic, readonly) BOOL disableFullReplacementFallback;
 @property (nonatomic, readonly) BOOL disableUserWiFiOnlyPeriod;
-@property (nonatomic, readonly) int logLevel;
+@property (nonatomic, readonly) BOOL forceFullReplacement;
 @property (nonatomic, readonly) BOOL scanWeeklyInternally;
+@property (nonatomic, readonly) BOOL shouldDelayUpdates;
 @property (nonatomic, readonly) BOOL simulateAutoDownload;
+@property (nonatomic, readonly) NSNumber *unmetConstraints;
+@property (nonatomic, readonly) NSNumber *updateDelayInterval;
 
 + (id)sharedInstance;
 
+- (id)_copyNumberPreferenceForKey:(id)arg1;
 - (void*)_copyPreferenceForKey:(struct __CFString { }*)arg1 ofType:(unsigned long)arg2;
-- (int)_defaultLogLevel;
 - (BOOL)_getBooleanPreferenceForKey:(id)arg1 withDefaultValue:(BOOL)arg2;
 - (void)_loadPreferences;
 - (BOOL)allowSameBuildUpdates;
-- (struct __asl_object_s { }*)aslHandle;
 - (void)dealloc;
 - (BOOL)disableAvailabilityAlerts;
 - (BOOL)disableBuildNumberComparison;
+- (BOOL)disableFullReplacementFallback;
 - (BOOL)disableUserWiFiOnlyPeriod;
+- (BOOL)forceFullReplacement;
 - (id)init;
 - (BOOL)isAutoDownloadDisabled;
 - (BOOL)isAutoSUDisabled;
-- (int)logLevel;
 - (void)reload;
 - (BOOL)scanWeeklyInternally;
+- (BOOL)shouldDelayUpdates;
 - (BOOL)simulateAutoDownload;
+- (id)unmetConstraints;
+- (id)updateDelayInterval;
 
 @end

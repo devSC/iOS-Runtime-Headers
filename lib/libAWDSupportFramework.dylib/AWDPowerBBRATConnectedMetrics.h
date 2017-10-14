@@ -5,14 +5,16 @@
 @interface AWDPowerBBRATConnectedMetrics : PBCodable <NSCopying> {
     struct { 
         unsigned int timestamp : 1; 
-    } _has;
-    NSMutableArray *_rATPowers;
-    unsigned long long _timestamp;
+    }  _has;
+    NSMutableArray * _rATPowers;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic, retain) NSMutableArray *rATPowers;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)rATPowerType;
 
 - (void)addRATPower:(id)arg1;
 - (void)clearRATPowers;

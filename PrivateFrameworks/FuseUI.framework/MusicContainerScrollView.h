@@ -3,19 +3,19 @@
  */
 
 @interface MusicContainerScrollView : UIScrollView {
-    UIScrollView *_contentScrollView;
-    BOOL _contentScrollViewPreviousAutomaticContentOffsetAdjustmentEnabled;
-    BOOL _contentScrollViewPreviousScrollEnabled;
-    UIView *_contentView;
+    UIScrollView * _contentScrollView;
+    BOOL  _contentScrollViewPreviousAutomaticContentOffsetAdjustmentEnabled;
+    BOOL  _contentScrollViewPreviousScrollEnabled;
+    UIView * _contentView;
     struct { 
         unsigned int contentSizeDidChange : 1; 
-    } _delegateRespondsToSelector;
-    BOOL _isAdjustingContentScrollViewScrollEnabled;
-    BOOL _isChangingContentScrollViewContentOffset;
+    }  _delegateRespondsToSelector;
+    BOOL  _isAdjustingContentScrollViewScrollEnabled;
+    BOOL  _isChangingContentScrollViewContentOffset;
     struct CGPoint { 
         float x; 
         float y; 
-    } _lastContentScrollViewPositionAdditions;
+    }  _lastContentScrollViewPositionAdditions;
 }
 
 @property (nonatomic, retain) UIScrollView *contentScrollView;
@@ -30,7 +30,6 @@
 - (id)contentScrollView;
 - (id)contentView;
 - (void)dealloc;
-- (void)layoutMarginsDidChange;
 - (void)layoutSubviews;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)setContentScrollView:(id)arg1;

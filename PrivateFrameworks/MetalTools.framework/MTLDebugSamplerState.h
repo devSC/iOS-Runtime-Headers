@@ -3,7 +3,7 @@
  */
 
 @interface MTLDebugSamplerState : MTLToolsSamplerState {
-    MTLSamplerDescriptor *_descriptor;
+    MTLSamplerDescriptor * _descriptor;
 }
 
 @property (nonatomic, readonly, copy) MTLSamplerDescriptor *descriptor;
@@ -11,6 +11,7 @@
 - (void).cxx_destruct;
 - (id)description;
 - (id)descriptor;
+- (id)formattedDescription:(unsigned int)arg1;
 - (id)initWithBaseSamplerState:(id)arg1 device:(id)arg2 descriptor:(id)arg3;
 
 @end

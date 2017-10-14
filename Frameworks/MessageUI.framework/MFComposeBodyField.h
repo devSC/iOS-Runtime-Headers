@@ -3,35 +3,38 @@
  */
 
 @interface MFComposeBodyField : UIWebDocumentView <WebResourceLoadDelegate> {
-    NSArray *_attachmentURLsToReplaceWithFilenames;
-    DOMHTMLElement *_blockquote;
-    DOMHTMLElement *_body;
-    NSString *_compositionContextID;
-    DOMHTMLDocument *_document;
-    unsigned int _forwardingNotification;
-    unsigned int _imageCount;
-    UIBarButtonItemGroup *_inputAssistantItemGroup;
-    unsigned int _isDirty;
-    unsigned int _isLoading;
+    unsigned int  _attachmentSequenceNumber;
+    NSArray * _attachmentURLsToReplaceWithFilenames;
+    DOMHTMLElement * _blockquote;
+    DOMHTMLElement * _body;
+    NSString * _compositionContextID;
+    BOOL  _createAttachmentsForUnknownDataTypes;
+    DOMHTMLDocument * _document;
+    unsigned int  _forwardingNotification;
+    unsigned int  _imageCount;
+    UIBarButtonItemGroup * _inputAssistantItemGroup;
+    unsigned int  _isDirty;
+    unsigned int  _isLoading;
     struct CGSize { 
         float width; 
         float height; 
-    } _layoutSize;
-    <MFMailComposeViewDelegate> *_mailComposeViewDelegate;
-    unsigned int _needsReplaceImages;
+    }  _layoutSize;
+    <MFMailComposeViewDelegate> * _mailComposeViewDelegate;
+    unsigned int  _needsReplaceImages;
     struct CGSize { 
         float width; 
         float height; 
-    } _originalSize;
-    BOOL _prefersFirstLineSelection;
-    int _preventLayout;
+    }  _originalSize;
+    BOOL  _prefersFirstLineSelection;
+    int  _preventLayout;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    } _rangeToSelect;
-    BOOL _shouldShowStandardButtons;
+    }  _rangeToSelect;
+    BOOL  _shouldShowStandardButtons;
 }
 
+@property (nonatomic, readonly) BOOL canPaste;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
@@ -42,18 +45,27 @@
 - (id)_addInlineAttachmentWithData:(id)arg1 fileName:(id)arg2 type:(id)arg3;
 - (id)_addInlineAttachmentWithData:(id)arg1 fileName:(id)arg2 type:(id)arg3 contentID:(id)arg4;
 - (void)_applyLayoutMarginsToBodyStyle;
+- (id)_attachmentPlaceholderForData:(id)arg1 fileName:(id)arg2 mimeType:(id)arg3 contentID:(id)arg4;
+- (id)_attachmentPlaceholderForFileName:(id)arg1 fileSize:(int)arg2 url:(id)arg3 mimeType:(id)arg4 contentID:(id)arg5;
 - (void)_decreaseQuoteLevelKeyCommandInvoked:(id)arg1;
 - (void)_didTapInsertPhotoInputAssistantButton:(id)arg1;
 - (void)_ensureQuotedImagesHaveAttachmentStyleForElement:(id)arg1;
+- (id)_filenameForVideoAttachmentAtURL:(id)arg1;
 - (void)_finishedLoadingURLRequest:(id)arg1 success:(BOOL)arg2;
 - (void)_increaseQuoteLevelKeyCommandInvoked:(id)arg1;
 - (id)_mailComposeEditingInputAssistantGroup;
+- (id)_mimeTypeForFilename:(id)arg1;
 - (id)_nodeForAttachmentData:(id)arg1 text:(id)arg2 type:(id)arg3;
 - (id)_nodeForAttachmentData:(id)arg1 text:(id)arg2 type:(id)arg3 contentID:(id)arg4;
+- (id)_nodeForAttachmentFileURL:(id)arg1 text:(id)arg2 type:(id)arg3 contentID:(id)arg4;
 - (void)_nts_AddDOMNode:(id)arg1 quote:(BOOL)arg2 baseURL:(id)arg3 emptyFirst:(BOOL)arg4 prepended:(BOOL)arg5;
 - (void)_pasteAsQuotationKeyCommandInvoked:(id)arg1;
+- (id)_placeholderForFileName:(id)arg1 fileSize:(int)arg2 mimeType:(id)arg3 contentID:(id)arg4;
 - (void)_removeInlineAttachment:(id)arg1;
 - (void)_replaceImages;
+- (id)_securityScopeForFileURL:(id)arg1;
+- (id)_selectedAttachmentURLForMarkup;
+- (BOOL)_shouldCreatePlaceholderAttachmentForAttachmentWithSize:(unsigned int)arg1;
 - (void)_showQuoteLevelOptionsPopover:(id)arg1;
 - (void)_webthread_webView:(id)arg1 tileDidDraw:(id)arg2;
 - (void)addAdditionalItemsToCalloutBar;
@@ -64,6 +76,7 @@
 - (void)appendMarkupString:(id)arg1 quote:(BOOL)arg2;
 - (void)appendQuotedMarkupString:(id)arg1 baseURL:(id)arg2;
 - (void)beginPreventingLayout;
+- (BOOL)canPaste;
 - (void)changeQuoteLevel:(int)arg1;
 - (void)changeQuoteLevel:(int)arg1 forDOMRange:(id)arg2;
 - (id)compositionContextID;
@@ -83,7 +96,6 @@
 - (id)htmlString;
 - (void)htmlString:(id*)arg1 otherHtmlStringsAndAttachments:(id*)arg2 charsets:(id*)arg3;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)insertDocumentWithData:(id)arg1 fileName:(id)arg2 mimeType:(id)arg3;
 - (void)insertDocumentWithData:(id)arg1 fileName:(id)arg2 mimeType:(id)arg3 contentID:(id)arg4;
 - (void)insertDocumentWithURL:(id)arg1;
 - (void)insertNode:(id)arg1 parent:(id)arg2 nextSibling:(id)arg3;
@@ -100,12 +112,13 @@
 - (void)paste:(id)arg1;
 - (id)plainTextAlternative;
 - (id)plainTextContent;
+- (void)prepareDataForDocumentAtURLForInsertion:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)prependMarkupString:(id)arg1 quote:(BOOL)arg2;
 - (void)prependMarkupString:(id)arg1 quote:(BOOL)arg2 baseURL:(id)arg3 emptyFirst:(BOOL)arg4;
 - (void)prependString:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectOfElementWithID:(id)arg1;
 - (void)removeBlockQuoteFromTree:(id)arg1;
-- (void)replaceAttachment:(id)arg1 withDocumentAtURL:(id)arg2;
+- (void)replaceAttachment:(id)arg1 withDocumentAtURL:(id)arg2 completion:(id /* block */)arg3;
 - (void)replaceAttachment:(id)arg1 withDocumentData:(id)arg2 fileName:(id)arg3 mimeType:(id)arg4;
 - (void)replaceImagesIfNecessary;
 - (void)replaceNode:(id)arg1 oldNode:(id)arg2;

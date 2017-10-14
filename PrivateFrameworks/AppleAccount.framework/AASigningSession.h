@@ -3,13 +3,16 @@
  */
 
 @interface AASigningSession : NSObject {
-    NSString *_certURL;
-    struct NACContextOpaque_ { } *_context;
-    long _error;
-    NSString *_sessionURL;
+    NSString * _certURL;
+    struct NACContextOpaque_ { } * _context;
+    long  _error;
+    NSString * _sessionURL;
 }
 
 @property (nonatomic, readonly) long error;
+
++ (id)_badURLError;
++ (id)establishedSessionWithCertURL:(id)arg1 sessionURL:(id)arg2 error:(id*)arg3;
 
 - (void).cxx_destruct;
 - (void)dealloc;

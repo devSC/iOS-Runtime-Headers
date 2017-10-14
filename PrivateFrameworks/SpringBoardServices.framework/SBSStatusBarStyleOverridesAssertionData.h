@@ -3,12 +3,12 @@
  */
 
 @interface SBSStatusBarStyleOverridesAssertionData : NSObject <NSSecureCoding> {
-    BOOL _exclusive;
-    int _pid;
-    BOOL _showsWhenForeground;
-    int _statusBarStyleOverrides;
-    NSString *_statusString;
-    NSString *_uniqueIdentifier;
+    BOOL  _exclusive;
+    int  _pid;
+    BOOL  _showsWhenForeground;
+    int  _statusBarStyleOverrides;
+    NSString * _statusString;
+    NSString * _uniqueIdentifier;
 }
 
 @property (getter=isExclusive, nonatomic) BOOL exclusive;
@@ -20,7 +20,7 @@
 
 + (BOOL)supportsSecureCoding;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;

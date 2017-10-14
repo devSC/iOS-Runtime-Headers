@@ -3,23 +3,23 @@
  */
 
 @interface PLPersistedAlbumMetadata : NSObject {
-    BOOL _allowsOverwite;
-    NSMutableOrderedSet *_assetUUIDs;
-    NSString *_cloudGUID;
-    NSString *_customKeyAssetUUID;
-    BOOL _customSortAscending;
-    int _customSortKey;
-    PLGenericAlbum *_genericAlbum;
-    BOOL _inTrash;
-    BOOL _isFolder;
-    NSNumber *_kind;
-    NSURL *_metadataURL;
-    BOOL _pinned;
-    NSString *_title;
-    NSString *_uuid;
+    BOOL  _allowsOverwrite;
+    NSMutableOrderedSet * _assetUUIDs;
+    NSString * _cloudGUID;
+    NSString * _customKeyAssetUUID;
+    BOOL  _customSortAscending;
+    int  _customSortKey;
+    PLGenericAlbum * _genericAlbum;
+    BOOL  _inTrash;
+    BOOL  _isFolder;
+    NSNumber * _kind;
+    NSURL * _metadataURL;
+    BOOL  _pinned;
+    NSString * _title;
+    NSString * _uuid;
 }
 
-@property (nonatomic) BOOL allowsOverwite;
+@property (nonatomic) BOOL allowsOverwrite;
 @property (nonatomic, retain) NSMutableOrderedSet *assetUUIDs;
 @property (nonatomic, retain) NSString *cloudGUID;
 @property (nonatomic, retain) NSString *customKeyAssetUUID;
@@ -34,15 +34,11 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *uuid;
 
-+ (BOOL)_isAlbumMetadataExtension:(id)arg1;
-+ (BOOL)_isFolderMetadataExtension:(id)arg1;
-+ (BOOL)isAlbumMetadataPath:(id)arg1;
-+ (BOOL)isFolderMetadataPath:(id)arg1;
 + (BOOL)isValidPath:(id)arg1;
 
-- (void)_readMetadata;
+- (BOOL)_readMetadata;
 - (void)_saveMetadata;
-- (BOOL)allowsOverwite;
+- (BOOL)allowsOverwrite;
 - (id)assetUUIDs;
 - (id)cloudGUID;
 - (id)customKeyAssetUUID;
@@ -50,11 +46,10 @@
 - (int)customSortKey;
 - (void)dealloc;
 - (id)description;
-- (id)extensionForKind:(id)arg1;
 - (id)genericAlbum;
 - (id)init;
 - (id)initWithPLGenericAlbum:(id)arg1;
-- (id)initWithPersistedDataAtPath:(id)arg1;
+- (id)initWithPersistedDataAtURL:(id)arg1;
 - (id)initWithTitle:(id)arg1 uuid:(id)arg2 cloudGUID:(id)arg3 kind:(id)arg4 assetUUIDs:(id)arg5;
 - (id)insertAlbumFromDataInManagedObjectContext:(id)arg1;
 - (BOOL)isFolder;
@@ -64,7 +59,7 @@
 - (id)metadataURL;
 - (void)persistAlbumData;
 - (void)removePersistedAlbumData;
-- (void)setAllowsOverwite:(BOOL)arg1;
+- (void)setAllowsOverwrite:(BOOL)arg1;
 - (void)setAssetUUIDs:(id)arg1;
 - (void)setCloudGUID:(id)arg1;
 - (void)setCustomKeyAssetUUID:(id)arg1;

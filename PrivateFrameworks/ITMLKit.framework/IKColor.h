@@ -3,12 +3,12 @@
  */
 
 @interface IKColor : NSObject <NSCopying> {
-    UIColor *_color;
-    int _colorType;
-    NSArray *_gradientColors;
-    int _gradientDirectionType;
-    NSArray *_gradientPoints;
-    int _gradientType;
+    UIColor * _color;
+    int  _colorType;
+    NSArray * _gradientColors;
+    int  _gradientDirectionType;
+    NSArray * _gradientPoints;
+    int  _gradientType;
 }
 
 @property (nonatomic, retain) UIColor *color;
@@ -17,6 +17,9 @@
 @property (nonatomic) int gradientDirectionType;
 @property (nonatomic, readonly, copy) NSArray *gradientPoints;
 @property (nonatomic) int gradientType;
+
++ (id)colorMap;
++ (void)registerColorNameMap:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)color;

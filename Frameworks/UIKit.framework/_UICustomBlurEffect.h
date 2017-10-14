@@ -3,9 +3,7 @@
  */
 
 @interface _UICustomBlurEffect : UIBlurEffect {
-    _UIBackdropViewSettings *_blurEffect;
-    float _colorBurnTintLevel;
-    float _saturationDeltaFactor;
+    _UIBackdropViewSettings * _blurEffect;
 }
 
 @property (nonatomic) float blurRadius;

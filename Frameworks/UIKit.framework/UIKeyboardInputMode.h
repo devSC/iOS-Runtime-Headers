@@ -3,15 +3,17 @@
  */
 
 @interface UIKeyboardInputMode : UITextInputMode <NSCopying> {
-    NSString *hardwareLayout;
-    NSString *identifier;
-    BOOL isDisplayed;
-    NSString *languageWithRegion;
-    NSString *normalizedIdentifier;
-    NSString *primaryLanguage;
-    NSString *softwareLayout;
+    NSArray * _multilingualLanguages;
+    NSString * hardwareLayout;
+    NSString * identifier;
+    BOOL  isDisplayed;
+    NSString * languageWithRegion;
+    NSString * normalizedIdentifier;
+    NSString * primaryLanguage;
+    NSString * softwareLayout;
 }
 
+@property (nonatomic, readonly) NSString *automaticHardwareLayout;
 @property (nonatomic, readonly) NSBundle *containingBundle;
 @property (nonatomic, readonly) NSString *containingBundleDisplayName;
 @property (nonatomic, readonly) BOOL defaultLayoutIsASCIICapable;
@@ -24,7 +26,9 @@
 @property (nonatomic, readonly) BOOL isDefaultRightToLeft;
 @property (nonatomic) BOOL isDisplayed;
 @property (nonatomic, readonly) BOOL isExtensionInputMode;
+@property (nonatomic, readonly) BOOL isStalledExtensionInputMode;
 @property (nonatomic, retain) NSString *languageWithRegion;
+@property (nonatomic, retain) NSArray *multilingualLanguages;
 @property (nonatomic, retain) NSString *normalizedIdentifier;
 @property (nonatomic, readonly, retain) NSArray *normalizedIdentifierLevels;
 @property (nonatomic, retain) NSString *primaryLanguage;
@@ -36,7 +40,9 @@
 + (id)intlInputMode;
 + (id)keyboardInputModeWithIdentifier:(id)arg1;
 + (id)softwareLayoutFromIdentifier:(id)arg1;
++ (BOOL)supportsSecureCoding;
 
+- (id)automaticHardwareLayout;
 - (id)containingBundle;
 - (id)containingBundleDisplayName;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -57,7 +63,9 @@
 - (BOOL)isDisplayed;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isExtensionInputMode;
+- (BOOL)isStalledExtensionInputMode;
 - (id)languageWithRegion;
+- (id)multilingualLanguages;
 - (id)normalizedIdentifier;
 - (id)normalizedIdentifierLevels;
 - (id)primaryLanguage;
@@ -65,6 +73,7 @@
 - (void)setIdentifier:(id)arg1;
 - (void)setIsDisplayed:(BOOL)arg1;
 - (void)setLanguageWithRegion:(id)arg1;
+- (void)setMultilingualLanguages:(id)arg1;
 - (void)setNormalizedIdentifier:(id)arg1;
 - (void)setPrimaryLanguage:(id)arg1;
 - (void)setSoftwareLayout:(id)arg1;

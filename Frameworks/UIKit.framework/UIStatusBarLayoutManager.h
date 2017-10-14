@@ -3,13 +3,15 @@
  */
 
 @interface UIStatusBarLayoutManager : NSObject {
-    UIStatusBarForegroundView *_foregroundView;
-    UIStatusBarItemView *_itemViews;
-    BOOL _persistentAnimationsEnabled;
-    int _region;
-    BOOL _usesVerticalLayout;
+    NSNumber * _assignedStartPosition;
+    UIStatusBarForegroundView * _foregroundView;
+    UIStatusBarItemView * _itemViews;
+    BOOL  _persistentAnimationsEnabled;
+    int  _region;
+    BOOL  _usesVerticalLayout;
 }
 
+@property (nonatomic, retain) NSNumber *assignedStartPosition;
 @property (nonatomic) UIStatusBarForegroundView *foregroundView;
 @property (nonatomic) BOOL persistentAnimationsEnabled;
 @property (nonatomic, readonly) BOOL usesVerticalLayout;
@@ -19,7 +21,6 @@
 - (id)_createViewForItem:(id)arg1 withData:(id)arg2 actions:(int)arg3;
 - (float)_dimensionForSize:(struct CGSize { float x1; float x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameForItemView:(id)arg1 startPosition:(float)arg2 firstView:(BOOL)arg3;
-- (SEL)_itemSortSelector;
 - (id)_itemViews;
 - (id)_itemViewsSortedForLayout;
 - (float)_positionAfterPlacingItemView:(id)arg1 startPosition:(float)arg2 firstView:(BOOL)arg3;
@@ -32,6 +33,7 @@
 - (float)_startPosition;
 - (BOOL)_updateItemView:(id)arg1 withData:(id)arg2 actions:(int)arg3 animated:(BOOL)arg4;
 - (id)_viewForItem:(id)arg1;
+- (id)assignedStartPosition;
 - (void)clearOverlapFromItems:(id)arg1;
 - (void)dealloc;
 - (float)distributeOverlap:(float)arg1 amongItems:(id)arg2;
@@ -39,6 +41,7 @@
 - (id)initWithRegion:(int)arg1 foregroundView:(id)arg2 usesVerticalLayout:(BOOL)arg3;
 - (BOOL)itemIsVisible:(id)arg1;
 - (void)itemView:(id)arg1 sizeChangedBy:(float)arg2;
+- (id)itemViewOfType:(int)arg1;
 - (void)makeVisibleItemsPerformPendedActions;
 - (BOOL)persistentAnimationsEnabled;
 - (void)positionInvisibleItems;
@@ -48,10 +51,12 @@
 - (void)reflowWithVisibleItems:(id)arg1 duration:(double)arg2;
 - (void)removeDisabledItems:(BOOL*)arg1;
 - (float)removeOverlap:(float)arg1 fromItems:(id)arg2;
+- (void)setAssignedStartPosition:(id)arg1;
 - (void)setForegroundView:(id)arg1;
 - (void)setPersistentAnimationsEnabled:(BOOL)arg1;
 - (void)setVisibilityOfAllItems:(BOOL)arg1;
 - (void)setVisibilityOfItem:(id)arg1 visible:(BOOL)arg2;
+- (void)setVisibilityOfItemType:(int)arg1 visible:(BOOL)arg2;
 - (float)sizeNeededForItem:(id)arg1;
 - (float)sizeNeededForItems:(id)arg1;
 - (BOOL)updateDoubleHeightItem;

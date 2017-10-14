@@ -3,35 +3,40 @@
  */
 
 @interface MPUNowPlayingController : NSObject {
-    BOOL _cachedArtworkDirty;
-    UIImage *_cachedNowPlayingArtwork;
-    double _currentDuration;
-    double _currentElapsed;
-    NSString *_currentNowPlayingAppDisplayID;
-    BOOL _currentNowPlayingAppIsRunning;
-    NSDictionary *_currentNowPlayingInfo;
-    <MPUNowPlayingDelegate> *_delegate;
-    BOOL _hasValidCurrentNowPlayingAppDisplayID;
-    int _isPlaying;
-    BOOL _isRegisteredForNowPlayingNotifications;
-    BOOL _isUpdatingNowPlayingApp;
-    BOOL _isUpdatingNowPlayingInfo;
-    BOOL _isUpdatingPlaybackState;
-    BOOL _shouldUpdateNowPlayingArtwork;
-    NSObject<OS_dispatch_source> *_timeInformationTimer;
-    double _timeInformationUpdateInterval;
-    BOOL _wantsTimeInformationUpdates;
+    BOOL  _cachedArtworkDirty;
+    UIImage * _cachedNowPlayingArtwork;
+    double  _currentDuration;
+    double  _currentElapsed;
+    NSString * _currentNowPlayingAppDisplayID;
+    BOOL  _currentNowPlayingAppIsRunning;
+    NSString * _currentNowPlayingAppParentApp;
+    NSString * _currentNowPlayingArtworkDigest;
+    NSDictionary * _currentNowPlayingInfo;
+    <MPUNowPlayingDelegate> * _delegate;
+    BOOL  _hasValidCurrentNowPlayingAppDisplayID;
+    int  _isPlaying;
+    BOOL  _isRegisteredForNowPlayingNotifications;
+    BOOL  _isUpdatingNowPlayingApp;
+    BOOL  _isUpdatingNowPlayingInfo;
+    BOOL  _isUpdatingPlaybackState;
+    BOOL  _shouldUpdateNowPlayingArtwork;
+    NSObject<OS_dispatch_source> * _timeInformationTimer;
+    double  _timeInformationUpdateInterval;
+    BOOL  _wantsTimeInformationUpdates;
 }
 
 @property (nonatomic, readonly) double currentDuration;
 @property (nonatomic, readonly) double currentElapsed;
 @property (nonatomic, readonly) BOOL currentNowPlayingAppIsRunning;
 @property (nonatomic, readonly) UIImage *currentNowPlayingArtwork;
+@property (nonatomic, readonly) NSString *currentNowPlayingArtworkDigest;
 @property (nonatomic, readonly) NSDictionary *currentNowPlayingInfo;
+@property (nonatomic, readonly) MPUNowPlayingMetadata *currentNowPlayingMetadata;
 @property (nonatomic) <MPUNowPlayingDelegate> *delegate;
 @property (nonatomic, readonly) BOOL isPlaying;
 @property (nonatomic, readonly) NSString *nowPlayingAppDisplayID;
 @property (nonatomic, readonly) BOOL nowPlayingAppIsSystemMediaApp;
+@property (nonatomic, readonly) NSString *nowPlayingAppParentAppDisplayID;
 @property (nonatomic) BOOL shouldUpdateNowPlayingArtwork;
 @property (nonatomic) double timeInformationUpdateInterval;
 
@@ -49,13 +54,16 @@
 - (double)currentElapsed;
 - (BOOL)currentNowPlayingAppIsRunning;
 - (id)currentNowPlayingArtwork;
+- (id)currentNowPlayingArtworkDigest;
 - (id)currentNowPlayingInfo;
+- (id)currentNowPlayingMetadata;
 - (void)dealloc;
 - (id)delegate;
 - (id)init;
 - (BOOL)isPlaying;
 - (id)nowPlayingAppDisplayID;
 - (BOOL)nowPlayingAppIsSystemMediaApp;
+- (id)nowPlayingAppParentAppDisplayID;
 - (void)setDelegate:(id)arg1;
 - (void)setShouldUpdateNowPlayingArtwork:(BOOL)arg1;
 - (void)setTimeInformationUpdateInterval:(double)arg1;

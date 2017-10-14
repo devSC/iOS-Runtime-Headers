@@ -3,12 +3,14 @@
  */
 
 @interface MusicLibraryActionAddOperation : NSOperation {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    MPUContentItemIdentifierCollection *_contentItemIdentifierCollection;
-    NSArray *_resultingItems;
-    BOOL _success;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    BOOL  _addToCloudLibrary;
+    MPUContentItemIdentifierCollection * _contentItemIdentifierCollection;
+    NSArray * _resultingItems;
+    BOOL  _success;
 }
 
+@property (nonatomic) BOOL addToCloudLibrary;
 @property (readonly, copy) MPUContentItemIdentifierCollection *contentItemIdentifierCollection;
 @property (nonatomic, readonly, copy) NSArray *resultingItems;
 @property (readonly) BOOL success;
@@ -16,11 +18,13 @@
 + (BOOL)canLibraryAddWithContentItemIdentifierCollection:(id)arg1;
 
 - (void).cxx_destruct;
+- (BOOL)addToCloudLibrary;
 - (id)contentItemIdentifierCollection;
 - (id)init;
 - (id)initWithContentItemIdentifierCollection:(id)arg1;
 - (void)main;
 - (id)resultingItems;
+- (void)setAddToCloudLibrary:(BOOL)arg1;
 - (BOOL)success;
 
 @end

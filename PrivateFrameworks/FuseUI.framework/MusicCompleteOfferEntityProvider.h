@@ -3,14 +3,14 @@
  */
 
 @interface MusicCompleteOfferEntityProvider : MusicInterleavedEntityProvider {
-    unsigned int _completionOfferingRevisionID;
-    BOOL _hasValidCompletionOffering;
-    unsigned int _loadedCompletionOfferingRevisionID;
-    <MusicEntityProviding> *_localEntityProvider;
-    NSOperationQueue *_operationQueue;
-    BOOL _shouldIncludeStoreCompleteOffer;
-    BOOL _storeCompleteOfferAvailable;
-    <MusicEntityProviding> *_storeEntityProvider;
+    unsigned int  _completionOfferingRevisionID;
+    BOOL  _hasValidCompletionOffering;
+    unsigned int  _loadedCompletionOfferingRevisionID;
+    <MusicEntityProviding> * _localEntityProvider;
+    NSOperationQueue * _operationQueue;
+    BOOL  _shouldIncludeStoreCompleteOffer;
+    BOOL  _storeCompleteOfferAvailable;
+    <MusicEntityProviding> * _storeEntityProvider;
 }
 
 @property (nonatomic, retain) <MusicEntityProviding> *localEntityProvider;
@@ -25,6 +25,7 @@
 - (void)_updateEntityProviders;
 - (void)_updateStoreCompleteOfferAvailable;
 - (void)dealloc;
+- (BOOL)hasMultipleEntitiesIncludingStoreContent;
 - (id)init;
 - (BOOL)isStoreCompleteOfferAvailable;
 - (id)localEntityProvider;

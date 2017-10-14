@@ -3,24 +3,24 @@
  */
 
 @interface PKGroupsController : NSObject <PKPassLibraryDelegate> {
-    BOOL _activePassesOnly;
-    PKCatalog *_catalogBeforeReordering;
-    <PKGroupsControllerDelegate> *_delegate;
-    BOOL _enqueueRemoteUpdates;
-    NSMutableArray *_enqueuedUpdates;
-    unsigned int _filters;
-    NSMutableDictionary *_groupIDsByPassUniqueID;
-    NSMutableArray *_groups;
-    NSMutableDictionary *_groupsByGroupID;
-    NSMutableDictionary *_indicesByGroupID;
-    BOOL _limitedMode;
-    NSArray *_localPasses;
-    PKPassLibrary *_passLibrary;
-    unsigned int _passTypeMask;
-    NSMutableDictionary *_passesByUniqueID;
-    BOOL _reorderingEnabled;
-    BOOL _shouldSeparatePaymentPasses;
-    BOOL _suppressRemoteUpdates;
+    BOOL  _activePassesOnly;
+    PKCatalog * _catalogBeforeReordering;
+    <PKGroupsControllerDelegate> * _delegate;
+    BOOL  _enqueueRemoteUpdates;
+    NSMutableArray * _enqueuedUpdates;
+    unsigned int  _filters;
+    NSMutableDictionary * _groupIDsByPassUniqueID;
+    NSMutableArray * _groups;
+    NSMutableDictionary * _groupsByGroupID;
+    NSMutableDictionary * _indicesByGroupID;
+    BOOL  _limitedMode;
+    NSArray * _localPasses;
+    PKPassLibrary * _passLibrary;
+    unsigned int  _passTypeMask;
+    NSMutableDictionary * _passesByUniqueID;
+    BOOL  _reorderingEnabled;
+    BOOL  _shouldSeparatePaymentPasses;
+    BOOL  _suppressRemoteUpdates;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -31,12 +31,13 @@
 @property (nonatomic) BOOL shouldSeparatePaymentPasses;
 @property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (id)_copyRemoteCatalog;
 - (unsigned int)_destinationIndexForGroupID:(id)arg1 catalogGroups:(id)arg2 skippingNewGroupsAfterIndex:(unsigned int)arg3;
 - (void)_fixIndex:(unsigned int)arg1;
 - (void)_fixIndicesFrom:(unsigned int)arg1;
 - (void)_fixIndicesFrom:(unsigned int)arg1 through:(unsigned int)arg2;
-- (void)_getPassesAndCatalogWithHandler:(id /* block */)arg1;
+- (void)_getPassesAndCatalogSynchronously:(BOOL)arg1 withHandler:(id /* block */)arg2;
 - (BOOL)_groupIDIsNew:(id)arg1;
 - (id)_groupsExcludingPayment;
 - (unsigned int)_indexOfGroupID:(id)arg1;
@@ -58,7 +59,6 @@
 - (unsigned int)groupCount;
 - (unsigned int)groupIndexForPassUniqueID:(id)arg1;
 - (void)handleUserPassDelete:(id)arg1;
-- (void)handleUserPassIngestionWithData:(id)arg1 completion:(id /* block */)arg2;
 - (unsigned int)indexOfGroup:(id)arg1;
 - (unsigned int)indexOfSeparationGroup;
 - (id)init;

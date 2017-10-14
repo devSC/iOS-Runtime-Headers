@@ -3,10 +3,20 @@
  */
 
 @interface GEOPDAutocompleteResult : PBCodable <NSCopying> {
-    NSMutableArray *_sections;
+    BOOL  _enableRap;
+    struct { 
+        unsigned int enableRap : 1; 
+    }  _has;
+    NSMutableArray * _sections;
+    PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic) BOOL enableRap;
+@property (nonatomic) BOOL hasEnableRap;
 @property (nonatomic, retain) NSMutableArray *sections;
+@property (nonatomic, readonly) PBUnknownFields *unknownFields;
+
++ (Class)sectionsType;
 
 - (void)addSections:(id)arg1;
 - (void)clearSections;
@@ -15,6 +25,8 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (BOOL)enableRap;
+- (BOOL)hasEnableRap;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
@@ -22,7 +34,10 @@
 - (id)sections;
 - (id)sectionsAtIndex:(unsigned int)arg1;
 - (unsigned int)sectionsCount;
+- (void)setEnableRap:(BOOL)arg1;
+- (void)setHasEnableRap:(BOOL)arg1;
 - (void)setSections:(id)arg1;
+- (id)unknownFields;
 - (void)writeTo:(id)arg1;
 
 @end

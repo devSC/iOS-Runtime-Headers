@@ -3,56 +3,61 @@
  */
 
 @interface ISPlaybackSpec : NSObject {
-    BOOL _aggressivelyCachesVideoFrames;
-    BOOL _allowAudio;
-    BOOL _allowVitality;
-    NSHashTable *_observers;
-    double _playbackPostDuration;
-    double _playbackPreDuration;
-    float _playbackTransitionBlurRadius;
-    double _playbackTransitionCrossfadeDelay;
-    double _playbackTransitionDuration;
-    float _playbackTransitionScale;
-    BOOL _reversesMoreVideoFramesInMemory;
-    double _settleTransitionDuration;
+    BOOL  _aggressivelyCachesVideoFrames;
+    BOOL  _allowAudio;
+    BOOL  _allowVitality;
+    double  _endVitalityTransitionDuration;
+    NSHashTable * _observers;
+    double  _playbackPostDuration;
+    double  _playbackPreDuration;
+    float  _playbackTransitionBlurRadius;
+    double  _playbackTransitionCrossfadeDelay;
+    double  _playbackTransitionDuration;
+    float  _playbackTransitionScale;
+    BOOL  _reversesMoreVideoFramesInMemory;
+    double  _settleTransitionDuration;
+    BOOL  _shouldScaleAndBlurForPlayback;
+    BOOL  _shouldSettleAutomatically;
+    double  _timeMultiplier;
     struct CGPoint { 
         float x; 
         float y; 
-    } _transitionBlurTimingFunctionControlPoint1;
+    }  _transitionBlurTimingFunctionControlPoint1;
     struct CGPoint { 
         float x; 
         float y; 
-    } _transitionBlurTimingFunctionControlPoint2;
+    }  _transitionBlurTimingFunctionControlPoint2;
     struct CGPoint { 
         float x; 
         float y; 
-    } _transitionFadeTimingFunctionControlPoint1;
+    }  _transitionFadeTimingFunctionControlPoint1;
     struct CGPoint { 
         float x; 
         float y; 
-    } _transitionFadeTimingFunctionControlPoint2;
+    }  _transitionFadeTimingFunctionControlPoint2;
     struct CGPoint { 
         float x; 
         float y; 
-    } _transitionScaleTimingFunctionControlPoint1;
+    }  _transitionScaleTimingFunctionControlPoint1;
     struct CGPoint { 
         float x; 
         float y; 
-    } _transitionScaleTimingFunctionControlPoint2;
-    BOOL _useForcePlayratePlayback;
-    BOOL _useForceScrubPlayback;
-    BOOL _useForceTouchInitiatedPlayback;
-    BOOL _useTransition;
-    BOOL _useVitalityBuffer;
-    double _vitalityPostDuration;
-    double _vitalityPreDuration;
-    double _vitalityTransitionDuration;
-    BOOL _wantsCrossfadeLayer;
+    }  _transitionScaleTimingFunctionControlPoint2;
+    BOOL  _useForcePlayratePlayback;
+    BOOL  _useForceScrubPlayback;
+    BOOL  _useForceTouchInitiatedPlayback;
+    BOOL  _useTransition;
+    BOOL  _useVitalityBuffer;
+    double  _vitalityPostDuration;
+    double  _vitalityPreDuration;
+    double  _vitalityTransitionDuration;
+    BOOL  _wantsCrossfadeLayer;
 }
 
 @property (nonatomic) BOOL aggressivelyCachesVideoFrames;
 @property (nonatomic) BOOL allowAudio;
 @property (nonatomic) BOOL allowVitality;
+@property (nonatomic) double endVitalityTransitionDuration;
 @property (nonatomic) double playbackPostDuration;
 @property (nonatomic) double playbackPreDuration;
 @property (nonatomic) float playbackTransitionBlurRadius;
@@ -61,6 +66,9 @@
 @property (nonatomic) float playbackTransitionScale;
 @property (nonatomic) BOOL reversesMoreVideoFramesInMemory;
 @property (nonatomic) double settleTransitionDuration;
+@property (nonatomic) BOOL shouldScaleAndBlurForPlayback;
+@property (nonatomic) BOOL shouldSettleAutomatically;
+@property (nonatomic) double timeMultiplier;
 @property (nonatomic) struct CGPoint { float x1; float x2; } transitionBlurTimingFunctionControlPoint1;
 @property (nonatomic) struct CGPoint { float x1; float x2; } transitionBlurTimingFunctionControlPoint2;
 @property (nonatomic) struct CGPoint { float x1; float x2; } transitionFadeTimingFunctionControlPoint1;
@@ -82,7 +90,7 @@
 - (BOOL)aggressivelyCachesVideoFrames;
 - (BOOL)allowAudio;
 - (BOOL)allowVitality;
-- (void)didChangeValueForKey:(id)arg1;
+- (double)endVitalityTransitionDuration;
 - (id)init;
 - (double)playbackPostDuration;
 - (double)playbackPreDuration;
@@ -96,6 +104,9 @@
 - (void)setAllowAudio:(BOOL)arg1;
 - (void)setAllowVitality:(BOOL)arg1;
 - (void)setDefaultValues;
+- (void)setEndVitalityTransitionDuration:(double)arg1;
+- (void)setHintPlaybackValuesWithAssetOptions:(unsigned int)arg1;
+- (void)setHintPlaybackValuesWithPhotoHasColorAdjustments:(BOOL)arg1;
 - (void)setPlaybackPostDuration:(double)arg1;
 - (void)setPlaybackPreDuration:(double)arg1;
 - (void)setPlaybackTransitionBlurRadius:(float)arg1;
@@ -104,6 +115,9 @@
 - (void)setPlaybackTransitionScale:(float)arg1;
 - (void)setReversesMoreVideoFramesInMemory:(BOOL)arg1;
 - (void)setSettleTransitionDuration:(double)arg1;
+- (void)setShouldScaleAndBlurForPlayback:(BOOL)arg1;
+- (void)setShouldSettleAutomatically:(BOOL)arg1;
+- (void)setTimeMultiplier:(double)arg1;
 - (void)setTransitionBlurTimingFunctionControlPoint1:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setTransitionBlurTimingFunctionControlPoint2:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setTransitionFadeTimingFunctionControlPoint1:(struct CGPoint { float x1; float x2; })arg1;
@@ -120,6 +134,9 @@
 - (void)setVitalityTransitionDuration:(double)arg1;
 - (void)setWantsCrossfadeLayer:(BOOL)arg1;
 - (double)settleTransitionDuration;
+- (BOOL)shouldScaleAndBlurForPlayback;
+- (BOOL)shouldSettleAutomatically;
+- (double)timeMultiplier;
 - (struct CGPoint { float x1; float x2; })transitionBlurTimingFunctionControlPoint1;
 - (struct CGPoint { float x1; float x2; })transitionBlurTimingFunctionControlPoint2;
 - (struct CGPoint { float x1; float x2; })transitionFadeTimingFunctionControlPoint1;

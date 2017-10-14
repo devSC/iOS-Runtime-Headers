@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
  */
 
-@interface HMAccessoryCategory : NSObject <HMObjectMerge, NSSecureCoding> {
-    NSString *_categoryType;
-    NSString *_name;
+@interface HMAccessoryCategory : NSObject <HMFDumpState, HMObjectMerge, NSSecureCoding> {
+    NSString * _categoryType;
+    NSString * _name;
 }
 
 @property (nonatomic, copy) NSString *categoryType;
@@ -22,6 +22,7 @@
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (id)categoryType;
 - (id)description;
+- (id)dumpState;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;

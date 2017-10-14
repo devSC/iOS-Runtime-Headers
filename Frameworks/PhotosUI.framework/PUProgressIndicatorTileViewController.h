@@ -3,19 +3,19 @@
  */
 
 @interface PUProgressIndicatorTileViewController : PUTileViewController <PUAssetSharedViewModelChangeObserver, PUBrowsingVideoPlayerChangeObserver> {
-    UILabel *__debugProgressLabel;
-    UIButton *__errorButton;
-    BOOL __isProgressViewVisible;
-    BOOL __needsUpdateProgressViewStyle;
-    BOOL __needsUpdateSizeClass;
-    BOOL __needsUpdateStatus;
-    BOOL __needsUpdateStatusViews;
-    PLRoundProgressView *__progressView;
-    int __progressViewStyle;
-    int __sizeClass;
-    PUOperationStatus *__status;
-    PUAssetSharedViewModel *_assetSharedViewModel;
-    PUBrowsingVideoPlayer *_videoPlayer;
+    UILabel * __debugProgressLabel;
+    UIButton * __errorButton;
+    BOOL  __isProgressViewVisible;
+    BOOL  __needsUpdateProgressViewStyle;
+    BOOL  __needsUpdateSizeClass;
+    BOOL  __needsUpdateStatus;
+    BOOL  __needsUpdateStatusViews;
+    PLRoundProgressView * __progressView;
+    int  __progressViewStyle;
+    int  __sizeClass;
+    PUOperationStatus * __status;
+    PUAssetSharedViewModel * _assetSharedViewModel;
+    PUBrowsingVideoPlayer * _videoPlayer;
 }
 
 @property (setter=_setDebugProgressLabel:, nonatomic, retain) UILabel *_debugProgressLabel;
@@ -81,10 +81,10 @@
 - (void)applyLayoutInfo:(id)arg1;
 - (id)assetSharedViewModel;
 - (void)becomeReusable;
-- (void)loadView;
 - (void)setAssetSharedViewModel:(id)arg1;
 - (void)setVideoPlayer:(id)arg1;
 - (id)videoPlayer;
+- (void)viewDidLoad;
 - (void)viewModel:(id)arg1 didChange:(id)arg2;
 
 @end

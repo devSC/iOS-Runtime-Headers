@@ -3,7 +3,7 @@
  */
 
 @interface WebBackForwardList : NSObject {
-    WebBackForwardListPrivate *_private;
+    WebBackForwardListPrivate * _private;
 }
 
 @property (nonatomic, readonly) WebHistoryItem *backItem;
@@ -26,7 +26,6 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (void)finalize;
 - (id)forwardItem;
 - (int)forwardListCount;
 - (id)forwardListWithLimit:(int)arg1;
@@ -34,7 +33,7 @@
 - (void)goForward;
 - (void)goToItem:(id)arg1;
 - (id)init;
-- (id)initWithBackForwardList:(struct PassRefPtr<WebCore::BackForwardList> { struct BackForwardList {} *x1; })arg1;
+- (id)initWithBackForwardList:(struct Ref<BackForwardList> { struct BackForwardList {} *x1; }*)arg1;
 - (id)itemAtIndex:(int)arg1;
 - (unsigned int)pageCacheSize;
 - (void)removeItem:(id)arg1;

@@ -2,19 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
  */
 
-@interface SBSApplicationShortcutService : NSObject {
-    NSObject<OS_dispatch_queue> *_callbackQueue;
-    SBSApplicationShortcutClient *_client;
-    NSObject<OS_dispatch_queue> *_queue;
-    BOOL _wasInvalidated;
-}
+@interface SBSApplicationShortcutService : SBSAbstractApplicationService
 
-- (void)dealloc;
+- (void)fetchApplicationShortcutItemsOfTypes:(unsigned int)arg1 forBundleIdentifier:(id)arg2 withCompletionHandler:(id /* block */)arg3;
 - (void)fetchDynamicApplicationShortcutItemsForBundleIdentifier:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)fetchDynamicApplicationShortcutItemsWithCompletionHandler:(id /* block */)arg1;
-- (id)init;
-- (void)invalidate;
 - (void)updateDynamicApplicationShortcutItems:(id)arg1;
 - (void)updateDynamicApplicationShortcutItems:(id)arg1 bundleIdentifier:(id)arg2;
+- (void)updateDynamicApplicationShortcutItems:(id)arg1 forBundleIdentifier:(id)arg2;
 
 @end

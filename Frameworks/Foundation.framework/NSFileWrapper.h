@@ -3,12 +3,12 @@
  */
 
 @interface NSFileWrapper : NSObject <NSCoding> {
-    id _contents;
-    NSDictionary *_fileAttributes;
-    NSString *_fileName;
-    id _icon;
-    id _moreVars;
-    NSString *_preferredFileName;
+    id  _contents;
+    NSDictionary * _fileAttributes;
+    NSString * _fileName;
+    id  _icon;
+    id  _moreVars;
+    NSString * _preferredFileName;
 }
 
 @property (getter=isDirectory, readonly) BOOL directory;
@@ -21,6 +21,8 @@
 @property (readonly, copy) NSData *serializedRepresentation;
 @property (getter=isSymbolicLink, readonly) BOOL symbolicLink;
 @property (readonly, copy) NSURL *symbolicLinkDestinationURL;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (BOOL)_canSafelyMapFilesAtPath:(id)arg1;
 + (BOOL)_finishWritingToURL:(id)arg1 byMovingItemAtURL:(id)arg2 addingAttributes:(id)arg3 error:(id*)arg4;
@@ -80,5 +82,9 @@
 - (void)setPreferredFilename:(id)arg1;
 - (id)symbolicLinkDestinationURL;
 - (BOOL)writeToURL:(id)arg1 options:(unsigned int)arg2 originalContentsURL:(id)arg3 error:(id*)arg4;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (unsigned int)sb_fileSize;
 
 @end

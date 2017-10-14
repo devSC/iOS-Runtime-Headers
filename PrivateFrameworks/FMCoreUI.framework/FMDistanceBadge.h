@@ -2,14 +2,14 @@
    Image: /System/Library/PrivateFrameworks/FMCoreUI.framework/FMCoreUI
  */
 
-@interface FMDistanceBadge : FMDynamicTypeLabel {
-    UIColor *_badgeColor;
+@interface FMDistanceBadge : UILabel {
+    UIColor * _badgeColor;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _insets;
+    }  _insets;
 }
 
 @property (nonatomic, retain) UIColor *badgeColor;

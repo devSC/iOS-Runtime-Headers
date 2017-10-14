@@ -3,28 +3,32 @@
  */
 
 @interface PBBridgeCompanionController : PBBridgeIDSServiceDelegate <IDSServiceDelegate, NSURLConnectionDelegate, PBBridgeCompanionProtocol, RUILoaderDelegate> {
-    NSURLConnection *_activationConnection;
-    NSMutableData *_activationData;
-    NSMutableURLRequest *_activationRequest;
-    int _activationState;
-    NSTimer *_activationTimeout;
-    BOOL _allowAnyHTTPSCertificate;
-    BOOL _awaitingCustomResponse;
-    BOOL _connectionFailed;
-    NSString *_contentType;
-    <PBBridgeConnectionDelegate> *_delegate;
-    unsigned short _granularActivationState;
-    id /* block */ _initialSyncPrepCompletion;
-    NSString *_internalLastSendMessageID;
-    BOOL _isEstablishingPairing;
-    id /* block */ _lockedOnAnimationCompletion;
-    BOOL _nonSilentActivation;
-    BOOL _passcodeSet;
-    NSString *_remoteActivationUserAgent;
-    <RUILoaderDelegate> *_ruiDelegate;
-    RUILoader *_ruiLoader;
-    BOOL _selectedPairedUnlock;
-    struct __MKBAssertion { } *_unlockPairingAssertion;
+    NSURLConnection * _activationConnection;
+    NSMutableData * _activationData;
+    NSMutableURLRequest * _activationRequest;
+    int  _activationState;
+    NSTimer * _activationTimeout;
+    BOOL  _allowAnyHTTPSCertificate;
+    BOOL  _awaitingCustomResponse;
+    BOOL  _connectionFailed;
+    NSString * _contentType;
+    <PBBridgeConnectionDelegate> * _delegate;
+    unsigned short  _granularActivationState;
+    id /* block */  _initialSyncPrepCompletion;
+    NSString * _internalLastSendMessageID;
+    BOOL  _isEstablishingPairing;
+    id /* block */  _lockedOnAnimationCompletion;
+    BOOL  _nonSilentActivation;
+    BOOL  _passcodeSet;
+    NSString * _remoteActivationUserAgent;
+    RUIStyle * _remoteUIStyle;
+    NSMutableDictionary * _reportMapping;
+    <RUILoaderDelegate> * _ruiDelegate;
+    RUILoader * _ruiLoader;
+    BOOL  _selectedPairedUnlock;
+    BOOL  _sentActivationRequest;
+    BOOL  _sentSessionRequest;
+    struct __MKBAssertion { } * _unlockPairingAssertion;
 }
 
 @property (nonatomic, retain) NSURLConnection *activationConnection;
@@ -48,9 +52,13 @@
 @property (nonatomic) BOOL nonSilentActivation;
 @property (nonatomic) BOOL passcodeSet;
 @property (nonatomic, copy) NSString *remoteActivationUserAgent;
+@property (nonatomic, retain) RUIStyle *remoteUIStyle;
+@property (nonatomic, retain) NSMutableDictionary *reportMapping;
 @property (nonatomic) <RUILoaderDelegate> *ruiDelegate;
 @property (nonatomic, retain) RUILoader *ruiLoader;
 @property (nonatomic) BOOL selectedPairedUnlock;
+@property (nonatomic) BOOL sentActivationRequest;
+@property (nonatomic) BOOL sentSessionRequest;
 @property (readonly) Class superclass;
 
 + (id)displayNameWithFirstName:(id)arg1 lastName:(id)arg2;
@@ -60,7 +68,7 @@
 - (void).cxx_destruct;
 - (void)_cleanup;
 - (id)_connectionWithRequest:(id)arg1;
-- (BOOL)_dumpCustomRequestBody;
+- (BOOL)_dumpActivationResquests;
 - (BOOL)_sendRemoteCommandWithMessageID:(unsigned short)arg1 withArguments:(id)arg2;
 - (BOOL)_sendResponseToMessage:(id)arg1 withResponseMessageID:(unsigned short)arg2 withArguments:(id)arg3;
 - (unsigned short)_testActivationResponseType;
@@ -108,7 +116,7 @@
 - (BOOL)isEstablishingPairing;
 - (void)loader:(id)arg1 didFailWithError:(id)arg2;
 - (void)loader:(id)arg1 didReceiveHTTPResponse:(id)arg2;
-- (void)loader:(id)arg1 receivedObjectModel:(id)arg2 actionSignal:(int)arg3;
+- (void)loader:(id)arg1 receivedObjectModel:(id)arg2 actionSignal:(unsigned int)arg3;
 - (id /* block */)lockedOnAnimationCompletion;
 - (BOOL)nonSilentActivation;
 - (void)objectModel:(id)arg1 pressedButton:(id)arg2 attributes:(id)arg3;
@@ -118,12 +126,17 @@
 - (void)queryGizmoForShowWarrantySentinelAndRestoreDeviceName:(id)arg1;
 - (void)refreshTimeoutTimer;
 - (id)remoteActivationUserAgent;
+- (id)remoteUIStyle;
+- (id)reportMapping;
+- (id)reporterForConnection:(id)arg1;
 - (id)ruiDelegate;
 - (id)ruiLoader;
 - (BOOL)selectedPairedUnlock;
 - (void)sendGizmoPasscodeRestrictions;
 - (void)sendProxyActivationRequest:(id)arg1;
 - (void)sendProxyActivationWithCustomRequest:(id)arg1;
+- (BOOL)sentActivationRequest;
+- (BOOL)sentSessionRequest;
 - (id)serviceIdentifier;
 - (void)setActivationConnection:(id)arg1;
 - (void)setActivationData:(id)arg1;
@@ -143,13 +156,19 @@
 - (void)setNonSilentActivation:(BOOL)arg1;
 - (void)setPasscodeSet:(BOOL)arg1;
 - (void)setRemoteActivationUserAgent:(id)arg1;
+- (void)setRemoteUIStyle:(id)arg1;
+- (void)setReportMapping:(id)arg1;
+- (void)setReporter:(id)arg1 forConnection:(id)arg2;
 - (void)setRuiDelegate:(id)arg1;
 - (void)setRuiLoader:(id)arg1;
 - (void)setSelectedPairedUnlock:(BOOL)arg1;
+- (void)setSentActivationRequest:(BOOL)arg1;
+- (void)setSentSessionRequest:(BOOL)arg1;
 - (void)setupServiceMessageSelectorMappings;
 - (void)startEstablishingPairing;
 - (void)tellGizmoToBeginActivation;
 - (void)tellGizmoToDeleteWarrantySentinel;
+- (void)tellGizmoToKeepAliveForActivationEvent;
 - (void)tellGizmoToPopToControllerType:(unsigned int)arg1;
 - (void)tellGizmoToPrepareForInitialSyncWithCompletion:(id /* block */)arg1;
 - (void)tellGizmoToPushControllerType:(unsigned int)arg1;

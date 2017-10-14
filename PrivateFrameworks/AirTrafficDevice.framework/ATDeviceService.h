@@ -3,24 +3,24 @@
  */
 
 @interface ATDeviceService : ATConcreteService <ATEnvironmentMonitorObserver, ATIDSServiceListener, ATMessageLinkListenerDelegate, ATMessageLinkRequestHandler, ATSyncClientDelegate, ATWorkspaceObserverDelegate, ATXPCInterfaceProtocol> {
-    int _atcRunningToken;
-    ATDeviceSyncManager *_deviceSyncManager;
-    ATRemoteFileManagerLinkHandler *_driveHandler;
-    ATEnvironmentMonitor *_environmentMonitor;
-    ATIDSService *_idsService;
-    ATLegacyDeviceSyncManager *_legacyDeviceSyncManager;
-    ATLockdownListener *_legacyLockdownListener;
-    ATLockdownListener *_lockdownListener;
-    NSMapTable *_messageLinkProxyListeners;
-    ATNetServiceListener *_netServiceListener;
-    ATDevicePairedSyncManager *_pairedSyncManager;
-    ATServiceProxyListener *_proxyListener;
-    NSObject<OS_dispatch_queue> *_queue;
-    ATDeviceSettings *_settings;
-    ATStatusObserverListener *_statusObserverListener;
-    ATWorkspaceObserver *_workspaceObserver;
-    ATXPCListener *_xpcListener;
-    MSVXPCTransaction *_xpcTransaction;
+    int  _atcRunningToken;
+    ATDeviceSyncManager * _deviceSyncManager;
+    ATEnvironmentMonitor * _environmentMonitor;
+    ATEventScheduler * _eventScheduler;
+    ATIDSService * _idsService;
+    ATLegacyDeviceSyncManager * _legacyDeviceSyncManager;
+    ATLockdownListener * _legacyLockdownListener;
+    ATLockdownListener * _lockdownListener;
+    NSMapTable * _messageLinkProxyListeners;
+    ATNetServiceListener * _netServiceListener;
+    ATDevicePairedSyncManager * _pairedSyncManager;
+    ATServiceProxyListener * _proxyListener;
+    NSObject<OS_dispatch_queue> * _queue;
+    ATDeviceSettings * _settings;
+    ATStatusObserverListener * _statusObserverListener;
+    ATWorkspaceObserver * _workspaceObserver;
+    ATXPCListener * _xpcListener;
+    MSVXPCTransaction * _xpcTransaction;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -47,15 +47,18 @@
 - (void)applicationsDidUninstall:(id)arg1;
 - (void)cancelSyncWithCompletion:(id /* block */)arg1;
 - (void)clearSyncDataWithCompletion:(id /* block */)arg1;
-- (void)dataMigrationFinishedWithCompletion:(id /* block */)arg1;
 - (void)dealloc;
 - (void)environmentMonitorDidChangeNetworkReachability:(id)arg1;
 - (void)environmentMonitorDidChangePower:(id)arg1;
 - (void)getAssetMetricswithCompletion:(id /* block */)arg1;
+- (void)getDataRestoreIsCompleteWithCompletion:(id /* block */)arg1;
 - (void)getSyncStateWithCompletion:(id /* block */)arg1;
+- (void)handleDataMigrationFinished;
 - (void)idsServiceDevicesDidChange:(id)arg1;
 - (id)init;
+- (void)initiateAssetDownloadSessionsWithCompletion:(id /* block */)arg1;
 - (void)keepATCAlive:(BOOL)arg1 withCompletion:(id /* block */)arg2;
+- (id)legacyHostVersion;
 - (void)listener:(id)arg1 didReceiveMessageLinkRequest:(id)arg2;
 - (void)lowBatteryNotificationWithCompletion:(id /* block */)arg1;
 - (void)messageLink:(id)arg1 didReceiveRequest:(id)arg2;
@@ -66,11 +69,13 @@
 - (void)purgePartialAsset:(id)arg1 forDataclass:(id)arg2 withCompletion:(id /* block */)arg3;
 - (void)registerForStatusOfDataclasses:(id)arg1 enabled:(id)arg2 withCompletion:(id /* block */)arg3;
 - (void)removeMessageLink:(id)arg1;
+- (void)requestKeybagSyncToPairedDeviceWithCompletion:(id /* block */)arg1;
 - (void)requestSyncForLibrary:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)requestSyncForPairedDeviceWithPriority:(int)arg1 withCompletion:(id /* block */)arg2;
 - (void)restoreFromDeviceWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
 - (BOOL)run;
 - (BOOL)stop;
+- (void)syncChangesForDataClass:(id)arg1 withPriority:(int)arg2;
 - (void)syncClient:(id)arg1 hasChangesWithPriority:(int)arg2;
 
 @end

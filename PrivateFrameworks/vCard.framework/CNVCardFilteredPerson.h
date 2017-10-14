@@ -3,8 +3,8 @@
  */
 
 @interface CNVCardFilteredPerson : NSObject <CNVCardPerson> {
-    NSSet *_blacklist;
-    <CNVCardPerson> *_person;
+    <CNVCardPerson> * _person;
+    CNVCardFilteredPersonScope * _scope;
 }
 
 @property (readonly) NSDictionary *activityAlerts;
@@ -42,7 +42,10 @@
 @property (readonly) NSString *phoneticFirstName;
 @property (readonly) NSString *phoneticLastName;
 @property (readonly) NSString *phoneticMiddleName;
+@property (readonly) NSString *phoneticOrganization;
 @property (readonly) NSArray *postalAddresses;
+@property (readonly) NSString *preferredApplePersonaIdentifier;
+@property (readonly) NSString *preferredLikenessSource;
 @property (readonly) NSString *pronunciationFirstName;
 @property (readonly) NSString *pronunciationLastName;
 @property (readonly) NSArray *relatedNames;
@@ -54,15 +57,15 @@
 @property (readonly) NSArray *unknownProperties;
 @property (readonly) NSArray *urls;
 
-+ (id)filteredPersonWithPerson:(id)arg1 blacklistedFields:(id)arg2;
++ (id)filteredPersonWithPerson:(id)arg1 scope:(id)arg2;
 
+- (void).cxx_destruct;
 - (id)activityAlerts;
 - (id)alternateBirthdayComponents;
 - (id)birthdayComponents;
 - (id)calendarURIs;
 - (id)cardDAVUID;
 - (id)companyName;
-- (void)dealloc;
 - (id)department;
 - (id)emailAddresses;
 - (id)filterItems:(id)arg1 property:(id)arg2;
@@ -70,7 +73,7 @@
 - (id)imageCropRects;
 - (id)imageData;
 - (id)imageReferences;
-- (id)initWithPerson:(id)arg1 blacklistedFields:(id)arg2;
+- (id)initWithPerson:(id)arg1 scope:(id)arg2;
 - (id)instantMessagingAddresses;
 - (BOOL)isCompany;
 - (BOOL)isMe;
@@ -93,7 +96,10 @@
 - (id)phoneticFirstName;
 - (id)phoneticLastName;
 - (id)phoneticMiddleName;
+- (id)phoneticOrganization;
 - (id)postalAddresses;
+- (id)preferredApplePersonaIdentifier;
+- (id)preferredLikenessSource;
 - (id)pronunciationFirstName;
 - (id)pronunciationLastName;
 - (id)relatedNames;

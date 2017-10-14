@@ -3,46 +3,41 @@
  */
 
 @interface AppleErrorReport : NSObject {
-    double _capture_time;
-    NSString *_deviceID;
-    NSString *_incidentID;
-    NSString *_logType;
-    NSMutableArray *_notes;
+    double  _capture_time;
+    NSString * _incidentID;
+    NSString * _logType;
+    NSMutableDictionary * _logWritingOptions;
+    NSString * _logfile;
+    NSMutableArray * _notes;
 }
 
+@property (nonatomic, readonly) NSString *logfile;
 @property (nonatomic, readonly) NSArray *notes;
 
 + (id)bootArgs;
-+ (void)countLogs;
-+ (unsigned int)countLogsOfType:(id)arg1;
 + (unsigned char)executeWithTimeout:(unsigned int)arg1 Code:(id /* block */)arg2;
 + (id)kernelVersionDescription;
 + (void)logSafely:(id /* block */)arg1;
 + (id)systemIDWithDescription:(BOOL)arg1;
-+ (id)systemVersionDescription;
 
-- (id)appleCareCSVFieldsWithCount:(unsigned int)arg1;
+- (id)additionalIPSMetadata;
+- (id)appleCareDetails;
 - (void)dealloc;
-- (id)deviceID;
-- (id)fileExtension;
 - (void)generateLogAtLevel:(BOOL)arg1 withBlock:(id /* block */)arg2;
-- (id)getCountKey;
-- (id)getSyslogForPid:(int)arg1 andOptionalSender:(const char *)arg2;
+- (id)getSyslogForPid:(int)arg1 andOptionalSenders:(id)arg2;
 - (id)hardwareModel;
 - (id)incidentID;
-- (void)incrementLogCountOfType:(id)arg1;
 - (id)init;
-- (id)ipsMetadata;
 - (BOOL)isActionable;
 - (BOOL)isAppleTV;
 - (BOOL)isCarrierInstall;
 - (BOOL)isInternalInstall;
 - (BOOL)isInternalOrCarrierInstall;
-- (void)logForAppleCareWithUID:(unsigned int)arg1 at:(id)arg2 logCount:(unsigned int)arg3;
-- (unsigned int)logLimit;
+- (id)logfile;
 - (id)notes;
+- (id)overrideFileExtension;
 - (id)problemType;
-- (id)reportIdAtDate:(id)arg1;
+- (id)reportNamePrefix;
 - (BOOL)saveToDir:(id)arg1;
 - (BOOL)secondChanceToSylog;
 - (int)streamContentAtLevel:(BOOL)arg1 withBlock:(id /* block */)arg2;

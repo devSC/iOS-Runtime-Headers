@@ -5,7 +5,7 @@
 @interface CLNotifierServiceAdapter : CLIntersiloService <CLNotifierServiceProtocol> {
     struct map<unsigned long, int, std::__1::less<unsigned long>, std::__1::allocator<std::__1::pair<const unsigned long, int> > > { 
         struct __tree<std::__1::__value_type<unsigned long, int>, std::__1::__map_value_compare<unsigned long, std::__1::__value_type<unsigned long, int>, std::__1::less<unsigned long>, true>, std::__1::allocator<std::__1::__value_type<unsigned long, int> > > { 
-            struct __tree_node<std::__1::__value_type<unsigned long, int>, void *> {} *__begin_node_; 
+            struct __tree_end_node<std::__1::__tree_node_base<void *> *> {} *__begin_node_; 
             struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned long, int>, void *> > > { 
                 struct __tree_end_node<std::__1::__tree_node_base<void *> *> { 
                     struct __tree_node_base<void *> {} *__left_; 
@@ -15,8 +15,8 @@
                 unsigned long __first_; 
             } __pair3_; 
         } __tree_; 
-    } _clients;
-    struct CLNotifierBase { int (**x1)(); } *_notifier;
+    }  _clients;
+    struct CLNotifierBase { int (**x1)(); } * _notifier;
 }
 
 @property (readonly, copy) NSString *debugDescription;

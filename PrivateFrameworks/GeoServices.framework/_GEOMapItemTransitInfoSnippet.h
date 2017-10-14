@@ -3,9 +3,9 @@
  */
 
 @interface _GEOMapItemTransitInfoSnippet : NSObject <GEOMapItemTransitInfo> {
-    NSString *_displayName;
-    NSArray *_labelItems;
-    GEOPDTransitInfoSnippet *_transitInfoSnippet;
+    NSString * _displayName;
+    NSArray * _labelItems;
+    GEOPDTransitInfoSnippet * _transitInfoSnippet;
 }
 
 @property (nonatomic, readonly) NSArray *connections;
@@ -21,18 +21,19 @@
 @property (nonatomic, readonly) NSDate *lastFullScheduleValidDate;
 @property (nonatomic, readonly) NSArray *lines;
 @property (nonatomic, readonly) unsigned int linesCount;
-@property (nonatomic, readonly) unsigned int numAdditionalDepartures;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSArray *systems;
 @property (nonatomic, readonly) unsigned int systemsCount;
 
+- (id)allSequencesForSystem:(id)arg1 direction:(id)arg2;
 - (id)connections;
 - (void)dealloc;
 - (id)departureSequences;
-- (id)departureSequencesForSystem:(id)arg1 excludingLines:(id)arg2 direction:(id)arg3 validForDateFromBlock:(id /* block */)arg4;
-- (id)directionsForSystem:(id)arg1 excludingLines:(id)arg2 validForDateFromBlock:(id /* block */)arg3 hasSequencesWithNoDirection:(out BOOL*)arg4;
+- (id)departureSequencesForSystem:(id)arg1 excludingIncidentEntities:(id)arg2 direction:(id)arg3 validForDateFromBlock:(id /* block */)arg4;
+- (id)directionsForSystem:(id)arg1 excludingIncidentEntities:(id)arg2 validForDateFromBlock:(id /* block */)arg3 hasSequencesWithNoDirection:(out BOOL*)arg4;
 - (id)displayName;
 - (BOOL)hasTransitIncidentComponent;
+- (id)inactiveLinesForSystem:(id)arg1 relativeToDateFromBlock:(id /* block */)arg2 excludingIncidentEntities:(id)arg3;
 - (id)incidents;
 - (id)initWithTransitInfoSnippet:(id)arg1;
 - (BOOL)isTransitIncidentsTTLExpired;
@@ -40,8 +41,10 @@
 - (id)lastFullScheduleValidDate;
 - (id)lines;
 - (unsigned int)linesCount;
-- (unsigned int)numAdditionalDepartures;
-- (id)sequencesForSystem:(id)arg1 excludingLines:(id)arg2 direction:(id)arg3 validForDateFromBlock:(id /* block */)arg4;
+- (id)linesForSystem:(id)arg1;
+- (unsigned int)numAdditionalDeparturesForSequence:(id)arg1;
+- (id)sequencesForSystem:(id)arg1 excludingIncidentEntities:(id)arg2 direction:(id)arg3 validForDateFromBlock:(id /* block */)arg4;
+- (id)serviceResumesDateForLine:(id)arg1 excludingIncidentEntities:(id)arg2 afterDate:(id)arg3 blocked:(out BOOL*)arg4;
 - (id)systems;
 - (unsigned int)systemsCount;
 

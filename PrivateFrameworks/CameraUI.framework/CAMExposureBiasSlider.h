@@ -3,16 +3,16 @@
  */
 
 @interface CAMExposureBiasSlider : UIView {
-    double __lastInteractionTime;
-    UIView *__maxTrackMaskView;
-    UIView *__maxTrackView;
-    UIView *__minTrackMaskView;
-    UIView *__minTrackView;
-    CAMExposureBiasSliderThumb *__thumbView;
-    float _exposureBiasMax;
-    float _exposureBiasMin;
-    float _exposureBiasValue;
-    BOOL _suspendTrackFadeOut;
+    double  __lastInteractionTime;
+    UIView * __maxTrackMaskView;
+    UIView * __maxTrackView;
+    UIView * __minTrackMaskView;
+    UIView * __minTrackView;
+    CAMExposureBiasSliderThumb * __thumbView;
+    float  _exposureBiasMax;
+    float  _exposureBiasMin;
+    float  _exposureBiasValue;
+    BOOL  _suspendTrackFadeOut;
 }
 
 @property (nonatomic, readonly) double _lastInteractionTime;
@@ -55,6 +55,7 @@
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (BOOL)suspendTrackFadeOut;
 - (float)thumbMaxExtension;
+- (void)tintColorDidChange;
 - (void)updateLastInteractionTime;
 
 @end

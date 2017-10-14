@@ -17,6 +17,7 @@
 @property (copy) NSString *_CTDataConnectionServiceType;
 @property unsigned int _TCPAdaptiveReadTimeout;
 @property unsigned int _TCPAdaptiveWriteTimeout;
+@property BOOL _allowTCPIOConnectionStreamTask;
 @property BOOL _allowsExpensiveAccess;
 @property BOOL _allowsIndefiniteConnections;
 @property BOOL _allowsMultipathTCP;
@@ -24,6 +25,7 @@
 @property BOOL _allowsResponseMonitoringDuringBodyTranmission;
 @property BOOL _allowsRetryForBackgroundDataTasks;
 @property BOOL _allowsTCPFastOpen;
+@property BOOL _allowsTLSSessionResumption;
 @property BOOL _allowsTLSSessionTickets;
 @property (copy) <NSURLSessionAppleIDContext> *_appleIDContext;
 @property (copy) NSData *_atsContext;
@@ -34,6 +36,8 @@
 @property double _connectionCachePurgeTimeout;
 @property (copy) NSString *_connectionPoolName;
 @property (copy) NSArray *_contentDispHeadEncFallback;
+@property unsigned int _customReadBufferSize;
+@property double _customReadBufferTimeout;
 @property (copy) NSURL *_directoryForDownloadedFiles;
 @property BOOL _disablesOutOfProcessDirectWiFiUsage;
 @property BOOL _disablesUseOfProxySession;
@@ -42,6 +46,9 @@
 @property BOOL _forcesNewConnections;
 @property BOOL _infersDiscretionaryFromOriginatingClient;
 @property (copy) NSString *_ledBellyServiceIdentifier;
+@property double _longLivedConnectionCacheCellPurgeTimeout;
+@property double _longLivedConnectionCachePurgeTimeout;
+@property BOOL _onBehalfOfPairedDevice;
 @property (copy) NSDictionary *_overriddenDelegateOptions;
 @property BOOL _overridesBackgroundSessionAutoRedirect;
 @property BOOL _performsEVCertCheck;
@@ -57,6 +64,7 @@
 @property BOOL _preventsDirectWiFiAccess;
 @property BOOL _preventsIdleSleep;
 @property BOOL _preventsIdleSleepOnceConnected;
+@property BOOL _preventsSystemHTTPProxyAuthentication;
 @property (getter=_isProxySession) BOOL _proxySession;
 @property BOOL _requiresClientToOpenFiles;
 @property BOOL _requiresPowerPluggedIn;
@@ -95,6 +103,8 @@
 @property double timeoutIntervalForRequest;
 @property double timeoutIntervalForResource;
 
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+
 + (id)AVBackgroundSessionConfigurationWithIdentifier:(id)arg1;
 + (id)_AVBackgroundSessionConfigurationWithIdentifier:(id)arg1;
 + (id)_defaultProtocolClasses;
@@ -114,5 +124,12 @@
 - (struct HTTPConnectionCacheLimits { int x1; int x2; int x3; int x4; int x5; int x6; int x7; int x8; int x9; int x10; })getConnectionCacheLimits;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDisposition:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
++ (id)_geo_ephemeralSessionConfiguration;
++ (id)auditTokenFromNSURLConnectionProperties:(id)arg1;
+
+- (void)applyNSURLConnectionProperties:(id)arg1;
 
 @end

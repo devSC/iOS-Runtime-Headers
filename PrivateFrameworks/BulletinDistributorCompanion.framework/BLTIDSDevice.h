@@ -3,21 +3,29 @@
  */
 
 @interface BLTIDSDevice : NSObject <BLTAbstractIDSDevice> {
-    IDSDevice *_device;
+    IDSDevice * _device;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isCloudReachable;
 @property (nonatomic, readonly) BOOL isConnected;
 @property (nonatomic, readonly) BOOL isDefaultPairedDevice;
 @property (nonatomic, readonly) BOOL isNearby;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)dealloc;
+- (id)description;
+- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
+- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)initWithIDSDevice:(id)arg1;
+- (BOOL)isCloudReachable;
 - (BOOL)isConnected;
 - (BOOL)isDefaultPairedDevice;
 - (BOOL)isNearby;
+- (id)succinctDescription;
+- (id)succinctDescriptionBuilder;
 
 @end

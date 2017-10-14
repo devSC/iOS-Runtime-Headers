@@ -3,9 +3,12 @@
  */
 
 @interface PKPaymentDefaultDataProvider : NSObject <PKPaymentDataProvider, PKPaymentServiceDelegate> {
-    PKPaymentService *_paymentService;
-    PKSecureElement *_secureElement;
-    <PKPaymentDataProviderDelegate> *delegate;
+    <PKPaymentDataProviderDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _delegateQueue;
+    NSHashTable * _delegates;
+    PKPaymentService * _paymentService;
+    NSObject<OS_dispatch_queue> * _replyQueue;
+    PKSecureElement * _secureElement;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -14,23 +17,42 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (nonatomic, readonly) BOOL isDeviceInRestrictedMode;
+@property (nonatomic, readonly) BOOL isPaymentHandoffDisabled;
 @property (nonatomic, readonly) NSString *secureElementIdentifier;
+@property (nonatomic, readonly) BOOL secureElementIsProductionSigned;
 @property (readonly) Class superclass;
 
+- (void).cxx_destruct;
+- (void)_accessDelegatesWithHandler:(id /* block */)arg1;
+- (void)addDelegate:(id)arg1;
 - (void)dealloc;
+- (id)defaultExpressFelicaTransitPassIdentifier;
 - (id)defaultPaymentApplicationForPassUniqueIdentifier:(id)arg1;
 - (id)defaultPaymentPassIdentifier;
 - (id)delegate;
+- (void)deletePaymentTransactionWithIdentifier:(id)arg1 forPassWithUniqueIdentifier:(id)arg2;
+- (void)felicaStateWithPassUniqueIdentifier:(id)arg1 paymentApplication:(id)arg2 completion:(id /* block */)arg3;
 - (id)init;
 - (BOOL)isDeviceInRestrictedMode;
+- (BOOL)isPaymentHandoffDisabled;
+- (void)paymentPassWithUniqueIdentifier:(id)arg1 didEnableMessageService:(BOOL)arg2;
 - (void)paymentPassWithUniqueIdentifier:(id)arg1 didEnableTransactionService:(BOOL)arg2;
 - (void)paymentPassWithUniqueIdentifier:(id)arg1 didReceiveTransaction:(id)arg2;
 - (void)paymentPassWithUniqueIdentifier:(id)arg1 didRemoveTransactionWithIdentifier:(id)arg2;
+- (void)paymentPassWithUniqueIdentifier:(id)arg1 didUpdateWithFelicaPassProperties:(id)arg2;
+- (void)removeDelegate:(id)arg1;
 - (id)secureElementIdentifier;
+- (BOOL)secureElementIsProductionSigned;
+- (void)setDefaultExpressFelicaTransitPassIdentifier:(id)arg1 withCredential:(id)arg2 completion:(id /* block */)arg3;
 - (void)setDefaultPaymentApplication:(id)arg1 forPassUniqueIdentifier:(id)arg2 completion:(id /* block */)arg3;
 - (void)setDefaultPaymentPassIdentifier:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setPaymentHandoffDisabled:(BOOL)arg1;
+- (BOOL)supportsInAppPaymentsForPass:(id)arg1;
+- (BOOL)supportsMessagesForPass:(id)arg1;
+- (BOOL)supportsNotificationsForPass:(id)arg1;
+- (BOOL)supportsTransactionsForPass:(id)arg1;
 - (id)transactionsAppLaunchTokenForPassWithUniqueIdentifier:(id)arg1;
-- (void)transactionsForPaymentPassWithUniqueIdentifier:(id)arg1 includingSources:(unsigned int)arg2 limit:(int)arg3 completion:(id /* block */)arg4;
+- (void)transactionsForPaymentPassWithUniqueIdentifier:(id)arg1 withTransactionSource:(unsigned int)arg2 withBackingData:(unsigned int)arg3 limit:(int)arg4 completion:(id /* block */)arg5;
 
 @end

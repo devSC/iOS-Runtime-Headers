@@ -2,14 +2,21 @@
    Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
  */
 
-@interface HMCharacteristicEvent : HMEvent <NSSecureCoding> {
-    HMCharacteristic *_characteristic;
-    <NSCopying> *_triggerValue;
+@interface HMCharacteristicEvent : HMEvent <HFPrettyDescription, HFStateDumpSerializable, NSSecureCoding> {
+    HMCharacteristic * _characteristic;
+    <NSCopying> * _triggerValue;
 }
 
-@property (nonatomic, readonly) HMCharacteristic *characteristic;
+@property (nonatomic, retain) HMCharacteristic *characteristic;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 @property (nonatomic, copy) <NSCopying> *triggerValue;
 
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
++ (id)createWithDictionary:(id)arg1 home:(id)arg2;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -19,9 +26,16 @@
 - (id)characteristic;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCharacteristic:(id)arg1 triggerValue:(id)arg2;
+- (id)initWithCharacteristic:(id)arg1 triggerValue:(id)arg2 allowWithoutNotification:(BOOL)arg3;
 - (id)initWithCoder:(id)arg1;
+- (void)setCharacteristic:(id)arg1;
 - (void)setTriggerValue:(id)arg1;
 - (id)triggerValue;
 - (void)updateTriggerValue:(id)arg1 completionHandler:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
+- (id)hf_prettyDescriptionOfType:(unsigned int)arg1;
+- (id)hf_serializedStateDumpRepresentation;
 
 @end

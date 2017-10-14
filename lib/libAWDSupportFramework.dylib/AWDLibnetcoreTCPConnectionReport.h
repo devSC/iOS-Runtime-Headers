@@ -3,21 +3,21 @@
  */
 
 @interface AWDLibnetcoreTCPConnectionReport : PBCodable <NSCopying> {
-    AWDLibnetcoreCellularFallbackReport *_cellularFallbackReport;
-    NSString *_clientIdentifier;
-    NSMutableArray *_connectionAttemptStatisticsReports;
-    AWDLibnetcoreConnectionStatisticsReport *_connectionStatisticsReport;
-    BOOL _delegated;
+    AWDLibnetcoreCellularFallbackReport * _cellularFallbackReport;
+    NSString * _clientIdentifier;
+    NSMutableArray * _connectionAttemptStatisticsReports;
+    AWDLibnetcoreConnectionStatisticsReport * _connectionStatisticsReport;
+    BOOL  _delegated;
     struct { 
         unsigned int iPAddressAttemptCount : 1; 
         unsigned int timestamp : 1; 
         unsigned int reportReason : 1; 
         unsigned int delegated : 1; 
-    } _has;
-    unsigned long long _iPAddressAttemptCount;
-    int _reportReason;
-    NSString *_sourceAppIdentifier;
-    unsigned long long _timestamp;
+    }  _has;
+    unsigned long long  _iPAddressAttemptCount;
+    int  _reportReason;
+    NSString * _sourceAppIdentifier;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic, retain) AWDLibnetcoreCellularFallbackReport *cellularFallbackReport;
@@ -38,6 +38,9 @@
 @property (nonatomic, retain) NSString *sourceAppIdentifier;
 @property (nonatomic) unsigned long long timestamp;
 
++ (Class)connectionAttemptStatisticsReportsType;
+
+- (int)StringAsReportReason:(id)arg1;
 - (void)addConnectionAttemptStatisticsReports:(id)arg1;
 - (id)cellularFallbackReport;
 - (void)clearConnectionAttemptStatisticsReports;
@@ -66,6 +69,7 @@
 - (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (int)reportReason;
+- (id)reportReasonAsString:(int)arg1;
 - (void)setCellularFallbackReport:(id)arg1;
 - (void)setClientIdentifier:(id)arg1;
 - (void)setConnectionAttemptStatisticsReports:(id)arg1;

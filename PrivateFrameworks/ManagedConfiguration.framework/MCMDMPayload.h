@@ -3,18 +3,19 @@
  */
 
 @interface MCMDMPayload : MCPayload {
-    int _accessRights;
-    NSString *_checkInURLString;
-    BOOL _checkOutWhenRemoved;
-    NSNumber *_checkOutWhenRemovedNum;
-    NSData *_identityPersistentID;
-    NSString *_identityUUID;
-    NSString *_serverURLString;
-    BOOL _signMessage;
-    NSNumber *_signMessageNum;
-    NSString *_topic;
-    BOOL _useDevelopmentAPNS;
-    NSNumber *_useDevelopmentAPNSNum;
+    int  _accessRights;
+    NSString * _checkInURLString;
+    BOOL  _checkOutWhenRemoved;
+    NSNumber * _checkOutWhenRemovedNum;
+    NSData * _identityPersistentID;
+    NSString * _identityUUID;
+    NSArray * _serverCapabilities;
+    NSString * _serverURLString;
+    BOOL  _signMessage;
+    NSNumber * _signMessageNum;
+    NSString * _topic;
+    BOOL  _useDevelopmentAPNS;
+    NSNumber * _useDevelopmentAPNSNum;
 }
 
 @property (nonatomic, readonly) int accessRights;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) NSData *identityPersistentID;
 @property (nonatomic, readonly, retain) NSString *identityUUID;
 @property (nonatomic, readonly, retain) NSArray *localizedAccessRightDescriptions;
+@property (nonatomic, readonly) NSArray *serverCapabilities;
 @property (nonatomic, readonly, retain) NSString *serverURLString;
 @property (nonatomic, readonly) BOOL signMessage;
 @property (nonatomic, readonly) NSNumber *signMessageNum;
@@ -50,6 +52,7 @@
 - (id)installationWarnings;
 - (id)localizedAccessRightDescriptions;
 - (id)payloadDescriptionKeyValueSections;
+- (id)serverCapabilities;
 - (id)serverURLString;
 - (void)setIdentityPersistentID:(id)arg1;
 - (BOOL)signMessage;

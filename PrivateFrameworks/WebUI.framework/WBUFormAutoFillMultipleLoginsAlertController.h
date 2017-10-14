@@ -2,8 +2,19 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@interface WBUFormAutoFillMultipleLoginsAlertController : UIAlertController
+@interface WBUFormAutoFillMultipleLoginsAlertController : UIAlertController {
+    id  _appDidEnterBackgroundObserver;
+    UIAlertAction * _cancelAction;
+    BOOL  _cancelsWhenAppEntersBackground;
+}
 
-+ (id)alertControllerWithMatches:(id)arg1 currentUser:(id)arg2 currentPassword:(id)arg3 lastGeneratedPassword:(id)arg4 formURL:(id)arg5 preferredStyle:(int)arg6 completionHandler:(id /* block */)arg7;
+@property (nonatomic) BOOL cancelsWhenAppEntersBackground;
+
++ (id)alertControllerWithMatchesFromFormProtectionSpace:(id)arg1 matchesFromOtherProtectionSpaces:(id)arg2 preferredStyle:(int)arg3 completionHandler:(id /* block */)arg4;
+
+- (void).cxx_destruct;
+- (BOOL)cancelsWhenAppEntersBackground;
+- (void)setCancelsWhenAppEntersBackground:(BOOL)arg1;
+- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

@@ -3,44 +3,45 @@
  */
 
 @interface MusicEntityViewContentTextDescriptor : NSObject <NSCopying> {
-    id /* block */ _attributedTextProvider;
-    int _backdropOverlayBlendMode;
-    UIColor *_backgroundColor;
-    NSMutableArray *_controlTargetActions;
-    float _defaultFirstBaselineOffset;
-    float _displayScale;
-    MPUFontDescriptor *_fontDescriptor;
-    int _lineBreakMode;
-    float _lineHeightMultiple;
-    float _lineSpacing;
-    float _maximumHeight;
-    int _maximumNumberOfLines;
-    int _maximumTextLengthForInput;
-    BOOL _needsTextAttributesUpdate;
-    float _scaledFirstBaselineOffset;
-    BOOL _shouldBaselineAlignTrailingAccessoryImage;
-    int _tag;
-    float _tallestFontAscender;
-    float _tallestFontBodyLeading;
-    float _tallestFontCapHeight;
-    float _tallestFontDescender;
-    int _textAlignment;
-    UIColor *_textColor;
-    BOOL _textColorFollowsTintColor;
-    MPUTextDrawingCache *_textDrawingCache;
-    NSString *_textPlaceholder;
-    UIColor *_textPlaceholderColor;
-    id /* block */ _textProvider;
-    NSSet *_textProviderAdditionalPropertiesToPrefetch;
-    NSString *_textValueFallbackLocalizationKey;
-    NSString *_textValueProperty;
-    UIColor *_tintColor;
-    UIImage *_trailingAccessoryImage;
+    id /* block */  _attributedTextProvider;
+    int  _backdropOverlayBlendMode;
+    UIColor * _backgroundColor;
+    NSMutableArray * _controlTargetActions;
+    float  _defaultFirstBaselineOffset;
+    float  _displayScale;
+    MPUFontDescriptor * _fontDescriptor;
+    int  _lineBreakMode;
+    float  _lineHeightMultiple;
+    float  _lineSpacing;
+    float  _maximumHeight;
+    int  _maximumNumberOfLines;
+    int  _maximumTextLengthForInput;
+    BOOL  _needsTextAttributesUpdate;
+    BOOL  _prefersAsynchronousLoading;
+    float  _scaledFirstBaselineOffset;
+    BOOL  _shouldBaselineAlignTrailingAccessoryImage;
+    int  _tag;
+    float  _tallestFontAscender;
+    float  _tallestFontBodyLeading;
+    float  _tallestFontCapHeight;
+    float  _tallestFontDescender;
+    int  _textAlignment;
+    UIColor * _textColor;
+    BOOL  _textColorFollowsTintColor;
+    MPUTextDrawingCache * _textDrawingCache;
+    NSString * _textPlaceholder;
+    UIColor * _textPlaceholderColor;
+    id /* block */  _textProvider;
+    NSSet * _textProviderAdditionalPropertiesToPrefetch;
+    NSString * _textValueFallbackLocalizationKey;
+    NSString * _textValueProperty;
+    UIColor * _tintColor;
+    UIImage * _trailingAccessoryImage;
     struct UIOffset { 
         float horizontal; 
         float vertical; 
-    } _trailingAccessoryOffset;
-    BOOL _useTextFallbackForEmptyString;
+    }  _trailingAccessoryOffset;
+    BOOL  _useTextFallbackForEmptyString;
 }
 
 @property (nonatomic, readonly) unsigned int allControlEvents;
@@ -58,6 +59,7 @@
 @property (nonatomic, readonly) float maximumHeight;
 @property (nonatomic) int maximumNumberOfLines;
 @property (nonatomic) int maximumTextLengthForInput;
+@property (nonatomic) BOOL prefersAsynchronousLoading;
 @property (nonatomic, readonly) float scaledFirstBaselineOffset;
 @property (nonatomic) BOOL shouldBaselineAlignTrailingAccessoryImage;
 @property (nonatomic) int tag;
@@ -102,6 +104,7 @@
 - (float)maximumHeight;
 - (int)maximumNumberOfLines;
 - (int)maximumTextLengthForInput;
+- (BOOL)prefersAsynchronousLoading;
 - (void)removeTarget:(id)arg1 action:(SEL)arg2 forControlEvents:(unsigned int)arg3;
 - (float)scaledFirstBaselineOffset;
 - (void)setAttributedTextProvider:(id /* block */)arg1;
@@ -115,6 +118,7 @@
 - (void)setLineSpacing:(float)arg1;
 - (void)setMaximumNumberOfLines:(int)arg1;
 - (void)setMaximumTextLengthForInput:(int)arg1;
+- (void)setPrefersAsynchronousLoading:(BOOL)arg1;
 - (void)setShouldBaselineAlignTrailingAccessoryImage:(BOOL)arg1;
 - (void)setTag:(int)arg1;
 - (void)setTextAlignment:(int)arg1;

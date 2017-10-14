@@ -2,42 +2,64 @@
    Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
  */
 
-@interface _ATXAppLaunchHistogram : NSObject <NSSecureCoding> {
-    NSObject<OS_dispatch_queue> *_bundleIdQueue;
-    NSMutableDictionary *_bundleIdToEventId;
-    NSMutableDictionary *_eventIdToBundleId;
-    _ATXTimeHistogram *_histogram;
-    NSObject<OS_dispatch_queue> *_histogramQueue;
-    double _launchThreshold;
-    unsigned int _maxEventId;
-    NSDictionary *_parameters;
-    int _secondsPerLocaltimeInterval;
+@interface _ATXAppLaunchHistogram : NSObject <NSSecureCoding, _ATXAppLaunchHistogramInterface> {
+    NSObject<OS_dispatch_queue> * _bundleIdQueue;
+    NSMutableDictionary * _bundleIdToEventId;
+    NSMutableDictionary * _eventIdToBundleId;
+    _ATXTimeHistogram * _histogram;
+    NSObject<OS_dispatch_queue> * _histogramQueue;
+    double  _launchThreshold;
+    unsigned int  _maxEventId;
+    NSDictionary * _parameters;
+    NSString * _prevBundleId;
+    NSDate * _prevDate;
+    unsigned int  _prevEventId;
+    unsigned short  _prevLocaltime;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
+    }  _prevLocaltimeLock;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
+    }  _prevLock;
+    NSTimeZone * _prevTimeZone;
+    int  _secondsPerLocaltimeInterval;
+    int  _timeBase;
+    _ATXInternalUninstallNotification * _uninstallNotificationListener;
 }
 
-+ (id)sharedInstance;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (unsigned int)_eventIdforBundleId:(id)arg1;
 - (unsigned short)_localTimeWithDate:(id)arg1;
-- (void)addLaunchWithBundleId:(id)arg1 withDate:(id)arg2;
+- (unsigned short)_localTimeWithDate:(id)arg1 timeZone:(id)arg2;
+- (id)_timeHistogram;
+- (void)addLaunchWithBundleId:(id)arg1 withDate:(id)arg2 timeZone:(id)arg3;
 - (BOOL)bundleHasBeenLaunched:(id)arg1;
+- (void)dealloc;
 - (void)decayByFactor:(double)arg1;
 - (void)decayWithHalfLife:(double)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithTimeHistogram:(id)arg1;
-- (id)initWithTimeHistogram:(id)arg1 bundleIdToEventId:(id)arg2 eventIdToBundleId:(id)arg3 maxEventId:(unsigned int)arg4;
+- (id)initWithTimeHistogram:(id)arg1 bundleIdToEventId:(id)arg2 eventIdToBundleId:(id)arg3 maxEventId:(unsigned int)arg4 timeBase:(int)arg5;
+- (id)initWithType:(int)arg1;
 - (double)launchPopularityWithBundleId:(id)arg1 date:(id)arg2;
 - (double)overallLaunchPopularityForBundleId:(id)arg1;
 - (double)relativeLaunchPopularityWithBundleId:(id)arg1 date:(id)arg2;
+- (double)relativeLaunchPopularityWithBundleId:(id)arg1 date:(id)arg2 andFilterSpan:(unsigned int)arg3;
+- (int)removeAllHistoryForAllBundleIds:(id)arg1;
 - (BOOL)removeAllHistoryForBundleId:(id)arg1;
-- (void)removeLaunchWithBundleId:(id)arg1 withDate:(id)arg2;
+- (void)removeLaunchWithBundleId:(id)arg1 withDate:(id)arg2 timeZone:(id)arg3;
 - (void)removeMappingForBundleId:(id)arg1;
 - (void)resetData;
 - (double)smoothRatio:(double)arg1 denom:(double)arg2;
+- (void)swapWithCoder:(id)arg1;
+- (double)totalLaunches;
+- (double)totalTimeOfDayLaunchesForDate:(id)arg1;
 - (void)verifyDataIntegrity;
 
 @end

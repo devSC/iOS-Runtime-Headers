@@ -3,7 +3,7 @@
  */
 
 @interface NSURLRequest : NSObject <NSCopying, NSMutableCopying, NSSecureCoding> {
-    NSURLRequestInternal *_internal;
+    NSURLRequestInternal * _internal;
 }
 
 @property (readonly, copy) NSData *HTTPBody;
@@ -18,6 +18,7 @@
 @property (readonly) unsigned int cachePolicy;
 @property (readonly, copy) NSURL *mainDocumentURL;
 @property (readonly) unsigned int networkServiceType;
+@property (nonatomic, readonly) NSURLRequest *parsec_tuscanyRequest;
 @property (readonly) double timeoutInterval;
 
 // Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
@@ -82,6 +83,10 @@
 
 - (BOOL)ak_usesHTTPSScheme;
 
+// Image: /System/Library/PrivateFrameworks/CoreParsec.framework/CoreParsec
+
+- (id)parsec_tuscanyRequest;
+
 // Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
 
 - (id)DARequestByApplyingStorageSession:(struct __CFURLStorageSession { }*)arg1;
@@ -91,6 +96,13 @@
 - (id)_gkDictionaryKey;
 - (id)_gkSAPSession;
 - (void)_gkSetSAPSession:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)frRequestWithURL:(id)arg1;
++ (id)frRequestWithURL:(id)arg1 cachePolicy:(unsigned int)arg2 timeoutInterval:(double)arg3;
++ (id)overrideUserAgent;
++ (void)setupFeldsparUserAgent;
 
 // Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
 

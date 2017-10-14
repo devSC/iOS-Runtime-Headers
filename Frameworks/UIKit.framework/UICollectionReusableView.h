@@ -3,23 +3,26 @@
  */
 
 @interface UICollectionReusableView : UIView {
-    UICollectionView *_collectionView;
-    UICollectionViewLayoutAttributes *_layoutAttributes;
-    BOOL _preferredAttributesValid;
+    UICollectionView * _collectionView;
+    UICollectionViewLayoutAttributes * _layoutAttributes;
+    BOOL  _preferredAttributesValid;
     struct { 
         unsigned int wasDequeued : 1; 
         unsigned int preferredAttributesValid : 1; 
         unsigned int generatingPreferredAttributes : 1; 
-    } _reusableViewFlags;
-    NSString *_reuseIdentifier;
-    int _updateAnimationCount;
+    }  _reusableViewFlags;
+    NSString * _reuseIdentifier;
+    int  _updateAnimationCount;
 }
 
 @property (getter=_collectionView, setter=_setCollectionView:, nonatomic) UICollectionView *collectionView;
 @property (getter=_isInUpdateAnimation, nonatomic, readonly) BOOL inUpdateAnimation;
 @property (getter=_layoutAttributes, setter=_setLayoutAttributes:, nonatomic, copy) UICollectionViewLayoutAttributes *layoutAttributes;
 @property (getter=_arePreferredAttributesValid, nonatomic) BOOL preferredAttributesValid;
-@property (nonatomic, copy) NSString *reuseIdentifier;
+@property (setter=_setReuseIdentifier:, nonatomic, copy) NSString *reuseIdentifier;
+@property (setter=tv_setBelongsToOldIndexPath:, nonatomic) BOOL tv_belongsToOldIndexPath;
+@property (getter=tv_isDisplayed, setter=tv_setDisplayed:, nonatomic) BOOL tv_displayed;
+@property (getter=tv_isFocused, setter=tv_setFocused:, nonatomic) BOOL tv_focused;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
@@ -40,12 +43,15 @@
 - (void)_setReuseIdentifier:(id)arg1;
 - (BOOL)_wasDequeued;
 - (void)applyLayoutAttributes:(id)arg1;
+- (BOOL)canBeEdited;
 - (void)didTransitionFromLayout:(id)arg1 toLayout:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)isEditing;
 - (id)preferredLayoutAttributesFittingAttributes:(id)arg1;
 - (void)prepareForReuse;
 - (id)reuseIdentifier;
+- (void)setEditing:(BOOL)arg1;
 - (void)setPreferredAttributesValid:(BOOL)arg1;
 - (void)willTransitionFromLayout:(id)arg1 toLayout:(id)arg2;
 
@@ -64,5 +70,14 @@
 - (id)_gkNewStandardInfoLabel;
 - (id)_gkNewStandardTitleLabel;
 - (void)_gkSetLeadingGuideConstraint:(id)arg1 trailingGuideConstraint:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (BOOL)tv_belongsToOldIndexPath;
+- (BOOL)tv_isDisplayed;
+- (BOOL)tv_isFocused;
+- (void)tv_setBelongsToOldIndexPath:(BOOL)arg1;
+- (void)tv_setDisplayed:(BOOL)arg1;
+- (void)tv_setFocused:(BOOL)arg1;
 
 @end

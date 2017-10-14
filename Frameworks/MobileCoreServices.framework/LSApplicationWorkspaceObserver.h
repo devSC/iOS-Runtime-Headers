@@ -3,7 +3,7 @@
  */
 
 @interface LSApplicationWorkspaceObserver : NSObject <LSApplicationWorkspaceObserverProtocol, NSSecureCoding> {
-    NSUUID *_uuid;
+    NSUUID * _uuid;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -14,6 +14,7 @@
 
 + (BOOL)supportsSecureCoding;
 
+- (void)applicationIconDidChange:(id)arg1;
 - (void)applicationInstallsArePrioritized:(id)arg1 arePaused:(id)arg2;
 - (void)applicationInstallsDidCancel:(id)arg1;
 - (void)applicationInstallsDidChange:(id)arg1;
@@ -22,6 +23,7 @@
 - (void)applicationInstallsDidResume:(id)arg1;
 - (void)applicationInstallsDidStart:(id)arg1;
 - (void)applicationInstallsDidUpdateIcon:(id)arg1;
+- (void)applicationStateDidChange:(id)arg1;
 - (void)applicationsDidFailToInstall:(id)arg1;
 - (void)applicationsDidFailToUninstall:(id)arg1;
 - (void)applicationsDidInstall:(id)arg1;

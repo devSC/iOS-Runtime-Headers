@@ -3,10 +3,12 @@
  */
 
 @interface GEOMapItemStorage : PBCodable <GEOMapItemPrivate, NSCopying> {
-    GEOMapItemClientAttributes *_clientAttributes;
-    GEOPlace *_place;
-    GEOPDPlace *_placeData;
-    GEOPlaceResult *_placeResult;
+    GEOMapItemClientAttributes * _clientAttributes;
+    GEOPDResultDetourInfo * _internalDetourInfo;
+    GEOLatLng * _originatingCoordinate;
+    GEOPlace * _place;
+    GEOPDPlace * _placeData;
+    GEOPlaceResult * _placeResult;
 }
 
 @property (getter=_acceptsApplePay, nonatomic, readonly) BOOL acceptsApplePay;
@@ -15,12 +17,14 @@
 @property (getter=_addressGeocodeAccuracy, nonatomic, readonly) int addressGeocodeAccuracy;
 @property (getter=_areaInMeters, nonatomic, readonly) double areaInMeters;
 @property (nonatomic, readonly) NSArray *areasOfInterest;
+@property (getter=_associatedApp, nonatomic, readonly) GEOAssociatedApp *associatedApp;
 @property (getter=_attribution, nonatomic, readonly) GEOMapItemPlaceAttribution *attribution;
 @property (getter=_businessClaim, nonatomic, readonly) GEOPDBusinessClaim *businessClaim;
 @property (getter=_businessURL, nonatomic, readonly) NSString *businessURL;
 @property (nonatomic, readonly) struct { double x1; double x2; } centerCoordinate;
 @property (getter=_clientAttributes, nonatomic, readonly) GEOMapItemClientAttributes *clientAttributes;
 @property (nonatomic, retain) GEOMapItemClientAttributes *clientAttributes;
+@property (getter=_completeOperatingHours, nonatomic, readonly) NSArray *completeOperatingHours;
 @property (nonatomic, readonly) int contactAddressType;
 @property (nonatomic, readonly) BOOL contactIsMe;
 @property (nonatomic, readonly) NSString *contactName;
@@ -29,15 +33,17 @@
 @property (getter=_customIconID, nonatomic, readonly) unsigned long long customIconID;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) GEOMapItemDetourInfo *detourInfo;
 @property (getter=_disambiguationName, nonatomic, readonly) NSString *disambiguationName;
 @property (nonatomic, readonly) GEOMapRegion *displayMapRegion;
 @property (nonatomic, readonly) GEOMapRegion *displayMapRegionOrNil;
 @property (getter=isDisputed, nonatomic, readonly) BOOL disputed;
 @property (nonatomic, readonly) NSData *encodedData;
-@property (getter=_encyclopedicAttribution, nonatomic, readonly) GEOMapItemAttribution *encyclopedicAttribution;
+@property (getter=_encyclopedicInfo, nonatomic, readonly) <GEOEncyclopedicInfo> *encyclopedicInfo;
 @property (nonatomic, readonly) NSDate *eventDate;
 @property (nonatomic, readonly) NSString *eventName;
-@property (getter=_factoids, nonatomic, readonly) NSArray *factoids;
+@property (nonatomic, readonly) NSData *externalTransitStationCode;
+@property (getter=_featureLink, nonatomic, readonly) GEORestaurantFeaturesLink *featureLink;
 @property (getter=_flyover, nonatomic, readonly) GEOPDFlyover *flyover;
 @property (getter=_flyoverAnnouncementMessage, nonatomic, readonly) NSString *flyoverAnnouncementMessage;
 @property (nonatomic, readonly) GEOAddress *geoAddress;
@@ -51,11 +57,15 @@
 @property (getter=_hasCurrentOperatingHours, nonatomic, readonly) BOOL hasCurrentOperatingHours;
 @property (getter=_hasDelivery, nonatomic, readonly) BOOL hasDelivery;
 @property (getter=_hasDeliveryAmenity, nonatomic, readonly) BOOL hasDeliveryAmenity;
+@property (getter=_hasEncyclopedicInfo, nonatomic, readonly) BOOL hasEncyclopedicInfo;
+@property (nonatomic, readonly) BOOL hasExpiredComponents;
+@property (getter=_hasFeatureLink, nonatomic, readonly) BOOL hasFeatureLink;
 @property (getter=_hasFlyover, nonatomic, readonly) BOOL hasFlyover;
 @property (getter=_hasGoodForKidsAmenity, nonatomic, readonly) BOOL hasGoodForKidsAmenity;
+@property (nonatomic, readonly) BOOL hasInternalDetourInfo;
 @property (getter=_hasMUID, nonatomic, readonly) BOOL hasMUID;
 @property (getter=_hasOperatingHours, nonatomic, readonly) BOOL hasOperatingHours;
-@property (getter=_hasPairOfFactoids, nonatomic, readonly) BOOL hasPairOfFactoids;
+@property (nonatomic, readonly) BOOL hasOriginatingCoordinate;
 @property (nonatomic, readonly) BOOL hasPlace;
 @property (nonatomic, readonly) BOOL hasPlaceData;
 @property (nonatomic, readonly) BOOL hasPlaceResult;
@@ -64,10 +74,10 @@
 @property (getter=_hasResultProviderID, nonatomic, readonly) BOOL hasResultProviderID;
 @property (getter=_hasTakesReservationsAmenity, nonatomic, readonly) BOOL hasTakesReservationsAmenity;
 @property (getter=_hasTelephone, nonatomic, readonly) BOOL hasTelephone;
-@property (getter=_hasTextBlock, nonatomic, readonly) BOOL hasTextBlock;
 @property (getter=_hasTransit, nonatomic, readonly) BOOL hasTransit;
 @property (getter=_hasUserRatingScore, nonatomic, readonly) BOOL hasUserRatingScore;
 @property (readonly) unsigned int hash;
+@property (nonatomic, retain) GEOPDResultDetourInfo *internalDetourInfo;
 @property (nonatomic, readonly) BOOL isEventAllDay;
 @property (nonatomic, readonly) GEOMapRegion *mapRegion;
 @property (getter=_muid, nonatomic, readonly) unsigned long long muid;
@@ -76,6 +86,8 @@
 @property (getter=_normalizedUserRatingScore, nonatomic, readonly) float normalizedUserRatingScore;
 @property (getter=_openingHoursOptions, nonatomic, readonly) unsigned int openingHoursOptions;
 @property (getter=_operatingHours, nonatomic, readonly) NSArray *operatingHours;
+@property (getter=_optsOutOfTelephoneAds, nonatomic, readonly) BOOL optsOutOfTelephoneAds;
+@property (nonatomic, retain) GEOLatLng *originatingCoordinate;
 @property (getter=_photos, nonatomic, readonly) NSArray *photos;
 @property (getter=_photosAttribution, nonatomic, readonly) GEOMapItemPhotosAttribution *photosAttribution;
 @property (getter=_place, nonatomic, readonly) GEOPlace *place;
@@ -85,6 +97,7 @@
 @property (getter=_placeDataAsData, nonatomic, readonly) NSData *placeDataAsData;
 @property (nonatomic, retain) GEOPlaceResult *placeResult;
 @property (getter=_placeType, nonatomic, readonly) int placeType;
+@property (getter=_poiPinpointURLString, nonatomic, readonly) NSString *poiPinpointURLString;
 @property (getter=_poiSurveyURLString, nonatomic, readonly) NSString *poiSurveyURLString;
 @property (getter=_priceRange, nonatomic, readonly) unsigned int priceRange;
 @property (getter=_providerURL, nonatomic, readonly, copy) NSURL *providerURL;
@@ -96,29 +109,32 @@
 @property (getter=_reviewsAttribution, nonatomic, readonly) GEOMapItemReviewsAttribution *reviewsAttribution;
 @property (getter=_roadAccessPoints, nonatomic, readonly) NSArray *roadAccessPoints;
 @property (getter=_sampleSizeForUserRatingScore, nonatomic, readonly) unsigned int sampleSizeForUserRatingScore;
+@property (nonatomic, readonly) NSArray *spatialMappedCategories;
 @property (getter=_styleAttributes, nonatomic, readonly) GEOFeatureStyleAttributes *styleAttributes;
 @property (readonly) Class superclass;
 @property (getter=_takesReservations, nonatomic, readonly) BOOL takesReservations;
 @property (getter=_telephone, nonatomic, readonly) NSString *telephone;
-@property (getter=_textBlockText, nonatomic, readonly) NSString *textBlockText;
-@property (getter=_textBlockTitle, nonatomic, readonly) NSString *textBlockTitle;
 @property (nonatomic, readonly) NSTimeZone *timezone;
-@property (getter=_transitAttribution, nonatomic, readonly) <GEOMapItemTransitAttribution> *transitAttribution;
+@property (getter=_tips, nonatomic, readonly) NSArray *tips;
+@property (getter=_transitAttribution, nonatomic, readonly) <GEOTransitAttribution> *transitAttribution;
 @property (getter=_transitInfo, nonatomic, readonly) <GEOMapItemTransitInfo> *transitInfo;
 @property (getter=isValid, nonatomic, readonly) BOOL valid;
 @property (getter=_vendorID, nonatomic, readonly, copy) NSString *vendorID;
 @property (getter=_webURL, nonatomic, readonly, copy) NSURL *webURL;
 
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
 + (id)mapItemStorageForCoordinate:(struct { double x1; double x2; })arg1;
 + (id)mapItemStorageForGEOMapItem:(id)arg1;
 + (id)mapItemStorageForGEOMapItem:(id)arg1 clientAttributes:(id)arg2;
-+ (id)mapItemStorageForGEOMapItemPrivate:(id)arg1;
 + (id)mapItemStorageForPlace:(id)arg1;
 + (id)mapItemStorageForPlace:(id)arg1 clientAttributes:(id)arg2;
 + (id)mapItemStorageForPlaceData:(id)arg1;
++ (id)mapItemStorageForPlaceData:(id)arg1 detourInfo:(id)arg2;
 + (id)mapItemStorageForPlaceResult:(id)arg1;
 + (id)mapItemStorageForSerializedMapItemStorage:(id)arg1;
 + (id)mapItemStorageForSerializedPlaceData:(id)arg1;
++ (id)mapItemStorageForSerializedPlaceData:(id)arg1 serializedDetourInfo:(id)arg2;
 
 - (BOOL)_acceptsApplePay;
 - (id)_additionalPlaceInfos;
@@ -126,14 +142,16 @@
 - (double)_areaInMeters;
 - (id)_arrivalMapRegionForTransportType:(int)arg1;
 - (id)_asPlaceInfo;
+- (id)_associatedApp;
 - (id)_attribution;
 - (id)_businessClaim;
 - (id)_businessURL;
 - (id)_clientAttributes;
+- (id)_completeOperatingHours;
 - (unsigned long long)_customIconID;
 - (id)_disambiguationName;
-- (id)_encyclopedicAttribution;
-- (id)_factoids;
+- (id)_encyclopedicInfo;
+- (id)_featureLink;
 - (id)_flyover;
 - (id)_flyoverAnnouncementMessage;
 - (id)_geoMapItem;
@@ -146,18 +164,18 @@
 - (BOOL)_hasCurrentOperatingHours;
 - (BOOL)_hasDelivery;
 - (BOOL)_hasDeliveryAmenity;
+- (BOOL)_hasEncyclopedicInfo;
+- (BOOL)_hasFeatureLink;
 - (BOOL)_hasFlyover;
 - (BOOL)_hasGoodForKidsAmenity;
 - (BOOL)_hasLocalizedCategoryNamesForType:(unsigned int)arg1;
 - (BOOL)_hasMUID;
 - (BOOL)_hasOperatingHours;
-- (BOOL)_hasPairOfFactoids;
 - (BOOL)_hasPriceRange;
 - (BOOL)_hasResolvablePartialInformation;
 - (BOOL)_hasResultProviderID;
 - (BOOL)_hasTakesReservationsAmenity;
 - (BOOL)_hasTelephone;
-- (BOOL)_hasTextBlock;
 - (BOOL)_hasTransit;
 - (BOOL)_hasTravelTimeForTransportType:(int)arg1;
 - (BOOL)_hasUserRatingScore;
@@ -168,12 +186,14 @@
 - (float)_normalizedUserRatingScore;
 - (unsigned int)_openingHoursOptions;
 - (id)_operatingHours;
+- (BOOL)_optsOutOfTelephoneAds;
 - (id)_photos;
 - (id)_photosAttribution;
 - (id)_place;
 - (id)_placeData;
 - (id)_placeDataAsData;
 - (int)_placeType;
+- (id)_poiPinpointURLString;
 - (id)_poiSurveyURLString;
 - (unsigned int)_priceRange;
 - (id)_providerURL;
@@ -189,8 +209,7 @@
 - (id)_styleAttributes;
 - (BOOL)_takesReservations;
 - (id)_telephone;
-- (id)_textBlockText;
-- (id)_textBlockTitle;
+- (id)_tips;
 - (id)_transitAttribution;
 - (id)_transitInfo;
 - (unsigned int)_travelDistanceForTransportType:(int)arg1;
@@ -198,6 +217,7 @@
 - (id)_vendorID;
 - (id)_webURL;
 - (id)addressDictionary;
+- (id)addressObject;
 - (id)areasOfInterest;
 - (struct { double x1; double x2; })centerCoordinate;
 - (id)clientAttributes;
@@ -210,40 +230,59 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)detourInfo;
 - (id)dictionaryRepresentation;
 - (id)displayMapRegion;
 - (id)displayMapRegionOrNil;
 - (id)encodedData;
 - (id)eventDate;
 - (id)eventName;
+- (id)externalTransitStationCode;
 - (id)geoAddress;
 - (id)geoFenceMapRegion;
 - (BOOL)hasClientAttributes;
+- (BOOL)hasExpiredComponents;
+- (BOOL)hasInternalDetourInfo;
+- (BOOL)hasOriginatingCoordinate;
 - (BOOL)hasPlace;
 - (BOOL)hasPlaceData;
 - (BOOL)hasPlaceResult;
 - (unsigned int)hash;
 - (id)initWithPlace:(id)arg1 clientAttributes:(id)arg2;
-- (id)initWithPlaceData:(id)arg1 clientAttributes:(id)arg2;
+- (id)initWithPlaceData:(id)arg1 detourInfo:(id)arg2 clientAttributes:(id)arg3;
 - (id)initWithPlaceResult:(id)arg1;
+- (id)internalDetourInfo;
 - (BOOL)isDisputed;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isEqualToMapItem:(id)arg1;
 - (BOOL)isEventAllDay;
 - (BOOL)isValid;
 - (id)mapRegion;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
+- (id)originatingCoordinate;
 - (id)place;
 - (id)placeData;
 - (id)placeResult;
 - (BOOL)readFrom:(id)arg1;
 - (int)referenceFrame;
 - (void)setClientAttributes:(id)arg1;
+- (void)setInternalDetourInfo:(id)arg1;
+- (void)setOriginatingCoordinate:(id)arg1;
 - (void)setPlace:(id)arg1;
 - (void)setPlaceData:(id)arg1;
 - (void)setPlaceResult:(id)arg1;
+- (id)spatialMappedCategories;
 - (id)spokenNameForLocale:(id)arg1;
 - (id)timezone;
+- (id)weatherDisplayName;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriClientFlow.framework/SiriClientFlow
+
++ (id)_fromJSONUsingReflection:(id)arg1;
++ (id)fromJSONProtoDictionary:(id)arg1;
+
+- (id)toJSONProtoDictionary;
 
 @end

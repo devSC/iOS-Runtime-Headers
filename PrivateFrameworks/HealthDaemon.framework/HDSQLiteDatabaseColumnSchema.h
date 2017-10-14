@@ -3,18 +3,18 @@
  */
 
 @interface HDSQLiteDatabaseColumnSchema : NSObject {
-    NSString *_defaultValue;
-    int _deletionAction;
-    NSString *_foreignKeyTargetColumn;
-    NSString *_foreignKeyTargetTable;
-    BOOL _isAutoincrement;
-    BOOL _isNullable;
-    BOOL _isPrimaryKey;
-    NSString *_name;
-    NSString *_type;
+    NSString * _defaultValue;
+    int  _deletionAction;
+    NSString * _foreignKeyTargetColumn;
+    NSString * _foreignKeyTargetTable;
+    BOOL  _isAutoincrement;
+    BOOL  _isNullable;
+    BOOL  _isPrimaryKey;
+    NSString * _name;
+    NSString * _type;
 }
 
-@property (nonatomic) NSString *defaultValue;
+@property (nonatomic, copy) NSString *defaultValue;
 @property (nonatomic) int deletionAction;
 @property (nonatomic, copy) NSString *foreignKeyTargetColumn;
 @property (nonatomic, copy) NSString *foreignKeyTargetTable;

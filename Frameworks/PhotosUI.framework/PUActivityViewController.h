@@ -3,15 +3,15 @@
  */
 
 @interface PUActivityViewController : UIActivityViewController <PLDismissableViewController> {
-    struct __CFString { } *_aggregateKey;
-    float _currentAssetPreparationProgress;
-    <PUActivityViewControllerDelegate> *_delegate;
-    PUActivityItemSourceController *_itemSourceController;
-    int _numberOfAssetPreparationsCompleted;
-    int _numberOfAssetsToPrepare;
-    NSArray *_photosActivities;
-    PUProgressIndicatorView *_preparationProgressView;
-    PLProgressView *_remakerProgressView;
+    struct __CFString { } * _aggregateKey;
+    float  _currentAssetPreparationProgress;
+    <PUActivityViewControllerDelegate> * _delegate;
+    PUActivityItemSourceController * _itemSourceController;
+    int  _numberOfAssetPreparationsCompleted;
+    int  _numberOfAssetsToPrepare;
+    NSArray * _photosActivities;
+    PUProgressIndicatorView * _preparationProgressView;
+    PLProgressView * _remakerProgressView;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -21,10 +21,9 @@
 @property (nonatomic, readonly) NSArray *photosActivities;
 @property (readonly) Class superclass;
 
-+ (id)_defaultActivityTypeOrder;
 + (BOOL)_isOutboundShareActivity:(id)arg1;
++ (id)defaultActivityTypeOrder;
 + (id)photosApplicationActivities;
-+ (void)trackUserActivity:(id)arg1 forAssets:(id)arg2;
 
 - (void).cxx_destruct;
 - (void)_cancel;

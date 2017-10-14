@@ -3,23 +3,23 @@
  */
 
 @interface CoreDAVDiscoveryAccountInfo : NSObject <CoreDAVAccountInfoProvider> {
-    NSString *_accountID;
-    <CoreDAVAccountInfoProvider> *_backingAccountInfoProvider;
-    NSError *_error;
-    NSString *_host;
-    NSData *_identityPersist;
-    NSString *_password;
-    int _port;
-    NSURL *_principalURL;
-    NSString *_scheme;
-    NSSet *_serverComplianceClasses;
-    NSDictionary *_serverHeaders;
-    NSString *_serverRoot;
-    BOOL _shouldFailAllTasks;
-    BOOL _started;
-    BOOL _success;
-    NSString *_user;
-    NSString *_userAgentHeader;
+    NSString * _accountID;
+    <CoreDAVAccountInfoProvider> * _backingAccountInfoProvider;
+    NSError * _error;
+    NSString * _host;
+    NSData * _identityPersist;
+    NSString * _password;
+    int  _port;
+    NSURL * _principalURL;
+    NSString * _scheme;
+    NSSet * _serverComplianceClasses;
+    NSDictionary * _serverHeaders;
+    NSString * _serverRoot;
+    BOOL  _shouldFailAllTasks;
+    BOOL  _started;
+    BOOL  _success;
+    NSString * _user;
+    NSString * _userAgentHeader;
 }
 
 @property (nonatomic, retain) NSString *accountID;
@@ -68,6 +68,7 @@
 - (int)port;
 - (id)principalURL;
 - (void)promptUserForNewCoreDAVPasswordWithCompletionBlock:(id /* block */)arg1;
+- (BOOL)renewCredential;
 - (id)scheme;
 - (id)serverComplianceClasses;
 - (id)serverHeaders;
@@ -93,6 +94,7 @@
 - (BOOL)shouldHandleHTTPCookiesForURL:(id)arg1;
 - (BOOL)shouldRetryUnauthorizedConnection:(id)arg1;
 - (BOOL)shouldSendClientInfoHeaderForURL:(id)arg1;
+- (BOOL)shouldTryRenewingCredential;
 - (BOOL)shouldTurnModalOnBadPassword;
 - (BOOL)shouldUseOpportunisticSockets;
 - (BOOL)started;

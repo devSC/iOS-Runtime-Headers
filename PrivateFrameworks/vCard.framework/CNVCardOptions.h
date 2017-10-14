@@ -3,24 +3,26 @@
  */
 
 @interface CNVCardOptions : NSObject {
-    NSArray *_availableEncodings;
-    BOOL _compressPhotos;
-    BOOL _includeNotes;
-    BOOL _includePhotos;
-    BOOL _includePrivateFields;
-    BOOL _includeUserSettings;
-    unsigned int _maximumEncodingLength;
-    unsigned int _maximumImageEncodingLength;
-    unsigned int _outputVersion;
-    BOOL _prefersUncroppedPhotos;
-    NSArray *_treatAsUnknownProperties;
-    BOOL _usePhotoReferencesIfAvailable;
+    NSArray * _availableEncodings;
+    BOOL  _compressPhotos;
+    BOOL  _includeNotes;
+    BOOL  _includePhotos;
+    BOOL  _includePrivateBundleIdentifiers;
+    BOOL  _includePrivateFields;
+    BOOL  _includeUserSettings;
+    unsigned int  _maximumEncodingLength;
+    unsigned int  _maximumImageEncodingLength;
+    unsigned int  _outputVersion;
+    BOOL  _prefersUncroppedPhotos;
+    NSArray * _treatAsUnknownProperties;
+    BOOL  _usePhotoReferencesIfAvailable;
 }
 
 @property (copy) NSArray *availableEncodings;
 @property BOOL compressPhotos;
 @property BOOL includeNotes;
 @property BOOL includePhotos;
+@property BOOL includePrivateBundleIdentifiers;
 @property BOOL includePrivateFields;
 @property BOOL includeUserSettings;
 @property unsigned int maximumEncodingLength;
@@ -32,10 +34,12 @@
 
 + (id)optionsFromPreferences;
 
+- (void).cxx_destruct;
 - (id)availableEncodings;
 - (BOOL)compressPhotos;
 - (BOOL)includeNotes;
 - (BOOL)includePhotos;
+- (BOOL)includePrivateBundleIdentifiers;
 - (BOOL)includePrivateFields;
 - (BOOL)includeUserSettings;
 - (unsigned int)maximumEncodingLength;
@@ -46,6 +50,7 @@
 - (void)setCompressPhotos:(BOOL)arg1;
 - (void)setIncludeNotes:(BOOL)arg1;
 - (void)setIncludePhotos:(BOOL)arg1;
+- (void)setIncludePrivateBundleIdentifiers:(BOOL)arg1;
 - (void)setIncludePrivateFields:(BOOL)arg1;
 - (void)setIncludeUserSettings:(BOOL)arg1;
 - (void)setMaximumEncodingLength:(unsigned int)arg1;

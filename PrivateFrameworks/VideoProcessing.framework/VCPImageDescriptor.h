@@ -3,15 +3,18 @@
  */
 
 @interface VCPImageDescriptor : NSObject {
-    float *_featureVector;
+    CVMLImageprintObservation * _imagePrint;
 }
 
++ (id)descriptorWithData:(id)arg1 isRaw:(BOOL)arg2;
++ (id)descriptorWithImage:(struct __CVBuffer { }*)arg1;
 + (int)preferredPixelFormat;
++ (BOOL)useDistanceIdentity;
 
+- (void).cxx_destruct;
 - (long)computeDistanceWith:(id)arg1 distance:(float*)arg2;
-- (long)computeFeature:(struct __CVBuffer { }*)arg1;
-- (long)computeRegionHistogram:(char *)arg1 width:(int)arg2 height:(int)arg3 stride:(int)arg4 histogram:(float*)arg5;
-- (void)dealloc;
+- (id)initWithData:(id)arg1 isRaw:(BOOL)arg2;
 - (id)initWithImage:(struct __CVBuffer { }*)arg1;
+- (id)serialize;
 
 @end

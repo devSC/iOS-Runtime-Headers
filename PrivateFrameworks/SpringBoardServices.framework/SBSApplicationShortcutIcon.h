@@ -9,8 +9,10 @@
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
 
+- (id)_initForSubclass;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
+- (id)init;
 - (id)initWithXPCDictionary:(id)arg1;
 
 @end

@@ -3,12 +3,14 @@
  */
 
 @interface UIKBCacheToken_Keyplane : UIKBCacheToken {
-    NSString *_geometrySetName;
-    NSString *_keySetName;
+    NSString * _annotations;
+    NSString * _cachedGestureKeySetName;
+    NSString * _geometrySetName;
+    NSString * _keySetName;
     struct CGSize { 
         float width; 
         float height; 
-    } _size;
+    }  _size;
     union { 
         struct { 
             unsigned int idiom : 6; 
@@ -18,12 +20,14 @@
             unsigned int rendering : 16; 
         } styling; 
         int intValue; 
-    } _style;
+    }  _style;
 }
 
 + (id)tokenForKeyplane:(id)arg1;
 
 - (id)_initWithKeyplane:(id)arg1 keylayout:(id)arg2;
+- (void)annotateWithBool:(BOOL)arg1;
+- (void)annotateWithInt:(int)arg1;
 - (void)dealloc;
 - (BOOL)isUsableForCacheToken:(id)arg1 withRenderFlags:(int)arg2;
 - (void)setSize:(struct CGSize { float x1; float x2; })arg1;

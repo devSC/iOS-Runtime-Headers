@@ -3,13 +3,13 @@
  */
 
 @interface PLFetchingAlbum : _PLFetchingAlbum {
-    NSPredicate *_ALAssetsGroupFilterPredicate;
-    unsigned int _batchSize;
-    NSArray *_cachedKeyAssets;
-    unsigned int _countForDisplay;
-    int _emptyState;
-    unsigned int _photosCount;
-    unsigned int _videosCount;
+    NSPredicate * _ALAssetsGroupFilterPredicate;
+    unsigned int  _batchSize;
+    NSArray * _cachedKeyAssets;
+    unsigned int  _countForDisplay;
+    int  _emptyState;
+    unsigned int  _photosCount;
+    unsigned int  _videosCount;
 }
 
 @property (nonatomic, retain) NSPredicate *ALAssetsGroupFilterPredicate;
@@ -25,7 +25,6 @@
 + (BOOL)contextShouldIgnoreChangesForALAssetsGroupFilterPredicate;
 + (BOOL)contextShouldIgnoreChangesForFetchRequest;
 + (BOOL)contextShouldIgnoreChangesForFetchedAssets;
-+ (BOOL)contextShouldIgnoreChangesForFetchedAssetsSet;
 + (id)predicateForAlbumKind:(int)arg1;
 + (id)sortDescriptorsForAlbumKind:(int)arg1;
 

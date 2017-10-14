@@ -3,16 +3,16 @@
  */
 
 @interface WKRotatingPopover : NSObject <UIPopoverControllerDelegate> {
-    <WKRotatingPopoverDelegate> *_dismissionDelegate;
-    BOOL _isRotating;
+    <WKRotatingPopoverDelegate> * _dismissionDelegate;
+    BOOL  _isRotating;
     struct RetainPtr<UIPopoverController> { 
         void *m_ptr; 
-    } _popoverController;
+    }  _popoverController;
     struct CGPoint { 
         float x; 
         float y; 
-    } _presentationPoint;
-    WKContentView *_view;
+    }  _presentationPoint;
+    WKContentView * _view;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic) struct CGPoint { float x1; float x2; } presentationPoint;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) WKContentView *view;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -38,6 +39,7 @@
 - (void)setDismissionDelegate:(id)arg1;
 - (void)setPopoverController:(id)arg1;
 - (void)setPresentationPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)view;
 - (void)willRotate:(id)arg1;
 
 @end

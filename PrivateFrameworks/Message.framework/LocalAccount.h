@@ -27,13 +27,16 @@
 - (id)primaryMailboxUid;
 - (id)pushedMailboxUids;
 - (BOOL)renameMailbox:(id)arg1 newName:(id)arg2 parent:(id)arg3;
+- (void)resetSpecialMailboxes;
 - (void)setHostname:(id)arg1;
 - (void)setPassword:(id)arg1;
 - (void)setUsername:(id)arg1;
 - (Class)storeClass;
 - (BOOL)supportsAppend;
 - (BOOL)supportsArchiving;
+- (BOOL)supportsPurge;
 - (id)transientDraftsFolder;
+- (id)transientDraftsFolderShouldCreate:(BOOL)arg1;
 - (id)uniqueId;
 
 @end

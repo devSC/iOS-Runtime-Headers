@@ -3,34 +3,32 @@
  */
 
 @interface SiriUIReviewsViewController : SiriUISnippetViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
-    NSMutableArray *_cellSizeForRowCache;
+    NSMutableArray * _cellSizeForRowCache;
     struct { 
         unsigned int didLoadCollectionView : 1; 
         unsigned int viewForRatingForReview : 1; 
         unsigned int offsetForRatingView : 1; 
-    } _delegateFlags;
-    BOOL _ignoreBackgroundInsets;
-    NSString *_providerName;
-    UIView *_providerView;
+    }  _delegateFlags;
+    NSString * _providerName;
+    UIView * _providerView;
     struct UIOffset { 
         float horizontal; 
         float vertical; 
-    } _providerViewOffset;
-    int _reviewCharacterLimit;
-    SALocalSearchReviewList *_reviewList;
-    <SiriUIReviewsViewControllerDelegate> *_reviewsDelegate;
-    UIView *_totalRatingView;
+    }  _providerViewOffset;
+    int  _reviewCharacterLimit;
+    SALocalSearchReviewList * _reviewList;
+    <SiriUIReviewsViewControllerDelegate> * _reviewsDelegate;
+    UIView * _totalRatingView;
     struct UIOffset { 
         float horizontal; 
         float vertical; 
-    } _totalRatingViewOffset;
-    float _verticalSpaceNeededForRatingView;
+    }  _totalRatingViewOffset;
+    float  _verticalSpaceNeededForRatingView;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
-@property (nonatomic) BOOL ignoreBackgroundInsets;
 @property (nonatomic, copy) NSString *providerName;
 @property (nonatomic, retain) UIView *providerView;
 @property (nonatomic) struct UIOffset { float x1; float x2; } providerViewOffset;
@@ -66,7 +64,6 @@
 - (float)desiredHeightForWidth:(float)arg1;
 - (void)didEndDisplayingReusableHeaderView:(id)arg1;
 - (Class)headerViewClass;
-- (BOOL)ignoreBackgroundInsets;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)loadView;
 - (id)providerName;
@@ -75,7 +72,6 @@
 - (int)reviewCharacterLimit;
 - (id)reviewList;
 - (id)reviewsDelegate;
-- (void)setIgnoreBackgroundInsets:(BOOL)arg1;
 - (void)setProviderName:(id)arg1;
 - (void)setProviderView:(id)arg1;
 - (void)setProviderViewOffset:(struct UIOffset { float x1; float x2; })arg1;

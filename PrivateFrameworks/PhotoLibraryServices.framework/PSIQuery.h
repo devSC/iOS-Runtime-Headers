@@ -3,14 +3,14 @@
  */
 
 @interface PSIQuery : NSObject {
-    BOOL _didStart;
-    id /* block */ _earlyNotificationHandler;
-    PSIDatabase *_idx;
-    BOOL _isCanceled;
-    BOOL _isWildcardQuery;
-    int _queryId;
-    NSString *_searchText;
-    NSObject<OS_dispatch_queue> *_syncQueue;
+    BOOL  _didStart;
+    id /* block */  _earlyNotificationHandler;
+    PSIDatabase * _idx;
+    BOOL  _isCanceled;
+    BOOL  _isWildcardQuery;
+    int  _queryId;
+    NSString * _searchText;
+    NSObject<OS_dispatch_queue> * _syncQueue;
 }
 
 @property (getter=isCanceled, readonly) BOOL canceled;
@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) int queryId;
 @property (nonatomic, readonly, copy) NSString *searchText;
 
+- (void).cxx_destruct;
 - (void)cancel;
 - (void)dealloc;
 - (id)initWithQueryId:(int)arg1 index:(id)arg2 searchText:(id)arg3 isWildcardQuery:(BOOL)arg4;

@@ -3,15 +3,23 @@
  */
 
 @interface _ATXAppLaunchHistogramManager : NSObject {
-    NSMutableDictionary *_histograms;
+    int  _SSIDPruningMethod;
+    NSMutableDictionary * _categoricalHistograms;
+    NSMutableDictionary * _histograms;
+    int  _maxSSIDCount;
+    NSDictionary * _parameters;
+    BOOL  _persistentStore;
 }
 
 + (void)resetSharedInstance;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (id)histogramForLaunchType:(unsigned int)arg1;
+- (id)categoricalHistogramForLaunchType:(int)arg1;
+- (id)histogramForLaunchType:(int)arg1;
 - (id)init;
-- (id)pathForLaunchType:(unsigned int)arg1;
+- (id)initAndPersist:(BOOL)arg1;
+- (id)initWithInMemoryStore;
+- (id)initWithPersistentStore;
 
 @end

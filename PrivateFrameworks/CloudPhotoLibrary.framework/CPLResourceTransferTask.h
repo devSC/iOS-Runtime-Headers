@@ -3,18 +3,16 @@
  */
 
 @interface CPLResourceTransferTask : NSObject <NSSecureCoding> {
-    BOOL _cancelled;
-    int _priority;
-    CPLResource *_resource;
-    NSString *_taskIdentifier;
+    BOOL  _cancelled;
+    int  _priority;
+    CPLResource * _resource;
+    NSString * _taskIdentifier;
 }
 
 @property (getter=isCancelled, nonatomic, readonly) BOOL cancelled;
 @property (getter=isHighPriority, nonatomic) BOOL highPriority;
 @property (nonatomic, retain) CPLResource *resource;
 @property (nonatomic, copy) NSString *taskIdentifier;
-
-// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
 + (BOOL)supportsSecureCoding;
 
@@ -36,10 +34,5 @@
 - (void)setResource:(id)arg1;
 - (void)setTaskIdentifier:(id)arg1;
 - (id)taskIdentifier;
-
-// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
-
-- (id)assetUuid;
-- (void)setAssetUuid:(id)arg1;
 
 @end

@@ -3,9 +3,10 @@
  */
 
 @interface NSURLProtectionSpace : NSObject <NSCopying, NSSecureCoding> {
-    NSURLProtectionSpaceInternal *_internal;
+    NSURLProtectionSpaceInternal * _internal;
 }
 
+@property (nonatomic, readonly, copy) NSString *_sf_highLevelDomainAndPort;
 @property (readonly, copy) NSString *authenticationMethod;
 @property (readonly, copy) NSString *host;
 @property (readonly) BOOL isProxy;
@@ -45,7 +46,11 @@
 - (BOOL)receivesCredentialSecurely;
 - (struct __SecTrust { }*)serverTrust;
 
-// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (id)_sf_highLevelDomainAndPort;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
 
 + (id)safari_HTMLFormProtectionSpaceForURL:(id)arg1;
 

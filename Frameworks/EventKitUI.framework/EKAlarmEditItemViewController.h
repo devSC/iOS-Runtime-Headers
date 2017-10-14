@@ -3,15 +3,17 @@
  */
 
 @interface EKAlarmEditItemViewController : EKEditItemViewController <CalendarEventAlarmTableDelegate> {
-    EKUIAlarm *_alarm;
-    unsigned int _alarmIndex;
-    BOOL _allDay;
-    EKCalendar *_calendar;
-    BOOL _eventHasTravelTime;
-    BOOL _immediateAlarmCreation;
-    BOOL _shouldAllowAlarmsTriggeringAfterStartDate;
-    BOOL _shouldShowLeaveNowOption;
-    CalendarEventAlarmTable *_table;
+    EKUIAlarm * _alarm;
+    unsigned int  _alarmIndex;
+    BOOL  _allDay;
+    EKCalendar * _calendar;
+    BOOL  _eventHasTravelTime;
+    BOOL  _immediateAlarmCreation;
+    EKUIAlarm * _previousAlarm;
+    EKUIRecurrenceAlertController * _recurrenceAlertController;
+    BOOL  _shouldAllowAlarmsTriggeringAfterStartDate;
+    BOOL  _shouldShowLeaveNowOption;
+    CalendarEventAlarmTable * _table;
 }
 
 @property (nonatomic, retain) EKUIAlarm *alarm;
@@ -23,6 +25,7 @@
 @property (nonatomic) BOOL eventHasTravelTime;
 @property (readonly) unsigned int hash;
 @property (nonatomic) int presetIdentifier;
+@property (nonatomic, retain) EKUIAlarm *previousAlarm;
 @property (nonatomic) BOOL shouldAllowAlarmsTriggeringAfterStartDate;
 @property (nonatomic) BOOL shouldShowLeaveNowOption;
 @property (readonly) Class superclass;
@@ -39,6 +42,7 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 styleProvider:(id)arg2;
 - (void)loadView;
 - (int)presetIdentifier;
+- (id)previousAlarm;
 - (void)setAlarm:(id)arg1;
 - (void)setAlarmIndex:(unsigned int)arg1;
 - (void)setAllDay:(BOOL)arg1;
@@ -46,6 +50,7 @@
 - (void)setCustomString:(id)arg1;
 - (void)setEventHasTravelTime:(BOOL)arg1;
 - (void)setPresetIdentifier:(int)arg1;
+- (void)setPreviousAlarm:(id)arg1;
 - (void)setShouldAllowAlarmsTriggeringAfterStartDate:(BOOL)arg1;
 - (void)setShouldShowLeaveNowOption:(BOOL)arg1;
 - (BOOL)shouldAllowAlarmsTriggeringAfterStartDate;

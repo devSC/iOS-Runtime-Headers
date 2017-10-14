@@ -5,11 +5,11 @@
 @interface HDSQLiteDatabase : NSObject {
     struct unordered_set<sqlite3_stmt *, std::__1::hash<sqlite3_stmt *>, std::__1::equal_to<sqlite3_stmt *>, std::__1::allocator<sqlite3_stmt *> > { 
         struct __hash_table<sqlite3_stmt *, std::__1::hash<sqlite3_stmt *>, std::__1::equal_to<sqlite3_stmt *>, std::__1::allocator<sqlite3_stmt *> > { 
-            struct unique_ptr<std::__1::__hash_node<sqlite3_stmt *, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<sqlite3_stmt *, void *> *> > > { 
-                struct __compressed_pair<std::__1::__hash_node<sqlite3_stmt *, void *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<sqlite3_stmt *, void *> *> > > { 
-                    struct __hash_node<sqlite3_stmt *, void *> {} **__first_; 
-                    struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<sqlite3_stmt *, void *> *> > { 
-                        struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<sqlite3_stmt *, void *> *> > { 
+            struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> *> > > { 
+                struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> *> > > { 
+                    struct __hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> {} **__first_; 
+                    struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> *> > { 
+                        struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> *> > { 
                             unsigned long __first_; 
                         } __data_; 
                     } __second_; 
@@ -17,7 +17,7 @@
             } __bucket_list_; 
             struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *>, std::__1::allocator<std::__1::__hash_node<sqlite3_stmt *, void *> > > { 
                 struct __hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> { 
-                    struct __hash_node<sqlite3_stmt *, void *> {} *__next_; 
+                    struct __hash_node_base<std::__1::__hash_node<sqlite3_stmt *, void *> *> {} *__next_; 
                 } __first_; 
             } __p1_; 
             struct __compressed_pair<unsigned long, std::__1::hash<sqlite3_stmt *> > { 
@@ -27,69 +27,83 @@
                 float __first_; 
             } __p3_; 
         } __table_; 
-    } _activeStatements;
-    NSMutableDictionary *_attachedDatabaseURLsByName;
-    BOOL _checkpointRequired;
-    struct sqlite3 { } *_db;
-    NSURL *_fileURL;
-    BOOL _isInTransaction;
-    struct __CFDictionary { } *_statementCache;
-    int _transactionType;
+    }  _activeStatements;
+    NSMutableDictionary * _attachedDatabaseURLsByName;
+    BOOL  _checkpointRequired;
+    struct sqlite3 { } * _db;
+    <HDSQLiteDatabaseDelegate> * _delegate;
+    NSURL * _fileURL;
+    BOOL  _isHandlingTransactionEnd;
+    BOOL  _isInTransaction;
+    BOOL  _isWriter;
+    NSMutableArray * _onCommitBlocks;
+    NSMutableArray * _onRollbackBlocks;
+    BOOL  _requiresRollback;
+    struct __CFDictionary { } * _statementCache;
+    int  _transactionType;
 }
 
 @property (nonatomic) BOOL checkpointRequired;
+@property (nonatomic) <HDSQLiteDatabaseDelegate> *delegate;
 @property (nonatomic, readonly) NSURL *fileURL;
+@property (nonatomic) BOOL isWriter;
 
 + (BOOL)_stepStatement:(struct sqlite3_stmt { }*)arg1 hasRow:(BOOL*)arg2 resultCode:(int*)arg3 error:(id*)arg4;
-+ (BOOL)deleteDatabaseAtPath:(id)arg1 reason:(id)arg2;
-+ (BOOL)enumerateStatement:(struct sqlite3_stmt { }*)arg1 error:(id*)arg2 block:(id /* block */)arg3;
-+ (BOOL)statementDidFinishAfterStepping:(struct sqlite3_stmt { }*)arg1 error:(id*)arg2;
-+ (BOOL)statementDidFinishAfterStepping:(struct sqlite3_stmt { }*)arg1 resultCode:(int*)arg2 error:(id*)arg3;
-+ (BOOL)statementHasRowAfterStepping:(struct sqlite3_stmt { }*)arg1 error:(id*)arg2;
-+ (BOOL)statementHasRowAfterStepping:(struct sqlite3_stmt { }*)arg1 resultCode:(int*)arg2 error:(id*)arg3;
++ (id)highFrequencyDatabaseURLWithHomeDirectoryPath:(id)arg1;
++ (id)mainDatabaseURLWithHomeDirectoryPath:(id)arg1;
++ (id)protectedDatabaseURLWithHomeDirectoryPath:(id)arg1;
 + (id)virtualFilesystemModule;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_assertNoActiveStatements;
+- (BOOL)_executeSQL:(id)arg1 cache:(BOOL)arg2 error:(id*)arg3 bindingHandler:(id /* block */)arg4 enumerationHandler:(id /* block */)arg5;
+- (BOOL)_executeSQL:(id)arg1 error:(id*)arg2;
+- (BOOL)_executeSQL:(id)arg1 error:(id*)arg2 retryIfBusy:(BOOL)arg3;
 - (BOOL)_integerValueForPragma:(id)arg1 databaseName:(id)arg2 value:(long long*)arg3 error:(id*)arg4;
+- (int)_openForWriting:(BOOL)arg1 error:(id*)arg2;
+- (BOOL)_prepareStatementForSQL:(id)arg1 cache:(BOOL)arg2 error:(id*)arg3 usingBlock:(id /* block */)arg4;
+- (void)_resetStatement:(struct sqlite3_stmt { }*)arg1 finalize:(BOOL)arg2;
 - (id)_schemaForDatabaseWithName:(id)arg1 error:(id*)arg2;
 - (id)_schemaForIndexWithName:(id)arg1 database:(id)arg2 error:(id*)arg3;
 - (id)_schemaForTableWithName:(id)arg1 database:(id)arg2 error:(id*)arg3;
-- (BOOL)_setPragma:(id)arg1 integerValue:(int)arg2 withDatabaseName:(id)arg3 error:(id*)arg4;
+- (BOOL)_setPragma:(id)arg1 integerValue:(long long)arg2 withDatabaseName:(id)arg3 error:(id*)arg4;
 - (struct sqlite3_stmt { }*)_statementForSQL:(id)arg1 cache:(BOOL)arg2 error:(id*)arg3;
+- (BOOL)_verifyDatabaseOpenAndReturnError:(id*)arg1;
 - (void)accessDatabaseUsingBlock:(id /* block */)arg1;
-- (BOOL)addColumnInTable:(id)arg1 columnSQL:(id)arg2 error:(id*)arg3;
-- (BOOL)alterTable:(id)arg1 removeColumns:(id)arg2 renameColumns:(id)arg3 error:(id*)arg4;
+- (BOOL)accessHFDForReadingWithError:(id*)arg1 block:(id /* block */)arg2;
+- (BOOL)accessHFDForWritingWithError:(id*)arg1 block:(id /* block */)arg2;
 - (BOOL)attachDatabaseWithName:(id)arg1 fileURL:(id)arg2 error:(id*)arg3;
+- (BOOL)attachProtectedDatabaseWithURL:(id)arg1 error:(id*)arg2;
 - (BOOL)checkpointRequired;
+- (void)close;
 - (BOOL)columnIsNullable:(id)arg1 inTable:(id)arg2 error:(id*)arg3;
 - (void)dealloc;
+- (id)delegate;
 - (BOOL)detachDatabaseWithName:(id)arg1 error:(id*)arg2;
-- (BOOL)dropTable:(id)arg1 error:(id*)arg2;
+- (BOOL)detachProtectedDatabaseWithError:(id*)arg1;
 - (id)dumpSchemaWithError:(id*)arg1;
 - (BOOL)enableIncrementalAutovacuumWithError:(id*)arg1;
-- (BOOL)enumerateResultsForSQL:(id)arg1 error:(id*)arg2 block:(id /* block */)arg3;
-- (BOOL)executeSQL:(id)arg1 argument:(id)arg2 error:(id*)arg3;
-- (BOOL)executeSQL:(id)arg1 error:(id*)arg2;
-- (BOOL)executeSQL:(id)arg1 error:(id*)arg2 retryIfBusy:(BOOL)arg3;
+- (BOOL)executeSQL:(id)arg1 error:(id*)arg2 bindingHandler:(id /* block */)arg3 enumerationHandler:(id /* block */)arg4;
+- (BOOL)executeUncachedSQL:(id)arg1 error:(id*)arg2 bindingHandler:(id /* block */)arg3 enumerationHandler:(id /* block */)arg4;
 - (id)fileURL;
 - (BOOL)foreignKeyExistsFromTable:(id)arg1 column:(id)arg2 toTable:(id)arg3 column:(id)arg4 error:(id*)arg5;
 - (id)getLastErrorWithResultCode:(int)arg1;
+- (id)highFrequenceDatabaseURL;
 - (BOOL)incrementalVacuumDatabaseIfNeeded:(id)arg1 error:(id*)arg2;
-- (id)initWithDatabaseURL:(id)arg1;
-- (BOOL)insertColumns:(id)arg1 fromTableNamed:(id)arg2 toTableNamed:(id)arg3 error:(id*)arg4;
+- (id)initWithDatabaseURL:(id)arg1 delegate:(id)arg2;
 - (BOOL)isDatabaseWithNameAttached:(id)arg1;
+- (BOOL)isProtectedDatabaseAttached;
+- (BOOL)isWriter;
 - (id)lastInsertRowID;
-- (int)open;
+- (void)onCommit:(id /* block */)arg1 orRollback:(id /* block */)arg2;
+- (int)openForReadingWithError:(id*)arg1;
+- (int)openWithError:(id*)arg1;
 - (BOOL)performTransactionWithType:(int)arg1 error:(id*)arg2 usingBlock:(id /* block */)arg3;
-- (BOOL)prepareStatementForSQL:(id)arg1 cache:(BOOL)arg2 error:(id*)arg3 usingBlock:(id /* block */)arg4;
-- (struct sqlite3_stmt { }*)preparedStatementForSQL:(id)arg1 cache:(BOOL)arg2 error:(id*)arg3;
-- (BOOL)removeColumnInTable:(id)arg1 name:(id)arg2 error:(id*)arg3;
-- (BOOL)renameColumnInTable:(id)arg1 oldName:(id)arg2 newName:(id)arg3 error:(id*)arg4;
-- (BOOL)renameTable:(id)arg1 newName:(id)arg2 error:(id*)arg3;
-- (void)resetStatement:(struct sqlite3_stmt { }*)arg1 finalize:(BOOL)arg2;
+- (void)requireRollback;
 - (void)setCheckpointRequired:(BOOL)arg1;
+- (void)setDelegate:(id)arg1;
+- (void)setIsWriter:(BOOL)arg1;
 - (BOOL)setUserVersion:(int)arg1 withDatabaseName:(id)arg2 error:(id*)arg3;
 - (BOOL)table:(id)arg1 hasColumnWithName:(id)arg2 error:(id*)arg3;
 - (id)typeOfColumn:(id)arg1 inTable:(id)arg2 error:(id*)arg3;

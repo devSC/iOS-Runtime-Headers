@@ -3,25 +3,27 @@
  */
 
 @interface CKQueryOperation : CKDatabaseOperation {
-    CKQueryCursor *_cursor;
-    NSArray *_desiredKeys;
-    BOOL _isFinishing;
-    CKQuery *_query;
-    id /* block */ _queryCompletionBlock;
-    NSObject<OS_dispatch_queue> *_queryResultQueue;
-    id /* block */ _recordFetchedBlock;
-    CKQueryCursor *_resultsCursor;
-    unsigned int _resultsLimit;
-    BOOL _shouldFetchAssetContent;
-    CKRecordZoneID *_zoneID;
+    NSDictionary * _assetTransferOptionsByKey;
+    CKQueryCursor * _cursor;
+    NSArray * _desiredKeys;
+    BOOL  _fetchAllResults;
+    CKQuery * _query;
+    id /* block */  _queryCompletionBlock;
+    id /* block */  _queryCursorFetchedBlock;
+    id /* block */  _recordFetchedBlock;
+    CKQueryCursor * _resultsCursor;
+    unsigned int  _resultsLimit;
+    BOOL  _shouldFetchAssetContent;
+    CKRecordZoneID * _zoneID;
 }
 
+@property (nonatomic, retain) NSDictionary *assetTransferOptionsByKey;
 @property (nonatomic, copy) CKQueryCursor *cursor;
 @property (nonatomic, copy) NSArray *desiredKeys;
-@property (nonatomic) BOOL isFinishing;
+@property (nonatomic) BOOL fetchAllResults;
 @property (nonatomic, copy) CKQuery *query;
 @property (nonatomic, copy) id /* block */ queryCompletionBlock;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queryResultQueue;
+@property (nonatomic, copy) id /* block */ queryCursorFetchedBlock;
 @property (nonatomic, copy) id /* block */ recordFetchedBlock;
 @property (nonatomic, retain) CKQueryCursor *resultsCursor;
 @property (nonatomic) unsigned int resultsLimit;
@@ -33,27 +35,31 @@
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleCompletionCallback:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
-- (unsigned long long)activityStart;
+- (id)activityCreate;
+- (id)assetTransferOptionsByKey;
 - (id)cursor;
 - (id)desiredKeys;
+- (BOOL)fetchAllResults;
+- (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (BOOL)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithCursor:(id)arg1;
 - (id)initWithQuery:(id)arg1;
-- (BOOL)isFinishing;
 - (void)performCKOperation;
 - (id)query;
 - (id /* block */)queryCompletionBlock;
-- (id)queryResultQueue;
+- (id /* block */)queryCursorFetchedBlock;
 - (id /* block */)recordFetchedBlock;
 - (id)resultsCursor;
 - (unsigned int)resultsLimit;
+- (void)setAssetTransferOptionsByKey:(id)arg1;
 - (void)setCursor:(id)arg1;
 - (void)setDesiredKeys:(id)arg1;
-- (void)setIsFinishing:(BOOL)arg1;
+- (void)setFetchAllResults:(BOOL)arg1;
 - (void)setQuery:(id)arg1;
 - (void)setQueryCompletionBlock:(id /* block */)arg1;
-- (void)setQueryResultQueue:(id)arg1;
+- (void)setQueryCursorFetchedBlock:(id /* block */)arg1;
 - (void)setRecordFetchedBlock:(id /* block */)arg1;
 - (void)setResultsCursor:(id)arg1;
 - (void)setResultsLimit:(unsigned int)arg1;

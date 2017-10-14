@@ -3,17 +3,15 @@
  */
 
 @interface RUIVariableHeightCell : RemoteUITableViewCell {
-    BOOL _supportsAccessory;
+    BOOL  _supportsAccessory;
 }
 
 @property (nonatomic) BOOL supportsAccessory;
 
-- (float)contentWidth;
-- (struct CGSize { float x1; float x2; })detailLabelSizeForWidth:(float)arg1;
 - (float)height;
 - (void)layoutSubviews;
 - (void)setSupportsAccessory:(BOOL)arg1;
+- (struct CGSize { float x1; float x2; })sizeForTextLabel:(id)arg1 width:(float)arg2;
 - (BOOL)supportsAccessory;
-- (struct CGSize { float x1; float x2; })textLabelSizeForWidth:(float)arg1;
 
 @end

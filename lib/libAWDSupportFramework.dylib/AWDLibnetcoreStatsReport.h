@@ -6,14 +6,15 @@
     struct { 
         unsigned int timestamp : 1; 
         unsigned int reportReason : 1; 
-    } _has;
-    AWDLibnetcoreMbufStatsReport *_mbufStatisticsReport;
-    AWDLibnetcoreNetworkdStatsReport *_networkdStatisticsReport;
-    unsigned int _reportReason;
-    AWDLibnetcoreTCPECNStatsReport *_tcpECNStatisticsReport;
-    AWDLibnetcoreTCPStatsReport *_tcpStatisticsReport;
-    AWDLibnetcoreTCPTFOStatsReport *_tcpTFOStatisticsReport;
-    unsigned long long _timestamp;
+    }  _has;
+    AWDLibnetcoreMbufStatsReport * _mbufStatisticsReport;
+    AWDLibnetcoreNetworkdStatsReport * _networkdStatisticsReport;
+    unsigned int  _reportReason;
+    NSMutableArray * _tcpECNInterfaceReports;
+    AWDLibnetcoreTCPECNStatsReport * _tcpECNStatisticsReport;
+    AWDLibnetcoreTCPStatsReport * _tcpStatisticsReport;
+    AWDLibnetcoreTCPTFOStatsReport * _tcpTFOStatisticsReport;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic, readonly) BOOL hasMbufStatisticsReport;
@@ -26,11 +27,16 @@
 @property (nonatomic, retain) AWDLibnetcoreMbufStatsReport *mbufStatisticsReport;
 @property (nonatomic, retain) AWDLibnetcoreNetworkdStatsReport *networkdStatisticsReport;
 @property (nonatomic) unsigned int reportReason;
+@property (nonatomic, retain) NSMutableArray *tcpECNInterfaceReports;
 @property (nonatomic, retain) AWDLibnetcoreTCPECNStatsReport *tcpECNStatisticsReport;
 @property (nonatomic, retain) AWDLibnetcoreTCPStatsReport *tcpStatisticsReport;
 @property (nonatomic, retain) AWDLibnetcoreTCPTFOStatsReport *tcpTFOStatisticsReport;
 @property (nonatomic) unsigned long long timestamp;
 
++ (Class)tcpECNInterfaceReportType;
+
+- (void)addTcpECNInterfaceReport:(id)arg1;
+- (void)clearTcpECNInterfaceReports;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -55,10 +61,14 @@
 - (void)setMbufStatisticsReport:(id)arg1;
 - (void)setNetworkdStatisticsReport:(id)arg1;
 - (void)setReportReason:(unsigned int)arg1;
+- (void)setTcpECNInterfaceReports:(id)arg1;
 - (void)setTcpECNStatisticsReport:(id)arg1;
 - (void)setTcpStatisticsReport:(id)arg1;
 - (void)setTcpTFOStatisticsReport:(id)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;
+- (id)tcpECNInterfaceReportAtIndex:(unsigned int)arg1;
+- (id)tcpECNInterfaceReports;
+- (unsigned int)tcpECNInterfaceReportsCount;
 - (id)tcpECNStatisticsReport;
 - (id)tcpStatisticsReport;
 - (id)tcpTFOStatisticsReport;

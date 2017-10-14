@@ -18,9 +18,14 @@
 @property (nonatomic, copy) NSString *headsetName;
 @property (nonatomic, copy) NSNumber *noiseReductionLevel;
 @property (nonatomic, copy) NSString *origin;
+@property (nonatomic, copy) NSString *productId;
 @property (nonatomic, retain) SASRecordingInfo *recordingInfo;
 @property (nonatomic, copy) NSString *refId;
 @property (readonly) Class superclass;
+@property (nonatomic) BOOL triggeredTwoShotBorealis;
+@property (nonatomic, copy) NSString *vendorId;
+
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)updateAudioInfo;
 + (id)updateAudioInfoWithDictionary:(id)arg1 context:(id)arg2;
@@ -37,6 +42,7 @@
 - (id)headsetName;
 - (id)noiseReductionLevel;
 - (id)origin;
+- (id)productId;
 - (id)recordingInfo;
 - (void)setAudioSource:(id)arg1;
 - (void)setCodec:(int)arg1;
@@ -48,6 +54,15 @@
 - (void)setHeadsetName:(id)arg1;
 - (void)setNoiseReductionLevel:(id)arg1;
 - (void)setOrigin:(id)arg1;
+- (void)setProductId:(id)arg1;
 - (void)setRecordingInfo:(id)arg1;
+- (void)setTriggeredTwoShotBorealis:(BOOL)arg1;
+- (void)setVendorId:(id)arg1;
+- (BOOL)triggeredTwoShotBorealis;
+- (id)vendorId;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (BOOL)siriCore_isRestartable;
 
 @end

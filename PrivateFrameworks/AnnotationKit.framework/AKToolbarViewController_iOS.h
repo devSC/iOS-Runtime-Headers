@@ -3,29 +3,28 @@
  */
 
 @interface AKToolbarViewController_iOS : AKToolbarViewController <AKSignatureCreationControllerDelegate, AKSignaturesViewControllerDelegate, UIPopoverPresentationControllerDelegate> {
-    UIView *_attributeToolbarContainer;
-    AKFloatingAttributePickerViewController *_attributeToolbarViewController;
-    NSLayoutConstraint *_attributeToolbarViewControllerConstraint;
-    AKColorPickerViewController *_colorPickerPopoverViewController;
-    UIBarButtonItem *_lineStyleButton;
-    AKLineStylesViewController *_lineStylesViewController;
-    UIGestureRecognizer *_longPressGestureRecognizer;
-    UIBarButtonItem *_loupeButton;
-    UIBarButtonItem *_richSketchButton;
-    UIBarButtonItem *_signatureButton;
-    UIAlertController *_signaturesAlertController;
-    AKSignaturesViewController_iOS *_signaturesSheetViewController;
-    UIBarButtonItem *_sketchButton;
-    NSArray *_staticToolbarItems;
-    UIBarButtonItem *_strokeColorButton;
-    AKTextAttributesViewController *_textAttributesViewController;
-    UIBarButtonItem *_textButton;
-    UIBarButtonItem *_textStyleButton;
-    UIBarButtonItem *_undoButton;
-    AKUndoRedoViewController *_undoPopoverViewController;
+    UIView * _attributeToolbarContainer;
+    AKFloatingAttributePickerViewController * _attributeToolbarViewController;
+    NSLayoutConstraint * _attributeToolbarViewControllerConstraint;
+    AKColorPickerViewController * _colorPickerPopoverViewController;
+    UIBarButtonItem * _lineStyleButton;
+    AKLineStylesViewController * _lineStylesViewController;
+    UIGestureRecognizer * _longPressGestureRecognizer;
+    UIBarButtonItem * _loupeButton;
+    UIBarButtonItem * _richSketchButton;
+    UIBarButtonItem * _signatureButton;
+    UIAlertController * _signaturesAlertController;
+    AKSignaturesViewController_iOS * _signaturesSheetViewController;
+    UIBarButtonItem * _sketchButton;
+    NSArray * _staticToolbarItems;
+    UIBarButtonItem * _strokeColorButton;
+    AKTextAttributesViewController * _textAttributesViewController;
+    UIBarButtonItem * _textButton;
+    UIBarButtonItem * _textStyleButton;
+    UIBarButtonItem * _undoButton;
+    AKUndoViewController * _undoPopoverViewController;
 }
 
-@property (nonatomic, readonly) float additionalOffset;
 @property (nonatomic, retain) UIView *attributeToolbarContainer;
 @property (nonatomic, retain) AKFloatingAttributePickerViewController *attributeToolbarViewController;
 @property (nonatomic, retain) NSLayoutConstraint *attributeToolbarViewControllerConstraint;
@@ -33,6 +32,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
+@property (nonatomic, readonly) float heightIncludingAdditionalVisibleBars;
 @property (nonatomic, retain) UIBarButtonItem *lineStyleButton;
 @property (nonatomic, retain) AKLineStylesViewController *lineStylesViewController;
 @property (nonatomic, retain) UIGestureRecognizer *longPressGestureRecognizer;
@@ -49,7 +49,8 @@
 @property (nonatomic, retain) UIBarButtonItem *textButton;
 @property (nonatomic, retain) UIBarButtonItem *textStyleButton;
 @property (nonatomic, retain) UIBarButtonItem *undoButton;
-@property (nonatomic, retain) AKUndoRedoViewController *undoPopoverViewController;
+@property (nonatomic, retain) AKUndoViewController *undoPopoverViewController;
+@property (nonatomic, readonly) float visibleHeightOfAttributeBar;
 
 - (void).cxx_destruct;
 - (int)_attributeTagForCurrentSelectionState;
@@ -60,10 +61,11 @@
 - (id)_createNewCustomViewToolbarButtonWithImage:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
 - (id)_createNewToggleToolbarButtonWithImage:(id)arg1 tag:(int)arg2 target:(id)arg3 selector:(SEL)arg4;
 - (void)_deleteSelectedItems:(id)arg1;
-- (void)_dismissCurrentlyPresentedPopover;
+- (void)_dismissCurrentlyPresentedPopoverAnimated:(BOOL)arg1 withCompletion:(id /* block */)arg2;
 - (id)_doodleModeToolbarImage;
 - (void)_layoutAttributeContainer;
 - (void)_layoutToolbarForTraitCollection:(id)arg1;
+- (void)_peripheralAvailabilityDidUpdate:(id)arg1;
 - (void)_setupPassthroughViewsForViewController:(id)arg1;
 - (void)_showColorPickerPopover:(id)arg1;
 - (void)_showLineStylePopover:(id)arg1;
@@ -72,20 +74,23 @@
 - (void)_showUndoAlert:(id)arg1;
 - (void)_sketchButtonAction:(id)arg1;
 - (id)_toolbarButtonItemOfType:(unsigned int)arg1;
+- (void)_undoAllButtonAction:(id)arg1;
 - (void)_undoButtonAction:(id)arg1;
 - (void)_undoLongPressAction:(id)arg1;
 - (void)_undoManagerNotification:(id)arg1;
 - (void)_updateToggleButton:(id)arg1 withTraitCollection:(id)arg2;
-- (BOOL)_validateRedoButton;
 - (BOOL)_validateUndoButton;
-- (float)additionalOffset;
+- (unsigned int)_workaroundToolbarPopoverPositioningBug26744300;
 - (id)attributeToolbarContainer;
 - (id)attributeToolbarViewController;
 - (id)attributeToolbarViewControllerConstraint;
 - (id)colorPickerPopoverViewController;
 - (void)dealloc;
 - (void)dismissAttributeToolbarForSelectedAnnotations;
+- (void)dismissPresentedPopovers;
+- (float)heightIncludingAdditionalVisibleBars;
 - (id)initWithController:(id)arg1;
+- (BOOL)isPresentingPopovers;
 - (id)lineStyleButton;
 - (id)lineStylesViewController;
 - (void)loadView;
@@ -136,5 +141,6 @@
 - (void)traitCollectionDidChange:(id)arg1;
 - (id)undoButton;
 - (id)undoPopoverViewController;
+- (float)visibleHeightOfAttributeBar;
 
 @end

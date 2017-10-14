@@ -3,38 +3,37 @@
  */
 
 @interface MFMessageViewingContext : NSObject {
-    MFAttachmentManager *_attachmentManager;
-    MFMessageBody *_body;
-    id _content;
-    MFLock *_contentLock;
-    unsigned int _contentOffset;
-    NSObject<MFMessageViewingContextDelegate> *_delegate;
-    unsigned int _failedToLoad;
-    unsigned int _hasNoContent;
-    unsigned int _isDraftMessage;
-    unsigned int _isEditableMessage;
-    unsigned int _isOutgoingMessage;
-    BOOL _isReload;
-    int _loadAlternative;
-    unsigned int _loadIncrement;
-    MFActivityMonitor *_loadTask;
-    unsigned int _loadedFullData;
-    MFMimePart *_loadedPart;
-    MFMailMessage *_message;
-    NSError *_messageAnalysisError;
-    MFError *_secureMIMEError;
-    unsigned int _shouldAnalyzeMessage;
-    unsigned int _showMailboxName;
-    NSArray *_signers;
-    NSArray *_suggestions;
-    NSConditionLock *_suggestionsLock;
-    NSObject<OS_dispatch_queue> *_suggestionsQueue;
-    SGSuggestionsService *_suggestionsService;
+    MFAttachmentManager * _attachmentManager;
+    MFMessageBody * _body;
+    id  _content;
+    MFLock * _contentLock;
+    unsigned int  _contentOffset;
+    NSObject<MFMessageViewingContextDelegate> * _delegate;
+    unsigned int  _failedToLoad;
+    unsigned int  _hasNoContent;
+    unsigned int  _isDraftMessage;
+    unsigned int  _isEditableMessage;
+    unsigned int  _isOutgoingMessage;
+    int  _loadAlternative;
+    unsigned int  _loadIncrement;
+    MFActivityMonitor * _loadTask;
+    unsigned int  _loadedFullData;
+    MFMimePart * _loadedPart;
+    MFMailMessage * _message;
+    NSError * _messageAnalysisError;
+    MFError * _secureMIMEError;
+    unsigned int  _shouldAnalyzeMessage;
+    unsigned int  _showMailboxName;
+    NSArray * _signers;
+    NSArray * _suggestions;
+    NSConditionLock * _suggestionsLock;
+    NSObject<OS_dispatch_queue> * _suggestionsQueue;
+    NSObject<SGSuggestionsServiceMailProtocol> * _suggestionsService;
 }
 
 @property (nonatomic, readonly, retain) MFAttachmentManager *attachmentManager;
-@property (nonatomic, retain) id content;
-@property (nonatomic) unsigned int contentOffset;
+@property (setter=_setContent:, nonatomic, retain) id content;
+@property (setter=_setContentOffset:, nonatomic) unsigned int contentOffset;
 @property (nonatomic) <MFMessageViewingContextDelegate> *delegate;
 @property (nonatomic, readonly) BOOL failedToLoad;
 @property (nonatomic, readonly) BOOL hasAnalyzedMessage;
@@ -47,20 +46,19 @@
 @property (nonatomic) BOOL isOutgoingMessage;
 @property (nonatomic, readonly) BOOL isPartial;
 @property (nonatomic, readonly, retain) MFActivityMonitor *loadTask;
-@property (nonatomic, retain) MFMimePart *loadedPart;
+@property (setter=_setLoadedPart:, nonatomic, retain) MFMimePart *loadedPart;
 @property (nonatomic, readonly, retain) MFMailMessage *message;
-@property (nonatomic, retain) NSError *messageAnalysisError;
-@property (nonatomic, retain) MFMessageBody *messageBody;
-@property (nonatomic, retain) MFError *secureMimeError;
+@property (setter=_setMessageAnalysisError:, nonatomic, retain) NSError *messageAnalysisError;
+@property (setter=_setMessageBody:, nonatomic, retain) MFMessageBody *messageBody;
+@property (setter=_setSecureMIMEError:, nonatomic, retain) MFError *secureMimeError;
 @property (nonatomic) BOOL shouldAnalyzeMessage;
 @property (nonatomic) BOOL showMailboxName;
-@property (nonatomic, copy) NSArray *signers;
-@property (nonatomic, copy) NSArray *suggestions;
+@property (setter=_setSigners:, nonatomic, copy) NSArray *signers;
+@property (setter=_setSuggestions:, nonatomic, copy) NSArray *suggestions;
 
 + (BOOL)isAttachmentTooLargeToDownload:(id)arg1;
 + (unsigned int)nextOffsetForOffset:(unsigned int)arg1 totalLength:(unsigned int)arg2 requestedAmount:(unsigned int)arg3;
 
-- (void)_notifyAttachmentComplete:(id)arg1 data:(id)arg2;
 - (void)_notifyCompletelyComplete;
 - (void)_notifyFullMessageLoadFailed;
 - (void)_notifyInitialLoadComplete;
@@ -82,7 +80,6 @@
 - (void)dealloc;
 - (id)delegate;
 - (BOOL)failedToLoad;
-- (void)forceReload;
 - (BOOL)hasAnalyzedMessage;
 - (BOOL)hasAnalyzedMessageWithTimeout:(id)arg1;
 - (BOOL)hasLoaded;
@@ -118,6 +115,5 @@
 - (id)signers;
 - (id)suggestions;
 - (id)uniqueID;
-- (void)unload;
 
 @end

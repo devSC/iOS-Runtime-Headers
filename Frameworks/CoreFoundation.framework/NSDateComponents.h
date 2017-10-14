@@ -102,10 +102,15 @@
 
 // Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
 
++ (id)hk_componentsWithDays:(int)arg1;
++ (id)hk_oneDay;
+
 - (id)_hk_dateByAddingFilteredInterval:(int)arg1 toDate:(id)arg2;
 - (double)hk_approximateDuration;
 - (id)hk_dateByAddingInterval:(int)arg1 toDate:(id)arg2;
 - (int)hk_maxComponentValue;
+- (id)hk_populatedCalendarGregorianCalendarDefault;
+- (id)hk_translateDateComponentsToCalendar:(id)arg1 calendarUnits:(unsigned int)arg2;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
@@ -138,5 +143,41 @@
 - (BOOL)isSameMonthAsComponents:(id)arg1;
 - (BOOL)isSameYearAsComponents:(id)arg1;
 - (id)representedDate;
+
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
+- (id)localTimeDescription;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
++ (id)hf_biweeklyIntervalComponents;
++ (id)hf_dailyIntervalComponents;
++ (id)hf_monthlyIntervalComponents;
++ (id)hf_weeklyIntervalComponents;
++ (id)hf_yearlyIntervalComponents;
+
+- (BOOL)hf_isEqualToHomeKitRecurrence:(id)arg1;
+- (id)hf_longLocalizedHomeKitRecurrenceDescription;
+- (id)hf_shortLocalizedHomeKitRecurrenceDescription;
+- (double)hf_timeInterval;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotosGraph.framework/Frameworks/MediaMiningKit.framework/MediaMiningKit
+
+- (id)description;
+
+// Image: /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
+
++ (BOOL)wf_isSameDayWithComponents:(id)arg1 andComponents:(id)arg2;
++ (int)wf_minutesBetweenDateComponents:(id)arg1 andComponents:(id)arg2;
++ (id)wf_nowDateComponents;
++ (id)wf_weatherDataClosestToDate:(id)arg1 inArray:(id)arg2;
++ (id)wf_weatherDataOnDate:(id)arg1 inArray:(id)arg2;
++ (id)wf_weatherDatasOnDate:(id)arg1 inArray:(id)arg2;
+
+- (BOOL)wf_componentsAreTimeless;
+- (id)wf_componentsWithoutTimeZone;
+- (int)wf_dateComponentsCompare:(id)arg1;
+- (int)wf_minutesDifferenceFromDate:(id)arg1;
+- (int)wf_minutesFromNow;
 
 @end

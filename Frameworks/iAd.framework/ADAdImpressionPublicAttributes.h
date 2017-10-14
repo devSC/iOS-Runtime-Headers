@@ -3,31 +3,60 @@
  */
 
 @interface ADAdImpressionPublicAttributes : NSObject <NSSecureCoding> {
-    NSString *_accessibilityLabel;
-    NSURL *_audioURL;
-    NSString *_descriptionForLCD;
-    BOOL _hasAction;
-    NSString *_headlineForLCD;
-    NSURL *_logoImageURL;
-    double _minimumIntervalBetweenPresentations;
-    NSArray *_nativeMetadata;
-    double _skipThreshold;
-    NSURL *_staticImageURL;
-    BOOL _unbranded;
-    NSString *_uniqueIdentifier;
-    NSArray *_videoAssets;
+    NSString * _accessibilityLabel;
+    NSURL * _audioURL;
+    NSString * _batchResponseIdentifier;
+    struct CGSize { 
+        float width; 
+        float height; 
+    }  _containerSize;
+    NSString * _contentString;
+    NSURL * _contentURL;
+    NSString * _descriptionForLCD;
+    BOOL  _hasAction;
+    NSString * _headlineForLCD;
+    struct CGSize { 
+        float width; 
+        float height; 
+    }  _landscapeSize;
+    NSURL * _logoImageURL;
+    int  _maximumPretapRequestCount;
+    double  _minimumIntervalBetweenPresentations;
+    NSDictionary * _nativeMediaCreativeMetadata;
+    NSArray * _nativeMetadata;
+    struct CGSize { 
+        float width; 
+        float height; 
+    }  _portraitSize;
+    BOOL  _requiresMRAID;
+    double  _skipThreshold;
+    NSURL * _staticImageURL;
+    NSDictionary * _transparencyDetails;
+    BOOL  _unbranded;
+    NSString * _uniqueIdentifier;
+    NSArray * _videoAssets;
 }
 
 @property (nonatomic, copy) NSString *accessibilityLabel;
 @property (nonatomic, retain) NSURL *audioURL;
+@property (nonatomic, copy) NSString *batchResponseIdentifier;
+@property (nonatomic) struct CGSize { float x1; float x2; } containerSize;
+@property (nonatomic, retain) NSString *contentString;
+@property (nonatomic, retain) NSURL *contentURL;
 @property (nonatomic, copy) NSString *descriptionForLCD;
 @property (nonatomic) BOOL hasAction;
 @property (nonatomic, copy) NSString *headlineForLCD;
+@property (nonatomic) struct CGSize { float x1; float x2; } landscapeSize;
 @property (nonatomic, retain) NSURL *logoImageURL;
+@property (nonatomic) int maximumPretapRequestCount;
 @property (nonatomic) double minimumIntervalBetweenPresentations;
+@property (nonatomic, retain) NSDictionary *nativeMediaCreativeMetadata;
 @property (nonatomic, retain) NSArray *nativeMetadata;
+@property (nonatomic) struct CGSize { float x1; float x2; } portraitSize;
+@property (nonatomic) BOOL requiresMRAID;
 @property (nonatomic) double skipThreshold;
 @property (nonatomic, retain) NSURL *staticImageURL;
+@property (nonatomic, retain) NSDictionary *transparencyDetails;
 @property (nonatomic) BOOL unbranded;
 @property (nonatomic, copy) NSString *uniqueIdentifier;
 @property (nonatomic, retain) NSArray *videoAssets;
@@ -36,6 +65,10 @@
 
 - (id)accessibilityLabel;
 - (id)audioURL;
+- (id)batchResponseIdentifier;
+- (struct CGSize { float x1; float x2; })containerSize;
+- (id)contentString;
+- (id)contentURL;
 - (void)dealloc;
 - (id)description;
 - (id)descriptionForLCD;
@@ -43,24 +76,40 @@
 - (BOOL)hasAction;
 - (id)headlineForLCD;
 - (id)initWithCoder:(id)arg1;
+- (struct CGSize { float x1; float x2; })landscapeSize;
 - (id)logoImageURL;
+- (int)maximumPretapRequestCount;
 - (double)minimumIntervalBetweenPresentations;
+- (id)nativeMediaCreativeMetadata;
 - (id)nativeMetadata;
+- (struct CGSize { float x1; float x2; })portraitSize;
+- (BOOL)requiresMRAID;
 - (void)setAccessibilityLabel:(id)arg1;
 - (void)setAudioURL:(id)arg1;
+- (void)setBatchResponseIdentifier:(id)arg1;
+- (void)setContainerSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)setContentString:(id)arg1;
+- (void)setContentURL:(id)arg1;
 - (void)setDescriptionForLCD:(id)arg1;
 - (void)setHasAction:(BOOL)arg1;
 - (void)setHeadlineForLCD:(id)arg1;
+- (void)setLandscapeSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setLogoImageURL:(id)arg1;
+- (void)setMaximumPretapRequestCount:(int)arg1;
 - (void)setMinimumIntervalBetweenPresentations:(double)arg1;
+- (void)setNativeMediaCreativeMetadata:(id)arg1;
 - (void)setNativeMetadata:(id)arg1;
+- (void)setPortraitSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)setRequiresMRAID:(BOOL)arg1;
 - (void)setSkipThreshold:(double)arg1;
 - (void)setStaticImageURL:(id)arg1;
+- (void)setTransparencyDetails:(id)arg1;
 - (void)setUnbranded:(BOOL)arg1;
 - (void)setUniqueIdentifier:(id)arg1;
 - (void)setVideoAssets:(id)arg1;
 - (double)skipThreshold;
 - (id)staticImageURL;
+- (id)transparencyDetails;
 - (BOOL)unbranded;
 - (id)uniqueIdentifier;
 - (id)videoAssets;

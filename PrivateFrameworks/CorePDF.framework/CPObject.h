@@ -3,11 +3,11 @@
  */
 
 @interface CPObject : NSObject <CPCopying, NSCopying> {
-    NSMutableArray *children;
-    CPDocument *document;
-    CPPage *page;
-    CPObject *parent;
-    long zOrder;
+    NSMutableArray * children;
+    CPDocument * document;
+    CPPage * page;
+    CPObject * parent;
+    long  zOrder;
 }
 
 - (void)accept:(id)arg1;
@@ -22,6 +22,7 @@
 - (id)childrenOfClass:(Class)arg1;
 - (void)childrenOfClass:(Class)arg1 into:(id)arg2;
 - (void)clearCachedInfo;
+- (void)commonMapFuncCall:(SEL)arg1 target:(id)arg2 childrenOfClass:(Class)arg3 ofCount:(int)arg4;
 - (id)copyAndSplitChildrenAtIndex:(unsigned int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyWithoutChildren;

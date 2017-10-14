@@ -3,8 +3,8 @@
  */
 
 @interface XBLaunchImageDataProvider : NSObject <XBSnapshotDataProvider> {
-    NSData *_cachedImageData;
-    XBDisplaySnapshot *_snapshot;
+    UIImage * _cachedImage;
+    XBDisplaySnapshot * _snapshot;
 }
 
 @property (nonatomic, readonly, retain) XBSnapshotDataProviderContext *context;
@@ -16,7 +16,7 @@
 - (void)_invalidateSnapshotData;
 - (id)context;
 - (void)dealloc;
-- (id)fetchImageData:(out struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; }*)arg1;
+- (id)fetchImage;
 - (id)initWithRequest:(id)arg1 contextID:(unsigned int)arg2;
 
 @end

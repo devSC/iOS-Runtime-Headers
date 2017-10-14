@@ -3,17 +3,17 @@
  */
 
 @interface UIDictationLandingView : UIView <_UIBasicAnimationFactory> {
-    NSOperation *_afterShrinkCompletionInvocation;
-    float _angle;
-    float _diameter;
-    BOOL _didHaveText;
-    CADisplayLink *_displayLink;
-    id _placeholder;
-    UITextRange *_range;
-    double _shrinkStartTime;
-    BOOL _shrinking;
-    double _startTime;
-    BOOL _willInsertResult;
+    NSOperation * _afterShrinkCompletionInvocation;
+    float  _angle;
+    float  _diameter;
+    BOOL  _didHaveText;
+    CADisplayLink * _displayLink;
+    id  _placeholder;
+    UITextRange * _range;
+    double  _shrinkStartTime;
+    BOOL  _shrinking;
+    double  _startTime;
+    BOOL  _willInsertResult;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -37,6 +37,7 @@
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)errorShakeDidFinish;
 - (float)fadeOutDuration;
+- (BOOL)hasActivePlaceholder;
 - (void)hideCursor;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)rotateBy:(float)arg1;

@@ -3,12 +3,13 @@
  */
 
 @interface SKUIAttributedStringWrapperView : SKUIAttributedStringView {
-    SKUIAttributedStringView *_delegateView;
+    SKUIAttributedStringView * _delegateView;
 }
 
 @property (nonatomic, readonly) SKUIAttributedStringView *delegateView;
 
 - (void).cxx_destruct;
+- (int)badgePlacement;
 - (float)baselineOffset;
 - (id)delegateView;
 - (float)firstBaselineOffset;
@@ -17,6 +18,7 @@
 - (id)layout;
 - (void)layoutSubviews;
 - (id)requiredBadges;
+- (void)setBadgePlacement:(int)arg1;
 - (void)setFirstLineTopInset:(int)arg1;
 - (void)setLayout:(id)arg1;
 - (void)setRequiredBadges:(id)arg1;
@@ -30,5 +32,6 @@
 - (BOOL)textColorFollowsTintColor;
 - (id)treatmentColor;
 - (BOOL)usesTallCharacterSet;
+- (void)viewWasRecycled;
 
 @end

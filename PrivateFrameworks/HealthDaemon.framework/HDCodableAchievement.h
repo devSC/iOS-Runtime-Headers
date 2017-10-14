@@ -3,67 +3,90 @@
  */
 
 @interface HDCodableAchievement : PBCodable <NSCopying> {
-    long long _achievementType;
-    double _completedDate;
-    double _doubleValue;
-    NSData *_extraData;
+    long long  _achievementType;
+    BOOL  _alerted;
+    double  _completedDate;
+    NSString * _definitionIdentifier;
+    double  _doubleValue;
+    NSData * _extraData;
     struct { 
         unsigned int achievementType : 1; 
         unsigned int completedDate : 1; 
         unsigned int doubleValue : 1; 
         unsigned int intValue : 1; 
-    } _has;
-    long long _intValue;
-    NSData *_uuid;
+        unsigned int workoutActivityType : 1; 
+        unsigned int alerted : 1; 
+    }  _has;
+    long long  _intValue;
+    NSData * _uuid;
+    long long  _workoutActivityType;
 }
 
 @property (nonatomic) long long achievementType;
+@property (nonatomic) BOOL alerted;
 @property (nonatomic) double completedDate;
+@property (nonatomic, retain) NSString *definitionIdentifier;
 @property (nonatomic) double doubleValue;
 @property (nonatomic, retain) NSData *extraData;
 @property (nonatomic) BOOL hasAchievementType;
+@property (nonatomic) BOOL hasAlerted;
 @property (nonatomic) BOOL hasCompletedDate;
+@property (nonatomic, readonly) BOOL hasDefinitionIdentifier;
 @property (nonatomic) BOOL hasDoubleValue;
 @property (nonatomic, readonly) BOOL hasExtraData;
 @property (nonatomic) BOOL hasIntValue;
 @property (nonatomic, readonly) BOOL hasUuid;
+@property (nonatomic) BOOL hasWorkoutActivityType;
 @property (nonatomic) long long intValue;
 @property (nonatomic, retain) NSData *uuid;
+@property (nonatomic) long long workoutActivityType;
 
 - (void).cxx_destruct;
 - (long long)achievementType;
+- (BOOL)alerted;
 - (double)completedDate;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)decodedAchievementType;
 - (id)decodedCreatedDate;
 - (id)decodedUUID;
 - (id)decodedValue;
+- (id)definitionIdentifier;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (double)doubleValue;
 - (id)extraData;
 - (BOOL)hasAchievementType;
+- (BOOL)hasAlerted;
 - (BOOL)hasCompletedDate;
+- (BOOL)hasDefinitionIdentifier;
 - (BOOL)hasDoubleValue;
 - (BOOL)hasExtraData;
 - (BOOL)hasIntValue;
 - (BOOL)hasUuid;
+- (BOOL)hasWorkoutActivityType;
 - (unsigned int)hash;
 - (long long)intValue;
 - (BOOL)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAchievementType:(long long)arg1;
+- (void)setAlerted:(BOOL)arg1;
 - (void)setCompletedDate:(double)arg1;
+- (void)setDefinitionIdentifier:(id)arg1;
 - (void)setDoubleValue:(double)arg1;
 - (void)setExtraData:(id)arg1;
 - (void)setHasAchievementType:(BOOL)arg1;
+- (void)setHasAlerted:(BOOL)arg1;
 - (void)setHasCompletedDate:(BOOL)arg1;
 - (void)setHasDoubleValue:(BOOL)arg1;
 - (void)setHasIntValue:(BOOL)arg1;
+- (void)setHasWorkoutActivityType:(BOOL)arg1;
 - (void)setIntValue:(long long)arg1;
 - (void)setUuid:(id)arg1;
+- (void)setWorkoutActivityType:(long long)arg1;
 - (id)uuid;
+- (long long)workoutActivityType;
 - (void)writeTo:(id)arg1;
 
 @end

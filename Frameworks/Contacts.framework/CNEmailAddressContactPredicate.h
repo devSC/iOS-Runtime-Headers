@@ -3,19 +3,28 @@
  */
 
 @interface CNEmailAddressContactPredicate : CNPredicate <CNSuggestedContactPredicate> {
-    NSString *_emailAddress;
+    NSString * _emailAddress;
+    BOOL  _returnsMultipleResults;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSString *emailAddress;
 @property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL returnsMultipleResults;
 @property (readonly) Class superclass;
+
++ (BOOL)supportsSecureCoding;
 
 - (void)dealloc;
 - (id)description;
 - (id)emailAddress;
-- (id)initWithEmailAddress:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (unsigned int)hash;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithEmailAddress:(id)arg1 returnMultipleResults:(BOOL)arg2;
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)returnsMultipleResults;
 - (id)sgContactMatchesWithSortOrder:(int)arg1 mutableObjects:(BOOL)arg2 service:(id)arg3 error:(id*)arg4;
 
 @end

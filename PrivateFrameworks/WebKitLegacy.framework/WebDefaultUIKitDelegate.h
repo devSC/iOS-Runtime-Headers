@@ -11,7 +11,7 @@
 - (id)checkSpellingOfString:(id)arg1;
 - (struct CGPoint { float x1; float x2; })contentsPointForWebView:(id)arg1;
 - (void)deleteFromInput;
-- (void)deleteFromInputwithFlags:(unsigned int)arg1;
+- (void)deleteFromInputWithFlags:(unsigned int)arg1;
 - (int)deviceOrientation;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })documentVisibleRectForWebView:(id)arg1;
 - (int)getPasteboardChangeCount;
@@ -43,7 +43,7 @@
 - (void)webView:(id)arg1 needsScrollNotifications:(id)arg2 forFrame:(id)arg3;
 - (id)webView:(id)arg1 plugInViewWithArguments:(id)arg2 fromPlugInPackage:(id)arg3;
 - (void)webView:(id)arg1 restoreStateFromHistoryItem:(id)arg2 forFrame:(id)arg3 force:(BOOL)arg4;
-- (void)webView:(id)arg1 runOpenPanelForFileButtonWithResultListener:(id)arg2 allowMultipleFiles:(BOOL)arg3 acceptMIMETypes:(id)arg4;
+- (void)webView:(id)arg1 runOpenPanelForFileButtonWithResultListener:(id)arg2 configuration:(id)arg3;
 - (void)webView:(id)arg1 saveStateToHistoryItem:(id)arg2 forFrame:(id)arg3;
 - (BOOL)webView:(id)arg1 shouldScrollToPoint:(struct CGPoint { float x1; float x2; })arg2 forFrame:(id)arg3;
 - (void)webView:(id)arg1 willAddPlugInView:(id)arg2;

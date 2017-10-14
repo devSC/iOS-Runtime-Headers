@@ -3,18 +3,18 @@
  */
 
 @interface FBPlistApplicationDataStoreRepository : NSObject <FBApplicationDataStoreRepository> {
-    int _autoFlushDuration;
-    unsigned int _batchCount;
-    <FBApplicationDataStoreRepositoryDelegate> *_delegate;
-    BOOL _dirty;
-    NSMutableDictionary *_state;
-    NSObject<OS_dispatch_queue> *_stateQueue;
-    NSURL *_storeURL;
-    NSObject<OS_dispatch_queue> *_writeQueue;
+    int  _autoFlushDuration;
+    unsigned int  _batchCount;
+    <FBApplicationDataStoreRepositoryDelegate> * _delegate;
+    BOOL  _dirty;
+    NSMutableDictionary * _state;
+    NSObject<OS_dispatch_queue> * _stateQueue;
+    NSURL * _storeURL;
+    NSObject<OS_dispatch_queue> * _writeQueue;
 }
 
 @property (readonly, copy) NSString *debugDescription;
-@property (nonatomic) <FBApplicationDataStoreRepositoryDelegate> *delegate;
+@property (nonatomic) <FBApplicationDataStoreRepositoryReadingDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
@@ -32,6 +32,7 @@
 - (void)_writeQueue_flushSynchronously;
 - (id)applicationIdentifiersWithState;
 - (void)beginBatchedUpdate;
+- (void)close;
 - (BOOL)containsKey:(id)arg1 forApplication:(id)arg2;
 - (void)dealloc;
 - (id)delegate;

@@ -23,10 +23,12 @@
 @property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } primaryWindowOverlayInsets;
 @property (nonatomic, readonly) unsigned int proximityDetectionModes;
 @property (nonatomic, readonly) unsigned int statusBarContextID;
+@property (getter=isStatusBarForegroundTransparent, nonatomic, readonly) BOOL statusBarForegroundTransparent;
 @property (nonatomic, readonly) BOOL statusBarHidden;
 @property (nonatomic, readonly) int statusBarStyle;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) unsigned int supportedInterfaceOrientations;
+@property (nonatomic, readonly) int whitePointAdaptivityStyle;
 
 - (int)backgroundStyle;
 - (int)compatibilityMode;
@@ -40,6 +42,7 @@
 - (BOOL)idleTimerDisabled;
 - (int)interfaceOrientation;
 - (BOOL)interfaceOrientationChangesDisabled;
+- (BOOL)isStatusBarForegroundTransparent;
 - (BOOL)isUISubclass;
 - (id)keyDescriptionForOtherSetting:(unsigned int)arg1;
 - (id)keyDescriptionForSetting:(unsigned int)arg1;
@@ -53,5 +56,6 @@
 - (unsigned int)supportedInterfaceOrientations;
 - (id)valueDescriptionForFlag:(int)arg1 object:(id)arg2 ofOtherSetting:(unsigned int)arg3;
 - (id)valueDescriptionForFlag:(int)arg1 object:(id)arg2 ofSetting:(unsigned int)arg3;
+- (int)whitePointAdaptivityStyle;
 
 @end

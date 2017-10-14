@@ -3,13 +3,13 @@
  */
 
 @interface __NSCFURLSessionConnection : NSObject <NSCopying> {
-    NSObject<OS_dispatch_data> *_cacheData;
-    unsigned long _cacheDataMax;
-    NSURLResponse *_cacheResponse;
-    <SessionConnectionDelegate> *_delegate;
-    int _maxCacheEntrySize;
-    NSURLSessionTask *_task;
-    NSObject<OS_dispatch_queue> *_workQueue;
+    NSObject<OS_dispatch_data> * _cacheData;
+    unsigned long  _cacheDataMax;
+    NSURLResponse * _cacheResponse;
+    <SessionConnectionDelegate> * _delegate;
+    int  _maxCacheEntrySize;
+    NSURLSessionTask * _task;
+    NSObject<OS_dispatch_queue> * _workQueue;
 }
 
 @property (retain) <SessionConnectionDelegate> *delegate;
@@ -28,6 +28,7 @@
 - (void)resume;
 - (void)setBytesPerSecondLimit:(long long)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setIsDownload:(BOOL)arg1;
 - (void)setPoolPriority:(long long)arg1;
 - (void)setPriorityHint:(float)arg1;
 - (void)setTask:(id)arg1;

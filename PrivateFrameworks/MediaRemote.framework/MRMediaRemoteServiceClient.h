@@ -3,20 +3,25 @@
  */
 
 @interface MRMediaRemoteServiceClient : NSObject {
-    NSArray *_externalScreenTypeNotificationObservers;
-    NSArray *_nowPlayingNotificationObservers;
-    NSArray *_originNotificationObservers;
-    BOOL _receivesExternalScreenTypeChangedNotifications;
-    BOOL _receivesOriginChangedNotifications;
-    BOOL _receivesPlaybackErrorNotifications;
-    BOOL _receivesRoutesChangedNotifications;
-    BOOL _receivesSupportedCommandsNotifications;
-    unsigned int _registeredNowPlayingObservers;
-    NSMutableArray *_registeredOrigins;
-    MRAVRoutingClientController *_routingClientController;
-    NSArray *_routingNotificationObservers;
-    NSObject<OS_dispatch_queue> *_serialQueue;
-    struct MRMediaRemoteService { } *_service;
+    NSArray * _externalScreenTypeNotificationObservers;
+    NSArray * _nowPlayingNotificationObservers;
+    NSArray * _originNotificationObservers;
+    BOOL  _receivesExternalScreenTypeChangedNotifications;
+    BOOL  _receivesOriginChangedNotifications;
+    BOOL  _receivesPlaybackErrorNotifications;
+    BOOL  _receivesRoutesChangedNotifications;
+    BOOL  _receivesSupportedCommandsNotifications;
+    BOOL  _receivesVoiceInputRecordingStateNotifications;
+    unsigned int  _registeredNowPlayingObservers;
+    NSMutableArray * _registeredOrigins;
+    MRAVRoutingClientController * _routingClientController;
+    NSArray * _routingNotificationObservers;
+    NSObject<OS_dispatch_queue> * _serialQueue;
+    struct MRMediaRemoteService { } * _service;
+    MSVDistributedNotificationObserver * _televisionIsPairingAllowedChangedObserver;
+    MSVDistributedNotificationObserver * _televisionPairedDevicesChangedObserver;
+    NSMutableDictionary * _transactionSources;
+    NSArray * _voiceInputNotificationObservers;
 }
 
 @property (nonatomic, retain) NSArray *externalScreenTypeNotificationObservers;
@@ -27,11 +32,13 @@
 @property (nonatomic) BOOL receivesPlaybackErrorNotifications;
 @property (nonatomic) BOOL receivesRoutesChangedNotifications;
 @property (nonatomic) BOOL receivesSupportedCommandsNotifications;
+@property (nonatomic) BOOL receivesVoiceInputRecordingStateNotifications;
 @property (getter=isRegisteredForNowPlayingNotifications, nonatomic, readonly) BOOL registeredForNowPlayingNotifications;
 @property (nonatomic, readonly) NSArray *registeredOrigins;
 @property (nonatomic, retain) NSArray *routingNotificationObservers;
 @property (nonatomic, readonly) struct MRMediaRemoteService { }*service;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *serviceQueue;
+@property (nonatomic, retain) NSArray *voiceInputNotificationObservers;
 
 + (id)sharedServiceClient;
 
@@ -47,10 +54,12 @@
 - (BOOL)receivesPlaybackErrorNotifications;
 - (BOOL)receivesRoutesChangedNotifications;
 - (BOOL)receivesSupportedCommandsNotifications;
+- (BOOL)receivesVoiceInputRecordingStateNotifications;
 - (void)registerForNowPlayingNotificationsWithQueue:(id)arg1;
-- (BOOL)registerOrigin:(struct _MROrigin { }*)arg1;
+- (void)registerOrigin:(struct _MROrigin { }*)arg1 withCompletion:(id /* block */)arg2;
 - (id)registeredOrigins;
 - (id)routingNotificationObservers;
+- (void)sendTransaction:(unsigned long long)arg1 withData:(id)arg2 forOrigin:(struct _MROrigin { }*)arg3;
 - (struct MRMediaRemoteService { }*)service;
 - (id)serviceQueue;
 - (void)setExternalScreenTypeNotificationObservers:(id)arg1;
@@ -61,9 +70,12 @@
 - (void)setReceivesPlaybackErrorNotifications:(BOOL)arg1;
 - (void)setReceivesRoutesChangedNotifications:(BOOL)arg1;
 - (void)setReceivesSupportedCommandsNotifications:(BOOL)arg1;
+- (void)setReceivesVoiceInputRecordingStateNotifications:(BOOL)arg1;
 - (void)setRoutingNotificationObservers:(id)arg1;
-- (void)unregisterAllOrigins;
+- (void)setVoiceInputNotificationObservers:(id)arg1;
+- (void)unregisterAllOriginsWithCompletion:(id /* block */)arg1;
 - (void)unregisterForNowPlayingNotifications;
-- (BOOL)unregisterOrigin:(struct _MROrigin { }*)arg1;
+- (void)unregisterOrigin:(struct _MROrigin { }*)arg1 withCompletion:(id /* block */)arg2;
+- (id)voiceInputNotificationObservers;
 
 @end

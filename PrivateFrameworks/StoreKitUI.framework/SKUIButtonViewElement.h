@@ -3,30 +3,33 @@
  */
 
 @interface SKUIButtonViewElement : SKUIViewElement {
-    BOOL _autoIncrementCount;
-    NSString *_badgeResourceName;
-    BOOL _bigHitButton;
-    float _bigHitSize;
-    SKUIViewElementText *_buttonText;
-    int _buttonViewSubType;
-    int _buttonViewType;
-    SKUIBuyButtonDescriptor *_buyButtonDescriptor;
-    NSString *_confirmationText;
-    long long _dataPlaybackId;
-    BOOL _enabled;
-    long long _itemIdentifier;
-    NSString *_nonToggledText;
-    NSString *_playItemIdentifier;
-    BOOL _selected;
-    BOOL _showOnDemand;
-    NSString *_sizeVariant;
-    SKUIStoreIdentifier *_storeIdentifier;
-    NSString *_toggleItemIdentfier;
-    NSString *_toggleItemIdentifier;
-    BOOL _toggled;
-    NSString *_toggledText;
-    NSString *_variantIdentifier;
-    IKDOMElement *_xml;
+    BOOL  _autoIncrementCount;
+    NSString * _badgeResourceName;
+    BOOL  _bigHitButton;
+    float  _bigHitSize;
+    NSString * _bundleIdentifier;
+    SKUIViewElementText * _buttonText;
+    int  _buttonViewSubType;
+    int  _buttonViewType;
+    SKUIBuyButtonDescriptor * _buyButtonDescriptor;
+    NSString * _confirmationText;
+    long long  _dataPlaybackId;
+    BOOL  _disabledButSelectable;
+    BOOL  _enabled;
+    long long  _itemIdentifier;
+    NSString * _nonToggledText;
+    NSString * _playItemIdentifier;
+    BOOL  _selected;
+    BOOL  _showOnDemand;
+    NSString * _sizeVariant;
+    SKUIStoreIdentifier * _storeIdentifier;
+    BOOL  _suppressCloudRestore;
+    NSString * _toggleItemIdentfier;
+    NSString * _toggleItemIdentifier;
+    BOOL  _toggled;
+    NSString * _toggledText;
+    NSString * _variantIdentifier;
+    IKDOMElement * _xml;
 }
 
 @property (nonatomic, readonly) SKUIImageViewElement *additionalButtonImage;
@@ -34,14 +37,16 @@
 @property (nonatomic, readonly) NSString *badgeResourceName;
 @property (getter=isBigHitButton, nonatomic, readonly) BOOL bigHitButton;
 @property (nonatomic, readonly) float bigHitSize;
+@property (nonatomic, readonly) NSString *bundleIdentifier;
 @property (nonatomic, readonly) SKUIImageViewElement *buttonImage;
 @property (nonatomic, readonly) SKUIViewElementText *buttonText;
 @property (nonatomic, readonly) IKViewElementStyle *buttonTitleStyle;
 @property (nonatomic, readonly) int buttonViewSubType;
 @property (nonatomic, readonly) int buttonViewType;
-@property (nonatomic, readonly) SKUIBuyButtonDescriptor *buyButtonDescriptor;
+@property (nonatomic, retain) SKUIBuyButtonDescriptor *buyButtonDescriptor;
 @property (nonatomic, readonly) NSString *confirmationText;
 @property (nonatomic, readonly) long long dataPlaybackId;
+@property (getter=isDisabledButSelectable, nonatomic, readonly) BOOL disabledButSelectable;
 @property (nonatomic, readonly) long long itemIdentifier;
 @property (nonatomic, readonly) NSString *nonToggledText;
 @property (nonatomic, readonly) NSString *playItemIdentifier;
@@ -49,6 +54,7 @@
 @property (nonatomic, readonly) BOOL showOnDemand;
 @property (nonatomic, readonly) NSString *sizeVariant;
 @property (nonatomic, readonly) SKUIStoreIdentifier *storeIdentifier;
+@property (nonatomic, readonly) BOOL suppressCloudRestore;
 @property (nonatomic, readonly) NSString *toggleItemIdentifier;
 @property (getter=isToggled, nonatomic) BOOL toggled;
 @property (nonatomic, readonly) NSString *toggledText;
@@ -61,6 +67,7 @@
 - (BOOL)autoIncrementCount;
 - (id)badgeResourceName;
 - (float)bigHitSize;
+- (id)bundleIdentifier;
 - (id)buttonImage;
 - (id)buttonText;
 - (id)buttonTitleStyle;
@@ -69,10 +76,12 @@
 - (id)buyButtonDescriptor;
 - (id)confirmationText;
 - (long long)dataPlaybackId;
+- (void)dealloc;
 - (id)description;
 - (unsigned int)elementType;
 - (id)initWithDOMElement:(id)arg1 parent:(id)arg2 elementFactory:(id)arg3;
 - (BOOL)isBigHitButton;
+- (BOOL)isDisabledButSelectable;
 - (BOOL)isEnabled;
 - (BOOL)isSelected;
 - (BOOL)isToggled;
@@ -81,10 +90,12 @@
 - (int)pageComponentType;
 - (id)personalizationLibraryItems;
 - (id)playItemIdentifier;
+- (void)setBuyButtonDescriptor:(id)arg1;
 - (void)setToggled:(BOOL)arg1;
 - (BOOL)showOnDemand;
 - (id)sizeVariant;
 - (id)storeIdentifier;
+- (BOOL)suppressCloudRestore;
 - (id)toggleItemIdentifier;
 - (id)toggledText;
 - (id)variantIdentifier;

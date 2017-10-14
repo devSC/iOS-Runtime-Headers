@@ -3,21 +3,25 @@
  */
 
 @interface UIAXDelegateClearer : NSObject {
-    SEL clearMethod;
-    id delegate;
-    id delegatee;
+    SEL  clearMethod;
+    id  delegate;
+    id  delegatee;
+    NSString * key;
 }
 
 @property (nonatomic) SEL clearMethod;
 @property (nonatomic) id delegate;
 @property (nonatomic) id delegatee;
+@property (nonatomic, retain) NSString *key;
 
 - (SEL)clearMethod;
 - (void)dealloc;
 - (id)delegate;
 - (id)delegatee;
+- (id)key;
 - (void)setClearMethod:(SEL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDelegatee:(id)arg1;
+- (void)setKey:(id)arg1;
 
 @end

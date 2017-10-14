@@ -3,8 +3,8 @@
  */
 
 @interface NEExtensionTunnelProviderContext : NEExtensionProviderContext <NEExtensionTunnelProviderHostProtocol, NEExtensionTunnelProviderProtocol> {
-    NEIPC *_ipc;
-    NSObject<OS_dispatch_source> *_ipcIdleTimer;
+    NEIPC * _ipc;
+    NSObject<OS_dispatch_source> * _ipcIdleTimer;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -18,8 +18,8 @@
 + (id)_extensionAuxiliaryVendorProtocol;
 
 - (void).cxx_destruct;
+- (void)cancelWithError:(id)arg1;
 - (void)didSetReasserting:(BOOL)arg1;
-- (void)dispose;
 - (void)establishIPCWithCompletionHandler:(id /* block */)arg1;
 - (void)handleAppMessage:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)handleIPCDetached;

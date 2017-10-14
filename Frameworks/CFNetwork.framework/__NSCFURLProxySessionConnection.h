@@ -3,17 +3,17 @@
  */
 
 @interface __NSCFURLProxySessionConnection : __NSCFURLSessionConnection <NSURLSessionDataDelegate, NSURLSessionDataDelegatePrivate, NSURLSessionDataDelegate_Internal, NSURLSessionTaskDelegatePrivate> {
-    NSURLSessionTask *_cacheTask;
-    NSArray *_cachedResponseDataArray;
-    NSCachedURLResponse *_cachedResponseForConditionalRequest;
-    BOOL _clientWantsCacheOnly;
-    BOOL _completedLocalCacheLookup;
-    NSURLRequest *_conditionalRequest;
-    BOOL _handledNeedNewBodyStream;
-    NSString *_originalUploadFilePath;
-    NSURLSessionTask *_proxyTask;
-    BOOL _requestIsUncacheable;
-    BOOL _shouldCancelOnCacheTaskCompletion;
+    NSURLSessionTask * _cacheTask;
+    NSArray * _cachedResponseDataArray;
+    NSCachedURLResponse * _cachedResponseForConditionalRequest;
+    BOOL  _clientWantsCacheOnly;
+    BOOL  _completedLocalCacheLookup;
+    NSURLRequest * _conditionalRequest;
+    BOOL  _handledNeedNewBodyStream;
+    NSString * _originalUploadFilePath;
+    NSURLSessionTask * _proxyTask;
+    BOOL  _requestIsUncacheable;
+    BOOL  _shouldCancelOnCacheTaskCompletion;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -41,6 +41,7 @@
 - (void)dealloc;
 - (id)initWithTask:(id)arg1 delegate:(id)arg2 delegateQueue:(id)arg3;
 - (void)resume;
+- (void)setIsDownload:(BOOL)arg1;
 - (void)setPoolPriority:(long long)arg1;
 - (void)setPriorityHint:(float)arg1;
 - (void)suspend;

@@ -3,33 +3,29 @@
  */
 
 @interface TRConnection : NSObject {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    BOOL _closed;
-    unsigned int _connectionCount;
-    NSMapTable *_packetEventClassToTargetActions;
-    NSObject<OS_dispatch_queue> *_sendQueue;
-    TRService *_service;
-    int _uniqueID;
+    id /* block */  _eventMessageHandler;
+    id /* block */  _interruptionHandler;
+    id /* block */  _invalidationHandler;
+    id /* block */  _requestMessageHandler;
 }
 
-@property (nonatomic, readonly) TRService *service;
+@property (nonatomic, copy) id /* block */ eventMessageHandler;
+@property (nonatomic, copy) id /* block */ interruptionHandler;
+@property (nonatomic, copy) id /* block */ invalidationHandler;
+@property (nonatomic, copy) id /* block */ requestMessageHandler;
 
 - (void).cxx_destruct;
-- (void)_connectionDidClose;
-- (void)_connectionDidReceivePacketEvent:(id)arg1;
-- (void)_incrementConnectionCount;
-- (id)_initWithUniqueID:(int)arg1 service:(id)arg2;
-- (id)_onQueue_targetActionsForPacketEvent:(id)arg1;
-- (id)_relevantPacketEventTypes;
-- (void)_sendRelevantPacketEventTypes;
-- (int)_uniqueID;
-- (void)addTarget:(id)arg1 action:(SEL)arg2 queue:(id)arg3 forPacketEventClasses:(id)arg4;
-- (void)close;
-- (id)description;
-- (unsigned int)hash;
-- (BOOL)isEqual:(id)arg1;
-- (void)removeTarget:(id)arg1 action:(SEL)arg2 queue:(id)arg3 forPacketEventClasses:(id)arg4;
-- (void)sendPacketEvent:(id)arg1 withCompletionHandler:(id /* block */)arg2;
-- (id)service;
+- (id /* block */)eventMessageHandler;
+- (id /* block */)interruptionHandler;
+- (void)invalidate;
+- (id /* block */)invalidationHandler;
+- (id /* block */)requestMessageHandler;
+- (void)sendEvent:(id)arg1;
+- (void)sendRequest:(id)arg1;
+- (void)sendResponse:(id)arg1;
+- (void)setEventMessageHandler:(id /* block */)arg1;
+- (void)setInterruptionHandler:(id /* block */)arg1;
+- (void)setInvalidationHandler:(id /* block */)arg1;
+- (void)setRequestMessageHandler:(id /* block */)arg1;
 
 @end

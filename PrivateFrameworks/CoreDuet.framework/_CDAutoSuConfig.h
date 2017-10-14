@@ -3,36 +3,50 @@
  */
 
 @interface _CDAutoSuConfig : NSObject {
-    BOOL _alwaysFallBackToDefault;
-    BOOL _alwaysReturnUnlockNow;
-    double _endThreshold;
-    int _restrictionEndInSlot;
-    int _restrictionStartInSlot;
-    double _startThreshold;
-    int _suEndDefaultTimeOffsetFromSuStart;
-    int _suStartDefaultTime;
-    int _unlockMarginInSlot;
-    double _unlockThreshold;
+    BOOL  _allowUnlockBeforeNow;
+    BOOL  _alwaysFallBackToDefault;
+    BOOL  _alwaysReturnUnlockNow;
+    double  _endThreshold;
+    int  _restrictionEndInSlot;
+    int  _restrictionStartInSlot;
+    double  _startThreshold;
+    int  _suEndDefaultTimeOffsetFromSuStart;
+    int  _suStartDefaultTime;
+    int  _unlockMarginInSlot;
+    double  _unlockThreshold;
 }
 
-@property (nonatomic, readonly) BOOL alwaysFallBackToDefault;
-@property (nonatomic, readonly) BOOL alwaysReturnUnlockNow;
-@property (nonatomic, readonly) double endThreshold;
-@property (nonatomic, readonly) int restrictionEndInSlot;
-@property (nonatomic, readonly) int restrictionStartInSlot;
-@property (nonatomic, readonly) double startThreshold;
-@property (nonatomic, readonly) int suEndDefaultTimeOffsetFromSuStart;
-@property (nonatomic, readonly) int suStartDefaultTime;
-@property (nonatomic, readonly) int unlockMarginInSlot;
-@property (nonatomic, readonly) double unlockThreshold;
+@property (nonatomic) BOOL allowUnlockBeforeNow;
+@property (nonatomic) BOOL alwaysFallBackToDefault;
+@property (nonatomic) BOOL alwaysReturnUnlockNow;
+@property (nonatomic) double endThreshold;
+@property (nonatomic) int restrictionEndInSlot;
+@property (nonatomic) int restrictionStartInSlot;
+@property (nonatomic) double startThreshold;
+@property (nonatomic) int suEndDefaultTimeOffsetFromSuStart;
+@property (nonatomic) int suStartDefaultTime;
+@property (nonatomic) int unlockMarginInSlot;
+@property (nonatomic) double unlockThreshold;
 
+- (BOOL)allowUnlockBeforeNow;
 - (BOOL)alwaysFallBackToDefault;
 - (BOOL)alwaysReturnUnlockNow;
 - (double)endThreshold;
 - (int)readConfig;
 - (int)restrictionEndInSlot;
 - (int)restrictionStartInSlot;
+- (void)setAllowUnlockBeforeNow:(BOOL)arg1;
+- (void)setAlwaysFallBackToDefault:(BOOL)arg1;
+- (void)setAlwaysReturnUnlockNow:(BOOL)arg1;
+- (void)setEndThreshold:(double)arg1;
 - (void)setParam;
+- (void)setRestrictionEndInSlot:(int)arg1;
+- (void)setRestrictionStartInSlot:(int)arg1;
+- (void)setStartThreshold:(double)arg1;
+- (void)setSuEndDefaultTimeOffsetFromSuStart:(int)arg1;
+- (void)setSuStartDefaultTime:(int)arg1;
+- (void)setUnlockMarginInSlot:(int)arg1;
+- (void)setUnlockThreshold:(double)arg1;
 - (double)startThreshold;
 - (int)suEndDefaultTimeOffsetFromSuStart;
 - (int)suStartDefaultTime;

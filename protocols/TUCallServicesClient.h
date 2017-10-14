@@ -5,13 +5,9 @@
 
 @required
 
-- (void)handleCallControlFailureWithUserInfo:(NSDictionary *)arg1;
-- (void)handleCallModelStateChanged:(TUCallModelState *)arg1;
-- (void)handleConversationReceivedData:(NSData *)arg1 forCallWithUUID:(NSString *)arg2;
-- (void)handleCurrentCallsChanged:(NSArray *)arg1;
 - (void)handleCurrentCallsChanged:(NSArray *)arg1 callDisconnected:(TUCall *)arg2;
-- (void)handleLocalFrequencyChangedTo:(NSData *)arg1 forCallsWithUniqueProxyIdentifiers:(NSArray *)arg2;
+- (void)handleFrequencyChangedTo:(NSData *)arg1 inDirection:(int)arg2 forCallsWithUniqueProxyIdentifiers:(NSArray *)arg3;
 - (void)handleNotificationName:(NSString *)arg1 forCallWithUniqueProxyIdentifier:(NSString *)arg2 userInfo:(NSDictionary *)arg3;
-- (void)handleRemoteFrequencyChangedTo:(NSData *)arg1 forCallsWithUniqueProxyIdentifiers:(NSArray *)arg2;
+- (void)resetCallProvisionalStates;
 
 @end

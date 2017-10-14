@@ -3,12 +3,12 @@
  */
 
 @interface SFReaderController : NSObject <SFReaderContext, SFReaderEventsListener, WKNavigationDelegate> {
-    <SFReaderControllerDelegate> *_delegate;
-    _WKRemoteObjectInterface *_eventsListenerInterface;
-    WBSReaderFontManager *_fontManager;
-    BOOL _readerAvailable;
-    <SFReaderWebProcessControllerProtocol> *_readerControllerProxy;
-    WKWebView *_webView;
+    <SFReaderControllerDelegate> * _delegate;
+    _WKRemoteObjectInterface * _eventsListenerInterface;
+    WBSReaderFontManager * _fontManager;
+    BOOL  _readerAvailable;
+    <SFReaderWebProcessControllerProtocol> * _readerControllerProxy;
+    WKWebView * _webView;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -28,7 +28,6 @@
 - (id)configuration;
 - (void)createArticleFinder;
 - (void)deactivateReaderNow:(unsigned int)arg1;
-- (void)dealloc;
 - (void)decreaseReaderTextSize;
 - (id)delegate;
 - (void)didCollectReaderContentForMail:(id)arg1;
@@ -39,9 +38,9 @@
 - (void)didPrepareReaderContentForPrinting:(id)arg1;
 - (void)didSetReaderConfiguration:(id)arg1;
 - (id)fontManager;
-- (BOOL)hasMultiplePages;
 - (void)increaseReaderTextSize;
 - (id)initWithWebView:(id)arg1;
+- (void)invalidate;
 - (BOOL)isLoadingNextPage;
 - (BOOL)isReaderAvailable;
 - (void)loadNewArticle;
@@ -51,10 +50,9 @@
 - (void)setDelegate:(id)arg1;
 - (void)setReaderAvailable:(BOOL)arg1;
 - (void)setReaderFont:(id)arg1;
-- (void)setReaderInitialTopScrollOffset:(int)arg1 configuration:(id)arg2 userVisibleWidth:(double)arg3 isViewingArchive:(BOOL)arg4;
+- (void)setReaderInitialTopScrollOffset:(int)arg1 configuration:(id)arg2 isViewingArchive:(BOOL)arg3;
 - (void)setReaderLanguageTag:(id)arg1;
 - (void)setReaderTheme:(id)arg1;
-- (void)setReaderUserVisibleWidth:(double)arg1;
 - (BOOL)shouldCreateArticleFinder;
 - (void)stopLoadingNextPage;
 - (id)webView;

@@ -3,13 +3,13 @@
  */
 
 @interface HLPURLSession : NSObject <NSURLSessionDataDelegate, NSURLSessionDelegate> {
-    BOOL _cancelled;
-    id _completionHandler;
-    NSMutableData *_data;
-    NSURLSessionDataTask *_dataTask;
-    int _dataType;
-    NSString *_lastModified;
-    NSURLRequest *_request;
+    BOOL  _cancelled;
+    id  _completionHandler;
+    NSMutableData * _data;
+    NSURLSessionDataTask * _dataTask;
+    int  _dataType;
+    NSString * _lastModified;
+    NSURLRequest * _request;
 }
 
 @property (getter=isCancelled, nonatomic) BOOL cancelled;
@@ -30,9 +30,7 @@
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveResponse:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 willCacheResponse:(id)arg3 completionHandler:(id /* block */)arg4;
-- (void)URLSession:(id)arg1 didReceiveChallenge:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
-- (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)cancel;
 - (id)completionHandler;
 - (id)dataTask;

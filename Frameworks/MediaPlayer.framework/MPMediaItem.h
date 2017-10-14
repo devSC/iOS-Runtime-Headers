@@ -6,15 +6,12 @@
 
 @property (nonatomic, readonly) NSString *albumArtist;
 @property (nonatomic, readonly) unsigned long long albumArtistPersistentID;
-@property (nonatomic, readonly) NSString *albumArtistWithFallback;
 @property (nonatomic, readonly) unsigned long long albumPersistentID;
 @property (nonatomic, readonly) NSString *albumTitle;
-@property (nonatomic, readonly) NSString *albumTitleWithFallback;
 @property (nonatomic, readonly) unsigned int albumTrackCount;
 @property (nonatomic, readonly) unsigned int albumTrackNumber;
 @property (nonatomic, readonly) NSString *artist;
 @property (nonatomic, readonly) unsigned long long artistPersistentID;
-@property (nonatomic, readonly) NSString *artistWithFallback;
 @property (nonatomic, readonly) MPMediaItemArtwork *artwork;
 @property (nonatomic, readonly) NSURL *assetURL;
 @property (nonatomic, readonly) unsigned int beatsPerMinute;
@@ -26,27 +23,33 @@
 @property (nonatomic, readonly) NSString *composer;
 @property (nonatomic, readonly) unsigned long long composerPersistentID;
 @property (nonatomic, copy) NSDate *dateAccessed;
+@property (nonatomic, readonly) NSDate *dateAdded;
 @property (nonatomic, readonly) unsigned int discCount;
 @property (nonatomic, readonly) unsigned int discNumber;
 @property (nonatomic, readonly) NSString *effectiveAlbumArtist;
 @property (nonatomic, readonly) double effectiveStopTime;
+@property (getter=isExplicitItem, nonatomic, readonly) BOOL explicitItem;
 @property (nonatomic, readonly) NSString *genre;
 @property (nonatomic, readonly) unsigned long long genrePersistentID;
 @property (nonatomic) BOOL hasBeenPlayed;
 @property (nonatomic, readonly) BOOL isITunesU;
 @property (nonatomic, readonly) BOOL isRental;
 @property (nonatomic, readonly) BOOL isUsableAsRepresentativeItem;
+@property (getter=wlk_jsPropertyStrings, nonatomic, readonly) NSSet *jsPropertyStrings;
 @property (nonatomic, copy) NSDate *lastPlayedDate;
 @property (nonatomic, copy) NSDate *lastSkippedDate;
 @property (nonatomic, readonly) NSString *lyrics;
 @property (nonatomic, readonly) unsigned int mediaType;
-@property (nonatomic, readonly) BOOL mediaTypeCanSeedGenius;
+@property (getter=wlk_mediaTypeString, nonatomic, readonly, copy) NSString *mediaTypeString;
 @property (nonatomic, readonly) unsigned long long persistentID;
 @property (nonatomic, readonly) unsigned int playCount;
 @property (nonatomic) unsigned int playCountSinceSync;
+@property (getter=wlk_playState, nonatomic, readonly, copy) NSString *playState;
 @property (nonatomic, readonly) double playbackDuration;
+@property (nonatomic, readonly) NSString *playbackStoreID;
 @property (nonatomic, readonly) unsigned long long podcastPersistentID;
 @property (nonatomic, readonly) NSString *podcastTitle;
+@property (getter=hasProtectedAsset, nonatomic, readonly) BOOL protectedAsset;
 @property (nonatomic, readonly) unsigned int rating;
 @property (nonatomic, readonly) NSDate *releaseDate;
 @property (nonatomic, readonly) BOOL rememberBookmarkTime;
@@ -55,7 +58,6 @@
 @property (nonatomic, readonly) double startTime;
 @property (nonatomic, readonly) double stopTime;
 @property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) NSString *titleWithFallback;
 @property (nonatomic, readonly) NSString *userGrouping;
 @property (nonatomic, readonly) unsigned int year;
 
@@ -104,6 +106,7 @@
 - (unsigned long long)composerPersistentID;
 - (unsigned int)countOfChaptersOfType:(int)arg1;
 - (id)dateAccessed;
+- (id)dateAdded;
 - (void)didReceiveMemoryWarning;
 - (BOOL)didSkipWithPlayedToTime:(double)arg1;
 - (unsigned int)discCount;
@@ -116,6 +119,7 @@
 - (id)genre;
 - (unsigned long long)genrePersistentID;
 - (BOOL)hasBeenPlayed;
+- (BOOL)hasProtectedAsset;
 - (unsigned int)hash;
 - (void)incrementPlayCountForPlayingToEnd;
 - (BOOL)incrementPlayCountForStopTime:(double)arg1;
@@ -126,6 +130,7 @@
 - (BOOL)isCloudItem;
 - (BOOL)isCompilation;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isExplicitItem;
 - (BOOL)isITunesU;
 - (BOOL)isRental;
 - (BOOL)isUsableAsRepresentativeItem;
@@ -135,13 +140,13 @@
 - (id)lyrics;
 - (void)markNominalAmountHasBeenPlayed;
 - (unsigned int)mediaType;
-- (BOOL)mediaTypeCanSeedGenius;
 - (id)multiverseIdentifier;
 - (double)nominalHasBeenPlayedThreshold;
 - (void)noteWasPlayedToTime:(double)arg1 skipped:(BOOL)arg2;
 - (unsigned int)playCount;
 - (unsigned int)playCountSinceSync;
 - (double)playbackDuration;
+- (id)playbackStoreID;
 - (unsigned long long)podcastPersistentID;
 - (id)podcastTitle;
 - (void)populateLocationPropertiesWithPath:(id)arg1;
@@ -172,11 +177,19 @@
 - (id)valuesForProperties:(id)arg1;
 - (unsigned int)year;
 
+// Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
+
++ (id)playingInfoFromAsset:(id)arg1 withDefaultTitle:(id)arg2;
++ (id)playingInfoFromAsset:(id)arg1 withDefaultTitle:(id)arg2 playbackDuration:(double)arg3 elapsedTime:(double)arg4;
+
 // Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
 
-+ (void)registerSupportedCustomProperties;
++ (id)customPropertyHandlersCollection;
++ (void)registerSupportedCustomPropertiesWithHandlersCollection:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
++ (id)MPU_contentItemIdentifierCollectionProperties;
 
 - (id)MPU_contentItemIdentifierCollection;
 
@@ -192,11 +205,20 @@
 
 // Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
 
-- (id)SAMPMediaItemRepresentation;
-- (id)albumArtistWithFallback;
 - (id)albumImageWithFallbackForSize:(struct CGSize { float x1; float x2; })arg1 doubleLineRow:(BOOL)arg2;
-- (id)albumTitleWithFallback;
-- (id)artistWithFallback;
-- (id)titleWithFallback;
+
+// Image: /System/Library/PrivateFrameworks/WatchListKitUI.framework/WatchListKitUI
+
++ (id)wlk_JSgenericProperties;
++ (id)wlk_JSmovieProperties;
++ (id)wlk_JStvShowProperties;
++ (id)wlk_mediaItemForPersistentIdentifier:(id)arg1;
++ (id)wlk_mediaItemForStoreIdentifier:(id)arg1;
+
+- (id)wlk_jsPropertyStrings;
+- (id)wlk_mediaTypeString;
+- (id)wlk_playState;
+- (id)wlk_stringIdentifierForProperty:(id)arg1;
+- (id)wlk_stringIdentifierForSeason;
 
 @end

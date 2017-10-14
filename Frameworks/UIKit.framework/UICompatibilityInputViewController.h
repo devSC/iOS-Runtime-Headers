@@ -3,25 +3,29 @@
  */
 
 @interface UICompatibilityInputViewController : UIInputViewController <_UIKBDelegateAwareInputController> {
-    UIKeyboard *_deferredSystemView;
-    UIKeyboardInputMode *_incomingExtensionInputMode;
-    double _incomingExtensionInputModeTime;
-    UIViewController *_inputController;
-    UIView *_inputControllerSnapshot;
-    UIKeyboardInputMode *_inputMode;
-    BOOL _shouldRegenerateSizingConstraints;
-    BOOL _shouldSuppressRemoteInputController;
+    UIKeyboard * _deferredSystemView;
+    UIKeyboardInputMode * _incomingExtensionInputMode;
+    double  _incomingExtensionInputModeTime;
+    UIViewController * _inputController;
+    UIKeyboardInputMode * _inputMode;
+    NSArray * _internalEdgeMatchConstraints;
+    double  _lastSuspendedTime;
+    double  _resetInputModeTime;
+    BOOL  _shouldRegenerateSizingConstraints;
+    BOOL  _shouldSuppressRemoteInputController;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (nonatomic, retain) UIViewController *inputController;
-@property (nonatomic, retain) UIView *inputControllerSnapshot;
+@property (nonatomic, retain) NSArray *internalEdgeMatchConstraints;
 @property (readonly) Class superclass;
 
 + (BOOL)_requiresProxyInterface;
++ (void)applicationDidReceiveMemoryWarning:(id)arg1;
 + (id)deferredInputModeControllerWithKeyboard:(id)arg1;
++ (id)inputSnapshotViewForInputMode:(id)arg1 orientation:(int)arg2;
 + (id)inputViewControllerWithView:(id)arg1;
 
 - (id)_compatView;
@@ -30,6 +34,9 @@
 - (id)_keyboard;
 - (id)_keyboardForThisViewController;
 - (id)_systemViewControllerForInputMode:(id)arg1;
+- (void)_tvUpdateAppearanceForUserInterfaceStyle;
+- (void)addSnapshotViewForInputMode:(id)arg1;
+- (void)assertCurrentInputModeIfNecessary;
 - (id)childCompatibilityController;
 - (void)dealloc;
 - (void)didFinishTranslation;
@@ -39,20 +46,22 @@
 - (void)finishSplitTransition:(BOOL)arg1;
 - (void)generateCompatibleSizeConstraintsIfNecessary;
 - (id)inputController;
-- (id)inputControllerSnapshot;
+- (id)internalEdgeMatchConstraints;
 - (void)keyboardWillChangeFromDelegate:(id)arg1 toDelegate:(id)arg2;
+- (void)killIncomingExtension;
 - (void)loadView;
 - (id)preferredFocusedItem;
 - (void)rebuildChildConstraints;
 - (void)removeSnapshotView;
+- (void)resetInputMode;
+- (void)resetInputModeInMainThread;
 - (void)setInputController:(id)arg1;
-- (void)setInputControllerSnapshot:(id)arg1;
 - (void)setInputMode:(id)arg1;
+- (void)setInternalEdgeMatchConstraints:(id)arg1;
 - (BOOL)shouldAutomaticallyForwardAppearanceMethods;
 - (BOOL)shouldAutomaticallyForwardRotationMethods;
 - (void)shouldUpdateInputMode:(id)arg1;
-- (void)snapshotCurrentDisplay;
-- (void)switchToCurrentSystemInputMode;
+- (void)takeSnapshotView;
 - (void)tearDownInputController;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillAppear:(BOOL)arg1;

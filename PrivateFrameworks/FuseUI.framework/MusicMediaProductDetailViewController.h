@@ -3,33 +3,36 @@
  */
 
 @interface MusicMediaProductDetailViewController : MusicMediaDetailViewController <MusicClientContextConsuming, MusicJSNativeViewControllerFactory, MusicJSProductNativeViewControllerDelegate, MusicMediaProductHeaderContentViewControllerDelegate, UIViewControllerRestoration> {
-    BOOL _allowsProductHairline;
-    MPArtworkCatalog *_artworkCatalog;
-    UIBarButtonItem *_cancelButtonItem;
-    MusicClientContext *_clientContext;
-    <MusicEntityProviding> *_containerEntityProvider;
-    MusicEntityValueContext *_containerEntityValueContext;
-    MusicMediaProductDetailHeaderConfiguration *_detailHeaderConfiguration;
-    UIImage *_editedContentArtworkImage;
-    BOOL _editingWasCancelled;
-    BOOL _forContentCreation;
-    BOOL _hasDetailTintInformation;
-    BOOL _hasReceivedViewWillAppearAtLeastOnce;
-    MusicMediaDetailHeaderViewController *_mediaDetailHeaderViewController;
-    MusicMediaProductHeaderContentViewController *_mediaProductHeaderContentViewController;
-    BOOL _needsArtworkCatalogUpdate;
-    BOOL _needsColorAnalysisUpdate;
-    BOOL _needsEffectiveNavigationItemUpdateForEditingStateChangeUponViewWillAppear;
-    NSArray *_nonEditingLeftBarButtonItems;
-    NSArray *_nonEditingRightBarButtonItems;
-    NSMutableArray *_pendingTintInformationDispatchEvents;
-    int _presentationSource;
+    BOOL  _allowsProductHairline;
+    MPArtworkCatalog * _artworkCatalog;
+    UIBarButtonItem * _cancelButtonItem;
+    MusicClientContext * _clientContext;
+    <MusicEntityProviding> * _containerEntityProvider;
+    MusicEntityValueContext * _containerEntityValueContext;
+    MusicMediaProductDetailHeaderConfiguration * _detailHeaderConfiguration;
+    UIImage * _editedContentArtworkImage;
+    BOOL  _editingWasCancelled;
+    BOOL  _forContentCreation;
+    BOOL  _hasDetailTintInformation;
+    BOOL  _hasPresentedExplicitByDefaultAlert;
+    BOOL  _hasReceivedViewWillAppearAtLeastOnce;
+    BOOL  _isObservingClientContextTransferAggregatorDidChangeNotification;
+    BOOL  _isViewFullyVisible;
+    MusicMediaDetailHeaderViewController * _mediaDetailHeaderViewController;
+    MusicMediaProductHeaderContentViewController * _mediaProductHeaderContentViewController;
+    BOOL  _needsArtworkCatalogUpdate;
+    BOOL  _needsColorAnalysisUpdate;
+    BOOL  _needsEffectiveNavigationItemUpdateForEditingStateChangeUponViewWillAppear;
+    NSArray * _nonEditingLeftBarButtonItems;
+    NSArray * _nonEditingRightBarButtonItems;
+    NSMutableArray * _pendingTintInformationDispatchEvents;
+    int  _presentationSource;
     struct CGSize { 
         float width; 
         float height; 
-    } _previousMaximumHeaderSize;
-    UIViewController *_relatedContentViewController;
-    <MusicEntityProviding> *_tracklistEntityProvider;
+    }  _previousMaximumHeaderSize;
+    UIViewController * _relatedContentViewController;
+    <MusicEntityProviding> * _tracklistEntityProvider;
 }
 
 @property (nonatomic, readonly) MusicEntityValueContext *_containerEntityValueContext;
@@ -55,22 +58,26 @@
 - (BOOL)_calculateHeaderContentViewControllerEditing;
 - (void)_cancelEditing;
 - (void)_commitEditing;
-- (void)_containerEntityProviderDidInvalidateNotification:(id)arg1;
 - (id)_containerEntityValueContext;
 - (id)_containerMetadataContextWithContainerJSDictionary:(id)arg1 tracklistItemJSDictionaries:(id)arg2;
 - (void)_dispatchNativeViewEventOfType:(int)arg1 withExtraInfo:(id)arg2 forViewController:(id)arg3 completion:(id /* block */)arg4;
+- (BOOL)_editingWasCancelled;
 - (id)_effectiveNavigationItem;
 - (void)_handleCancelButtonTapped:(id)arg1;
+- (void)_handleContainerEntityProviderDidInvalidateNotification:(id)arg1;
 - (id)_loadDetailHeaderConfiguration;
 - (id)_loadProductHeaderContentViewController;
 - (id)_loadProductSplitDetailViewController;
 - (id)_loadProductSplitMainViewController;
 - (id)_mediaDetailHeaderViewController;
 - (id)_mediaProductHeaderContentViewController;
+- (void)_presentExplicitByDefaultAlertIfNeeded;
+- (int)_productDescriptionTextStyle;
 - (void)_reloadContainerEntityValueContextProperties;
 - (void)_sendPendingTintInformationDispatchEvents;
 - (void)_setNeedsDetailHeaderConfigurationUpdate;
 - (BOOL)_shouldAutomaticallyPopForMissingContainerEntityValueProvider;
+- (void)_unregisterForClientContextTransferAggregatorDidChangeNotification;
 - (void)_updateAllowsProductHairline;
 - (void)_updateColorAnalysisIfNeededWithShouldTemporarilyWait:(BOOL)arg1;
 - (void)_updateDetailHeaderConfiguration;
@@ -90,6 +97,7 @@
 - (BOOL)isForContentCreation;
 - (void)jsProductNativeViewController:(id)arg1 presentShareDocument:(id)arg2 options:(id)arg3;
 - (void)jsProductNativeViewController:(id)arg1 setProductEntityValueProviderData:(id)arg2;
+- (void)jsProductNativeViewController:(id)arg1 setProminentTrackStoreID:(long long)arg2;
 - (void)jsProductNativeViewController:(id)arg1 setRelatedContentDocument:(id)arg2 options:(id)arg3;
 - (void)jsProductNativeViewController:(id)arg1 setReportingInformation:(id)arg2;
 - (void)jsProductNativeViewController:(id)arg1 setTracklistItems:(id)arg2;
@@ -97,6 +105,7 @@
 - (void)mediaProductHeaderContentViewController:(id)arg1 didSelectShareButton:(id)arg2;
 - (void)mediaProductHeaderContentViewControllerDidTapEdit:(id)arg1;
 - (void)mediaProductHeaderContentViewControllerDidUpdateEditableText:(id)arg1;
+- (BOOL)music_allowsMetricsEvents;
 - (BOOL)music_handleUserActivityContext:(id)arg1 containerItem:(id)arg2;
 - (int)presentationSource;
 - (id)previewMenuItems;
@@ -107,9 +116,11 @@
 - (id)tracklistEntityProvider;
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)updateWithHeaderHeight:(float)arg1 maximumHeaderHeight:(float)arg2 headerVerticalOffset:(float)arg3 transitionProgress:(float)arg4;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
+- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

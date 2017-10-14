@@ -3,11 +3,11 @@
  */
 
 @interface CPLResource : NSObject <NSCopying, NSSecureCoding> {
-    BOOL _canGenerateDerivative;
-    BOOL _generateDerivative;
-    CPLResourceIdentity *_identity;
-    NSString *_itemIdentifier;
-    unsigned int _resourceType;
+    BOOL  _canGenerateDerivative;
+    BOOL  _generateDerivative;
+    CPLResourceIdentity * _identity;
+    NSString * _itemIdentifier;
+    unsigned int  _resourceType;
 }
 
 @property (nonatomic) BOOL canGenerateDerivative;
@@ -50,6 +50,9 @@
 - (void)setResourceType:(unsigned int)arg1;
 
 // Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
++ (id)imageDerivativeTypes;
++ (id)videoDerivativeTypes;
 
 - (BOOL)deleteAfterUpload;
 - (void)setDeleteAfterUpload:(BOOL)arg1;

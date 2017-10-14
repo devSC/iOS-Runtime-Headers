@@ -3,24 +3,27 @@
  */
 
 @interface SKUIItemOfferButtonProperties : NSObject {
-    float _alpha;
-    NSAttributedString *_attributedText;
-    UIColor *_borderBackgroundColor;
-    UIColor *_borderColor;
-    CAFilter *_borderCompositingFilter;
-    float _borderCornerRadius;
-    float _borderWidth;
-    BOOL _cancelRecognizer;
-    int _confirmationTitleStyle;
-    BOOL _hasBorderView;
-    BOOL _hasTitleLabel;
-    UIImage *_image;
-    float _progress;
-    BOOL _progressIndeterminate;
-    int _progressType;
-    UIColor *_textColor;
-    int _titleStyle;
-    BOOL _universal;
+    float  _alpha;
+    NSAttributedString * _attributedText;
+    UIColor * _borderBackgroundColor;
+    UIColor * _borderColor;
+    CAFilter * _borderCompositingFilter;
+    float  _borderCornerRadius;
+    BOOL  _borderCornerRadiusMatchesHalfBoundingDimension;
+    float  _borderWidth;
+    UIImage * _borderedImage;
+    BOOL  _cancelRecognizer;
+    int  _confirmationTitleStyle;
+    BOOL  _hasBorderView;
+    BOOL  _hasTitleLabel;
+    UIImage * _image;
+    float  _progress;
+    BOOL  _progressIndeterminate;
+    int  _progressType;
+    BOOL  _restores;
+    UIColor * _textColor;
+    int  _titleStyle;
+    BOOL  _universal;
 }
 
 @property (nonatomic) float alpha;
@@ -29,7 +32,9 @@
 @property (nonatomic, retain) UIColor *borderColor;
 @property (nonatomic, retain) CAFilter *borderCompositingFilter;
 @property (nonatomic) float borderCornerRadius;
+@property (nonatomic) BOOL borderCornerRadiusMatchesHalfBoundingDimension;
 @property (nonatomic) float borderWidth;
+@property (nonatomic, retain) UIImage *borderedImage;
 @property (nonatomic) BOOL cancelRecognizer;
 @property (nonatomic) int confirmationTitleStyle;
 @property (nonatomic) BOOL hasBorderView;
@@ -38,6 +43,7 @@
 @property (nonatomic) float progress;
 @property (nonatomic) BOOL progressIndeterminate;
 @property (nonatomic) int progressType;
+@property (nonatomic) BOOL restores;
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic) int titleStyle;
 @property (nonatomic) BOOL universal;
@@ -49,7 +55,9 @@
 - (id)borderColor;
 - (id)borderCompositingFilter;
 - (float)borderCornerRadius;
+- (BOOL)borderCornerRadiusMatchesHalfBoundingDimension;
 - (float)borderWidth;
+- (id)borderedImage;
 - (BOOL)cancelRecognizer;
 - (int)confirmationTitleStyle;
 - (BOOL)hasBorderView;
@@ -58,13 +66,16 @@
 - (float)progress;
 - (BOOL)progressIndeterminate;
 - (int)progressType;
+- (BOOL)restores;
 - (void)setAlpha:(float)arg1;
 - (void)setAttributedText:(id)arg1;
 - (void)setBorderBackgroundColor:(id)arg1;
 - (void)setBorderColor:(id)arg1;
 - (void)setBorderCompositingFilter:(id)arg1;
 - (void)setBorderCornerRadius:(float)arg1;
+- (void)setBorderCornerRadiusMatchesHalfBoundingDimension:(BOOL)arg1;
 - (void)setBorderWidth:(float)arg1;
+- (void)setBorderedImage:(id)arg1;
 - (void)setCancelRecognizer:(BOOL)arg1;
 - (void)setConfirmationTitleStyle:(int)arg1;
 - (void)setHasBorderView:(BOOL)arg1;
@@ -73,6 +84,7 @@
 - (void)setProgress:(float)arg1;
 - (void)setProgressIndeterminate:(BOOL)arg1;
 - (void)setProgressType:(int)arg1;
+- (void)setRestores:(BOOL)arg1;
 - (void)setTextColor:(id)arg1;
 - (void)setTitleStyle:(int)arg1;
 - (void)setUniversal:(BOOL)arg1;

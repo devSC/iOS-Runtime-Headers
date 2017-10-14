@@ -3,18 +3,19 @@
  */
 
 @interface SBUIPasscodeLockViewWithKeypad : SBUIPasscodeLockViewBase <SBUIPasscodeEntryFieldDelegate, SBUIPasscodeLockNumberPadDelegate> {
-    UIView *_bottomToNumberPadFiller;
-    UIView *_entryFieldToNumberPadFiller;
-    NSString *_lastCharacterBeforeBackspace;
-    UIView *_leftToNumberPadFiller;
-    SBUIPasscodeLockNumberPad *_numberPad;
-    UIView *_rightToNumberPadFiller;
-    UIView *_statusBackgroundView;
-    UILabel *_statusSubtitleView;
-    UILabel *_statusTitleView;
-    UIView *_topToStatusFieldOrEntryFieldFiller;
-    BOOL _undoInputOnTouchCancellation;
-    BOOL _useLightStyle;
+    UIView * _bottomToNumberPadFiller;
+    UIView * _entryFieldToNumberPadFiller;
+    BOOL  _hasPerformedLayoutOnce;
+    NSString * _lastCharacterBeforeBackspace;
+    UIView * _leftToNumberPadFiller;
+    SBUIPasscodeLockNumberPad * _numberPad;
+    UIView * _rightToNumberPadFiller;
+    UIView * _statusBackgroundView;
+    UILabel * _statusSubtitleView;
+    UILabel * _statusTitleView;
+    UIView * _topToStatusFieldOrEntryFieldFiller;
+    BOOL  _undoInputOnTouchCancellation;
+    BOOL  _useLightStyle;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -26,6 +27,7 @@
 @property (readonly) Class superclass;
 @property (getter=_undoInputOnTouchCancellation, setter=_setUndoInputOnTouchCancellation:, nonatomic) BOOL undoInputOnTouchCancellation;
 
+- (void).cxx_destruct;
 - (float)_entryFieldBottomYDistanceFromNumberPadTopButton;
 - (BOOL)_includesStatusView;
 - (void)_layoutStatusView;
@@ -74,6 +76,7 @@
 - (void)setBackgroundAlpha:(float)arg1;
 - (void)setCustomBackgroundColor:(id)arg1;
 - (void)setLastCharacterBeforeBackspace:(id)arg1;
+- (void)setShowsCancelButton:(BOOL)arg1;
 - (void)setShowsEmergencyCallButton:(BOOL)arg1;
 - (void)setShowsStatusField:(BOOL)arg1;
 - (void)setStatusSubtitleView:(id)arg1;

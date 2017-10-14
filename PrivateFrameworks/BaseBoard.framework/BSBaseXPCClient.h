@@ -3,14 +3,14 @@
  */
 
 @interface BSBaseXPCClient : NSObject {
-    BOOL _clientInvalidated;
-    NSObject<OS_xpc_object> *_connection;
-    BSSignal *_invalidationSignal;
-    int _notifyToken;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSObject<OS_xpc_object> *_serverEndpoint;
-    NSString *_serviceName;
-    BOOL _suspended;
+    BOOL  _clientInvalidated;
+    NSObject<OS_xpc_object> * _connection;
+    BSSignal * _invalidationSignal;
+    int  _notifyToken;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSObject<OS_xpc_object> * _serverEndpoint;
+    NSString * _serviceName;
+    BOOL  _suspended;
 }
 
 @property (getter=isSuspended, nonatomic, readonly) BOOL suspended;
@@ -41,6 +41,7 @@
 - (void)queue_connectionWasInvalidated;
 - (void)queue_connectionWasResumed;
 - (void)queue_connectionWasSuspended;
+- (void)queue_handleError:(id)arg1;
 - (void)queue_handleMessage:(id)arg1;
 - (void)queue_invalidate;
 - (BOOL)queue_isSuspended;

@@ -3,38 +3,38 @@
  */
 
 @interface FUTimeAxisDescriptor : NSObject <FUAxisDescriptor> {
-    FUDateAnchorRule *_anchorRule;
-    float _axisDescriptorPadding;
-    NSDateComponents *_axisSpacing;
-    NSMutableArray *_cachedAxisLabelColors;
-    NSArray *_cachedAxisLabels;
-    NSArray *_cachedAxisSubLabels;
-    NSMutableDictionary *_dayFormatters;
-    BOOL _generateSubAxisDescriptorOnlyForNoonMidnight;
-    BOOL _hideClippedLabels;
-    UIColor *_highlightedLabelColor;
-    UIColor *_highlightedSubLabelColor;
-    NSMutableDictionary *_hourFormatters;
-    unsigned int _labelAlignment;
-    UIFont *_labelFont;
-    id _maxValue;
-    id _minValue;
-    NSMutableDictionary *_monthFormatters;
-    UIColor *_selectedLabelColor;
-    FUDateAnchorRule *_subAnchorRule;
-    BOOL _subAxisCapitalize;
-    float _subAxisDescriptorPadding;
-    NSDateComponents *_subAxisSpacing;
-    float _subAxisVerticalPadding;
-    UIFont *_subLabelFont;
-    unsigned int _subTextStyle;
-    unsigned int _subTimeInterval;
-    unsigned int _textStyle;
-    unsigned int _timeInterval;
-    UIColor *_unhighlightedLabelColor;
-    UIColor *_unhighlightedSubLabelColor;
-    NSMutableDictionary *_weekdayFormatters;
-    NSMutableDictionary *_yearFormatters;
+    FUDateAnchorRule * _anchorRule;
+    float  _axisDescriptorPadding;
+    NSDateComponents * _axisSpacing;
+    NSMutableArray * _cachedAxisLabelColors;
+    NSArray * _cachedAxisLabels;
+    NSArray * _cachedAxisSubLabels;
+    NSMutableDictionary * _dayFormatters;
+    BOOL  _generateSubAxisDescriptorOnlyForNoonMidnight;
+    BOOL  _hideClippedLabels;
+    UIColor * _highlightedLabelColor;
+    UIColor * _highlightedSubLabelColor;
+    NSMutableDictionary * _hourFormatters;
+    unsigned int  _labelAlignment;
+    UIFont * _labelFont;
+    id  _maxValue;
+    id  _minValue;
+    NSMutableDictionary * _monthFormatters;
+    UIColor * _selectedLabelColor;
+    FUDateAnchorRule * _subAnchorRule;
+    BOOL  _subAxisCapitalize;
+    float  _subAxisDescriptorPadding;
+    NSDateComponents * _subAxisSpacing;
+    float  _subAxisVerticalPadding;
+    UIFont * _subLabelFont;
+    unsigned int  _subTextStyle;
+    unsigned int  _subTimeInterval;
+    unsigned int  _textStyle;
+    unsigned int  _timeInterval;
+    UIColor * _unhighlightedLabelColor;
+    UIColor * _unhighlightedSubLabelColor;
+    NSMutableDictionary * _weekdayFormatters;
+    NSMutableDictionary * _yearFormatters;
 }
 
 @property (nonatomic, retain) FUDateAnchorRule *anchorRule;
@@ -71,6 +71,7 @@
 - (void).cxx_destruct;
 - (BOOL)_assertPropertiesValid;
 - (void)_clearCache;
+- (void)_clearFormatters;
 - (void)_generateAxisLabels;
 - (void)_generateAxisSubLabels;
 - (id)_getLabelsForSpacingInterval:(unsigned int)arg1 withSpacing:(id)arg2 textStyle:(unsigned int)arg3;
@@ -94,6 +95,7 @@
 - (id)highlightedSubLabelColor;
 - (id)hourFormatter:(unsigned int)arg1;
 - (id)init;
+- (void)invalidateCaches;
 - (unsigned int)labelAlignment;
 - (id)labelFont;
 - (id)maxValue;

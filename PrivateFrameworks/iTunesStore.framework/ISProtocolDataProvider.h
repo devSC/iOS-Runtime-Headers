@@ -3,12 +3,14 @@
  */
 
 @interface ISProtocolDataProvider : ISDataProvider <NSCopying> {
-    BOOL _shouldPostFooterSectionChanged;
-    BOOL _shouldProcessAccount;
-    BOOL _shouldProcessAuthenticationDialogs;
-    BOOL _shouldProcessDialogs;
-    BOOL _shouldProcessProtocol;
-    BOOL _shouldTriggerDownloads;
+    ISBiometricAuthenticationContext * _biometricAuthenticationContext;
+    BOOL  _shouldPostFooterSectionChanged;
+    BOOL  _shouldProcessAccount;
+    BOOL  _shouldProcessAuthenticationDialogs;
+    BOOL  _shouldProcessDialogs;
+    BOOL  _shouldProcessProtocol;
+    BOOL  _shouldProcessTouchIDDialogs;
+    BOOL  _shouldTriggerDownloads;
 }
 
 @property BOOL shouldPostFooterSectionChanged;
@@ -16,15 +18,19 @@
 @property BOOL shouldProcessAuthenticationDialogs;
 @property BOOL shouldProcessDialogs;
 @property BOOL shouldProcessProtocol;
+@property (readonly) BOOL shouldProcessTouchIDDialogs;
 @property BOOL shouldTriggerDownloads;
 
+- (void).cxx_destruct;
 - (void)_checkDownloadQueues;
 - (void)_checkInAppPurchaseQueueForAction:(id)arg1;
 - (void)_performActionsForResponse:(id)arg1;
 - (void)_presentDialog:(id)arg1;
 - (BOOL)_processFailureTypeFromDictionary:(id)arg1 error:(id*)arg2;
+- (void)_refreshSubscriptionStatus;
 - (void)_selectFooterSection:(id)arg1;
 - (BOOL)_shouldFailWithTokenErrorForDialog:(id)arg1 dictionary:(id)arg2 error:(id*)arg3;
+- (id)_touchIDDialogForResponse:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)init;
 - (BOOL)parseData:(id)arg1 returningError:(id*)arg2;
@@ -41,6 +47,7 @@
 - (BOOL)shouldProcessAuthenticationDialogs;
 - (BOOL)shouldProcessDialogs;
 - (BOOL)shouldProcessProtocol;
+- (BOOL)shouldProcessTouchIDDialogs;
 - (BOOL)shouldTriggerDownloads;
 
 @end

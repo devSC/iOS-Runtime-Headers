@@ -2,29 +2,42 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSError : NSObject <NSCopying, NSSecureCoding> {
-    int _code;
-    NSString *_domain;
-    void *_reserved;
-    NSDictionary *_userInfo;
+@interface NSError : NSObject <BSDescriptionProviding, NSCopying, NSSecureCoding> {
+    int  _code;
+    NSString * _domain;
+    void * _reserved;
+    NSDictionary * _userInfo;
 }
 
+@property (nonatomic, readonly) int _code;
+@property (nonatomic, readonly) NSString *_domain;
 @property (getter=_mapkit_isCLDenied, nonatomic, readonly) BOOL _mapkit_CLDenied;
 @property (getter=_mapkit_isCLErrorNetwork, nonatomic, readonly) BOOL _mapkit_CLErrorNetwork;
 @property (getter=_mapkit_isCLHeadingFailure, nonatomic, readonly) BOOL _mapkit_CLHeadingFailure;
 @property (getter=_mapkit_isCLLocationUnknown, nonatomic, readonly) BOOL _mapkit_CLLocationUnknown;
 @property (nonatomic, readonly, retain) NSURL *_mapkit_locationErrorSettingsURL;
+@property (nonatomic, readonly) id _userInfo;
 @property (readonly) int code;
 @property (getter=isComparisonError, nonatomic, readonly) BOOL comparisonError;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *domain;
 @property (getter=isFromRequest, nonatomic, readonly) BOOL fromRequest;
+@property (readonly) unsigned int hash;
 @property (getter=hd_isFromRequest, nonatomic, readonly) BOOL hd_fromRequest;
 @property (nonatomic, readonly) unsigned short hd_messageID;
+@property (nonatomic, readonly) NSString *hd_messageIDSDeviceIdentifier;
 @property (nonatomic, readonly) NSString *hd_messageIDSIdentifier;
 @property (nonatomic, readonly) NSDate *hd_messageSent;
 @property (nonatomic, readonly) NSDictionary *hd_persistentUserInfo;
 @property (readonly, copy) NSString *helpAnchor;
+@property (nonatomic, readonly) BOOL hf_isHomeKitNamingError;
+@property (getter=isHMError, nonatomic, readonly) BOOL hmError;
+@property (getter=isHMFError, nonatomic, readonly) BOOL hmfError;
 @property (nonatomic, readonly) NSString *idsIdentifier;
+@property (nonatomic, readonly) BOOL isAuthKitUnableToPromptDueToNetworkError;
+@property (nonatomic, readonly) BOOL isAuthKitUnableToPromptError;
+@property (nonatomic, readonly) BOOL isAuthenticationError;
 @property (readonly, copy) NSString *localizedDescription;
 @property (readonly, copy) NSString *localizedFailureReason;
 @property (readonly, copy) NSArray *localizedRecoveryOptions;
@@ -33,6 +46,9 @@
 @property (nonatomic, readonly) NSDate *messageSent;
 @property (nonatomic, readonly) NSDictionary *persistentUserInfo;
 @property (readonly) id recoveryAttempter;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL tsp_isDocumentTooNewError;
+@property (nonatomic, readonly) BOOL tsp_isRecoverable;
 @property (readonly, copy) NSDictionary *userInfo;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
@@ -60,13 +76,12 @@
 - (id)_web_initWithDomain:(id)arg1 code:(int)arg2 failingURL:(id)arg3;
 - (id)_web_initWithDomain_nowarn:(id)arg1 code:(int)arg2 URL:(id)arg3;
 - (id)_web_localizedDescription;
-- (id)brc_description;
 - (int)code;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)domain;
 - (void)encodeWithCoder:(id)arg1;
-- (void)finalize;
 - (unsigned int)hash;
 - (id)helpAnchor;
 - (id)init;
@@ -86,19 +101,29 @@
 - (id)_sanitizeObject:(id)arg1;
 - (id)ac_secureCodingError;
 
+// Image: /System/Library/Frameworks/CallKit.framework/CallKit
+
++ (id)cx_callDirectoryManagerErrorWithCode:(int)arg1;
++ (id)cx_callDirectoryManagerErrorWithCode:(int)arg1 userInfo:(id)arg2;
++ (id)cx_callDirectoryStoreErrorWithCode:(int)arg1;
++ (id)cx_errorWithCode:(int)arg1;
++ (id)cx_incomingCallErrorWithCode:(int)arg1;
++ (id)cx_requestTransactionErrorWithCode:(int)arg1;
+
 // Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
-+ (id)errorFromErrno;
-+ (id)errorWithPOSIXCode:(int)arg1;
++ (id)CKErrorFromErrno;
++ (id)CKErrorWithPOSIXCode:(int)arg1;
 
 - (id)CKClientSuitableError;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 - (BOOL)CKIsNotFoundError;
+- (BOOL)CKIsPOSIXErrorCode:(int)arg1;
 - (BOOL)isComparisonError;
-- (BOOL)isPOSIXErrorCode:(int)arg1;
 
 // Image: /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
 
-+ (id)errorWithBTResult:(id)arg1;
++ (id)errorWithInfo:(id)arg1;
 
 // Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
 
@@ -113,53 +138,74 @@
 + (id)_defaultDescriptionForCode:(int)arg1;
 + (id)errorWithCADResult:(int)arg1;
 + (id)errorWithCADResult:(int)arg1 action:(id)arg2;
-+ (id)errorWithCode:(int)arg1;
-+ (id)errorWithCode:(int)arg1 description:(id)arg2;
-+ (id)errorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3;
++ (id)errorWithEKErrorCode:(int)arg1;
++ (id)errorWithEKErrorCode:(int)arg1 description:(id)arg2;
++ (id)errorWithEKErrorCode:(int)arg1 description:(id)arg2 reason:(id)arg3;
++ (id)errorWithEKErrorCode:(int)arg1 description:(id)arg2 underlyingError:(id)arg3 reason:(id)arg4;
++ (id)errorWithEKErrorCode:(int)arg1 underlyingError:(id)arg2;
 
 // Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
 
++ (BOOL)hk_assignError:(id*)arg1 code:(int)arg2 description:(id)arg3;
++ (BOOL)hk_assignError:(id*)arg1 code:(int)arg2 description:(id)arg3 underlyingError:(id)arg4;
++ (BOOL)hk_assignError:(id*)arg1 code:(int)arg2 format:(id)arg3;
 + (id)hk_error:(int)arg1 description:(id)arg2;
 + (id)hk_error:(int)arg1 description:(id)arg2 underlyingError:(id)arg3;
 + (id)hk_error:(int)arg1 format:(id)arg2;
++ (id)hk_protectedDataInaccessibilityError;
 
 - (BOOL)hk_isAuthorizationDeniedError;
 - (BOOL)hk_isAuthorizationNotDeterminedError;
+- (BOOL)hk_isCocoaNoSuchFileError;
 - (BOOL)hk_isDatabaseAccessibilityError;
-- (BOOL)hk_isDeviceNotFoundError;
 - (BOOL)hk_isHealthKitError;
 - (BOOL)hk_isInternalFailureError;
 - (BOOL)hk_isInvalidArgumentError;
-- (void)hk_logWithDatabaseAccessibilityAtLogLevel:(int)arg1 format:(id)arg2;
-- (void)hk_logWithoutDatabaseAccessibiityErrors:(id)arg1;
+- (BOOL)hk_isServiceDeviceNotFoundError;
+- (BOOL)hk_isStreamFailureError;
+- (BOOL)hk_isTimeoutError;
+- (id)hk_underlyingErrorWithDomain:(id)arg1;
 
 // Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
 
 + (id)hmErrorWithCode:(int)arg1;
 + (id)hmErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4;
++ (id)hmErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4 underlyingError:(id)arg5;
 + (id)hmErrorWithCode:(int)arg1 userInfo:(id)arg2;
++ (id)hmInternalErrorWithCode:(int)arg1;
++ (id)hmInternalErrorWithCode:(int)arg1 underlyingError:(id)arg2;
 
-- (id)shortDescription;
+- (BOOL)isHMError;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (int)_mapkit_directionsErrorCode;
-- (id)_mapkit_directionsErrorWithDetail:(struct { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)arg1;
 - (id)_mapkit_error;
+- (id)_mapkit_errorWithDirectionsError:(id)arg1;
 - (BOOL)_mapkit_isCLDenied;
 - (BOOL)_mapkit_isCLErrorNetwork;
 - (BOOL)_mapkit_isCLHeadingFailure;
 - (BOOL)_mapkit_isCLLocationUnknown;
 - (BOOL)_mapkit_isDirectionsError;
 - (id)_mapkit_locationErrorSettingsURL;
+- (id)_mapkit_transitIncident;
 - (int)_mapkit_underlyingGEOError;
+
+// Image: /System/Library/Frameworks/Metal.framework/Metal
+
+- (id)initWithIOAccelError:(int)arg1;
 
 // Image: /System/Library/Frameworks/Photos.framework/Photos
 
 + (id)_ph_genericErrorWithUnderlyingError:(id)arg1 localizedDescription:(id)arg2;
 + (id)ph_errorWithDomain:(id)arg1 code:(int)arg2 userInfo:(id)arg3;
++ (id)ph_genericEntitlementError;
 + (id)ph_genericErrorWithLocalizedDescription:(id)arg1;
 + (id)ph_genericErrorWithUnderlyingError:(id)arg1 localizedDescription:(id)arg2;
+
+// Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
+
++ (id)_rpUserErrorForCode:(int)arg1 userInfo:(id)arg2;
 
 // Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
 
@@ -181,10 +227,20 @@
 - (id)encodeableError;
 - (id)encodeableError;
 
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+
++ (id)_un_descriptionForUNErrorCode:(int)arg1;
++ (id)un_errorWithUNErrorCode:(int)arg1 userInfo:(id)arg2;
+
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
+- (id)vs_secureCodingSafeError;
+
 // Image: /System/Library/Frameworks/WatchConnectivity.framework/WatchConnectivity
 
 + (id)userInfoDictionaryWithErrorStringsForErrorCode:(int)arg1;
 + (id)wcErrorFromInternalError:(id)arg1;
++ (id)wcErrorFromReceivedCode:(int)arg1;
 + (id)wcErrorWithCode:(int)arg1;
 + (id)wcErrorWithCode:(int)arg1 underlyingError:(id)arg2;
 + (id)wcErrorWithCode:(int)arg1 underlyingWCErrorWithCode:(int)arg2;
@@ -211,7 +267,13 @@
 // Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 + (id)ak_errorWithCode:(int)arg1;
++ (id)ak_errorWithCode:(int)arg1 underlyingError:(id)arg2;
++ (id)ak_errorWithCode:(int)arg1 userInfo:(id)arg2;
 + (id)ak_wrappedAnisetteError:(long)arg1;
+
+- (BOOL)ak_isUserCancelError;
+- (BOOL)ak_isUserSkippedError;
+- (BOOL)ak_isUserTryAgainError;
 
 // Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
 
@@ -219,63 +281,105 @@
 
 - (BOOL)bs_isCancelledError;
 - (BOOL)bs_isTimeoutError;
+- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
+- (id)descriptionWithMultilinePrefix:(id)arg1;
+- (id)succinctDescription;
+- (id)succinctDescriptionBuilder;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)formattedCode:(int)arg1;
+
+- (id)formattedCode;
+- (id)verboseDescription;
+- (id)verboseDescriptionWithIdentation:(unsigned int)arg1;
 
 // Image: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
 
++ (id)br_errorFromErrno;
++ (id)br_errorWithDomain:(id)arg1 code:(int)arg2 description:(id)arg3;
++ (id)br_errorWithPOSIXCode:(int)arg1;
++ (id)br_errorWithPOSIXCode:(int)arg1 description:(id)arg2;
 + (id)brc_addPartialError:(id)arg1 forURL:(id)arg2 toError:(id)arg3;
++ (id)brc_errorAcceptAlreadyInProgressForURL:(id)arg1;
 + (id)brc_errorAccountMismatch;
-+ (id)brc_errorContainerNotFound:(id)arg1;
++ (id)brc_errorAppLibraryNotFound:(id)arg1;
++ (id)brc_errorClientZoneNotFound:(id)arg1;
++ (id)brc_errorCompatibilityIssue;
 + (id)brc_errorDaemonShouldBeLoggedOut;
-+ (id)brc_errorDocumentAtURL:(id)arg1 isNotExternalToContainer:(id)arg2;
++ (id)brc_errorDocumentAtURL:(id)arg1 isNotExternalToAppLibrary:(id)arg2;
 + (id)brc_errorDocumentIsNoLongerSharedAtURL:(id)arg1;
 + (id)brc_errorDocumentIsNotShared;
 + (id)brc_errorDocumentIsNotSharedAtURL:(id)arg1;
 + (id)brc_errorDocumentWithFilename:(id)arg1 size:(long long)arg2 isTooLargeToUpload:(long long)arg3;
++ (id)brc_errorDriveDisabledOrAppLibraryDisabled;
 + (id)brc_errorInvalidParameter:(id)arg1 value:(id)arg2;
 + (id)brc_errorItemNotFound:(id)arg1;
++ (id)brc_errorLoggedOut;
 + (id)brc_errorMethodNotImplemented:(const char *)arg1;
-+ (id)brc_errorNoContainerForBundle:(id)arg1;
++ (id)brc_errorNoAppLibraryForBundle:(id)arg1;
 + (id)brc_errorNoDocumentAtURL:(id)arg1 underlyingPOSIXError:(int)arg2;
++ (id)brc_errorNoSuitableClientApp;
 + (id)brc_errorNotInCloud:(id)arg1;
++ (id)brc_errorNotOnDisk:(id)arg1;
 + (id)brc_errorOperationCancelled;
-+ (id)brc_errorPathOutsideAnyCloudDocsContainerAtURL:(id)arg1;
++ (id)brc_errorPathOutsideAnyCloudDocsAppLibraryAtURL:(id)arg1;
++ (id)brc_errorPermissionError:(id)arg1;
 + (id)brc_errorPermissionErrorAtURL:(id)arg1;
-+ (id)errorFromErrno;
-+ (id)errorWithDomain:(id)arg1 code:(int)arg2 description:(id)arg3;
-+ (id)errorWithPOSIXCode:(int)arg1;
-+ (id)errorWithPOSIXCode:(int)arg1 description:(id)arg2;
++ (id)brc_errorSyncDisabled:(id)arg1;
++ (id)brc_errorUnknownKey:(id)arg1;
 
 - (BOOL)br_isCloudDocsErrorCode:(int)arg1;
-- (BOOL)isCocoaErrorCode:(int)arg1;
-- (BOOL)isPOSIXErrorCode:(int)arg1;
+- (BOOL)br_isCocoaErrorCode:(int)arg1;
+- (BOOL)br_isPOSIXErrorCode:(int)arg1;
 
 // Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
 
 + (id)brc_daemonAccessDisabledError;
-+ (void)load;
++ (id)brc_errorWithDomain:(id)arg1 code:(int)arg2 underlyingError:(id)arg3;
++ (void)initialize;
 
+- (id)_brc_cloudKitInternalWithErrorCode:(int)arg1;
+- (id)_brc_cloudKitPluginErrorPayload;
+- (BOOL)_brc_isCloudKitErrorCode:(int)arg1;
+- (BOOL)_brc_isCloudKitInternalErrorCode:(int)arg1;
+- (BOOL)_brc_isCloudKitInternalErrorSafeToSyncUpWithoutSyncDown;
+- (BOOL)_brc_isCloudKitPluginErrorCode:(int)arg1;
+- (BOOL)_brc_isCloudKitZoneNotFoundError;
+- (BOOL)_brc_isCloudKitZoneUserDeletedError;
 - (id)br_cloudKitErrorForIdentifier:(id)arg1;
 - (double)br_suggestedRetryTimeInterval;
 - (BOOL)brc_checkErrorsFromCloudKit:(id /* block */)arg1;
 - (id)brc_cloudKitErrorForRecordID:(id)arg1;
 - (id)brc_cloudKitErrorForSubscriptionID:(id)arg1;
+- (id)brc_cloudKitErrorForZone:(id)arg1;
 - (unsigned int)brc_containerResetErrorForSharedZone:(BOOL)arg1 resetReason:(const char **)arg2;
+- (BOOL)brc_containsCloudKitErrorCode:(int)arg1;
+- (BOOL)brc_containsCloudKitInternalErrorCode:(int)arg1;
+- (id)brc_description;
 - (BOOL)brc_isBlacklistError;
+- (BOOL)brc_isCloudKitAssetFileModified;
 - (BOOL)brc_isCloudKitCancellationError;
-- (BOOL)brc_isCloudKitErrorCode:(int)arg1;
+- (BOOL)brc_isCloudKitErrorImplyingZoneNeedsCreation;
+- (BOOL)brc_isCloudKitErrorNeedsPCSPrep;
 - (BOOL)brc_isCloudKitErrorRequiringAssetRescan;
 - (BOOL)brc_isCloudKitErrorRequiringAssetReupload;
 - (BOOL)brc_isCloudKitErrorRequiringSkipThrottling;
-- (BOOL)brc_isCloudKitErrorRequiringSyncDownFirst;
-- (BOOL)brc_isCloudKitInternalErrorCode:(int)arg1;
+- (BOOL)brc_isCloudKitErrorSafeToSyncUpWithoutSyncDown;
+- (BOOL)brc_isCloudKitErrorUnsupportedOSForItemAndGetMinimumSupported:(id*)arg1;
+- (BOOL)brc_isCloudKitErrorUnsupportedOSForZoneAndGetMinimumSupported:(id*)arg1;
+- (BOOL)brc_isCloudKitErrorZoneMigrated;
+- (BOOL)brc_isCloudKitErrorZoneUndergoingMigration;
 - (BOOL)brc_isCloudKitOutOfQuota;
 - (BOOL)brc_isCloudKitUnknownItemError;
+- (BOOL)brc_isEverRetriable;
 - (BOOL)brc_isOutOfSpaceError;
 - (BOOL)brc_isResetError;
 - (BOOL)brc_isRetriable;
+- (BOOL)brc_shouldRetryBubbleLater;
+- (id)brc_strippedError;
 - (int)brc_syncOperationErrorKind;
 - (id)brc_wrappedError;
-- (id)description;
 
 // Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
@@ -303,13 +407,32 @@
 
 - (BOOL)shouldDisplayToUser;
 
+// Image: /System/Library/PrivateFrameworks/CoreCDPInternal.framework/CoreCDPInternal
+
+- (id)errorByExtendingUserInfoWithDictionary:(id)arg1;
+- (BOOL)isAuthKitUnableToPromptDueToNetworkError;
+- (BOOL)isAuthKitUnableToPromptError;
+- (BOOL)isAuthenticationError;
+- (BOOL)isCoolDownError;
+- (BOOL)isICSCRecoveryHardLimitError;
+- (BOOL)isLoginHardLimit;
+- (BOOL)isLoginSoftLimit;
+- (BOOL)isRecoveryPETHardLimitError;
+- (BOOL)isRecoveryPETSoftLimitError;
+
 // Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
 
++ (id)errorWithOSStatus:(long)arg1;
++ (id)hapErrorWithcode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4 underlyingError:(id)arg5;
 + (id)hmErrorWithCode:(int)arg1;
 + (id)hmErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4;
++ (id)hmErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4 underlyingError:(id)arg5;
 + (id)hmErrorWithCode:(int)arg1 userInfo:(id)arg2;
++ (id)hmInternalErrorWithCode:(int)arg1;
++ (id)hmInternalErrorWithCode:(int)arg1 underlyingError:(id)arg2;
 
-- (id)shortDescription;
+- (BOOL)isHAPError;
+- (BOOL)isHMError;
 
 // Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
 
@@ -344,27 +467,41 @@
 - (void)_MSApplyBlock:(id /* block */)arg1;
 - (id)_MSVerboseDescriptionRecursionCount:(int)arg1;
 
-// Image: /System/Library/PrivateFrameworks/CoreRC.framework/CoreRC
-
-+ (id)cecAcknowledgementErrorWithUnderlyingError:(id)arg1;
-+ (id)cecFeatureAbortErrorWithOpCode:(unsigned char)arg1 reason:(unsigned char)arg2 method:(id)arg3;
-+ (id)cecIOErrorWithUnderlyingError:(id)arg1;
-
-- (BOOL)isCECAcknowledgementError;
-
 // Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
 
 - (id)DAExtendedDescription;
 
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DASubCal.framework/DASubCal
+
+- (BOOL)isSubCalAuthError;
+- (BOOL)isSubCalReachabilityError;
+
+// Image: /System/Library/PrivateFrameworks/FMCoreLite.framework/FMCoreLite
+
++ (id)fm_cancelledError;
++ (id)fm_errorWithCode:(unsigned int)arg1;
++ (id)fm_genericError;
++ (id)fm_timeoutError;
+
+- (BOOL)fm_isCancelledError;
+- (BOOL)fm_isTimeoutError;
+
+// Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
+
++ (id)sceneMessageErrorWithCode:(int)arg1;
+
 // Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
 
 + (id)_gkUnauthenticatedError;
++ (id)_gkUserErrorForGameSessionErrorCode:(int)arg1 userInfo:(id)arg2;
 + (id)serverErrorForCode:(int)arg1 withReason:(id)arg2;
 + (id)serverErrorForCode:(int)arg1 withUserInfo:(id)arg2;
 + (id)userErrorForCode:(int)arg1 underlyingError:(id)arg2;
 + (id)userErrorForCode:(int)arg1 userInfo:(id)arg2;
 + (id)userErrorForServerCode:(int)arg1 reason:(id)arg2;
++ (id)userErrorForServerCode:(int)arg1 reason:(id)arg2 userInfo:(id)arg3;
 + (id)userErrorForServerError:(id)arg1;
++ (id)userErrorForServerError:(id)arg1 userInfo:(id)arg2;
 
 - (BOOL)_gkIsUnauthenticatedError;
 
@@ -376,30 +513,58 @@
 
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
++ (id)GEOErrorWithCode:(int)arg1 reason:(id)arg2;
 + (id)_geo_errorFromXPCData:(id)arg1;
 + (id)zilchDecoderErrorForNoSolution;
 
 - (id)_geo_newXPCData;
 - (id)zilchDecoderTileLoadingError;
 
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
++ (id)hmfErrorWithCode:(int)arg1;
++ (id)hmfErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4;
++ (id)hmfErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4 underlyingError:(id)arg5;
++ (id)hmfErrorWithCode:(int)arg1 userInfo:(id)arg2;
+
+- (BOOL)isHMFError;
+- (id)shortDescription;
+
 // Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
 
++ (id)hk_errorWithCodableError:(id)arg1;
+
+- (BOOL)hd_isConstraintViolation;
+- (BOOL)hd_isDatabaseCorruptionError;
 - (BOOL)hd_isFromRequest;
 - (BOOL)hd_isResponseTimeout;
 - (unsigned short)hd_messageID;
+- (id)hd_messageIDSDeviceIdentifier;
 - (id)hd_messageIDSIdentifier;
 - (id)hd_messageSent;
 - (id)hd_persistentMessage;
 - (id)hd_persistentUserInfo;
+- (id)hd_underlyingSQLiteError;
+- (id)hk_codableError;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
+- (id)hf_errorWithOperationType:(id)arg1 failedItemName:(id)arg2;
+- (id)hf_errorWithOperationType:(id)arg1 options:(id)arg2;
+- (BOOL)hf_isHomeKitNamingError;
 
 // Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
 
 + (id)hmErrorWithCode:(int)arg1;
 + (id)hmErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4;
++ (id)hmErrorWithCode:(int)arg1 description:(id)arg2 reason:(id)arg3 suggestion:(id)arg4 underlyingError:(id)arg5;
 + (id)hmErrorWithCode:(int)arg1 userInfo:(id)arg2;
++ (id)hmInternalErrorWithCode:(int)arg1;
++ (id)hmInternalErrorWithCode:(int)arg1 underlyingError:(id)arg2;
 
 - (id)conciseCKError;
 - (id)hmErrorFromCKError;
+- (BOOL)isHMError;
 
 // Image: /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
 
@@ -411,17 +576,34 @@
 
 + (id)genericErrorWithFile:(const char *)arg1 function:(const char *)arg2 lineNumber:(int)arg3;
 
+// Image: /System/Library/PrivateFrameworks/KeychainCircle.framework/KeychainCircle
+
++ (id)errorWithCoreCryptoStatus:(int)arg1 description:(id)arg2 args:(void*)arg3;
++ (id)errorWithCoreCryptoStatus:(int)arg1 userInfo:(id)arg2;
++ (id)errorWithJoiningError:(int)arg1 format:(id)arg2;
++ (id)errorWithJoiningError:(int)arg1 format:(id)arg2 arguments:(void*)arg3;
++ (id)errorWithOSStatus:(long)arg1 description:(id)arg2 args:(void*)arg3;
++ (id)errorWithOSStatus:(long)arg1 userInfo:(id)arg2;
+
+- (id)initWithCoreCryptoStatus:(int)arg1 description:(id)arg2 args:(void*)arg3;
+- (id)initWithCoreCryptoStatus:(int)arg1 userInfo:(id)arg2;
+- (id)initWithJoiningError:(int)arg1 userInfo:(id)arg2;
+- (id)initWithOSStatus:(long)arg1 description:(id)arg2 args:(void*)arg3;
+- (id)initWithOSStatus:(long)arg1 userInfo:(id)arg2;
+
 // Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
 
 + (id)mf_cancelledError;
++ (id)mf_decodeFailedErrorWithUserInfo:(id)arg1;
++ (id)mf_illegalEmailAddressErrorWithAddress:(id)arg1;
 + (id)mf_timeoutError;
 
 - (BOOL)mf_isCancelledError;
 - (BOOL)mf_isTimeoutError;
+- (id /* block */)mf_match;
 
 // Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
 
-+ (id)MCErrorWithDomain:(id)arg1 code:(int)arg2 description:(id)arg3 errorType:(id)arg4;
 + (id)MCErrorWithDomain:(id)arg1 code:(int)arg2 descriptionArray:(id)arg3 errorType:(id)arg4;
 + (id)MCErrorWithDomain:(id)arg1 code:(int)arg2 descriptionArray:(id)arg3 suggestion:(id)arg4 USEnglishSuggestion:(id)arg5 underlyingError:(id)arg6 errorType:(id)arg7;
 + (id)MCErrorWithDomain:(id)arg1 code:(int)arg2 descriptionArray:(id)arg3 underlyingError:(id)arg4 errorType:(id)arg5;
@@ -438,6 +620,7 @@
 
 - (BOOL)mf_isInaccessibleAccountCredentialError;
 - (BOOL)mf_isMissingAccountCredentialError;
+- (BOOL)mf_isSMIMEError;
 - (BOOL)mf_isUserCancelledError;
 - (id)mf_moreInfo;
 - (id)mf_shortDescription;
@@ -448,6 +631,50 @@
 
 + (id)ml_errorWithCode:(unsigned int)arg1;
 + (id)ml_errorWithCode:(unsigned int)arg1 description:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NanoRegistry.framework/NanoRegistry
+
+- (id)nr_safeDescription;
+
+// Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
+
++ (id)_navigation_errorWithCode:(int)arg1;
++ (id)_navigation_errorWithCode:(int)arg1 userInfo:(id)arg2;
+
+- (id)_navigation_errorCodeAsString;
+
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilities.framework/NetAppsUtilities
+
++ (id)na_cancelledError;
++ (id)na_errorWithCode:(unsigned int)arg1;
++ (id)na_genericError;
++ (id)na_timeoutError;
+
+- (BOOL)na_isCancelledError;
+- (BOOL)na_isTimeoutError;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)fc_belowMinimumVersionError;
++ (id)fc_canaryDownError;
++ (id)fc_createStateMachineErrorForCode:(int)arg1 userInfo:(id)arg2;
++ (id)fc_errorWithCode:(int)arg1 description:(id)arg2;
++ (id)fc_errorWithCode:(int)arg1 description:(id)arg2 additionalUserInfo:(id)arg3;
++ (id)fc_feedDroppedError;
++ (id)fc_missingAppConfigErrorWithUnderlyingError:(id)arg1;
++ (id)fc_notAvailableError;
++ (id)fc_notCachedError;
++ (id)fc_offlineErrorWithReason:(int)arg1;
+
+- (BOOL)fc_isCKErrorWithCode:(int)arg1;
+- (BOOL)fc_isCKUnknownItemError;
+- (BOOL)fc_isCancellationError;
+- (BOOL)fc_isNetworkUnavailableError;
+- (BOOL)fc_isOfflineError;
+- (BOOL)fc_isOperationThrottledError;
+- (BOOL)fc_isServiceUnavailableError;
+- (BOOL)fc_isStateMachineError:(int)arg1;
+- (BOOL)fc_shouldRetry;
 
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 
@@ -461,6 +688,77 @@
 - (BOOL)tsu_isOutOfSpaceError;
 - (id)tsu_localizedAlertMessage;
 - (id)tsu_localizedAlertTitle;
+
+// Image: /System/Library/PrivateFrameworks/PairedSync.framework/PairedSync
+
+- (id)psy_safeDescription;
+
+// Image: /System/Library/PrivateFrameworks/PersonaKit.framework/PersonaKit
+
++ (id)pr_errorWithCode:(int)arg1;
+
+- (BOOL)pr_isInPersonaDomain;
+- (BOOL)pr_isNetworkAvailabilityError;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotoVision.framework/PhotoVision
+
++ (id)errorForPhotoVisionCancelledOperation;
++ (id)errorForPhotoVisionErrorCode:(int)arg1 userInfo:(id)arg2;
++ (id)errorForPhotoVisionInvalidNilParameterNamed:(id)arg1;
++ (id)errorForPhotoVisionInvalidParameterNamed:(id)arg1 integerValue:(int)arg2;
++ (id)errorForPhotoVisionInvalidParameterNamed:(id)arg1 realValue:(double)arg2;
++ (id)errorForPhotoVisionInvalidParameterNamed:(id)arg1 value:(id)arg2;
++ (id)errorForPhotoVisionInvalidParameterWithLocalizedDescription:(id)arg1;
++ (id)errorForPhotoVisionStorageErrorWithLocalizedDescription:(id)arg1;
++ (id)errorForPhotoVisionStorageErrorWithLocalizedDescription:(id)arg1 underlyingError:(id)arg2;
++ (id)errorForPhotoVisionStorageErrorWithUserInfo:(id)arg1;
++ (id)errorForPhotoVisionUnexpectedCondition:(id)arg1;
++ (id)errorForPhotoVisionUnimplementedFunction;
++ (id)errorForPhotoVisionVisionKitErrorWithLocalizedDescription:(id)arg1 underlyingError:(id)arg2;
++ (id)errorForPhotoVisionVisionKitErrorWithUserInfo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotosGraph.framework/Frameworks/KnowledgeGraphKit.framework/KnowledgeGraphKit
+
++ (id)errorWithDescription:(id)arg1;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3 userInfo:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotosGraph.framework/Frameworks/MediaMiningKit.framework/MediaMiningKit
+
++ (id)errorWithDescription:(id)arg1;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3 userInfo:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotosGraph.framework/Frameworks/PipelineKit.framework/PipelineKit
+
++ (id)errorWithDescription:(id)arg1;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3 userInfo:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotosGraph.framework/PhotosGraph
+
++ (id)errorWithDescription:(id)arg1;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3;
++ (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3 userInfo:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/PhotoAnalysis
+
++ (id)phaErrorForInvalidParameterNamed:(id)arg1 localizedDescription:(id)arg2;
++ (id)phaErrorForInvalidParameterValue:(id)arg1 named:(id)arg2;
++ (id)phaErrorForNilParameterNamed:(id)arg1;
++ (id)phaErrorWithCode:(int)arg1 localizedDescription:(id)arg2;
++ (id)phaErrorWithCode:(int)arg1 userInfo:(id)arg2;
++ (id)phaNotImplementedErrorForSelector:(SEL)arg1;
++ (id)phaObjectNotFoundErrorForAssetLocalIdentifier:(id)arg1;
++ (id)phaObjectNotFoundErrorWithLocalizedDescription:(id)arg1;
++ (id)phaResourceNotFoundErrorWithLocalizedDescription:(id)arg1;
++ (id)phaUnexpectedConditionErrorWithLocalizedDescription:(id)arg1;
++ (id)phaUnexpectedConditionErrorWithUserInfo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (BOOL)safari_isClientSideNetworkError;
+- (id)safari_privacyPreservingDescription;
 
 // Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
 
@@ -487,10 +785,21 @@
 + (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3;
 + (id)errorWithDomain:(id)arg1 code:(int)arg2 localizedDescription:(id)arg3 userInfo:(id)arg4;
 
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (BOOL)sbf_isFileNotFoundError;
+
 // Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
 - (id)copyXPCEncoding;
 - (id)initWithXPCEncoding:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Swift/libswiftFoundation.dylib
+
+- (int)_code;
+- (id)_domain;
+- (id)_getEmbeddedNSError;
+- (id)_userInfo;
 
 // Image: /System/Library/PrivateFrameworks/ToneLibrary.framework/ToneLibrary
 
@@ -514,9 +823,19 @@
 - (BOOL)isStreamDomain:(long)arg1 error:(long)arg2;
 - (BOOL)shouldPresentErrorForTaskType:(int)arg1;
 
+// Image: /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
+
++ (id)wf_errorWithCode:(unsigned int)arg1;
++ (id)wf_errorWithCode:(unsigned int)arg1 encapsulatedError:(id)arg2 userInfo:(id)arg3;
++ (id)wf_errorWithCode:(unsigned int)arg1 userInfo:(id)arg2;
+
 // Image: /System/Library/PrivateFrameworks/WebApp.framework/WebApp
 
 - (id)failingURL;
+
+// Image: /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
+
+- (id)wb_privacyPreservingDescription;
 
 // Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
 
@@ -562,6 +881,7 @@
 + (id)tsu_errorWithDomain:(id)arg1 code:(int)arg2 description:(id)arg3 underlyingError:(id)arg4;
 
 - (BOOL)tsa_isCollaborationError;
+- (BOOL)tsp_isDocumentTooNewError;
 - (BOOL)tsp_isRecoverable;
 - (int)tsu_IOErrorNumber;
 - (BOOL)tsu_isCancelError;

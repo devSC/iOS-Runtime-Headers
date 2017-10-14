@@ -3,7 +3,7 @@
  */
 
 @interface AVAssetResourceLoadingRequest : NSObject <AVAssetResourceLoaderRequest> {
-    AVAssetResourceLoadingRequestInternal *_loadingRequest;
+    AVAssetResourceLoadingRequestInternal * _loadingRequest;
 }
 
 @property (getter=isCancelled, nonatomic, readonly) BOOL cancelled;
@@ -39,6 +39,7 @@
 - (BOOL)_tryToMarkAsCancelled;
 - (id)_weakReference;
 - (id)contentInformationRequest;
+- (id)createKeyRequestDataUsingCryptorForApp:(id)arg1 contentIdentifier:(id)arg2 options:(id)arg3 performAsync:(BOOL)arg4 error:(id*)arg5;
 - (id)dataRequest;
 - (void)dealloc;
 - (id)description;

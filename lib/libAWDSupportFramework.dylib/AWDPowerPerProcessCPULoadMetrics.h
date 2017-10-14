@@ -5,14 +5,16 @@
 @interface AWDPowerPerProcessCPULoadMetrics : PBCodable <NSCopying> {
     struct { 
         unsigned int timestamp : 1; 
-    } _has;
-    NSMutableArray *_loads;
-    unsigned long long _timestamp;
+    }  _has;
+    NSMutableArray * _loads;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic, retain) NSMutableArray *loads;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)loadType;
 
 - (void)addLoad:(id)arg1;
 - (void)clearLoads;

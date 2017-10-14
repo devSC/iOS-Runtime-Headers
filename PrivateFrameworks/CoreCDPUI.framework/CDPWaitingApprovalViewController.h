@@ -3,26 +3,23 @@
  */
 
 @interface CDPWaitingApprovalViewController : CDPTableViewController <UITableViewDataSource, UITableViewDelegate> {
-    <CDPWaitingApprovalDelegate> *_delegate;
-    UIButton *_escapeButton;
-    BOOL _shouldOfferDevicePicker;
-    UIActivityIndicatorView *_spinner;
-    UILabel *_waitingLabel;
+    UIButton * _escapeButton;
+    CDPRemoteValidationEscapeOffer * _escapeOffer;
+    UIActivityIndicatorView * _spinner;
+    UILabel * _waitingLabel;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
-@property (nonatomic) BOOL shouldOfferDevicePicker;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)escapeTapped:(id)arg1;
-- (id)initWithDelegate:(id)arg1;
+- (void)escapeOfferSelectedWithOption:(id)arg1;
+- (id)initWithEscapeOffer:(id)arg1;
 - (void)loadView;
 - (int)numberOfSectionsInTableView:(id)arg1;
-- (void)setShouldOfferDevicePicker:(BOOL)arg1;
-- (BOOL)shouldOfferDevicePicker;
+- (void)remoteApprovalSucceeded;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;

@@ -3,9 +3,9 @@
  */
 
 @interface CNCapabilitiesManager : NSObject <IDSIDQueryControllerDelegate> {
-    NSMutableDictionary *_destinationStatus;
-    BOOL _isListeningToIDSQueryController;
-    BOOL _isListeningToIDSServiceAvailability;
+    NSMutableDictionary * _destinationStatus;
+    BOOL  _isListeningToIDSQueryController;
+    BOOL  _isListeningToIDSServiceAvailability;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -29,6 +29,7 @@
 - (BOOL)hasCellularDataCapability;
 - (BOOL)hasCellularTelephonyCapability;
 - (BOOL)hasCellularTelephonyHardwareCapability;
+- (BOOL)hasForceTouchCapability;
 - (BOOL)hasPreviouslyConferencedWithID:(id)arg1;
 - (BOOL)hasSMSCapability;
 - (BOOL)hasSiriCapability;

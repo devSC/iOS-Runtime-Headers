@@ -3,10 +3,10 @@
  */
 
 @interface PUCameraTransientAssetsDataSource : PUAssetsDataSource {
-    NSArray *__assetUUIDs;
-    NSDictionary *__assetsByUUID;
-    NSDictionary *__representativeAssetsByBurstIdentifier;
-    <PUDisplayAssetCollection> *__transientAssetCollection;
+    NSArray * __assetUUIDs;
+    NSDictionary * __assetsByUUID;
+    NSDictionary * __representativeAssetsByBurstIdentifier;
+    <PUDisplayAssetCollection> * __transientAssetCollection;
 }
 
 @property (nonatomic, readonly) NSArray *_assetUUIDs;
@@ -24,7 +24,7 @@
 - (id)assetCollectionAtIndexPath:(id)arg1;
 - (id)assetReferenceAtIndexPath:(id)arg1;
 - (id)assetReferenceForAssetReference:(id)arg1;
-- (id)badgeInfoForAssetAtIndexPath:(id)arg1;
+- (id)badgeInfoPromiseForAssetAtIndexPath:(id)arg1;
 - (id)convertIndexPath:(id)arg1 fromAssetsDataSource:(id)arg2;
 - (id)indexPathForAssetCollection:(id)arg1;
 - (id)indexPathForAssetReference:(id)arg1;

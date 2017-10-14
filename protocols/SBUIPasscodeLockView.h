@@ -11,6 +11,7 @@
 - (unsigned int)biometricMatchMode;
 - (UIColor *)customBackgroundColor;
 - (<SBUIPasscodeLockViewDelegate> *)delegate;
+- (BOOL)isBiometricAuthenticationAllowed;
 - (BOOL)isScreenOn;
 - (NSString *)passcode;
 - (BOOL)playsKeypadSounds;
@@ -21,13 +22,16 @@
 - (void)setAllowsStatusTextUpdatingOnResignFirstResponder:(BOOL)arg1;
 - (void)setBackgroundAlpha:(float)arg1;
 - (void)setBackgroundLegibilitySettingsProvider:(id <SBFLegibilitySettingsProvider>)arg1;
+- (void)setBiometricAuthenticationAllowed:(BOOL)arg1;
 - (void)setBiometricMatchMode:(unsigned int)arg1;
 - (void)setCustomBackgroundColor:(UIColor *)arg1;
 - (void)setDelegate:(id <SBUIPasscodeLockViewDelegate>)arg1;
 - (void)setPlaysKeypadSounds:(BOOL)arg1;
 - (void)setScreenOn:(BOOL)arg1;
+- (void)setShowsCancelButton:(BOOL)arg1;
 - (void)setShowsEmergencyCallButton:(BOOL)arg1;
 - (void)setShowsStatusField:(BOOL)arg1;
+- (BOOL)showsCancelButton;
 - (BOOL)showsEmergencyCallButton;
 - (BOOL)showsStatusField;
 - (int)style;

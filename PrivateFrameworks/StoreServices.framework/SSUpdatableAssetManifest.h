@@ -3,34 +3,38 @@
  */
 
 @interface SSUpdatableAssetManifest : NSObject <SKUIExternalResourceManager> {
-    NSArray *_assets;
-    NSDictionary *_assetsByName;
-    SSUpdatableAsset *_bootstrapAsset;
-    NSURL *_cacheURL;
-    NSDictionary *_extraInfo;
-    NSCache *_imageCache;
-    double _lastModifiedTimestamp;
-    NSString *_name;
-    int _reloadUrgencyType;
-    NSURL *_serverURL;
-    NSString *_version;
+    NSArray * _assets;
+    NSDictionary * _assetsByName;
+    SSUpdatableAsset * _bootstrapAsset;
+    NSURL * _cacheURL;
+    NSDictionary * _extraInfo;
+    NSCache * _imageCache;
+    double  _lastModifiedTimestamp;
+    NSString * _name;
+    double  _pollInterval;
+    int  _reloadUrgencyType;
+    NSURL * _serverURL;
+    NSString * _version;
 }
 
-@property (nonatomic, copy) NSArray *assets;
-@property (nonatomic, retain) SSUpdatableAsset *bootstrapAsset;
-@property (nonatomic, retain) NSURL *cacheURL;
+@property (setter=_setAssets:, nonatomic, copy) NSArray *assets;
+@property (setter=_setBootstrapAsset:, nonatomic, retain) SSUpdatableAsset *bootstrapAsset;
+@property (setter=_setCacheURL:, nonatomic, retain) NSURL *cacheURL;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, copy) NSDictionary *extraInfo;
+@property (setter=_setExtraInfo:, nonatomic, copy) NSDictionary *extraInfo;
 @property (readonly) unsigned int hash;
-@property (nonatomic) double lastModifiedTimestamp;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic) int reloadUrgencyType;
-@property (nonatomic, retain) NSURL *serverURL;
+@property (setter=_setLastModifiedTimestamp:, nonatomic) double lastModifiedTimestamp;
+@property (setter=_setName:, nonatomic, copy) NSString *name;
+@property (setter=_setPollInterval:, nonatomic) double pollInterval;
+@property (setter=_setReloadUrgencyType:, nonatomic) int reloadUrgencyType;
+@property (setter=_setServerURL:, nonatomic, retain) NSURL *serverURL;
 @property (readonly) Class superclass;
-@property (nonatomic, copy) NSString *version;
+@property (setter=_setVersion:, nonatomic, copy) NSString *version;
 
 // Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
++ (id)_osVersionString;
 
 - (void).cxx_destruct;
 - (void)_setAssets:(id)arg1;
@@ -39,6 +43,7 @@
 - (void)_setExtraInfo:(id)arg1;
 - (void)_setLastModifiedTimestamp:(double)arg1;
 - (void)_setName:(id)arg1;
+- (void)_setPollInterval:(double)arg1;
 - (void)_setReloadUrgencyType:(int)arg1;
 - (void)_setServerURL:(id)arg1;
 - (void)_setVersion:(id)arg1;
@@ -49,6 +54,7 @@
 - (id)extraInfo;
 - (double)lastModifiedTimestamp;
 - (id)name;
+- (double)pollInterval;
 - (int)reloadUrgencyType;
 - (id)serverURL;
 - (id)version;

@@ -3,16 +3,17 @@
  */
 
 @interface HMDProcessInfo : NSObject {
-    HMDApplicationInfo *_appInfo;
-    NSObject<OS_dispatch_queue> *_clientQueue;
-    NSHashTable *_connectionProxies;
-    int _pid;
-    unsigned int _state;
-    BOOL _viewService;
+    HMDApplicationInfo * _appInfo;
+    NSObject<OS_dispatch_queue> * _clientQueue;
+    NSHashTable * _connectionProxies;
+    int  _pid;
+    unsigned int  _state;
+    BOOL  _viewService;
 }
 
 @property (nonatomic, readonly) HMDApplicationInfo *appInfo;
 @property (getter=isBackgrounded, nonatomic, readonly) BOOL background;
+@property (getter=isBackgroundUpgradedToForeground, nonatomic, readonly) BOOL backgroundUpgradedToForeground;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *clientQueue;
 @property (nonatomic, readonly) NSHashTable *connectionProxies;
 @property (getter=isForegrounded, nonatomic, readonly) BOOL foreground;
@@ -20,6 +21,7 @@
 @property (nonatomic, readonly) unsigned int proxyCount;
 @property (nonatomic) unsigned int state;
 @property (getter=isSuspended, nonatomic, readonly) BOOL suspended;
+@property (getter=isTerminated, nonatomic, readonly) BOOL terminated;
 @property (getter=isViewService, nonatomic, readonly) BOOL viewService;
 
 - (void).cxx_destruct;
@@ -34,9 +36,11 @@
 - (id)init;
 - (id)initWithConnectionProxy:(id)arg1 application:(id)arg2 processId:(int)arg3;
 - (void)initiateRefresh;
+- (BOOL)isBackgroundUpgradedToForeground;
 - (BOOL)isBackgrounded;
 - (BOOL)isForegrounded;
 - (BOOL)isSuspended;
+- (BOOL)isTerminated;
 - (BOOL)isViewService;
 - (int)pid;
 - (unsigned int)proxyCount;

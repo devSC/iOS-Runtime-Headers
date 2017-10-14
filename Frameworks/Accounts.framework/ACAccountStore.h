@@ -3,11 +3,11 @@
  */
 
 @interface ACAccountStore : NSObject {
-    NSMutableDictionary *_accountCache;
-    NSString *_clientBundleID;
-    id _daemonAccountStoreDidChangeObserver;
-    ACRemoteAccountStoreSession *_remoteAccountStoreSession;
-    NSObject<OS_dispatch_queue> *_replyQueue;
+    NSMutableDictionary * _accountCache;
+    NSString * _clientBundleID;
+    id  _daemonAccountStoreDidChangeObserver;
+    ACRemoteAccountStoreSession * _remoteAccountStoreSession;
+    NSObject<OS_dispatch_queue> * _replyQueue;
 }
 
 @property (nonatomic, readonly) NSArray *accounts;
@@ -34,6 +34,7 @@
 - (id)accountWithIdentifier:(id)arg1;
 - (void)accountWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
 - (id)accounts;
+- (void)accountsOnPairedDeviceWithAccountType:(id)arg1 completion:(id /* block */)arg2;
 - (id)accountsWithAccountType:(id)arg1;
 - (void)accountsWithAccountType:(id)arg1 completion:(id /* block */)arg2;
 - (void)accountsWithAccountTypeIdentifiers:(id)arg1 completion:(id /* block */)arg2;
@@ -55,6 +56,7 @@
 - (id)credentialForAccount:(id)arg1 bundleID:(id)arg2;
 - (id)credentialForAccount:(id)arg1 error:(id*)arg2;
 - (id)credentialForAccount:(id)arg1 serviceID:(id)arg2;
+- (id)credentialForAccount:(id)arg1 serviceID:(id)arg2 error:(id*)arg3;
 - (id)credentialItemForAccount:(id)arg1 serviceName:(id)arg2;
 - (id)dataclassActionsForAccountDeletion:(id)arg1;
 - (id)dataclassActionsForAccountSave:(id)arg1;
@@ -88,6 +90,7 @@
 - (id)remoteAccountStoreSession;
 - (void)removeAccount:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)removeAccount:(id)arg1 withDataclassActions:(id)arg2 completion:(id /* block */)arg3;
+- (void)removeAccount:(id)arg1 withDeleteSync:(BOOL)arg2 completion:(id /* block */)arg3;
 - (void)removeAccountType:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)removeAccountsFromPairedDeviceWithCompletion:(id /* block */)arg1;
 - (void)removeCredentialItem:(id)arg1 withCompletionHandler:(id /* block */)arg2;
@@ -96,6 +99,7 @@
 - (void)renewCredentialsForAccount:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (void)renewCredentialsForAccount:(id)arg1 reason:(id)arg2 completion:(id /* block */)arg3;
 - (void)renewCredentialsForAccount:(id)arg1 services:(id)arg2 completion:(id /* block */)arg3;
+- (void)reportTelemetryForLandmarkEvent:(id /* block */)arg1;
 - (void)requestAccessToAccountsWithType:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (void)requestAccessToAccountsWithType:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)saveAccount:(id)arg1 toPairedDeviceWithOptions:(id)arg2 completion:(id /* block */)arg3;
@@ -111,6 +115,7 @@
 - (id)supportedDataclassesForAccountType:(id)arg1;
 - (id)syncableDataclassesForAccountType:(id)arg1;
 - (id)tetheredSyncSourceTypeForDataclass:(id)arg1;
+- (void)triggerKeychainMigrationIfNecessary:(id /* block */)arg1;
 - (id)typeIdentifierForDomain:(id)arg1;
 - (int)updateExistenceCacheOfAccountWithTypeIdentifier:(id)arg1;
 - (void)verifyCredentialsForAccount:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
@@ -133,13 +138,18 @@
 - (void)_performUpdateRequestWithAccount:(id)arg1 completion:(id /* block */)arg2;
 - (id)aa_accountsEnabledForDataclass:(id)arg1;
 - (id)aa_appleAccountType;
+- (id)aa_appleAccountWithAltDSID:(id)arg1;
 - (id)aa_appleAccountWithPersonID:(id)arg1;
 - (id)aa_appleAccountWithUsername:(id)arg1;
 - (id)aa_appleAccounts;
+- (void)aa_appleAccountsWithCompletion:(id /* block */)arg1;
+- (id)aa_authKitAccountForAltDSID:(id)arg1;
+- (id)aa_grandSlamAccountForAltDSID:(id)arg1;
 - (id)aa_grandSlamAccountForiCloudAccount:(id)arg1;
 - (BOOL)aa_isUsingiCloud;
 - (void)aa_lookupEmailAddresses:(id)arg1 withAppleAccount:(id)arg2 completion:(id /* block */)arg3;
 - (id)aa_primaryAppleAccount;
+- (void)aa_primaryAppleAccountWithCompletion:(id /* block */)arg1;
 - (id)aa_primaryAppleAccountWithPreloadedDataclasses;
 - (id)aa_recommendedAppleIDForAccountSignInWithTypeIdentifier:(id)arg1;
 - (void)aa_registerAppleAccount:(id)arg1 withCompletion:(id /* block */)arg2;
@@ -160,6 +170,7 @@
 - (id)aida_AppleIDAuthenticationAccounts;
 - (id)aida_accountForPrimaryiCloudAccount;
 - (id)aida_accountForiCloudAccount:(id)arg1;
+- (id)aida_iCloudAccountMatchingAppleIDAuthAccount:(id)arg1;
 - (void)aida_renewCredentialsForAccount:(id)arg1 services:(id)arg2 completion:(id /* block */)arg3;
 - (void)aida_renewCredentialsForAccount:(id)arg1 services:(id)arg2 force:(BOOL)arg3 completion:(id /* block */)arg4;
 
@@ -179,6 +190,18 @@
 - (void)da_loadDAAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(int)arg2 withCompletion:(id /* block */)arg3;
 - (void)da_loadDAAccountsWithAccountTypeIdentifiers:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)da_loadDAAccountsWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
+- (id)_gkAccountForAppleID:(id)arg1;
+- (id)_gkAllCredentials;
+- (id)_gkAllCredentialsForEnvironment:(int)arg1;
+- (id)_gkCredentialForUsername:(id)arg1 environment:(int)arg2;
+- (void)_gkDeleteCredential:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)_gkMapAccountsWithBlock:(id /* block */)arg1;
+- (id)_gkPrimaryCredentialForEnvironment:(int)arg1;
+- (void)_gkSaveCredential:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_gkSetScope:(unsigned int)arg1 forCredential:(id)arg2 completionHandler:(id /* block */)arg3;
 
 // Image: /System/Library/PrivateFrameworks/MobileSync.framework/MobileSync
 

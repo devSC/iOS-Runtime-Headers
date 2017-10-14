@@ -3,17 +3,21 @@
  */
 
 @interface CKPreviewDispatchCache : NSObject <IMSystemMonitorListener> {
-    CKDispatchCache *_dispatchCache;
-    CKMultiDict *_pendingBlocks;
+    CKDispatchCache * _dispatchCache;
+    CKMultiDict * _pendingBlocks;
 }
 
 @property (nonatomic, retain) CKDispatchCache *dispatchCache;
 @property (nonatomic, retain) CKMultiDict *pendingBlocks;
 
++ (void)_invalidateStickerPreviewCache;
 + (id)detailsPreviewCache;
 + (id)mapThumbnailQueue;
++ (id)snapshotCache;
++ (id)stickerPreviewCache;
 + (id)transcriptPreviewCache;
 
+- (void).cxx_destruct;
 - (void)beginGeneratingForKey:(id)arg1;
 - (id)cachedPreviewForKey:(id)arg1;
 - (void)dealloc;

@@ -2,22 +2,23 @@
    Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
  */
 
-@interface MusicEntityHorizontalLockupView : MusicEntityAbstractLockupView <MusicEntityContentDescriptorViewConfiguring, RUTrackDownloadViewDelegate> {
-    MPUHalfTintedTransportButton *_addButton;
-    RUTrackDownloadView *_buyButton;
-    UIButton *_checkmarkButton;
-    UIButton *_contextualActionsButton;
-    <MusicEntityHorizontalLockupViewDelegate> *_delegate;
+@interface MusicEntityHorizontalLockupView : MusicEntityAbstractLockupView <MusicEntityContentDescriptorViewConfiguring> {
+    MPUHalfTintedTransportButton * _addButton;
+    UIImageView * _availableOfflineBadgeImageView;
+    UIButton * _checkmarkButton;
+    UIButton * _contextualActionsButton;
+    <MusicEntityHorizontalLockupViewDelegate> * _delegate;
     struct { 
         unsigned int didSelectAddButton : 1; 
         unsigned int didSelectContextualActionsButton : 1; 
         unsigned int didSelectPlayButton : 1; 
         unsigned int didLayoutSubviews : 1; 
         unsigned int shouldLayoutAsEditing : 1; 
-    } _delegateRespondsToSelector;
-    UIImageView *_explicitBadgeImageView;
-    BOOL _isContainedWithinSplitViewPrimary;
-    float _textContentLeadingInset;
+    }  _delegateRespondsToSelector;
+    UIImageView * _explicitBadgeImageView;
+    BOOL  _isAvailableOffline;
+    BOOL  _isContainedWithinSplitViewPrimary;
+    float  _textContentLeadingInset;
 }
 
 @property (nonatomic, readonly) struct CGSize { float x1; float x2; } artworkSize;
@@ -44,9 +45,6 @@
 - (void)_addButtonTouchUpInside:(id)arg1;
 - (void)_contentDescriptorDidChange:(id)arg1;
 - (void)_contextualActionsButtonTapped:(id)arg1;
-- (void)_entityDisabledDidChange;
-- (void)_handleArtworkViewTapped;
-- (void)_handlePlayButtonTappedWithAction:(unsigned int)arg1;
 - (BOOL)_shouldLayoutAsEditing;
 - (BOOL)_shouldShowPlayButton;
 - (struct CGSize { float x1; float x2; })artworkSize;
@@ -54,13 +52,11 @@
 - (id)contextualActionsButton;
 - (void)dealloc;
 - (id)delegate;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)layoutMarginsDidChange;
 - (void)layoutSubviews;
+- (void)music_inheritedLayoutInsetsDidChange;
 - (void)setContentDescriptor:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (float)textContentLeadingInset;
-- (void)trackDownloadViewWillTransition:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;
 
 @end

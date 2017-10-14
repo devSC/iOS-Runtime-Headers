@@ -3,11 +3,11 @@
  */
 
 @interface SSVSubscriptionStatusRequest : SSRequest <SSXPCCoding> {
-    BOOL _authenticatesIfNecessary;
-    SSAuthenticationContext *_authenticationContext;
-    int _carrierBundleProvisioningStyle;
-    NSString *_localizedAuthenticationReason;
-    NSString *_reason;
+    BOOL  _authenticatesIfNecessary;
+    SSAuthenticationContext * _authenticationContext;
+    int  _carrierBundleProvisioningStyle;
+    NSString * _localizedAuthenticationReason;
+    NSString * _reason;
 }
 
 @property (nonatomic) BOOL authenticatesIfNecessary;
@@ -19,6 +19,8 @@
 @property (nonatomic, copy) NSString *localizedAuthenticationReason;
 @property (nonatomic, copy) NSString *reason;
 @property (readonly) Class superclass;
+
++ (long long)requestMessage;
 
 - (void).cxx_destruct;
 - (BOOL)authenticatesIfNecessary;

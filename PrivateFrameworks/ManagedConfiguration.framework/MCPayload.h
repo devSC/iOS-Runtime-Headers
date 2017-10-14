@@ -3,19 +3,20 @@
  */
 
 @interface MCPayload : NSObject {
-    NSString *_UUID;
-    NSString *_displayName;
-    NSString *_identifier;
-    BOOL _mustInstallNonInteractively;
-    NSString *_organization;
-    NSString *_payloadDescription;
-    NSString *_persistentResourceID;
-    MCProfile *_profile;
-    NSString *_type;
-    int _version;
+    NSString * _UUID;
+    NSString * _displayName;
+    NSString * _identifier;
+    BOOL  _mustInstallNonInteractively;
+    NSString * _organization;
+    NSString * _payloadDescription;
+    NSString * _persistentResourceID;
+    MCProfile * _profile;
+    NSString * _type;
+    int  _version;
 }
 
 @property (nonatomic, readonly, retain) NSString *UUID;
+@property (nonatomic, readonly) BOOL containsSensitiveUserInformation;
 @property (nonatomic, retain) NSString *displayName;
 @property (nonatomic, readonly, retain) NSString *friendlyName;
 @property (nonatomic, readonly, retain) NSString *identifier;
@@ -40,10 +41,14 @@
 + (id)payloadFromDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 + (id)payloadsFromArray:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 + (id)typeStrings;
++ (id)unavailablePayloadsInEphemeralMultiUser;
++ (id)unavailableSystemPayloadsInEphemeralMultiUser;
++ (id)unavailableUserPayloadsInEphemeralMultiUser;
 + (id)wrapperPayloadDictionary;
 
 - (void).cxx_destruct;
 - (id)UUID;
+- (BOOL)containsSensitiveUserInformation;
 - (id)description;
 - (id)displayName;
 - (id)friendlyName;

@@ -3,11 +3,11 @@
  */
 
 @interface SKUIURLResolver : NSObject <SKUIPassbookLoaderDelegate> {
-    SKUIClientContext *_clientContext;
-    <SKUIURLResolverDelegate> *_delegate;
-    <UINavigationControllerDelegate> *_navigationControllerDelegate;
-    NSOperationQueue *_operationQueue;
-    SKUIPassbookLoader *_passbookLoader;
+    SKUIClientContext * _clientContext;
+    <SKUIURLResolverDelegate> * _delegate;
+    <UINavigationControllerDelegate> * _navigationControllerDelegate;
+    NSOperationQueue * _operationQueue;
+    SKUIPassbookLoader * _passbookLoader;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -22,6 +22,7 @@
 
 - (void).cxx_destruct;
 - (void)_addPassbookPassWithURL:(id)arg1;
+- (void)_handleSafariScriptDataUpdate:(id)arg1;
 - (id)_newHTMLViewControllerWithSection:(id)arg1;
 - (void)_performLookupWithURL:(id)arg1;
 - (void)_presentViewController:(id)arg1;

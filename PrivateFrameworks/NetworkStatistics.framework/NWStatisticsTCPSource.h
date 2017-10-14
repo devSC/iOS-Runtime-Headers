@@ -3,8 +3,8 @@
  */
 
 @interface NWStatisticsTCPSource : NWStatisticsSource {
-    NSString *_TCPState;
-    NSString *_congestionAlgorithm;
+    NSString * _TCPState;
+    NSString * _congestionAlgorithm;
     struct nstat_tcp_descriptor { 
         union { 
             struct sockaddr_in { 
@@ -83,13 +83,13 @@
             unsigned int conn_probe_failed : 1; 
         } connstatus; 
         unsigned short ifnet_properties; 
-    } _descriptor;
-    NSUUID *_euuid;
-    NSData *_localAddress;
-    NSString *_processName;
-    NSData *_remoteAddress;
-    NSUUID *_uuid;
-    NSUUID *_vuuid;
+    }  _descriptor;
+    NSUUID * _euuid;
+    NSData * _localAddress;
+    NSString * _processName;
+    NSData * _remoteAddress;
+    NSUUID * _uuid;
+    NSUUID * _vuuid;
 }
 
 @property (retain) NSString *TCPState;
@@ -103,6 +103,7 @@
 @property (readonly) bool interfaceExpensive;
 @property (readonly) bool interfaceLoopback;
 @property (readonly) bool interfaceUnknown;
+@property (readonly) bool interfaceViaCellFallback;
 @property (readonly) bool interfaceWifi;
 @property (readonly) bool interfaceWired;
 @property (retain) NSData *localAddress;
@@ -143,6 +144,7 @@
 - (bool)interfaceExpensive;
 - (bool)interfaceLoopback;
 - (bool)interfaceUnknown;
+- (bool)interfaceViaCellFallback;
 - (bool)interfaceWifi;
 - (bool)interfaceWired;
 - (id)localAddress;

@@ -3,21 +3,23 @@
  */
 
 @interface _IDSDevice : NSObject <IDSDaemonListenerProtocol> {
-    CUTWeakReference *_account;
-    BOOL _connected;
-    NSDictionary *_info;
-    NSInputStream *_inputStreamForSocket;
-    int _lastActivityToken;
-    BOOL _nearby;
-    int _nearbyToken;
-    id /* block */ _openSocketCompletionHandler;
-    NSString *_openSocketCompletionHandlerID;
-    NSObject<OS_dispatch_queue> *_openSocketCompletionHandlerQueue;
-    NSOutputStream *_outputStreamForSocket;
-    NSString *_serviceToken;
-    int _socket;
+    CUTWeakReference * _account;
+    BOOL  _cloudConnected;
+    BOOL  _connected;
+    BOOL  _immutableCloudConnected;
+    NSDictionary * _info;
+    NSInputStream * _inputStreamForSocket;
+    BOOL  _nearby;
+    int  _nearbyToken;
+    id /* block */  _openSocketCompletionHandler;
+    NSString * _openSocketCompletionHandlerID;
+    NSObject<OS_dispatch_queue> * _openSocketCompletionHandlerQueue;
+    NSOutputStream * _outputStreamForSocket;
+    NSString * _serviceToken;
+    int  _socket;
 }
 
+@property (getter=isCloudConnected, nonatomic, readonly) BOOL cloudConnected;
 @property (getter=isConnected, nonatomic, readonly) BOOL connected;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -25,9 +27,10 @@
 @property (nonatomic, readonly, retain) NSString *enclosureColor;
 @property (readonly) unsigned int hash;
 @property (nonatomic, readonly, retain) NSArray *identities;
-@property (nonatomic, readonly) BOOL isDefaultLocalDevice;
+@property (nonatomic, readonly) BOOL isActive;
 @property (nonatomic, readonly) BOOL isDefaultPairedDevice;
 @property (nonatomic, readonly) BOOL isHSATrusted;
+@property (nonatomic, readonly) BOOL isLocallyPaired;
 @property (nonatomic, readonly, retain) NSDate *lastActivityDate;
 @property (nonatomic, readonly, retain) NSArray *linkedUserURIs;
 @property (nonatomic, readonly) BOOL locallyPresent;
@@ -43,7 +46,9 @@
 @property (nonatomic, readonly) NSString *productVersion;
 @property (nonatomic, readonly, retain) NSData *pushToken;
 @property (nonatomic, readonly, retain) NSString *service;
+@property (nonatomic, readonly) unsigned int serviceMinCompatibilityVersion;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL supportsApplePay;
 @property (nonatomic, readonly) BOOL supportsHandoff;
 @property (nonatomic, readonly) BOOL supportsMMSRelay;
 @property (nonatomic, readonly) BOOL supportsPhoneCalls;
@@ -54,10 +59,11 @@
 @property (nonatomic, readonly, retain) NSString *uniqueIDOverride;
 
 - (void)_addIdentity:(id)arg1;
+- (void)_cloudConnectedStateChanged;
 - (void)_connect;
+- (void)_connectedStateChanged;
 - (void)_nearbyStateChanged;
 - (void)_setAccount:(id)arg1;
-- (void)_updateNSUUID:(id)arg1;
 - (void)closeSocket:(int)arg1;
 - (void)closeSocketForDomain:(id)arg1;
 - (void)closeStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
@@ -65,12 +71,15 @@
 - (id)description;
 - (id)deviceColor;
 - (id)enclosureColor;
+- (id)fullDescription;
 - (id)identities;
 - (id)initWithDictionary:(id)arg1;
+- (BOOL)isActive;
+- (BOOL)isCloudConnected;
 - (BOOL)isConnected;
-- (BOOL)isDefaultLocalDevice;
 - (BOOL)isDefaultPairedDevice;
 - (BOOL)isHSATrusted;
+- (BOOL)isLocallyPaired;
 - (BOOL)isNearby;
 - (id)lastActivityDate;
 - (id)linkedUserURIs;
@@ -87,9 +96,11 @@
 - (id)productVersion;
 - (id)pushToken;
 - (id)service;
+- (unsigned int)serviceMinCompatibilityVersion;
 - (void)setNSUUID:(id)arg1;
 - (void)setStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
 - (int)socketForDomain:(id)arg1;
+- (BOOL)supportsApplePay;
 - (BOOL)supportsHandoff;
 - (BOOL)supportsMMSRelay;
 - (BOOL)supportsPhoneCalls;

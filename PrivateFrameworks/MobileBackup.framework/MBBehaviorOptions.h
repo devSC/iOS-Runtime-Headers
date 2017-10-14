@@ -3,17 +3,21 @@
  */
 
 @interface MBBehaviorOptions : NSObject {
-    NSMutableDictionary *_cachedPrefs;
-    NSObject<OS_dispatch_queue> *_cachedPrefsQueue;
-    MBConnection *_conn;
+    NSMutableDictionary * _cachedPrefs;
+    NSObject<OS_dispatch_queue> * _cachedPrefsQueue;
+    MBConnection * _conn;
 }
 
+@property (nonatomic) BOOL backupFromLocalSnapshot;
 @property (nonatomic, retain) NSMutableDictionary *cachedPrefs;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *cachedPrefsQueue;
 @property (nonatomic, copy) NSString *cloudKitContainerName;
 @property (nonatomic, retain) MBConnection *conn;
+@property (nonatomic) BOOL keepDailySnapshots;
 @property (nonatomic) int manifestPageSize;
 @property (nonatomic) int maxBatchCount;
+@property (nonatomic, readonly) int maxBatchFetchAssetSize;
+@property (nonatomic, readonly) int maxBatchSaveAssetSize;
 @property (nonatomic) int maxBatchSize;
 @property (nonatomic) int maxDomainsToBackup;
 @property (nonatomic, copy) NSString *minimumBuildVersionForFullBackup;
@@ -21,7 +25,9 @@
 @property (nonatomic) int sqlBatchCount;
 @property (nonatomic) double sqlBatchTime;
 @property (nonatomic) BOOL sqlTrace;
+@property (nonatomic) BOOL useABC;
 @property (nonatomic) BOOL useBackgroundOperationsForBackup;
+@property (nonatomic, readonly) BOOL usePowerLog;
 @property (nonatomic) BOOL warnForLateiTunesBackups;
 
 + (id)sharedOptions;
@@ -37,21 +43,27 @@
 - (id)_getStringOptionLockedForKey:(id)arg1 defaultValue:(id)arg2;
 - (void)_setPref:(id)arg1 forKey:(id)arg2;
 - (void)_startListeningForNotifications;
+- (BOOL)backupFromLocalSnapshot;
 - (id)cachedPrefs;
 - (id)cachedPrefsQueue;
 - (id)cloudKitContainerName;
 - (id)conn;
 - (id)init;
+- (BOOL)keepDailySnapshots;
 - (int)manifestPageSize;
 - (int)maxBatchCount;
+- (int)maxBatchFetchAssetSize;
+- (int)maxBatchSaveAssetSize;
 - (int)maxBatchSize;
 - (int)maxDomainsToBackup;
 - (id)minimumBuildVersionForFullBackup;
 - (int)recordSaveAttempts;
+- (void)setBackupFromLocalSnapshot:(BOOL)arg1;
 - (void)setCachedPrefs:(id)arg1;
 - (void)setCachedPrefsQueue:(id)arg1;
 - (void)setCloudKitContainerName:(id)arg1;
 - (void)setConn:(id)arg1;
+- (void)setKeepDailySnapshots:(BOOL)arg1;
 - (void)setManifestPageSize:(int)arg1;
 - (void)setMaxBatchCount:(int)arg1;
 - (void)setMaxBatchSize:(int)arg1;
@@ -61,12 +73,18 @@
 - (void)setSQLTrace:(BOOL)arg1;
 - (void)setSqlBatchCount:(int)arg1;
 - (void)setSqlBatchTime:(double)arg1;
+- (void)setUseABC:(BOOL)arg1;
 - (void)setUseBackgroundOperationsForBackup:(BOOL)arg1;
+- (void)setUsePowerLog:(BOOL)arg1;
 - (void)setWarnForLateiTunesBackups:(BOOL)arg1;
+- (void)setmaxBatchFetchAssetSize:(int)arg1;
+- (void)setmaxBatchSaveAssetSize:(int)arg1;
 - (int)sqlBatchCount;
 - (double)sqlBatchTime;
 - (BOOL)sqlTrace;
+- (BOOL)useABC;
 - (BOOL)useBackgroundOperationsForBackup;
+- (BOOL)usePowerLog;
 - (BOOL)warnForLateiTunesBackups;
 
 @end

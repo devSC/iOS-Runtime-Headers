@@ -3,33 +3,34 @@
  */
 
 @interface _MFMailCompositionContext : NSObject {
-    NSString *_attachmentToMarkupContentID;
-    id _autosaveIdentifier;
-    NSArray *_bccRecipients;
-    MFComposeBodyField *_bodyField;
-    unsigned int _caretPosition;
-    NSArray *_ccRecipients;
-    int _composeType;
-    NSString *_contextID;
-    NSMutableArray *_deferredAttachments;
-    BOOL _includeAttachments;
-    BOOL _loadRest;
-    MFMessageViewingContext *_loadingContext;
-    NSString *_messageBody;
-    id _originalContent;
-    MFMailMessage *_originalMessage;
-    NSString *_originatingBundleID;
-    BOOL _prefersFirstLineSelection;
-    BOOL _registeredForDraw;
-    NSString *_sendingAddress;
-    BOOL _showContentImmediately;
-    BOOL _showKeyboardImmediately;
-    int _sourceAccountManagement;
-    NSString *_subject;
-    NSArray *_toRecipients;
-    BOOL _usingDefaultAccount;
+    MFAttachmentCompositionContext * _attachmentContext;
+    NSString * _attachmentToMarkupContentID;
+    id  _autosaveIdentifier;
+    NSArray * _bccRecipients;
+    MFComposeBodyField * _bodyField;
+    unsigned int  _caretPosition;
+    NSArray * _ccRecipients;
+    int  _composeType;
+    NSMutableArray * _deferredAttachments;
+    BOOL  _includeAttachments;
+    BOOL  _loadRest;
+    MFMessageLoadingContext * _loadingContext;
+    NSString * _messageBody;
+    id  _originalContent;
+    MFMailMessage * _originalMessage;
+    NSString * _originatingBundleID;
+    BOOL  _prefersFirstLineSelection;
+    BOOL  _registeredForDraw;
+    NSString * _sendingAddress;
+    BOOL  _showContentImmediately;
+    BOOL  _showKeyboardImmediately;
+    int  _sourceAccountManagement;
+    NSString * _subject;
+    NSArray * _toRecipients;
+    BOOL  _usingDefaultAccount;
 }
 
+@property (nonatomic, readonly) MFAttachmentCompositionContext *attachmentContext;
 @property (nonatomic, retain) NSString *attachmentToMarkupContentID;
 @property (nonatomic, readonly) id autosaveIdentifier;
 @property (nonatomic, copy) NSArray *bccRecipients;
@@ -40,7 +41,7 @@
 @property (nonatomic, readonly) NSString *contextID;
 @property (nonatomic) BOOL includeAttachments;
 @property (nonatomic) BOOL loadRest;
-@property (nonatomic, retain) MFMessageViewingContext *loadingContext;
+@property (nonatomic, retain) MFMessageLoadingContext *loadingContext;
 @property (nonatomic, retain) id originalContent;
 @property (nonatomic, readonly) MFMailMessage *originalMessage;
 @property (nonatomic, copy) NSString *originatingBundleID;
@@ -57,6 +58,7 @@
 - (void)_contextUnregisterForDrawNotification;
 - (id)addAttachmentData:(id)arg1 mimeType:(id)arg2 fileName:(id)arg3;
 - (id)addAttachmentData:(id)arg1 mimeType:(id)arg2 fileName:(id)arg3 contentID:(id)arg4;
+- (id)attachmentContext;
 - (id)attachmentToMarkupContentID;
 - (id)attachments;
 - (id)autosaveIdentifier;
@@ -82,7 +84,6 @@
 - (id)initWithComposeType:(int)arg1 originalMessage:(id)arg2;
 - (id)initWithURL:(id)arg1;
 - (id)initWithURL:(id)arg1 composeType:(int)arg2 originalMessage:(id)arg3;
-- (void)insertAttachmentWithData:(id)arg1 fileName:(id)arg2 mimeType:(id)arg3;
 - (void)insertAttachmentWithData:(id)arg1 fileName:(id)arg2 mimeType:(id)arg3 contentID:(id)arg4;
 - (void)insertAttachmentWithURL:(id)arg1;
 - (BOOL)loadRest;

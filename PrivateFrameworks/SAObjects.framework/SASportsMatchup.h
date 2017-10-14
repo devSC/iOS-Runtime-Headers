@@ -12,6 +12,8 @@
 @property (nonatomic, copy) NSString *currentPeriod;
 @property (nonatomic, copy) NSNumber *expectedLineScoreCount;
 @property (nonatomic, copy) NSString *favoredEntity;
+@property (nonatomic, copy) NSString *gameSummary;
+@property (nonatomic, copy) NSString *gameType;
 @property (nonatomic, retain) SASportsEntity *homeEntity;
 @property (nonatomic, copy) NSArray *homeLineScores;
 @property (nonatomic, copy) NSString *homeScore;
@@ -19,6 +21,7 @@
 @property (nonatomic, copy) NSString *homeTeamRecordSummary;
 @property (nonatomic, copy) NSNumber *isExplicitlyEndOfPeriod;
 @property (nonatomic, copy) NSString *line;
+@property (nonatomic, retain) SALCMLiveTuneInButton *liveTuneInButton;
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *locationName;
 @property (nonatomic, copy) NSString *matchupOrder;
@@ -49,6 +52,8 @@
 - (id)encodedClassName;
 - (id)expectedLineScoreCount;
 - (id)favoredEntity;
+- (id)gameSummary;
+- (id)gameType;
 - (id)groupIdentifier;
 - (id)homeEntity;
 - (id)homeLineScores;
@@ -57,6 +62,7 @@
 - (id)homeTeamRecordSummary;
 - (id)isExplicitlyEndOfPeriod;
 - (id)line;
+- (id)liveTuneInButton;
 - (id)location;
 - (id)locationName;
 - (id)matchupOrder;
@@ -72,6 +78,8 @@
 - (void)setCurrentPeriod:(id)arg1;
 - (void)setExpectedLineScoreCount:(id)arg1;
 - (void)setFavoredEntity:(id)arg1;
+- (void)setGameSummary:(id)arg1;
+- (void)setGameType:(id)arg1;
 - (void)setHomeEntity:(id)arg1;
 - (void)setHomeLineScores:(id)arg1;
 - (void)setHomeScore:(id)arg1;
@@ -79,6 +87,7 @@
 - (void)setHomeTeamRecordSummary:(id)arg1;
 - (void)setIsExplicitlyEndOfPeriod:(id)arg1;
 - (void)setLine:(id)arg1;
+- (void)setLiveTuneInButton:(id)arg1;
 - (void)setLocation:(id)arg1;
 - (void)setLocationName:(id)arg1;
 - (void)setMatchupOrder:(id)arg1;

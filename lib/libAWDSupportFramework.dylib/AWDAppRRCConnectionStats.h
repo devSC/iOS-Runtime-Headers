@@ -3,9 +3,9 @@
  */
 
 @interface AWDAppRRCConnectionStats : PBCodable <NSCopying> {
-    unsigned int _bundleBGDuration;
-    unsigned int _bundleFGDuration;
-    NSString *_bundleName;
+    unsigned int  _bundleBGDuration;
+    unsigned int  _bundleFGDuration;
+    NSString * _bundleName;
     struct { 
         unsigned int bundleBGDuration : 1; 
         unsigned int bundleFGDuration : 1; 
@@ -13,11 +13,11 @@
         unsigned int numMTConnectionTriggered : 1; 
         unsigned int rAT : 1; 
         unsigned int totalBytesTransferred : 1; 
-    } _has;
-    unsigned int _numMOConnectionTriggered;
-    unsigned int _numMTConnectionTriggered;
-    int _rAT;
-    unsigned int _totalBytesTransferred;
+    }  _has;
+    unsigned int  _numMOConnectionTriggered;
+    unsigned int  _numMTConnectionTriggered;
+    int  _rAT;
+    unsigned int  _totalBytesTransferred;
 }
 
 @property (nonatomic) unsigned int bundleBGDuration;
@@ -35,6 +35,7 @@
 @property (nonatomic) int rAT;
 @property (nonatomic) unsigned int totalBytesTransferred;
 
+- (int)StringAsRAT:(id)arg1;
 - (unsigned int)bundleBGDuration;
 - (unsigned int)bundleFGDuration;
 - (id)bundleName;
@@ -56,6 +57,7 @@
 - (unsigned int)numMOConnectionTriggered;
 - (unsigned int)numMTConnectionTriggered;
 - (int)rAT;
+- (id)rATAsString:(int)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setBundleBGDuration:(unsigned int)arg1;
 - (void)setBundleFGDuration:(unsigned int)arg1;

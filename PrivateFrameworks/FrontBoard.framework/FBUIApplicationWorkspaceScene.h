@@ -3,22 +3,20 @@
  */
 
 @interface FBUIApplicationWorkspaceScene : FBWorkspaceScene {
-    NSMutableSet *_allWatchdogs;
-    BOOL _createResponseReceived;
-    BKSProcessAssertion *_deliverMessageProcessAssertion;
-    unsigned int _deliverMessageProcessAssertionCount;
-    BKSProcessAssertion *_launchBoostahAssertion;
-    BKSProcessAssertion *_resumeProcessAssertion;
-    BKSProcessAssertion *_seoProcessAssertion;
-    int _suspendType;
-    BKSProcessAssertion *_suspendingProcessAssertion;
-    BOOL _transitioningToForeground;
-    NSMutableArray *_watchdogStack;
+    NSMutableSet * _allWatchdogs;
+    BOOL  _createResponseReceived;
+    BKSProcessAssertion * _deliverMessageProcessAssertion;
+    unsigned int  _deliverMessageProcessAssertionCount;
+    BKSProcessAssertion * _resumeProcessAssertion;
+    BKSProcessAssertion * _seoProcessAssertion;
+    int  _suspendType;
+    BKSProcessAssertion * _suspendingProcessAssertion;
+    NSMutableArray * _watchdogStack;
 }
 
-@property (getter=_workspaceQueue_isTransitioningToForeground, nonatomic, readonly) BOOL transitioningToForeground;
-
 - (void)_dispatchBlockAfterProcessLaunch:(id /* block */)arg1;
+- (void)_handleDidUpdateSettings:(id)arg1 withDiff:(id)arg2 transitionContext:(id)arg3 completion:(id /* block */)arg4;
+- (void)_handleInvalidationWithTransitionContext:(id)arg1 completion:(id /* block */)arg2;
 - (void)_workspaceQueue_activateForSEO:(BOOL)arg1 withSettings:(id)arg2 transitionContext:(id)arg3 eventBlock:(id /* block */)arg4;
 - (void)_workspaceQueue_activateResponseReceived:(id)arg1;
 - (void)_workspaceQueue_cancelAllWatchdogTimers;
@@ -34,9 +32,9 @@
 - (void)_workspaceQueue_dropSEOProcessAssertion;
 - (void)_workspaceQueue_dropSuspendingProcessAssertion;
 - (void)_workspaceQueue_invalidate;
-- (BOOL)_workspaceQueue_isTransitioningToForeground;
 - (int)_workspaceQueue_lifecycleStateForSettings:(id)arg1;
-- (id)_workspaceQueue_newProcessAssertionForReason:(unsigned int)arg1 withName:(id)arg2 transitionContext:(id)arg3;
+- (id)_workspaceQueue_newProcessAssertionForReason:(unsigned int)arg1 withName:(id)arg2 transitionContext:(id)arg3 acquireSynchronously:(BOOL)arg4;
+- (void)_workspaceQueue_performGracefulExitWithDeliveryConfirmation:(id /* block */)arg1;
 - (int)_workspaceQueue_pid;
 - (id)_workspaceQueue_process;
 - (void)_workspaceQueue_takeAssertionsForDeactivation:(BOOL)arg1 transitionContext:(id)arg2;
@@ -45,10 +43,7 @@
 - (void)_workspaceQueue_takeSEOProcessAssertionWithTransitionContext:(id)arg1;
 - (void)_workspaceQueue_takeSuspendingProcessAssertion;
 - (void)dealloc;
-- (void)host:(id)arg1 configureWithInitialClientSettings:(id)arg2;
-- (void)host:(id)arg1 didInvalidateWithTransitionContext:(id)arg2 completion:(id /* block */)arg3;
-- (void)host:(id)arg1 didUpdateSettings:(id)arg2 withDiff:(id)arg3 transitionContext:(id)arg4 completion:(id /* block */)arg5;
-- (id)initWithParentWorkspace:(id)arg1 host:(id)arg2;
+- (id)initWithParentWorkspace:(id)arg1 identity:(id)arg2;
 - (id)parentWorkspace;
 
 @end

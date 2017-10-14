@@ -3,18 +3,19 @@
  */
 
 @interface SKUIDownloadsViewController : SKUIViewController <SKUIDownloadsChildViewControllerDelegate, SSDownloadManagerObserver> {
-    SKUIImageDataConsumer *_consumer;
-    SSDownloadManager *_downloadManager;
-    NSArray *_downloads;
-    NSMutableDictionary *_imageOperations;
-    NSCache *_images;
-    SKUIIPadDownloadsViewController *_ipadViewController;
-    SKUIIPhoneDownloadsViewController *_iphoneViewController;
-    UIImage *_nullImage;
+    SKUIImageDataConsumer * _consumer;
+    SSDownloadManager * _downloadManager;
+    NSArray * _downloads;
+    NSMutableDictionary * _imageOperations;
+    NSCache * _images;
+    SKUIIPadDownloadsViewController * _ipadViewController;
+    SKUIIPhoneDownloadsViewController * _iphoneViewController;
+    UIImage * _nullImage;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (copy) NSArray *downloads;
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
 
@@ -32,8 +33,10 @@
 - (void)dealloc;
 - (void)downloadManager:(id)arg1 downloadStatesDidChange:(id)arg2;
 - (void)downloadManagerDownloadsDidChange:(id)arg1;
+- (id)downloads;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)loadView;
+- (void)setDownloads:(id)arg1;
 - (void)viewDidLayoutSubviews;
 
 @end

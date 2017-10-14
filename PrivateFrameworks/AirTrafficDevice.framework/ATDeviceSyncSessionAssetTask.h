@@ -3,21 +3,21 @@
  */
 
 @interface ATDeviceSyncSessionAssetTask : ATDeviceSyncSessionTask <ATAssetLinkControllerObserver> {
-    BOOL _addedTransportUpgradeException;
-    <ATAssetClient> *_assetClient;
-    ATAssetLinkController *_assetController;
-    NSMutableSet *_assetStreams;
-    NSMapTable *_assetToBytesMap;
-    NSMutableOrderedSet *_clientAssetsInProgress;
-    NSMutableOrderedSet *_clientAssetsRemaining;
-    NSMutableDictionary *_detailedProgress;
-    BOOL _peerRequestsComplete;
-    BOOL _requestsComplete;
-    NSMutableOrderedSet *_serverAssetsInProgress;
-    double _taskStartTime;
-    ATThroughputCalculator *_throughputCalculator;
-    unsigned long long _totalAssetSize;
-    NSObject<OS_dispatch_queue> *_workQueue;
+    BOOL  _addedTransportUpgradeException;
+    <ATAssetClient> * _assetClient;
+    ATAssetLinkController * _assetController;
+    NSMutableSet * _assetStreams;
+    NSMapTable * _assetToBytesMap;
+    NSMutableOrderedSet * _clientAssetsInProgress;
+    NSMutableOrderedSet * _clientAssetsRemaining;
+    NSMutableDictionary * _detailedProgress;
+    BOOL  _peerRequestsComplete;
+    BOOL  _requestsComplete;
+    NSMutableOrderedSet * _serverAssetsInProgress;
+    double  _taskStartTime;
+    ATThroughputCalculator * _throughputCalculator;
+    unsigned long long  _totalAssetSize;
+    NSObject<OS_dispatch_queue> * _workQueue;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -33,6 +33,7 @@
 - (void)_handleEndAssetTaskRequest:(id)arg1 onMessagLink:(id)arg2;
 - (void)_handleUpdateSessionTaskRequest:(id)arg1 onMessageLink:(id)arg2;
 - (void)_updateDetailedProgressForCompletedAsset:(id)arg1;
+- (void)_updateProgressWithBytesTransferred:(unsigned long long)arg1;
 - (void)_updateProperties;
 - (void)_updateTaskDescription;
 - (void)assetLinkController:(id)arg1 didFinishAsset:(id)arg2;
@@ -42,5 +43,6 @@
 - (void)messageLink:(id)arg1 didReceiveRequest:(id)arg2;
 - (id)sessionGroupingKey;
 - (void)start;
+- (void)updateProgressWithCount:(unsigned int)arg1 totalItemCount:(unsigned int)arg2;
 
 @end

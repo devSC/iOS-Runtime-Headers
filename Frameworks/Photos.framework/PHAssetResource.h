@@ -3,53 +3,81 @@
  */
 
 @interface PHAssetResource : NSObject {
-    NSString *_assetLocalIdentifier;
-    PHAssetResourceCreationOptions *_creationOptions;
-    NSData *_data;
-    NSURL *_fileURL;
-    NSString *_originalFilename;
-    NSURL *_privateFileURL;
-    int _resourceType;
-    PHSandboxExtensionWrapper *_sandboxExtensionWrapper;
-    NSString *_uniformTypeIdentifier;
+    NSString * _assetLocalIdentifier;
+    BOOL  _derivative;
+    long long  _fileSize;
+    NSURL * _fileURL;
+    BOOL  _locallyAvailable;
+    NSString * _originalFilename;
+    unsigned int  _pixelHeight;
+    unsigned int  _pixelWidth;
+    id /* block */  _privateFileLoader;
+    NSURL * _privateFileURL;
+    int  _resourceType;
+    NSString * _uniformTypeIdentifier;
 }
 
-@property (nonatomic, copy) NSString *assetLocalIdentifier;
-@property (nonatomic, copy) PHAssetResourceCreationOptions *creationOptions;
-@property (nonatomic, retain) NSData *data;
-@property (nonatomic, retain) NSURL *fileURL;
-@property (nonatomic, copy) NSString *originalFilename;
+@property (setter=_setAssetLocalIdentifier:, nonatomic, copy) NSString *assetLocalIdentifier;
+@property (getter=isDerivative, nonatomic, readonly) BOOL derivative;
+@property (setter=_setFileSize:, nonatomic) long long fileSize;
+@property (setter=_setFileURL:, nonatomic, retain) NSURL *fileURL;
+@property (getter=isLibraryAssetResource, nonatomic, readonly) BOOL libraryAssetResource;
+@property (getter=isLocallyAvailable, setter=_setIsLocallyAvailable:, nonatomic) BOOL locallyAvailable;
+@property (setter=_setOriginalFilename:, nonatomic, copy) NSString *originalFilename;
+@property (setter=_setPixelHeight:, nonatomic) unsigned int pixelHeight;
+@property (setter=_setPixelWidth:, nonatomic) unsigned int pixelWidth;
+@property (setter=_setPrivateFileLoader:, nonatomic, copy) id /* block */ privateFileLoader;
 @property (setter=_setPrivateFileURL:, nonatomic, retain) NSURL *privateFileURL;
-@property (setter=_setSandboxExtensionWrapper:, nonatomic, retain) PHSandboxExtensionWrapper *sandboxExtensionWrapper;
 @property (nonatomic, readonly) int type;
-@property (nonatomic, copy) NSString *uniformTypeIdentifier;
+@property (setter=_setUniformTypeIdentifier:, nonatomic, copy) NSString *uniformTypeIdentifier;
 
-+ (id)_newInfosForResourceType:(int)arg1 asset:(id)arg2 managedAsset:(id*)arg3 library:(id)arg4;
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
++ (id)_managedAssetWithRelationshipsPrefetchedForAsset:(id)arg1 inLibrary:(id)arg2 error:(id*)arg3;
 + (id)assetResourcesForAsset:(id)arg1;
-+ (BOOL)uniformTypeIdentifier:(struct __CFString { }*)arg1 conformsToResourceType:(int)arg2;
++ (id)assetResourcesForAsset:(id)arg1 includeDerivatives:(BOOL)arg2;
++ (id)assetResourcesForLivePhoto:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_setAssetLocalIdentifier:(id)arg1;
+- (void)_setFileSize:(long long)arg1;
+- (void)_setFileURL:(id)arg1;
+- (void)_setIsLocallyAvailable:(BOOL)arg1;
 - (void)_setOriginalFilename:(id)arg1;
+- (void)_setPixelHeight:(unsigned int)arg1;
+- (void)_setPixelWidth:(unsigned int)arg1;
+- (void)_setPrivateFileLoader:(id /* block */)arg1;
 - (void)_setPrivateFileURL:(id)arg1;
-- (void)_setSandboxExtensionWrapper:(id)arg1;
 - (void)_setUniformTypeIdentifier:(id)arg1;
+- (int)analysisType;
 - (id)assetLocalIdentifier;
-- (id)creationOptions;
-- (id)data;
 - (id)description;
+- (long long)fileSize;
 - (id)fileURL;
-- (id)init;
-- (id)initWithPropertyListRepresentation:(id)arg1;
 - (id)initWithResourceType:(int)arg1;
+- (BOOL)isDerivative;
+- (BOOL)isLibraryAssetResource;
+- (BOOL)isLocallyAvailable;
 - (id)originalFilename;
+- (unsigned int)pixelHeight;
+- (unsigned int)pixelWidth;
+- (id /* block */)privateFileLoader;
 - (id)privateFileURL;
-- (id)propertyListRepresentation;
-- (id)sandboxExtensionWrapper;
-- (void)setCreationOptions:(id)arg1;
-- (void)setData:(id)arg1;
-- (void)setFileURL:(id)arg1;
 - (int)type;
 - (id)uniformTypeIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/VideoProcessing.framework/VideoProcessing
+
++ (id)vcp_allResourcesForAsset:(id)arg1;
+
+- (id)vcp_avAsset;
+- (id)vcp_exif;
+- (unsigned long)vcp_fileSize;
+- (BOOL)vcp_isJPEG;
+- (BOOL)vcp_isLocallyAvailable;
+- (BOOL)vcp_isMovie;
+- (BOOL)vcp_isPhoto;
+- (struct CGSize { float x1; float x2; })vcp_size;
+- (id)vcp_url;
 
 @end

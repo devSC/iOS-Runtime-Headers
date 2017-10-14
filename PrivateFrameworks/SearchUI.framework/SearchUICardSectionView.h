@@ -3,17 +3,19 @@
  */
 
 @interface SearchUICardSectionView : UIView {
-    SearchUICardViewController *_controller;
-    BOOL _fullWidthSeparator;
-    BOOL _hideSeparatorBelow;
-    <SearchUICardSection> *_section;
-    NSURL *_url;
+    SearchUICardViewController * _controller;
+    BOOL  _fullWidthSeparator;
+    BOOL  _hideSeparatorBelow;
+    SFCardSection * _section;
+    unsigned int  _style;
+    NSURL * _url;
 }
 
 @property SearchUICardViewController *controller;
 @property (nonatomic) BOOL fullWidthSeparator;
 @property (nonatomic) BOOL hideSeparatorBelow;
-@property (nonatomic, retain) <SearchUICardSection> *section;
+@property (nonatomic, retain) SFCardSection *section;
+@property unsigned int style;
 @property (retain) NSURL *url;
 
 + (Class)classForSection:(id)arg1;
@@ -23,13 +25,18 @@
 - (BOOL)fullWidthSeparator;
 - (BOOL)hideSeparatorBelow;
 - (id)initWithCardSection:(id)arg1 controller:(id)arg2;
+- (id)initWithCardSection:(id)arg1 controller:(id)arg2 style:(unsigned int)arg3;
+- (id)initWithCardSection:(id)arg1 style:(unsigned int)arg2;
+- (BOOL)isAutoLayoutFree;
 - (id)section;
 - (float)separatorLeftInset;
 - (void)setController:(id)arg1;
 - (void)setFullWidthSeparator:(BOOL)arg1;
 - (void)setHideSeparatorBelow:(BOOL)arg1;
 - (void)setSection:(id)arg1;
+- (void)setStyle:(unsigned int)arg1;
 - (void)setUrl:(id)arg1;
+- (unsigned int)style;
 - (id)url;
 
 @end

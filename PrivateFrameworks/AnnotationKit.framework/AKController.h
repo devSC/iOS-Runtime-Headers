@@ -3,32 +3,37 @@
  */
 
 @interface AKController : NSObject {
-    AKActionController *_actionController;
-    AKAttributeController *_attributeController;
-    unsigned int _creationCascadingMultiplier;
-    unsigned int _currentPageIndex;
-    <AKControllerDelegateProtocol> *_delegate;
-    AKFormFeatureDetectorController *_formDetectionController;
-    AKIntelligentSketchController *_intelligentSketchController;
-    BOOL _isTestingInstance;
-    AKPageController *_lastCreationCascadingPageController;
-    int _lastPasteboardChangeCount;
-    AKMainEventHandler *_mainEventHandler;
-    AKModelController *_modelController;
-    NSMutableArray *_pageControllers;
-    NSMapTable *_pageModelControllersToPageControllers;
-    unsigned int _pasteCascadingMultiplier;
-    BOOL _showingMenu;
-    AKSignatureModelController *_signatureModelController;
-    AKTextEditorController *_textEditorController;
-    AKToolController *_toolController;
-    UIView *_toolbarView;
-    AKToolbarViewController *_toolbarViewController;
-    AKUndoController *_undoController;
-    BOOL overlayShouldPixelate;
+    AKActionController * _actionController;
+    BOOL  _annotationEditingEnabled;
+    AKAttributeController * _attributeController;
+    unsigned int  _creationCascadingMultiplier;
+    unsigned int  _currentPageIndex;
+    <AKControllerDelegateProtocol> * _delegate;
+    AKFormFeatureDetectorController * _formDetectionController;
+    AKIntelligentSketchController * _intelligentSketchController;
+    BOOL  _isTestingInstance;
+    BOOL  _isTornDown;
+    AKPageController * _lastCreationCascadingPageController;
+    int  _lastPasteboardChangeCount;
+    AKMainEventHandler * _mainEventHandler;
+    AKModelController * _modelController;
+    NSMutableArray * _pageControllers;
+    NSMapTable * _pageModelControllersToPageControllers;
+    unsigned int  _pasteCascadingMultiplier;
+    BOOL  _pencilAlwaysDraws;
+    AKPeripheralAvailabilityManager_iOS * _peripheralAvailabilityManager;
+    BOOL  _showingMenu;
+    AKSignatureModelController * _signatureModelController;
+    AKTextEditorController * _textEditorController;
+    AKToolController * _toolController;
+    UIView * _toolbarView;
+    AKToolbarViewController * _toolbarViewController;
+    AKUndoController * _undoController;
+    BOOL  overlayShouldPixelate;
 }
 
 @property (retain) AKActionController *actionController;
+@property (nonatomic) BOOL annotationEditingEnabled;
 @property (retain) AKAttributeController *attributeController;
 @property unsigned int creationCascadingMultiplier;
 @property unsigned int currentPageIndex;
@@ -36,6 +41,7 @@
 @property (retain) AKFormFeatureDetectorController *formDetectionController;
 @property (retain) AKIntelligentSketchController *intelligentSketchController;
 @property BOOL isTestingInstance;
+@property BOOL isTornDown;
 @property AKPageController *lastCreationCascadingPageController;
 @property int lastPasteboardChangeCount;
 @property (retain) AKMainEventHandler *mainEventHandler;
@@ -44,6 +50,8 @@
 @property (retain) NSMutableArray *pageControllers;
 @property (retain) NSMapTable *pageModelControllersToPageControllers;
 @property unsigned int pasteCascadingMultiplier;
+@property (nonatomic) BOOL pencilAlwaysDraws;
+@property (retain) AKPeripheralAvailabilityManager_iOS *peripheralAvailabilityManager;
 @property (getter=isShowingMenu) BOOL showingMenu;
 @property (retain) AKSignatureModelController *signatureModelController;
 @property (retain) AKTextEditorController *textEditorController;
@@ -55,6 +63,7 @@
 + (void)adjustAnnotationBoundsToFitText:(id)arg1;
 + (id)akBundle;
 + (id)akBundleIdentifier;
++ (BOOL)canConnectToStylus;
 + (id)controllerWithDelegate:(id)arg1;
 + (BOOL)hasPressureCapableHardware;
 + (void)renderAnnotation:(id)arg1 inContext:(struct CGContext { }*)arg2;
@@ -63,6 +72,7 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_popoverAnchorFrameInModelForAnnotations:(id)arg1;
 - (BOOL)_validateCutCopyDelete;
 - (id)actionController;
+- (BOOL)annotationEditingEnabled;
 - (id)attributeController;
 - (void)commitEditing;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentAlignedRectForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 onPageAtIndex:(unsigned int)arg2;
@@ -79,15 +89,19 @@
 - (id)doubleTapGestureRecognizer;
 - (void)duplicate:(id)arg1;
 - (void)editTextAnnotation:(id)arg1;
+- (void)enclosingScrollViewDidScroll:(id)arg1;
 - (id)formDetectionController;
 - (BOOL)handleEvent:(id)arg1;
 - (void)hideSelectionMenu:(id)arg1;
+- (void)highlightableSelectionChanged;
+- (id)imageForToolbarButtonItemOfType:(unsigned int)arg1;
 - (id)initForTesting;
 - (id)initWithDelegate:(id)arg1;
 - (id)intelligentSketchController;
 - (BOOL)isOverlayViewLoadedAtIndex:(unsigned int)arg1;
 - (BOOL)isShowingMenu;
 - (BOOL)isTestingInstance;
+- (BOOL)isTornDown;
 - (id)lastCreationCascadingPageController;
 - (int)lastPasteboardChangeCount;
 - (id)mainEventHandler;
@@ -102,7 +116,9 @@
 - (id)panGestureRecognizer;
 - (void)paste:(id)arg1;
 - (unsigned int)pasteCascadingMultiplier;
+- (BOOL)pencilAlwaysDraws;
 - (void)performActionForSender:(id)arg1;
+- (id)peripheralAvailabilityManager;
 - (void)prepareOverlayAtIndex:(unsigned int)arg1;
 - (id)pressGestureRecognizer;
 - (void)redo:(id)arg1;
@@ -113,6 +129,7 @@
 - (id)rotationGestureRecognizer;
 - (void)selectAll:(id)arg1;
 - (void)setActionController:(id)arg1;
+- (void)setAnnotationEditingEnabled:(BOOL)arg1;
 - (void)setAttributeController:(id)arg1;
 - (void)setCreationCascadingMultiplier:(unsigned int)arg1;
 - (void)setCurrentPageIndex:(unsigned int)arg1;
@@ -120,6 +137,7 @@
 - (void)setFormDetectionController:(id)arg1;
 - (void)setIntelligentSketchController:(id)arg1;
 - (void)setIsTestingInstance:(BOOL)arg1;
+- (void)setIsTornDown:(BOOL)arg1;
 - (void)setLastCreationCascadingPageController:(id)arg1;
 - (void)setLastPasteboardChangeCount:(int)arg1;
 - (void)setMainEventHandler:(id)arg1;
@@ -128,6 +146,8 @@
 - (void)setPageControllers:(id)arg1;
 - (void)setPageModelControllersToPageControllers:(id)arg1;
 - (void)setPasteCascadingMultiplier:(unsigned int)arg1;
+- (void)setPencilAlwaysDraws:(BOOL)arg1;
+- (void)setPeripheralAvailabilityManager:(id)arg1;
 - (void)setShowingMenu:(BOOL)arg1;
 - (void)setSignatureModelController:(id)arg1;
 - (void)setTextEditorController:(id)arg1;
@@ -135,6 +155,7 @@
 - (void)setToolbarView:(id)arg1;
 - (void)setToolbarViewController:(id)arg1;
 - (void)setUndoController:(id)arg1;
+- (BOOL)shouldDrawVariableStrokeDoodles;
 - (void)showAttributeInspector:(id)arg1;
 - (void)showSelectionMenu:(id)arg1;
 - (id)signatureModelController;

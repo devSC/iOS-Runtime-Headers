@@ -3,8 +3,8 @@
  */
 
 @interface IKStyleFactory : NSObject {
-    NSMutableDictionary *_styleListsByClassSelector;
-    IKStylesGroup *_stylesGroup;
+    NSMutableDictionary * _styleListsByClassSelector;
+    IKStylesGroup * _stylesGroup;
 }
 
 @property (nonatomic, readonly, retain) NSMutableDictionary *styleListsByClassSelector;
@@ -15,6 +15,7 @@
 - (void).cxx_destruct;
 - (id)_collapsedStyleListForSelectors:(id)arg1 targetSelector:(id)arg2 stylesGroup:(id)arg3;
 - (id)initWithStylesGroup:(id)arg1;
+- (void)setViewElementStylesDirty;
 - (id)styleListForClassSelector:(id)arg1;
 - (id)styleListsByClassSelector;
 - (id)stylesGroup;

@@ -3,24 +3,26 @@
  */
 
 @interface PHAssetResourceBag : NSObject {
-    PHAssetCreationRequest *_assetCreationRequest;
-    NSArray *_assetResourceContexts;
-    NSArray *_assetResources;
-    BOOL _didValidateForInsertion;
-    BOOL _hasAdjustments;
-    unsigned int _mediaSubtype;
-    int _mediaType;
-    PHAssetResource *_primaryResource;
-    BOOL _valid;
+    PHAssetCreationRequest * _assetCreationRequest;
+    NSArray * _assetResourceContexts;
+    NSArray * _assetResources;
+    BOOL  _didValidateForInsertion;
+    BOOL  _hasAdjustments;
+    BOOL  _hasRAW;
+    unsigned int  _mediaSubtype;
+    int  _mediaType;
+    PHExternalAssetResource * _primaryResource;
+    BOOL  _valid;
 }
 
 @property (nonatomic, readonly) PHAssetCreationRequest *assetCreationRequest;
 @property (nonatomic, readonly) NSArray *assetResources;
 @property (nonatomic, readonly) BOOL didValidateForInsertion;
 @property (nonatomic, readonly) BOOL hasAdjustments;
+@property (nonatomic, readonly) BOOL hasRAW;
 @property (nonatomic, readonly) unsigned int mediaSubtype;
 @property (nonatomic, readonly) int mediaType;
-@property (nonatomic, readonly) PHAssetResource *primaryResource;
+@property (nonatomic, readonly) PHExternalAssetResource *primaryResource;
 @property (getter=isValid, nonatomic, readonly) BOOL valid;
 
 + (id)_primaryAssetResource:(id)arg1;
@@ -34,13 +36,13 @@
 - (BOOL)_extractValidatedVideoURL:(id*)arg1 fromResource:(id)arg2 photoLibrary:(id)arg3 error:(id*)arg4;
 - (id)_validateAssetResourceForAssetCreation:(id)arg1 photoLibrary:(id)arg2 error:(id*)arg3;
 - (BOOL)_validateAssetResourcesForAssetCreation:(id)arg1 photoLibrary:(id)arg2 error:(id*)arg3;
-- (BOOL)_validateImageDataForAssetCreation:(id)arg1 error:(id*)arg2;
 - (id)_validatedContextForResource:(id)arg1;
 - (id)assetCreationRequest;
 - (id)assetResourceWithType:(int)arg1;
 - (id)assetResources;
 - (BOOL)didValidateForInsertion;
 - (BOOL)hasAdjustments;
+- (BOOL)hasRAW;
 - (id)initWithAssetResources:(id)arg1 assetCreationRequest:(id)arg2;
 - (BOOL)isValid;
 - (unsigned int)mediaSubtype;

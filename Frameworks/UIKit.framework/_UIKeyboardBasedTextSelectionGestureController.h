@@ -3,8 +3,8 @@
  */
 
 @interface _UIKeyboardBasedTextSelectionGestureController : _UIKeyboardTextSelectionGestureController {
-    BOOL _delayForceMagnify;
-    BOOL _didLongForcePress;
+    BOOL  _delayForceMagnify;
+    BOOL  _didLongForcePress;
 }
 
 @property (nonatomic) BOOL delayForceMagnify;
@@ -20,6 +20,7 @@
 - (void)oneFingerForcePan:(id)arg1;
 - (void)oneFingerForcePress:(id)arg1;
 - (double)oneFingerForcePressMinimumDuration;
+- (BOOL)oneFingerForcePressShouldCancelTouchesInView;
 - (BOOL)oneFingerForcePressShouldFailWithoutForce;
 - (void)setDelayForceMagnify:(BOOL)arg1;
 - (void)setDidLongForcePress:(BOOL)arg1;

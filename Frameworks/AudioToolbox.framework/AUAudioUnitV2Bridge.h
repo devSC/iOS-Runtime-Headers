@@ -3,24 +3,28 @@
  */
 
 @interface AUAudioUnitV2Bridge : AUAudioUnit {
-    struct OpaqueAudioComponentInstance { } *_audioUnit;
-    bool _audioUnitIsOwned;
-    AUParameterTree *_cachedParameterTree;
-    struct AUListenerBase { } *_eventListener;
-    NSObject<OS_dispatch_queue> *_eventListenerQueue;
-    AUV2BridgeBusArray *_inputBusses;
-    AUV2BridgeBusArray *_outputBusses;
+    struct OpaqueAudioComponentInstance { } * _audioUnit;
+    bool  _audioUnitIsOwned;
+    AUParameterTree * _cachedParameterTree;
+    struct AUListenerBase { } * _eventListener;
+    NSObject<OS_dispatch_queue> * _eventListenerQueue;
+    AUV2BridgeBusArray * _inputBusses;
+    AUV2BridgeBusArray * _outputBusses;
+    struct AUListenerBase { } * _parameterListener;
+    bool  _removingObserverWithContext;
     struct unique_ptr<AUAudioUnitV2Bridge_Renderer, std::__1::default_delete<AUAudioUnitV2Bridge_Renderer> > { 
         struct __compressed_pair<AUAudioUnitV2Bridge_Renderer *, std::__1::default_delete<AUAudioUnitV2Bridge_Renderer> > { 
             struct AUAudioUnitV2Bridge_Renderer {} *__first_; 
         } __ptr_; 
-    } _renderer;
+    }  _renderer;
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)_addOrRemoveParameterListeners:(BOOL)arg1;
+- (void)_createEventListenerQueue;
 - (unsigned long)_elementCount:(unsigned long)arg1;
 - (BOOL)_elementCountWritable:(unsigned long)arg1;
 - (void)_invalidateParameterTree;
@@ -39,6 +43,7 @@
 - (id /* block */)internalRenderBlock;
 - (id)outputBusses;
 - (id)parameterTree;
+- (void)removeObserver:(id)arg1 forKeyPath:(id)arg2;
 - (void)removeObserver:(id)arg1 forKeyPath:(id)arg2 context:(void*)arg3;
 - (void)reset;
 

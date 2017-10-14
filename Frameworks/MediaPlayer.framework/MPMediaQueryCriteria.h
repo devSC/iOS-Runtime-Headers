@@ -3,18 +3,19 @@
  */
 
 @interface MPMediaQueryCriteria : NSObject <NSCopying> {
-    NSSet *_collectionPropertiesToFetch;
-    unsigned int _entityLimit;
-    unsigned int _entityOrder;
-    NSMutableSet *_filterPredicates;
-    int _groupingType;
-    BOOL _ignoreSystemFilterPredicates;
-    BOOL _includeEntitiesWithBlankNames;
-    BOOL _includeNonLibraryEntities;
-    NSSet *_itemPropertiesToFetch;
-    NSDictionary *_orderingDirectionMappings;
-    NSArray *_orderingProperties;
-    BOOL _useSections;
+    NSSet * _collectionPropertiesToFetch;
+    unsigned int  _entityLimit;
+    unsigned int  _entityOrder;
+    NSMutableSet * _filterPredicates;
+    int  _groupingType;
+    BOOL  _ignoreRestrictionsPredicates;
+    BOOL  _ignoreSystemFilterPredicates;
+    BOOL  _includeEntitiesWithBlankNames;
+    BOOL  _includeNonLibraryEntities;
+    NSSet * _itemPropertiesToFetch;
+    NSDictionary * _orderingDirectionMappings;
+    NSArray * _orderingProperties;
+    BOOL  _useSections;
 }
 
 @property (nonatomic, copy) NSSet *collectionPropertiesToFetch;
@@ -23,6 +24,7 @@
 @property (nonatomic, readonly) BOOL excludesEntitiesWithBlankNames;
 @property (nonatomic, copy) NSSet *filterPredicates;
 @property (nonatomic) int groupingType;
+@property (nonatomic) BOOL ignoreRestrictionsPredicates;
 @property (nonatomic) BOOL ignoreSystemFilterPredicates;
 @property (nonatomic) BOOL includeEntitiesWithBlankNames;
 @property (nonatomic) BOOL includeNonLibraryEntities;
@@ -48,6 +50,7 @@
 - (id)filterPredicates;
 - (int)groupingType;
 - (unsigned int)hash;
+- (BOOL)ignoreRestrictionsPredicates;
 - (BOOL)ignoreSystemFilterPredicates;
 - (BOOL)includeEntitiesWithBlankNames;
 - (BOOL)includeNonLibraryEntities;
@@ -64,6 +67,7 @@
 - (void)setEntityOrder:(unsigned int)arg1;
 - (void)setFilterPredicates:(id)arg1;
 - (void)setGroupingType:(int)arg1;
+- (void)setIgnoreRestrictionsPredicates:(BOOL)arg1;
 - (void)setIgnoreSystemFilterPredicates:(BOOL)arg1;
 - (void)setIncludeEntitiesWithBlankNames:(BOOL)arg1;
 - (void)setIncludeNonLibraryEntities:(BOOL)arg1;

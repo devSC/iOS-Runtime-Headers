@@ -3,12 +3,12 @@
  */
 
 @interface SFReaderAppearanceMainViewController : _SFPopoverSizingTableViewController <SFReaderAppearanceFontSizeSelectorDelegate, SFReaderAppearanceThemeSelectorTableViewCellDelegate> {
-    UIImage *_checkmarkImage;
-    WBSReaderFontManager *_fontManager;
-    NSDictionary *_initialReaderConfiguration;
-    _SFReaderAppearanceViewController *_ownerAppearanceViewController;
-    int _selectedFontIndex;
-    NSString *_themeName;
+    UIImage * _checkmarkImage;
+    WBSReaderFontManager * _fontManager;
+    NSDictionary * _initialReaderConfiguration;
+    _SFReaderAppearanceViewController * _ownerAppearanceViewController;
+    int  _selectedFontIndex;
+    NSString * _themeName;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -20,6 +20,7 @@
 @property (nonatomic, readonly) NSString *themeName;
 
 - (void).cxx_destruct;
+- (BOOL)_canSelectRowAtIndexPath:(id)arg1;
 - (void)_determineSelectedFontIndex;
 - (void)_determineSelectedTheme;
 - (void)_determineSelectedValues;

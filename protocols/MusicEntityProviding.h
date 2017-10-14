@@ -19,7 +19,10 @@
 
 @optional
 
+- (NSSet *)additionalPropertiesToFetchSynchronouslyForEntityValueContext:(MusicEntityValueContext *)arg1;
 - (BOOL)hasEntitiesNotInLibrary;
-- (void)setEditing:(BOOL)arg1 returningInsertedSectionIndexSet:(id*)arg2 deletedSectionIndexSet:(id*)arg3;
+- (BOOL)hasExplicitContent;
+- (BOOL)hasMultipleEntitiesIncludingStoreContent;
+- (BOOL)setEditing:(BOOL)arg1;
 
 @end

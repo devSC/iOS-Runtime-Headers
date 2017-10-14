@@ -2,41 +2,83 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@interface TIPreferencesController : NSObject {
-    NSTimer *_synchronizePreferencesTimer;
-    BOOL dontSynchronizePreferences;
-    BOOL isInternalInstall;
+@interface TIPreferencesController : NSObject <TIPreferencesControllerActions> {
+    NSMutableDictionary * _configuredDomains;
+    NSMutableDictionary * _configuredPreferences;
+    BOOL  _ignoreNextSyncNotification;
+    BOOL  _inhibitGlobalNotification;
+    double  _lastSynchronizePreferencesTime;
+    NSTimer * _synchronizePreferencesTimer;
+    BOOL  isInternalInstall;
 }
 
-@property (nonatomic) BOOL dontSynchronizePreferences;
+@property (nonatomic) BOOL automaticMinimizationEnabled;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL ignoreNextSyncNotification;
+@property (nonatomic) BOOL inhibitGlobalNotification;
+@property (nonatomic, copy) NSArray *inputModeSelectionSequence;
 @property (nonatomic) BOOL isInternalInstall;
+@property (nonatomic) struct CGPoint { float x1; float x2; } keyboardPosition;
+@property (nonatomic) BOOL keyboardShownByTouch;
+@property (nonatomic) BOOL predictionEnabled;
+@property (readonly) Class superclass;
 
 + (id)sharedPreferencesController;
 
+- (int)MCValueForManagedPreferenceKey:(id)arg1;
+- (void)_configureDomain:(id)arg1 notification:(id)arg2;
+- (void)_configureDomains;
+- (void)_configureKey:(id)arg1 domain:(id)arg2 defaultValue:(id)arg3;
+- (void)_configurePreferences;
+- (BOOL)_isOneTimeAction:(id)arg1;
+- (void)_pushValue:(id)arg1 toPreference:(id)arg2 domain:(id)arg3;
+- (BOOL)allEnabledInputModesAreValid;
+- (BOOL)automaticMinimizationEnabled;
 - (BOOL)boolForKey:(int)arg1;
+- (BOOL)boolForPreferenceKey:(id)arg1;
 - (void)clearSynchronizePreferencesTimer;
 - (void)dealloc;
-- (id)defaultForKey:(int)arg1;
-- (struct { id x1; BOOL x2; BOOL x3; unsigned long long x4; int x5; }*)domainForType:(int)arg1;
-- (struct { id x1; BOOL x2; BOOL x3; unsigned long long x4; int x5; }*)domains;
-- (BOOL)dontSynchronizePreferences;
+- (void)didSeeHardwareKeyboard:(id)arg1;
+- (void)didTriggerOneTimeAction:(id)arg1;
+- (void)didUnseeHardwareKeyboard:(id)arg1;
+- (BOOL)ignoreNextSyncNotification;
+- (BOOL)inhibitGlobalNotification;
 - (id)init;
+- (id)inputModeSelectionSequence;
 - (BOOL)isInternalInstall;
 - (BOOL)isKeyLockedDown:(int)arg1;
+- (BOOL)isPreferenceKeyLockedDown:(id)arg1;
+- (struct CGPoint { float x1; float x2; })keyboardPosition;
+- (BOOL)keyboardShownByTouch;
 - (void)managedKeyboardSettingDidChange:(id)arg1;
-- (struct { id x1; int x2; id x3; int x4; }*)preferences;
+- (BOOL)oneTimeActionCompleted:(id)arg1;
+- (void)performWithWriteability:(BOOL)arg1 operations:(id /* block */)arg2;
+- (BOOL)predictionEnabled;
 - (void)preferencesChangedCallback:(id)arg1;
-- (void)releaseDontSynchronizePreferences;
-- (void)setAutocorrectionEnabled:(BOOL)arg1;
-- (void)setCheckSpellingEnabled:(BOOL)arg1;
-- (void)setDontSynchronizePreferences:(BOOL)arg1;
+- (void)setAutomaticMinimizationEnabled:(BOOL)arg1;
+- (void)setIgnoreNextSyncNotification:(BOOL)arg1;
+- (void)setInhibitGlobalNotification:(BOOL)arg1;
+- (void)setInputModeSelectionSequence:(id)arg1;
 - (void)setIsInternalInstall:(BOOL)arg1;
+- (void)setKeyboardPosition:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setKeyboardShownByTouch:(BOOL)arg1;
 - (void)setPredictionEnabled:(BOOL)arg1;
 - (void)setValue:(id)arg1 forKey:(int)arg2;
-- (void)setValue:(id)arg1 forManagedKey:(int)arg2;
+- (void)setValue:(id)arg1 forManagedPreferenceKey:(id)arg2;
+- (void)setValue:(id)arg1 forPreferenceKey:(id)arg2;
+- (void)synchronizeDomainIfNeedsGet:(id)arg1;
 - (void)synchronizePreferences;
 - (void)touchSynchronizePreferencesTimer;
+- (void)updateInputModes:(id)arg1;
+- (void)updateKeyboardHandBias:(id)arg1;
+- (void)updateKeyboardIsFloating:(BOOL)arg1;
+- (void)updateKeyboardIsSplit:(BOOL)arg1 locked:(BOOL)arg2;
+- (void)updateLastUsedInputMode:(id)arg1;
+- (void)updateLastUsedKeyboards:(id)arg1;
+- (void)updateLastUsedLayout:(id)arg1;
 - (id)valueForKey:(int)arg1;
-- (id)valueForManagedKey:(int)arg1;
+- (id)valueForPreferenceKey:(id)arg1;
 
 @end

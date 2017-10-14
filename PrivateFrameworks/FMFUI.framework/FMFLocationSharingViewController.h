@@ -3,19 +3,19 @@
  */
 
 @interface FMFLocationSharingViewController : PSListController <FMFSessionDelegateInternal> {
-    void *_addressBook;
-    NSArray *_allFollowersHandles;
-    NSMutableDictionary *_dsidToFamilyPhoto;
-    NSArray *_familyMembers;
-    NSArray *_familySpecifiers;
-    NSArray *_followersHandles;
-    NSArray *_followersSpecifiers;
-    UIAlertController *_genericErrorAlert;
-    NSArray *_hashedFamilyDsids;
-    BOOL _isMyLocationEnabled;
-    FMFHandle *_lastSelectedHandle;
-    BOOL _useFamilyCirclePhotos;
-    BOOL _useFamilyCirclePhotosLoaded;
+    void * _addressBook;
+    NSArray * _allFollowersHandles;
+    NSMutableDictionary * _dsidToFamilyPhoto;
+    NSArray * _familyMembers;
+    NSArray * _familySpecifiers;
+    NSArray * _followersHandles;
+    NSArray * _followersSpecifiers;
+    UIAlertController * _genericErrorAlert;
+    NSArray * _hashedFamilyDsids;
+    BOOL  _isMyLocationEnabled;
+    FMFHandle * _lastSelectedHandle;
+    BOOL  _useFamilyCirclePhotos;
+    BOOL  _useFamilyCirclePhotosLoaded;
 }
 
 @property (nonatomic) void*addressBook;
@@ -51,8 +51,8 @@
 - (id)_specifierForFamilyMember:(id)arg1;
 - (id)_specifierForHandle:(id)arg1;
 - (void)abChanged:(id)arg1;
-- (void)addRemoveActionToPersonViewController:(id)arg1;
-- (void)addShareActionToPersonViewController:(id)arg1;
+- (void)addRemoveActionToContactViewController:(id)arg1;
+- (void)addShareActionToContactViewController:(id)arg1;
 - (void*)addressBook;
 - (id)allFollowersHandles;
 - (id)allHandlesMatchingABCardForSelectedHandle:(id)arg1;
@@ -72,7 +72,6 @@
 - (id)formatStringForHours:(int)arg1 minutes:(int)arg2;
 - (id)genericErrorAlert;
 - (id)hashedFamilyDsids;
-- (int)identifierOfProperty:(int)arg1 withHandleId:(id)arg2 forRecord:(void*)arg3;
 - (BOOL)isMyLocationEnabled;
 - (id)lastSelectedHandle;
 - (id)monogramForHandle:(id)arg1;
@@ -101,7 +100,6 @@
 - (id)sortedFollowersWithCombinedRecords:(id)arg1;
 - (id)specifiers;
 - (id)stringByKeepingCharacterSet:(id)arg1 inString:(id)arg2;
-- (void*)unknownRecordForData:(id)arg1 property:(int)arg2;
 - (BOOL)useFamilyCirclePhotos;
 - (BOOL)useFamilyCirclePhotosLoaded;
 - (void)viewDidAppear:(BOOL)arg1;

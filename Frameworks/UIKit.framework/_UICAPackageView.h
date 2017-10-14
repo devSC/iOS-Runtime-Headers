@@ -3,8 +3,8 @@
  */
 
 @interface _UICAPackageView : UIView {
-    CAPackage *_package;
-    NSArray *_rootViews;
+    CAPackage * _package;
+    NSArray * _rootViews;
 }
 
 + (id)_newViewHierarchyFrom:(id)arg1 publishedObjectViewClassMap:(id)arg2 into:(id)arg3;

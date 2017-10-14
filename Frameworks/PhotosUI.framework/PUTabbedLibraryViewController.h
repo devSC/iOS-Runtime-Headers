@@ -3,18 +3,22 @@
  */
 
 @interface PUTabbedLibraryViewController : UITabBarController <PLAssetContainerListChangeObserver, PLAssetContainerObserver, PLDismissableViewController, PLInvitationRecordsObserver, PLRootLibraryNavigationController, UINavigationControllerDelegate> {
-    NSMutableIndexSet *_everDisplayedContentModes;
-    NSMutableDictionary *_filteredAlbumListsByContentMode;
-    int _pendingSelectedContentMode;
-    PUSessionInfo *_sessionInfo;
-    BOOL _sharedTabBadgeIsDirty;
-    PUTabbedLibraryViewControllerSpec *_spec;
-    PUMomentsZoomLevelManager *_zoomLevelManager;
+    NSMutableIndexSet * _everDisplayedContentModes;
+    NSArray * _excludedContentModes;
+    NSMutableDictionary * _filteredAlbumListsByContentMode;
+    PUImportViewController * _importViewController;
+    int  _pendingSelectedContentMode;
+    PUSessionInfo * _sessionInfo;
+    BOOL  _sharedTabBadgeIsDirty;
+    PUTabbedLibraryViewControllerSpec * _spec;
+    PUMomentsZoomLevelManager * _zoomLevelManager;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSArray *excludedContentModes;
 @property (readonly) unsigned int hash;
+@property (nonatomic, retain) PUImportViewController *importViewController;
 @property (nonatomic) int selectedContentMode;
 @property (nonatomic, readonly) UINavigationController *selectedNavigationController;
 @property (nonatomic, retain) PUSessionInfo *sessionInfo;
@@ -36,6 +40,7 @@
 - (void)_libraryDidChange:(id)arg1;
 - (void)_navigateToAlbum:(struct NSObject { Class x1; }*)arg1 andPerformAction:(int)arg2 initiallyHidden:(BOOL)arg3 animated:(BOOL)arg4 completion:(id /* block */)arg5;
 - (void)_navigateToAsset:(id)arg1 andPerformAction:(int)arg2 inAlbum:(struct NSObject { Class x1; }*)arg3 animated:(BOOL)arg4;
+- (void)_navigateToContentMode:(int)arg1 defaultLocationIfNeverDisplayed:(BOOL)arg2 animated:(BOOL)arg3;
 - (BOOL)_navigateToDefaultLocationInNavigationController:(id)arg1 animated:(BOOL)arg2;
 - (BOOL)_navigateToRootOfCurrentTabAnimated:(BOOL)arg1;
 - (id)_navigationControllerForContentMode:(int)arg1;
@@ -44,6 +49,8 @@
 - (BOOL)_navigationControllerShouldUseBuiltinInteractionController:(id)arg1;
 - (id)_newNavigationControllerWithRootController:(id)arg1;
 - (id)_nextCloudFeedNavigatingObject;
+- (id)_snapBackRootViewControllerInNavigationController:(id)arg1;
+- (id)_tabRootViewControllerInNavigationController:(id)arg1;
 - (void)_updateSharedStreamsTabBadge;
 - (BOOL)albumIsAvailableForNavigation:(struct NSObject { Class x1; }*)arg1;
 - (void)assetContainerDidChange:(id)arg1;
@@ -58,6 +65,8 @@
 - (BOOL)commentIsAvailableForNavigation:(id)arg1 inAsset:(id)arg2;
 - (BOOL)contentModeIsAvailableForNavigation:(int)arg1;
 - (void)dealloc;
+- (id)excludedContentModes;
+- (id)importViewController;
 - (id)initWithSpec:(id)arg1;
 - (void)invitationRecordsDidChange:(id)arg1;
 - (void)navigateToAlbum:(struct NSObject { Class x1; }*)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
@@ -70,6 +79,7 @@
 - (void)navigateToContentMode:(int)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
 - (void)navigateToInitialLocationInNavigationController:(id)arg1;
 - (void)navigateToLastYearPhotosSearchAnimated:(BOOL)arg1;
+- (id)navigateToMemoryWithLocalIdentifier:(id)arg1;
 - (void)navigateToOneUpForAsset:(id)arg1 inAssetContainer:(id)arg2 animated:(BOOL)arg3;
 - (void)navigateToPhotosContentBottomAnimated:(BOOL)arg1;
 - (void)navigateToPhotosSearchAnimated:(BOOL)arg1;
@@ -83,18 +93,25 @@
 - (id)navigationController:(id)arg1 interactionControllerForAnimationController:(id)arg2;
 - (void)navigationController:(id)arg1 willShowViewController:(id)arg2 animated:(BOOL)arg3;
 - (id)newRootViewControllerForContentMode:(int)arg1;
+- (id)ppt_navigationControllerForContentMode:(int)arg1;
 - (void)prepareForDefaultImageSnapshot;
 - (BOOL)prepareForDismissingForced:(BOOL)arg1;
 - (BOOL)pu_shouldSelectViewController:(id)arg1;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })px_frameForTabItem:(unsigned int)arg1 inCoordinateSpace:(id)arg2;
+- (id)px_navigateToMemoryWithLocalIdentifier:(id)arg1;
 - (int)selectedContentMode;
 - (id)selectedNavigationController;
 - (id)sessionInfo;
+- (void)setExcludedContentModes:(id)arg1;
+- (void)setImportViewController:(id)arg1;
+- (void)setImportViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)setSelectedContentMode:(int)arg1;
 - (void)setSelectedViewController:(id)arg1;
 - (void)setSessionInfo:(id)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
 - (BOOL)shouldShowTabForContentMode:(int)arg1;
 - (unsigned int)supportedInterfaceOrientations;
+- (unsigned int)tabIdentifierForContentMode:(int)arg1;
 - (void)updateDisplayedTabsAnimated:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
 

@@ -3,20 +3,21 @@
  */
 
 @interface PUPhotoSelectionManager : NSObject <NSCopying> {
-    <PHAssetCollectionDataSource> *_dataSource;
-    <PUPhotoSelectionManagerDelegate> *_delegate;
-    int _options;
-    int _selectionChangeCount;
-    NSMapTable *_selectionEntriesByAssetCollection;
-    NSMutableSet *_uniqueAssetSelection;
+    NSHashTable * _changeObservers;
+    <PHAssetCollectionDataSource> * _dataSource;
+    int  _options;
+    int  _selectionChangeCount;
+    NSMapTable * _selectionEntriesByAssetCollection;
+    NSMutableSet * _uniqueAssetSelection;
 }
 
 @property (nonatomic) <PHAssetCollectionDataSource> *dataSource;
-@property (nonatomic) <PUPhotoSelectionManagerDelegate> *delegate;
+@property (nonatomic, readonly) BOOL isAnyAssetSelected;
 @property (nonatomic, readonly) int options;
 @property (nonatomic, readonly) NSOrderedSet *orderedSelectedAssets;
 @property (nonatomic, readonly) NSSet *selectedAssets;
 @property (nonatomic, readonly) NSDictionary *selectedAssetsByAssetCollection;
+@property (nonatomic, readonly) PXSelectionSnapshot *selectionSnapshot;
 
 - (void).cxx_destruct;
 - (void)_beginSelectionChange;
@@ -27,7 +28,6 @@
 - (BOOL)areAllAssetsSelectedInAssetCollections:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dataSource;
-- (id)delegate;
 - (void)deselectAllAssets;
 - (void)deselectAllAssetsInAssetCollections:(id)arg1;
 - (void)deselectAssetAtIndex:(unsigned int)arg1 inAssetCollection:(id)arg2;
@@ -37,12 +37,14 @@
 - (id)init;
 - (id)initWithOptions:(int)arg1;
 - (void)invalidateAllAssetIndexes;
+- (BOOL)isAnyAssetSelected;
 - (BOOL)isAnyAssetSelectedInAssetCollection:(id)arg1;
 - (BOOL)isAnyAssetSelectedInAssetCollections:(id)arg1;
 - (BOOL)isAssetAtIndexSelected:(unsigned int)arg1 inAssetCollection:(id)arg2;
 - (id)localizedSelectionString;
 - (int)options;
 - (id)orderedSelectedAssets;
+- (void)registerChangeObserver:(id)arg1;
 - (void)selectAllAssetsInAssetCollections:(id)arg1;
 - (void)selectAssetAtIndex:(unsigned int)arg1 inAssetCollection:(id)arg2;
 - (void)selectAssetsAtIndexes:(id)arg1 inAssetCollection:(id)arg2;
@@ -50,7 +52,8 @@
 - (id)selectedAssets;
 - (id)selectedAssetsByAssetCollection;
 - (id)selectedAssetsWithAssetCollectionOrdering:(id)arg1;
+- (id)selectionSnapshot;
 - (void)setDataSource:(id)arg1;
-- (void)setDelegate:(id)arg1;
+- (void)unregisterChangeObserver:(id)arg1;
 
 @end

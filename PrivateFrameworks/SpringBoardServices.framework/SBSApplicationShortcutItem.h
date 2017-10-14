@@ -3,16 +3,17 @@
  */
 
 @interface SBSApplicationShortcutItem : NSObject <BSXPCCoding, NSCopying> {
-    unsigned int _activationMode;
-    NSString *_bundleIdentifierToLaunch;
-    SBSApplicationShortcutIcon *_icon;
-    NSString *_localizedSubtitle;
-    NSString *_localizedTitle;
-    NSString *_type;
-    NSData *_userInfoData;
+    unsigned int  _activationMode;
+    NSString * _bundleIdentifierToLaunch;
+    SBSApplicationShortcutIcon * _icon;
+    NSString * _localizedSubtitle;
+    NSString * _localizedTitle;
+    NSString * _type;
+    NSData * _userInfoData;
 }
 
 @property (nonatomic) unsigned int activationMode;
+@property (nonatomic, retain) UIView *badgeView;
 @property (nonatomic, copy) NSString *bundleIdentifierToLaunch;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -27,14 +28,13 @@
 
 // Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
 
-+ (unsigned int)_activationModeForString:(id)arg1;
-+ (int)_iconTypeForString:(id)arg1;
-+ (id)staticShortcutItemWithDictionary:(id)arg1 localizationHandler:(id /* block */)arg2;
++ (id)_staticApplicationShortcutItemsFromInfoPlistEntry:(id)arg1;
 
+- (void).cxx_destruct;
+- (void)_localizeWithHandler:(id /* block */)arg1;
 - (unsigned int)activationMode;
 - (id)bundleIdentifierToLaunch;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (unsigned int)hash;
@@ -60,5 +60,10 @@
 + (id)shortcutItemWithGKQuickAction:(id)arg1;
 
 - (BOOL)_gkIsGameCenterQuickAction;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
+
+- (id)badgeView;
+- (void)setBadgeView:(id)arg1;
 
 @end

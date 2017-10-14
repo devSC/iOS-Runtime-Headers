@@ -35,6 +35,17 @@
 
 - (void)hk_appendBytesWithUUID:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
+- (void)fiui_appendHeartRate:(double)arg1 date:(id)arg2;
+- (double)fiui_weightedAverageHeartRateWithStartDate:(id)arg1 endDate:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/KeychainCircle.framework/KeychainCircle
+
++ (id)dataWithRandomBytes:(int)arg1;
+
+- (void)replaceTrailingWith7LSB:(unsigned long long)arg1;
+
 // Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
 
 - (void)mf_appendCString:(const char *)arg1;
@@ -42,6 +53,17 @@
 - (void)mf_convertNetworkLineEndingsToUnix;
 - (void)mf_convertNetworkLineEndingsToUnixInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)mf_makeImmutable;
+
+// Image: /System/Library/PrivateFrameworks/MobileStorage.framework/MobileStorage
+
++ (id)dataWithHexString:(id)arg1;
+
+- (id)initDataWithHexString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NetworkServiceProxy.framework/NetworkServiceProxy
+
+- (void)appendType:(unsigned char)arg1 length:(unsigned short)arg2 value:(const void*)arg3;
+- (void)enumerateTLVsUsingBlock:(id /* block */)arg1;
 
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 

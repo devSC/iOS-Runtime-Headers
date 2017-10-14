@@ -3,14 +3,14 @@
  */
 
 @interface PLFileSystemAssetImporter : NSObject {
-    NSMutableDictionary *_existingOIDsByUUID;
-    NSMutableSet *_existingUUIDs;
-    NSMutableDictionary *_existingUUIDsByPath;
-    BOOL _hasProcessedAnyAssets;
-    PLPhotoLibrary *_photoLibrary;
-    NSString *_photoLibraryStoreUUID;
-    NSMutableIndexSet *_thumbIndexes;
-    unsigned int _thumbnailBatchFetchSize;
+    NSMutableDictionary * _existingOIDsByUUID;
+    NSMutableSet * _existingUUIDs;
+    NSMutableDictionary * _existingUUIDsByPath;
+    BOOL  _hasProcessedAnyAssets;
+    PLPhotoLibrary * _photoLibrary;
+    NSString * _photoLibraryStoreUUID;
+    NSMutableIndexSet * _thumbIndexes;
+    unsigned int  _thumbnailBatchFetchSize;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *existingOIDsByUUID;
@@ -18,12 +18,15 @@
 @property (nonatomic, retain) NSMutableDictionary *existingUUIDsByPath;
 @property (nonatomic) unsigned int thumbnailBatchFetchSize;
 
++ (id)_mediaDirectoryPath;
+
 - (id)_addAssetWithURL:(id)arg1 existingOID:(id)arg2;
 - (BOOL)_setupPhotoAsset:(id)arg1 withURL:(id)arg2;
+- (BOOL)_setupPhotoAsset:(id)arg1 withURL:(id)arg2 unknownType:(BOOL)arg3;
 - (BOOL)_setupPhotoAssetAsPhotoIrisIfNeeded:(id)arg1;
+- (BOOL)_setupUnknownAsset:(id)arg1 withURL:(id)arg2;
 - (BOOL)_setupVideoAsset:(id)arg1 withURL:(id)arg2;
-- (id)addAssetWithURLs:(id)arg1;
-- (id)addAssetWithURLs:(id)arg1 forceInsert:(BOOL)arg2 forceUpdate:(BOOL)arg3;
+- (id)addAssetWithURLs:(id)arg1 forceInsert:(BOOL)arg2 forceUpdate:(BOOL)arg3 fixAddedDate:(BOOL)arg4;
 - (void)addAvailableThumbnailIndex:(unsigned int)arg1;
 - (id)assetURLisInDatabase:(id)arg1;
 - (void)dealloc;

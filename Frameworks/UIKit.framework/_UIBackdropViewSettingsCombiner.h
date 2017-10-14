@@ -3,11 +3,11 @@
  */
 
 @interface _UIBackdropViewSettingsCombiner : _UIBackdropViewSettings {
-    _UIBackdropViewSettings *_inputSettingsA;
-    _UIBackdropViewSettings *_inputSettingsB;
-    _UIBackdropViewSettings *_outputSettingsA;
-    _UIBackdropViewSettings *_outputSettingsB;
-    float _weighting;
+    _UIBackdropViewSettings * _inputSettingsA;
+    _UIBackdropViewSettings * _inputSettingsB;
+    _UIBackdropViewSettings * _outputSettingsA;
+    _UIBackdropViewSettings * _outputSettingsB;
+    float  _weighting;
 }
 
 @property (nonatomic, retain) _UIBackdropViewSettings *inputSettingsA;
@@ -18,14 +18,19 @@
 
 - (void).cxx_destruct;
 - (void)computeOutputSettingsUsingModel:(id)arg1;
+- (void)copyAdditionalSettingsFromSettings:(id)arg1;
 - (id)inputSettingsA;
 - (id)inputSettingsB;
+- (BOOL)isBackdropVisible;
 - (id)outputSettingsA;
 - (id)outputSettingsB;
+- (BOOL)requiresBackdropLayer;
+- (void)setDefaultValues;
 - (void)setInputSettingsA:(id)arg1;
 - (void)setInputSettingsB:(id)arg1;
 - (void)setOutputSettingsA:(id)arg1;
 - (void)setOutputSettingsB:(id)arg1;
+- (void)setRequiresColorStatistics:(BOOL)arg1;
 - (void)setWeighting:(float)arg1;
 - (float)weighting;
 

@@ -3,21 +3,20 @@
  */
 
 @interface MPMediaQuery : NSObject <MPPProtobufferCoding, NSCopying, NSSecureCoding> {
-    MPMediaQueryCriteria *_criteria;
-    int _isFilteringDisabled;
-    MPMediaLibrary *_mediaLibrary;
-    NSArray *_staticEntities;
-    int _staticEntityType;
+    MPMediaQueryCriteria * _criteria;
+    int  _isFilteringDisabled;
+    MPMediaLibrary * _mediaLibrary;
+    NSArray * _staticEntities;
+    int  _staticEntityType;
 }
 
-@property (getter=MCD_playlist, nonatomic, readonly) MPMediaPlaylist *MCD_playlist;
-@property (getter=MCD_playlistTitle, nonatomic, readonly) NSString *MCD_playlistTitle;
 @property (nonatomic, readonly) unsigned int _countOfCollections;
 @property (nonatomic, readonly) unsigned int _countOfItems;
 @property (nonatomic, readonly) BOOL _hasCollections;
 @property (nonatomic, readonly) BOOL _hasItems;
 @property (nonatomic, readonly) BOOL _hasStaticEntities;
 @property (nonatomic, readonly) MPMediaItemCollection *_representativeCollection;
+@property (nonatomic, readonly) int _representativeCollectionGroupingType;
 @property (nonatomic, readonly) MPMediaItemCollection *collectionByJoiningCollections;
 @property (nonatomic, readonly) NSArray *collectionPersistentIdentifiers;
 @property (nonatomic, copy) NSSet *collectionPropertiesToFetch;
@@ -32,6 +31,7 @@
 @property (nonatomic, retain) NSSet *filterPredicates;
 @property (nonatomic) int groupingType;
 @property (readonly) unsigned int hash;
+@property (nonatomic) BOOL ignoreRestrictionsPredicates;
 @property (nonatomic) BOOL ignoreSystemFilterPredicates;
 @property (nonatomic) BOOL includeEntitiesWithBlankNames;
 @property (nonatomic, readonly) NSArray *itemPersistentIdentifiers;
@@ -103,6 +103,7 @@
 - (void)_enumerateUnorderedCollectionsUsingBlock:(id /* block */)arg1;
 - (void)_enumerateUnorderedItemPersistentIDsUsingBlock:(id /* block */)arg1;
 - (void)_enumerateUnorderedItemsUsingBlock:(id /* block */)arg1;
+- (void)_getRepresentativeCollectionGrouping:(int*)arg1 propertyPredicate:(id*)arg2;
 - (BOOL)_hasCollections;
 - (BOOL)_hasItems;
 - (BOOL)_hasStaticEntities;
@@ -110,6 +111,7 @@
 - (id)_orderingDirectionMappings;
 - (id)_orderingProperties;
 - (id)_representativeCollection;
+- (int)_representativeCollectionGroupingType;
 - (void)_setOrderingDirectionMappings:(id)arg1;
 - (void)_setOrderingProperties:(id)arg1;
 - (BOOL)_updatePredicateForProperty:(id)arg1 withPropertyPredicate:(id)arg2;
@@ -134,6 +136,7 @@
 - (unsigned int)groupingThreshold;
 - (int)groupingType;
 - (unsigned int)hash;
+- (BOOL)ignoreRestrictionsPredicates;
 - (BOOL)ignoreSystemFilterPredicates;
 - (BOOL)includeEntitiesWithBlankNames;
 - (id)init;
@@ -160,6 +163,7 @@
 - (void)setFilterPredicates:(id)arg1;
 - (void)setFilterPropertyPredicate:(id)arg1;
 - (void)setGroupingType:(int)arg1;
+- (void)setIgnoreRestrictionsPredicates:(BOOL)arg1;
 - (void)setIgnoreSystemFilterPredicates:(BOOL)arg1;
 - (void)setIncludeEntitiesWithBlankNames:(BOOL)arg1;
 - (void)setItemPropertiesToFetch:(id)arg1;
@@ -179,14 +183,5 @@
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
 
 - (id)_MPUSDS_searchPredicate;
-
-// Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
-
-+ (id)MCD_queryWithFilterPredicates:(id)arg1;
-
-- (BOOL)MCD_isEqualToNowPlayingQuery:(id)arg1;
-- (id)MCD_playlist;
-- (id)MCD_playlistTitle;
-- (id)_music_nowPlayingComparableQuery;
 
 @end

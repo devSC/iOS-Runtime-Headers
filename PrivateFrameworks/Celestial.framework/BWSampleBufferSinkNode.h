@@ -3,13 +3,16 @@
  */
 
 @interface BWSampleBufferSinkNode : BWSinkNode {
-    id /* block */ _sampleBufferAvailableHandler;
+    BOOL  _aggdShutterLagIsStillDuringVideo;
+    id /* block */  _sampleBufferAvailableHandler;
 }
 
 @property (nonatomic, copy) id /* block */ sampleBufferAvailableHandler;
 
 + (void)initialize;
 
+- (void)_reportAggdDataWithRequestedStillImageSettings:(id)arg1 resolvedStillImageCaptureSettings:(id)arg2 metadataDictionary:(id)arg3 stillImagePTS:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg4;
+- (BOOL)aggdShutterLagIsStillDuringVideo;
 - (void)dealloc;
 - (void)handleNodeError:(id)arg1 forInput:(id)arg2;
 - (id)init;
@@ -17,6 +20,7 @@
 - (id)nodeSubType;
 - (void)renderSampleBuffer:(struct opaqueCMSampleBuffer { }*)arg1 forInput:(id)arg2;
 - (id /* block */)sampleBufferAvailableHandler;
+- (void)setAggdShutterLagIsStillDuringVideo:(BOOL)arg1;
 - (void)setSampleBufferAvailableHandler:(id /* block */)arg1;
 
 @end

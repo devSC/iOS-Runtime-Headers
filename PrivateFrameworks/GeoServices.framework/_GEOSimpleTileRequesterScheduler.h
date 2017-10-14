@@ -3,14 +3,20 @@
  */
 
 @interface _GEOSimpleTileRequesterScheduler : NSObject {
-    NSMutableArray *_inProgress;
-    NSMutableArray *_requesters;
+    NSMutableArray * _inProgress;
+    NSObject<OS_dispatch_queue> * _isolation;
+    unsigned int  _maxConcurrentRequests;
+    NSPointerArray * _requesters;
 }
 
++ (unsigned int)maxConcurrentRequests;
 + (id)sharedScheduler;
 
+- (id)_highestPriorityRequester;
+- (void)_networkDefaultsDidChange:(id)arg1;
 - (void)addTileRequester:(id)arg1;
 - (void)dealloc;
+- (id)init;
 - (void)operationDidStop:(id)arg1;
 - (void)removeTileRequester:(id)arg1;
 - (void)sendNextRequestIfNecessary;

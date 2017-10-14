@@ -3,20 +3,29 @@
  */
 
 @interface RemoteUITableViewCell : UITableViewCell {
-    UIColor *_accessoryColor;
-    UIButton *_detailLinkButton;
-    id /* block */ _detailLinkHandler;
-    BOOL _forceFullSizeDetailLabel;
-    UIImageView *_invalidRowView;
-    BOOL _leftAlignDetailLabel;
-    int _remoteUIAccessoryType;
-    UIView *_remoteUIAccessoryView;
+    UIColor * _accessoryColor;
+    BOOL  _activityIndicatorVisible;
+    UIButton * _detailLinkButton;
+    id /* block */  _detailLinkHandler;
+    BOOL  _forceFullSizeDetailLabel;
+    struct CGSize { 
+        float width; 
+        float height; 
+    }  _imageSize;
+    UIImageView * _invalidRowView;
+    BOOL  _leftAlignDetailLabel;
+    int  _remoteUIAccessoryType;
+    UIView * _remoteUIAccessoryView;
+    RUIWebContainerView * _webContainerView;
 }
 
+@property (nonatomic) BOOL activityIndicatorVisible;
 @property (nonatomic) BOOL forceFullSizeDetailLabel;
+@property (nonatomic) struct CGSize { float x1; float x2; } imageSize;
 @property (nonatomic) BOOL leftAlignDetailLabel;
 @property (nonatomic) int remoteUIAccessoryType;
 @property (nonatomic, retain) UIView *remoteUIAccessoryView;
+@property (nonatomic, retain) RUIWebContainerView *webContainerView;
 
 - (void).cxx_destruct;
 - (void)_accessoriesChanged;
@@ -24,17 +33,26 @@
 - (void)_detailLinkPressed;
 - (id)_disclosureChevronImage:(BOOL)arg1;
 - (void)_setRemoteUIAccessoryType:(int)arg1 withColor:(id)arg2;
+- (void)_showActivityIndicatorAccessory;
+- (BOOL)activityIndicatorVisible;
+- (id)detailLinkButton;
 - (BOOL)forceFullSizeDetailLabel;
+- (struct CGSize { float x1; float x2; })imageSize;
 - (void)layoutSubviews;
 - (BOOL)leftAlignDetailLabel;
 - (void)prepareForReuse;
 - (int)remoteUIAccessoryType;
 - (id)remoteUIAccessoryView;
+- (void)setActivityIndicatorVisible:(BOOL)arg1;
 - (void)setDetailLinkText:(id)arg1 handler:(id /* block */)arg2;
 - (void)setForceFullSizeDetailLabel:(BOOL)arg1;
+- (void)setHTMLData:(id)arg1 sourceURL:(id)arg2 delegate:(id)arg3;
+- (void)setImageSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setLeftAlignDetailLabel:(BOOL)arg1;
 - (void)setRemoteUIAccessoryType:(int)arg1;
 - (void)setRemoteUIAccessoryView:(id)arg1;
 - (void)setRowInvalid:(BOOL)arg1;
+- (void)setWebContainerView:(id)arg1;
+- (id)webContainerView;
 
 @end

@@ -3,23 +3,55 @@
  */
 
 @interface MusicStoreBag : NSObject {
-    NSDictionary *_bagDictionary;
+    NSDictionary * _bagDictionary;
 }
 
 @property (nonatomic, readonly) NSDictionary *bagDictionary;
+@property (nonatomic, readonly) NSURL *browseURL;
+@property (nonatomic, readonly) NSURL *forYouURL;
+@property (nonatomic, readonly) NSArray *iOSVersionsForFormerFreeTrialUpsell;
+@property (nonatomic, readonly) NSArray *iOSVersionsForNoThanksUpsell;
+@property (nonatomic, readonly) NSArray *iOSVersionsForNotNowUpsell;
+@property (nonatomic, readonly) BOOL isIgnoringAddToPlaylistUserSetting;
+@property (nonatomic, readonly) NSURL *legacyForYouURL;
 @property (nonatomic, readonly) unsigned int librarySharedPlaylistTrackCountLimit;
+@property (nonatomic, readonly) int minimumNumberOfDaysBetweenPresentingWelcomeScreen;
+@property (nonatomic, readonly) float popularityStarThreshold;
 @property (nonatomic, readonly) NSURL *prominentRadioStationInfoURL;
+@property (nonatomic, readonly) NSURL *radioGroupingURL;
+@property (nonatomic, readonly) NSString *storeFrontSuffix;
 @property (nonatomic, readonly) BOOL supportsConnect;
 @property (nonatomic, readonly) BOOL supportsSubscription;
 @property (nonatomic, readonly) NSDictionary *tabConfigurations;
+@property (nonatomic, readonly) int versionForFormerFreeTrialUpsell;
+@property (nonatomic, readonly) int versionForNoThanksUpsell;
+@property (nonatomic, readonly) int versionForNotNowUpsell;
 
 - (void).cxx_destruct;
+- (id)_iOSVersionsForUpsellTypeKey:(id)arg1;
+- (id)_subscriptionDictionary;
+- (int)_upsellVersionForKey:(id)arg1;
 - (id)bagDictionary;
+- (id)browseURL;
+- (id)forYouURL;
+- (id)iOSVersionsForFormerFreeTrialUpsell;
+- (id)iOSVersionsForNoThanksUpsell;
+- (id)iOSVersionsForNotNowUpsell;
 - (id)initWithBagDictionary:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)isIgnoringAddToPlaylistUserSetting;
+- (id)legacyForYouURL;
 - (unsigned int)librarySharedPlaylistTrackCountLimit;
+- (int)minimumNumberOfDaysBetweenPresentingWelcomeScreen;
+- (float)popularityStarThreshold;
 - (id)prominentRadioStationInfoURL;
+- (id)radioGroupingURL;
+- (id)storeFrontSuffix;
 - (BOOL)supportsConnect;
 - (BOOL)supportsSubscription;
 - (id)tabConfigurations;
+- (int)versionForFormerFreeTrialUpsell;
+- (int)versionForNoThanksUpsell;
+- (int)versionForNotNowUpsell;
 
 @end

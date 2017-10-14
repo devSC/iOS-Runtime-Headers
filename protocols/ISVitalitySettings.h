@@ -8,8 +8,10 @@
 - (int)behavior;
 - (double)endTimeOffset;
 - (double)maximumDeceleration;
+- (double)maximumDelayBeforePlayback;
 - (int)maximumNumberOfFrames;
 - (double)maximumRate;
+- (double)minimumDurationForColorMismatch;
 - (double)minimumVisibilityFactor;
 - (double)playbackRate;
 - (double)postDuration;

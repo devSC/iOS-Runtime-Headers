@@ -3,11 +3,11 @@
  */
 
 @interface SKUISignInSettingsGroupController : SKUISettingsGroupController {
-    NSString *_accountName;
-    BOOL _authenticating;
-    NSMapTable *_keyMapping;
-    NSString *_password;
-    BOOL _valid;
+    NSString * _accountName;
+    BOOL  _authenticating;
+    NSMapTable * _keyMapping;
+    NSString * _password;
+    BOOL  _valid;
 }
 
 - (void).cxx_destruct;
@@ -16,7 +16,7 @@
 - (id)_keyForSettingDescription:(id)arg1;
 - (void)_resignFirstResponder;
 - (id)_settingDescriptionForKey:(id)arg1;
-- (void)_signInFailed:(id)arg1 reason:(id)arg2;
+- (void)_signInFailed:(id)arg1 error:(id)arg2;
 - (void)_signInSuccess:(id)arg1;
 - (id)_submitSettingDescription;
 - (void)_updateFieldsAuthenticating:(BOOL)arg1;

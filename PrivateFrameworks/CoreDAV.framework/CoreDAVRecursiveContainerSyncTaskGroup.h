@@ -2,28 +2,28 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@interface CoreDAVRecursiveContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVMkcolTaskDelegate, CoreDAVPropPatchTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVTaskGroupDelegate> {
-    NSArray *_actions;
-    NSURL *_addMemberURL;
-    Class _appSpecificContainerItemClass;
-    Class _appSpecificDataItemClass;
-    NSMutableArray *_childCollectionURL;
-    NSURL *_folderURL;
-    NSMutableDictionary *_folderURLToChildrenURLOrder;
-    NSMutableDictionary *_leafURLToETag;
-    unsigned int _multiGetBatchSize;
-    NSString *_nextCTag;
-    NSString *_nextPTag;
-    NSString *_nextSyncToken;
-    int _phase;
-    BOOL _preflightCTag;
-    NSString *_previousCTag;
-    NSString *_previousPTag;
-    NSString *_previousSyncToken;
-    BOOL _syncItemOrder;
-    NSMutableSet *_syncReportDeletedURLs;
-    NSMutableArray *_unsubmittedTasks;
-    BOOL _useMultiGet;
+@interface CoreDAVRecursiveContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVMkcolTaskDelegate, CoreDAVMoveTaskDelegate, CoreDAVPropPatchTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVTaskGroupDelegate> {
+    NSArray * _actions;
+    NSURL * _addMemberURL;
+    Class  _appSpecificContainerItemClass;
+    Class  _appSpecificDataItemClass;
+    NSMutableArray * _childCollectionURL;
+    NSURL * _folderURL;
+    NSMutableDictionary * _folderURLToChildrenURLOrder;
+    NSMutableDictionary * _leafURLToETag;
+    unsigned int  _multiGetBatchSize;
+    NSString * _nextCTag;
+    NSString * _nextPTag;
+    NSString * _nextSyncToken;
+    int  _phase;
+    BOOL  _preflightCTag;
+    NSString * _previousCTag;
+    NSString * _previousPTag;
+    NSString * _previousSyncToken;
+    BOOL  _syncItemOrder;
+    NSMutableSet * _syncReportDeletedURLs;
+    NSMutableArray * _unsubmittedTasks;
+    BOOL  _useMultiGet;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -65,6 +65,7 @@
 - (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousPTag:(id)arg3 previousSyncToken:(id)arg4 actions:(id)arg5 syncItemOrder:(BOOL)arg6 context:(id)arg7 accountInfoProvider:(id)arg8 taskManager:(id)arg9;
 - (BOOL)isWhitelistedError:(id)arg1;
 - (void)mkcolTask:(id)arg1 parsedPropStats:(id)arg2 error:(id)arg3;
+- (void)moveTask:(id)arg1 parsedResponses:(id)arg2 error:(id)arg3;
 - (unsigned int)multiGetBatchSize;
 - (id)nextCTag;
 - (BOOL)preflightCTag;

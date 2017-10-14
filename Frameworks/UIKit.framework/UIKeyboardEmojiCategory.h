@@ -3,10 +3,10 @@
  */
 
 @interface UIKeyboardEmojiCategory : NSObject {
-    int _categoryType;
-    NSString *_displaySymbol;
-    NSArray *_emoji;
-    int _lastVisibleFirstEmojiIndex;
+    int  _categoryType;
+    NSString * _displaySymbol;
+    NSArray * _emoji;
+    int  _lastVisibleFirstEmojiIndex;
 }
 
 @property int categoryType;
@@ -15,19 +15,27 @@
 @property (nonatomic) int lastVisibleFirstEmojiIndex;
 @property (getter=name, nonatomic, readonly) NSString *name;
 
++ (id)DingbatVariantsEmoji;
++ (id)GenderEmoji;
++ (id)NoneVariantEmoji;
++ (id)ProfessionEmoji;
++ (id)SkinToneEmoji;
 + (id)categories;
 + (id)categoryForType:(int)arg1;
-+ (id)computeEmojiFlagsSortedByLanguage;
++ (unsigned int)categoryIndexForCategoryType:(int)arg1;
++ (int)categoryTypeForCategoryIndex:(unsigned int)arg1;
 + (id)displayName:(int)arg1;
++ (id)emojiCategoryStringForCategoryType:(int)arg1;
++ (int)emojiCategoryTypeForCategoryString:(id)arg1;
 + (id)emojiRecentsFromPreferences;
-+ (BOOL)emojiString:(id)arg1 inGroup:(unsigned int*)arg2 withGroupCount:(int)arg3;
-+ (id)flagEmojiCountryCodesCommon;
-+ (id)flagEmojiCountryCodesReadyToUse;
++ (BOOL)emojiString:(id)arg1 inGroup:(id)arg2;
++ (id)enabledCategoryIndexes;
++ (id)fallbackDisplayName:(int)arg1;
 + (unsigned int)hasVariantsForEmoji:(id)arg1;
 + (id)loadPrecomputedEmojiFlagCategory;
 + (id)localizedStringForKey:(id)arg1;
 + (int)numberOfCategories;
-+ (id)stringToRegionalIndicatorString:(id)arg1;
++ (id)professionSkinToneEmojiBaseKey:(id)arg1;
 
 - (int)categoryType;
 - (void)dealloc;

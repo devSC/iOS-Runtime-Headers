@@ -3,13 +3,13 @@
  */
 
 @interface MCSubCalAccountPayload : MCPayload {
-    NSString *_accountDescription;
-    NSString *_accountPersistentUUID;
-    NSString *_hostname;
-    NSString *_password;
-    BOOL _useSSL;
-    NSNumber *_useSSLNum;
-    NSString *_username;
+    NSString * _accountDescription;
+    NSString * _accountPersistentUUID;
+    NSString * _hostname;
+    NSString * _password;
+    BOOL  _useSSL;
+    NSNumber * _useSSLNum;
+    NSString * _username;
 }
 
 @property (nonatomic, readonly, retain) NSString *accountDescription;
@@ -27,6 +27,7 @@
 - (void).cxx_destruct;
 - (id)accountDescription;
 - (id)accountPersistentUUID;
+- (BOOL)containsSensitiveUserInformation;
 - (id)description;
 - (id)hostname;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;

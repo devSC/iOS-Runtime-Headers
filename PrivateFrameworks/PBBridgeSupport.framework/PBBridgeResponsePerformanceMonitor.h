@@ -3,14 +3,16 @@
  */
 
 @interface PBBridgeResponsePerformanceMonitor : NSObject {
-    NSMutableDictionary *_macroActivities;
-    NSMutableArray *_measurements;
-    NSMutableDictionary *_milestones;
-    NSDictionary *_remoteMacroActivities;
-    NSArray *_remoteMeasurements;
-    NSDictionary *_remoteMilestones;
+    NSMutableString * _logBuffer;
+    NSMutableDictionary * _macroActivities;
+    NSMutableArray * _measurements;
+    NSMutableDictionary * _milestones;
+    NSDictionary * _remoteMacroActivities;
+    NSArray * _remoteMeasurements;
+    NSDictionary * _remoteMilestones;
 }
 
+@property (nonatomic, retain) NSMutableString *logBuffer;
 @property (nonatomic, readonly) NSMutableDictionary *macroActivities;
 @property (nonatomic, readonly) NSMutableArray *measurements;
 @property (nonatomic, readonly) NSMutableDictionary *milestones;
@@ -31,12 +33,14 @@
 - (void)beginMonitorTransaction;
 - (double)endMacroActivity:(id)arg1 beginTime:(double)arg2;
 - (void)endMonitorTransaction;
+- (id)logBuffer;
 - (id)macroActivities;
 - (id)measurements;
 - (id)milestones;
 - (id)remoteMacroActivities;
 - (id)remoteMeasurements;
 - (id)remoteMilestones;
+- (void)setLogBuffer:(id)arg1;
 - (void)setRemoteMacroActivities:(id)arg1;
 - (void)setRemoteMeasurements:(id)arg1;
 - (void)setRemoteMilestones:(id)arg1;

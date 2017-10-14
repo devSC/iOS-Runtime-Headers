@@ -3,10 +3,10 @@
  */
 
 @interface BLTSectionInfoListBBProvider : NSObject <BLTSectionInfoListProvider, BLTSectionInfoObserverDelegate, LSApplicationWorkspaceObserverProtocol> {
-    LSApplicationWorkspace *_appWorkspace;
-    <BLTSectionInfoListProviderDelegate> *_delegate;
-    BLTSectionInfoObserver *_observer;
-    NSObject<OS_dispatch_queue> *_queue;
+    LSApplicationWorkspace * _appWorkspace;
+    <BLTSectionInfoListProviderDelegate> * _delegate;
+    BLTSectionInfoObserver * _observer;
+    NSObject<OS_dispatch_queue> * _queue;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -16,12 +16,14 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)applicationIconDidChange:(id)arg1;
 - (void)applicationsDidInstall:(id)arg1;
 - (void)applicationsDidUninstall:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
 - (id)init;
 - (void)reloadWithCompletion:(id /* block */)arg1;
+- (void)sectionInfoObserver:(id)arg1 removedSectionWithSectionID:(id)arg2;
 - (void)sectionInfoObserver:(id)arg1 updatedSectionInfo:(id)arg2 withUniversalSectionID:(id)arg3 displayName:(id)arg4;
 - (void)setDelegate:(id)arg1;
 

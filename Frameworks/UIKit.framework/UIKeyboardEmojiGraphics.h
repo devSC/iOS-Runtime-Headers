@@ -6,11 +6,12 @@
 
 + (BOOL)boldText;
 + (unsigned char)colCount:(BOOL)arg1;
-+ (id)emojiCategoryImagePath:(id)arg1;
++ (id)emojiCategoryImagePath:(id)arg1 forRenderConfig:(id)arg2;
 + (id)emojiFontAttributes;
 + (id)emojiFontAttributesForPortrait:(BOOL)arg1;
 + (float)emojiPageControlYOffset:(BOOL)arg1;
 + (struct CGSize { float x1; float x2; })emojiSize:(BOOL)arg1;
++ (BOOL)isWildcatKeyboard;
 + (struct CGPoint { float x1; float x2; })margin:(BOOL)arg1;
 + (float)optionalDescriptionPadding:(BOOL)arg1;
 + (struct CGPoint { float x1; float x2; })padding:(BOOL)arg1;

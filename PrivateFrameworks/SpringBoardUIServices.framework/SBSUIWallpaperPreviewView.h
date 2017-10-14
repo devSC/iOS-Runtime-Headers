@@ -2,16 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@interface SBSUIWallpaperPreviewView : UIView <ISPlayerViewDelegate> {
-    int _batterySaverModeNotificationToken;
-    SBFLockScreenDateView *_dateView;
-    _UILegibilityLabel *_irisInstructionsLabel1;
-    _UILegibilityLabel *_irisInstructionsLabel2;
-    BOOL _irisPossible;
-    BOOL _observingParallaxChanges;
-    SBSUIEffectsSegmentedControl *_segmentedControl;
-    BOOL _usingSegmentedControl;
-    SBFWallpaperView *_wallpaperView;
+@interface SBSUIWallpaperPreviewView : UIView <SBFIrisWallpaperViewDelegate> {
+    int  _batterySaverModeNotificationToken;
+    SBFLockScreenDateView * _dateView;
+    _UILegibilityLabel * _irisInstructionsLabel1;
+    _UILegibilityLabel * _irisInstructionsLabel2;
+    BOOL  _irisPossible;
+    BOOL  _observingParallaxChanges;
+    SBSUIEffectsSegmentedControl * _segmentedControl;
+    BOOL  _usingSegmentedControl;
+    SBFWallpaperView * _wallpaperView;
 }
 
 @property (nonatomic, retain) SBFLockScreenDateView *dateView;
@@ -20,10 +20,11 @@
 @property (readonly) unsigned int hash;
 @property (nonatomic, retain) _UILegibilityLabel *irisInstructionsLabel1;
 @property (nonatomic, retain) _UILegibilityLabel *irisInstructionsLabel2;
-@property (nonatomic) SBSUIEffectsSegmentedControl *segmentedControl;
+@property (nonatomic, retain) SBSUIEffectsSegmentedControl *segmentedControl;
 @property (readonly) Class superclass;
-@property (nonatomic, readonly, retain) SBFWallpaperView *wallpaperView;
+@property (nonatomic, readonly) SBFWallpaperView *wallpaperView;
 
+- (void).cxx_destruct;
 - (void)_batterySaverModeChanged;
 - (void)_effectChanged:(id)arg1;
 - (void)_layoutDateView;
@@ -39,9 +40,9 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 wallpaperView:(id)arg2;
 - (id)irisInstructionsLabel1;
 - (id)irisInstructionsLabel2;
+- (void)irisWallpaperViewPlaybackStateDidChange:(id)arg1;
 - (void)layoutSubviews;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
-- (void)playerViewPlaybackStateDidChange:(id)arg1;
 - (id)segmentedControl;
 - (void)setDateView:(id)arg1;
 - (void)setIrisInstructionsLabel1:(id)arg1;

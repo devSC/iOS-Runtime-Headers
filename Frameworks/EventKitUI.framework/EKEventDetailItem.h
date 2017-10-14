@@ -3,14 +3,16 @@
  */
 
 @interface EKEventDetailItem : NSObject <EKEditItemViewControllerDelegate> {
-    BOOL _allowsEditing;
-    int _cellPosition;
-    <EKEventDetailItemDelegate> *_delegate;
-    EKEvent *_event;
-    EKUIRecurrenceAlertController *_recurrenceAlertController;
-    BOOL _shouldIndent;
-    EKEventStore *_store;
-    UIViewController<EKEditItemViewControllerProtocol> *_viewController;
+    BOOL  _allowsEditing;
+    int  _cellPosition;
+    <EKEventDetailItemDelegate> * _delegate;
+    EKEvent * _event;
+    EKEvent * _lastEventUpdated;
+    EKUIRecurrenceAlertController * _recurrenceAlertController;
+    BOOL  _shouldIndent;
+    EKEventStore * _store;
+    UIViewController<EKEditItemViewControllerProtocol> * _viewController;
+    UIViewController * _viewControllerToPresentFrom;
 }
 
 @property (nonatomic) BOOL allowsEditing;
@@ -24,6 +26,7 @@
 @property (nonatomic) BOOL shouldIndent;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIViewController *viewController;
+@property (nonatomic) UIViewController *viewControllerToPresentFrom;
 
 - (void).cxx_destruct;
 - (BOOL)allowsEditing;
@@ -35,7 +38,7 @@
 - (id)delegate;
 - (id)detailViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSubitemAtIndex:(unsigned int)arg2;
 - (void)editItemViewController:(id)arg1 didCompleteWithAction:(int)arg2;
-- (BOOL)editItemViewControllerCommit:(id)arg1;
+- (BOOL)editItemViewControllerSave:(id)arg1;
 - (BOOL)editItemViewControllerShouldShowDetachAlert;
 - (void)eventViewController:(id)arg1 didHighlightSubitem:(unsigned int)arg2;
 - (void)eventViewController:(id)arg1 didSelectReadOnlySubitem:(unsigned int)arg2;
@@ -46,7 +49,7 @@
 - (unsigned int)maximumNumberOfSubItems;
 - (void)notifyDidEndEditing;
 - (void)notifyDidStartEditing;
-- (void)notifySubitemDidCommit:(unsigned int)arg1;
+- (void)notifySubitemDidSave:(unsigned int)arg1;
 - (unsigned int)numberOfSubitems;
 - (BOOL)requiresLayoutForSubitemCount;
 - (void)reset;
@@ -57,7 +60,9 @@
 - (void)setEvent:(id)arg1 store:(id)arg2;
 - (void)setShouldIndent:(BOOL)arg1;
 - (void)setViewController:(id)arg1;
+- (void)setViewControllerToPresentFrom:(id)arg1;
 - (BOOL)shouldIndent;
 - (id)viewController;
+- (id)viewControllerToPresentFrom;
 
 @end

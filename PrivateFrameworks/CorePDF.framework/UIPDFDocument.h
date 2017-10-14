@@ -3,19 +3,27 @@
  */
 
 @interface UIPDFDocument : NSObject {
-    float _cachedWidth;
-    struct CGPDFDocument { } *_cgDocument;
-    <NSObject><UIPDFDocumentDelegate> *_delegate;
-    NSString *_documentID;
-    NSString *_documentName;
-    unsigned int _imageCacheCount;
-    int _imageCacheLock;
-    unsigned int _imageCacheLookAhead;
-    int _lock;
-    unsigned int _numberOfPages;
-    UIPDFPageImageCache *_pageImageCache;
-    UIPDFPageImageCache *_thumbnailCache;
-    int _thumbnailLock;
+    float  _cachedHeight;
+    float  _cachedWidth;
+    struct CGPDFDocument { } * _cgDocument;
+    <NSObject><UIPDFDocumentDelegate> * _delegate;
+    NSString * _documentID;
+    NSString * _documentName;
+    unsigned int  _imageCacheCount;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _imageCacheLock;
+    unsigned int  _imageCacheLookAhead;
+    float  _imageCacheResolution;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
+    unsigned int  _numberOfPages;
+    UIPDFPageImageCache * _pageImageCache;
+    UIPDFPageImageCache * _thumbnailCache;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _thumbnailLock;
 }
 
 @property (readonly) struct CGPDFDocument { }*CGDocument;
@@ -24,6 +32,8 @@
 @property (readonly) unsigned int numberOfPages;
 @property (retain) UIPDFPageImageCache *pageImageCache;
 @property (retain) UIPDFPageImageCache *thumbnailCache;
+
+// Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
 
 + (id)documentNamed:(id)arg1;
 
@@ -36,6 +46,7 @@
 - (id)delegate;
 - (id)documentID;
 - (id)initWithCGPDFDocument:(struct CGPDFDocument { }*)arg1;
+- (id)initWithCGPDFDocumentLimitedMemory:(struct CGPDFDocument { }*)arg1;
 - (id)initWithURL:(id)arg1;
 - (float)maxHeight;
 - (float)maxWidth;
@@ -44,11 +55,16 @@
 - (id)pageImageCache;
 - (void)purgePagesBefore:(unsigned int)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setImageCacheCount:(unsigned int)arg1 lookAhead:(unsigned int)arg2;
+- (void)setImageCacheCount:(unsigned int)arg1 lookAhead:(unsigned int)arg2 withResolution:(float)arg3;
 - (void)setPageImageCache:(id)arg1;
 - (void)setThumbnailCache:(id)arg1;
 - (float)sumHeight;
 - (float)sumWidth;
 - (id)thumbnailCache;
+- (void)updateWidthHeightCache;
+
+// Image: /System/Library/PrivateFrameworks/MarkupUI.framework/MarkupUI
+
++ (id)newDocumentWithCGPDFDocument:(struct CGPDFDocument { }*)arg1;
 
 @end

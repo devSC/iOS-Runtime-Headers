@@ -3,15 +3,15 @@
  */
 
 @interface AWDCompanionSyncErrorEvent : PBCodable <NSCopying> {
-    int _error;
+    int  _error;
     struct { 
         unsigned int sequenceNumber : 1; 
         unsigned int timestamp : 1; 
         unsigned int error : 1; 
-    } _has;
-    unsigned long long _sequenceNumber;
-    NSString *_service;
-    unsigned long long _timestamp;
+    }  _has;
+    unsigned long long  _sequenceNumber;
+    NSString * _service;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) int error;
@@ -23,12 +23,14 @@
 @property (nonatomic, retain) NSString *service;
 @property (nonatomic) unsigned long long timestamp;
 
+- (int)StringAsError:(id)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (int)error;
+- (id)errorAsString:(int)arg1;
 - (BOOL)hasError;
 - (BOOL)hasSequenceNumber;
 - (BOOL)hasService;

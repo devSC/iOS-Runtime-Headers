@@ -3,20 +3,23 @@
  */
 
 @interface SSVPlatformRequestOperation : NSOperation {
-    NSMutableDictionary *_additionalParameters;
-    NSString *_caller;
-    SSVPlatformContext *_context;
-    NSObject<OS_dispatch_queue> *_dispatchQueue;
-    NSString *_imageProfile;
-    NSArray *_itemIdentifiers;
-    NSString *_keyProfile;
-    int _personalizationStyle;
-    id /* block */ _responseBlock;
-    NSString *_storeFrontSuffix;
-    NSNumber *_timeoutInterval;
-    NSString *_userAgent;
+    NSMutableDictionary * _additionalHeaderFields;
+    NSMutableDictionary * _additionalParameters;
+    NSArray * _bundleIdentifiers;
+    NSString * _caller;
+    SSVPlatformContext * _context;
+    NSObject<OS_dispatch_queue> * _dispatchQueue;
+    NSString * _imageProfile;
+    NSArray * _itemIdentifiers;
+    NSString * _keyProfile;
+    int  _personalizationStyle;
+    id /* block */  _responseBlock;
+    NSString * _storeFrontSuffix;
+    NSNumber * _timeoutInterval;
+    NSString * _userAgent;
 }
 
+@property (copy) NSArray *bundleIdentifiers;
 @property (copy) NSString *imageProfile;
 @property (copy) NSArray *itemIdentifiers;
 @property (copy) NSString *keyProfile;
@@ -35,6 +38,7 @@
 - (void)_makeLookupRequestWithPersonalizationStyle:(int)arg1;
 - (void)_setCaller:(id)arg1;
 - (void)_setUserAgent:(id)arg1;
+- (id)bundleIdentifiers;
 - (id)imageProfile;
 - (id)init;
 - (id)initWithPlatformContext:(id)arg1;
@@ -43,6 +47,7 @@
 - (void)main;
 - (int)personalizationStyle;
 - (id /* block */)responseBlock;
+- (void)setBundleIdentifiers:(id)arg1;
 - (void)setImageProfile:(id)arg1;
 - (void)setItemIdentifiers:(id)arg1;
 - (void)setKeyProfile:(id)arg1;
@@ -50,9 +55,11 @@
 - (void)setResponseBlock:(id /* block */)arg1;
 - (void)setStoreFrontSuffix:(id)arg1;
 - (void)setTimeoutInterval:(id)arg1;
+- (void)setValue:(id)arg1 forHTTPHeaderField:(id)arg2;
 - (void)setValue:(id)arg1 forRequestParameter:(id)arg2;
 - (id)storeFrontSuffix;
 - (id)timeoutInterval;
+- (id)valueForHTTPHeaderField:(id)arg1;
 - (id)valueForRequestParameter:(id)arg1;
 
 @end

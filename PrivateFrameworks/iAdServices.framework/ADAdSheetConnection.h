@@ -3,10 +3,10 @@
  */
 
 @interface ADAdSheetConnection : NSObject {
-    NSXPCConnection *_adSheetConnection;
-    NSObject<OS_dispatch_queue> *_connectionQueue;
-    <ADAdSheetConnectionDelegate> *_delegate;
-    NSMutableArray *_performWhenConnectedBlocks;
+    NSXPCConnection * _adSheetConnection;
+    NSObject<OS_dispatch_queue> * _connectionQueue;
+    <ADAdSheetConnectionDelegate> * _delegate;
+    NSMutableArray * _performWhenConnectedBlocks;
 }
 
 @property (nonatomic, retain) NSXPCConnection *adSheetConnection;
@@ -21,6 +21,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)init;
+- (void)invalidate;
 - (void)performWhenConnected:(id /* block */)arg1;
 - (id)performWhenConnectedBlocks;
 - (id)rpcProxy;

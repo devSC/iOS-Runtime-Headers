@@ -3,13 +3,13 @@
  */
 
 @interface _SYOutputStreamer : NSObject <NSStreamDelegate> {
-    NSObject<OS_dispatch_queue> *_callbackQueue;
-    BOOL _hasWrittenData;
-    NSMutableArray *_items;
-    id /* block */ _onComplete;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSObject<OS_dispatch_source> *_source;
-    SYCompressedFileOutputStream *_stream;
+    NSObject<OS_dispatch_queue> * _callbackQueue;
+    BOOL  _hasWrittenData;
+    NSMutableArray * _items;
+    id /* block */  _onComplete;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSObject<OS_dispatch_source> * _source;
+    SYCompressedFileOutputStream * _stream;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -20,6 +20,7 @@
 
 - (void).cxx_destruct;
 - (void)_completeAllItemsWithError:(id)arg1;
+- (id /* block */)_getCompletionBlock;
 - (void)_tryToSendData;
 - (void)close;
 - (BOOL)hasWrittenData;

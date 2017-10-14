@@ -3,8 +3,8 @@
  */
 
 @interface PUFeedImageCell : PUFeedCell {
-    UIImageView *__centerOverlayImageView;
-    UIButton *__commentButton;
+    UIImageView * __centerOverlayImageView;
+    UIButton * __commentButton;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,27 +14,27 @@
             float width; 
             float height; 
         } size; 
-    } __imageFrame;
-    int __imageTag;
-    UIImageView *__imageView;
-    UIView<PLVideoOverlayButton> *__overlayPlayButton;
-    PUImageViewExtraction *__overlayPlayButtonBackgroundExtraction;
-    UIImageView *__overlayPlayButtonBackgroundImageView;
-    PLPhotoTileBadgeView *__photoIrisBadgeView;
-    BOOL __shouldHideCenterOverlayImageView;
-    BOOL __shouldHideCommentButton;
-    BOOL __shouldHideOverlayPlayButton;
-    BOOL __shouldUpdateOverlayPlayButtonBackground;
-    int _commentCount;
-    UIImage *_image;
-    int _imageAlignment;
-    int _imageContentMode;
-    BOOL _imageHidden;
+    }  __imageFrame;
+    int  __imageTag;
+    UIImageView * __imageView;
+    UIView<PXVideoOverlayButton> * __overlayPlayButton;
+    PUImageViewExtraction * __overlayPlayButtonBackgroundExtraction;
+    UIImageView * __overlayPlayButtonBackgroundImageView;
+    PXUIAssetBadgeView * __photoIrisBadgeView;
+    BOOL  __shouldHideCenterOverlayImageView;
+    BOOL  __shouldHideCommentButton;
+    BOOL  __shouldHideOverlayPlayButton;
+    BOOL  __shouldUpdateOverlayPlayButtonBackground;
+    int  _commentCount;
+    UIImage * _image;
+    int  _imageAlignment;
+    int  _imageContentMode;
+    BOOL  _imageHidden;
     struct CGSize { 
         float width; 
         float height; 
-    } _maximumImageSize;
-    int _overlayOptions;
+    }  _maximumImageSize;
+    int  _overlayOptions;
 }
 
 @property (setter=_setCenterOverlayImageView:, nonatomic, retain) UIImageView *_centerOverlayImageView;
@@ -42,10 +42,10 @@
 @property (setter=_setImageFrame:, nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } _imageFrame;
 @property (setter=_setImageTag:, nonatomic) int _imageTag;
 @property (setter=_setImageView:, nonatomic, retain) UIImageView *_imageView;
-@property (setter=_setOverlayPlayButton:, nonatomic, retain) UIView<PLVideoOverlayButton> *_overlayPlayButton;
+@property (setter=_setOverlayPlayButton:, nonatomic, retain) UIView<PXVideoOverlayButton> *_overlayPlayButton;
 @property (setter=_setOverlayPlayButtonBackgroundExtraction:, nonatomic, retain) PUImageViewExtraction *_overlayPlayButtonBackgroundExtraction;
 @property (setter=_setOverlayPlayButtonBackgroundImageView:, nonatomic, retain) UIImageView *_overlayPlayButtonBackgroundImageView;
-@property (setter=_setPhotoIrisBadgeView:, nonatomic, retain) PLPhotoTileBadgeView *_photoIrisBadgeView;
+@property (setter=_setPhotoIrisBadgeView:, nonatomic, retain) PXUIAssetBadgeView *_photoIrisBadgeView;
 @property (setter=_setShouldHideCenterOverlayImageView:, nonatomic) BOOL _shouldHideCenterOverlayImageView;
 @property (setter=_setShouldHideCommentButton:, nonatomic) BOOL _shouldHideCommentButton;
 @property (setter=_setShouldHideOverlayPlayButton:, nonatomic) BOOL _shouldHideOverlayPlayButton;
@@ -58,7 +58,10 @@
 @property (nonatomic) struct CGSize { float x1; float x2; } maximumImageSize;
 @property (nonatomic) int overlayOptions;
 
++ (BOOL)_allowHighQualityVideoOverlayButton;
 + (Class)_contentViewClass;
++ (int)_videoOverlayButtonStyle;
++ (void)preloadResources;
 
 - (void).cxx_destruct;
 - (id)_centerOverlayImageView;

@@ -3,21 +3,22 @@
  */
 
 @interface MTLArgumentInternal : MTLArgument {
-    unsigned int _access;
-    BOOL _active;
-    unsigned int _index;
-    NSString *_name;
-    unsigned int _type;
+    unsigned int  _access;
+    BOOL  _active;
+    unsigned int  _index;
+    NSString * _name;
+    unsigned int  _type;
 }
 
 - (unsigned int)access;
+- (unsigned int)arrayLength;
 - (unsigned int)bufferAlignment;
 - (unsigned int)bufferDataSize;
 - (unsigned int)bufferDataType;
 - (id)bufferStructType;
 - (void)dealloc;
-- (id)describe;
 - (id)description;
+- (id)formattedDescription:(unsigned int)arg1;
 - (unsigned int)index;
 - (id)initWithName:(id)arg1 type:(unsigned int)arg2 access:(unsigned int)arg3 index:(unsigned int)arg4 active:(BOOL)arg5;
 - (BOOL)isActive;

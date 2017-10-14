@@ -3,15 +3,15 @@
  */
 
 @interface AARemoteServer : NSObject {
-    AAURLSession *_session;
+    AAURLSession * _session;
 }
 
++ (id)newSigningSessionWithError:(id*)arg1;
 + (id)sharedSession;
 
 - (void).cxx_destruct;
 - (id)_bodyDictionaryWithProtocolVersion:(id)arg1;
 - (void)_fetchServerConfigWithContext:(int)arg1 cachePolicy:(int)arg2 responseClass:(Class)arg3 completion:(id /* block */)arg4;
-- (id)_newSigningSessionWithError:(id*)arg1;
 - (id)_newURLRequestWithURLString:(id)arg1;
 - (id)_redactedBodyStringWithPropertyList:(id)arg1;
 - (id)_redactedHeadersFromHTTPHeaders:(id)arg1;

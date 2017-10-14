@@ -3,15 +3,15 @@
  */
 
 @interface HSBrowser : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate> {
-    NSMutableArray *_availableLibraries;
-    int _browserType;
-    <HSBrowserDelegate> *_delegate;
-    NSString *_homeSharingGroupID;
-    NSMutableArray *_librariesPendingRemoval;
-    NSMutableArray *_resolvingServices;
-    NSNetServiceBrowser *_serviceBrowser;
-    NSObject<OS_dispatch_queue> *_serviceBrowserQueue;
-    NSString *_serviceType;
+    NSMutableArray * _availableLibraries;
+    int  _browserType;
+    <HSBrowserDelegate> * _delegate;
+    NSString * _homeSharingGroupID;
+    NSMutableArray * _librariesPendingRemoval;
+    NSMutableArray * _resolvingServices;
+    NSNetServiceBrowser * _serviceBrowser;
+    NSObject<OS_dispatch_queue> * _serviceBrowserQueue;
+    NSString * _serviceType;
 }
 
 @property (nonatomic, retain) NSMutableArray *availableLibraries;
@@ -28,7 +28,6 @@
 @property (nonatomic, readonly, copy) NSString *serviceType;
 @property (readonly) Class superclass;
 
-+ (id)controlBrowser;
 + (id)homeSharingBrowserWithGroupID:(id)arg1;
 
 - (void).cxx_destruct;

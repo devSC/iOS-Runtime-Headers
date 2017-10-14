@@ -3,9 +3,9 @@
  */
 
 @interface NSNetService : NSObject {
-    id _delegate;
-    id _netService;
-    id _reserved;
+    id  _delegate;
+    id  _netService;
+    id  _reserved;
 }
 
 @property (readonly, copy) NSArray *addresses;
@@ -16,6 +16,8 @@
 @property (readonly, copy) NSString *name;
 @property (readonly) int port;
 @property (readonly, copy) NSString *type;
+
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
 
 + (id)dataFromTXTRecordDictionary:(id)arg1;
 + (id)dictionaryFromTXTRecordData:(id)arg1;
@@ -59,5 +61,10 @@
 - (void)stop;
 - (void)stopMonitoring;
 - (id)type;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_dataFromDictionary:(id)arg1;
++ (id)cat_dictionaryFromData:(id)arg1;
 
 @end

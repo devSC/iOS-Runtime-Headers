@@ -3,22 +3,23 @@
  */
 
 @interface IMDMessageStore : NSObject {
-    NSNumber *_cachedLastFailedMessageID;
-    NSNumber *_cachedUnreadMessageCount;
-    NSString *_modificationStamp;
-    BOOL _pendingDBUpdatePost;
-    BOOL _suppressedUpdates;
-    NSTimer *_suppressedUpdatesTimer;
+    NSNumber * _cachedLastFailedMessageID;
+    NSNumber * _cachedUnreadMessageCount;
+    NSString * _modificationStamp;
+    BOOL  _pendingDBUpdatePost;
+    BOOL  _suppressedUpdates;
+    NSTimer * _suppressedUpdatesTimer;
 }
 
 @property (retain) NSString *modificationStamp;
 
-+ (void)_updateCacheForMessageGUID:(id)arg1 fromMessage:(id)arg2 toMessage:(id)arg3;
++ (void)_updateCacheForMessageGUID:(id)arg1 fromMessage:(id)arg2 toMessage:(id)arg3 updateLastMessage:(BOOL)arg4;
 + (id)sharedInstance;
 
 - (void)__postDBUpdate;
 - (void)_deleteMessagesWithGUIDs:(id)arg1 chatIdentifiers:(id)arg2 style:(unsigned char)arg3 onServices:(id)arg4 batchNumber:(unsigned int)arg5 completion:(id /* block */)arg6;
 - (BOOL)_hasMessagesWithGUIDs:(id)arg1;
+- (id)_itemsWithAssociatedGUID:(id)arg1;
 - (id)_itemsWithGUIDs:(id)arg1;
 - (id)_messagesWithHandles:(id)arg1 onServices:(id)arg2 messageGUID:(id)arg3 limit:(unsigned int)arg4 onlyMessages:(BOOL)arg5;
 - (id)_messagesWithRoomNames:(id)arg1 onServices:(id)arg2 messageGUID:(id)arg3 limit:(unsigned int)arg4 onlyMessages:(BOOL)arg5;
@@ -38,6 +39,7 @@
 - (id)chatsForMessage:(id)arg1;
 - (id)chatsForMessageGUID:(id)arg1;
 - (void)cleanseAttachments;
+- (void)databaseChatSpamUpdated:(id)arg1;
 - (void)dealloc;
 - (id)deleteMessageGUIDs:(id)arg1;
 - (id)deleteMessageGUIDs:(id)arg1 inChat:(id)arg2;
@@ -53,6 +55,7 @@
 - (long long)lastFailedMessageID;
 - (id)lastMessageWithHandles:(id)arg1 onServices:(id)arg2;
 - (id)lastMessageWithRoomNames:(id)arg1 onServices:(id)arg2;
+- (void)loadConsumedSessionPayloadsForItems:(id)arg1;
 - (void)markMessageAsDeduplicated:(id)arg1;
 - (id)markMessagesAsReadWithHandle:(id)arg1 onService:(id)arg2 upToGUID:(id)arg3 readDate:(id)arg4 fromMe:(BOOL)arg5;
 - (id)markMessagesAsReadWithHandles:(id)arg1 onServices:(id)arg2 upToGUID:(id)arg3 readDate:(id)arg4 fromMe:(BOOL)arg5;
@@ -61,6 +64,7 @@
 - (id)messageActionItemsForOriginalMessageGUID:(id)arg1;
 - (id)messageWithGUID:(id)arg1;
 - (id)messageWithReplaceMessageID:(int)arg1 fromHandle:(id)arg2 onService:(id)arg3;
+- (id)messagesWithAssociatedGUID:(id)arg1;
 - (id)messagesWithGUIDs:(id)arg1;
 - (id)messagesWithHandles:(id)arg1 onServices:(id)arg2 limit:(unsigned int)arg3;
 - (id)messagesWithHandles:(id)arg1 onServices:(id)arg2 messageGUID:(id)arg3 limit:(unsigned int)arg4;
@@ -72,6 +76,7 @@
 - (void)rebuildLastFailedMessageID;
 - (void)rebuildUnreadMessageCount;
 - (void)registerTransfersWithGUIDs:(id)arg1 forMessageGUID:(id)arg2;
+- (id)replaceMessageAcknowledgmentsWithNewMessageAcknowledgment:(id)arg1 associatedMessageGUID:(id)arg2 sender:(id)arg3;
 - (void)resolveUnformattedRepresentationsForHandles:(id)arg1 onService:(id)arg2 message:(id)arg3 completionBlock:(id /* block */)arg4;
 - (void)setModificationStamp:(id)arg1;
 - (void)setSuppressDatabaseUpdates:(BOOL)arg1;

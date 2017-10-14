@@ -3,15 +3,13 @@
  */
 
 @interface CUIStructuredThemeStore : NSObject <CUIStructuredThemeStorage, CUIStructuredThemeStorage2> {
-    NSCache *_assetExistanceCache;
-    NSCache *_assetFPOStatus;
-    NSString *_bundleID;
-    NSMutableDictionary *_cache;
-    NSLock *_cacheLock;
-    NSCache *_namedRenditionKeyCache;
-    CUICommonAssetStorage *_store;
-    NSLock *_storeLock;
-    unsigned int _themeIndex;
+    NSString * _bundleID;
+    NSMutableDictionary * _cache;
+    NSLock * _cacheLock;
+    NSCache * _namedRenditionKeyCache;
+    CUICommonAssetStorage * _store;
+    NSLock * _storeLock;
+    unsigned int  _themeIndex;
 }
 
 @property (readonly, copy) NSString *debugDescription;

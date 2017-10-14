@@ -3,30 +3,28 @@
  */
 
 @interface CAMTimelapseController : NSObject <CAMNebulaDaemonTimelapseClientProtocol, CAMStillImageCaptureRequestDelegate, UIAlertViewDelegate> {
-    BOOL __backendRecoveryNeeded;
-    CUCaptureController *__captureController;
-    NSObject<OS_dispatch_source> *__captureTimer;
-    CAMLowDiskSpaceAlertView *__diskSpaceAlert;
-    BOOL __focusAndExposureAdjusted;
-    BOOL __ignoringTimerCallbacksForTearDown;
-    BOOL __ignoringTimerCallbacksWaitingForCaptureResponse;
-    NSCountedSet *__inFlightTimelapseUUIDs;
-    CAMLocationController *__locationController;
-    CAMMotionController *__motionController;
-    CAMNebulaDaemonProxyManager *__nebulaDaemonProxyManager;
-    NSMutableSet *__pendingCompletedStates;
-    CAMPersistenceController *__persistenceController;
-    BOOL __previewStarted;
-    BOOL __shouldUpdateFocusAndExposureWhenContrastDetectionCompletes;
-    CAMTimelapseState *__state;
-    <CAMTimelapseControllerDelegate> *_delegate;
-    CAMFocusResult *_lastFocusResult;
+    BOOL  __backendRecoveryNeeded;
+    CUCaptureController * __captureController;
+    NSObject<OS_dispatch_source> * __captureTimer;
+    BOOL  __focusAndExposureAdjusted;
+    BOOL  __ignoringTimerCallbacksForTearDown;
+    BOOL  __ignoringTimerCallbacksWaitingForCaptureResponse;
+    NSCountedSet * __inFlightTimelapseUUIDs;
+    CAMLocationController * __locationController;
+    CAMMotionController * __motionController;
+    CAMNebulaDaemonProxyManager * __nebulaDaemonProxyManager;
+    NSMutableSet * __pendingCompletedStates;
+    CAMPersistenceController * __persistenceController;
+    BOOL  __previewStarted;
+    BOOL  __shouldUpdateFocusAndExposureWhenContrastDetectionCompletes;
+    CAMTimelapseState * __state;
+    <CAMTimelapseControllerDelegate> * _delegate;
+    CAMFocusResult * _lastFocusResult;
 }
 
 @property (setter=_setBackendRecoveryNeeded:, nonatomic) BOOL _backendRecoveryNeeded;
 @property (nonatomic, readonly) CUCaptureController *_captureController;
 @property (nonatomic, readonly) NSObject<OS_dispatch_source> *_captureTimer;
-@property (nonatomic, readonly) CAMLowDiskSpaceAlertView *_diskSpaceAlert;
 @property (getter=_isFocusAndExposureAdjusted, setter=_setFocusAndExposureAdjusted:, nonatomic) BOOL _focusAndExposureAdjusted;
 @property (nonatomic, readonly) BOOL _ignoringTimerCallbacksForTearDown;
 @property (nonatomic, readonly) BOOL _ignoringTimerCallbacksWaitingForCaptureResponse;
@@ -59,10 +57,8 @@
 - (id)_captureController;
 - (id)_captureTimer;
 - (void)_captureTimerFired;
-- (id)_createPlaceholderAssetForTimelapseState:(id)arg1;
+- (id)_createThumbnailImageFromPlaceholderResult:(id)arg1;
 - (void)_deviceStarted:(id)arg1;
-- (id)_diskSpaceAlert;
-- (void)_dismissDiskSpaceAlert;
 - (BOOL)_enqueueCaptureRequest;
 - (BOOL)_ignoringTimerCallbacksForTearDown;
 - (BOOL)_ignoringTimerCallbacksWaitingForCaptureResponse;
@@ -71,7 +67,6 @@
 - (id)_locationController;
 - (id)_motionController;
 - (id)_nebulaDaemonProxyManager;
-- (void)_notifyAGGDForDidStartCapturingWithState:(id)arg1;
 - (void)_notifyAGGDForDidStopCapturingWithState:(id)arg1;
 - (void)_notifyInsufficientDiskSpaceForContinuingCapture;
 - (void)_notifyInsufficientDiskSpaceForStartingCaptureWithNeededBytes:(long long)arg1 availableBytes:(long long)arg2;
@@ -102,7 +97,6 @@
 - (void)_updateFocusAndExposureForStartCapturing;
 - (void)_updateFocusLensPosition:(float)arg1 forTimelapseUUID:(id)arg2 forceUpdate:(BOOL)arg3;
 - (void)_updateLocationIfNecessary;
-- (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (id)captureStartTime;
 - (void)dealloc;
 - (id)delegate;
@@ -114,9 +108,9 @@
 - (void)restoreConfiguration;
 - (void)setDelegate:(id)arg1;
 - (void)setLastFocusResult:(id)arg1;
-- (void)startCapturingWithCaptureDevice:(int)arg1 captureSession:(unsigned short)arg2;
+- (BOOL)startCapturingWithCaptureDevice:(int)arg1 captureSession:(unsigned short)arg2;
 - (void)stillImageRequestDidCompleteStillImageCapture:(id)arg1 withResponse:(id)arg2 error:(id)arg3;
 - (void)stillImageRequestDidCompleteStillImageLocalPersistence:(id)arg1 withResponse:(id)arg2 error:(id)arg3;
-- (void)stopCapturingWithReasons:(int)arg1;
+- (BOOL)stopCapturingWithReasons:(int)arg1;
 
 @end

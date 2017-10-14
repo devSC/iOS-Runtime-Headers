@@ -3,7 +3,7 @@
  */
 
 @interface AVMetadataItem : NSObject <AVAsynchronousKeyValueLoading, NSCopying, NSMutableCopying> {
-    AVMetadataItemInternal *_priv;
+    AVMetadataItemInternal * _priv;
 }
 
 @property (nonatomic, readonly, copy) NSString *dataType;
@@ -33,6 +33,7 @@
 + (id)metadataItemWithPropertiesOfMetadataItem:(id)arg1 valueLoadingHandler:(id /* block */)arg2;
 + (id)metadataItemsFromArray:(id)arg1 filteredAndSortedAccordingToPreferredLanguages:(id)arg2;
 + (id)metadataItemsFromArray:(id)arg1 filteredByIdentifier:(id)arg2;
++ (id)metadataItemsFromArray:(id)arg1 filteredByIdentifiers:(id)arg2;
 + (id)metadataItemsFromArray:(id)arg1 filteredByMetadataItemFilter:(id)arg2;
 + (id)metadataItemsFromArray:(id)arg1 withKey:(id)arg2 keySpace:(id)arg3;
 + (id)metadataItemsFromArray:(id)arg1 withLocale:(id)arg2;
@@ -43,6 +44,7 @@
 - (void*)_copyValueAsCFTypeWithFormatDescription:(struct opaqueCMFormatDescription { }*)arg1 error:(id*)arg2;
 - (id)_createJSONEncodedDataFromValue:(id)arg1 error:(id*)arg2;
 - (void)_extractPropertiesFromDictionary:(id)arg1;
+- (id)_figMetadataDictionary;
 - (id)_figMetadataDictionaryWithValue:(BOOL)arg1 diviningValueDataType:(BOOL)arg2;
 - (id)_figMetadataFormat;
 - (id)_figMetadataSpecificationReturningError:(id*)arg1;
@@ -56,6 +58,7 @@
 - (void)_updateIdentifier;
 - (void)_updateLanguageInformationFromExtendedLanguageTag:(id)arg1;
 - (void)_updateLanguageInformationFromLocale:(id)arg1;
+- (id)_valueFromCFType:(void*)arg1;
 - (void)cancelLoading;
 - (id)commonKey;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -64,6 +67,7 @@
 - (id)dateValue;
 - (void)dealloc;
 - (id)description;
+- (id)discoveryTimestamp;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })duration;
 - (id)extendedLanguageTag;
 - (id)extraAttributes;
@@ -85,6 +89,8 @@
 - (int)statusOfValueForKey:(id)arg1 error:(id*)arg2;
 - (id)stringValue;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })time;
+- (id)unicodeLanguageCode;
+- (id)unicodeLanguageIdentifier;
 - (id)value;
 
 @end

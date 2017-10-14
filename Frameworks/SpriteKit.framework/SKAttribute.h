@@ -2,8 +2,8 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@interface SKAttribute : NSObject {
-    NSString *_name;
+@interface SKAttribute : NSObject <NSCoding> {
+    NSString * _name;
     struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { 
         struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { 
             struct __rep { 
@@ -26,8 +26,8 @@
                 } ; 
             } __first_; 
         } __r_; 
-    } _nameString;
-    int _type;
+    }  _nameString;
+    int  _type;
 }
 
 @property (nonatomic, readonly) NSString *name;
@@ -37,8 +37,10 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
 - (const struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { struct __rep { union { struct __long { unsigned int x_1_4_1; unsigned int x_1_4_2; char *x_1_4_3; } x_1_3_1; struct __short { union { unsigned char x_1_5_1; BOOL x_1_5_2; } x_2_4_1; BOOL x_2_4_2[11]; } x_1_3_2; struct __raw { unsigned long x_3_4_1[3]; } x_1_3_3; } x_1_2_1; } x_1_1_1; } x1; }*)getNameString;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 type:(int)arg2;
 - (id)name;
 - (int)type;

@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSNumber : NSValue <CKRecordValue, PQLValuable, TSCHChartGridValue, TSDMixing>
+@interface NSNumber : NSValue <ASParsingLeafNode, CKRecordValue, CRCoding, CRDataType, CREquatable, HFPropertyListConvertible, LPCSSText, NSFetchRequestResult, PQLValuable, SiriCoreSQLiteValue, TSCHChartGridValue, TSDMixing>
 
+@property (nonatomic, readonly) float CGFloatValue;
+@property (nonatomic, readonly) unsigned int PXDataSourceIdentifierValue;
+@property (readonly) int _cn_reputationScoreValue;
 @property (readonly) BOOL boolValue;
-@property (nonatomic, readonly) NSNumber *brc_documentID;
-@property (nonatomic, readonly) NSNumber *brc_folderID;
-@property (nonatomic, readonly) BOOL brc_isDocumentID;
-@property (nonatomic, readonly) BOOL brc_isFolderID;
-@property (nonatomic, readonly) unsigned long long brc_rawID;
 @property (readonly) BOOL charValue;
 @property (nonatomic, readonly) int chartGridValueType;
 @property (readonly, copy) NSString *debugDescription;
@@ -102,6 +100,10 @@
 - (unsigned long)unsignedLongValue;
 - (unsigned short)unsignedShortValue;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
+- (int)_cn_reputationScoreValue;
+
 // Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
 
 - (id)cl_json_serializeKey;
@@ -134,21 +136,13 @@
 - (id)CA_roundToIntegerFromValue:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_numberWithObject:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
 
 - (id)__ck_localizedString;
-
-// Image: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
-
-+ (id)brc_fileObjectIDForURL:(id)arg1 allocateDocID:(BOOL)arg2;
-+ (id)brc_fileObjectIDWithDocumentID:(unsigned int)arg1;
-+ (id)brc_fileObjectIDWithFolderID:(unsigned long long)arg1;
-
-- (id)brc_documentID;
-- (id)brc_folderID;
-- (BOOL)brc_isDocumentID;
-- (BOOL)brc_isFolderID;
-- (unsigned long long)brc_rawID;
 
 // Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
@@ -161,6 +155,11 @@
 
 - (int)_cnac_autocompleteAddressTypeValue;
 
+// Image: /System/Library/PrivateFrameworks/CoreParsec.framework/CoreParsec
+
+- (int)sf_asRowAlignment;
+- (unsigned int)sf_asTopHit;
+
 // Image: /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
 
 + (id)cr_numberWithCRContactGroupKind:(unsigned int)arg1;
@@ -170,6 +169,18 @@
 - (unsigned int)cr_CRContactGroupKindValue;
 - (long long)cr_CRContactIDValue;
 - (long long)cr_CRRecentIDValue;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DAEAS.framework/DAEAS
+
++ (BOOL)acceptsTopLevelLeaves;
++ (BOOL)expectsContent;
++ (BOOL)frontingBasicTypes;
++ (BOOL)notifyOfUnknownTokens;
++ (BOOL)parsingLeafNode;
++ (BOOL)parsingWithSubItems;
+
+- (id)initWithASParseContext:(id)arg1 root:(id)arg2 parent:(id)arg3 callbackDict:(id)arg4 streamCallbackDict:(id)arg5 lengthUntilEndOfTerminator:(int)arg6;
+- (int)parsingState;
 
 // Image: /System/Library/PrivateFrameworks/FMCore.framework/FMCore
 
@@ -183,7 +194,7 @@
 
 - (BOOL)hk_hasFloatingPointValue;
 
-// Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
 
 - (BOOL)hk_animatable;
 - (id)hk_midPointToValue:(id)arg1 percentage:(float)arg2;
@@ -192,11 +203,43 @@
 
 - (id)localizedString;
 
+// Image: /System/Library/PrivateFrameworks/LinkPresentation.framework/LinkPresentation
+
+- (id)_lp_CSSText;
+
+// Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+
+- (bool)_BoolValue;
+
 // Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
 
 - (void)ml_bindToSQLiteStatement:(struct sqlite3_stmt { }*)arg1 atPosition:(int)arg2;
 - (BOOL)ml_matchesValue:(id)arg1 usingComparison:(int)arg2;
 - (id)ml_stringValueForSQL;
+
+// Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
+
+- (float)cgFloatValue;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (float)CGFloatValue;
+- (BOOL)fc_isGreaterThan:(id)arg1;
+- (BOOL)fc_isLessThan:(id)arg1;
+- (BOOL)fc_isLessThanOrEqualTo:(id)arg1;
+- (id)fc_largerNumber:(id)arg1;
+- (id)fc_smallerNumber:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (id)deltaSince:(id)arg1 in:(id)arg2;
+- (void)encodeWithCRCoder:(id)arg1;
+- (id)initWithCRCoder:(id)arg1;
+- (void)mergeWith:(id)arg1;
+- (void)realizeLocalChangesIn:(id)arg1;
+- (void)setDocument:(id)arg1;
+- (id)tombstone;
+- (void)walkGraph:(id /* block */)arg1;
 
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 
@@ -206,9 +249,23 @@
 - (BOOL)isFloatingPointType;
 - (void)sfu_appendJsonStringToString:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (unsigned int)PXDataSourceIdentifierValue;
+
 // Image: /System/Library/PrivateFrameworks/ServerDocsProtocol.framework/ServerDocsProtocol
 
 - (BOOL)sd_isEqualToNumber:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (double)siriCoreSQLiteValue_doubleRepresentation;
+- (id)siriCoreSQLiteValue_escapedString:(BOOL)arg1;
+- (long long)siriCoreSQLiteValue_integerRepresentation;
+- (id)siriCoreSQLiteValue_toData;
+- (id)siriCoreSQLiteValue_toNumber;
+- (id)siriCoreSQLiteValue_toString;
+- (int)siriCoreSQLiteValue_type;
 
 // Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
@@ -216,6 +273,12 @@
 
 - (id)initWithItemIdentifier:(unsigned long long)arg1;
 - (unsigned long long)itemIdentifierValue;
+
+// Image: /System/Library/PrivateFrameworks/Swift/libswiftFoundation.dylib
+
+- (id)initWithBooleanLiteral;
+- (id)initWithFloatLiteral;
+- (id)initWithIntegerLiteral;
 
 // Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
 
@@ -254,6 +317,7 @@
 - (int)tsch_styleIntValue;
 - (int)tsch_stylePropertyValue;
 - (int)tss_propertyValue;
+- (BOOL)tsu_isAlmostEqual:(id)arg1;
 
 // Image: /usr/lib/libprequelite.dylib
 

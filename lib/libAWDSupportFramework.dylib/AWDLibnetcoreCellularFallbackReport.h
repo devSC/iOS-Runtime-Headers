@@ -3,26 +3,26 @@
  */
 
 @interface AWDLibnetcoreCellularFallbackReport : PBCodable <NSCopying> {
-    NSMutableArray *_dataUsageSnapshotsAtNetworkEvents;
-    int _denyReason;
-    unsigned long long _fallbackTimerMsecs;
-    BOOL _fellback;
+    NSMutableArray * _dataUsageSnapshotsAtNetworkEvents;
+    int  _denyReason;
+    unsigned long long  _fallbackTimerMsecs;
+    BOOL  _fellback;
     struct { 
         unsigned int fallbackTimerMsecs : 1; 
         unsigned int denyReason : 1; 
         unsigned int fellback : 1; 
-    } _has;
+    }  _has;
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
-    } _networkEvents;
-    NSMutableArray *_primaryInterfaceAttemptStatisticsReports;
+    }  _networkEvents;
+    NSMutableArray * _primaryInterfaceAttemptStatisticsReports;
     struct { 
         unsigned long long *list; 
         unsigned int count; 
         unsigned int size; 
-    } _timeToNetworkEventsMsecs;
+    }  _timeToNetworkEventsMsecs;
 }
 
 @property (nonatomic, retain) NSMutableArray *dataUsageSnapshotsAtNetworkEvents;
@@ -38,6 +38,11 @@
 @property (nonatomic, readonly) unsigned long long*timeToNetworkEventsMsecs;
 @property (nonatomic, readonly) unsigned int timeToNetworkEventsMsecsCount;
 
++ (Class)dataUsageSnapshotsAtNetworkEventsType;
++ (Class)primaryInterfaceAttemptStatisticsReportsType;
+
+- (int)StringAsDenyReason:(id)arg1;
+- (int)StringAsNetworkEvents:(id)arg1;
 - (void)addDataUsageSnapshotsAtNetworkEvents:(id)arg1;
 - (void)addNetworkEvents:(int)arg1;
 - (void)addPrimaryInterfaceAttemptStatisticsReports:(id)arg1;
@@ -53,6 +58,7 @@
 - (unsigned int)dataUsageSnapshotsAtNetworkEventsCount;
 - (void)dealloc;
 - (int)denyReason;
+- (id)denyReasonAsString:(int)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (unsigned long long)fallbackTimerMsecs;
@@ -64,6 +70,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (int*)networkEvents;
+- (id)networkEventsAsString:(int)arg1;
 - (int)networkEventsAtIndex:(unsigned int)arg1;
 - (unsigned int)networkEventsCount;
 - (id)primaryInterfaceAttemptStatisticsReports;

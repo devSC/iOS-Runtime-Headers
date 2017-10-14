@@ -3,10 +3,10 @@
  */
 
 @interface PUJoiningAssetsDataSource : PUAssetsDataSource {
-    NSDictionary *__containedDataSourceInfoByIdentifier;
-    NSArray *__containedDataSourceInfos;
-    NSArray *__dataSources;
-    int __totalNumberOfSections;
+    NSDictionary * __containedDataSourceInfoByIdentifier;
+    NSArray * __containedDataSourceInfos;
+    NSArray * __dataSources;
+    int  __totalNumberOfSections;
 }
 
 @property (nonatomic, readonly) NSDictionary *_containedDataSourceInfoByIdentifier;
@@ -24,7 +24,7 @@
 - (id)assetAtIndexPath:(id)arg1;
 - (id)assetCollectionAtIndexPath:(id)arg1;
 - (id)assetReferenceAtIndexPath:(id)arg1;
-- (id)badgeInfoForAssetAtIndexPath:(id)arg1;
+- (id)badgeInfoPromiseForAssetAtIndexPath:(id)arg1;
 - (id)containedAssetsDataSourceAtIndexPath:(id)arg1;
 - (id)indexPathForAssetCollection:(id)arg1;
 - (id)indexPathForAssetReference:(id)arg1;

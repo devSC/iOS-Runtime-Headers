@@ -3,12 +3,12 @@
  */
 
 @interface AKOverlayView : UIView {
-    BOOL _deferWasMovedToSuperviewUntilMoveToWindow;
-    BOOL _isObserving;
-    AKMainEventHandler *_mainEventHandler;
-    UIScrollView *_observedScrollView;
-    AKPageController *_pageController;
-    BOOL _scrollViewIsInLiveMagnify;
+    BOOL  _deferWasMovedToSuperviewUntilMoveToWindow;
+    BOOL  _isObserving;
+    AKMainEventHandler * _mainEventHandler;
+    UIScrollView * _observedScrollView;
+    AKPageController * _pageController;
+    BOOL  _scrollViewIsInLiveMagnify;
 }
 
 @property BOOL deferWasMovedToSuperviewUntilMoveToWindow;
@@ -18,11 +18,14 @@
 @property AKPageController *pageController;
 @property BOOL scrollViewIsInLiveMagnify;
 
++ (void)initialize;
+
 - (void).cxx_destruct;
 - (void)_postScrollViewNotification;
 - (void)_scrollViewDidEndAnimation:(id)arg1;
 - (void)_scrollViewDidEndDecelerating:(id)arg1;
 - (void)_scrollViewDidEndDragging:(id)arg1;
+- (void)_scrollViewDidScrollToTop:(id)arg1;
 - (void)_setupObservation;
 - (void)_teardownObservation;
 - (void)_updateLayersUsingScrollView;

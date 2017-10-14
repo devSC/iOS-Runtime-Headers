@@ -3,7 +3,7 @@
  */
 
 @interface SSLookupItem : NSObject {
-    NSDictionary *_dictionary;
+    NSDictionary * _dictionary;
 }
 
 @property (nonatomic, readonly) NSNumber *ITunesStoreIdentifier;
@@ -47,7 +47,19 @@
 - (BOOL)ml_isAUCAudioKind;
 - (BOOL)ml_isAUCItemKind;
 - (BOOL)ml_isAUCVideoKind;
+- (BOOL)ml_isMovieKind;
 - (BOOL)ml_isMusicItemKind;
+- (BOOL)ml_isMusicSongKind;
 - (BOOL)ml_isMusicVideoKind;
+- (BOOL)ml_isTVShowKind;
+- (BOOL)ml_isVideoKind;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (id)appAdamID;
+- (BOOL)isPeriodValid:(id)arg1;
+- (id)offerName;
+- (id)subscriptionPeriodInISO_8601;
+- (id)trialPeriodInISO_8601;
 
 @end

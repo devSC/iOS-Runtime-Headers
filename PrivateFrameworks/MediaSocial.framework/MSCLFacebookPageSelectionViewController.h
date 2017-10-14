@@ -3,14 +3,13 @@
  */
 
 @interface MSCLFacebookPageSelectionViewController : SKUIViewController <UITableViewDataSource, UITableViewDelegate> {
-    MSCLAccountStore *_accountStore;
-    BOOL _didRequestImages;
-    NSMapTable *_images;
-    NSArray *_pages;
-    UIImage *_placeholderImage;
-    MSCLSettingsTableViewCell *_removeAccountButtonCell;
-    NSString *_selectedPageIdentifier;
-    UITableView *_tableView;
+    MSCLAccount * _account;
+    MSCLAccountStore * _accountStore;
+    BOOL  _didRequestImages;
+    UIImage * _placeholderImage;
+    MSCLSettingsTableViewCell * _removeAccountButtonCell;
+    NSString * _selectedPageIdentifier;
+    UITableView * _tableView;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -24,21 +23,18 @@
 - (void)_doneButtonAction:(id)arg1;
 - (id)_facebookPageTableViewCellInTableView:(id)arg1 forIndexPath:(id)arg2;
 - (id)_imageDataConsumer;
-- (id)_newImageOperationWithObjectIdentifier:(id)arg1;
+- (void)_layoutTableHeaderView;
 - (id)_removalConfirmationMessage;
 - (void)_removeAccount;
-- (void)_requestImagesIfNecessary;
-- (void)_setImage:(id)arg1 forObject:(id)arg2;
 - (void)dealloc;
-- (id)initWithAccountStore:(id)arg1 pages:(id)arg2;
+- (id)initWithAccount:(id)arg1 fromStore:(id)arg2;
 - (void)loadView;
 - (int)numberOfSectionsInTableView:(id)arg1;
-- (void)setSelectedPage:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)tableView:(id)arg1 titleForHeaderInSection:(int)arg2;
 - (void)viewDidAppear:(BOOL)arg1;
-- (void)viewWillAppear:(BOOL)arg1;
+- (void)viewDidLayoutSubviews;
 
 @end

@@ -3,13 +3,14 @@
  */
 
 @interface PLImageDataInfo : NSObject {
-    int _EXIFOrientation;
-    NSURL *_URL;
-    NSString *_UTI;
-    BOOL _canDownloadFromCloud;
-    int _deliveredFormat;
-    BOOL _deliveredPlaceholder;
-    NSString *_sandboxExtensionToken;
+    int  _EXIFOrientation;
+    NSURL * _URL;
+    NSString * _UTI;
+    BOOL  _canDownloadFromCloud;
+    int  _deliveredFormat;
+    BOOL  _deliveredPlaceholder;
+    BOOL  _isOptimizedForSharing;
+    NSString * _sandboxExtensionToken;
 }
 
 @property int EXIFOrientation;
@@ -18,6 +19,7 @@
 @property BOOL canDownloadFromCloud;
 @property int deliveredFormat;
 @property BOOL deliveredPlaceholder;
+@property BOOL isOptimizedForSharing;
 @property (retain) NSString *sandboxExtensionToken;
 
 - (int)EXIFOrientation;
@@ -27,11 +29,14 @@
 - (void)dealloc;
 - (int)deliveredFormat;
 - (BOOL)deliveredPlaceholder;
+- (id)description;
+- (BOOL)isOptimizedForSharing;
 - (id)sandboxExtensionToken;
 - (void)setCanDownloadFromCloud:(BOOL)arg1;
 - (void)setDeliveredFormat:(int)arg1;
 - (void)setDeliveredPlaceholder:(BOOL)arg1;
 - (void)setEXIFOrientation:(int)arg1;
+- (void)setIsOptimizedForSharing:(BOOL)arg1;
 - (void)setSandboxExtensionToken:(id)arg1;
 - (void)setURL:(id)arg1;
 - (void)setUTI:(id)arg1;

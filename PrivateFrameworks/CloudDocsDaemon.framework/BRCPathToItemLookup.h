@@ -11,20 +11,24 @@
         unsigned int serverItem : 1; 
         unsigned int serverByPath : 1; 
         unsigned int packageItem : 1; 
-    } _fetched;
-    BRCDocumentItem *_matchByDocumentID;
-    BRCLocalItem *_matchByFileID;
-    BRCLocalItem *_matchByPath;
-    BRCPackageItem *_packageItem;
-    BRCItemID *_parentID;
-    BRCRelativePath *_pathOfItem;
-    BRCRelativePath *_relpathOfFSEvent;
-    BRCServerItem *_serverByPath;
-    BRCServerItem *_serverItem;
+    }  _fetched;
+    BRCDocumentItem * _matchByDocumentID;
+    BRCDocumentItem * _matchByDocumentIDGlobally;
+    BRCLocalItem * _matchByFileID;
+    BRCLocalItem * _matchByFileIDGlobally;
+    BRCLocalItem * _matchByPath;
+    BRCPackageItem * _packageItem;
+    BRCItemID * _parentID;
+    BRCRelativePath * _pathOfItem;
+    BRCRelativePath * _relpathOfFSEvent;
+    BRCServerItem * _serverByPath;
+    BRCServerItem * _serverItem;
 }
 
 @property (nonatomic, retain) BRCDocumentItem *byDocumentID;
+@property (readonly, retain) BRCDocumentItem *byDocumentIDGlobally;
 @property (nonatomic, retain) BRCLocalItem *byFileID;
+@property (readonly, retain) BRCLocalItem *byFileIDGlobally;
 @property (nonatomic, readonly) BRCLocalItem *byPath;
 @property (nonatomic, readonly) BRCItemID *parentID;
 @property (nonatomic, readonly) BRCRelativePath *relpathOfFSEvent;
@@ -35,11 +39,13 @@
 
 - (void).cxx_destruct;
 - (id)_byPathWithLastPathComponent:(id)arg1;
-- (BOOL)_fetchByDocumentID;
-- (BOOL)_fetchByFileID;
+- (BOOL)_fetchByDocumentID:(BOOL)arg1;
+- (BOOL)_fetchByFileID:(BOOL)arg1;
 - (BOOL)_fetchByPath;
 - (id)byDocumentID;
+- (id)byDocumentIDGlobally;
 - (id)byFileID;
+- (id)byFileIDGlobally;
 - (id)byPath;
 - (id)byPathWithLastPathComponent:(id)arg1;
 - (id)description;

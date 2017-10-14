@@ -3,12 +3,12 @@
  */
 
 @interface NRDevice : NSObject <NSSecureCoding> {
-    NSMutableDictionary *_changeBlocks;
-    NSObject<OS_dispatch_queue> *_nrQueue;
-    NSMutableDictionary *_observers;
-    NSMutableArray *_promiscuousChangeBlocks;
-    NSPointerArray *_promiscuousObservers;
-    NSMutableDictionary *_properties;
+    NSMutableDictionary * _changeBlocks;
+    NSObject<OS_dispatch_queue> * _nrQueue;
+    NSMutableDictionary * _observers;
+    NSMutableArray * _promiscuousChangeBlocks;
+    NSPointerArray * _promiscuousObservers;
+    NSMutableDictionary * _properties;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *changeBlocks;
@@ -65,6 +65,23 @@
 
 // Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
 
++ (BOOL)_activePairedDeviceSupportIsGreaterEqualVersion:(unsigned int)arg1;
++ (BOOL)activePairedDeviceSupportsAttachmentFiles;
++ (BOOL)activePairedDeviceSupportsFileBulletinAdd;
++ (BOOL)activePairedDeviceSupportsFileSettingSync;
+
 - (unsigned int)bltVersion;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (BOOL)hd_isActive;
+- (BOOL)hd_isPaired;
+- (id)hd_lastActiveDate;
+- (id)hd_lastInactiveDate;
+- (id)hd_name;
+- (id)hd_pairingID;
+- (id)hd_productType;
+- (id)hd_shortDescription;
+- (id)hd_systemBuildVersion;
 
 @end

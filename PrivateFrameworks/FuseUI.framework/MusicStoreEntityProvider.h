@@ -3,18 +3,19 @@
  */
 
 @interface MusicStoreEntityProvider : NSObject <MusicEntityProviding, NSCopying, NSSecureCoding> {
-    int _entityType;
-    NSArray *_filteredPlayableItemMetadataContexts;
-    BOOL _shouldIncludeUnplayableContent;
-    BOOL _shouldReloadEntityValueProvidersForInvalidation;
-    BOOL _shouldRespectSystemContentRestrictions;
-    MPSparseArray *_storeEntityValueProviders;
-    NSArray *_storeItemMetadataContexts;
+    int  _entityType;
+    NSArray * _filteredPlayableItemMetadataContexts;
+    BOOL  _shouldIncludeUnplayableContent;
+    BOOL  _shouldReloadEntityValueProvidersForInvalidation;
+    BOOL  _shouldRespectSystemContentRestrictions;
+    MPSparseArray * _storeEntityValueProviders;
+    NSArray * _storeItemMetadataContexts;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) int entityType;
+@property (nonatomic, readonly, copy) NSArray *filteredPlayableItemMetadataContexts;
 @property (readonly) unsigned int hash;
 @property (nonatomic) BOOL shouldIncludeUnplayableContent;
 @property (nonatomic) BOOL shouldReloadEntityValueProvidersForInvalidation;
@@ -44,8 +45,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (int)entityType;
 - (id)entityValueProviderAtIndexPath:(id)arg1;
+- (id)filteredPlayableItemMetadataContexts;
 - (BOOL)hasEntities;
 - (BOOL)hasEntitiesNotInLibrary;
+- (BOOL)hasExplicitContent;
+- (BOOL)hasMultipleEntitiesIncludingStoreContent;
 - (id)indexBarEntryAtIndex:(unsigned int)arg1;
 - (id)indexPathForEntityValueContext:(id)arg1;
 - (id)indexPathForStoreItemMetadataContext:(id)arg1;

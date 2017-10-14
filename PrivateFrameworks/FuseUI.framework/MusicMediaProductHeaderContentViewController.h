@@ -2,29 +2,30 @@
    Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
  */
 
-@interface MusicMediaProductHeaderContentViewController : UIViewController <MusicClientContextConsuming, MusicEntityPlaybackStatusControllerObserving, MusicEntityProductHeaderLockupViewDelegate, MusicMediaDetailHeaderContentViewController> {
-    MusicContextualLibraryUpdateAlertAction *_addRemoveLibraryAlertAction;
-    NSArray *_addRemoveNotificationObservers;
-    BOOL _allowsEditing;
-    MusicClientContext *_clientContext;
-    <MusicEntityProviding> *_containerEntityProvider;
-    MusicEntityValueContext *_containerEntityValueContext;
-    <MusicEntityProviding> *_contextualActionsOverrideTracklistEntityProvider;
-    <MusicMediaProductHeaderContentViewControllerDelegate> *_delegate;
-    UIImage *_editedContentArtworkImage;
-    MusicHairlineView *_hairlineView;
-    BOOL _hairlineVisible;
-    NSString *_lockupArtworkProperty;
-    MusicMediaDetailTintInformation *_mediaDetailTintInformation;
-    BOOL _needToMakeTitleFirstResponder;
-    MusicEntityPlaybackStatusController *_playbackStatusController;
-    MPAVController *_player;
-    int _presentationSource;
-    MusicEntityViewProductHeaderLockupContentDescriptor *_productHeaderLockupContentDecriptor;
-    MusicEntityProductHeaderLockupView *_productHeaderLockupView;
-    BOOL _shouldDelayTransitionProgress;
-    float _transitionProgress;
-    BOOL _wantsRefreshActivityIndicator;
+@interface MusicMediaProductHeaderContentViewController : UIViewController <MusicClientContextConsuming, MusicEntityProductHeaderLockupViewDelegate, MusicMediaDetailHeaderContentViewController> {
+    MusicContextualLibraryUpdateAlertAction * _addRemoveLibraryAlertAction;
+    NSArray * _addRemoveNotificationObservers;
+    BOOL  _allowsEditing;
+    MusicClientContext * _clientContext;
+    <MusicEntityProviding> * _containerEntityProvider;
+    MusicEntityValueContext * _containerEntityValueContext;
+    <MusicEntityProviding> * _contextualActionsOverrideTracklistEntityProvider;
+    <MusicMediaProductHeaderContentViewControllerDelegate> * _delegate;
+    UIImage * _editedContentArtworkImage;
+    MusicHairlineView * _hairlineView;
+    BOOL  _hairlineVisible;
+    MusicContextualLibraryUpdateAlertAction * _keepLocalAlertAction;
+    NSString * _lockupArtworkProperty;
+    MusicMediaDetailTintInformation * _mediaDetailTintInformation;
+    BOOL  _needToMakeTitleFirstResponder;
+    MPAVController * _player;
+    int  _presentationSource;
+    MusicEntityViewProductHeaderLockupContentDescriptor * _productHeaderLockupContentDecriptor;
+    MusicEntityProductHeaderLockupView * _productHeaderLockupView;
+    BOOL  _shouldDelayTransitionProgress;
+    BOOL  _trailingSeparatorInsetFollowsLayoutInsets;
+    float  _transitionProgress;
+    BOOL  _wantsRefreshActivityIndicator;
 }
 
 @property (nonatomic, readonly) MusicEntityValueContext *_containerEntityValueContext;
@@ -45,10 +46,11 @@
 @property (nonatomic, readonly) UIButton *shareButton;
 @property (nonatomic) BOOL shouldDelayTransitionProgress;
 @property (readonly) Class superclass;
+@property (nonatomic) BOOL trailingSeparatorInsetFollowsLayoutInsets;
 
 - (void).cxx_destruct;
 - (void)_applyLockupArtworkProperty;
-- (void)_applyProductHeaderLayoutMargins;
+- (void)_applyProductHeaderLayoutInsets;
 - (void)_applyTransitionProgress;
 - (BOOL)_calculateWantsRefreshButton;
 - (void)_configureProductHeaderLockupContentDescriptor:(id)arg1 withTintInformation:(id)arg2;
@@ -61,13 +63,13 @@
 - (id)_loadProductHeaderLockupContentDescriptor;
 - (void)_presentContextualActionsFromButton:(id)arg1;
 - (id)_productHeaderLockupContentDescriptor;
+- (void)_reloadAddRemoveLibraryAndKeepLocalActions;
 - (void)_reloadContainerEntityValueContextProperties;
-- (void)_reloadWantsAddToLibraryButton;
 - (void)_setContentOverlayInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_updateContentTaste;
 - (void)_updateHairline;
+- (void)_updateHairlineLayoutInsets;
 - (void)_updateNavigationTitle;
-- (void)_updatePlaybackStatusForLockupView;
 - (void)_updatePreferredContentSize;
 - (void)_updateProductHeaderLockupProperties;
 - (BOOL)allowsEditing;
@@ -83,12 +85,12 @@
 - (id)lockupArtworkProperty;
 - (void)makeEditableTitleBecomeFirstResponder;
 - (id)mediaDetailTintInformation;
-- (void)playbackStatusControllerPlaybackStatusDidChange:(id)arg1;
+- (void)music_viewInheritedLayoutInsetsDidChange;
 - (int)presentationSource;
 - (void)productHeaderLockupView:(id)arg1 didSelectCameraButton:(id)arg2;
 - (void)productHeaderLockupView:(id)arg1 didSelectPlayButtonAction:(unsigned int)arg2;
-- (void)productHeaderLockupViewDidSelectAddToLibraryButton:(id)arg1;
 - (void)productHeaderLockupViewDidSelectContextualActionsButton:(id)arg1;
+- (void)productHeaderLockupViewDidSelectDownloadProgressButton:(id)arg1;
 - (void)productHeaderLockupViewDidSelectEditButton:(id)arg1;
 - (void)productHeaderLockupViewDidSelectLikeDislikeButton:(id)arg1;
 - (void)productHeaderLockupViewDidSelectRefreshButton:(id)arg1;
@@ -106,8 +108,10 @@
 - (void)setMediaDetailHeaderHeight:(float)arg1 withMaximumHeaderHeight:(float)arg2 transitionProgress:(float)arg3;
 - (void)setMediaDetailTintInformation:(id)arg1;
 - (void)setShouldDelayTransitionProgress:(BOOL)arg1;
+- (void)setTrailingSeparatorInsetFollowsLayoutInsets:(BOOL)arg1;
 - (id)shareButton;
 - (BOOL)shouldDelayTransitionProgress;
+- (BOOL)trailingSeparatorInsetFollowsLayoutInsets;
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLayoutSubviews;

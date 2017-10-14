@@ -3,21 +3,22 @@
  */
 
 @interface MSASAlbum : NSObject <NSCopying> {
-    NSString *_GUID;
-    NSString *_URLString;
-    id _context;
-    NSString *_ctag;
-    NSString *_foreignCtag;
-    BOOL _isFamilySharedAlbum;
-    NSDictionary *_metadata;
-    NSString *_ownerEmail;
-    NSString *_ownerFirstName;
-    NSString *_ownerFullName;
-    NSString *_ownerLastName;
-    NSString *_ownerPersonID;
-    NSString *_publicURLString;
-    int _relationshipState;
-    NSDate *_subscriptionDate;
+    NSString * _GUID;
+    NSString * _URLString;
+    id  _context;
+    NSString * _ctag;
+    NSString * _foreignCtag;
+    BOOL  _isFamilySharedAlbum;
+    NSDictionary * _metadata;
+    NSString * _ownerEmail;
+    NSString * _ownerFirstName;
+    NSString * _ownerFullName;
+    BOOL  _ownerIsWhitelisted;
+    NSString * _ownerLastName;
+    NSString * _ownerPersonID;
+    NSString * _publicURLString;
+    int  _relationshipState;
+    NSDate * _subscriptionDate;
 }
 
 @property (nonatomic, retain) NSString *GUID;
@@ -30,6 +31,7 @@
 @property (nonatomic, retain) NSString *ownerEmail;
 @property (nonatomic, retain) NSString *ownerFirstName;
 @property (nonatomic, retain) NSString *ownerFullName;
+@property (nonatomic) BOOL ownerIsWhitelisted;
 @property (nonatomic, retain) NSString *ownerLastName;
 @property (nonatomic, retain) NSString *ownerPersonID;
 @property (nonatomic, retain) NSString *publicURLString;
@@ -59,6 +61,7 @@
 - (id)ownerEmail;
 - (id)ownerFirstName;
 - (id)ownerFullName;
+- (BOOL)ownerIsWhitelisted;
 - (id)ownerLastName;
 - (id)ownerPersonID;
 - (id)publicURLString;
@@ -73,6 +76,7 @@
 - (void)setOwnerEmail:(id)arg1;
 - (void)setOwnerFirstName:(id)arg1;
 - (void)setOwnerFullName:(id)arg1;
+- (void)setOwnerIsWhitelisted:(BOOL)arg1;
 - (void)setOwnerLastName:(id)arg1;
 - (void)setOwnerPersonID:(id)arg1;
 - (void)setPublicURLString:(id)arg1;

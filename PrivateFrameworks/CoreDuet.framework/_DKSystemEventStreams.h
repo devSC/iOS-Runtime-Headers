@@ -9,6 +9,9 @@
 + (id)appActivityStream;
 + (id)appBulletinStream;
 + (id)appInFocusStream;
++ (id)appIntentsStream;
++ (id)appLocationActivityStream;
++ (id)appViewedInDockStream;
 + (id)audioInputRouteStream;
 + (id)audioOutputRoutStream;
 + (id)bluetoothIsConnectedStream;
@@ -26,20 +29,27 @@
 + (id)displayIsBacklit;
 + (id)displayOrientationStream;
 + (id)glanceLaunchStream;
++ (id)homeKitAccessoryControlStream;
++ (id)homeKitAppViewStream;
 + (id)homeKitSceneStream;
++ (id)internalQueryDataCollectionStream;
 + (id)isSleepEventStream;
 + (id)isWeekendEventStream;
 + (id)locationVisitStream;
++ (id)microLocationVisitStream;
 + (id)motionStream;
 + (id)nextCalendarEventStream;
 + (id)nextSleepEventStream;
 + (id)nowPlayingStream;
 + (id)periodOfDayEventStream;
++ (id)searchFeedbackStream;
 + (id)spotlightActivityStream;
++ (id)sunriseSunsetStream;
 + (id)userActivityDetectedStream;
 + (id)userIsCurrentlyAsleepStream;
 + (id)userIsFirstBacklightOnAfterWakeup;
 + (id)userNextSleepPeriodStream;
++ (id)watchActiveStream;
 + (id)watchNearbyStream;
 
 // Image: /System/Library/PrivateFrameworks/DuetExpertCenter.framework/DuetExpertCenter

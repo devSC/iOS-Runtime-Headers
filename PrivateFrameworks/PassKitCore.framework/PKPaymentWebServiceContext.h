@@ -3,23 +3,24 @@
  */
 
 @interface PKPaymentWebServiceContext : NSObject <NSSecureCoding> {
-    NSArray *_certificates;
-    PKPaymentWebServiceConfiguration *_configuration;
-    NSDate *_configurationDate;
-    int _consistencyCheckBackoffLevel;
-    BOOL _devSigned;
-    NSString *_deviceID;
-    NSString *_lastUpdatedTag;
-    BOOL _messageServiceDisabled;
-    NSString *_primaryRegionIdentifier;
-    NSString *_pushToken;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSDictionary *_regions;
-    NSDate *_registrationDate;
-    NSString *_secureElementID;
-    BOOL _transactionServiceDisabled;
-    NSMutableDictionary *_verificationRequestsByPassUniqueID;
-    int _version;
+    NSArray * _certificates;
+    PKPaymentWebServiceConfiguration * _configuration;
+    NSDate * _configurationDate;
+    int  _consistencyCheckBackoffLevel;
+    BOOL  _devSigned;
+    NSString * _deviceID;
+    BOOL  _ignoreProvisioningEnablementPercentage;
+    NSString * _lastUpdatedTag;
+    BOOL  _messageServiceDisabled;
+    NSString * _primaryRegionIdentifier;
+    NSString * _pushToken;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSDictionary * _regions;
+    NSDate * _registrationDate;
+    NSString * _secureElementID;
+    BOOL  _transactionServiceDisabled;
+    NSMutableDictionary * _verificationRequestsByPassUniqueID;
+    int  _version;
 }
 
 @property (readonly) NSDictionary *TSMURLStringByPushTopic;
@@ -29,6 +30,7 @@
 @property int consistencyCheckBackoffLevel;
 @property BOOL devSigned;
 @property (copy) NSString *deviceID;
+@property BOOL ignoreProvisioningEnablementPercentage;
 @property (copy) NSString *lastUpdatedTag;
 @property BOOL messageServiceDisabled;
 @property (readonly) PKPaymentWebServiceRegion *primaryRegion;
@@ -46,18 +48,21 @@
 + (id)contextWithArchive:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (id)TSMPushTopics;
 - (id)TSMURLStringByPushTopic;
+- (double)_contextProvisioningEnablementValue;
 - (void)addVerificationRequestRecord:(id)arg1 forUniqueID:(id)arg2;
 - (void)archiveAtPath:(id)arg1;
 - (id)certificates;
 - (id)configuration;
 - (id)configurationDate;
 - (int)consistencyCheckBackoffLevel;
-- (void)dealloc;
+- (BOOL)contextMeetsProvisioningEnablementPercentageThresholdForRegion:(id)arg1;
 - (BOOL)devSigned;
 - (id)deviceID;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)ignoreProvisioningEnablementPercentage;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)lastUpdatedTag;
@@ -76,6 +81,7 @@
 - (void)setConsistencyCheckBackoffLevel:(int)arg1;
 - (void)setDevSigned:(BOOL)arg1;
 - (void)setDeviceID:(id)arg1;
+- (void)setIgnoreProvisioningEnablementPercentage:(BOOL)arg1;
 - (void)setLastUpdatedTag:(id)arg1;
 - (void)setMessageServiceDisabled:(BOOL)arg1;
 - (void)setPrimaryRegionIdentifier:(id)arg1;

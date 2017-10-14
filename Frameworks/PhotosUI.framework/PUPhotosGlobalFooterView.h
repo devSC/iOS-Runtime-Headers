@@ -2,33 +2,73 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@interface PUPhotosGlobalFooterView : UICollectionReusableView {
-    unsigned int _imageCount;
-    int _importOperation;
-    unsigned int _otherCount;
-    unsigned int _pendingCount;
-    int _style;
-    NSString *_subtitle;
-    UILabel *_subtitleLabel;
-    PLSyncProgressView *_syncProgressView;
-    UILabel *_titleLabel;
-    unsigned int _videoCount;
+@interface PUPhotosGlobalFooterView : UICollectionReusableView <ICQBannerViewDelegate> {
+    ICQOffer * __offer;
+    BOOL  __shouldHideCloudStatus;
+    BOOL  __shouldHighlightSubtitle;
+    PUPhotosGlobalFooterBannerView * _cloudBannerView;
+    <PUPhotosGlobalFooterViewDelegate> * _delegate;
+    struct { 
+        BOOL respondsToPresentPurchaseFlow; 
+        BOOL respondsToDidChangeHeight; 
+    }  _delegateFlags;
+    unsigned int  _imageCount;
+    int  _importOperation;
+    BOOL  _isUpdatingCloudOffer;
+    BOOL  _needsUpdateCloudOffer;
+    unsigned int  _otherCount;
+    unsigned int  _pendingCount;
+    float  _referenceWidth;
+    BOOL  _shouldShowCloudBanner;
+    int  _style;
+    NSString * _subtitle;
+    UILabel * _subtitleLabel;
+    PLSyncProgressView * _syncProgressView;
+    UILabel * _titleLabel;
+    unsigned int  _videoCount;
 }
 
+@property (setter=_setOffer:, nonatomic, retain) ICQOffer *_offer;
+@property (setter=_setShouldHideCloudStatus:, nonatomic) BOOL _shouldHideCloudStatus;
+@property (setter=_setShouldHighlightSubtitle:, nonatomic) BOOL _shouldHighlightSubtitle;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PUPhotosGlobalFooterViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL shouldShowCloudBanner;
 @property (nonatomic) int style;
 @property (nonatomic, retain) NSString *subtitle;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_completeOfferUpdateWithOffer:(id)arg1;
 - (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
+- (void)_handleCloudOfferChangedNotification:(id)arg1;
+- (id)_offer;
+- (void)_setOffer:(id)arg1;
+- (void)_setShouldHideCloudStatus:(BOOL)arg1;
+- (void)_setShouldHighlightSubtitle:(BOOL)arg1;
+- (BOOL)_shouldHideCloudStatus;
+- (BOOL)_shouldHighlightSubtitle;
+- (void)_showPurchaseFlow;
+- (void)_updateCloudOfferIfNeeded;
 - (void)_updateFonts;
 - (void)_updateSubviews;
+- (void)_updateSubviewsOrdering;
+- (void)bannerView:(id)arg1 action:(int)arg2 parameters:(id)arg3 dismiss:(BOOL)arg4;
 - (void)dealloc;
+- (id)delegate;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)invalidateCloudOffer;
 - (void)layoutSubviews;
+- (void)setDelegate:(id)arg1;
 - (void)setImageCount:(unsigned int)arg1 videoCount:(unsigned int)arg2 otherCount:(unsigned int)arg3;
 - (void)setPendingCount:(unsigned int)arg1 importOperation:(int)arg2;
+- (void)setShouldShowCloudBanner:(BOOL)arg1;
 - (void)setStyle:(int)arg1;
 - (void)setSubtitle:(id)arg1;
+- (void)setSubtitle:(id)arg1 shouldHightlight:(BOOL)arg2;
+- (BOOL)shouldShowCloudBanner;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (int)style;
 - (id)subtitle;

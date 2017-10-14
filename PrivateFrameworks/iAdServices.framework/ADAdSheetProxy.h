@@ -3,18 +3,20 @@
  */
 
 @interface ADAdSheetProxy : NSObject {
-    <ADAdSheetProxyDelegate> *_delegate;
-    double _lastLaunchTimestamp;
-    NSMutableSet *_launchAssertions;
-    double _nextScheduledLaunch;
-    BOOL _openApplicationInProgress;
-    NSObject<OS_dispatch_queue> *_proxyQueue;
-    BOOL _serviceLaunchThrottled;
-    int _unexpectedTerminationCount;
-    BOOL _waitingForAdSheet;
+    <ADAdSheetProxyDelegate> * _delegate;
+    int  _interruptionCount;
+    double  _lastLaunchTimestamp;
+    NSMutableSet * _launchAssertions;
+    double  _nextScheduledLaunch;
+    BOOL  _openApplicationInProgress;
+    NSObject<OS_dispatch_queue> * _proxyQueue;
+    BOOL  _serviceLaunchThrottled;
+    int  _unexpectedTerminationCount;
+    BOOL  _waitingForAdSheet;
 }
 
 @property (nonatomic) <ADAdSheetProxyDelegate> *delegate;
+@property (nonatomic) int interruptionCount;
 @property (nonatomic) double lastLaunchTimestamp;
 @property (nonatomic, retain) NSMutableSet *launchAssertions;
 @property (nonatomic) double nextScheduledLaunch;
@@ -32,6 +34,7 @@
 - (void)considerLaunchingAdSheet;
 - (id)delegate;
 - (id)init;
+- (int)interruptionCount;
 - (double)lastLaunchTimestamp;
 - (id)launchAssertions;
 - (double)nextScheduledLaunch;
@@ -39,10 +42,12 @@
 - (id)proxyQueue;
 - (void)releaseLaunchAssertion:(id)arg1;
 - (double)remainingLaunchBackoff;
+- (void)reportAdSheetInterruption;
 - (void)reportAdSheetUnexpectedTermination;
 - (void)resetAdSheetThrottle;
 - (BOOL)serviceLaunchThrottled;
 - (void)setDelegate:(id)arg1;
+- (void)setInterruptionCount:(int)arg1;
 - (void)setLastLaunchTimestamp:(double)arg1;
 - (void)setLaunchAssertions:(id)arg1;
 - (void)setNextScheduledLaunch:(double)arg1;

@@ -3,9 +3,9 @@
  */
 
 @interface AFSiriRequest : NSObject <NSSecureCoding> {
-    NSString *__refId;
-    NSUUID *_identifier;
-    NSString *_originatingAceID;
+    NSString * __refId;
+    NSUUID * _identifier;
+    NSString * _originatingAceID;
 }
 
 @property (setter=_setOriginatingAceID:, nonatomic, copy) NSString *_originatingAceID;
@@ -14,6 +14,7 @@
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)_af_analyticsContextDescription;
 - (id)_descriptionWithProperties:(id)arg1;
 - (id)_identifier;
 - (id)_initWithOriginatingAceID:(id)arg1;

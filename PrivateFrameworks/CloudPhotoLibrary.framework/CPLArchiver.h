@@ -3,10 +3,10 @@
  */
 
 @interface CPLArchiver : NSCoder {
-    id _archive;
-    id _archiveCursor;
-    BOOL _forDisplay;
-    id _rootObject;
+    id  _archive;
+    id  _archiveCursor;
+    BOOL  _forDisplay;
+    id  _rootObject;
 }
 
 @property (nonatomic, retain) id archiveCursor;
@@ -20,8 +20,11 @@
 + (id)displayablePropertyListWithRootObject:(id)arg1;
 + (id)fullDescriptionForObject:(id)arg1;
 + (id)unarchiveObjectWithData:(id)arg1 ofClass:(Class)arg2;
++ (id)unarchivedObjectWithPropertyList:(id)arg1 ofClass:(Class)arg2;
 
 - (void).cxx_destruct;
+- (id)_decodeKey:(id)arg1 class:(Class)arg2 inDictionary:(id)arg3;
+- (id)_encodeKey:(id)arg1;
 - (BOOL)allowsKeyedCoding;
 - (id)archiveCursor;
 - (id)archivedPropertyList;

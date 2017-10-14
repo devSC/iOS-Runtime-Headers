@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSSQLRow : NSExternalRefCountedData {
-    _CDSnapshot *_snapshot;
+@interface NSSQLRow : NSPersistentCacheRow {
+    _CDSnapshot * _snapshot;
 }
 
 + (id)allocForSQLEntity:(id)arg1;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (void)initialize;
-+ (unsigned int)newBatchRowAllocation:(id*)arg1 count:(unsigned int)arg2 forSQLEntity:(id)arg3 withOwnedObjectIDs:(struct _NSScalarObjectID { Class x1; }**)arg4 andTimestamp:(double)arg5;
++ (unsigned int)newBatchRowAllocation:(id*)arg1 count:(unsigned int)arg2 forSQLEntity:(id)arg3 withOwnedObjectIDs:(struct _NSScalarObjectID {}**)arg4 andTimestamp:(double)arg5;
 
 - (id)_snapshot_;
 - (void)_validateToOnes;

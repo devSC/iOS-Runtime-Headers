@@ -3,9 +3,9 @@
  */
 
 @interface SBUIBannerTargetProxy : NSObject <SBUIBannerTarget> {
-    void *_identifier;
-    int _idiom;
-    <SBUIBannerTargetImplementation> *_implementation;
+    void * _identifier;
+    int  _idiom;
+    <SBUIBannerTargetImplementation> * _implementation;
 }
 
 @property (nonatomic, readonly) void*bannerTargetIdentifier;
@@ -15,6 +15,7 @@
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (void*)bannerTargetIdentifier;
 - (int)bannerTargetIdiom;
 - (void)cacheBannerForContext:(id)arg1 withCompletion:(id /* block */)arg2;

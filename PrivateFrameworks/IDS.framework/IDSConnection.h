@@ -3,12 +3,14 @@
  */
 
 @interface IDSConnection : NSObject {
-    _IDSConnection *_internal;
+    _IDSConnection * _internal;
 }
 
 @property (nonatomic, readonly, retain) _IDSConnection *_internal;
 @property (nonatomic, readonly, retain) IDSAccount *account;
 @property (nonatomic, readonly) BOOL isActive;
+
++ (id)_connectionWithAccount:(id)arg1 commands:(id)arg2 indirectDelegateCallouts:(BOOL)arg3;
 
 - (id)_initWithAccount:(id)arg1 commands:(id)arg2 indirectDelegateCallouts:(BOOL)arg3;
 - (id)_internal;

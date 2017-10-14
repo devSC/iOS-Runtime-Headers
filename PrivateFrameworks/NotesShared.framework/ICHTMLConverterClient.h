@@ -3,9 +3,9 @@
  */
 
 @interface ICHTMLConverterClient : NSObject {
-    NSXPCConnection *_connectionToService;
-    unsigned int _requestCount;
-    NSObject<OS_dispatch_queue> *_requestCountQueue;
+    NSXPCConnection * _connectionToService;
+    unsigned int  _requestCount;
+    NSObject<OS_dispatch_queue> * _requestCountQueue;
 }
 
 @property (nonatomic) unsigned int requestCount;
@@ -14,7 +14,7 @@
 + (id)sharedClient;
 
 - (void).cxx_destruct;
-- (void)attributedStringFromHTMLString:(id)arg1 timeoutDate:(id)arg2 completionBlock:(id /* block */)arg3;
+- (void)attributedStringFromHTMLString:(id)arg1 baseURL:(id)arg2 timeoutDate:(id)arg3 completionBlock:(id /* block */)arg4;
 - (void)dealloc;
 - (id)init;
 - (unsigned int)requestCount;

@@ -3,26 +3,27 @@
  */
 
 @interface MusicSearchViewController : SKUIScrollingSegmentedController <MusicClientContextConsuming, MusicJSNativeViewControllerFactory, MusicJSSearchNativeViewControllerDelegate, MusicLibrarySearchResultsViewControllerDelegate, MusicSearchBarDelegate, MusicSearchHintsViewControllerDelegate, MusicSearchRecentsViewControllerDelegate, SKUIScrollingSegmentedControllerDelegate, UIViewControllerTransitioningDelegate> {
-    BOOL _allowsAllContentInStoreSearch;
-    BOOL _allowsRadioContentInStoreSearch;
-    MusicClientContext *_clientContext;
-    BOOL _didInsertStoreSearchResultsDocument;
-    BOOL _didMakeSearchBarFirstResponder;
-    MusicLibrarySearchResultsViewController *_librarySearchResultsViewController;
-    BOOL _mediaPickerAllowsLocalSearchOnly;
-    BOOL _mediaPickerAllowsMultipleSelection;
-    <MusicSearchViewControllerMediaPickerDelegate> *_mediaPickerDelegate;
-    BOOL _mediaPickerIncludePlaylists;
-    _UINavigationControllerPalette *_palette;
-    NSString *_partialSearchString;
-    MusicSearchBar *_searchBar;
-    MusicSearchHintsViewController *_searchHintsViewController;
-    unsigned int _searchOptions;
-    BOOL _shouldUseMediaPickerViewConfiguration;
-    UIViewController *_storeSearchResultsViewController;
-    BOOL _storeSearchViewIsVisible;
-    BOOL _storeSearchViewNeedsChangeUponAppearance;
-    BOOL _storeSearchViewNeedsSubmitUponAppearance;
+    BOOL  _allowsAllContentInStoreSearch;
+    BOOL  _allowsRadioContentInStoreSearch;
+    MusicClientContext * _clientContext;
+    BOOL  _didInsertStoreSearchResultsDocument;
+    BOOL  _didMakeSearchBarFirstResponder;
+    MusicLibrarySearchResultsViewController * _librarySearchResultsViewController;
+    BOOL  _mediaPickerAllowsLocalSearchOnly;
+    BOOL  _mediaPickerAllowsMultipleSelection;
+    <MusicSearchViewControllerMediaPickerDelegate> * _mediaPickerDelegate;
+    BOOL  _mediaPickerIncludePlaylists;
+    _UINavigationControllerPalette * _palette;
+    NSString * _partialSearchString;
+    MusicSearchBar * _searchBar;
+    MusicSearchHintsViewController * _searchHintsViewController;
+    unsigned int  _searchOptions;
+    BOOL  _shouldUseMediaPickerViewConfiguration;
+    UIViewController * _storeSearchResultsViewController;
+    BOOL  _storeSearchViewIsVisible;
+    BOOL  _storeSearchViewNeedsChangeUponAppearance;
+    BOOL  _storeSearchViewNeedsSubmitUponAppearance;
+    NSArray * _titleViewPaletteConstraints;
 }
 
 @property (nonatomic, retain) SKUIClientContext *clientContext;
@@ -45,14 +46,17 @@
 
 - (void).cxx_destruct;
 - (BOOL)_allowsLocalSearchOnly;
+- (void)_applyConstraints;
 - (void)_attachPaletteIfNecessary;
+- (void)_configureNavigationBar;
 - (void)_detachPalette;
 - (void)_dispatchSearchTextChangeWithTerm:(id)arg1 usingSubmitEventType:(BOOL)arg2;
 - (id)_extraInfoForStoreSearchEvent;
 - (void)_handleCanShowRadioDidChangeNotification:(id)arg1;
 - (void)_handleCanShowSubscriptionContentDidChangeNotification:(id)arg1;
+- (void)_handleCancelButtonPressed;
 - (void)_recordSearchRecent:(id)arg1;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_searchSegmentedControlContentEdgeInsets;
+- (void)_removeConstraints;
 - (id)_storeSearchSegmentTitle;
 - (void)_updateForStoreContentAvailabilityChange;
 - (id)animationControllerForDismissedController:(id)arg1;
@@ -88,6 +92,7 @@
 - (void)setSearchTerm:(id)arg1;
 - (void)setStoreSearchViewIsVisible:(BOOL)arg1;
 - (BOOL)storeSearchViewIsVisible;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;

@@ -6,6 +6,7 @@
 
 + (id)sharedHacks;
 
+- (void)_applyHeuristicsToEffectiveUserSettings:(id)arg1;
 - (BOOL)_applyHeuristicsToRestrictions:(id)arg1 forProfile:(id)arg2 outError:(id*)arg3;
 - (void)_applyImpliedSettingsToSettingsDictionary:(id)arg1 currentSettings:(id)arg2 restrictions:(id)arg3;
 - (void)_applyMandatorySettingsToEffectiveUserSettings:(id)arg1;
@@ -17,9 +18,12 @@
 - (void)_sendChangeNotificationsBasedOnDefaultsAdditionByDomain:(id)arg1;
 - (void)_sendChangeNotificationsBasedOnDefaultsRemovalByDomain:(id)arg1;
 - (void)_setRequriesEncryptedBackupInLockdownWithEffectiveUserSettings:(id)arg1;
+- (BOOL)isGreenTea;
 - (BOOL)isSetupBuddyDone;
+- (id)profileTrustEvaluators;
 - (id)quantizedAutoLockInSeconds:(id)arg1;
 - (id)quantizedGracePeriodInSeconds:(id)arg1;
+- (BOOL)sanitizedProfileSignerCertificateChainIsAllowedToInstallUnsupportedPayload:(id)arg1;
 - (BOOL)sanitizedProfileSignerCertificateChainIsAllowedToWriteDefaults:(id)arg1;
 
 @end

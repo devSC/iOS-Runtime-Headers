@@ -3,9 +3,10 @@
  */
 
 @interface MusicLibraryRecentlyAddedOverviewEntityValueProvider : NSObject <MusicEntityValueProviding> {
-    BOOL _hasValidItemCount;
-    unsigned int _itemCount;
-    MPMediaQuery *_query;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    BOOL  _hasValidItemCount;
+    unsigned int  _itemCount;
+    MPMediaQuery * _query;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -13,6 +14,8 @@
 @property (readonly) unsigned int hash;
 @property (nonatomic, readonly, copy) MPMediaQuery *query;
 @property (readonly) Class superclass;
+
++ (BOOL)supportsConcurrentLoadingOfEntityProperties;
 
 - (void).cxx_destruct;
 - (id)entityUniqueIdentifier;

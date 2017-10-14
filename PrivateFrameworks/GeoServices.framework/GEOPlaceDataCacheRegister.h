@@ -3,13 +3,17 @@
  */
 
 @interface GEOPlaceDataCacheRegister : NSObject {
-    NSMutableDictionary *_caches;
-    NSMutableDictionary *_freeable;
+    NSMutableDictionary * _caches;
+    NSMutableDictionary * _freeable;
+    BOOL  _hasLoadedAllCaches;
 }
 
++ (id)diskCachePath;
 + (void)setDiskCachePath:(id)arg1;
 
+- (id)_allExistingProviderIDs;
 - (id)_cacheKeysPerSize;
+- (void)_loadAllCachesIfNecessary;
 - (id)allCacheEntries;
 - (id)allCaches;
 - (id)cacheForProviderID:(int)arg1;

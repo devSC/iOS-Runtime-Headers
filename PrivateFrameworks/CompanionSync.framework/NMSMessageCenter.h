@@ -3,29 +3,33 @@
  */
 
 @interface NMSMessageCenter : NSObject <IDSServiceDelegate> {
-    unsigned int _currentBytesInFlight;
-    <NMSMessageCenterDelegate> *_delegate;
-    BOOL _delegateRequiresACKs;
-    BOOL _enableTransmissionWindow;
-    NSMutableDictionary *_errorHandlers;
-    NSObject<OS_dispatch_source> *_expireTimer;
-    NSString *_launchNotification;
-    struct __CFString { } *_loggingFacility;
-    unsigned int _maxBytesInFlight;
-    unsigned int _maxMessagesInFlight;
-    unsigned int _minMessagesInFlight;
-    NSDate *_nextExpireTimerFireDate;
-    NSMutableDictionary *_pbMapping;
-    NMSPersistentDictionary *_persistentContextStore;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSMutableDictionary *_requestHandlers;
-    NSMutableDictionary *_responseHandlers;
-    IDSService *_service;
-    NSString *_serviceIdentifier;
-    NMSWindowData *_windowData;
-    _NMSDispatchQueue *_windowQueue;
-    double _windowResponseTimeout;
-    NSObject<OS_dispatch_source> *_windowTimeout;
+    BOOL  _checkedForQWS;
+    unsigned int  _currentBytesInFlight;
+    <NMSMessageCenterDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _delegateQueue;
+    BOOL  _delegateRequiresACKs;
+    BOOL  _enableTransmissionWindow;
+    NSMutableDictionary * _errorHandlers;
+    NSObject<OS_dispatch_source> * _expireTimer;
+    _SYMultiSuspendableQueue * _idsIncomingQueue;
+    NSString * _launchNotification;
+    struct __CFString { } * _loggingFacility;
+    unsigned int  _maxBytesInFlight;
+    unsigned int  _maxMessagesInFlight;
+    unsigned int  _minMessagesInFlight;
+    NSDate * _nextExpireTimerFireDate;
+    NSMutableDictionary * _pbMapping;
+    NMSPersistentDictionary * _persistentContextStore;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSMutableDictionary * _requestHandlers;
+    NSMutableDictionary * _responseHandlers;
+    IDSService * _service;
+    NSString * _serviceIdentifier;
+    NSObject<OS_os_activity> * _transportActivity;
+    NMSWindowData * _windowData;
+    _NMSDispatchQueue * _windowQueue;
+    double  _windowResponseTimeout;
+    NSObject<OS_dispatch_source> * _windowTimeout;
 }
 
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *actionQ;
@@ -43,6 +47,7 @@
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
 @property (nonatomic, retain) IDSService *service;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) NSObject<OS_os_activity> *transportActivity;
 @property (nonatomic) double windowResponseTimeout;
 
 + (BOOL)messageWindowCountEnabled;
@@ -51,6 +56,7 @@
 - (void).cxx_destruct;
 - (id)_buildDataForRequest:(id)arg1 options:(id*)arg2;
 - (id)_buildDataForResponse:(id)arg1 options:(id*)arg2;
+- (void)_checkForSwitch;
 - (unsigned int)_currentBytesInFlight;
 - (id)_decodeIncomingRequestData:(id)arg1 context:(id)arg2;
 - (void)_expireMessages;
@@ -65,10 +71,12 @@
 - (void)addErrorHandlerForMessageID:(unsigned short)arg1 usingBlock:(id /* block */)arg2;
 - (void)addRequestHandlerForMessageID:(unsigned short)arg1 usingBlock:(id /* block */)arg2;
 - (void)addResponseHandler:(unsigned short)arg1 usingBlock:(id /* block */)arg2;
+- (BOOL)cancelMessageWithID:(id)arg1 error:(id*)arg2;
 - (void)dealloc;
 - (id)delegate;
 - (BOOL)delegateRequiresACKs;
 - (id)description;
+- (id)deviceIDFromDevice:(id)arg1;
 - (void)dropExtantMessages;
 - (BOOL)enableTransmissionWindow;
 - (id)errorHandlers;
@@ -84,6 +92,7 @@
 - (id)requestHandlers;
 - (id)responseHandlers;
 - (void)resume;
+- (void)resumeIncomingMessages;
 - (void)sendFile:(id)arg1;
 - (void)sendRequest:(id)arg1;
 - (id)service;
@@ -91,6 +100,8 @@
 - (void)service:(id)arg1 account:(id)arg2 identifier:(id)arg3 hasBeenDeliveredWithContext:(id)arg4;
 - (void)service:(id)arg1 account:(id)arg2 incomingData:(id)arg3 fromID:(id)arg4 context:(id)arg5;
 - (void)service:(id)arg1 account:(id)arg2 incomingResourceAtURL:(id)arg3 metadata:(id)arg4 fromID:(id)arg5 context:(id)arg6;
+- (void)service:(id)arg1 didSwitchActivePairedDevice:(id)arg2 acknowledgementBlock:(id /* block */)arg3;
+- (void)service:(id)arg1 nearbyDevicesChanged:(id)arg2;
 - (void)setDelegate:(id)arg1;
 - (void)setDelegate:(id)arg1 queue:(id)arg2;
 - (void)setDelegateRequiresACKs:(BOOL)arg1;
@@ -100,7 +111,10 @@
 - (void)setMinMessagesInFlight:(unsigned int)arg1;
 - (void)setQueue:(id)arg1;
 - (void)setService:(id)arg1;
+- (void)setTransportActivity:(id)arg1;
 - (void)setWindowResponseTimeout:(double)arg1;
+- (void)suspendIncomingMessages;
+- (id)transportActivity;
 - (double)windowResponseTimeout;
 
 @end

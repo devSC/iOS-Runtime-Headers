@@ -2,16 +2,13 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@interface SSMetricsEventTable : NSObject {
-    SSSQLiteDatabase *_database;
-}
+@interface SSMetricsEventTable : SSEventsTableBase
 
++ (id)_eventsTableName;
 + (id)databasePath;
 
+- (BOOL)_migrateToVersion1;
+- (BOOL)_migrateToVersion2;
 - (BOOL)_setupDatabase;
-- (void)dealloc;
-- (id)init;
-- (id)initWithDatabase:(id)arg1;
-- (void)performTransactionWithBlock:(id /* block */)arg1;
 
 @end

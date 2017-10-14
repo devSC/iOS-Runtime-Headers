@@ -3,13 +3,13 @@
  */
 
 @interface HMAction : NSObject <HMObjectMerge> {
-    HMActionSet *_actionSet;
-    unsigned int _actionType;
-    NSObject<OS_dispatch_queue> *_clientQueue;
-    HMDelegateCaller *_delegateCaller;
-    NSObject<OS_dispatch_queue> *_propertyQueue;
-    NSUUID *_uniqueIdentifier;
-    NSUUID *_uuid;
+    HMActionSet * _actionSet;
+    unsigned int  _actionType;
+    NSObject<OS_dispatch_queue> * _clientQueue;
+    HMDelegateCaller * _delegateCaller;
+    NSObject<OS_dispatch_queue> * _propertyQueue;
+    NSUUID * _uniqueIdentifier;
+    NSUUID * _uuid;
 }
 
 @property (nonatomic) HMActionSet *actionSet;
@@ -29,7 +29,6 @@
 
 - (void).cxx_destruct;
 - (void)_configure:(id)arg1 actionSet:(id)arg2 clientQueue:(id)arg3 delegateCaller:(id)arg4;
-- (void)_configureWithMerge:(id)arg1 actionSet:(id)arg2;
 - (BOOL)_handleUpdates:(id)arg1;
 - (void)_invalidate;
 - (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;

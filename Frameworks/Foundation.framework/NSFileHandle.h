@@ -51,14 +51,28 @@
 - (void)writeData:(id)arg1;
 - (id /* block */)writeabilityHandler;
 
+// Image: /System/Library/PrivateFrameworks/AppleServiceToolkit.framework/AppleServiceToolkit
+
++ (id)fileHandleForCreatingURL:(id)arg1 protection:(id)arg2 error:(id*)arg3;
+
+- (BOOL)isOpenForUpdating;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (unsigned int)writeWithCompression:(id)arg1 andUpdateAdler32:(struct adler32_t { unsigned int x1; }*)arg2;
+
 // Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
 
-- (BOOL)hk_readValue:(void*)arg1 ofSize:(unsigned long)arg2;
-- (BOOL)hk_writeValue:(const void*)arg1 size:(unsigned long)arg2;
+- (BOOL)hk_readValue:(void*)arg1 ofSize:(unsigned long)arg2 error:(id*)arg3;
+- (BOOL)hk_writeValue:(const void*)arg1 size:(unsigned long)arg2 error:(id*)arg3;
 
 // Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
 
 - (void)ml_lock;
 - (void)ml_unlock;
+
+// Image: /System/Library/PrivateFrameworks/Parsec.framework/Parsec
+
+- (id)prs_mappedData;
 
 @end

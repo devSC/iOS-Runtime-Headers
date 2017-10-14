@@ -3,16 +3,23 @@
  */
 
 @interface MTLDebugRenderPipelineState : MTLToolsRenderPipelineState {
-    MTLRenderPipelineDescriptor *_descriptor;
-    MTLRenderPipelineReflection *_reflection;
+    unsigned int  _colorPixelFormat;
+    unsigned int  _depthPixelFormat;
+    MTLRenderPipelineDescriptor * _descriptor;
+    MTLRenderPipelineReflection * _reflection;
+    unsigned int  _sampleCount;
+    unsigned int  _stencilPixelFormat;
+    unsigned int  _vertexBufferStride;
 }
 
 @property (nonatomic, readonly) MTLRenderPipelineDescriptor *descriptor;
 @property (nonatomic, readonly) MTLRenderPipelineReflection *reflection;
 
 - (void).cxx_destruct;
+- (void)_updateCachedPipelineState:(id)arg1;
 - (id)description;
 - (id)descriptor;
+- (id)formattedDescription:(unsigned int)arg1;
 - (id)getParameter:(id)arg1;
 - (id)initWithPipelineState:(id)arg1 reflection:(id)arg2 parent:(id)arg3 descriptor:(id)arg4;
 - (id)reflection;

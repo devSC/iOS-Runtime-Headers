@@ -3,10 +3,10 @@
  */
 
 @interface MusicShuffleActionEntityProvider : NSObject <MusicEntityProviding> {
-    BOOL _editing;
-    BOOL _hasShuffleAction;
-    MusicShuffleActionEntityValueProvider *_shuffleActionEntityValueProvider;
-    <MusicEntityProviding> *_sourceEntityProvider;
+    BOOL  _editing;
+    BOOL  _hasShuffleAction;
+    MusicShuffleActionEntityValueProvider * _shuffleActionEntityValueProvider;
+    <MusicEntityProviding> * _sourceEntityProvider;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -26,6 +26,7 @@
 - (id)entityValueProviderAtIndexPath:(id)arg1;
 - (BOOL)hasEntities;
 - (BOOL)hasEntitiesNotInLibrary;
+- (BOOL)hasShuffleAction;
 - (id)indexBarEntryAtIndex:(unsigned int)arg1;
 - (id)indexPathForEntityValueContext:(id)arg1;
 - (id)initWithSourceEntityProvider:(id)arg1;
@@ -33,7 +34,7 @@
 - (unsigned int)numberOfIndexBarEntries;
 - (unsigned int)numberOfSections;
 - (unsigned int)sectionForSectionIndexBarEntryAtIndex:(unsigned int)arg1;
-- (void)setEditing:(BOOL)arg1 returningInsertedSectionIndexSet:(id*)arg2 deletedSectionIndexSet:(id*)arg3;
+- (BOOL)setEditing:(BOOL)arg1;
 - (id)sourceEntityProvider;
 
 @end

@@ -5,14 +5,16 @@
 @interface AWDWiFiMetricsManagerLinkQualityStats : PBCodable <NSCopying> {
     struct { 
         unsigned int timestamp : 1; 
-    } _has;
-    NSMutableArray *_statRecords;
-    unsigned long long _timestamp;
+    }  _has;
+    NSMutableArray * _statRecords;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic, retain) NSMutableArray *statRecords;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)statRecordType;
 
 - (void)addStatRecord:(id)arg1;
 - (void)clearStatRecords;

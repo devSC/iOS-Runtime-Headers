@@ -3,30 +3,32 @@
  */
 
 @interface MusicMediaProductSplitMainViewController : UIViewController <MusicClientContextConsuming, MusicLibraryBrowseTableViewControllerDelegate, MusicMediaDetailSplitViewController, MusicProductAdditionalMetadataViewControllerDelegate, MusicVerticalScrollingContainerViewControllerDelegate> {
-    <MusicEntityProviding> *__contextualActionsOverrideTracklistEntityProvider;
-    MusicClientContext *_clientContext;
-    <MusicEntityProviding> *_containerEntityProvider;
-    MusicEntityValueContext *_containerEntityValueContext;
-    unsigned int _editableComponents;
-    UIImage *_editedContentArtworkImage;
-    NSString *_editedContentTitle;
-    BOOL _forContentCreation;
-    UIViewController *_headerContentViewController;
-    MusicMediaDetailTintInformation *_mediaDetailTintInformation;
-    <MusicMediaDetailSplitViewControllerDelegate> *_mediaSplitViewControllerDelegate;
-    int _presentationSource;
-    MusicProductAdditionalMetadataViewController *_productAdditionalMetadataViewController;
-    UIViewController *_relatedContentViewController;
-    <MusicEntityProviding> *_tracklistEntityProvider;
-    MusicProductTracklistTableViewConfiguration *_tracklistTableViewConfiguration;
-    MusicProductTracklistTableViewController *_tracklistTableViewController;
+    <MusicEntityProviding> * __contextualActionsOverrideTracklistEntityProvider;
+    MusicClientContext * _clientContext;
+    <MusicEntityProviding> * _containerEntityProvider;
+    MusicEntityValueContext * _containerEntityValueContext;
+    unsigned int  _editableComponents;
+    UIImage * _editedContentArtworkImage;
+    NSString * _editedContentTitle;
+    BOOL  _forContentCreation;
+    UIViewController * _headerContentViewController;
+    MusicMediaDetailTintInformation * _mediaDetailTintInformation;
+    <MusicMediaDetailSplitViewControllerDelegate> * _mediaSplitViewControllerDelegate;
+    int  _presentationSource;
+    MusicProductAdditionalMetadataViewController * _productAdditionalMetadataViewController;
+    int  _productDescriptionTextStyle;
+    UIViewController * _relatedContentViewController;
+    <MusicEntityProviding> * _tracklistEntityProvider;
+    MusicProductTracklistTableViewConfiguration * _tracklistTableViewConfiguration;
+    MusicProductTracklistTableViewController * _tracklistTableViewController;
+    BOOL  _trailingSeparatorInsetFollowsLayoutInsets;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _verticalScrollingContainerContentInsetAdditions;
-    MusicVerticalScrollingContainerViewController *_verticalScrollingContainerViewController;
+    }  _verticalScrollingContainerContentInsetAdditions;
+    MusicVerticalScrollingContainerViewController * _verticalScrollingContainerViewController;
 }
 
 @property (nonatomic, readonly) MusicEntityValueContext *_containerEntityValueContext;
@@ -47,9 +49,12 @@
 @property (nonatomic, copy) MusicMediaDetailTintInformation *mediaDetailTintInformation;
 @property (nonatomic) <MusicMediaDetailSplitViewControllerDelegate> *mediaSplitViewControllerDelegate;
 @property (nonatomic, readonly) int presentationSource;
+@property (nonatomic) int productDescriptionTextStyle;
+@property (nonatomic) long long prominentTrackStoreID;
 @property (nonatomic, retain) UIViewController *relatedContentViewController;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) <MusicEntityProviding> *tracklistEntityProvider;
+@property (nonatomic) BOOL trailingSeparatorInsetFollowsLayoutInsets;
 
 - (void).cxx_destruct;
 - (void)_commitEditingWithTracklistEntityProviderChangeRecords:(id)arg1;
@@ -60,6 +65,7 @@
 - (id)_contextualActionsOverrideTracklistEntityProvider;
 - (id)_loadProductHeaderLockupContentDescriptor;
 - (id)_loadProductTracklistTableViewConfigurationWithTracklistEntityProvider:(id)arg1;
+- (void)_prepareToCommitEditingWithCompletionHandler:(id /* block */)arg1;
 - (id)_productAdditionalMetadataViewController;
 - (void)_reloadContainerEntityValueContextProperties;
 - (void)_reloadVerticalScrollingContainerItems;
@@ -87,6 +93,8 @@
 - (int)presentationSource;
 - (void)productAdditionalMetadataViewControllerDidFinishContentHeightAnimation:(id)arg1;
 - (void)productAdditionalMetadataViewControllerWillBeginContentHeightAnimation:(id)arg1;
+- (int)productDescriptionTextStyle;
+- (long long)prominentTrackStoreID;
 - (id)relatedContentViewController;
 - (void)setClientContext:(id)arg1;
 - (void)setEditableComponents:(unsigned int)arg1;
@@ -96,8 +104,12 @@
 - (void)setHeaderContentViewController:(id)arg1;
 - (void)setMediaDetailTintInformation:(id)arg1;
 - (void)setMediaSplitViewControllerDelegate:(id)arg1;
+- (void)setProductDescriptionTextStyle:(int)arg1;
+- (void)setProminentTrackStoreID:(long long)arg1;
 - (void)setRelatedContentViewController:(id)arg1;
+- (void)setTrailingSeparatorInsetFollowsLayoutInsets:(BOOL)arg1;
 - (id)tracklistEntityProvider;
+- (BOOL)trailingSeparatorInsetFollowsLayoutInsets;
 - (void)verticalScrollingContainerViewController:(id)arg1 willEndDraggingWithVelocity:(struct CGPoint { float x1; float x2; })arg2 targetContentOffset:(inout struct CGPoint { float x1; float x2; }*)arg3;
 - (void)verticalScrollingContainerViewControllerContentSizeDidChange:(id)arg1;
 - (void)verticalScrollingContainerViewControllerDidScroll:(id)arg1;

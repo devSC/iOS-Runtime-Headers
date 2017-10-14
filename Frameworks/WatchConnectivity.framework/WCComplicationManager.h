@@ -3,8 +3,8 @@
  */
 
 @interface WCComplicationManager : NSObject <WCPrivateXPCManagerDelegate> {
-    NSObject<WCComplicationManagerDelegate> *_delegate;
-    NSObject<OS_dispatch_queue> *_delegateQueue;
+    NSObject<WCComplicationManagerDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _delegateQueue;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -19,6 +19,7 @@
 - (id)delegateQueue;
 - (id)init;
 - (void)setDelegate:(id)arg1;
+- (void)xpcManager:(id)arg1 handlePairedSyncComplicationsStartedWithCompletionHandler:(id /* block */)arg2;
 - (void)xpcManager:(id)arg1 handlePingForExtensionBundleID:(id)arg2;
 - (void)xpcManager:(id)arg1 isExtensionPrivileged:(id)arg2 completionHandler:(id /* block */)arg3;
 

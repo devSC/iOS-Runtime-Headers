@@ -3,10 +3,10 @@
  */
 
 @interface AXSpringBoardServer : AXServer <AXSystemAppServer> {
-    AXAccessQueue *_accessQueue;
-    NSMutableArray *_actionHandlers;
-    id /* block */ _currentAlertHandler;
-    NSMutableDictionary *_reachabilityHandlers;
+    AXAccessQueue * _accessQueue;
+    NSMutableArray * _actionHandlers;
+    id /* block */  _currentAlertHandler;
+    NSMutableDictionary * _reachabilityHandlers;
 }
 
 @property (nonatomic, retain) AXAccessQueue *accessQueue;
@@ -40,6 +40,7 @@
 - (id)accessQueue;
 - (void)acquireAssertionWithType:(id)arg1 identifier:(id)arg2;
 - (id)actionHandlers;
+- (void)activateSOSMode;
 - (int)activeApplicationOrientation;
 - (int)activeInterfaceOrientation;
 - (void)activeInterfaceOrientation:(id /* block */)arg1;
@@ -47,7 +48,6 @@
 - (id)applicationWithIdentifier:(id)arg1;
 - (BOOL)areSystemGesturesDisabledByAccessibility;
 - (BOOL)areSystemGesturesDisabledNatively;
-- (void)backboardSnarfedMenuDown;
 - (void)cancelReachabilityDetection;
 - (void)cleanupAlertHandler;
 - (BOOL)clearSideAppState;
@@ -55,7 +55,7 @@
 - (id /* block */)currentAlertHandler;
 - (void)dealloc;
 - (void)dismissAppSwitcher;
-- (void)dismissSiri;
+- (BOOL)dismissSiri;
 - (id)focusedAppPID;
 - (id)focusedAppProcess;
 - (id)focusedApps;
@@ -69,12 +69,16 @@
 - (BOOL)isAppSwitcherVisible;
 - (BOOL)isControlCenterVisible;
 - (BOOL)isInspectorMinimized;
+- (BOOL)isMagnifierVisible;
+- (void)isMagnifierVisibleWithCompletion:(id /* block */)arg1;
 - (BOOL)isMakingEmergencyCall;
 - (BOOL)isMediaPlaying;
 - (BOOL)isMediaPlayingForApp:(id)arg1;
 - (void)isMediaPlayingForApp:(id)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)isMultiTaskingActive;
 - (BOOL)isNotificationCenterVisible;
+- (BOOL)isNotificationVisible;
+- (BOOL)isNowPlayingUIVisible;
 - (BOOL)isOrientationLocked;
 - (BOOL)isPointInsideAccessibilityInspector:(id)arg1;
 - (BOOL)isPurpleBuddyAppFrontmost;
@@ -87,6 +91,7 @@
 - (BOOL)isSideSwitcherVisible;
 - (BOOL)isSiriTalkingOrListening;
 - (BOOL)isSiriVisible;
+- (BOOL)isSoftwareUpdateUIVisible;
 - (BOOL)isSpeakThisTemporarilyDisabled;
 - (BOOL)isSyncingRestoringResettingOrUpdating;
 - (BOOL)isSystemAppFrontmost;
@@ -95,10 +100,12 @@
 - (BOOL)isSystemAppShowingAnAlert;
 - (BOOL)isSystemSleeping;
 - (BOOL)isVoiceControlRunning;
+- (void)launchMagnifierApp;
+- (BOOL)loadGAXBundleForUnmanagedASAM;
 - (void)openAppSwitcher;
 - (void)openAssistiveTouchCustomGestureCreation;
 - (void)openSCATCustomGestureCreation;
-- (void)openSiri;
+- (BOOL)openSiri;
 - (void)openVoiceControl;
 - (void)pauseMedia;
 - (void)pauseMediaForApp:(id)arg1;
@@ -126,6 +133,7 @@
 - (void)setCancelGestureActivation:(unsigned int)arg1 cancelEnabled:(BOOL)arg2;
 - (void)setCurrentAlertHandler:(id /* block */)arg1;
 - (void)setHearingAidControlVisible:(BOOL)arg1;
+- (void)setLockScreenDimTimerEnabled:(BOOL)arg1;
 - (void)setOrientationLocked:(BOOL)arg1;
 - (void)setReachabilityActive:(BOOL)arg1;
 - (void)setReachabilityHandlers:(id)arg1;
@@ -137,6 +145,7 @@
 - (void)showControlCenter:(BOOL)arg1;
 - (void)showNotificationCenter;
 - (BOOL)showNotificationCenter:(BOOL)arg1;
+- (void)simulateEdgePressHaptics;
 - (void)startHearingAidServer;
 - (void)systemAppInfoWithQuery:(unsigned int)arg1 completion:(id /* block */)arg2;
 - (void)takeScreenshot;
@@ -144,6 +153,8 @@
 - (void)toggleNotificationCenter;
 - (int)topEventPidOverride;
 - (void)unlockDevice;
+- (void)userEventOccurred;
 - (float)volumeLevel;
+- (void)wakeUpDeviceIfNecessary;
 
 @end

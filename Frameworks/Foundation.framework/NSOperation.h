@@ -2,23 +2,29 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSOperation : NSObject {
-    id _private;
-    int _private1;
+@interface NSOperation : NSObject <ICLoggable> {
+    id  _private;
+    int  _private1;
 }
 
 @property (getter=isAsynchronous, readonly) BOOL asynchronous;
 @property (getter=isCancelled, readonly) BOOL cancelled;
 @property (copy) id /* block */ completionBlock;
 @property (getter=isConcurrent, readonly) BOOL concurrent;
+@property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSArray *dependencies;
+@property (readonly, copy) NSString *description;
 @property (getter=isExecuting, readonly) BOOL executing;
 @property (getter=isFinished, readonly) BOOL finished;
+@property (readonly) unsigned int hash;
 @property (copy) NSString *name;
 @property int qualityOfService;
 @property int queuePriority;
 @property (getter=isReady, readonly) BOOL ready;
+@property (readonly) Class superclass;
 @property double threadPriority;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)currentOperation;
@@ -34,7 +40,6 @@
 - (void)dealloc;
 - (id)dependencies;
 - (id)description;
-- (void)finalize;
 - (id)init;
 - (BOOL)isAsynchronous;
 - (BOOL)isCancelled;
@@ -58,5 +63,14 @@
 - (double)threadPriority;
 - (void)waitUntilFinished;
 - (void)waitUntilFinishedOrTimeout:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
+- (void)cat_addDependencies:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (id)ic_loggingIdentifier;
+- (id)ic_loggingValues;
 
 @end

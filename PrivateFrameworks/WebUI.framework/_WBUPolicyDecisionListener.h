@@ -3,10 +3,10 @@
  */
 
 @interface _WBUPolicyDecisionListener : NSObject <WebPolicyDecisionListener> {
-    NSDictionary *_formMetadata;
-    WebFrame *_frame;
-    int _navigationType;
-    <WebPolicyDecisionListener> *_originalListener;
+    WBSFormMetadata * _formMetadata;
+    WebFrame * _frame;
+    int  _navigationType;
+    <WebPolicyDecisionListener> * _originalListener;
 }
 
 @property (readonly, copy) NSString *debugDescription;

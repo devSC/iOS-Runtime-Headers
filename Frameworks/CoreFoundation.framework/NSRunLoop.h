@@ -3,12 +3,12 @@
  */
 
 @interface NSRunLoop : NSObject {
-    id _dperf;
-    id _info;
-    id _perft;
-    id _ports;
-    void *_reserved;
-    id _rl;
+    id  _dperf;
+    id  _info;
+    id  _perft;
+    id  _ports;
+    void * _reserved;
+    id  _rl;
 }
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
@@ -39,6 +39,8 @@
 - (struct __CFRunLoop { }*)getCFRunLoop;
 - (id)init;
 - (id)limitDateForMode:(id)arg1;
+- (void)performBlock:(id /* block */)arg1;
+- (void)performInModes:(id)arg1 block:(id /* block */)arg2;
 - (void)performSelector:(SEL)arg1 target:(id)arg2 argument:(id)arg3 order:(unsigned int)arg4 modes:(id)arg5;
 - (id)portsForMode:(id)arg1;
 - (void)removePort:(id)arg1 forMode:(id)arg2;
@@ -54,6 +56,14 @@
 
 + (id)_mapkit_networkIORunLoop;
 + (void)set_mapkit_networkIORunLoop:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (void)cat_performBlock:(id /* block */)arg1;
++ (void)cat_performBlockOnMainRunLoop:(id /* block */)arg1;
+
+- (void)cat_performBlock:(id /* block */)arg1;
+- (void)cat_performInModes:(id)arg1 block:(id /* block */)arg2;
 
 // Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
 

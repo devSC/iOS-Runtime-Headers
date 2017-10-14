@@ -3,12 +3,11 @@
  */
 
 @interface CNAccount : NSObject <NSCopying, NSSecureCoding> {
-    NSString *_externalIdentifierString;
-    NSString *_identifier;
+    NSString * _externalIdentifierString;
+    NSString * _identifier;
 }
 
 @property (nonatomic, readonly) NSString *_cnui_displayName;
-@property (getter=_cnui_isFacebook, nonatomic, readonly) BOOL _cnui_facebook;
 @property (nonatomic, readonly, copy) NSString *externalIdentifierString;
 @property (nonatomic, readonly, copy) NSString *identifier;
 
@@ -39,8 +38,12 @@
 // Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
 + (id)_cnui_accountStore;
++ (void)_cnui_canRequestRefreshWithCompletion:(id /* block */)arg1;
++ (id)_cnui_displayNameForACAccount:(id)arg1;
++ (id)_cnui_displayNameForLocal;
++ (BOOL)_cnui_isFacebookACAccount:(id)arg1;
++ (BOOL)_cnui_requestRefreshWithUserAction:(BOOL)arg1;
 
 - (id)_cnui_displayName;
-- (BOOL)_cnui_isFacebook;
 
 @end

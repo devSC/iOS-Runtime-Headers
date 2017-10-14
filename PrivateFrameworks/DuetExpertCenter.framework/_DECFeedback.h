@@ -3,10 +3,10 @@
  */
 
 @interface _DECFeedback : NSObject <NSSecureCoding> {
-    _DECItem *_itemSelected;
-    NSArray *_itemsShown;
-    _DECLaunchInfo *_launchInfo;
-    _DECPrediction *_prediction;
+    _DECItem * _itemSelected;
+    NSArray * _itemsShown;
+    _DECLaunchInfo * _launchInfo;
+    _DECPrediction * _prediction;
 }
 
 @property (nonatomic, retain) _DECItem *itemSelected;
@@ -25,8 +25,12 @@
 - (id)itemSelected;
 - (id)itemsShown;
 - (id)launchInfo;
+- (unsigned int)outcomeForCategory:(unsigned int)arg1;
+- (unsigned int)outcomeForCategory:(unsigned int)arg1 predictionItem:(id)arg2;
+- (unsigned int)outcomeForCategory:(unsigned int)arg1 predictions:(id)arg2;
 - (id)predictedItemsShown;
 - (id)prediction;
+- (BOOL)relevantLaunch;
 - (void)setItemSelected:(id)arg1;
 - (void)setItemsShown:(id)arg1;
 - (void)setLaunchInfo:(id)arg1;

@@ -3,9 +3,9 @@
  */
 
 @interface DAMoveAction : DAAction {
-    NSString *_destinationContainerId;
-    NSString *_sourceContainerId;
-    NSString *_sourceServerId;
+    NSString * _destinationContainerId;
+    NSString * _sourceContainerId;
+    NSString * _sourceServerId;
 }
 
 @property (nonatomic, retain) NSString *destinationContainerId;
@@ -16,7 +16,7 @@
 - (id)destinationContainerId;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithItemChangeType:(int)arg1 changedItem:(id)arg2 sourceContainerId:(id)arg3 sourceServerId:(id)arg4 destinationContainerId:(id)arg5;
+- (id)initWithItemChangeType:(unsigned int)arg1 changedItem:(id)arg2 sourceContainerId:(id)arg3 sourceServerId:(id)arg4 destinationContainerId:(id)arg5;
 - (void)setDestinationContainerId:(id)arg1;
 - (void)setSourceContainerId:(id)arg1;
 - (void)setSourceServerId:(id)arg1;

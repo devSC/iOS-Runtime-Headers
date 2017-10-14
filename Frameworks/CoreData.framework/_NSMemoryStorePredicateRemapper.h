@@ -3,10 +3,11 @@
  */
 
 @interface _NSMemoryStorePredicateRemapper : NSObject {
-    NSManagedObjectContext *_context;
+    NSManagedObjectContext * _context;
 }
 
 + (id)defaultInstance;
++ (void)initialize;
 
 - (id)createPredicateForFetchFromPredicate:(id)arg1;
 - (id)createPredicateForFetchFromPredicate:(id)arg1 withContext:(id)arg2;

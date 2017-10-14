@@ -12,11 +12,11 @@
             float width; 
             float height; 
         } size; 
-    } bounds;
-    BOOL dirtyBounds;
-    long insertionOrder;
-    unsigned int position;
-    BOOL shrinksWithChildren;
+    }  bounds;
+    BOOL  dirtyBounds;
+    long  insertionOrder;
+    unsigned int  position;
+    BOOL  shrinksWithChildren;
 }
 
 + (float)chooseReferenceFontSizeFrom:(float)arg1 and:(float)arg2;
@@ -41,6 +41,7 @@
 - (int)compareAnchorY:(id)arg1;
 - (int)compareAnchorYDescending:(id)arg1;
 - (int)compareChunkPosition:(id)arg1;
+- (int)compareCommonAnchorX:(id)arg1;
 - (int)compareInsertionOrder:(id)arg1;
 - (int)compareLinearBounds:(id)arg1;
 - (int)compareTopDescending:(id)arg1;

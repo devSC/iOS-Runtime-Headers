@@ -3,22 +3,37 @@
  */
 
 @interface SKUIApplicationControllerOptions : NSObject <NSCopying, NSMutableCopying> {
-    BOOL _requiresLocalBootstrapScript;
-    BOOL _supportsFullApplicationReload;
-    int _tabBarControllerStyle;
+    BOOL  _bootstrapScriptFallbackEnabled;
+    double  _bootstrapScriptFallbackMaximumAge;
+    double  _bootstrapScriptTimeoutInterval;
+    BOOL  _pageRenderMetricsEnabled;
+    BOOL  _requiresLocalBootstrapScript;
+    BOOL  _supportsFullApplicationReload;
+    int  _tabBarControllerStyle;
+    BOOL  _useTransientStorageForTests;
 }
 
+@property (getter=isBootstrapScriptFallbackEnabled, nonatomic, readonly) BOOL bootstrapScriptFallbackEnabled;
+@property (nonatomic, readonly) double bootstrapScriptFallbackMaximumAge;
+@property (nonatomic, readonly) double bootstrapScriptTimeoutInterval;
+@property (nonatomic, readonly) BOOL pageRenderMetricsEnabled;
 @property (nonatomic, readonly) BOOL requiresLocalBootstrapScript;
 @property (nonatomic, readonly) BOOL supportsFullApplicationReload;
 @property (nonatomic, readonly) int tabBarControllerStyle;
+@property (nonatomic, readonly) BOOL useTransientStorageForTests;
 
+- (double)bootstrapScriptFallbackMaximumAge;
+- (double)bootstrapScriptTimeoutInterval;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)hash;
 - (id)init;
+- (BOOL)isBootstrapScriptFallbackEnabled;
 - (BOOL)isEqual:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
+- (BOOL)pageRenderMetricsEnabled;
 - (BOOL)requiresLocalBootstrapScript;
 - (BOOL)supportsFullApplicationReload;
 - (int)tabBarControllerStyle;
+- (BOOL)useTransientStorageForTests;
 
 @end

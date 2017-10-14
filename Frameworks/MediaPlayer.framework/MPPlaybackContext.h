@@ -3,46 +3,63 @@
  */
 
 @interface MPPlaybackContext : NSObject <NSCoding> {
-    unsigned int _repeatType;
-    BOOL _shouldRestartPlayback;
-    BOOL _shouldStartPlayback;
-    unsigned int _shuffleType;
-    int _startIndex;
+    NSString * _playActivityFeatureName;
+    NSData * _playActivityRecommendationData;
+    int  _repeatType;
+    NSString * _requestingBundleIdentifier;
+    NSString * _requestingBundleVersion;
+    BOOL  _shouldRestartPlayback;
+    BOOL  _shouldStartPlayback;
+    int  _shuffleType;
+    NSString * _siriReferenceIdentifier;
+    int  _startIndex;
 }
 
-@property (setter=mpuReporting_setFeatureName:, nonatomic, copy) NSString *mpuReporting_featureName;
-@property (setter=mpuReporting_setRecommendationData:, nonatomic, copy) NSData *mpuReporting_recommendationData;
-@property (nonatomic) unsigned int repeatType;
+@property (getter=mpcReporting_isQuickPlay, nonatomic, readonly) BOOL mpcReporting_quickPlay;
+@property (nonatomic, copy) NSString *playActivityFeatureName;
+@property (nonatomic, copy) NSData *playActivityRecommendationData;
+@property (nonatomic) int repeatType;
+@property (nonatomic, copy) NSString *requestingBundleIdentifier;
+@property (nonatomic, copy) NSString *requestingBundleVersion;
 @property (nonatomic) BOOL shouldRestartPlayback;
 @property (nonatomic) BOOL shouldStartPlayback;
-@property (nonatomic) unsigned int shuffleType;
+@property (nonatomic) int shuffleType;
+@property (nonatomic, copy) NSString *siriReferenceIdentifier;
 @property (nonatomic) int startIndex;
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
 + (Class)queueFeederClass;
 
+- (void).cxx_destruct;
 - (id)description;
 - (id)descriptionComponents;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (unsigned int)repeatType;
-- (void)setRepeatType:(unsigned int)arg1;
+- (id)playActivityFeatureName;
+- (id)playActivityRecommendationData;
+- (int)repeatType;
+- (id)requestingBundleIdentifier;
+- (id)requestingBundleVersion;
+- (void)setPlayActivityFeatureName:(id)arg1;
+- (void)setPlayActivityRecommendationData:(id)arg1;
+- (void)setRepeatType:(int)arg1;
+- (void)setRequestingBundleIdentifier:(id)arg1;
+- (void)setRequestingBundleVersion:(id)arg1;
 - (void)setShouldRestartPlayback:(BOOL)arg1;
 - (void)setShouldStartPlayback:(BOOL)arg1;
-- (void)setShuffleType:(unsigned int)arg1;
+- (void)setShuffleType:(int)arg1;
+- (void)setSiriReferenceIdentifier:(id)arg1;
 - (void)setStartIndex:(int)arg1;
 - (BOOL)shouldRestartPlayback;
 - (BOOL)shouldStartPlayback;
-- (unsigned int)shuffleType;
+- (int)shuffleType;
+- (id)siriReferenceIdentifier;
 - (int)startIndex;
 
-// Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+// Image: /System/Library/PrivateFrameworks/MediaPlaybackCore.framework/MediaPlaybackCore
 
-- (id)mpuReporting_featureName;
-- (id)mpuReporting_recommendationData;
-- (void)mpuReporting_setFeatureName:(id)arg1;
-- (void)mpuReporting_setRecommendationData:(id)arg1;
+- (BOOL)mpcReporting_isQuickPlay;
 
 @end

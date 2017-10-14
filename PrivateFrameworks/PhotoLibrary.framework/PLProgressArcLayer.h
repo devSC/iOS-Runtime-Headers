@@ -3,10 +3,10 @@
  */
 
 @interface PLProgressArcLayer : CALayer {
-    float _endAngle;
-    float _lineWidth;
-    float _radius;
-    float _startAngle;
+    float  _endAngle;
+    float  _lineWidth;
+    float  _radius;
+    float  _startAngle;
 }
 
 @property (nonatomic) float endAngle;

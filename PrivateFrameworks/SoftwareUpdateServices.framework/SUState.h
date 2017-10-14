@@ -3,25 +3,34 @@
  */
 
 @interface SUState : NSObject <NSKeyedUnarchiverDelegate> {
-    BOOL _autodownloadNeedsOneTimeRetry;
-    _SUAutoInstallOperationModel *_lastAutoInstallOperationModel;
-    SUDownload *_lastDownload;
-    NSString *_lastProductBuild;
-    NSString *_lastProductType;
-    NSString *_lastProductVersion;
-    NSString *_lastReleaseType;
-    SUDescriptor *_lastScannedDescriptor;
-    NSDate *_lastScannedDescriptorTime;
-    NSDate *_scheduledAutodownloadPolicyChangeTime;
-    NSDate *_scheduledAutodownloadWifiPeriodEndTime;
-    NSDate *_scheduledManualDownloadWifiPeriodEndTime;
-    BOOL _stashbagPersisted;
+    BOOL  _autodownloadNeedsOneTimeRetry;
+    SUDescriptor * _currentDescriptor;
+    SUDescriptor * _failedPatchDescriptor;
+    SUInstallPolicy * _installPolicy;
+    _SUAutoInstallOperationModel * _lastAutoInstallOperationModel;
+    SUDownload * _lastDownload;
+    NSString * _lastProductBuild;
+    NSString * _lastProductType;
+    NSString * _lastProductVersion;
+    NSString * _lastReleaseType;
+    SUDescriptor * _lastScannedDescriptor;
+    NSDate * _lastScannedDescriptorTime;
+    BOOL  _manifestSubmitted;
+    SUManagedDeviceUpdateDelay * _mdmDelay;
+    NSDate * _scheduledAutodownloadPolicyChangeTime;
+    NSDate * _scheduledAutodownloadWifiPeriodEndTime;
+    NSDate * _scheduledManualDownloadWifiPeriodEndTime;
+    BOOL  _stashbagPersisted;
+    NSDictionary * _unlockCallbacks;
 }
 
 @property (nonatomic) BOOL autodownloadNeedsOneTimeRetry;
+@property (nonatomic, copy) SUDescriptor *currentDescriptor;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, copy) SUDescriptor *failedPatchDescriptor;
 @property (readonly) unsigned int hash;
+@property (nonatomic, retain) SUInstallPolicy *installPolicy;
 @property (nonatomic, retain) _SUAutoInstallOperationModel *lastAutoInstallOperationModel;
 @property (nonatomic, copy) SUDownload *lastDownload;
 @property (nonatomic, retain) NSString *lastProductBuild;
@@ -30,20 +39,26 @@
 @property (nonatomic, retain) NSString *lastReleaseType;
 @property (nonatomic, copy) SUDescriptor *lastScannedDescriptor;
 @property (nonatomic, retain) NSDate *lastScannedDescriptorTime;
+@property (nonatomic) BOOL manifestSubmitted;
+@property (nonatomic, retain) SUManagedDeviceUpdateDelay *mdmDelay;
 @property (nonatomic, retain) NSDate *scheduledAutodownloadPolicyChangeTime;
 @property (nonatomic, retain) NSDate *scheduledAutodownloadWifiPeriodEndTime;
 @property (nonatomic, retain) NSDate *scheduledManualDownloadWifiPeriodEndTime;
 @property (nonatomic) BOOL stashbagPersisted;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) NSDictionary *unlockCallbacks;
 
 + (id)currentState;
 + (id)statePath;
 
 - (id)_stateAsDictionary;
 - (BOOL)autodownloadNeedsOneTimeRetry;
+- (id)currentDescriptor;
 - (void)dealloc;
 - (id)description;
+- (id)failedPatchDescriptor;
 - (id)init;
+- (id)installPolicy;
 - (id)lastAutoInstallOperationModel;
 - (id)lastDownload;
 - (id)lastProductBuild;
@@ -53,6 +68,8 @@
 - (id)lastScannedDescriptor;
 - (id)lastScannedDescriptorTime;
 - (void)load;
+- (BOOL)manifestSubmitted;
+- (id)mdmDelay;
 - (void)resetAllHistory;
 - (void)resetDownloadAndScanHistory;
 - (void)save;
@@ -60,6 +77,9 @@
 - (id)scheduledAutodownloadWifiPeriodEndTime;
 - (id)scheduledManualDownloadWifiPeriodEndTime;
 - (void)setAutodownloadNeedsOneTimeRetry:(BOOL)arg1;
+- (void)setCurrentDescriptor:(id)arg1;
+- (void)setFailedPatchDescriptor:(id)arg1;
+- (void)setInstallPolicy:(id)arg1;
 - (void)setLastAutoInstallOperationModel:(id)arg1;
 - (void)setLastDownload:(id)arg1;
 - (void)setLastProductBuild:(id)arg1;
@@ -68,11 +88,15 @@
 - (void)setLastReleaseType:(id)arg1;
 - (void)setLastScannedDescriptor:(id)arg1;
 - (void)setLastScannedDescriptorTime:(id)arg1;
+- (void)setManifestSubmitted:(BOOL)arg1;
+- (void)setMdmDelay:(id)arg1;
 - (void)setScheduledAutodownloadPolicyChangeTime:(id)arg1;
 - (void)setScheduledAutodownloadWifiPeriodEndTime:(id)arg1;
 - (void)setScheduledManualDownloadWifiPeriodEndTime:(id)arg1;
 - (void)setStashbagPersisted:(BOOL)arg1;
+- (void)setUnlockCallbacks:(id)arg1;
 - (BOOL)stashbagPersisted;
 - (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
+- (id)unlockCallbacks;
 
 @end

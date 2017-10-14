@@ -3,16 +3,17 @@
  */
 
 @interface PSUICellularPlanManager : NSObject {
-    BOOL _cacheIsValid;
-    BOOL _hasHomePlan;
-    BOOL _hasSubscriptions;
-    BOOL _isMultipleDataPlanSupportAvailable;
-    BOOL _isRoamingPlanSupportAvailable;
-    NSArray *_planItems;
-    CTCellularPlanItem *_selectedPlanItem;
+    BOOL  _cacheIsValid;
+    BOOL  _hasHomePlan;
+    BOOL  _hasSubscriptions;
+    BOOL  _isMultipleDataPlanSupportAvailable;
+    BOOL  _isRoamingPlanSupportAvailable;
+    NSArray * _planItems;
+    CTCellularPlanItem * _selectedPlanItem;
 }
 
 @property (nonatomic, readonly) BOOL hasSubscriptions;
+@property (nonatomic, readonly) BOOL isAnyPlanActivating;
 @property (nonatomic, readonly) BOOL isMultipleDataPlanSupportAvailable;
 @property (nonatomic, readonly) BOOL isRoamingPlanSupportAvailable;
 @property (nonatomic, readonly) BOOL isSelectedPlanActivating;
@@ -31,10 +32,10 @@
 - (void)_fetchPlanItemsIfNeeded;
 - (void)_invalidatePlanItemsCache;
 - (void)_planInfoDidChange;
-- (void)_subscriptionDidUpdate;
 - (void)dealloc;
 - (BOOL)hasSubscriptions;
 - (id)init;
+- (BOOL)isAnyPlanActivating;
 - (BOOL)isMultipleDataPlanSupportAvailable;
 - (BOOL)isRoamingPlanSupportAvailable;
 - (BOOL)isSelectedPlanActivating;

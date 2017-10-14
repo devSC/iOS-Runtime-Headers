@@ -3,9 +3,9 @@
  */
 
 @interface AVFormatReaderInspector : AVAssetInspector {
-    struct OpaqueFigFormatReader { } *_formatReader;
-    BOOL didCheckForSaveRestriction;
-    BOOL hasSaveRestriction;
+    struct OpaqueFigFormatReader { } * _formatReader;
+    BOOL  didCheckForSaveRestriction;
+    BOOL  hasSaveRestriction;
 }
 
 @property (getter=_formatReader, setter=_setFormatReader:, nonatomic, retain) struct OpaqueFigFormatReader { }*formatReader;
@@ -32,6 +32,7 @@
 - (id)metadataForFormat:(id)arg1;
 - (struct CGSize { float x1; float x2; })naturalSize;
 - (int)naturalTimeScale;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })overallDurationHint;
 - (float)preferredRate;
 - (float)preferredSoundCheckVolumeNormalization;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })preferredTransform;

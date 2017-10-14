@@ -2,13 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
  */
 
-@interface CPLPersonReference : NSObject <NSCopying, NSSecureCoding> {
-    NSDictionary *_extraProperties;
-    NSString *_personIdentifier;
+@interface CPLPersonReference : NSObject <CPLReference, NSCopying, NSSecureCoding> {
+    NSDictionary * _extraProperties;
+    NSString * _personIdentifier;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSDictionary *extraProperties;
+@property (readonly) unsigned int hash;
 @property (nonatomic, copy) NSString *personIdentifier;
+@property (readonly) Class superclass;
 
 + (BOOL)supportsSecureCoding;
 
@@ -19,10 +23,12 @@
 - (id)extraProperties;
 - (unsigned int)hash;
 - (id)init;
+- (id)initWithCPLArchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSerializedString:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)personIdentifier;
+- (id)plistArchiveWithCPLArchiver:(id)arg1;
 - (id)serializedString;
 - (void)setExtraProperties:(id)arg1;
 - (void)setPersonIdentifier:(id)arg1;

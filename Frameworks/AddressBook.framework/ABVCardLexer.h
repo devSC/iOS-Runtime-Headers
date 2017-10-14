@@ -3,14 +3,15 @@
  */
 
 @interface ABVCardLexer : NSObject {
-    NSArray *_activeTokenSets;
-    char *_bytes;
-    unsigned int _cursor;
-    NSMutableData *_data;
-    int _errorCount;
-    unsigned int _length;
-    unsigned int _peakedPoint;
-    BOOL _unicode;
+    NSArray * _activeTokenSets;
+    char * _bytes;
+    unsigned int  _cursor;
+    NSMutableData * _data;
+    int  _errorCount;
+    unsigned int  _length;
+    unsigned int  _peakedPoint;
+    ABVCardWatchdogTimer * _timer;
+    BOOL  _unicode;
 }
 
 - (BOOL)_advancePastLineFoldingSequenceIfNeeded;
@@ -32,7 +33,7 @@
 - (void)dealloc;
 - (int)errorCount;
 - (void)finalize;
-- (id)initWithData:(id)arg1;
+- (id)initWithData:(id)arg1 watchdogTimer:(id)arg2;
 - (id)nextArraySeperatedByToken:(int)arg1 stoppingAt:(int)arg2 inEncoding:(unsigned int)arg3;
 - (id)nextBase64Data;
 - (id)nextBase64Line:(BOOL*)arg1;

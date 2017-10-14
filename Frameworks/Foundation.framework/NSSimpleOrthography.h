@@ -3,11 +3,12 @@
  */
 
 @interface NSSimpleOrthography : NSOrthography {
-    unsigned int _orthographyFlags;
+    unsigned int  _orthographyFlags;
 }
 
 + (void)initialize;
 + (id)orthographyWithFlags:(unsigned int)arg1;
++ (BOOL)supportsSecureCoding;
 
 - (id)allLanguages;
 - (id)allScripts;

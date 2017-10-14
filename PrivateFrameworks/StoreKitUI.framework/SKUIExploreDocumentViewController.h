@@ -3,16 +3,16 @@
  */
 
 @interface SKUIExploreDocumentViewController : SKUIViewController <CLLocationManagerDelegate, SKUIDocumentViewController, SKUINavigationBarDisplayConfiguring, SKUIStackedBarDelegate, UINavigationControllerDelegate, UISplitViewControllerDelegate> {
-    SKUIMetricsImpressionSession *_activeMetricsImpressionSession;
-    NSArray *_contentOffsets;
-    SKUIContentInsetScrollView *_contentScrollView;
-    SKUIExploreTemplateElement *_exploreTemplate;
-    UINavigationController *_leftVC;
-    CLLocationManager *_locationManager;
-    UINavigationController *_navigationController;
-    BOOL _nearMeEnabled;
-    SKUIStorePageSectionsViewController *_rightVC;
-    UISplitViewController *_splitVC;
+    SKUIMetricsImpressionSession * _activeMetricsImpressionSession;
+    NSArray * _contentOffsets;
+    SKUIContentInsetScrollView * _contentScrollView;
+    SKUIExploreTemplateElement * _exploreTemplate;
+    UINavigationController * _leftVC;
+    CLLocationManager * _locationManager;
+    UINavigationController * _navigationController;
+    BOOL  _nearMeEnabled;
+    SKUIStorePageSectionsViewController * _rightVC;
+    UISplitViewController * _splitVC;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -27,6 +27,7 @@
 - (void)_contentInsetDidChange:(id)arg1;
 - (void)_endAllPendingActiveImpression;
 - (void)_getPageComponents:(id*)arg1 title:(id*)arg2 forViewControllerAtIndex:(int)arg3;
+- (float)_leftColumnWidth;
 - (id)_leftPageComponentsAtIndex:(int)arg1;
 - (id)_newSectionsViewControllerAtIndex:(int)arg1;
 - (id)_pageComponentsAtIndex:(int)arg1;

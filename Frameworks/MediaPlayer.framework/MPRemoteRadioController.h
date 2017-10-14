@@ -3,12 +3,12 @@
  */
 
 @interface MPRemoteRadioController : NSObject <MPServiceRadioController, NSXPCListenerDelegate> {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    RadioAvailabilityController *_availabilityController;
-    NSMutableSet *_connections;
-    BOOL _hasRefreshedStations;
-    NSXPCListener *_listener;
-    RadioRecentStationsController *_recentStationsController;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    RadioAvailabilityController * _availabilityController;
+    NSMutableSet * _connections;
+    BOOL  _hasRefreshedStations;
+    NSXPCListener * _listener;
+    RadioRecentStationsController * _recentStationsController;
 }
 
 @property (nonatomic, retain) RadioAvailabilityController *availabilityController;
@@ -20,7 +20,6 @@
 
 - (void).cxx_destruct;
 - (void)_addConnection:(id)arg1;
-- (BOOL)_isRadioAvailable;
 - (void)_radioAvailabilityControllerRadioAvailableDidChangeNotification:(id)arg1;
 - (void)_recentStationsControllerDidChangeStationsNotification:(id)arg1;
 - (void)_removeConnection:(id)arg1;

@@ -3,8 +3,8 @@
  */
 
 @interface PLManagedFolder : PLGenericAlbum <PLAlbumContainer> {
-    BOOL _needsFixedOrderKeysComplianceUpdate;
-    BOOL _needsPersistenceUpdate;
+    BOOL  _needsFixedOrderKeysComplianceUpdate;
+    BOOL  _needsPersistenceUpdate;
 }
 
 @property (nonatomic, readonly, retain) NSString *_prettyDescription;
@@ -27,6 +27,7 @@
 + (id)entityInManagedObjectContext:(id)arg1;
 + (id)entityName;
 + (id)insertInManagedObjectContext:(id)arg1;
++ (id)localizedRecoveredTitle;
 
 - (id)_prettyDescription;
 - (id)_typeDescription;

@@ -3,12 +3,12 @@
  */
 
 @interface SBUIPasscodeEntryField : UIView <UITextFieldDelegate> {
-    UIColor *_customBackgroundColor;
-    <SBUIPasscodeEntryFieldDelegate> *_delegate;
-    BOOL _ignoreCallbacks;
-    NSMutableCharacterSet *_numericTrimmingSet;
-    BOOL _resigningFirstResponder;
-    UITextField *_textField;
+    UIColor * _customBackgroundColor;
+    <SBUIPasscodeEntryFieldDelegate> * _delegate;
+    BOOL  _ignoreCallbacks;
+    NSMutableCharacterSet * _numericTrimmingSet;
+    BOOL  _resigningFirstResponder;
+    UITextField * _textField;
 }
 
 @property (nonatomic, retain) UIColor *customBackgroundColor;
@@ -18,16 +18,17 @@
 @property (readonly) unsigned int hash;
 @property (nonatomic, copy) NSString *stringValue;
 @property (readonly) Class superclass;
-@property (getter=_textField, nonatomic, readonly, retain) UITextField *textField;
+@property (getter=_textField, nonatomic, readonly) UITextField *textField;
 
 + (BOOL)_usesTextFieldForFirstResponder;
 
+- (void).cxx_destruct;
 - (void)_appendString:(id)arg1;
 - (void)_autofillForMesaWithCompletion:(id /* block */)arg1;
 - (void)_deleteLastCharacter;
 - (void)_handleKeyUIEvent:(id)arg1 source:(int)arg2;
 - (BOOL)_hasAnyCharacters;
-- (void)_resetForFailedPasscode:(BOOL)arg1 playUnlockFailedSound:(BOOL)arg2;
+- (void)_resetForFailedPasscode:(BOOL)arg1;
 - (void)_setLuminosityBoost:(float)arg1;
 - (id)_textField;
 - (struct CGSize { float x1; float x2; })_viewSize;
@@ -35,7 +36,6 @@
 - (BOOL)becomeFirstResponder;
 - (BOOL)canBecomeFirstResponder;
 - (id)customBackgroundColor;
-- (void)dealloc;
 - (id)delegate;
 - (void)deleteLastCharacter;
 - (id)initWithDefaultSizeAndLightStyle:(BOOL)arg1;
@@ -43,7 +43,6 @@
 - (void)notePasscodeFieldDidAcceptEntry;
 - (void)notePasscodeFieldTextDidChange;
 - (void)reset;
-- (void)resetForFailedPasscode;
 - (BOOL)resignFirstResponder;
 - (void)setBackgroundAlpha:(float)arg1;
 - (void)setCustomBackgroundColor:(id)arg1;

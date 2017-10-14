@@ -3,17 +3,18 @@
  */
 
 @interface MPMediaLibraryPlaybackItemMetadata : MPMediaPlaybackItemMetadata {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    BOOL _hasValidMediaItemValuesForProperties;
-    MPMediaItem *_mediaItem;
-    NSDictionary *_mediaItemValuesForProperties;
-    NSObject<OS_dispatch_queue> *_writeQueue;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    BOOL  _hasValidMediaItemValuesForProperties;
+    MPMediaItem * _mediaItem;
+    NSDictionary * _mediaItemValuesForProperties;
+    NSObject<OS_dispatch_queue> * _writeQueue;
 }
 
 @property (nonatomic, retain) MPMediaItem *mediaItem;
 
 + (id)_highQualityCachedAssetDestinationDirectory;
 + (id)_lowQualityCachedAssetDestinationDirectory;
++ (id)streamingPlaybackAssetDestinationFilePathForMediaLibraryPersistentID:(long long)arg1 storeAdamID:(long long)arg2 storeSagaID:(unsigned long long)arg3 assetQuality:(unsigned int)arg4 assetFlavor:(id)arg5 protectionType:(unsigned int)arg6 pathExtension:(id)arg7;
 
 - (void).cxx_destruct;
 - (id)_cachedLocalPlaybackAssetFilePathWithIntegrityCheck:(BOOL)arg1 returningAssetQuality:(unsigned int*)arg2 protectionType:(unsigned int*)arg3 usesPurchaseBundle:(BOOL*)arg4;
@@ -27,6 +28,7 @@
 - (id)artistName;
 - (long long)artistStoreAdamID;
 - (id)artworkCatalogForPlaybackTime:(double)arg1;
+- (double)bookmarkTime;
 - (id)buyParameters;
 - (id)cachedLocalPlaybackAssetFilePathReturningAssetQuality:(unsigned int*)arg1 protectionType:(unsigned int*)arg2 usesPurchaseBundle:(BOOL*)arg3;
 - (void)clearLocalPlaybackAssetFilePathWithCompletionHandler:(id /* block */)arg1;
@@ -35,6 +37,7 @@
 - (unsigned int)contentType;
 - (id)copyrightText;
 - (void)dealloc;
+- (long long)downloadIdentifier;
 - (int)endpointType;
 - (double)expectedDuration;
 - (unsigned int)hash;
@@ -44,17 +47,22 @@
 - (id)initWithMediaItem:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isExplicitTrack;
+- (BOOL)isSubscriptionRequired;
 - (id)localNetworkContentURL;
 - (id)mediaItem;
 - (long long)mediaLibraryPersistentID;
+- (id)modelGenericObject;
 - (id)protectedContentSupportStorageURL;
 - (void)setCachedLocalPlaybackAssetFilePath:(id)arg1 protectionType:(unsigned int)arg2 assetQuality:(unsigned int)arg3 withCompletionHandler:(id /* block */)arg4;
 - (void)setMediaItem:(id)arg1;
+- (BOOL)shouldRememberBookmarkTime;
 - (BOOL)shouldReportPlayEventsToStore;
+- (BOOL)showComposer;
 - (unsigned long long)storeAccountID;
 - (long long)storeAdamID;
 - (unsigned long long)storeSagaID;
 - (long long)storeSubscriptionAdamID;
+- (id)storeUbiquitousIdentifier;
 - (id)streamingPlaybackAssetDestinationFilePathForAssetQuality:(unsigned int)arg1 assetFlavor:(id)arg2 protectionType:(unsigned int)arg3 pathExtension:(id)arg4;
 - (float)volumeNormalization;
 

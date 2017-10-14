@@ -3,7 +3,7 @@
  */
 
 @interface MTLDebugDepthStencilState : MTLToolsDepthStencilState {
-    MTLDepthStencilDescriptor *_descriptor;
+    MTLDepthStencilDescriptor * _descriptor;
 }
 
 @property (nonatomic, readonly) MTLDepthStencilDescriptor *descriptor;
@@ -11,6 +11,7 @@
 - (void).cxx_destruct;
 - (id)description;
 - (id)descriptor;
+- (id)formattedDescription:(unsigned int)arg1;
 - (id)initWithBaseDepthStencilState:(id)arg1 device:(id)arg2 descriptor:(id)arg3;
 
 @end

@@ -3,29 +3,47 @@
  */
 
 @interface CAMUserPreferences : NSObject {
-    CAMCaptureConfiguration *_captureConfiguration;
-    CAMConflictingControlConfiguration *_conflictingControlConfiguration;
-    BOOL _didResetTorchMode;
-    BOOL _irisCaptureEnabled;
-    BOOL _lockAsShutterEnabled;
-    int _previewViewAspectMode;
-    BOOL _shouldCaptureHDREV0;
-    BOOL _shouldDelayRemotePersistence;
-    BOOL _shouldShowGridView;
-    int _slomoConfiguration;
-    int _videoConfiguration;
+    CAMCaptureConfiguration * _captureConfiguration;
+    CAMConflictingControlConfiguration * _conflictingControlConfiguration;
+    BOOL  _didAcknowledgePortraitModeDescription;
+    BOOL  _didResetTorchMode;
+    BOOL  _lockAsShutterEnabled;
+    int  _overriddenBackCaptureInterval;
+    int  _overriddenFrontCaptureInterval;
+    BOOL  _preserveCaptureMode;
+    BOOL  _preserveEffectFilter;
+    BOOL  _preserveLivePhoto;
+    int  _previewViewAspectMode;
+    NSDate * _resetTimeoutDate;
+    BOOL  _shouldCaptureHDREV0;
+    BOOL  _shouldCaptureOriginalForPortraitEffect;
+    BOOL  _shouldDelayRemotePersistence;
+    BOOL  _shouldDisableCameraSwitchingDuringVideoRecording;
+    BOOL  _shouldShowGridView;
+    int  _slomoConfiguration;
+    NSUserDefaults * _underlyingUserDefaults;
+    int  _videoConfiguration;
 }
 
 @property (nonatomic, retain) CAMCaptureConfiguration *captureConfiguration;
 @property (nonatomic, retain) CAMConflictingControlConfiguration *conflictingControlConfiguration;
-@property (nonatomic) BOOL didResetTorchMode;
-@property (getter=isIrisCaptureEnabled, nonatomic, readonly) BOOL irisCaptureEnabled;
+@property (nonatomic) BOOL didAcknowledgePortraitModeDescription;
+@property (setter=_setDidResetTorchMode:, nonatomic) BOOL didResetTorchMode;
 @property (getter=isLockAsShutterEnabled, nonatomic, readonly) BOOL lockAsShutterEnabled;
+@property (nonatomic, readonly) int overriddenBackCaptureInterval;
+@property (nonatomic, readonly) int overriddenFrontCaptureInterval;
+@property (nonatomic, readonly) BOOL preserveCaptureMode;
+@property (nonatomic, readonly) BOOL preserveEffectFilter;
+@property (nonatomic, readonly) BOOL preserveLivePhoto;
 @property (nonatomic) int previewViewAspectMode;
+@property (setter=_setResetTimeoutDate:, nonatomic, retain) NSDate *resetTimeoutDate;
 @property (nonatomic, readonly) BOOL shouldCaptureHDREV0;
+@property (nonatomic, readonly) BOOL shouldCaptureOriginalForPortraitEffect;
 @property (nonatomic, readonly) BOOL shouldDelayRemotePersistence;
+@property (nonatomic, readonly) BOOL shouldDisableCameraSwitchingDuringVideoRecording;
 @property (nonatomic, readonly) BOOL shouldShowGridView;
 @property (nonatomic, readonly) int slomoConfiguration;
+@property (getter=_underlyingUserDefaults, setter=_setUnderlyingUserDefaults:, nonatomic, retain) NSUserDefaults *underlyingUserDefaults;
 @property (nonatomic, readonly) int videoConfiguration;
 
 + (id)_defaultCaptureConfiguration;
@@ -33,19 +51,31 @@
 
 - (void).cxx_destruct;
 - (void)_setDidResetTorchMode:(BOOL)arg1;
+- (void)_setResetTimeoutDate:(id)arg1;
+- (void)_setUnderlyingUserDefaults:(id)arg1;
+- (id)_underlyingUserDefaults;
 - (id)captureConfiguration;
 - (id)conflictingControlConfiguration;
+- (BOOL)didAcknowledgePortraitModeDescription;
 - (BOOL)didResetTorchMode;
-- (BOOL)isIrisCaptureEnabled;
 - (BOOL)isLockAsShutterEnabled;
+- (int)overriddenBackCaptureInterval;
+- (int)overriddenFrontCaptureInterval;
+- (BOOL)preserveCaptureMode;
+- (BOOL)preserveEffectFilter;
+- (BOOL)preserveLivePhoto;
 - (int)previewViewAspectMode;
 - (void)readPreferences;
-- (BOOL)readPreferencesWithLaunchOptions:(id)arg1;
+- (BOOL)readPreferencesWithLaunchOptions:(id)arg1 emulationMode:(int)arg2;
+- (id)resetTimeoutDate;
 - (void)setCaptureConfiguration:(id)arg1;
 - (void)setConflictingControlConfiguration:(id)arg1;
+- (void)setDidAcknowledgePortraitModeDescription:(BOOL)arg1;
 - (void)setPreviewViewAspectMode:(int)arg1;
 - (BOOL)shouldCaptureHDREV0;
+- (BOOL)shouldCaptureOriginalForPortraitEffect;
 - (BOOL)shouldDelayRemotePersistence;
+- (BOOL)shouldDisableCameraSwitchingDuringVideoRecording;
 - (BOOL)shouldResetCaptureConfiguration;
 - (BOOL)shouldShowGridView;
 - (int)slomoConfiguration;

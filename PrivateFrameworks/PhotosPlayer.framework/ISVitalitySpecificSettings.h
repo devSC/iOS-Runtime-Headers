@@ -3,17 +3,20 @@
  */
 
 @interface ISVitalitySpecificSettings : ISSettings <ISVitalitySettings> {
-    int _behavior;
-    double _endTimeOffset;
-    double _maximumDeceleration;
-    int _maximumNumberOfFrames;
-    double _maximumRate;
-    double _minimumVisibilityFactor;
-    double _playbackRate;
-    double _postDuration;
-    double _preDuration;
-    double _relativeEnd;
-    double _relativeStart;
+    int  _behavior;
+    double  _endTimeOffset;
+    double  _maximumDeceleration;
+    double  _maximumDelayBeforePlayback;
+    int  _maximumNumberOfFrames;
+    double  _maximumRate;
+    double  _minimumDurationForColorMismatch;
+    double  _minimumVisibilityFactor;
+    double  _playbackRate;
+    double  _postDuration;
+    double  _preDuration;
+    double  _relativeEnd;
+    double  _relativeStart;
+    double  _startSeekTolerance;
 }
 
 @property (nonatomic) int behavior;
@@ -22,14 +25,17 @@
 @property (nonatomic) double endTimeOffset;
 @property (readonly) unsigned int hash;
 @property (nonatomic) double maximumDeceleration;
+@property (nonatomic) double maximumDelayBeforePlayback;
 @property (nonatomic) int maximumNumberOfFrames;
 @property (nonatomic) double maximumRate;
+@property (nonatomic) double minimumDurationForColorMismatch;
 @property (nonatomic) double minimumVisibilityFactor;
 @property (nonatomic) double playbackRate;
 @property (nonatomic) double postDuration;
 @property (nonatomic) double preDuration;
 @property (nonatomic) double relativeEnd;
 @property (nonatomic) double relativeStart;
+@property (nonatomic) double startSeekTolerance;
 @property (readonly) Class superclass;
 
 + (id)settingsControllerModule;
@@ -38,8 +44,10 @@
 - (int)behavior;
 - (double)endTimeOffset;
 - (double)maximumDeceleration;
+- (double)maximumDelayBeforePlayback;
 - (int)maximumNumberOfFrames;
 - (double)maximumRate;
+- (double)minimumDurationForColorMismatch;
 - (double)minimumVisibilityFactor;
 - (double)playbackRate;
 - (double)postDuration;
@@ -50,13 +58,17 @@
 - (void)setDefaultValues;
 - (void)setEndTimeOffset:(double)arg1;
 - (void)setMaximumDeceleration:(double)arg1;
+- (void)setMaximumDelayBeforePlayback:(double)arg1;
 - (void)setMaximumNumberOfFrames:(int)arg1;
 - (void)setMaximumRate:(double)arg1;
+- (void)setMinimumDurationForColorMismatch:(double)arg1;
 - (void)setMinimumVisibilityFactor:(double)arg1;
 - (void)setPlaybackRate:(double)arg1;
 - (void)setPostDuration:(double)arg1;
 - (void)setPreDuration:(double)arg1;
 - (void)setRelativeEnd:(double)arg1;
 - (void)setRelativeStart:(double)arg1;
+- (void)setStartSeekTolerance:(double)arg1;
+- (double)startSeekTolerance;
 
 @end

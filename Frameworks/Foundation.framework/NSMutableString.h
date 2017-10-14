@@ -39,6 +39,7 @@
 - (void)appendPrettyBOOL:(BOOL)arg1 withName:(id)arg2 andIndent:(int)arg3 options:(unsigned int)arg4;
 - (void)appendPrettyInt:(int)arg1 withName:(id)arg2 andIndent:(int)arg3 options:(unsigned int)arg4;
 - (void)appendPrettyObject:(id)arg1 withName:(id)arg2 andIndent:(int)arg3 options:(unsigned int)arg4;
+- (void)appendToStringAtColumnWithContent:(int*)arg1 column:(unsigned char)arg2 content:(const char *)arg3 appendAsNewLine:(BOOL)arg4 addNewLine:(BOOL)arg5;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
@@ -64,6 +65,11 @@
 - (void)_cn_trimLeadingWhitespace;
 - (void)_cn_trimTrailingWhitespace;
 
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DAEAS.framework/DAEAS
+
+- (void)appendString:(id)arg1 withSeparator:(id)arg2;
+- (void)convertLineEndingsTo:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/DataDetectorsCore.framework/DataDetectorsCore
 
 - (void)dd_appendSpaces:(unsigned int)arg1;
@@ -77,6 +83,10 @@
 - (void)appendPrettyBOOL:(BOOL)arg1 withName:(id)arg2 indent:(int)arg3;
 - (void)appendPrettyInt:(int)arg1 withName:(id)arg2 indent:(int)arg3;
 - (void)appendPrettyObject:(id)arg1 withName:(id)arg2 indent:(int)arg3 showFullContent:(BOOL)arg4;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (void)indentBy:(unsigned int)arg1;
 
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 
@@ -107,9 +117,8 @@
 - (void)_ICSEscapeParameterValue;
 - (void)_ICSEscapePropertyValue;
 - (void)_ICSRemoveCharactersFromSet:(id)arg1;
-- (void)_ICSStringAppendingParameterName:(id)arg1;
-- (void)_ICSStringParameterName:(id)arg1 value:(id)arg2;
 - (void)_ICSStripControlChracters;
+- (id)controlCharacterSet;
 
 // Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
 

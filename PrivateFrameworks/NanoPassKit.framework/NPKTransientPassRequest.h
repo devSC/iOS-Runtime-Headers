@@ -3,16 +3,20 @@
  */
 
 @interface NPKTransientPassRequest : NSObject {
-    NPKTransientPassAssertionConnection *_owningConnection;
-    NSString *_uniqueID;
+    NPKTransientPassAssertionConnection * _owningConnection;
+    BOOL  _serviceModeRequested;
+    NSString * _uniqueID;
 }
 
 @property (nonatomic) NPKTransientPassAssertionConnection *owningConnection;
+@property (nonatomic) BOOL serviceModeRequested;
 @property (nonatomic, retain) NSString *uniqueID;
 
 - (void).cxx_destruct;
 - (id)owningConnection;
+- (BOOL)serviceModeRequested;
 - (void)setOwningConnection:(id)arg1;
+- (void)setServiceModeRequested:(BOOL)arg1;
 - (void)setUniqueID:(id)arg1;
 - (id)uniqueID;
 

@@ -3,9 +3,9 @@
  */
 
 @interface PUIndeterminateProgressTileViewController : PUTileViewController {
-    UIView *__contentView;
-    UIActivityIndicatorView *__spinnerView;
-    BOOL _progressIndicatorVisible;
+    UIView * __contentView;
+    UIActivityIndicatorView * __spinnerView;
+    BOOL  _progressIndicatorVisible;
 }
 
 @property (nonatomic, retain) UIView *_contentView;
@@ -17,9 +17,9 @@
 - (id)_contentView;
 - (id)_spinnerView;
 - (BOOL)isProgressIndicatorVisible;
-- (void)loadView;
 - (void)setProgressIndicatorVisible:(BOOL)arg1;
 - (void)set_contentView:(id)arg1;
 - (void)set_spinnerView:(id)arg1;
+- (void)viewDidLoad;
 
 @end

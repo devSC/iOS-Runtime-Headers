@@ -3,19 +3,19 @@
  */
 
 @interface PUPlayButtonTileViewController : PUTileViewController <PUAssetViewModelChangeObserver, PUBrowsingVideoPlayerChangeObserver> {
-    PUBrowsingVideoPlayer *__browsingVideoPlayer;
-    UIView<PLVideoOverlayButton> *__playButton;
-    BOOL __shouldShowPlayButton;
-    PUAssetViewModel *_assetViewModel;
-    <PUPlayButtonTileViewControllerDelegate> *_delegate;
+    PUBrowsingVideoPlayer * __browsingVideoPlayer;
+    UIView<PXVideoOverlayButton> * __playButton;
+    BOOL  __shouldShowPlayButton;
+    PUAssetViewModel * _assetViewModel;
+    <PUPlayButtonTileViewControllerDelegate> * _delegate;
     struct { 
         BOOL respondsToDidTapButton; 
         BOOL respondsToDelayForButtonAnimation; 
-    } _delegateFlags;
+    }  _delegateFlags;
 }
 
 @property (setter=_setBrowsingVideoPlayer:, nonatomic, retain) PUBrowsingVideoPlayer *_browsingVideoPlayer;
-@property (setter=_setPlayButton:, nonatomic, retain) UIView<PLVideoOverlayButton> *_playButton;
+@property (setter=_setPlayButton:, nonatomic, retain) UIView<PXVideoOverlayButton> *_playButton;
 @property (setter=_setShouldShowPlayButton:, nonatomic) BOOL _shouldShowPlayButton;
 @property (nonatomic, retain) PUAssetViewModel *assetViewModel;
 @property (readonly, copy) NSString *debugDescription;
@@ -40,7 +40,7 @@
 - (void)becomeReusable;
 - (void)dealloc;
 - (id)delegate;
-- (void)loadView;
+- (id)loadView;
 - (void)setAssetViewModel:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)viewModel:(id)arg1 didChange:(id)arg2;

@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@interface SKUIAttributedStringView : UIView {
-    float _calculatedTopInset;
-    BOOL _containsLinks;
-    int _firstLineTopInset;
-    SKUIAttributedStringLayout *_layout;
-    NSLayoutManager *_layoutManager;
-    <SKUILinkHandler> *_linkDelegate;
-    NSMutableArray *_requiredBadges;
-    int _stringTreatment;
+@interface SKUIAttributedStringView : UIView <SKUIReusableView> {
+    int  _badgePlacement;
+    float  _calculatedTopInset;
+    BOOL  _containsLinks;
+    int  _firstLineTopInset;
+    SKUIAttributedStringLayout * _layout;
+    NSLayoutManager * _layoutManager;
+    <SKUILinkHandler> * _linkDelegate;
+    NSArray * _requiredBadges;
+    int  _stringTreatment;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -20,28 +21,33 @@
             float width; 
             float height; 
         } size; 
-    } _textBounds;
-    UIColor *_textColor;
-    BOOL _textColorFollowsTintColor;
-    NSTextContainer *_textContainer;
-    NSTextStorage *_textStorage;
-    BOOL _touchInside;
+    }  _textBounds;
+    UIColor * _textColor;
+    BOOL  _textColorFollowsTintColor;
+    NSTextContainer * _textContainer;
+    NSTextStorage * _textStorage;
+    BOOL  _touchInside;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    } _trackingRange;
-    BOOL _trackingTouch;
-    UIColor *_treatmentColor;
+    }  _trackingRange;
+    BOOL  _trackingTouch;
+    UIColor * _treatmentColor;
 }
 
+@property (nonatomic) int badgePlacement;
 @property (nonatomic, readonly) float baselineOffset;
 @property (nonatomic) BOOL containsLinks;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) float firstBaselineOffset;
 @property (nonatomic) int firstLineTopInset;
+@property (readonly) unsigned int hash;
 @property (nonatomic, retain) SKUIAttributedStringLayout *layout;
 @property (nonatomic) <SKUILinkHandler> *linkDelegate;
 @property (nonatomic, copy) NSArray *requiredBadges;
 @property (nonatomic) int stringTreatment;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic) BOOL textColorFollowsTintColor;
 @property (nonatomic, retain) UIColor *treatmentColor;
@@ -55,6 +61,7 @@
 - (void)_setTrackingTouch:(BOOL)arg1;
 - (void)_setupTapLocatorContainer;
 - (BOOL)_touchInsideLinkText:(struct CGPoint { float x1; float x2; })arg1 linkTextRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2;
+- (int)badgePlacement;
 - (float)baselineOffset;
 - (BOOL)containsLinks;
 - (id)description;
@@ -65,6 +72,7 @@
 - (id)layout;
 - (id)linkDelegate;
 - (id)requiredBadges;
+- (void)setBadgePlacement:(int)arg1;
 - (void)setContainsLinks:(BOOL)arg1;
 - (void)setFirstLineTopInset:(int)arg1;
 - (void)setLayout:(id)arg1;
@@ -85,5 +93,6 @@
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
 - (id)treatmentColor;
 - (BOOL)usesTallCharacterSet;
+- (void)viewWasRecycled;
 
 @end

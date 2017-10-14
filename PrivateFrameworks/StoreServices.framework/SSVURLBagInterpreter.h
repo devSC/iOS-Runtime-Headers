@@ -3,10 +3,10 @@
  */
 
 @interface SSVURLBagInterpreter : NSObject <NSCopying> {
-    NSMutableDictionary *_cachedBagValues;
-    NSURL *_mescalPrimingURL;
-    SSVSAPSignaturePolicy *_subscriptionSignaturePolicy;
-    NSArray *_subscriptionSignedActions;
+    NSMutableDictionary * _cachedBagValues;
+    NSURL * _mescalPrimingURL;
+    SSVSAPSignaturePolicy * _subscriptionSignaturePolicy;
+    NSArray * _subscriptionSignedActions;
 }
 
 @property (nonatomic, readonly, copy) NSArray *AMDDomains;
@@ -16,6 +16,8 @@
 @property (nonatomic, readonly, copy) NSDictionary *mescalSignedActions;
 @property (nonatomic, readonly, copy) NSDictionary *mescalSignedRequests;
 @property (nonatomic, readonly, copy) NSDictionary *mescalSignedResponses;
+@property (nonatomic, readonly, copy) NSURL *pastisCertificateURL;
+@property (nonatomic, readonly, copy) NSURL *pastisKeyServerURL;
 @property (nonatomic, readonly, copy) NSString *storeFrontSuffix;
 
 - (void).cxx_destruct;
@@ -33,6 +35,8 @@
 - (id)mescalSignedActions;
 - (id)mescalSignedRequests;
 - (id)mescalSignedResponses;
+- (id)pastisCertificateURL;
+- (id)pastisKeyServerURL;
 - (BOOL)shouldSendAnonymousMachineIdentifierForURL:(id)arg1;
 - (id)storeFrontSuffix;
 - (id)valueForURLBagKey:(id)arg1;

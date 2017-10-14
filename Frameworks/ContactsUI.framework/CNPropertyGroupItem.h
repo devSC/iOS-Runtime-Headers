@@ -3,19 +3,22 @@
  */
 
 @interface CNPropertyGroupItem : CNCardGroupItem {
-    BOOL _allowsEmail;
-    BOOL _allowsIMessage;
-    BOOL _allowsPhone;
-    CNContact *_contact;
-    <CNPropertyGroupItemDelegate> *_delegate;
-    CNCardPropertyGroup *_group;
-    CNLabeledValue *_labeledValue;
-    CNLabeledValue *_originalLabeledValue;
+    BOOL  _allowsEmail;
+    BOOL  _allowsIMessage;
+    BOOL  _allowsPhone;
+    BOOL  _allowsTTY;
+    CNContact * _contact;
+    <CNPropertyGroupItemDelegate> * _delegate;
+    CNCardPropertyGroup * _group;
+    CNLabeledValue * _labeledValue;
+    CNLabeledValue * _originalLabeledValue;
+    NSString * _property;
 }
 
 @property (nonatomic) BOOL allowsEmail;
 @property (nonatomic) BOOL allowsIMessage;
 @property (nonatomic) BOOL allowsPhone;
+@property (nonatomic) BOOL allowsTTY;
 @property (nonatomic, readonly) BOOL canRemove;
 @property (nonatomic, retain) CNContact *contact;
 @property (nonatomic, readonly) CNContactProperty *contactProperty;
@@ -27,14 +30,14 @@
 @property (nonatomic, readonly) NSString *editingStringValue;
 @property (getter=isEmpty, nonatomic, readonly) BOOL empty;
 @property (getter=isFavorite, nonatomic, readonly) BOOL favorite;
-@property (nonatomic) CNCardPropertyGroup *group;
+@property (nonatomic, readonly) CNCardPropertyGroup *group;
 @property (nonatomic, retain) CNLabeledValue *labeledValue;
 @property (nonatomic, readonly) BOOL modified;
 @property (nonatomic, readonly) CNMutableContact *mutableContact;
 @property (nonatomic, readonly) id normalizedValue;
 @property (nonatomic, retain) CNLabeledValue *originalLabeledValue;
 @property (nonatomic, readonly) NSString *placeholderString;
-@property (nonatomic, readonly) NSString *property;
+@property (nonatomic, retain) NSString *property;
 @property (getter=isReadonly, nonatomic, readonly) BOOL readonly;
 @property (getter=isSuggested, nonatomic, readonly) BOOL suggested;
 @property (nonatomic, readonly) NSArray *supportedLabels;
@@ -50,6 +53,7 @@
 - (BOOL)allowsEmail;
 - (BOOL)allowsIMessage;
 - (BOOL)allowsPhone;
+- (BOOL)allowsTTY;
 - (int)anyContactLegacyIdentifier;
 - (id)bestLabel:(id)arg1;
 - (id)bestValue:(id)arg1;
@@ -75,7 +79,7 @@
 - (BOOL)isEquivalentToItem:(id)arg1;
 - (BOOL)isEquivalentToItem:(id)arg1 whenEditing:(BOOL)arg2;
 - (BOOL)isFavorite;
-- (BOOL)isFavoriteOfType:(int)arg1;
+- (BOOL)isFavoriteOfActionType:(id)arg1 bundleIdentifier:(id)arg2;
 - (BOOL)isReadonly;
 - (BOOL)isSuggested;
 - (BOOL)isValidIdentifier:(id)arg1;
@@ -90,15 +94,17 @@
 - (id)placeholderString;
 - (id)property;
 - (void)rejectSuggestion;
+- (id)replacementForInvalidValue:(id)arg1;
 - (void)saveChangesImmediately:(BOOL)arg1;
 - (void)setAllowsEmail:(BOOL)arg1;
 - (void)setAllowsIMessage:(BOOL)arg1;
 - (void)setAllowsPhone:(BOOL)arg1;
+- (void)setAllowsTTY:(BOOL)arg1;
 - (void)setContact:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setGroup:(id)arg1;
 - (void)setLabeledValue:(id)arg1;
 - (void)setOriginalLabeledValue:(id)arg1;
+- (void)setProperty:(id)arg1;
 - (id)supportedLabels;
 - (void)updateLabeledValueWithLabel:(id)arg1;
 - (void)updateLabeledValueWithValue:(id)arg1;

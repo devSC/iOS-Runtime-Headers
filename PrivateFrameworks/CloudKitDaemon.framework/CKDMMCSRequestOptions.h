@@ -3,21 +3,29 @@
  */
 
 @interface CKDMMCSRequestOptions : NSObject {
-    BOOL _allowsCellularAccess;
-    BOOL _allowsPowerNapScheduling;
-    NSString *_applicationBundleID;
-    NSString *_applicationSecondaryID;
-    NSString *_containerID;
-    int _qualityOfService;
-    BOOL _usesBackgroundSession;
-    NSArray *_zoneNames;
+    NSDictionary * _MMCSRequestOptions;
+    BOOL  _allowsCellularAccess;
+    BOOL  _allowsPowerNapScheduling;
+    NSString * _applicationBundleID;
+    NSString * _applicationSecondaryID;
+    NSData * _authPutResponse;
+    NSDictionary * _authPutResponseHeaders;
+    NSString * _containerID;
+    NSString * _deviceHardwareID;
+    int  _qualityOfService;
+    BOOL  _usesBackgroundSession;
+    NSArray * _zoneNames;
 }
 
+@property (nonatomic, retain) NSDictionary *MMCSRequestOptions;
 @property (nonatomic) BOOL allowsCellularAccess;
 @property (nonatomic) BOOL allowsPowerNapScheduling;
 @property (nonatomic, retain) NSString *applicationBundleID;
 @property (nonatomic, retain) NSString *applicationSecondaryID;
+@property (nonatomic, retain) NSData *authPutResponse;
+@property (nonatomic, retain) NSDictionary *authPutResponseHeaders;
 @property (nonatomic, retain) NSString *containerID;
+@property (nonatomic, retain) NSString *deviceHardwareID;
 @property (nonatomic) int qualityOfService;
 @property (nonatomic) BOOL usesBackgroundSession;
 @property (nonatomic, retain) NSArray *zoneNames;
@@ -25,19 +33,27 @@
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
 - (id)MMCSOptions;
+- (id)MMCSRequestOptions;
 - (BOOL)allowsCellularAccess;
 - (BOOL)allowsPowerNapScheduling;
 - (id)applicationBundleID;
 - (id)applicationSecondaryID;
+- (id)authPutResponse;
+- (id)authPutResponseHeaders;
 - (id)containerID;
 - (id)description;
+- (id)deviceHardwareID;
 - (id)initWithOperation:(id)arg1;
 - (int)qualityOfService;
 - (void)setAllowsCellularAccess:(BOOL)arg1;
 - (void)setAllowsPowerNapScheduling:(BOOL)arg1;
 - (void)setApplicationBundleID:(id)arg1;
 - (void)setApplicationSecondaryID:(id)arg1;
+- (void)setAuthPutResponse:(id)arg1;
+- (void)setAuthPutResponseHeaders:(id)arg1;
 - (void)setContainerID:(id)arg1;
+- (void)setDeviceHardwareID:(id)arg1;
+- (void)setMMCSRequestOptions:(id)arg1;
 - (void)setQualityOfService:(int)arg1;
 - (void)setUsesBackgroundSession:(BOOL)arg1;
 - (void)setZoneNames:(id)arg1;

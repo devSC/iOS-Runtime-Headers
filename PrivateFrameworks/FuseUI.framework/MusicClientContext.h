@@ -3,14 +3,14 @@
  */
 
 @interface MusicClientContext : SKUIClientContext {
-    MusicJSNativeViewEventRegistry *_jsNativeViewEventRegistry;
-    MusicJSNowPlayingController *_jsNowPlayingController;
-    MusicJSPlaybackCoordinator *_jsPlaybackCoordinator;
-    MusicJSRecentStationsManager *_jsRecentStationsManager;
-    MusicJSUserInterfaceStatusController *_jsUserInterfaceStatusController;
-    SKUILocalizedStringDictionary *_localizedStrings;
-    RadioRecentStationsController *_recentStationsController;
-    NSDictionary *_updatableLocalizedStrings;
+    MusicJSNativeViewEventRegistry * _jsNativeViewEventRegistry;
+    MusicJSNowPlayingController * _jsNowPlayingController;
+    MusicJSPlaybackCoordinator * _jsPlaybackCoordinator;
+    MusicJSRecentStationsManager * _jsRecentStationsManager;
+    MusicJSUserInterfaceStatusController * _jsUserInterfaceStatusController;
+    SKUILocalizedStringDictionary * _localizedStrings;
+    RadioRecentStationsController * _recentStationsController;
+    NSDictionary * _updatableLocalizedStrings;
 }
 
 @property (nonatomic, readonly) MusicJSNativeViewEventRegistry *jsNativeViewEventRegistry;
@@ -37,6 +37,7 @@
 - (id)localizedAlertWithError:(id)arg1;
 - (id)localizedStringForKey:(id)arg1 inTable:(id)arg2;
 - (id)modalDocumentViewControllerForDocument:(id)arg1 options:(id)arg2;
+- (Class)moviePlayerViewControllerClass;
 - (id)previewViewControllerForViewElement:(id)arg1;
 - (id)recentStationsController;
 - (void)sendOnSubscriptionRequiredWithOptions:(id)arg1;

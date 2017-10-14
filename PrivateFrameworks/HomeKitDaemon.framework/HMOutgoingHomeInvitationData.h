@@ -3,9 +3,9 @@
  */
 
 @interface HMOutgoingHomeInvitationData : HMHomeInvitationData {
-    NSString *_inviteeName;
-    NSUUID *_inviteeUUID;
-    NSString *_inviteeUserID;
+    NSString * _inviteeName;
+    NSUUID * _inviteeUUID;
+    NSString * _inviteeUserID;
 }
 
 @property (nonatomic, readonly, copy) NSString *inviteeName;

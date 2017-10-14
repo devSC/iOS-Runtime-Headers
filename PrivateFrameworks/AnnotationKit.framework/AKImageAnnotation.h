@@ -3,9 +3,9 @@
  */
 
 @interface AKImageAnnotation : AKAnnotation <AKFlippableAnnotationProtocol, AKRectangularAnnotationProtocol, AKRotatableAnnotationProtocol> {
-    BOOL _hasShadow;
-    BOOL _horizontallyFlipped;
-    UIImage *_image;
+    BOOL  _hasShadow;
+    BOOL  _horizontallyFlipped;
+    UIImage * _image;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -15,9 +15,9 @@
             float width; 
             float height; 
         } size; 
-    } _rectangle;
-    float _rotationAngle;
-    BOOL _verticallyFlipped;
+    }  _rectangle;
+    float  _rotationAngle;
+    BOOL  _verticallyFlipped;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -40,6 +40,7 @@
 - (void)adjustModelToCompensateForOriginalExif;
 - (id)displayName;
 - (void)encodeWithCoder:(id)arg1;
+- (void)flattenModelExifOrientation:(int)arg1 withModelSize:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)hasShadow;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })hitTestBounds;
 - (BOOL)horizontallyFlipped;

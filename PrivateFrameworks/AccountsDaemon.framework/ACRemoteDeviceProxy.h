@@ -3,11 +3,11 @@
  */
 
 @interface ACRemoteDeviceProxy : NSObject <IDSServiceDelegate> {
-    NSMutableDictionary *_completionHandlersByInternalMessageID;
-    NSLock *_completionHandlersLock;
-    NSMutableDictionary *_internalMessageIDsByTransportID;
-    IDSService *_messageSendingService;
-    ACRemoteCommandHandler *_remoteCommandHandler;
+    NSMutableDictionary * _completionHandlersByInternalMessageID;
+    NSLock * _completionHandlersLock;
+    NSMutableDictionary * _internalMessageIDsByTransportID;
+    IDSService * _messageSendingService;
+    ACRemoteCommandHandler * _remoteCommandHandler;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -21,7 +21,9 @@
 - (void)_enqueueCompletionHandler:(id /* block */)arg1 forMessageWithInternalID:(id)arg2 transportID:(id)arg3;
 - (BOOL)_isValidCommandForOutgoingMessage:(id)arg1;
 - (int)_priorityForMessageCarryingCommand:(id)arg1;
+- (BOOL)_sendMessageData:(id)arg1 toDestination:(id)arg2 withPriority:(int)arg3 bypassDuet:(BOOL)arg4 transportID:(id*)arg5 error:(id*)arg6;
 - (void)_sendReplyForMessage:(id)arg1 withSuccess:(BOOL)arg2 result:(id)arg3 error:(id)arg4;
+- (id)identityServicesCommandQueue;
 - (id)init;
 - (void)sendCommand:(id)arg1 withAccount:(id)arg2 completion:(id /* block */)arg3;
 - (void)sendCommand:(id)arg1 withAccount:(id)arg2 options:(id)arg3 completion:(id /* block */)arg4;

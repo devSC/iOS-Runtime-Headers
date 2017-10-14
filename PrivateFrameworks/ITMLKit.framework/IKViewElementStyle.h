@@ -3,11 +3,11 @@
  */
 
 @interface IKViewElementStyle : NSObject {
-    NSString *_classDescriptorString;
-    IKCSSRule *_cssRule;
-    BOOL _filterBlockedStyles;
-    NSArray *_mediaQueryList;
-    NSMutableDictionary *_styleDict;
+    NSString * _classDescriptorString;
+    IKCSSRule * _cssRule;
+    BOOL  _filterBlockedStyles;
+    NSArray * _mediaQueryList;
+    NSMutableDictionary * _styleDict;
 }
 
 @property (nonatomic, readonly) UIColor *backgroundColor;
@@ -31,6 +31,7 @@
 @property (nonatomic, readonly) int fillImage;
 @property (nonatomic, readonly) float fontSize;
 @property (nonatomic, readonly) NSString *fontWeight;
+@property (nonatomic, readonly) BOOL hidden;
 @property (nonatomic, readonly) IKColor *ikBackgroundColor;
 @property (nonatomic, readonly) IKColor *ikBorderColor;
 @property (nonatomic, readonly) IKColor *ikColor;
@@ -73,8 +74,10 @@
 + (id)elementStyleWithSelector:(id)arg1 inlineStyleString:(id)arg2 filterBlockedStyles:(BOOL)arg3;
 + (unsigned int)imageTreatmentFromString:(id)arg1;
 + (void)initialize;
++ (BOOL)isHiddenStyleRegistered;
 + (id)normalizeClassSelectorString:(id)arg1;
 + (unsigned int)positionFromString:(id)arg1;
++ (void)registerHiddenStyle:(id)arg1;
 + (void)registerStyle:(id)arg1 aliasName:(id)arg2 withType:(unsigned int)arg3 inherited:(BOOL)arg4;
 + (void)registerStyle:(id)arg1 withType:(unsigned int)arg2 inherited:(BOOL)arg3;
 + (id)registeredAliases;
@@ -88,6 +91,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_edgeInsetsForStyleKey:(id)arg1;
 - (id)_gradientFromString:(id)arg1;
 - (id)_newColorFromString:(id)arg1;
+- (id)_styleNameForAlias:(id)arg1;
 - (id)backgroundColor;
 - (id)badgeTreatment;
 - (id)borderColor;
@@ -101,6 +105,7 @@
 - (id)columnItemType;
 - (id)columnType;
 - (id)cssRule;
+- (id)debugDescription;
 - (id)description;
 - (id)dividerType;
 - (unsigned int)elementAlignment;
@@ -110,6 +115,7 @@
 - (int)fillImage;
 - (float)fontSize;
 - (id)fontWeight;
+- (BOOL)hidden;
 - (id)ikBackgroundColor;
 - (id)ikBorderColor;
 - (id)ikColor;
@@ -149,7 +155,63 @@
 - (id)valueForStyle:(id)arg1;
 - (id)visibility;
 
-// Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (BOOL)tv_adjustsFontSizeToFitWidth;
+- (int)tv_alignment;
+- (id)tv_associatedViewElementStyle;
+- (id)tv_backgroundColor;
+- (id)tv_borderColor;
+- (BOOL)tv_borderContinuous;
+- (id)tv_borderRadius;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_borderWidths;
+- (id)tv_color;
+- (unsigned int)tv_columnCount;
+- (int)tv_contentAlignment;
+- (id)tv_focusAlign;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_focusMargin;
+- (unsigned int)tv_focusSizeIncrease;
+- (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })tv_focusTransform;
+- (id)tv_fontFamily;
+- (float)tv_fontSize;
+- (id)tv_fontWeight;
+- (id)tv_group;
+- (BOOL)tv_hasFocusMargin;
+- (float)tv_height;
+- (id)tv_highlightColor;
+- (id)tv_imageTreatment;
+- (float)tv_imageUpscaleFactor;
+- (float)tv_interitemSpacing;
+- (float)tv_lineSpacing;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_margin;
+- (float)tv_maxHeight;
+- (unsigned int)tv_maxLines;
+- (unsigned int)tv_maxTextLines;
+- (float)tv_maxWidth;
+- (float)tv_minHeight;
+- (float)tv_minWidth;
+- (float)tv_minimumScaleFactor;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_padding;
+- (int)tv_position;
+- (id)tv_progressStyle;
+- (id)tv_ratingStyle;
+- (unsigned int)tv_rowCount;
+- (id)tv_searchStyle;
+- (id)tv_shadow;
+- (int)tv_textAlignment;
+- (id)tv_textHighlightStyle;
+- (id)tv_textShadow;
+- (id)tv_textStyle;
+- (id)tv_textTransform;
+- (id)tv_tintColor;
+- (id)tv_tintColor2;
+- (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })tv_transform;
+- (id)tv_transition;
+- (float)tv_transitionInterval;
+- (id)tv_visualEffect;
+- (float)tv_width;
+
+// Image: /System/Library/PrivateFrameworks/VideosExtras.framework/VideosExtras
 
 + (id)positionConstraintsForView:(id)arg1 insets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2 position:(unsigned int)arg3;
 

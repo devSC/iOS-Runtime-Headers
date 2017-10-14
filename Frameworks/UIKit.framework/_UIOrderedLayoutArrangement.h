@@ -3,16 +3,17 @@
  */
 
 @interface _UIOrderedLayoutArrangement : _UILayoutArrangement <_UIOLAPropertySource> {
-    BOOL _baselineRelativeArrangement;
-    int _distribution;
-    NSMapTable *_edgeToEdgeConstraints;
-    NSMapTable *_hidingDimensionConstraints;
-    BOOL _itemFittingSizeChanged;
-    BOOL _itemOrderingChanged;
-    float _proportionalFillDenominator;
-    NSMapTable *_relatedDimensionConstraints;
-    float _spacing;
-    NSMapTable *_spacingOrCenteringGuides;
+    BOOL  _baselineRelativeArrangement;
+    int  _distribution;
+    NSMapTable * _edgeToEdgeConstraints;
+    NSMapTable * _hidingDimensionConstraints;
+    BOOL  _itemFittingSizeChanged;
+    BOOL  _itemOrderingChanged;
+    NSMapTable * _multilineTextWidthDisambiguationConstraints;
+    float  _proportionalFillDenominator;
+    NSMapTable * _relatedDimensionConstraints;
+    float  _spacing;
+    NSMapTable * _spacingOrCenteringGuides;
 }
 
 @property (setter=_setItemFittingSizeChanged:, nonatomic) BOOL _itemFittingSizeChanged;
@@ -43,6 +44,7 @@
 - (void)_cleanUpWithoutResettingKeepAliveWorkaround;
 - (void)_clearAllConstraintsArrays;
 - (BOOL)_configurationRequiresCanvasConnectionFittingConstraint;
+- (float)_constantForMultilineTextWidthDisambiguationConstraintWithNumberOfVisibleItems:(unsigned int)arg1;
 - (void)_didEvaluateMultilineHeightForView:(id)arg1;
 - (id)_dimensionRefItemFromConstraint:(id)arg1;
 - (id)_edgeToEdgeConstraintForGapBetweenPrecedingItem:(id)arg1 andFollowingItem:(id)arg2 isFirstGap:(BOOL)arg3 isLastGap:(BOOL)arg4;
@@ -57,7 +59,9 @@
 - (BOOL)_itemFittingSizeChanged;
 - (BOOL)_itemOrderingChanged;
 - (id)_lastVisibleItem;
+- (int)_maxAttributeForGapConstraintRespectingBaselineRelative:(BOOL)arg1;
 - (int)_minAttributeForGapConstraint;
+- (int)_minAttributeForGapConstraintRespectingBaselineRelative:(BOOL)arg1;
 - (BOOL)_monitorsSystemLayoutFittingSizeForItem:(id)arg1;
 - (void)_notifyCanvasesBaselineParametersDidChange;
 - (id)_orderedConfigurationHistory;
@@ -69,6 +73,7 @@
 - (void)_setItemOrderingChanged:(BOOL)arg1;
 - (void)_setUpDimensionConstraintForItem:(id)arg1 referenceItem:(id)arg2 atIndex:(unsigned int)arg3;
 - (void)_setUpHidingDimensionConstraintForItem:(id)arg1;
+- (void)_setUpMultilineTextWidthDisambiguationConstraintForItem:(id)arg1;
 - (id)_setUpSpacingOrCenteringGuideForGapIndex:(unsigned int)arg1;
 - (void)_systemLayoutFittingSizeDidChangeForItem:(id)arg1;
 - (id)_tallestItem;

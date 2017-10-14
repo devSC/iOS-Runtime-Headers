@@ -3,23 +3,25 @@
  */
 
 @interface WLMigrationProgressViewController : WLWelcomeGroupViewController <WLDataMigrationDelegate, WLDeviceAuthenticationDelegate> {
-    WLDeviceAuthenticationController *_authController;
-    id /* block */ _authenticationDidSucceedHandler;
-    id /* block */ _completionHandler;
-    UILabel *_deviceNameView;
-    UILabel *_explanationView;
-    BOOL _migrationConcluded;
-    WLDataMigrationController *_migrationController;
-    BOOL _migrationControllerIsRestartable;
-    id /* block */ _migrationDidBeginHandler;
-    unsigned int _migrationState;
-    NSString *_progressString;
-    UIProgressView *_progressView;
-    WLSourceDevice *_sourceDevice;
-    UIActivityIndicatorView *_spinner;
-    UILabel *_stateView;
-    NSArray *_stateViewConstraintsForNoSpinner;
-    NSArray *_stateViewConstraintsForWithSpinner;
+    WLDeviceAuthenticationController * _authController;
+    NSObject<OS_dispatch_queue> * _authDelegateSerialQueue;
+    BOOL  _authDidSucceed;
+    id /* block */  _authenticationDidSucceedHandler;
+    id /* block */  _completionHandler;
+    UILabel * _deviceNameView;
+    UILabel * _explanationView;
+    BOOL  _migrationConcluded;
+    WLDataMigrationController * _migrationController;
+    BOOL  _migrationControllerIsRestartable;
+    id /* block */  _migrationDidBeginHandler;
+    unsigned int  _migrationState;
+    NSString * _progressString;
+    UIProgressView * _progressView;
+    WLSourceDevice * _sourceDevice;
+    UIActivityIndicatorView * _spinner;
+    UILabel * _stateView;
+    NSArray * _stateViewConstraintsForNoSpinner;
+    NSArray * _stateViewConstraintsForWithSpinner;
 }
 
 @property (nonatomic, copy) id /* block */ authenticationDidSucceedHandler;
@@ -39,7 +41,6 @@
 - (void)_uiTestModeStartFakeMigration;
 - (void)_updateProgressViewsWithOneLineStateKey:(id)arg1 twoLineStateKey:(id)arg2 showDeviceName:(BOOL)arg3 showSpinner:(BOOL)arg4 explanationText:(id)arg5;
 - (id /* block */)authenticationDidSucceedHandler;
-- (void)authenticator:(id)arg1 didCalculateSecurityCode:(id)arg2;
 - (void)authenticator:(id)arg1 didFailWithError:(id)arg2;
 - (void)authenticator:(id)arg1 didFinishWithAuthentication:(id)arg2;
 - (id /* block */)completionHandler;

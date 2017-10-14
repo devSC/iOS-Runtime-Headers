@@ -7,6 +7,7 @@
 - (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (BOOL)modalPresentationCapturesStatusBarAppearance;
+- (int)preferredWhitePointAdaptivityStyle;
 - (BOOL)prefersStatusBarHidden;
 - (void)viewDidLoad;
 

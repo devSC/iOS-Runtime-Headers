@@ -2,28 +2,37 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@interface MCDBrowsableContentTableViewController : UIViewController <MCDPCContainerDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate> {
-    UIActivityIndicatorView *_activityIndicator;
-    MCDPCContainer *_container;
-    int _count;
-    _UIFilteredDataSource *_dataSource;
-    AVExternalDevice *_externalDevice;
-    BOOL _hasCarScreen;
-    BOOL _limited;
-    UIView *_nowPlayingButton;
-    NSIndexPath *_reselectIndexPath;
-    NSIndexPath *_selectedNextIndexPath;
-    _MCDBrowsableContentTableViewPreloader *_selectionPreloader;
-    NSObject<OS_dispatch_queue> *_serialQueue;
-    BOOL _shouldReloadOnAppear;
-    UITableView *_tableView;
-    BOOL _visible;
+@interface MCDBrowsableContentTableViewController : UIViewController <MCDErrorViewDelegate, MCDPCContainerDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate> {
+    UIView * _MCD_tableView;
+    UIActivityIndicatorView * _activityIndicator;
+    MCDPCContainer * _container;
+    int  _count;
+    _UIFilteredDataSource * _dataSource;
+    MPWeakTimer * _delayTimer;
+    BOOL  _didPushToNowPlayingAtLaunch;
+    AVExternalDevice * _externalDevice;
+    BOOL  _hasCarScreen;
+    BOOL  _hasNoBrowsableContent;
+    BOOL  _hasTabbedBrowsing;
+    BOOL  _limited;
+    MPWeakTimer * _loadingTimer;
+    MCDNowPlayingButton * _nowPlayingButton;
+    UIView * _placeholderView;
+    NSIndexPath * _reselectIndexPath;
+    NSIndexPath * _selectedIndexPath;
+    NSIndexPath * _selectedNextIndexPath;
+    _MCDBrowsableContentTableViewPreloader * _selectionPreloader;
+    NSObject<OS_dispatch_queue> * _serialQueue;
+    UITableView * _tableView;
+    BOOL  _visible;
 }
 
 @property (nonatomic, readonly) MCDPCContainer *container;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *placeholderView;
+@property (nonatomic, retain) NSIndexPath *selectedIndexPath;
 @property (readonly) Class superclass;
 @property (getter=isVisible, nonatomic) BOOL visible;
 
@@ -35,6 +44,9 @@
 - (void)_limitedUIChanged:(id)arg1;
 - (void)_nowPlayingButtonTapped:(id)arg1;
 - (void)_nowPlayingDidChange:(id)arg1;
+- (void)_replacePlaceholderViewWithView:(id)arg1;
+- (void)_showLoadingScreen;
+- (void)_showTimeoutScreen;
 - (void)_updateNowPlayingButtonVisibility;
 - (id)container;
 - (void)container:(id)arg1 didInvalidateIndicies:(id)arg2;
@@ -43,12 +55,18 @@
 - (id)contentScrollView;
 - (void)dealloc;
 - (id)description;
+- (void)errorViewDidTapButton:(id)arg1;
 - (id)initWithContainer:(id)arg1;
+- (id)initWithContainer:(id)arg1 tabbedBrowsing:(BOOL)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (BOOL)isVisible;
-- (id)preferredFocusedItem;
+- (id)placeholderView;
+- (id)preferredFocusEnvironments;
 - (void)reloadTable;
 - (void)reloadWithCompletion:(id /* block */)arg1;
+- (id)selectedIndexPath;
+- (void)setPlaceholderView:(id)arg1;
+- (void)setSelectedIndexPath:(id)arg1;
 - (void)setVisible:(BOOL)arg1;
 - (void)showActivity:(BOOL)arg1 inCell:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
@@ -58,6 +76,7 @@
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
+- (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;

@@ -3,28 +3,33 @@
  */
 
 @interface FBApplicationPlaceholder : FBBundleInfo {
-    NSObject<OS_dispatch_queue> *_queue;
-    double _queue_cachedPercentComplete;
-    BOOL _queue_installType;
-    BOOL _queue_isNewsstand;
-    BOOL _queue_isRestricted;
-    NSMutableSet *_queue_observers;
-    NSProgress *_queue_progress;
+    LSApplicationProxy * _proxy;
+    NSObject<OS_dispatch_queue> * _queue;
+    double  _queue_cachedPercentComplete;
+    BOOL  _queue_installType;
+    BOOL  _queue_isNewsstand;
+    BOOL  _queue_isRestricted;
+    NSMutableSet * _queue_observers;
+    NSProgress * _queue_progress;
 }
 
 @property (getter=isCancellable, nonatomic, readonly) BOOL cancellable;
+@property (nonatomic, readonly, copy) NSString *displayName;
 @property (nonatomic, readonly) unsigned int installPhase;
 @property (nonatomic, readonly) unsigned int installState;
 @property (nonatomic, readonly) unsigned int installType;
 @property (getter=isNewsstand, nonatomic, readonly) BOOL newsstand;
 @property (getter=isPausable, nonatomic, readonly) BOOL pausable;
 @property (nonatomic, readonly) double percentComplete;
+@property (getter=isPrioritizable, nonatomic, readonly) BOOL prioritizable;
 @property (getter=_proxy, setter=_setProxy:, nonatomic, retain) LSApplicationProxy *proxy;
 @property (getter=isRestricted, nonatomic, readonly) BOOL restricted;
 
 - (void)_dispatchToObservers:(id)arg1 block:(id /* block */)arg2;
 - (id)_iconDictionary;
 - (id)_initWithApplicationProxy:(id)arg1;
+- (id)_initWithBundleIdentifier:(id)arg1 url:(id)arg2;
+- (id)_initWithBundleProxy:(id)arg1 url:(id)arg2;
 - (double)_normalizedProgress:(double)arg1;
 - (void)_noteChangedSignificantly;
 - (id)_proxy;
@@ -39,18 +44,21 @@
 - (void)_sendToObserversPausabilityDidChange:(id)arg1;
 - (void)_sendToObserversPercentCompleteDidChange:(id)arg1;
 - (void)_sendToObserversPlaceholderDidChangeSignificantly:(id)arg1;
+- (void)_sendToObserversPrioritizableDidChange:(id)arg1;
 - (void)_setProxy:(id)arg1;
 - (void)_setProxy:(id)arg1 force:(BOOL)arg2;
 - (void)addObserver:(id)arg1;
 - (void)cancel;
 - (void)dealloc;
 - (id)description;
+- (id)displayName;
 - (unsigned int)installPhase;
 - (unsigned int)installState;
 - (unsigned int)installType;
 - (BOOL)isCancellable;
 - (BOOL)isNewsstand;
 - (BOOL)isPausable;
+- (BOOL)isPrioritizable;
 - (BOOL)isRestricted;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)pause;

@@ -3,15 +3,17 @@
  */
 
 @interface MKUserLocation : NSObject <MKAnnotation> {
-    double _expectedCoordinateUpdateInterval;
-    MKUserLocationInternal *_internal;
+    double  _expectedCoordinateUpdateInterval;
+    double  _expectedHeadingUpdateInterval;
+    MKUserLocationInternal * _internal;
 }
 
 @property (nonatomic, readonly) double accuracy;
-@property (nonatomic) struct { double x1; double x2; } coordinate;
+@property (nonatomic) struct CLLocationCoordinate2D { double x1; double x2; } coordinate;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) double expectedCoordinateUpdateInterval;
+@property (nonatomic) double expectedHeadingUpdateInterval;
 @property (nonatomic, retain) CLLocation *fixedLocation;
 @property (readonly) unsigned int hash;
 @property (nonatomic, retain) CLHeading *heading;
@@ -33,10 +35,11 @@
 - (void)_updateCoordinate;
 - (double)accuracy;
 - (id)annotation;
-- (struct { double x1; double x2; })coordinate;
+- (struct CLLocationCoordinate2D { double x1; double x2; })coordinate;
 - (double)course;
 - (void)dealloc;
 - (double)expectedCoordinateUpdateInterval;
+- (double)expectedHeadingUpdateInterval;
 - (id)fixedLocation;
 - (id)heading;
 - (double)headingDegrees;
@@ -46,9 +49,10 @@
 - (id)location;
 - (id)predictedLocation;
 - (void)reset;
-- (void)setCoordinate:(struct { double x1; double x2; })arg1;
+- (void)setCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1;
 - (void)setCourse:(double)arg1;
 - (void)setExpectedCoordinateUpdateInterval:(double)arg1;
+- (void)setExpectedHeadingUpdateInterval:(double)arg1;
 - (void)setFixedLocation:(id)arg1;
 - (void)setHeading:(id)arg1;
 - (void)setLocation:(id)arg1;

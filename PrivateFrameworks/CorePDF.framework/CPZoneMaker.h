@@ -3,10 +3,11 @@
  */
 
 @interface CPZoneMaker : NSObject {
-    CPCharSequence *charactersOnPage;
+    CPCharSequence * charactersOnPage;
 }
 
 - (void)addObjectsToStraddler:(id)arg1 from:(id)arg2;
+- (void)addZonesWithBoundaryIn:(id)arg1 withBorder:(id)arg2;
 - (unsigned int)categorizeGraphicsIn:(id)arg1;
 - (void)cutHorizontalBorders:(id)arg1 whereObscuredByShape:(id)arg2;
 - (void)cutVerticalBorders:(id)arg1 whereObscuredByShape:(id)arg2;

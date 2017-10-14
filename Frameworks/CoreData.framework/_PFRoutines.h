@@ -30,6 +30,7 @@
 + (id)decodeValue:(id)arg1 forTransformableAttribute:(id)arg2;
 + (void)deleteFileForPFExternalReferenceData:(id)arg1;
 + (id)encodeObjectValue:(id)arg1 forTransformableAttribute:(id)arg2;
++ (id)fetchHeterogeneousCollectionByObjectIDs:(id)arg1 intoContext:(id)arg2;
 + (void)getIndexes:(unsigned int*)arg1 fromCollection:(id)arg2 forObjectsInCollection:(id)arg3;
 + (void)initialize;
 + (BOOL)isUbiquitousItemAtURL:(id)arg1;
@@ -38,6 +39,7 @@
 + (long long)lengthOfFileAtExternalReferenceLocation:(const char *)arg1;
 + (BOOL)moveInterimFileToPermanentLocation:(id)arg1;
 + (id)newArrayOfObjectIDsFromCollection:(id)arg1;
++ (id)newCollection:(Class)arg1 fromCollection:(id)arg2 byAddingItems:(id)arg3;
 + (id)newMappedDataForExternalReference:(id)arg1;
 + (id)newMutableArrayFromCollection:(id)arg1 byRemovingItems:(id)arg2;
 + (id)newMutableArrayFromCollection:(id)arg1 forParentContext:(id)arg2;
@@ -51,6 +53,7 @@
 + (id)newOrderedSetFromCollection:(id)arg1 byInsertingItems:(id)arg2 atIndex:(unsigned int)arg3;
 + (id)newOrderedSetFromCollection:(id)arg1 byRemovingItems:(id)arg2;
 + (id)newOrderedSetOfObjectIDsFromCollection:(id)arg1;
++ (id)newSetFromCollection:(id)arg1 byAddingItems:(id)arg2;
 + (id)newSetOfObjectIDsFromCollection:(id)arg1;
 + (void)readBytesForExternalReferenceData:(id)arg1 intoBuffer:(void*)arg2 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
 + (void*)readExternalReferenceDataFromFile:(id)arg1;

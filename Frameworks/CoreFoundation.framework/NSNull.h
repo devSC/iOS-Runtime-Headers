@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSNull : NSObject <CAAction, NSCopying, NSSecureCoding, PQLBindable, TSDMixing, TSDPathPainter>
+@interface NSNull : NSObject <CAAction, NSCopying, NSSecureCoding, PQLBindable, SiriCoreSQLiteValue, TSDMixing, TSDPathPainter>
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -42,6 +42,10 @@
 - (id)replacementObjectForPortCoder:(id)arg1;
 - (id)valueForKey:(id)arg1;
 
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
++ (id)_mapkit_fakeNil;
+
 // Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
 
 - (id)CAMLType;
@@ -55,6 +59,14 @@
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 
 - (void)sfu_appendJsonStringToString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (id)siriCoreSQLiteValue_escapedString:(BOOL)arg1;
+- (id)siriCoreSQLiteValue_toData;
+- (id)siriCoreSQLiteValue_toNumber;
+- (id)siriCoreSQLiteValue_toString;
+- (int)siriCoreSQLiteValue_type;
 
 // Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
 

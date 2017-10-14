@@ -3,27 +3,28 @@
  */
 
 @interface MFMessage : NSObject <NSCopying> {
-    NSArray *_bcc;
-    NSString *_cachedMessageIDHeader;
-    unsigned int _calculatedAttachmentInfo;
-    NSArray *_cc;
-    NSString *_contentType;
-    long long _conversationID;
-    unsigned int _dateReceivedInterval;
-    unsigned int _dateSentInterval;
-    NSString *_externalID;
-    unsigned long long _generationNumber;
-    long long _messageIDHeaderHash;
-    NSURL *_messageURL;
-    unsigned short _numberOfAttachments;
-    MFMimePart *_parentPart;
-    unsigned long _preferredEncoding;
-    NSArray *_sender;
-    NSString *_senderAddressComment;
-    MFMessageStore *_store;
-    NSString *_subject;
-    NSString *_summary;
-    NSArray *_to;
+    NSArray * _bcc;
+    NSString * _cachedMessageIDHeader;
+    unsigned int  _calculatedAttachmentInfo;
+    NSArray * _cc;
+    NSString * _contentType;
+    long long  _conversationID;
+    unsigned int  _dateReceivedInterval;
+    unsigned int  _dateSentInterval;
+    NSString * _externalID;
+    unsigned long long  _generationNumber;
+    long long  _listIDHash;
+    long long  _messageIDHeaderHash;
+    NSURL * _messageURL;
+    unsigned short  _numberOfAttachments;
+    MFMimePart * _parentPart;
+    unsigned long  _preferredEncoding;
+    NSArray * _sender;
+    NSString * _senderAddressComment;
+    MFMessageStore * _store;
+    NSString * _subject;
+    NSString * _summary;
+    NSArray * _to;
 }
 
 @property (nonatomic, retain) MFMimePart *parentPart;
@@ -31,6 +32,7 @@
 + (Class)dataMessageStoreToUse;
 + (id)messageWithRFC822Data:(id)arg1;
 + (id)messageWithRFC822Data:(id)arg1 withParentPart:(id)arg2;
++ (id)messageWithRFC822Data:(id)arg1 withParentPart:(id)arg2 generateMessageIDHash:(BOOL)arg3;
 + (void)setMessageClassForStore:(id)arg1;
 
 - (void)_calculateAttachmentInfoFromBody:(id)arg1;
@@ -52,7 +54,7 @@
 - (id)bodyDataIsComplete:(BOOL*)arg1 isPartial:(BOOL*)arg2 downloadIfNecessary:(BOOL)arg3;
 - (void)calculateAttachmentInfoFromBody:(id)arg1;
 - (BOOL)calculatedNumberOfAttachments;
-- (BOOL)canBeDeleted;
+- (BOOL)canBeTriaged;
 - (id)cc;
 - (id)ccIfCached;
 - (id)contentType;
@@ -82,6 +84,7 @@
 - (id)init;
 - (BOOL)isLibraryMessage;
 - (BOOL)isMessageContentsLocallyAvailable;
+- (long long)listIDHash;
 - (void)loadCachedHeaderValuesFromHeaders:(id)arg1;
 - (id)messageBody;
 - (id)messageBodyIfAvailable;
@@ -89,6 +92,9 @@
 - (id)messageBodyUpdatingFlags:(BOOL)arg1;
 - (id)messageData;
 - (BOOL)messageData:(id*)arg1 messageSize:(unsigned int*)arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4;
+- (id)messageDataHolder;
+- (BOOL)messageDataHolder:(id*)arg1 messageSize:(unsigned int*)arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4;
+- (id)messageDataHolderIsComplete:(BOOL*)arg1 downloadIfNecessary:(BOOL)arg2;
 - (id)messageDataIsComplete:(BOOL*)arg1 downloadIfNecessary:(BOOL)arg2;
 - (id)messageID;
 - (long long)messageIDHash;
@@ -116,6 +122,7 @@
 - (void)setDateSentTimeIntervalSince1970:(double)arg1;
 - (void)setExternalID:(id)arg1;
 - (void)setGenerationNumber:(unsigned long long)arg1;
+- (void)setListIDHash:(long long)arg1;
 - (void)setMessageData:(id)arg1 isPartial:(BOOL)arg2;
 - (void)setMessageIDHash:(long long)arg1;
 - (void)setMessageIDHeader:(id)arg1;

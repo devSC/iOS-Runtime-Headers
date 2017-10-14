@@ -3,14 +3,16 @@
  */
 
 @interface BrightnessSystemInternal : NSThread <NSXPCListenerDelegate> {
-    NSRunLoop *_NS_rl;
-    id /* block */ _callback;
-    NSMutableDictionary *_clients;
-    NSMutableDictionary *_clientsProps;
-    bool _initializationComplete;
-    bool _shouldKeepRunning;
-    NSTimer *_timer;
-    BLControl *bl;
+    NSRunLoop * _NS_rl;
+    id /* block */  _callback;
+    NSMutableDictionary * _clients;
+    NSMutableDictionary * _clientsProps;
+    NSObject<OS_dispatch_semaphore> * _initSemaphore;
+    bool  _initializationComplete;
+    NSMutableDictionary * _ownedProps;
+    bool  _shouldKeepRunning;
+    NSTimer * _timer;
+    BLControl * bl;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -31,8 +33,11 @@
 - (void)notifyClientsForProperty:(id)arg1 key:(id)arg2;
 - (void)registerNotificationBlock:(id /* block */)arg1;
 - (void)runXPCServer;
+- (void)setOwnedProperty:(id)arg1 forKey:(id)arg2 client:(id)arg3;
 - (BOOL)setProperty:(id)arg1 forKey:(id)arg2 client:(id)arg3;
 - (void)stopRL;
 - (void)timerFire:(id)arg1;
+- (void)undoOwnedPropertiesForClient:(id)arg1;
+- (void)waitForInitialization;
 
 @end

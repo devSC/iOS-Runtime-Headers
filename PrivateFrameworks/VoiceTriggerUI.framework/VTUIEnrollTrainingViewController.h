@@ -2,27 +2,32 @@
    Image: /System/Library/PrivateFrameworks/VoiceTriggerUI.framework/VoiceTriggerUI
  */
 
-@interface VTUIEnrollTrainingViewController : UIViewController <AFUIDebugControllerDelegate, SUICFlamesViewDelegate, VTUIEnrollmentSetupIntroViewDelegate, VTUITrainingManagerDelegate> {
-    int _AVVCRetryCount;
-    float _audioRms;
-    int _badMicRetryCount;
-    int _currentTrainingState;
-    <AFUIDebugControlling> *_debugController;
-    <VTUIEnrollTrainingViewControllerDelegate> *_delegate;
-    SUICFlamesView *_flamesView;
-    BOOL _hasRetriedTraining;
-    VTUIPagedLabel *_instructionPagedLabel;
-    VTUIEnrollmentSetupIntroView *_introView;
-    SiriUIContentButton *_radarButton;
-    UIButton *_radarExitButton;
-    unsigned int _sessionId;
-    UIButton *_skipButton;
-    NSString *_spokenLanguageCode;
-    UILabel *_statusLabel;
-    VTUIEnrollmentSuccessView *_successView;
-    VTUITickMarkView *_tickMark;
-    VTUITrainingManager *_trainingManager;
-    NSArray *_trainingPageInstructions;
+@interface VTUIEnrollTrainingViewController : UIViewController <AFMyriadDelegate, AFUIDebugControllerDelegate, AFUISiriLanguageDelegate, SUICFlamesViewDelegate, VTUIEnrollmentSetupIntroViewDelegate, VTUITrainingManagerDelegate> {
+    int  _AVVCRetryCount;
+    float  _audioRms;
+    int  _badMicRetryCount;
+    int  _consecutiveTimeoutCount;
+    int  _currentTrainingState;
+    <AFUIDebugControlling> * _debugController;
+    <VTUIEnrollTrainingViewControllerDelegate> * _delegate;
+    UIButton * _endpointButton;
+    SUICFlamesView * _flamesView;
+    BOOL  _hasRetriedTraining;
+    VTUIPagedLabel * _instructionPagedLabel;
+    VTUIEnrollmentSetupIntroView * _introView;
+    AFMyriadCoordinator * _myriadCoordinator;
+    SiriUIContentButton * _radarButton;
+    UIButton * _radarExitButton;
+    unsigned int  _sessionId;
+    BOOL  _shouldTurnOnMyriad;
+    AFUISiriLanguage * _siriLanguage;
+    UIButton * _skipButton;
+    NSString * _spokenLanguageCode;
+    UILabel * _statusLabel;
+    VTUIEnrollmentSuccessView * _successView;
+    VTUITickMarkView * _tickMark;
+    VTUITrainingManager * _trainingManager;
+    NSArray * _trainingPageInstructions;
 }
 
 @property (nonatomic) float audioRms;
@@ -40,14 +45,17 @@
 - (void).cxx_destruct;
 - (void)VTUITrainingManagerAudioSessionTerminatedInStatus:(int)arg1;
 - (void)VTUITrainingManagerFeedLevel:(float)arg1;
+- (void)VTUITrainingManagerStopListening;
 - (void)_advanceState;
+- (void)_becomeActive;
 - (void)_cleanupTrainingManagerWithCompletion:(id /* block */)arg1;
 - (void)_clearAggdScalar:(id)arg1;
 - (void)_continueFromIntro:(id)arg1;
 - (void)_createTrainingManagerIfNeeded;
 - (void)_finishSiriSetup:(id)arg1;
+- (id)_getSetupModeString;
 - (void)_handleTrainingResultForNonRetryablePhraseWithStatus:(int)arg1;
-- (void)_handleTrainingResultForRetryablePhraseWithStatus:(int)arg1;
+- (void)_handleTrainingResultForRetryablePhraseWithStatus:(int)arg1 shouldShowCheckMark:(BOOL)arg2;
 - (void)_hideInstruction;
 - (void)_logAggdCount:(long long)arg1 forKey:(id)arg2;
 - (void)_logAggdScalar:(long long)arg1 forKey:(id)arg2;
@@ -56,7 +64,6 @@
 - (void)_resetIdleTimer;
 - (void)_resetTrainingManager;
 - (void)_resignActive;
-- (void)_resumeActive;
 - (void)_resumeGLDrawing;
 - (void)_resumeTraining;
 - (void)_retryAfterBadMicAlert;
@@ -66,7 +73,6 @@
 - (void)_setupMode;
 - (void)_setupTrainingStates;
 - (void)_setupViews;
-- (void)_showAVVCNotReadyAlertCompletion:(id /* block */)arg1;
 - (void)_showBadMicAlertCompletion:(id /* block */)arg1;
 - (void)_showBadMicAlertWithCompletion:(id /* block */)arg1;
 - (void)_showEnrollmentSuccessView;
@@ -82,6 +88,7 @@
 - (void)_startEnrollment;
 - (void)_startTraining;
 - (void)_stopGLDrawing;
+- (void)_triggerEndpoint:(id)arg1;
 - (void)_updateFlamesForStatus:(int)arg1;
 - (void)_updatePageNumberForInstruction:(int)arg1;
 - (void)_warnForLanguageCompatibilityIfNecessary:(id /* block */)arg1;
@@ -90,6 +97,7 @@
 - (float)audioRms;
 - (int)currentTrainingState;
 - (void)dealloc;
+- (void)debugController:(id)arg1 openURL:(id)arg2;
 - (void)debugController:(id)arg1 stateDidChangeWithAddViews:(id)arg2;
 - (void)debugController:(id)arg1 wantsDismissViewController:(id)arg2;
 - (void)debugController:(id)arg1 wantsPresentViewController:(id)arg2;
@@ -99,12 +107,17 @@
 - (void)getScreenshotImageForDebugController:(id)arg1 withCompletion:(id /* block */)arg2;
 - (BOOL)hasRetriedTraining;
 - (id)init;
+- (id)interpretAudioSource:(int)arg1;
 - (int)interpretSessionManagerStatus:(int)arg1 forInstruction:(int)arg2;
+- (id)presentedViewControllerForDebugController;
 - (void)radarButtonPressed:(id)arg1;
 - (unsigned int)sessionId;
 - (void)setAudioRms:(float)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setHasRetriedTraining:(BOOL)arg1;
+- (void)shouldAbortAnotherDeviceBetter:(id)arg1;
+- (void)shouldContinue:(id)arg1;
+- (void)siriLanguageSpokenLanguageCodeDidChange:(id)arg1;
 - (void)skipAssistant:(id)arg1;
 - (void)skipTraining:(id)arg1;
 - (id)trainingManager;

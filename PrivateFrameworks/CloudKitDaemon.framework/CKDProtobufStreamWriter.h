@@ -3,21 +3,21 @@
  */
 
 @interface CKDProtobufStreamWriter : NSObject <NSStreamDelegate> {
-    NSMutableArray *_allObjects;
-    NSFileHandle *_binaryLogFileHandle;
-    unsigned int _bufferSize;
-    NSData *_curData;
-    unsigned int _curDataPos;
-    NSObject<OS_dispatch_queue> *_dispatchQueue;
-    BOOL _hasInitedCompression;
-    BOOL _haveFinishedCompression;
-    BOOL _haveFinishedStreaming;
-    BOOL _haveFlushedZlib;
-    NSFileHandle *_humanLogFileHandle;
-    NSInputStream *_inputStream;
-    NSOutputStream *_outputStream;
-    BOOL _shouldCompress;
-    <CKDProtobufMessageSigningDelegate> *_signingDelegate;
+    NSMutableArray * _allObjects;
+    NSFileHandle * _binaryLogFileHandle;
+    unsigned int  _bufferSize;
+    NSData * _curData;
+    unsigned int  _curDataPos;
+    NSObject<OS_dispatch_queue> * _dispatchQueue;
+    BOOL  _hasInitedCompression;
+    BOOL  _haveFinishedCompression;
+    BOOL  _haveFinishedStreaming;
+    BOOL  _haveFlushedZlib;
+    NSInputStream * _inputStream;
+    id /* block */  _logRequestObjectBlock;
+    NSOutputStream * _outputStream;
+    BOOL  _shouldCompress;
+    <CKDProtobufMessageSigningDelegate> * _signingDelegate;
     struct z_stream_s { 
         char *next_in; 
         unsigned int avail_in; 
@@ -33,7 +33,7 @@
         int data_type; 
         unsigned int adler; 
         unsigned int reserved; 
-    } _zlibStream;
+    }  _zlibStream;
 }
 
 @property (nonatomic, retain) NSFileHandle *binaryLogFileHandle;
@@ -44,7 +44,7 @@
 @property (readonly) unsigned int hash;
 @property (nonatomic) BOOL haveFinishedCompression;
 @property BOOL haveFinishedStreaming;
-@property (nonatomic, retain) NSFileHandle *humanLogFileHandle;
+@property (nonatomic, copy) id /* block */ logRequestObjectBlock;
 @property (nonatomic) BOOL shouldCompress;
 @property (nonatomic) <CKDProtobufMessageSigningDelegate> *signingDelegate;
 @property (readonly) Class superclass;
@@ -64,15 +64,15 @@
 - (BOOL)hasInitedCompression;
 - (BOOL)haveFinishedCompression;
 - (BOOL)haveFinishedStreaming;
-- (id)humanLogFileHandle;
 - (id)initWithCompression:(BOOL)arg1;
+- (id /* block */)logRequestObjectBlock;
 - (id)open;
 - (void)setBinaryLogFileHandle:(id)arg1;
 - (void)setBufferSize:(unsigned int)arg1;
 - (void)setHasInitedCompression:(BOOL)arg1;
 - (void)setHaveFinishedCompression:(BOOL)arg1;
 - (void)setHaveFinishedStreaming:(BOOL)arg1;
-- (void)setHumanLogFileHandle:(id)arg1;
+- (void)setLogRequestObjectBlock:(id /* block */)arg1;
 - (void)setShouldCompress:(BOOL)arg1;
 - (void)setSigningDelegate:(id)arg1;
 - (void)setStreamedObjects:(id)arg1;

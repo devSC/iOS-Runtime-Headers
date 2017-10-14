@@ -3,13 +3,15 @@
  */
 
 @interface VTUIEnrollmentStateView : UIView {
-    UIButton *_finishEnrollmentButton;
-    UIImageView *_imageView;
-    UIView *_imageViewContainer;
-    NSLayoutConstraint *_imageViewHeightCapConstraint;
-    UILabel *_instructionLabel;
-    UILabel *_subtitleLabel;
-    UILabel *_titleLabel;
+    UIButton * _finishEnrollmentButton;
+    NSMutableArray * _horizontalPaddingConstraints;
+    UIImageView * _imageView;
+    UIView * _imageViewContainer;
+    NSLayoutConstraint * _imageViewHeightCapConstraint;
+    UILabel * _instructionLabel;
+    UILabel * _subtitleLabel;
+    UILabel * _titleLabel;
+    BOOL  _usingFallbackImage;
 }
 
 @property (nonatomic, readonly) UIButton *finishEnrollmentButton;
@@ -26,5 +28,6 @@
 - (void)setInstructionText:(id)arg1;
 - (void)setSubtitle:(id)arg1;
 - (void)setTitle:(id)arg1;
+- (BOOL)suppressFinishButton;
 
 @end

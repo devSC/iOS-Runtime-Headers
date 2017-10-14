@@ -3,11 +3,12 @@
  */
 
 @interface AKURLBag : NSObject <NSURLSessionDataDelegate, NSURLSessionDelegate> {
-    AKURLSession *_URLSession;
-    NSDictionary *_URLsByIdentifier;
-    NSObject<OS_dispatch_queue> *_bagFetchQueue;
-    NSDictionary *_environments;
-    NSDate *_lastFetchedDate;
+    AKURLSession * _URLSession;
+    NSDictionary * _URLsByIdentifier;
+    NSObject<OS_dispatch_queue> * _bagFetchQueue;
+    NSDictionary * _configurations;
+    NSDictionary * _environments;
+    NSDate * _lastFetchedDate;
 }
 
 @property (nonatomic, readonly) NSString *APSEnvironment;
@@ -15,23 +16,38 @@
 @property (nonatomic, readonly) NSURL *absintheCertURL;
 @property (nonatomic, readonly) NSURL *absintheSessionURL;
 @property (nonatomic, readonly) NSURL *basicAuthURL;
+@property (nonatomic, readonly) NSURL *changePasswordURL;
 @property (nonatomic, readonly) NSURL *checkInURL;
+@property (nonatomic, readonly) NSURL *circleURL;
+@property (nonatomic, readonly) NSURL *configurationInfoURL;
 @property (nonatomic, readonly) NSURL *createAppleIDURL;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSURL *endProvisioningURL;
+@property (nonatomic, readonly) NSURL *escapeHatchURL;
+@property (nonatomic, readonly) NSURL *fetchConfigDataURL;
+@property (nonatomic, readonly) NSURL *fetchEmailsURL;
+@property (nonatomic, readonly) NSURL *fetchFollowUps;
+@property (nonatomic, readonly) NSURL *fetchUserInfoURL;
 @property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSURL *iForgotContinuationURL;
 @property (nonatomic, readonly) NSURL *iForgotURL;
 @property (nonatomic, readonly) NSURL *notificationAckURL;
+@property (nonatomic, readonly) NSURL *renewRecoveryTokenURL;
 @property (nonatomic, readonly) NSURL *startProvisioningURL;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSURL *syncAnisetteURL;
+@property (nonatomic, readonly) NSURL *tokenUpgradeURL;
+@property (nonatomic, readonly) NSURL *trustedDevicesSummaryURL;
 @property (nonatomic, readonly) NSURL *trustedDevicesURL;
 @property (nonatomic, readonly) NSURL *upgradeEligibilityCheckURL;
 @property (nonatomic, readonly) NSURL *upgradeUIURL;
 @property (nonatomic, readonly) NSURL *validateCodeURL;
+@property (nonatomic, readonly) NSURL *validateVettingTokenURL;
 
++ (id)_newBagURLRequest;
 + (id)keyForEscapeHatchURL;
++ (BOOL)looksLikeiForgotURLKey:(id)arg1;
 + (id)sharedBag;
 
 - (void).cxx_destruct;
@@ -43,19 +59,34 @@
 - (id)absintheCertURL;
 - (id)absintheSessionURL;
 - (id)basicAuthURL;
+- (id)changePasswordURL;
 - (id)checkInURL;
+- (id)circleURL;
+- (id)configurationAtKey:(id)arg1;
+- (id)configurationInfoURL;
 - (id)createAppleIDURL;
 - (id)endProvisioningURL;
 - (id)escapeHatchURL;
+- (id)fetchConfigDataURL;
+- (id)fetchEmailsURL;
+- (id)fetchFollowUps;
+- (id)fetchUserInfoURL;
+- (id)iForgotContinuationURL;
 - (id)iForgotURL;
 - (id)init;
 - (id)notificationAckURL;
 - (void)refresh;
+- (id)renewRecoveryTokenURL;
+- (BOOL)requestNewURLBagIfNecessaryWithError:(id*)arg1;
 - (id)startProvisioningURL;
 - (id)syncAnisetteURL;
+- (id)tokenUpgradeURL;
+- (id)trustedDevicesSummaryURL;
 - (id)trustedDevicesURL;
 - (id)upgradeEligibilityCheckURL;
 - (id)upgradeUIURL;
+- (id)urlAtKey:(id)arg1;
 - (id)validateCodeURL;
+- (id)validateVettingTokenURL;
 
 @end

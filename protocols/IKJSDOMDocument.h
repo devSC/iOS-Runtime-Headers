@@ -6,6 +6,7 @@
 @required
 
 - (IKDOMNode *)adoptNode:(IKDOMNode *)arg1;
+- (IKDOMCDATASection *)createCDATASection:(NSString *)arg1;
 - (IKDOMComment *)createComment:(NSString *)arg1;
 - (IKDOMDocumentFragment *)createDocumentFragment;
 - (IKDOMElement *)createElement:(NSString *)arg1;
@@ -17,16 +18,11 @@
 - (IKDOMImplementation *)implementation;
 - (NSString *)inputEncoding;
 - (IKJSNavigationDocument *)navigationDocument;
-- (NSArray *)recordedImpressions;
-- (void)replace:(IKDOMDocument *)arg1;
-- (void)runTest:(NSString *)arg1 :(NSDictionary *)arg2;
-- (void)scrollToTop;
 - (void)setDocumentURI:(NSString *)arg1;
 - (void)setNeedsUpdate;
 - (void)setStrictErrorChecking:(BOOL)arg1;
 - (void)setXmlStandalone:(BOOL)arg1;
 - (void)setXmlVersion:(NSString *)arg1;
-- (NSArray *)snapshotImpressions;
 - (BOOL)strictErrorChecking;
 - (NSString *)xmlEncoding;
 - (BOOL)xmlStandalone;

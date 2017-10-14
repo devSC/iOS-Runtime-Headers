@@ -3,45 +3,47 @@
  */
 
 @interface AKMainEventHandler : UIResponder <AKFormFeatureDetectorDelegate> {
-    AKAnnotationEventHandler *_annotationEventHandler;
-    AKAnnotation *_annotationToBeginEditingOnDragEnd;
-    AKController *_controller;
-    unsigned int _currentModifierFlags;
-    AKAlignmentGuideController *_dragAlignmentGuideController;
-    BOOL _dragDidCopySelectedAnnotations;
-    AKPageController *_dragPageController;
+    AKAnnotationEventHandler * _annotationEventHandler;
+    AKAnnotation * _annotationToBeginEditingOnDragEnd;
+    AKController * _controller;
+    unsigned int  _currentModifierFlags;
+    AKAlignmentGuideController * _dragAlignmentGuideController;
+    BOOL  _dragDidCopySelectedAnnotations;
+    AKPageController * _dragPageController;
     struct CGPoint { 
         float x; 
         float y; 
-    } _firstDragPoint;
+    }  _firstDragPoint;
+    AKHighlightColorEditorController * _highlightColorEditor;
     struct CGPoint { 
         float x; 
         float y; 
-    } _lastDragActualLocation;
+    }  _lastDragActualLocation;
     struct CGPoint { 
         float x; 
         float y; 
-    } _lastDragActualLocationInWindow;
+    }  _lastDragActualLocationInWindow;
     struct CGPoint { 
         float x; 
         float y; 
-    } _lastDragPoint;
-    UIEvent *_lastEventWithValidLocationForAutoscroll;
-    UIEvent *_lastLeftMouseDownEvent;
+    }  _lastDragPoint;
+    UIEvent * _lastEventWithValidLocationForAutoscroll;
+    UIEvent * _lastLeftMouseDownEvent;
     struct CGPoint { 
         float x; 
         float y; 
-    } _leftMouseDownPoint;
-    BOOL _mainEventHandlerIsInRotationLoop;
-    BOOL _mainEventHandlerIsInTrackingLoop;
+    }  _leftMouseDownPoint;
+    BOOL  _mainEventHandlerIsInDoodleTrackingLoop;
+    BOOL  _mainEventHandlerIsInRotationLoop;
+    BOOL  _mainEventHandlerIsInTrackingLoop;
     struct CGPoint { 
         float x; 
         float y; 
-    } _panGestureStartPointInWindow;
-    BOOL _shouldEatNextLeftMouseUp;
-    BOOL _shouldEatNextRightMouseUp;
-    BOOL _undoManagerWasGroupingByEvent;
-    BOOL _wasSelectedByLongPressRecognizer;
+    }  _panGestureStartPointInWindow;
+    BOOL  _shouldEatNextLeftMouseUp;
+    BOOL  _shouldEatNextRightMouseUp;
+    BOOL  _undoManagerWasGroupingByEvent;
+    BOOL  _wasSelectedByLongPressRecognizer;
 }
 
 @property (retain) AKAnnotationEventHandler *annotationEventHandler;
@@ -55,12 +57,14 @@
 @property (retain) AKPageController *dragPageController;
 @property struct CGPoint { float x1; float x2; } firstDragPoint;
 @property (readonly) unsigned int hash;
+@property (retain) AKHighlightColorEditorController *highlightColorEditor;
 @property struct CGPoint { float x1; float x2; } lastDragActualLocation;
 @property struct CGPoint { float x1; float x2; } lastDragActualLocationInWindow;
 @property struct CGPoint { float x1; float x2; } lastDragPoint;
 @property (retain) UIEvent *lastEventWithValidLocationForAutoscroll;
 @property (retain) UIEvent *lastLeftMouseDownEvent;
 @property struct CGPoint { float x1; float x2; } leftMouseDownPoint;
+@property BOOL mainEventHandlerIsInDoodleTrackingLoop;
 @property BOOL mainEventHandlerIsInRotationLoop;
 @property BOOL mainEventHandlerIsInTrackingLoop;
 @property struct CGPoint { float x1; float x2; } panGestureStartPointInWindow;
@@ -93,12 +97,14 @@
 - (id)dragPageController;
 - (BOOL)enterDragEventTrackingLoopWithEvent:(id)arg1 orRecognizer:(id)arg2;
 - (BOOL)enterRotateEventTrackingLoopWithEvent:(id)arg1 orRecognizer:(id)arg2;
+- (void)finishTranslationOfAllSelectedAnnotations;
 - (struct CGPoint { float x1; float x2; })firstDragPoint;
 - (BOOL)handleDoubleDownEvent:(id)arg1 orRecognizer:(id)arg2;
 - (BOOL)handleDownEvent:(id)arg1 orRecognizer:(id)arg2;
 - (BOOL)handleKeyboardEvent:(id)arg1;
 - (BOOL)handleRightDownEvent:(id)arg1;
 - (BOOL)handleRotateEvent:(id)arg1 orRecognizer:(id)arg2;
+- (id)highlightColorEditor;
 - (BOOL)hitTestPointsOfInterestsAtPoint:(struct CGPoint { float x1; float x2; })arg1 onPageController:(id)arg2 inAnnotations:(id)arg3 event:(id)arg4 recognizer:(id)arg5 cursorUpdateOnly:(BOOL)arg6;
 - (id)initWithController:(id)arg1;
 - (struct CGPoint { float x1; float x2; })lastDragActualLocation;
@@ -107,6 +113,7 @@
 - (id)lastEventWithValidLocationForAutoscroll;
 - (id)lastLeftMouseDownEvent;
 - (struct CGPoint { float x1; float x2; })leftMouseDownPoint;
+- (BOOL)mainEventHandlerIsInDoodleTrackingLoop;
 - (BOOL)mainEventHandlerIsInRotationLoop;
 - (BOOL)mainEventHandlerIsInTrackingLoop;
 - (BOOL)mainHandleEvent:(id)arg1 orRecognizer:(id)arg2;
@@ -121,12 +128,14 @@
 - (void)setDragDidCopySelectedAnnotations:(BOOL)arg1;
 - (void)setDragPageController:(id)arg1;
 - (void)setFirstDragPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setHighlightColorEditor:(id)arg1;
 - (void)setLastDragActualLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setLastDragActualLocationInWindow:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setLastDragPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setLastEventWithValidLocationForAutoscroll:(id)arg1;
 - (void)setLastLeftMouseDownEvent:(id)arg1;
 - (void)setLeftMouseDownPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setMainEventHandlerIsInDoodleTrackingLoop:(BOOL)arg1;
 - (void)setMainEventHandlerIsInRotationLoop:(BOOL)arg1;
 - (void)setMainEventHandlerIsInTrackingLoop:(BOOL)arg1;
 - (void)setPanGestureStartPointInWindow:(struct CGPoint { float x1; float x2; })arg1;

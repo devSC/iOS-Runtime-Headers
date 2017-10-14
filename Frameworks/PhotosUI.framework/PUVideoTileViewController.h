@@ -3,22 +3,22 @@
  */
 
 @interface PUVideoTileViewController : PUTileViewController <PUAssetViewModelChangeObserver, PUBrowsingVideoPlayerChangeObserver, PUVideoPlayerViewDelegate> {
-    PUBrowsingVideoPlayer *__browsingVideoPlayer;
-    int __currentImageRequestID;
-    BOOL __isDisplayingFullQualityImage;
-    AVPlayer *__player;
-    PUVideoPlayerView *__playerView;
-    id /* block */ __readyForDisplayCompletionHandler;
+    PUBrowsingVideoPlayer * __browsingVideoPlayer;
+    int  __currentImageRequestID;
+    BOOL  __isDisplayingFullQualityImage;
+    AVPlayer * __player;
+    PUVideoPlayerView * __playerView;
+    id /* block */  __readyForDisplayCompletionHandler;
     struct CGSize { 
         float width; 
         float height; 
-    } __targetSize;
-    int __thumbnailRequestNumber;
-    <PUDisplayAsset> *_asset;
-    PUAssetViewModel *_assetViewModel;
-    BOOL _canPlayVideo;
-    PUMediaProvider *_mediaProvider;
-    id _playerObserver;
+    }  __targetSize;
+    int  __thumbnailRequestNumber;
+    <PUDisplayAsset> * _asset;
+    PUAssetViewModel * _assetViewModel;
+    BOOL  _canPlayVideo;
+    PUMediaProvider * _mediaProvider;
+    id  _playerObserver;
 }
 
 @property (setter=_setBrowsingVideoPlayer:, nonatomic, retain) PUBrowsingVideoPlayer *_browsingVideoPlayer;
@@ -73,8 +73,9 @@
 - (void)didChangeAnimating;
 - (id)generateAssetTransitionInfo;
 - (id)initWithReuseIdentifier:(id)arg1;
-- (void)loadView;
+- (id)loadView;
 - (id)mediaProvider;
+- (void)removeAllAnimations;
 - (void)setAssetViewModel:(id)arg1;
 - (void)setCanPlayVideo:(BOOL)arg1;
 - (void)setEdgeAntialiasingEnabled:(BOOL)arg1;

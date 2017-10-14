@@ -3,15 +3,18 @@
  */
 
 @interface MPMediaLibraryDataProviderML3 : NSObject <MPMediaLibraryDataProviderPrivate> {
-    <MPArtworkDataSource> *_artworkDataSource;
-    unsigned int _backgroundTask;
-    unsigned int _backgroundTaskCount;
-    NSObject<OS_dispatch_queue> *_backgroundTaskQueue;
-    MPMediaEntityCache *_entityCache;
-    BOOL _hasScheduledEventPosting;
-    ML3MusicLibrary *_library;
-    int _refreshState;
-    NSString *_uniqueIdentifier;
+    <MPArtworkDataSource> * _artworkDataSource;
+    unsigned int  _backgroundTask;
+    unsigned int  _backgroundTaskCount;
+    NSObject<OS_dispatch_queue> * _backgroundTaskQueue;
+    NSObject<OS_dispatch_source> * _entitiesAddedOrRemovedCoalescingTimer;
+    NSObject<OS_dispatch_queue> * _entitiesAddedOrRemovedNotificationQueue;
+    MPMediaEntityCache * _entityCache;
+    BOOL  _hasScheduledEventPosting;
+    ML3MusicLibrary * _library;
+    int  _refreshState;
+    NSOperationQueue * _setValuesWidthLimitedQueue;
+    NSString * _uniqueIdentifier;
 }
 
 @property (nonatomic, readonly) <MPArtworkDataSource> *artworkDataSource;
@@ -43,7 +46,7 @@
 
 - (void).cxx_destruct;
 - (id)ML3SystemFilterPredicatesWithGroupingType:(int)arg1 cloudTrackFilteringType:(int)arg2 subscriptionFilteringOptions:(int)arg3 additionalFilterPredicates:(id)arg4;
-- (void)_addGlobalPlaylistToLibraryDatabase:(id)arg1 asLibraryOwned:(BOOL)arg2 completion:(id /* block */)arg3;
+- (void)_addGlobalPlaylistsToLibraryDatabase:(id)arg1 asLibraryOwned:(BOOL)arg2 completion:(id /* block */)arg3;
 - (id)_adjustedItemDateOfEntity:(id)arg1 withDefaultValue:(id)arg2;
 - (id)_adjustedItemPropertyAssetURLOfEntity:(id)arg1 withDefaultValue:(id)arg2;
 - (id)_adjustedItemPropertyChapterArtworkTimesOfEntity:(id)arg1 withDefaultValue:(id)arg2;
@@ -70,6 +73,7 @@
 - (void)_invisiblePropertiesDidChange:(id)arg1;
 - (void)_libraryCloudLibraryAvailabilityDidChange:(id)arg1;
 - (void)_libraryContentsDidChange:(id)arg1;
+- (void)_libraryEntitiesAddedOrRemoved:(id)arg1;
 - (void)_libraryUIDDidChange:(id)arg1;
 - (void)_loadProperties:(id)arg1 ofEntityWithIdentifier:(long long)arg2 ML3EntityClass:(Class)arg3 completionBlock:(id /* block */)arg4;
 - (void)_loadValueForAggregateFunction:(id)arg1 entityClass:(Class)arg2 property:(id)arg3 query:(id)arg4 completionBlock:(id /* block */)arg5;
@@ -79,7 +83,7 @@
 - (void)addGlobalPlaylistWithID:(id)arg1 andAddToCloudLibrary:(BOOL)arg2 completion:(id /* block */)arg3;
 - (void)addItemWithIdentifier:(long long)arg1 toPlaylistWithIdentifier:(long long)arg2 completionBlock:(id /* block */)arg3;
 - (void)addItemsWithIdentifiers:(id)arg1 toPlaylistWithIdentifier:(long long)arg2 completionBlock:(id /* block */)arg3;
-- (void)addNonLibraryOwnedPlaylistWithGlobalID:(id)arg1 completion:(id /* block */)arg2;
+- (void)addNonLibraryOwnedPlaylistsWithGlobalIDs:(id)arg1 completion:(id /* block */)arg2;
 - (void)addPlaylistStoreItemsForLookupItems:(id)arg1 withCompletion:(id /* block */)arg2;
 - (long long)addPlaylistWithValuesForProperties:(id)arg1;
 - (void)addTracksToMyLibrary:(id)arg1;
@@ -135,11 +139,17 @@
 - (void)populateLocationPropertiesOfItemWithIdentifier:(long long)arg1 withPath:(id)arg2 assetProtectionType:(int)arg3;
 - (id)preferredAudioLanguages;
 - (id)preferredSubtitleLanguages;
+- (BOOL)recordPlayEventForAlbumPersistentID:(long long)arg1;
+- (BOOL)recordPlayEventForPlaylistPersistentID:(long long)arg1;
 - (void)removeAllItemsInPlaylistWithIdentifier:(long long)arg1;
 - (void)removeFirstItemFromPlaylistWithIdentifier:(long long)arg1;
-- (void)removeItemsWithIdentifiers:(id)arg1 atFilteredIndexes:(id)arg2 inPlaylistWithIdentifier:(long long)arg3 completionBlock:(id /* block */)arg4;
+- (void)removeItemsAtIndexes:(id)arg1 inPlaylistWithIdentifier:(long long)arg2 completionBlock:(id /* block */)arg3;
 - (BOOL)removeItemsWithIdentifiers:(long long*)arg1 count:(unsigned int)arg2;
 - (BOOL)removePlaylistWithIdentifier:(long long)arg1;
+- (void)sdk_addItemWithOpaqueID:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)sdk_addItemWithOpaqueIdentifier:(id)arg1 toPlaylistWithIdentifier:(long long)arg2 completionBlock:(id /* block */)arg3;
+- (long long)sdk_addPlaylistWithValuesForProperties:(id)arg1;
+- (void)setItemsWithIdentifiers:(id)arg1 forPlaylistWithIdentifier:(long long)arg2 completionBlock:(id /* block */)arg3;
 - (void)setLibrary:(id)arg1;
 - (void)setLibraryContainerFilterPredicatesWithCloudFilteringType:(int)arg1 additionalFilterPredicates:(id)arg2;
 - (void)setLibraryEntityFilterPredicatesWithCloudFilteringType:(int)arg1 additionalFilterPredicates:(id)arg2;
@@ -149,6 +159,7 @@
 - (void)setValue:(id)arg1 forProperty:(id)arg2 ofCollectionWithIdentifier:(long long)arg3 groupingType:(int)arg4 completionBlock:(id /* block */)arg5;
 - (void)setValue:(id)arg1 forProperty:(id)arg2 ofItemWithIdentifier:(long long)arg3 completionBlock:(id /* block */)arg4;
 - (void)setValue:(id)arg1 forProperty:(id)arg2 ofPlaylistWithIdentifier:(long long)arg3 completionBlock:(id /* block */)arg4;
+- (void)setValues:(id)arg1 forProperties:(id)arg2 forItemPersistentIDs:(id)arg3;
 - (unsigned long long)syncGenerationID;
 - (id)syncValidity;
 - (id)systemFilterPredicatesWithGroupingType:(int)arg1 cloudTrackFilteringType:(int)arg2 subscriptionFilteringOptions:(int)arg3;

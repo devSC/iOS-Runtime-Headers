@@ -3,7 +3,7 @@
  */
 
 @interface CKContainerXPCProxy : NSObject <CKBXPCClient> {
-    CKContainer *_container;
+    CKContainer * _container;
 }
 
 @property (nonatomic) CKContainer *container;
@@ -14,6 +14,7 @@
 
 - (void).cxx_destruct;
 - (id)container;
+- (void)handleOperationCheckpoint:(id)arg1 forOperationWithID:(id)arg2;
 - (void)handleOperationCompletion:(id)arg1 forOperationWithID:(id)arg2;
 - (void)handleOperationProgress:(id)arg1 forOperationWithID:(id)arg2;
 - (void)handleOperationProgress:(id)arg1 forOperationWithID:(id)arg2 reply:(id /* block */)arg3;

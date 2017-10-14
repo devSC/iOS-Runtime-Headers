@@ -3,14 +3,14 @@
  */
 
 @interface CNPostalAddressEditorViewController : UITableViewController <CNPresenterDelegate, CNPropertyCellDelegate> {
-    CNMutableContact *_contact;
-    UIViewController *_currentPresentedViewController;
-    CNCardPropertyGroup *_propertyGroup;
-    NSMutableArray *_propertyItems;
-    NSString *_propertyKey;
+    CNMutableContact * _contact;
+    BOOL  _editNames;
+    BOOL  _editingExistingContact;
+    CNCardPropertyGroup * _propertyGroup;
+    NSMutableArray * _propertyItems;
+    NSString * _propertyKey;
 }
 
-@property (retain) UIViewController *currentPresentedViewController;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
@@ -24,8 +24,8 @@
 - (void)_rebuildPropertyGroupItems:(BOOL)arg1;
 - (void)_startEditingFirstCell;
 - (void)cancel:(id)arg1;
-- (id)currentPresentedViewController;
 - (id)defaultValueForPropertyCell:(id)arg1;
+- (id)displayAccountForContact:(id)arg1;
 - (void)done:(id)arg1;
 - (id)initWithContact:(id)arg1 propertyKey:(id)arg2 editNames:(BOOL)arg3;
 - (BOOL)isPresentingModalViewController;
@@ -36,13 +36,14 @@
 - (void)registerContactCellClass:(Class)arg1;
 - (void)sender:(id)arg1 dismissViewController:(id)arg2;
 - (void)sender:(id)arg1 presentViewController:(id)arg2;
-- (void)setCurrentPresentedViewController:(id)arg1;
 - (id)storeForPropertyCell:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
+- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (float)tableViewSpacingForExtraSeparators:(id)arg1;
 - (void)validateContents;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)arg1;
 
 @end

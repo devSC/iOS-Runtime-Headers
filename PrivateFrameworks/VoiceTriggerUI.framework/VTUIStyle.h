@@ -3,16 +3,20 @@
  */
 
 @interface VTUIStyle : NSObject {
-    NSString *_deviceClass;
-    NSArray *_deviceImageSuffixes;
-    NSArray *_deviceStringSuffixes;
-    int _enrollmentMode;
-    BOOL _isBuddy;
-    BOOL _isIpad;
+    NSString * _deviceClass;
+    NSArray * _deviceImageSuffixes;
+    NSArray * _deviceStringSuffixes;
+    int  _enrollmentMode;
+    BOOL  _isBuddy;
+    BOOL  _isHeySiriAlwaysOn;
+    BOOL  _isIpad;
+    BOOL  _isLargeIpad;
+    BOOL  _needMoreLineSpacing;
 }
 
 @property (nonatomic) int enrollmentMode;
 @property (nonatomic) BOOL isBuddy;
+@property (nonatomic) BOOL isHeySiriAlwaysOn;
 
 + (id)sharedStyle;
 
@@ -24,29 +28,37 @@
 - (id)buttonTextColor;
 - (float)continueButtonBaselineOffset;
 - (id)continueButtonFont;
+- (void)dealloc;
 - (id)deviceDoneImage;
 - (id)deviceSetupImage;
 - (int)enrollmentMode;
 - (float)flamesHeight;
-- (float)footerButtonBaselineFromFooterTop;
 - (id)footerButtonFont;
+- (float)footerContinueButtonMinBaselineFromText;
 - (float)footerHorizontalPadding;
 - (id)footerLabelFont;
 - (float)footerLabelLineHeight;
 - (BOOL)footerShouldPinToImage;
-- (float)footerTextBaselineFromBottom;
-- (float)footerTextBaselineOffsetFromButton;
+- (float)footerSkipButtonBaselineFromBottom;
+- (float)footerSkipButtonBaselineFromContinueButton;
+- (float)footerTextBaselineFromTop;
 - (id)footerTextColor;
 - (id)headerTitleFont;
+- (float)headerTitleLinespacing;
 - (float)horizontalPadding;
+- (float)horizontalPaddingLandscape;
+- (float)horizontalPaddingPortrait;
 - (float)imageViewBottomOffsetFromFooter;
 - (float)imageViewTopOffset;
 - (id)init;
 - (BOOL)isBuddy;
+- (BOOL)isHeySiriAlwaysOn;
+- (void)orientationChanged:(id)arg1;
 - (float)radarBtnHorizontalPadding;
 - (float)radarBtnVerticalPadding;
 - (void)setEnrollmentMode:(int)arg1;
 - (void)setIsBuddy:(BOOL)arg1;
+- (void)setIsHeySiriAlwaysOn:(BOOL)arg1;
 - (BOOL)shouldShowFooterLine;
 - (float)skipButtonBaselineBottomMargin;
 - (float)statusLabelMinHeight;
@@ -57,5 +69,12 @@
 - (float)subtitleLineHeight;
 - (float)tickMarkHorizontalSizeRatio;
 - (float)titleBaselineOffsetFromTop;
+- (id)turnOnSiriContinueButtonFont;
+- (float)turnOnSiriContinueButtonHeight;
+- (float)turnOnSiriContinueButtonWidth;
+- (float)turnOnSiriHorizontalPaddingLandscape;
+- (float)turnOnSiriHorizontalPaddingPortrait;
+- (float)turnOnSiriImageOffsetFromTopLandscape;
+- (float)turnOnSiriImageOffsetFromTopPortrait;
 
 @end

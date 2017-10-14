@@ -10,27 +10,33 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) BOOL deviceOrientationEventsEnabled;
 @property (getter=isEffectivelyBackgrounded, nonatomic, readonly) BOOL effectivelyBackgrounded;
+@property (nonatomic, readonly) BOOL forcedStatusBarForegroundTransparent;
 @property (nonatomic, readonly, retain) NSNumber *forcedStatusBarHidden;
 @property (nonatomic, readonly, retain) NSNumber *forcedStatusBarStyle;
 @property (readonly) unsigned int hash;
 @property (nonatomic, readonly) BOOL idleModeEnabled;
+@property (nonatomic, readonly) BOOL statusBarDisabled;
 @property (nonatomic, readonly) int statusBarStyleOverridesToSuppress;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) BOOL underLock;
+@property (nonatomic, readonly) int userInterfaceStyle;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 - (BOOL)canShowAlerts;
 - (unsigned int)deactivationReasons;
 - (BOOL)deviceOrientationEventsEnabled;
+- (BOOL)forcedStatusBarForegroundTransparent;
 - (id)forcedStatusBarHidden;
 - (id)forcedStatusBarStyle;
 - (BOOL)idleModeEnabled;
 - (BOOL)isUISubclass;
 - (id)keyDescriptionForSetting:(unsigned int)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
+- (BOOL)statusBarDisabled;
 - (int)statusBarStyleOverridesToSuppress;
 - (BOOL)underLock;
+- (int)userInterfaceStyle;
 - (id)valueDescriptionForFlag:(int)arg1 object:(id)arg2 ofSetting:(unsigned int)arg3;
 
 // Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard

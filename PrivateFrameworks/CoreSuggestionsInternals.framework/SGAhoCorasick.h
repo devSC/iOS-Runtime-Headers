@@ -3,11 +3,13 @@
  */
 
 @interface SGAhoCorasick : NSObject {
-    NSData *_bytecode;
+    NSData * _bytecode;
+    unsigned short  _endPtr;
 }
 
 - (void).cxx_destruct;
 - (BOOL)existsInString:(id)arg1;
+- (id)init;
 - (id)initWithBytecode:(id)arg1;
 
 @end

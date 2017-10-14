@@ -3,14 +3,14 @@
  */
 
 @interface AASetupAssistantService : NSObject {
-    ACAccount *_account;
-    NSString *_appleID;
-    struct OpaqueCFHTTPCookieStorage { } *_cookieStorage;
-    NSString *_emailChoice;
-    NSString *_password;
-    NSOperationQueue *_requesterQueue;
-    AASigningSession *_signingSession;
-    NSDate *_signingSessionCreationDate;
+    ACAccount * _account;
+    NSString * _appleID;
+    struct OpaqueCFHTTPCookieStorage { } * _cookieStorage;
+    NSString * _emailChoice;
+    NSString * _password;
+    NSOperationQueue * _requesterQueue;
+    AASigningSession * _signingSession;
+    NSDate * _signingSessionCreationDate;
 }
 
 @property (nonatomic, copy) NSString *appleID;
@@ -28,6 +28,7 @@
 - (id)appleID;
 - (void)authenticateWithHandler:(id /* block */)arg1;
 - (void)createAppleIDWithParameters:(id)arg1 handler:(id /* block */)arg2;
+- (void)createAppleIDWithParameters:(id)arg1 handlerWithResponse:(id /* block */)arg2;
 - (void)dealloc;
 - (void)downloadURLConfiguration:(id /* block */)arg1;
 - (id)emailChoice;
@@ -43,6 +44,7 @@
 - (void)setupDelegateAccountsWithParameters:(id)arg1 handler:(id /* block */)arg2;
 - (void)shouldPresentUpgradeFlowWithCompletion:(id /* block */)arg1;
 - (void)updateAppleIDWithParameters:(id)arg1 handler:(id /* block */)arg2;
+- (void)upgradeiCloudTermsIfNecessaryWithCustomHeaders:(id)arg1 handler:(id /* block */)arg2;
 - (void)upgradeiCloudTermsIfNecessaryWithHandler:(id /* block */)arg1;
 
 @end

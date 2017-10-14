@@ -3,28 +3,30 @@
  */
 
 @interface UIPDFAnnotationController : NSObject <UIGestureRecognizerDelegate> {
-    BOOL _allowEditing;
+    BOOL  _allowEditing;
     struct CGSize { 
         float width; 
         float height; 
-    } _cachedMarginNoteSize;
-    UIPDFMarkupAnnotation *_currentAnnotation;
-    UIColor *_currentColor;
-    <NSObject><UIPDFAnnotationControllerDelegate> *_delegate;
-    CALayer *_drawingSurface;
+    }  _cachedMarginNoteSize;
+    UIPDFMarkupAnnotation * _currentAnnotation;
+    UIColor * _currentColor;
+    <NSObject><UIPDFAnnotationControllerDelegate> * _delegate;
+    CALayer * _drawingSurface;
     struct { 
         int location; 
         int length; 
-    } _initialRange;
-    int _lock;
-    BOOL _moving;
-    UIPDFPageView *_pageView;
+    }  _initialRange;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
+    BOOL  _moving;
+    UIPDFPageView * _pageView;
     struct CGPoint { 
         float x; 
         float y; 
-    } _startPoint;
-    BOOL _tracking;
-    BOOL makeUnderlineAnnotation;
+    }  _startPoint;
+    BOOL  _tracking;
+    BOOL  makeUnderlineAnnotation;
 }
 
 @property (nonatomic) BOOL allowEditing;
@@ -90,6 +92,7 @@
 - (void)mergeSelectionOfAnnotation:(id)arg1;
 - (struct CGImage { }*)newHighlightMaskImageFor:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)pageView;
+- (void)resetBeingPressedForRecognizer:(id)arg1 withDelegate:(id)arg2 withAnnotation:(id)arg3;
 - (void)setAllowEditing:(BOOL)arg1;
 - (void)setCurrentAnnotation:(id)arg1;
 - (void)setCurrentColor:(id)arg1;

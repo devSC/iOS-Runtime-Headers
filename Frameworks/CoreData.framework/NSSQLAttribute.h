@@ -2,20 +2,23 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSSQLAttribute : NSSQLColumn {
-    BOOL _constrained;
-    BOOL _unique;
-}
+@interface NSSQLAttribute : NSSQLColumn
 
 @property (getter=isConstrained, nonatomic) BOOL constrained;
+@property (nonatomic, readonly) NSSet *triggerKeys;
 
-- (unsigned int)_sqlTypeForAttributeType:(unsigned int)arg1 flags:(unsigned int)arg2;
+- (void)_setIsBackedByTrigger:(BOOL)arg1;
+- (unsigned char)_sqlTypeForAttributeType:(unsigned int)arg1 flags:(unsigned int)arg2;
+- (void)addKeyForTriggerOnRelationship:(id)arg1;
 - (id)attributeDescription;
+- (void)dealloc;
 - (id)initForReadOnlyFetchWithExpression:(id)arg1;
 - (id)initWithEntity:(id)arg1 propertyDescription:(id)arg2;
+- (BOOL)isBackedByTrigger;
 - (BOOL)isConstrained;
 - (BOOL)isUnique;
 - (void)setConstrained:(BOOL)arg1;
 - (BOOL)shouldIndex;
+- (id)triggerKeys;
 
 @end

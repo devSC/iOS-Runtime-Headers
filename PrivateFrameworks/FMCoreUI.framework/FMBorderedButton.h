@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/FMCoreUI.framework/FMCoreUI
  */
 
-@interface FMBorderedButton : FMDynamicTypeButton {
-    UIColor *_borderColor;
-    BOOL _hairlineBorder;
+@interface FMBorderedButton : UIButton {
+    UIColor * _borderColor;
+    BOOL  _hairlineBorder;
 }
 
 @property (nonatomic, retain) UIColor *borderColor;

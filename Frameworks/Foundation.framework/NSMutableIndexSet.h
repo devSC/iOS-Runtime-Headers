@@ -3,7 +3,7 @@
  */
 
 @interface NSMutableIndexSet : NSIndexSet {
-    void *_reserved;
+    void * _reserved;
 }
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
@@ -32,6 +32,14 @@
 - (void)removeIndexesWithOptions:(unsigned int)arg1 passingTest:(id /* block */)arg2;
 - (void)shiftIndexesStartingAtIndex:(unsigned int)arg1 by:(int)arg2;
 
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
+- (void)cat_moveIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2;
+- (void)cat_shiftAndAddIndex:(unsigned int)arg1;
+- (void)cat_shiftAndAddIndexesInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (void)cat_shiftAndRemoveIndex:(unsigned int)arg1;
+- (void)cat_shiftAndRemoveIndexesInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+
 // Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
 
 - (void)__ck_intersectIndexes:(id)arg1;
@@ -49,6 +57,11 @@
 
 - (void)pl_adjustIndexesForDeletions:(id)arg1;
 - (void)pl_adjustIndexesForInsertions:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (void)px_adjustIndexesForDeletions:(id)arg1;
+- (void)px_adjustIndexesForInsertions:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
 

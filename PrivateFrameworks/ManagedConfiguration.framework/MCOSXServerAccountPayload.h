@@ -3,13 +3,13 @@
  */
 
 @interface MCOSXServerAccountPayload : MCPayload {
-    NSString *_accountDescription;
-    NSArray *_configuredAccounts;
-    BOOL _documentsConfigured;
-    NSNumber *_documentsPort;
-    NSString *_hostname;
-    NSString *_password;
-    NSString *_username;
+    NSString * _accountDescription;
+    NSArray * _configuredAccounts;
+    BOOL  _documentsConfigured;
+    NSNumber * _documentsPort;
+    NSString * _hostname;
+    NSString * _password;
+    NSString * _username;
 }
 
 @property (nonatomic, readonly) NSString *accountDescription;
@@ -27,6 +27,7 @@
 - (void).cxx_destruct;
 - (id)accountDescription;
 - (id)configuredAccounts;
+- (BOOL)containsSensitiveUserInformation;
 - (id)description;
 - (BOOL)documentsConfigured;
 - (id)documentsPort;

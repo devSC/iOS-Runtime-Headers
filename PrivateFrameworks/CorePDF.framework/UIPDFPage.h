@@ -3,15 +3,17 @@
  */
 
 @interface UIPDFPage : NSObject {
-    NSMutableArray *_annotations;
-    struct CGPDFPage { } *_cgPage;
-    UIPDFDocument *_document;
-    int _lock;
-    UIImage *_pageImage;
-    unsigned int _pageIndex;
-    unsigned int _pageNumber;
-    UIPDFSelection *_selection;
-    NSString *_stringInReadingOrder;
+    NSMutableArray * _annotations;
+    struct CGPDFPage { } * _cgPage;
+    UIPDFDocument * _document;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
+    UIImage * _pageImage;
+    unsigned int  _pageIndex;
+    unsigned int  _pageNumber;
+    UIPDFSelection * _selection;
+    NSString * _stringInReadingOrder;
 }
 
 @property (readonly) struct CGPDFPage { }*CGPage;

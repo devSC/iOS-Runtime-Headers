@@ -3,8 +3,8 @@
  */
 
 @interface MPUTextDrawingView : UIView {
-    float _cachedDisplayScale;
-    MPUTextDrawingContext *_textDrawingContext;
+    float  _cachedDisplayScale;
+    MPUTextDrawingContext * _textDrawingContext;
 }
 
 @property (nonatomic, readonly) NSString *text;
@@ -12,6 +12,7 @@
 
 - (void).cxx_destruct;
 - (float)_cachedDisplayScale;
+- (BOOL)_shouldAnimatePropertyWithKey:(id)arg1;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setTextDrawingContext:(id)arg1;

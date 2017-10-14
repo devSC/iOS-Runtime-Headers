@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSUserActivity : NSObject {
-    id _delegate;
-    id _frameworkDelegate;
-    id _internal;
+@interface NSUserActivity : NSObject <INCacheableObject> {
+    id  _delegate;
+    id  _frameworkDelegate;
+    id  _internal;
 }
 
 @property (setter=_setContentAttributes:, copy) NSDictionary *_contentAttributes;
@@ -24,20 +24,29 @@
 @property (readonly, copy) NSDate *_lastActivityDate;
 @property (setter=_setMinimalRequiredUserInfoKeys:, copy) NSSet *_minimalRequiredUserInfoKeys;
 @property (setter=_setOptions:, copy) NSDictionary *_options;
+@property (readonly, copy) NSUUID *_originalUniqueIdentifier;
 @property (setter=_setSubtitle:, copy) NSString *_subtitle;
 @property (readonly) int _suggestedActionType;
 @property (readonly, copy) NSString *_teamIdentifier;
 @property (readonly, retain) NSUUID *_uniqueIdentifier;
 @property (readonly, copy) NSString *activityType;
+@property (nonatomic, readonly, copy) NSString *cacheIdentifier;
 @property (copy) CSSearchableItemAttributeSet *contentAttributeSet;
+@property (readonly, copy) NSString *debugDescription;
 @property <NSUserActivityDelegate> *delegate;
+@property (readonly, copy) NSString *description;
 @property (getter=isEligibleForHandoff) BOOL eligibleForHandoff;
 @property (getter=isEligibleForPublicIndexing) BOOL eligibleForPublicIndexing;
 @property (getter=isEligibleForSearch) BOOL eligibleForSearch;
 @property (copy) NSDate *expirationDate;
+@property (nonatomic, copy) NSString *externalMediaContentIdentifier;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) INInteraction *interaction;
 @property (copy) NSSet *keywords;
+@property (nonatomic, retain) MKMapItem *mapItem;
 @property BOOL needsSave;
 @property (copy) NSSet *requiredUserInfoKeys;
+@property (readonly) Class superclass;
 @property BOOL supportsContinuationStreams;
 @property (copy) NSString *title;
 @property (copy) NSDictionary *userInfo;
@@ -159,8 +168,57 @@
 - (id)webpageURL;
 - (void)willSynchronizeActivity;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
++ (void)buildFromCachePayload:(id)arg1 identifier:(id)arg2 completion:(id /* block */)arg3;
++ (void)deleteAllInteractions;
++ (void)deleteInteractionsWithGroupIdentifier:(id)arg1;
++ (void)deleteInteractionsWithIdentifiers:(id)arg1;
+
+- (id)_intentsIdentifier;
+- (void)_setInteraction:(id)arg1 donate:(BOOL)arg2;
+- (id)cacheIdentifier;
+- (void)generateCachePayloadWithCompletion:(id /* block */)arg1;
+- (id)inInteraction;
+- (id)interaction;
+- (void)setInInteraction:(id)arg1;
+- (void)setInteraction:(id)arg1;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (void)_mapkit_clearMapItemDonationFields;
+- (void)_mapkit_populateFieldsForDonationOfMapItem:(id)arg1;
+- (id)mapItem;
+- (void)setMapItem:(id)arg1;
+
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
+- (id)_externalMediaContentBundleIdentifier;
+- (void)_setExternalMediaContentBundleIdentifier:(id)arg1;
+- (id)externalMediaContentIdentifier;
+- (void)setExternalMediaContentIdentifier:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContactsUICore.framework/ContactsUICore
+
++ (id)_cnui_searchMailUserActivityForContact:(id)arg1;
++ (id)_cnui_sendMessageIntentWithDestinationID:(id)arg1 customIdentifier:(id)arg2 contact:(id)arg3;
++ (id)_cnui_startAudioCallIntentWithDestinationID:(id)arg1 customIdentifier:(id)arg2 contact:(id)arg3;
++ (id)_cnui_startVideoCallIntentWithDestinationID:(id)arg1 customIdentifier:(id)arg2 contact:(id)arg3;
++ (id)_cnui_userActivityWithActivityType:(id)arg1 destinationID:(id)arg2 customIdentifier:(id)arg3 contact:(id)arg4 intentWithPerson:(id /* block */)arg5;
+
 // Image: /System/Library/PrivateFrameworks/UserActivity.framework/UserActivity
 
+- (id)_copyWithNewUUID;
+- (id)_objectForIdentifier:(id)arg1;
+- (id)_originalUniqueIdentifier;
+- (id)_payloadForIdentifier:(id)arg1;
+- (id /* block */)_payloadUpdateBlockForIdentifier:(id)arg1;
+- (void)_sendToCoreSpotlightIndexer;
+- (void)_setDirty:(BOOL)arg1 identifier:(id)arg2;
+- (void)_setPayload:(id)arg1 object:(id)arg2 identifier:(id)arg3;
+- (void)_setPayload:(id)arg1 object:(id)arg2 identifier:(id)arg3 dirty:(BOOL)arg4;
+- (void)_setPayloadIdentifier:(id)arg1 object:(id)arg2 withBlock:(id /* block */)arg3;
+- (void)_updateForwardToCoreSpotlightIndexer:(BOOL)arg1;
 - (id)contentAttributeSet;
 - (void)setContentAttributeSet:(id)arg1;
 

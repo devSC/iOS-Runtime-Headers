@@ -3,16 +3,16 @@
  */
 
 @interface SKUIStorePageSection : NSObject <SKUIProductPageOverlayDelegate> {
-    IKColor *_backgroundColorForSection;
-    BOOL _bottomSection;
-    SKUIPageComponent *_component;
-    SKUIStorePageSectionContext *_context;
-    BOOL _hasValidRelevantEntityProviders;
-    NSArray *_indexPathsForBackgroundItems;
-    SKUIProductPageOverlayController *_overlayController;
-    NSSet *_relevantEntityProviders;
-    int _sectionIndex;
-    BOOL _topSection;
+    IKColor * _backgroundColorForSection;
+    BOOL  _bottomSection;
+    SKUIPageComponent * _component;
+    SKUIStorePageSectionContext * _context;
+    BOOL  _hasValidRelevantEntityProviders;
+    NSArray * _indexPathsForBackgroundItems;
+    SKUIProductPageOverlayController * _overlayController;
+    NSSet * _relevantEntityProviders;
+    int  _sectionIndex;
+    BOOL  _topSection;
 }
 
 @property (nonatomic, readonly) IKColor *backgroundColorForSection;
@@ -50,7 +50,7 @@
 - (id)clickEventWithItem:(id)arg1 elementName:(id)arg2 index:(int)arg3;
 - (id)clickEventWithLink:(id)arg1 elementName:(id)arg2 index:(int)arg3;
 - (id)clickEventWithMedia:(id)arg1 elementName:(id)arg2 index:(int)arg3;
-- (void)collectionViewDidConfirmButtonElement:(id)arg1 forItemAtIndexPath:(id)arg2;
+- (void)collectionViewDidConfirmButtonElement:(id)arg1 withClickInfo:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (void)collectionViewDidConfirmItemOfferAtIndexPath:(id)arg1;
 - (void)collectionViewDidEndDisplayingCellForItemAtIndexPath:(id)arg1;
 - (void)collectionViewDidLongPressItemAtIndexPath:(id)arg1;
@@ -92,9 +92,9 @@
 - (void)playVideoWithURL:(id)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)prefetchResourcesWithReason:(int)arg1;
-- (id)previewViewControllerForIndexPath:(id)arg1;
-- (BOOL)previewsSupportedForIndexPath:(id)arg1;
+- (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint { float x1; float x2; })arg2;
 - (void)productPageOverlayDidDismiss:(id)arg1;
+- (void)registerContextActionsForCell:(id)arg1 indexPath:(id)arg2 viewController:(id)arg3;
 - (id)relevantEntityProviders;
 - (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;
 - (void)reloadVisibleCellsWithReason:(int)arg1;
@@ -109,10 +109,12 @@
 - (void)showPageWithLink:(id)arg1;
 - (void)showProductViewControllerWithItem:(id)arg1;
 - (id)targetScrollingIndexPathForElementWithIndexBarEntryID:(id)arg1 relativeSectionIndex:(int)arg2;
+- (void)unregisterContextActionsForCell:(id)arg1 indexPath:(id)arg2 viewController:(id)arg3;
 - (BOOL)updateCellWithIndexPath:(id)arg1 itemState:(id)arg2 animated:(BOOL)arg3;
 - (int)updateWithContext:(id)arg1 pageComponent:(id)arg2;
 - (void)willAppearInContext:(id)arg1;
 - (void)willHideInContext:(id)arg1;
+- (void)willPresentPreviewViewController:(id)arg1 forLocation:(struct CGPoint { float x1; float x2; })arg2 inSourceView:(id)arg3;
 - (void)willTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

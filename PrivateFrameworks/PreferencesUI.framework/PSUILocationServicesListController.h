@@ -3,19 +3,19 @@
  */
 
 @interface PSUILocationServicesListController : PSListController <FMFSessionDelegate> {
-    ACAccountStore *_accountStore;
-    NSMutableDictionary *_coalesceAppKeys;
-    NSMutableArray *_coalescedSystemServices;
-    BOOL _deferredRefreshDueToConfirm;
-    NSArray *_ignoredLocationEntities;
-    NSDictionary *_locationEntitiesDetails;
-    BOOL _locationNotificationsEnabled;
-    FMFDevice *_locationSharingDevice;
-    NSNumber *_locationSharingEnabled;
-    NSOperationQueue *_locationSharingOperationQueue;
-    FMFSession *_locationSharingSession;
-    ACAccount *_primaryAccount;
-    NSDate *_twentyFourHoursAgo;
+    ACAccountStore * _accountStore;
+    NSMutableDictionary * _coalesceAppKeys;
+    NSMutableArray * _coalescedSystemServices;
+    BOOL  _deferredRefreshDueToConfirm;
+    NSArray * _ignoredLocationEntities;
+    NSDictionary * _locationEntitiesDetails;
+    BOOL  _locationNotificationsEnabled;
+    FMFDevice * _locationSharingDevice;
+    NSNumber * _locationSharingEnabled;
+    NSOperationQueue * _locationSharingOperationQueue;
+    FMFSession * _locationSharingSession;
+    ACAccount * _primaryAccount;
+    NSDate * _twentyFourHoursAgo;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -29,6 +29,7 @@
 
 - (void).cxx_destruct;
 - (void)_cancelConfirmDisableForSpecifier:(id)arg1;
+- (BOOL)_isBundleBlacklisted:(id)arg1;
 - (BOOL)_isFindMyDeviceSpecifier:(id)arg1;
 - (void)_locationSharingSpecifierWasTapped:(id)arg1;
 - (void)_setEntityAuthorized:(BOOL)arg1 specifier:(id)arg2;

@@ -3,22 +3,25 @@
  */
 
 @interface MPPlayableContentManager : NSObject {
-    NSOperationQueue *_artworkUpdateQueue;
-    BOOL _coalescingUpdates;
-    NSMutableSet *_contentItemIdentifiersSentToMediaRemote;
-    MPPlayableContentManagerContext *_context;
-    <MPPlayableContentDataSource> *_dataSource;
-    <MPPlayableContentDelegate> *_delegate;
-    AVExternalDevice *_externalDevice;
-    NSMutableSet *_mutatedContentItems;
-    BOOL _scheduledSupportedAPIsChange;
-    NSObject<OS_dispatch_queue> *_serialQueue;
+    NSOperationQueue * _artworkUpdateQueue;
+    BOOL  _coalescingUpdates;
+    NSMutableSet * _contentItemIdentifiersSentToMediaRemote;
+    MPPlayableContentManagerContext * _context;
+    <MPPlayableContentDataSource> * _dataSource;
+    <MPPlayableContentDelegate> * _delegate;
+    AVExternalDevice * _externalDevice;
+    NSMutableSet * _mutatedContentItems;
+    NSArray * _nowPlayingIdentifiers;
+    BOOL  _scheduledSupportedAPIsChange;
+    NSObject<OS_dispatch_queue> * _serialQueue;
 }
 
 @property (nonatomic, retain) MPPlayableContentManagerContext *context;
 @property (nonatomic) <MPPlayableContentDataSource> *dataSource;
 @property (nonatomic) <MPPlayableContentDelegate> *delegate;
+@property (nonatomic, retain) NSArray *nowPlayingIdentifiers;
 
++ (BOOL)_deviceIsCarplayCapable;
 + (id)sharedContentManager;
 
 - (void).cxx_destruct;
@@ -26,8 +29,8 @@
 - (void)_browsableContentEndpointChanged:(id)arg1;
 - (void)_contentItemChangedNotification:(id)arg1;
 - (BOOL)_contentItemWasSentToMediaRemote:(id)arg1;
-- (void)_enqueueArtworkUpdate:(id)arg1 forContentItem:(id)arg2 withCompletion:(id /* block */)arg3;
-- (void)_handleBeginLoadingCompletedAtIndexPath:(id)arg1 withError:(id)arg2;
+- (void)_enqueueArtworkUpdate:(id)arg1 width:(float)arg2 height:(float)arg3 withCompletion:(id /* block */)arg4;
+- (void)_enqueueArtworkUpdate:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)_handlePlaybackInitializationCompletedWithContext:(id)arg1 error:(id)arg2;
 - (id)_init;
 - (void)_limitedUIChanged:(id)arg1;
@@ -48,9 +51,11 @@
 - (id)delegate;
 - (void)endUpdates;
 - (id)init;
+- (id)nowPlayingIdentifiers;
 - (void)reloadData;
 - (void)setContext:(id)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setNowPlayingIdentifiers:(id)arg1;
 
 @end

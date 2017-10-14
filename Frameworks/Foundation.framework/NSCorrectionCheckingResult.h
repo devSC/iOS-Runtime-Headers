@@ -3,8 +3,10 @@
  */
 
 @interface NSCorrectionCheckingResult : NSSubstitutionCheckingResult {
-    NSArray *_alternativeStrings;
+    NSArray * _alternativeStrings;
 }
+
++ (BOOL)supportsSecureCoding;
 
 - (id)alternativeStrings;
 - (void)dealloc;

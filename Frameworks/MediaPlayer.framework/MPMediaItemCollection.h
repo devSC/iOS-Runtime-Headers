@@ -3,22 +3,24 @@
  */
 
 @interface MPMediaItemCollection : MPMediaEntity {
-    unsigned int _containedMediaTypes;
-    BOOL _initializedContainedMediaTypes;
-    NSArray *_items;
-    unsigned int _itemsCount;
-    MPMediaQuery *_itemsQuery;
-    MPMediaItem *_representativeItem;
+    unsigned int  _containedMediaTypes;
+    BOOL  _initializedContainedMediaTypes;
+    NSArray * _items;
+    unsigned int  _itemsCount;
+    MPMediaQuery * _itemsQuery;
+    MPMediaItem * _representativeItem;
 }
 
 @property (nonatomic, readonly) unsigned int count;
 @property (nonatomic, readonly) int groupingType;
 @property (nonatomic, readonly) NSArray *items;
+@property (getter=wlk_jsPropertyStrings, nonatomic, readonly) NSSet *jsPropertyStrings;
 @property (nonatomic, readonly) unsigned int mediaTypes;
 @property (nonatomic, readonly) MPMediaItem *representativeItem;
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
++ (id)artworkCatalogCachePropertiesForGroupingType:(int)arg1;
 + (id)collectionWithItems:(id)arg1;
 + (id)representativePersistentIDPropertyForGroupingType:(int)arg1;
 + (id)sortTitlePropertyForGroupingType:(int)arg1;
@@ -28,6 +30,7 @@
 - (void).cxx_destruct;
 - (BOOL)MPSD_hasDownloadableItem;
 - (BOOL)MPSD_hasDownloadingItem;
+- (id)_artworkCatalogRepresentativeItem;
 - (id)albumArtistArtworkCatalog;
 - (id)artistArtworkCatalog;
 - (id)artworkCatalog;
@@ -49,10 +52,20 @@
 
 // Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
 
-+ (void)registerSupportedCustomProperties;
++ (id)customPropertyHandlersCollection;
++ (void)registerSupportedCustomPropertiesWithHandlersCollection:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
 
++ (id)MPU_contentItemIdentifierCollectionPropertiesForGroupingType:(int)arg1;
++ (void)_MPU_getContentItemIdentifierCollectionItemType:(unsigned int*)arg1 storeAdamIDProperty:(id*)arg2 forGroupingType:(int)arg3;
+
 - (id)MPU_contentItemIdentifierCollection;
+
+// Image: /System/Library/PrivateFrameworks/WatchListKitUI.framework/WatchListKitUI
+
++ (id)wlk_JSgenericProperties;
+
+- (id)wlk_jsPropertyStrings;
 
 @end

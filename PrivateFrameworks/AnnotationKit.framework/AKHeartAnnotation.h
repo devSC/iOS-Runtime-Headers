@@ -3,7 +3,7 @@
  */
 
 @interface AKHeartAnnotation : AKRectangularShapeAnnotation <AKFlippableAnnotationProtocol> {
-    BOOL _verticallyFlipped;
+    BOOL  _verticallyFlipped;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -24,7 +24,6 @@
 - (id)keysForValuesToObserveForRedrawing;
 - (id)keysForValuesToObserveForUndo;
 - (void)setVerticallyFlipped:(BOOL)arg1;
-- (void)translateBy:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)verticallyFlipped;
 
 @end

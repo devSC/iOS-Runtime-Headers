@@ -3,11 +3,11 @@
  */
 
 @interface _SBFVibrantTableViewHeaderFooterView : UITableViewHeaderFooterView {
-    _UIBackdropView *_backdrop;
-    NSString *_backdropGroupName;
-    int _graphicsQuality;
-    UIView *_plusDView;
-    BOOL _wantsPlusDLayer;
+    _UIBackdropView * _backdrop;
+    NSString * _backdropGroupName;
+    int  _graphicsQuality;
+    UIView * _plusDView;
+    BOOL  _wantsPlusDLayer;
 }
 
 @property (nonatomic, copy) NSString *backdropGroupName;
@@ -16,8 +16,8 @@
 
 + (id)defaultBackgroundColorForGraphicsQuality:(int)arg1;
 
+- (void).cxx_destruct;
 - (id)backdropGroupName;
-- (void)dealloc;
 - (int)graphicsQuality;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithReuseIdentifier:(id)arg1;

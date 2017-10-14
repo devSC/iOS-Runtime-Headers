@@ -14,7 +14,6 @@
 - (void)deactivateReaderNow:(unsigned int)arg1;
 - (void)decreaseReaderTextSize;
 - (WBSReaderFontManager *)fontManager;
-- (BOOL)hasMultiplePages;
 - (void)increaseReaderTextSize;
 - (BOOL)isLoadingNextPage;
 - (BOOL)isReaderAvailable;
@@ -24,7 +23,6 @@
 - (void)setReaderFont:(NSString *)arg1;
 - (void)setReaderLanguageTag:(NSString *)arg1;
 - (void)setReaderTheme:(NSString *)arg1;
-- (void)setReaderUserVisibleWidth:(double)arg1;
 - (BOOL)shouldCreateArticleFinder;
 - (void)stopLoadingNextPage;
 

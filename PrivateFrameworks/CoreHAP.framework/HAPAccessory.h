@@ -3,26 +3,28 @@
  */
 
 @interface HAPAccessory : NSObject {
-    <HAPAccessoryDelegate> *_delegate;
-    NSString *_firmwareVersion;
-    NSString *_identifier;
-    NSNumber *_instanceID;
-    int _linkType;
-    NSString *_manufacturer;
-    NSString *_model;
-    NSString *_name;
-    BOOL _primary;
-    BOOL _reachable;
-    NSString *_serialNumber;
-    HAPAccessoryServer *_server;
-    NSString *_serverIdentifier;
-    NSArray *_services;
-    BOOL _supportsRelay;
-    NSString *_uniqueIdentifier;
-    NSObject<OS_dispatch_queue> *_workQueue;
+    NSNumber * _category;
+    <HAPAccessoryDelegate> * _delegate;
+    NSString * _firmwareVersion;
+    NSString * _identifier;
+    NSNumber * _instanceID;
+    int  _linkType;
+    NSString * _manufacturer;
+    NSString * _model;
+    NSString * _name;
+    BOOL  _primary;
+    BOOL  _reachable;
+    NSString * _serialNumber;
+    HAPAccessoryServer * _server;
+    NSString * _serverIdentifier;
+    NSArray * _services;
+    BOOL  _supportsBridgeConfiguration;
+    BOOL  _supportsRelay;
+    NSString * _uniqueIdentifier;
+    NSObject<OS_dispatch_queue> * _workQueue;
 }
 
-@property (nonatomic, readonly, copy) NSNumber *category;
+@property (nonatomic, copy) NSNumber *category;
 @property (nonatomic) <HAPAccessoryDelegate> *delegate;
 @property (nonatomic, copy) NSString *firmwareVersion;
 @property (nonatomic, copy) NSString *identifier;
@@ -38,6 +40,7 @@
 @property (nonatomic) HAPAccessoryServer *server;
 @property (nonatomic, copy) NSString *serverIdentifier;
 @property (nonatomic, retain) NSArray *services;
+@property (nonatomic) BOOL supportsBridgeConfiguration;
 @property (nonatomic) BOOL supportsRelay;
 @property (nonatomic, copy) NSString *uniqueIdentifier;
 @property (retain) NSObject<OS_dispatch_queue> *workQueue;
@@ -49,7 +52,10 @@
 
 - (void).cxx_destruct;
 - (BOOL)_isReachable;
+- (void)_setCategory:(id)arg1;
 - (void)_setReachable:(BOOL)arg1;
+- (void)_setSupportsBridgeConfiguration:(BOOL)arg1;
+- (BOOL)_supportsBridgeConfiguration;
 - (BOOL)_updateAndValidateServices;
 - (BOOL)_updateForAccessoryInformationService;
 - (BOOL)_updateService:(id)arg1;
@@ -72,13 +78,14 @@
 - (id)manufacturer;
 - (id)model;
 - (id)name;
-- (void)readCharacteristicValues:(id)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
-- (void)readValueForCharacteristic:(id)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)readCharacteristicValues:(id)arg1 timeout:(double)arg2 completionQueue:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)readValueForCharacteristic:(id)arg1 timeout:(double)arg2 completionQueue:(id)arg3 completionHandler:(id /* block */)arg4;
 - (id)serialNumber;
 - (id)server;
 - (id)serverIdentifier;
 - (id)services;
 - (id)servicesOfType:(id)arg1;
+- (void)setCategory:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFirmwareVersion:(id)arg1;
 - (void)setIdentifier:(id)arg1;
@@ -92,14 +99,16 @@
 - (void)setServer:(id)arg1;
 - (void)setServerIdentifier:(id)arg1;
 - (void)setServices:(id)arg1;
+- (void)setSupportsBridgeConfiguration:(BOOL)arg1;
 - (void)setSupportsRelay:(BOOL)arg1;
 - (void)setUniqueIdentifier:(id)arg1;
 - (void)setWorkQueue:(id)arg1;
+- (BOOL)supportsBridgeConfiguration;
 - (BOOL)supportsRelay;
 - (id)uniqueIdentifier;
 - (BOOL)validateCharacteristicValues:(id*)arg1;
 - (id)workQueue;
-- (void)writeCharacteristicValues:(id)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
-- (void)writeValue:(id)arg1 forCharacteristic:(id)arg2 authorizationData:(id)arg3 queue:(id)arg4 completionHandler:(id /* block */)arg5;
+- (void)writeCharacteristicValue:(id)arg1 timeout:(double)arg2 completionQueue:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)writeCharacteristicValues:(id)arg1 timeout:(double)arg2 completionQueue:(id)arg3 completionHandler:(id /* block */)arg4;
 
 @end

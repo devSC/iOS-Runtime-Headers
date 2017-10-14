@@ -3,19 +3,21 @@
  */
 
 @interface GEOTileRequester : NSObject {
-    NSData *_auditToken;
-    NSString *_bundleIdentifier;
-    NSString *_bundleVersion;
-    GEOTileKeyMap *_cachedData;
-    GEOTileKeyMap *_cachedEtags;
-    id _context;
-    <GEOTileRequesterDelegate> *_delegate;
-    GEOTileKeyList *_keyList;
-    NSLocale *_locale;
-    GEOResourceManifestConfiguration *_manifestConfiguration;
-    GEOTileKeyMap *_priorities;
-    BOOL _requireWiFi;
-    NSThread *_thread;
+    NSData * _auditToken;
+    NSString * _bundleIdentifier;
+    NSString * _bundleVersion;
+    GEOTileKeyMap * _cachedData;
+    GEOTileKeyMap * _cachedEtags;
+    id  _context;
+    <GEOTileRequesterDelegate> * _delegate;
+    NSString * _deviceCountry;
+    NSString * _deviceRegion;
+    GEOTileKeyList * _keyList;
+    NSLocale * _locale;
+    GEOResourceManifestConfiguration * _manifestConfiguration;
+    GEOTileKeyMap * _priorities;
+    BOOL  _requireWiFi;
+    NSThread * _thread;
 }
 
 @property (nonatomic, retain) NSData *auditToken;
@@ -24,7 +26,9 @@
 @property (nonatomic, readonly) GEOTileKeyMap *cachedData;
 @property (nonatomic, readonly) GEOTileKeyMap *cachedEtags;
 @property (nonatomic, retain) id context;
-@property (nonatomic, retain) <GEOTileRequesterDelegate> *delegate;
+@property (nonatomic) <GEOTileRequesterDelegate> *delegate;
+@property (nonatomic, retain) NSString *deviceCountry;
+@property (nonatomic, retain) NSString *deviceRegion;
 @property (nonatomic, readonly) GEOTileKeyList *keyList;
 @property (nonatomic, readonly) GEOTileKeyMap *priorities;
 @property (nonatomic) BOOL requireWiFi;
@@ -45,6 +49,8 @@
 - (id)context;
 - (void)dealloc;
 - (id)delegate;
+- (id)deviceCountry;
+- (id)deviceRegion;
 - (id)initWithKeyList:(id)arg1 manifestConfiguration:(id)arg2 locale:(id)arg3 cachedEtags:(id)arg4 cachedData:(id)arg5 priorities:(id)arg6;
 - (id)keyList;
 - (id)priorities;
@@ -55,6 +61,8 @@
 - (void)setBundleVersion:(id)arg1;
 - (void)setContext:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDeviceCountry:(id)arg1;
+- (void)setDeviceRegion:(id)arg1;
 - (void)setRequireWiFi:(BOOL)arg1;
 - (void)setThread:(id)arg1;
 - (void)start;

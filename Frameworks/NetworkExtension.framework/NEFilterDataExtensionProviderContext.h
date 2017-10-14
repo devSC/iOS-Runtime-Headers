@@ -3,16 +3,16 @@
  */
 
 @interface NEFilterDataExtensionProviderContext : NEFilterExtensionProviderContext <NEFilterDataExtensionProviderHostProtocol, NEFilterDataExtensionProviderProtocol> {
-    NSDictionary *_URLAppendStringMap;
-    NSMutableDictionary *_browserFlows;
-    NSObject<OS_xpc_object> *_clientListener;
-    BOOL _controlProviderExists;
-    NSXPCListenerEndpoint *_listenerEndpoint;
-    NSMutableArray *_pendingConnections;
-    NSDictionary *_remediationMap;
-    NSMutableArray *_socketExceptions;
-    NSMutableDictionary *_socketFlows;
-    NSObject<OS_dispatch_source> *_source;
+    NSDictionary * _URLAppendStringMap;
+    NSMutableDictionary * _browserFlows;
+    NSObject<OS_xpc_object> * _clientListener;
+    BOOL  _controlProviderExists;
+    NSXPCListenerEndpoint * _listenerEndpoint;
+    NSMutableArray * _pendingConnections;
+    NSDictionary * _remediationMap;
+    NSMutableArray * _socketExceptions;
+    NSMutableDictionary * _socketFlows;
+    NSObject<OS_dispatch_source> * _source;
 }
 
 @property (retain) NSDictionary *URLAppendStringMap;
@@ -79,6 +79,7 @@
 - (id)socketFlows;
 - (id)source;
 - (void)startFilterWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)stopWithReason:(int)arg1;
 - (void)teardownSocketSource;
 
 @end

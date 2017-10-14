@@ -3,10 +3,11 @@
  */
 
 @interface MUPDFPageLabelView : UIView {
-    _UIBackdropView *_backdropView;
-    UILabel *_label;
-    NSTimer *_timer;
-    unsigned int currentPageIndex;
+    UIBlurEffect * _blurEffect;
+    UIVisualEffectView * _blurView;
+    UILabel * _label;
+    NSTimer * _timer;
+    unsigned int  currentPageIndex;
 }
 
 @property (nonatomic) unsigned int currentPageIndex;
@@ -15,7 +16,6 @@
 - (void).cxx_destruct;
 - (double)_fadeOutDelay;
 - (double)_fadeOutDuration;
-- (void)_makeRoundedCorners;
 - (void)clearTimer;
 - (unsigned int)currentPageIndex;
 - (void)dealloc;

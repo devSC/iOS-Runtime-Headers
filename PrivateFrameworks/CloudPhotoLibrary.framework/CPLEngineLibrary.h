@@ -3,27 +3,28 @@
  */
 
 @interface CPLEngineLibrary : NSObject <CPLAbstractObject> {
-    NSHashTable *_attachedObjects;
-    NSURL *_clientLibraryBaseURL;
-    BOOL _closed;
-    NSURL *_cloudLibraryResourceStorageURL;
-    NSURL *_cloudLibraryStateStorageURL;
-    NSArray *_components;
-    CPLConfiguration *_configuration;
-    NSString *_libraryIdentifier;
-    BOOL _libraryIsCorrupted;
-    NSError *_openingError;
-    CPLPlatformObject *_platformObject;
-    NSObject<OS_dispatch_queue> *_queue;
-    CPLEngineScheduler *_scheduler;
-    CPLStatistics *_statistics;
-    CPLStatus *_status;
-    CPLEngineStore *_store;
-    CPLEngineSyncManager *_syncManager;
-    CPLEngineSystemMonitor *_systemMonitor;
-    unsigned int _totalAssetCount;
-    BOOL _totalAssetCountHasBeenCalculated;
-    CPLEngineTransport *_transport;
+    NSHashTable * _attachedObjects;
+    NSDate * _cachedLastQuarantineCountReportDate;
+    NSURL * _clientLibraryBaseURL;
+    BOOL  _closed;
+    NSURL * _cloudLibraryResourceStorageURL;
+    NSURL * _cloudLibraryStateStorageURL;
+    NSArray * _components;
+    CPLConfiguration * _configuration;
+    CPLEngineFeedbackManager * _feedback;
+    NSString * _libraryIdentifier;
+    BOOL  _libraryIsCorrupted;
+    NSError * _openingError;
+    CPLPlatformObject * _platformObject;
+    NSObject<OS_dispatch_queue> * _queue;
+    CPLEngineScheduler * _scheduler;
+    CPLStatus * _status;
+    CPLEngineStore * _store;
+    CPLEngineSyncManager * _syncManager;
+    CPLEngineSystemMonitor * _systemMonitor;
+    unsigned int  _totalAssetCount;
+    BOOL  _totalAssetCountHasBeenCalculated;
+    CPLEngineTransport * _transport;
 }
 
 @property (nonatomic, readonly, copy) NSURL *clientLibraryBaseURL;
@@ -32,7 +33,8 @@
 @property (nonatomic, readonly) CPLConfiguration *configuration;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, retain) NSDate *exitDeleteTime;
+@property (nonatomic, copy) NSDate *exitDeleteTime;
+@property (nonatomic, readonly) CPLEngineFeedbackManager *feedback;
 @property (nonatomic) BOOL hasChangesToProcess;
 @property (readonly) unsigned int hash;
 @property (nonatomic) BOOL iCloudLibraryExists;
@@ -42,7 +44,6 @@
 @property (nonatomic, readonly) BOOL libraryIsCorrupted;
 @property (nonatomic, readonly) CPLPlatformObject *platformObject;
 @property (nonatomic, readonly) CPLEngineScheduler *scheduler;
-@property (nonatomic, readonly) CPLStatistics *statistics;
 @property (nonatomic, readonly) CPLEngineStore *store;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) CPLEngineSyncManager *syncManager;
@@ -55,6 +56,7 @@
 - (void)_closeNextComponent:(id)arg1 deactivate:(BOOL)arg2 lastError:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)_openNextComponent:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)_performBlockWithLibrary:(BOOL)arg1 enumerateAttachedObjects:(id /* block */)arg2;
+- (void)_reportQuarantineCountIfNecessaryWithLastReportDate:(id)arg1;
 - (void)_updateTotalAssetCountWithAssetCounts:(id)arg1;
 - (void)attachObject:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (id)clientLibraryBaseURL;
@@ -67,9 +69,11 @@
 - (id)description;
 - (void)detachObject:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (id)exitDeleteTime;
+- (id)feedback;
 - (void)getListOfComponentsWithCompletionHandler:(id /* block */)arg1;
 - (void)getStatusArrayForComponents:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)getStatusForComponents:(id)arg1 completionHandler:(id /* block */)arg2;
+- (BOOL)hasAssetCountOnServer;
 - (BOOL)hasChangesToProcess;
 - (BOOL)iCloudLibraryExists;
 - (BOOL)iCloudLibraryHasBeenWiped;
@@ -87,6 +91,7 @@
 - (void)openWithCompletionHandler:(id /* block */)arg1;
 - (id)platformObject;
 - (void)reportLibraryCorrupted;
+- (void)reportQuarantineCountIfNecessary;
 - (void)reportRadar:(unsigned int)arg1;
 - (void)reportUnsuccessfulSync;
 - (void)requestAttachedLibrary;
@@ -97,13 +102,13 @@
 - (void)setICloudLibraryHasBeenWiped:(BOOL)arg1;
 - (void)setIsExceedingQuota:(BOOL)arg1;
 - (void)startSyncSession;
-- (id)statistics;
 - (id)store;
 - (id)syncManager;
 - (id)systemMonitor;
 - (unsigned int)totalAssetCountOnServer;
 - (id)transport;
 - (void)updateAssetCountsFromServer:(id)arg1;
+- (void)updateInitialSyncDate:(id)arg1;
 - (void)updateLastSuccessfullSyncDate:(id)arg1;
 
 @end

@@ -3,18 +3,19 @@
  */
 
 @interface UIRemoveControlMinusButton : UIControl {
-    unsigned int _hiding;
-    unsigned int _reserved;
-    unsigned int _rotated;
-    unsigned int _rotating;
-    unsigned int _showAsPlus;
-    float _verticalOffset;
+    unsigned int  _hiding;
+    unsigned int  _reserved;
+    unsigned int  _rotated;
+    unsigned int  _rotating;
+    unsigned int  _showAsPlus;
+    float  _verticalOffset;
 }
 
 + (float)defaultWidth;
 + (id)minusImage;
 + (id)plusImage;
 
+- (id)__scalarStatisticsForUserTouchUpInsideEvent;
 - (void)_toggleRotateAnimationDidStop:(id)arg1 finished:(BOOL)arg2;
 - (void)animator:(id)arg1 stopAnimation:(id)arg2;
 - (void)dealloc;

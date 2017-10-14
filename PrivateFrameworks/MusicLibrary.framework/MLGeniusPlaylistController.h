@@ -3,14 +3,15 @@
  */
 
 @interface MLGeniusPlaylistController : NSObject {
-    void *_echo;
-    void *_echo_cluster_playlist;
-    void *_echo_library;
-    NSMutableData *_sharedBlobMutableData;
+    void * _echo;
+    void * _echo_cluster_playlist;
+    void * _echo_library;
+    NSMutableData * _sharedBlobMutableData;
 }
 
 + (unsigned int)defaultMinTrackCount;
 + (unsigned int)defaultTrackCount;
++ (id)geniusTracksForSeedTrack:(id)arg1 error:(id*)arg2;
 + (BOOL)hasGeniusDataAvailable;
 + (BOOL)hasGeniusFeatureEnabled;
 + (void)ignoreUnusedWarnings;

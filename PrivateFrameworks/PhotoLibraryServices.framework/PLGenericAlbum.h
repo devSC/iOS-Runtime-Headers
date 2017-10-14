@@ -3,9 +3,9 @@
  */
 
 @interface PLGenericAlbum : _PLGenericAlbum <PLAlbumProtocol, PLDerivedAlbumOrigin, PLIndexMappersDataOrigin> {
-    NSObject<PLIndexMappingCache> *_derivededAlbums;
-    BOOL didRegisteredWithUserInterfaceContext;
-    BOOL isRegisteredForChanges;
+    NSObject<PLIndexMappingCache> * _derivededAlbums;
+    BOOL  didRegisteredWithUserInterfaceContext;
+    BOOL  isRegisteredForChanges;
 }
 
 @property (nonatomic, readonly) unsigned int approximateCount;
@@ -103,7 +103,6 @@
 + (id)allSyncedAlbumsInManagedObjectContext:(id)arg1;
 + (id)allVerticalPanoramasAlbumInLibrary:(id)arg1;
 + (id)allVideosAlbumInLibrary:(id)arg1;
-+ (id)cameraRollAlbumInLibrary:(id)arg1;
 + (id)childKeyForOrdering;
 + (id)eventsWithName:(id)arg1 andImportSessionIdentifier:(id)arg2 inManagedObjectContext:(id)arg3;
 + (id)filesystemImportProgressAlbumInLibrary:(id)arg1;
@@ -114,8 +113,8 @@
 + (id)insertNewAlbumWithKind:(int)arg1 title:(id)arg2 intoLibrary:(id)arg3;
 + (id)insertNewAlbumWithTitle:(id)arg1 intoLibrary:(id)arg2;
 + (id)insertNewCloudSharedAlbumWithTitle:(id)arg1 lastInterestingDate:(id)arg2 intoLibrary:(id)arg3;
-+ (id)insertNewFaceAlbumIntoLibrary:(id)arg1;
 + (id)insertNewFolderWithTitle:(id)arg1 intoLibrary:(id)arg2;
++ (id)insertNewLegacyFaceAlbumIntoLibrary:(id)arg1;
 + (id)insertNewSyncedEventIntoLibrary:(id)arg1;
 + (id)insertNewSyncedEventWithTitle:(id)arg1 intoLibrary:(id)arg2;
 + (id)insertNewSyncedFolderWithTitle:(id)arg1 intoLibrary:(id)arg2;
@@ -124,8 +123,10 @@
 + (BOOL)isSmartAlbumForKind:(int)arg1;
 + (id)keyPathsForValuesAffectingKindValue;
 + (id)keyPathsForValuesAffectingName;
++ (id)localizedRecoveredTitle;
 + (id)localizedTitleForAlbumKind:(int)arg1;
 + (id)otaRestoreProgressAlbumInLibrary:(id)arg1;
++ (void)removeAllUserAlbumsAndFoldersInLibrary:(id)arg1;
 + (void)removeEmptyAlbumsForCloudResetInLibrary:(id)arg1;
 + (void)removeTrashedAlbumsAndFoldersForCloudResetInLibrary:(id)arg1;
 + (void)resetAlbumStateForCloudInLibrary:(id)arg1;
@@ -136,13 +137,14 @@
 + (id)uuidFromGroupURL:(id)arg1;
 + (id)wallpaperAlbumInLibrary:(id)arg1;
 
-- (void)_applyTrashedState:(short)arg1 date:(BOOL)arg2 :(id)arg3;
+- (void)_applyTrashedState:(short)arg1 date:(BOOL)arg2 :(id)arg3 cascade:(BOOL)arg4;
 - (id)_compactDebugDescription;
 - (id)_itemIdentifier;
 - (id)_kindDescription;
 - (id)_prettyDescription;
+- (void)_repairTitleIfEmpty;
 - (void)applyPropertiesFromAlbumChange:(id)arg1;
-- (void)applyTrashedState:(short)arg1;
+- (void)applyTrashedState:(short)arg1 cascade:(BOOL)arg2;
 - (unsigned int)approximateCount;
 - (id)assetsByObjectIDAtIndexes:(id)arg1;
 - (unsigned int)assetsCount;
@@ -186,6 +188,7 @@
 - (BOOL)isRootFolder;
 - (BOOL)isSmartAlbum;
 - (BOOL)isStandInAlbum;
+- (BOOL)isSyncableChange;
 - (BOOL)isUserLibraryAlbum;
 - (BOOL)isWallpaperAlbum;
 - (int)kindValue;
@@ -198,16 +201,19 @@
 - (void)reducePendingItemsCountBy:(unsigned int)arg1;
 - (void)registerDerivedAlbum:(struct NSObject { Class x1; }*)arg1;
 - (void)registerForChanges;
+- (void)repairUuidAndTitleWithRecoveryReason:(const char *)arg1;
 - (void)setDidRegisteredWithUserInterfaceContext:(BOOL)arg1;
 - (void)setHasUnseenContentBoolValue:(BOOL)arg1;
 - (void)setIsRegisteredForChanges:(BOOL)arg1;
 - (void)setKindValue:(int)arg1;
 - (BOOL)shouldDeleteWhenEmpty;
 - (id /* block */)sortingComparator;
+- (BOOL)supportsCloudUpload;
 - (void)unregisterAllDerivedAlbums;
 - (void)unregisterForChanges;
 - (void)updateAlbumFolderRelation:(id)arg1 inLibrary:(id)arg2;
 - (unsigned int)videosCount;
+- (void)willSave;
 - (void)willTurnIntoFault;
 
 @end

@@ -3,14 +3,14 @@
  */
 
 @interface MPRestrictionsMonitor : NSObject <MCProfileConnectionObserver> {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    BOOL _allowsAccountModification;
-    BOOL _allowsDeletion;
-    BOOL _allowsExplicitContent;
-    BOOL _allowsRadioPurchases;
-    BOOL _allowsStorePurchases;
-    NSMutableDictionary *_cachedSettings;
-    MCProfileConnection *_connection;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    BOOL  _allowsAccountModification;
+    BOOL  _allowsDeletion;
+    BOOL  _allowsExplicitContent;
+    BOOL  _allowsRadioPurchases;
+    BOOL  _allowsStorePurchases;
+    NSMutableDictionary * _cachedSettings;
+    MCProfileConnection * _connection;
 }
 
 @property (nonatomic, readonly) BOOL allowsAccountModification;
@@ -20,7 +20,10 @@
 @property (nonatomic, readonly) BOOL allowsStorePurchases;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL hasRestrictionsPasscode;
 @property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int maximumMovieRating;
+@property (nonatomic, readonly) int maximumTVShowRating;
 @property (readonly) Class superclass;
 
 + (id)sharedRestrictionsMonitor;
@@ -36,7 +39,10 @@
 - (BOOL)allowsStorePurchases;
 - (void)dealloc;
 - (id)effectiveValueForSetting:(id)arg1;
+- (BOOL)hasRestrictionsPasscode;
 - (id)init;
+- (int)maximumMovieRating;
+- (int)maximumTVShowRating;
 - (void)profileConnectionDidReceiveEffectiveSettingsChangedNotification:(id)arg1 userInfo:(id)arg2;
 
 @end

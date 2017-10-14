@@ -3,12 +3,12 @@
  */
 
 @interface NSLinguisticTagger : NSObject {
-    unsigned int _options;
-    id _orthographyArray;
-    id _reserved;
-    NSArray *_schemes;
-    NSString *_string;
-    id _tokenArray;
+    unsigned int  _options;
+    id  _orthographyArray;
+    id  _reserved;
+    NSArray * _schemes;
+    NSString * _string;
+    id  _tokenArray;
 }
 
 @property (retain) NSString *string;
@@ -47,6 +47,6 @@
 
 // Image: /System/Library/PrivateFrameworks/ResponseKit.framework/ResponseKit
 
-- (id)languageOfRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (id)languageOfRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withPreferredLanguages:(id)arg2;
 
 @end

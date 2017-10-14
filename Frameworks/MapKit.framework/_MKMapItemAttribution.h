@@ -3,7 +3,7 @@
  */
 
 @interface _MKMapItemAttribution : NSObject {
-    GEOMapItemAttribution *_geoAttribution;
+    GEOMapItemAttribution * _geoAttribution;
 }
 
 @property (nonatomic, readonly) NSArray *attributionApps;
@@ -11,15 +11,18 @@
 @property (nonatomic, readonly) NSString *providerID;
 @property (nonatomic, readonly) NSString *providerName;
 @property (nonatomic, readonly) BOOL requiresAttributionInCallout;
+@property (nonatomic, readonly) BOOL shouldOpenAppStore;
 
 - (void).cxx_destruct;
 - (id)attributionApps;
 - (id)attributionURLs;
 - (id)initWithGEOMapItemAttribution:(id)arg1;
 - (id)providerID;
+- (id)providerImageAtPath:(id)arg1 scale:(float)arg2 isTemplate:(BOOL)arg3;
 - (id)providerLogoImageForScale:(float)arg1;
 - (id)providerName;
 - (id)providerSnippetLogoImageForScale:(float)arg1;
 - (BOOL)requiresAttributionInCallout;
+- (BOOL)shouldOpenAppStore;
 
 @end

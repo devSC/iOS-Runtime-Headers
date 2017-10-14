@@ -3,9 +3,14 @@
  */
 
 @interface AVDateRangeMetadataGroupInternal : NSObject {
-    NSDate *endDate;
-    NSArray *items;
-    NSDate *startDate;
+    NSString * classifyingLabel;
+    NSDate * discoveryTimestamp;
+    NSDate * endDate;
+    NSDictionary * extraFigProperties;
+    NSArray * metadataItems;
+    NSDate * modificationTimestamp;
+    NSDate * startDate;
+    NSString * uniqueID;
 }
 
 @end

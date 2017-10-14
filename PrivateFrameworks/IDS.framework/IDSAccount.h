@@ -3,7 +3,7 @@
  */
 
 @interface IDSAccount : NSObject {
-    _IDSAccount *_internal;
+    _IDSAccount * _internal;
 }
 
 @property (nonatomic, retain) NSDictionary *accountInfo;
@@ -15,6 +15,7 @@
 @property (nonatomic, readonly, retain) NSArray *devices;
 @property (nonatomic, readonly, retain) NSString *displayName;
 @property (nonatomic, readonly) BOOL isActive;
+@property (nonatomic, readonly) BOOL isUserDisabled;
 @property (nonatomic, retain) NSString *loginID;
 @property (nonatomic, readonly, retain) NSArray *nearbyDevices;
 @property (nonatomic, readonly) NSDate *nextRegistrationDate;
@@ -36,6 +37,7 @@
 - (id)_initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)_internal;
 - (BOOL)_isEnabled;
+- (void)_reloadCachedDevices;
 - (void)_reregisterAndReidentify:(BOOL)arg1;
 - (void)_setIsEnabled:(BOOL)arg1;
 - (id)accountInfo;
@@ -56,6 +58,7 @@
 - (id)initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)initWithLoginID:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (BOOL)isActive;
+- (BOOL)isUserDisabled;
 - (id)loginID;
 - (id)nearbyDevices;
 - (id)nextRegistrationDate;

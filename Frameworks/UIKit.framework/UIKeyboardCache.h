@@ -3,9 +3,9 @@
  */
 
 @interface UIKeyboardCache : NSObject {
-    BOOL _isCommitting;
-    NSSet *_layouts;
-    CPBitmapStore *_store;
+    NSSet * _layouts;
+    int  _renderCountForTesting;
+    TIImageCacheClient * _store;
 }
 
 + (BOOL)enabled;
@@ -16,10 +16,12 @@
 - (void)clearNonPersistentCache;
 - (void)commitTransaction;
 - (void)dealloc;
+- (void)decrementExpectedRender;
 - (id)displayImagesForView:(id)arg1 fromLayout:(id)arg2 imageFlags:(id)arg3;
-- (void)displayView:(id)arg1 fromLayout:(id)arg2;
-- (void)displayView:(id)arg1 imageWidth:(float)arg2 fromLayout:(id)arg3;
+- (void)drawCachedImage:(id)arg1 alpha:(float)arg2 inContext:(struct CGContext { }*)arg3;
+- (void)incrementExpectedRender;
 - (id)init;
+- (void)purge;
 - (id)uniqueLayoutsFromInputModes:(id)arg1;
 - (void)updateCacheForInputModes:(id)arg1;
 

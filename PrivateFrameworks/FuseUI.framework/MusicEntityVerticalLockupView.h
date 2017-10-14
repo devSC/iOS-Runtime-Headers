@@ -3,7 +3,10 @@
  */
 
 @interface MusicEntityVerticalLockupView : MusicEntityAbstractLockupView <MusicEntityContentDescriptorViewConfiguring> {
-    <MusicEntityVerticalLockupViewDelegate> *_delegate;
+    UIImageView * _availableOfflineBadgeImageView;
+    <MusicEntityVerticalLockupViewDelegate> * _delegate;
+    BOOL  _isAvailableOffline;
+    float  _textLateralEdgePadding;
 }
 
 @property (nonatomic, retain) MusicEntityViewContentDescriptor *contentDescriptor;
@@ -18,7 +21,6 @@
 
 - (void).cxx_destruct;
 - (void)_contentDescriptorDidChange:(id)arg1;
-- (void)_handlePlayButtonTappedWithAction:(unsigned int)arg1;
 - (BOOL)_shouldArtworkViewRespectHighlightProperty;
 - (BOOL)_shouldEnableArtworkViewUserInteraction;
 - (id)contentDescriptor;
@@ -26,5 +28,6 @@
 - (void)layoutSubviews;
 - (void)setContentDescriptor:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setTextLateralEdgePadding:(float)arg1;
 
 @end

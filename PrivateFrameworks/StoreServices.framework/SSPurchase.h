@@ -3,30 +3,36 @@
  */
 
 @interface SSPurchase : NSObject <NSCoding, NSCopying, SSXPCCoding> {
-    NSNumber *_accountIdentifier;
-    NSString *_affiliateIdentifier;
-    BOOL _backgroundPurchase;
-    int _batchIdentifier;
-    NSString *_buyParameters;
-    BOOL _createsDownloads;
-    NSObject<OS_dispatch_queue> *_dispatchQueue;
-    BOOL _displaysOnLockScreen;
-    SSDownloadPolicy *_downloadPolicy;
-    NSMutableDictionary *_downloadProperties;
-    NSNumber *_enabledServiceType;
-    long long _expectedDownloadFileSize;
-    NSArray *_filteredAssetTypes;
-    NSArray *_gratisIdentifiers;
-    BOOL _ignoresForcedPasswordRestriction;
-    SSItem *_item;
-    SSItemOffer *_itemOffer;
-    SSNetworkConstraints *_networkConstraints;
-    long long _placeholderDownloadIdentifier;
-    BOOL _preauthenticated;
-    SSURLRequestProperties *_requestProperties;
-    id _requiredDeviceCapabilities;
-    long long _uniqueIdentifier;
-    BOOL _usesLocalRedownloadParametersIfPossible;
+    NSNumber * _accountIdentifier;
+    NSString * _affiliateIdentifier;
+    BOOL  _backgroundPurchase;
+    int  _batchIdentifier;
+    NSString * _buyParameters;
+    NSNumber * _buyParamsCreatesDownloads;
+    NSNumber * _buyParamsCreatesInstallJobs;
+    NSNumber * _buyParamsCreatesJobs;
+    BOOL  _createsDownloads;
+    BOOL  _createsInstallJobs;
+    BOOL  _createsJobs;
+    NSObject<OS_dispatch_queue> * _dispatchQueue;
+    BOOL  _displaysOnLockScreen;
+    SSDownloadPolicy * _downloadPolicy;
+    NSMutableDictionary * _downloadProperties;
+    NSNumber * _enabledServiceType;
+    long long  _expectedDownloadFileSize;
+    NSArray * _filteredAssetTypes;
+    NSArray * _gratisIdentifiers;
+    BOOL  _ignoresForcedPasswordRestriction;
+    SSItem * _item;
+    SSItemOffer * _itemOffer;
+    SSNetworkConstraints * _networkConstraints;
+    long long  _placeholderDownloadIdentifier;
+    BOOL  _playbackRequest;
+    BOOL  _preauthenticated;
+    SSURLRequestProperties * _requestProperties;
+    id  _requiredDeviceCapabilities;
+    long long  _uniqueIdentifier;
+    BOOL  _usesLocalRedownloadParametersIfPossible;
 }
 
 @property (retain) NSNumber *accountIdentifier;
@@ -35,6 +41,8 @@
 @property int batchIdentifier;
 @property (copy) NSString *buyParameters;
 @property (nonatomic) BOOL createsDownloads;
+@property (nonatomic) BOOL createsInstallJobs;
+@property (nonatomic) BOOL createsJobs;
 @property (readonly) NSData *databaseEncoding;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -45,10 +53,12 @@
 @property long long expectedDownloadFileSize;
 @property (copy) NSArray *filteredAssetTypes;
 @property (copy) NSArray *gratisIdentifiers;
+@property (getter=isGratisSoftwareClaim, readonly) BOOL gratisSoftwareClaim;
 @property (readonly) unsigned int hash;
 @property BOOL ignoresForcedPasswordRestriction;
 @property (copy) SSNetworkConstraints *networkConstraints;
 @property long long placeholderDownloadIdentifier;
+@property (getter=isPlaybackRequest) BOOL playbackRequest;
 @property (getter=isPreauthenticated) BOOL preauthenticated;
 @property (copy) SSURLRequestProperties *requestProperties;
 @property (copy) id requiredDeviceCapabilities;
@@ -60,18 +70,25 @@
 + (id)newPurchaseWithXPCEncoding:(id)arg1;
 + (id)purchaseWithBuyParameters:(id)arg1;
 
+- (void).cxx_destruct;
 - (void)_addEntriesToDatabaseEncoding:(id)arg1;
+- (id)_buyParametersValueForKey:(id)arg1 fromBuyParams:(id)arg2;
+- (BOOL)_createsDownloadsWithOverride;
+- (BOOL)_createsInstallJobsWithOverride;
+- (BOOL)_createsJobsWithOverride;
 - (id)_initSSPurchase;
 - (void)_setValuesUsingDatabaseEncoding:(id)arg1;
 - (id)accountIdentifier;
 - (id)affiliateIdentifier;
 - (int)batchIdentifier;
 - (id)buyParameters;
+- (id)buyParametersValueForKey:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;
 - (BOOL)createsDownloads;
+- (BOOL)createsInstallJobs;
+- (BOOL)createsJobs;
 - (id)databaseEncoding;
-- (void)dealloc;
 - (BOOL)displaysOnLockScreen;
 - (id)downloadMetadata;
 - (id)downloadPolicy;
@@ -91,6 +108,8 @@
 - (id)initWithXPCEncoding:(id)arg1;
 - (BOOL)isBackgroundPurchase;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isGratisSoftwareClaim;
+- (BOOL)isPlaybackRequest;
 - (BOOL)isPreauthenticated;
 - (id)item;
 - (id)itemOffer;
@@ -104,6 +123,8 @@
 - (void)setBatchIdentifier:(int)arg1;
 - (void)setBuyParameters:(id)arg1;
 - (void)setCreatesDownloads:(BOOL)arg1;
+- (void)setCreatesInstallJobs:(BOOL)arg1;
+- (void)setCreatesJobs:(BOOL)arg1;
 - (void)setDefaultUserAgent:(id)arg1;
 - (void)setDisplaysOnLockScreen:(BOOL)arg1;
 - (void)setDownloadMetadata:(id)arg1;
@@ -116,6 +137,7 @@
 - (void)setIgnoresForcedPasswordRestriction:(BOOL)arg1;
 - (void)setNetworkConstraints:(id)arg1;
 - (void)setPlaceholderDownloadIdentifier:(long long)arg1;
+- (void)setPlaybackRequest:(BOOL)arg1;
 - (void)setPreauthenticated:(BOOL)arg1;
 - (void)setRequestProperties:(id)arg1;
 - (void)setRequiredDeviceCapabilities:(id)arg1;

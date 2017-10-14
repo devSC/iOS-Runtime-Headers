@@ -3,25 +3,29 @@
  */
 
 @interface MSCLComposePostViewController : SKUIViewController <MSCLAttachmentAlertDelegate, MSCLAttachmentPropertiesDelegate, MSCLAudioPickerDelegate, MSCLComposeImagePickerDelegate, MSCLComposePostViewDelegate, MSCLSoundBiteViewControllerDelegate, MSCLTagListDelegate> {
-    MSCLAccountStore *_accountStore;
-    NSMutableArray *_attachments;
-    SKUIMediaSocialAuthor *_attributionAuthor;
-    MSCLComposeLabelValueButton *_attributionButton;
-    MSCLAudioPickerViewController *_audioPickerController;
-    MSCLAuthorView *_authorSelectionView;
-    MSCLComposePostView *_composeView;
-    MSCLConfiguration *_configuration;
-    <MSCLComposePostViewControllerDelegate> *_delegate;
-    BOOL _didAppear;
-    MSCLAttachment *_editingAttachment;
-    MSCLComposeLabelValueButton *_externalServicesButton;
-    MSCLComposeImagePickerController *_imagePickerController;
-    SKUIResourceLoader *_resourceLoader;
-    SKUIMediaSocialAuthor *_selectedAuthor;
-    NSMutableArray *_soundBiteViewControllers;
-    MSCLTagListViewController *_tagCompletionViewController;
+    MSCLAccountStore * _accountStore;
+    MSCLAttachmentDownloadOperation * _attachmentDownloadOperation;
+    BOOL  _attachmentWasDownloadedAndNeedsRemoval;
+    NSMutableArray * _attachments;
+    SKUIMediaSocialAuthor * _attributionAuthor;
+    MSCLComposeLabelValueButton * _attributionButton;
+    MSCLAudioPickerViewController * _audioPickerController;
+    MSCLAuthorView * _authorSelectionView;
+    MSCLComposePostView * _composeView;
+    MSCLConfiguration * _configuration;
+    <MSCLComposePostViewControllerDelegate> * _delegate;
+    BOOL  _didAppear;
+    MSCLAttachment * _editingAttachment;
+    MSCLComposeLabelValueButton * _externalServicesButton;
+    MSCLComposeImagePickerController * _imagePickerController;
+    SKUIResourceLoader * _resourceLoader;
+    SKUIMediaSocialAuthor * _selectedAuthor;
+    NSMutableArray * _soundBiteViewControllers;
+    MSCLTagListViewController * _tagCompletionViewController;
 }
 
+@property (nonatomic) MSCLAttachmentDownloadOperation *attachmentDownloadOperation;
+@property (nonatomic) BOOL attachmentWasDownloadedAndNeedsRemoval;
 @property (nonatomic, readonly) MSCLConfiguration *configuration;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MSCLComposePostViewControllerDelegate> *delegate;
@@ -60,7 +64,9 @@
 - (void)_updatePostButton;
 - (void)addAttachments:(id)arg1 animated:(BOOL)arg2;
 - (void)attachmentAlertController:(id)arg1 didFinishWithResult:(int)arg2;
+- (id)attachmentDownloadOperation;
 - (void)attachmentPropertiesController:(id)arg1 didEditAttachment:(id)arg2;
+- (BOOL)attachmentWasDownloadedAndNeedsRemoval;
 - (void)audioPicker:(id)arg1 didFinishWithAttachment:(id)arg2;
 - (void)audioPickerDidCancel:(id)arg1;
 - (void)composePostView:(id)arg1 didRemoveAttachmentView:(id)arg2 atIndex:(int)arg3;
@@ -76,6 +82,8 @@
 - (void)loadView;
 - (id)parentViewControllerForMSCLComposeImagePicker:(id)arg1;
 - (int)preferredStatusBarStyle;
+- (void)setAttachmentDownloadOperation:(id)arg1;
+- (void)setAttachmentWasDownloadedAndNeedsRemoval:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
 - (BOOL)shouldAutorotate;
 - (unsigned int)supportedInterfaceOrientations;

@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@interface AVURLAsset : AVAsset {
-    AVURLAssetInternal *_URLAsset;
+@interface AVURLAsset : AVAsset <AVContentKeyRecipient> {
+    AVURLAssetInternal * _URLAsset;
 }
 
 @property (nonatomic, readonly, copy) NSURL *URL;
-@property (nonatomic, readonly) AVAssetCache *assetCache;
 @property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) BOOL mayRequireContentKeysForMediaDataProcessing;
 @property (nonatomic, readonly) double rc_durationInSeconds;
 @property (nonatomic, readonly) AVAssetResourceLoader *resourceLoader;
 @property (nonatomic, readonly) BOOL shouldMatchDataInCacheByURLPathComponentOnly;
@@ -28,6 +28,7 @@
 + (id)_figStreamingUTIs;
 + (id)_fileUTTypes;
 + (id)_getFigAssetCreationOptionsFromURLAssetInitializationOptions:(id)arg1 figAssetCreationFlags:(unsigned long long*)arg2 error:(id*)arg3;
++ (id)_getFigAssetiTunesStoreContentInfoFromURLAssetiTunesStoreContentInfo:(id)arg1;
 + (id)_streamingUTTypes;
 + (id)audiovisualMIMETypes;
 + (id)audiovisualTypes;
@@ -43,33 +44,43 @@
 - (void)_addFigAssetNotifications;
 - (id)_assetInspector;
 - (id)_assetInspectorLoader;
+- (void)_attachToContentKeySession:(id)arg1;
+- (BOOL)_attachedToExternalContentKeySession;
 - (Class)_classForAssetTracks;
+- (Class)_classForFigAssetInspectorLoader;
 - (Class)_classForTrackInspectors;
+- (void)_ensureAssetDownloadCache;
 - (id)_errorForFigNotificationPayload:(struct __CFDictionary { }*)arg1 key:(struct __CFString { }*)arg2;
 - (struct OpaqueFigFormatReader { }*)_formatReader;
 - (void)_handleURLRequest:(id)arg1;
 - (BOOL)_hasResourceLoaderDelegate;
 - (id)_instanceIdentifier;
+- (id)_managedAssetCache;
 - (struct OpaqueFigPlaybackItem { }*)_playbackItem;
 - (void)_removeFigAssetNotifications;
 - (void)_removeUserInfoObject;
 - (void)_setAssetInspectorLoader:(id)arg1;
 - (void)_setUserInfoObject:(id)arg1;
 - (BOOL)_shouldOptimizeAccessForLinearMoviePlayback;
-- (id)_tracks;
 - (void)_tracksDidChange;
 - (id)assetCache;
 - (id)cacheKey;
 - (void)cancelLoading;
+- (id)contentKeySession;
+- (id)creationOptions;
 - (void)dealloc;
 - (id)description;
 - (id)downloadDestinationURL;
 - (unsigned long long)downloadToken;
+- (void)expire;
 - (void)finalize;
+- (id)identifyingTag;
 - (id)identifyingTagClass;
 - (id)init;
 - (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)lyrics;
+- (BOOL)mayRequireContentKeysForMediaDataProcessing;
+- (id)originalNetworkContentURL;
 - (unsigned int)referenceRestrictions;
 - (id)resolvedURL;
 - (id)resourceLoader;

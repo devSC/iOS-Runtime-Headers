@@ -2,51 +2,57 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIView : UIResponder <MKStackingViewControllerSizableView, NSCoding, NSISEngineDelegate, NSISVariableDelegate, UIAppearance, UIAppearanceContainer, UICoordinateSpace, UIDynamicItem, UIFocusEnvironment, UITextEffectsOrdering, UITraitEnvironment, _UIFocusEnvironmentInternal, _UILayoutItem, _UIScrollNotification, _UITraitEnvironmentInternal> {
-    UIPresentationController *__presentationControllerToNotifyOnLayoutSubviews;
-    NSString *_backgroundColorSystemColorName;
-    NSISVariable *_boundsHeightVariable;
-    NSISVariable *_boundsWidthVariable;
-    float _cachedScreenScale;
-    UITraitCollection *_cachedTraitCollection;
-    float _charge;
-    NSMutableArray *_constraintsExceptingSubviewAutoresizingConstraints;
-    id _contentSizeNotificationToken;
-    float _continuousCornerRadius;
-    unsigned int _countOfFocusedAncestorTrackingViewsInSubtree;
-    unsigned int _countOfMotionEffectsInSubtree;
-    unsigned int _countOfTraitChangeRespondersInDirectSubtree;
-    id _gestureInfo;
-    NSMutableArray *_gestureRecognizers;
+@interface UIView : UIResponder <CALayerDelegate, MFPopoverPresentationSource, MKInfoCardThemeListener, MKStackingViewControllerSizableView, NSCoding, NSISEngineDelegate, NSISVariableDelegate, SearchUIAutoLayoutItem, UIAppearance, UIAppearanceContainer, UICoordinateSpace, UIDynamicItem, UIFocusContainer, UIFocusItem, UITextEffectsOrdering, UITraitEnvironment, _NUIGridArrangementItem, _UIFocusEnvironmentInternal, _UIFocusEnvironmentPrivate, _UIFocusRegionContainer, _UIFocusRegionContainerInternal, _UIGeometryChangeObserver, _UILayoutItem, _UILegacyFocusRegion, _UIMultilineTextContentSizing, _UIScrollNotification, _UITraitEnvironmentInternal> {
+    int  __preferedContentsFormat;
+    UIPresentationController * __presentationControllerToNotifyOnLayoutSubviews;
+    NSString * _backgroundColorSystemColorName;
+    NSISVariable * _boundsHeightVariable;
+    NSISVariable * _boundsWidthVariable;
+    float  _cachedScreenScale;
+    UITraitCollection * _cachedTraitCollection;
+    float  _charge;
+    NSMutableArray * _constraintsExceptingSubviewAutoresizingConstraints;
+    id  _contentSizeNotificationToken;
+    float  _continuousCornerRadius;
+    unsigned int  _countOfFocusedAncestorTrackingViewsInSubtree;
+    unsigned int  _countOfMotionEffectsInSubtree;
+    unsigned int  _countOfTraitChangeRespondersInDirectSubtree;
+    id  _gestureInfo;
+    NSMutableArray * _gestureRecognizers;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _inferredLayoutMargins;
-    UIColor *_interactionTintColor;
-    NSMutableArray *_internalConstraints;
-    CALayer *_layer;
-    CALayer *_layerRetained;
-    NSString *_layoutDebuggingIdentifier;
-    NSISEngine *_layoutEngine;
-    UILayoutGuide *_layoutMarginsGuide;
-    NSISVariable *_minXVariable;
-    NSISVariable *_minYVariable;
+    }  _inferredLayoutMargins;
+    UIColor * _interactionTintColor;
+    NSMutableArray * _internalConstraints;
+    CALayer * _layer;
+    CALayer * _layerRetained;
+    NSString * _layoutDebuggingIdentifier;
+    NSISEngine * _layoutEngine;
+    UILayoutGuide * _layoutMarginsGuide;
+    int  _layoutSubviewsCount;
+    NSISVariable * _minXVariable;
+    NSISVariable * _minYVariable;
+    UIStoryboardPreviewingSegueTemplateStorage * _previewingSegueTemplateStorage;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _rawLayoutMargins;
-    UILayoutGuide *_readableContentGuide;
-    int _retainCount;
-    int _semanticContentAttribute;
-    BOOL _shouldArchiveUIAppearanceTags;
-    NSArray *_subviewCache;
-    int _tag;
-    int _tintAdjustmentDimmingCount;
-    UIViewController *_viewDelegate;
+    }  _rawLayoutMargins;
+    UILayoutGuide * _readableContentGuide;
+    int  _retainCount;
+    int  _semanticContentAttribute;
+    BOOL  _shouldArchiveUIAppearanceTags;
+    NSMapTable * _stashedLayoutVariableObservations;
+    NSArray * _subviewCache;
+    int  _tag;
+    UIView * _templateLayoutView;
+    int  _tintAdjustmentDimmingCount;
+    unsigned int  _unsatisfiableConstraintsLoggingSuspensionCount;
+    UIViewController * _viewDelegate;
     struct { 
         unsigned int userInteractionDisabled : 1; 
         unsigned int implementsDrawRect : 1; 
@@ -59,9 +65,6 @@
         unsigned int interceptMouseEvent : 1; 
         unsigned int deallocating : 1; 
         unsigned int debugFlash : 1; 
-        unsigned int debugSkippedSetNeedsDisplay : 1; 
-        unsigned int debugScheduledDisplayIsRequired : 1; 
-        unsigned int isInAWindow : 1; 
         unsigned int isAncestorOfFirstResponder : 1; 
         unsigned int dontAutoresizeSubviews : 1; 
         unsigned int autoresizeMask : 6; 
@@ -90,9 +93,14 @@
         unsigned int constraintsAreClean : 1; 
         unsigned int subviewLayoutConstraintsAreClean : 1; 
         unsigned int intrinsicContentSizeConstraintsAreClean : 1; 
+        unsigned int strictDescendantNeedsDoubleUpdateConstraints : 1; 
+        unsigned int strictDescendantNeedsDoubleUpdateConstraintsIsInvalid : 1; 
+        unsigned int determiningWidthForDoubleUpdateConstraints : 1; 
+        unsigned int inSecondConstraintsPass : 1; 
         unsigned int potentiallyHasDanglyConstraints : 1; 
         unsigned int doesNotTranslateAutoresizingMaskIntoConstraints : 1; 
         unsigned int autolayoutIsClean : 1; 
+        unsigned int autolayoutBoundsAreClean : 1; 
         unsigned int layoutFlushingDisabled : 1; 
         unsigned int layingOutFromConstraints : 1; 
         unsigned int wantsAutolayout : 1; 
@@ -104,10 +112,13 @@
         unsigned int isUpdatingConstraints : 1; 
         unsigned int isHostingUpdateConstraintsPassDuringLayout : 1; 
         unsigned int isRunningEngineLevelConstraintsPass : 1; 
-        unsigned int isUnsatisfiableConstraintsLoggingSuspended : 1; 
+        unsigned int isUpdatingLayoutEngineHostConstraints : 1; 
+        unsigned int isExpectingToFlushPendingLayoutChangeNotifications : 1; 
         unsigned int systemLayoutFittingSizeNeedsUpdate : 1; 
         unsigned int systemLayoutFittingSizeNeedsUpdateInWholeSubtree : 1; 
         unsigned int isCalculatingSystemLayoutFittingSize : 1; 
+        unsigned int suppressEncapsulationConstraints : 1; 
+        unsigned int isFetchingSizeForTAMIC_NOEngineHost : 1; 
         unsigned int stayHiddenAwaitingReuse : 1; 
         unsigned int stayHiddenAfterReuse : 1; 
         unsigned int skippedLayoutWhileHiddenForReuse : 1; 
@@ -127,7 +138,8 @@
         unsigned int userInterfaceIdiom : 3; 
         unsigned int ancestorDefinesTintColor : 1; 
         unsigned int ancestorDefinesTintAdjustmentMode : 1; 
-        unsigned int needsTraitCollectionDidChange : 1; 
+        unsigned int needsTraitCollectionDidChangePropagation : 1; 
+        unsigned int overridesTraitCollectionDidChange : 1; 
         unsigned int coloredViewBounds : 1; 
         unsigned int coloredAlignmentRects : 1; 
         unsigned int coloredFocusItems : 1; 
@@ -144,10 +156,24 @@
         unsigned int hasFocusableContentMargins : 1; 
         unsigned int shouldReverseLayoutDirection : 1; 
         unsigned int cannotBeParentTraitEnvironment : 1; 
-    } _viewFlags;
+        unsigned int didSetViewGenerator : 1; 
+        unsigned int viewGeneratorAppearanceState : 2; 
+        unsigned int viewGeneratorPendingAppearanceCompletion : 1; 
+        unsigned int viewGeneratorReparenting : 1; 
+        unsigned int viewGeneratorOriginalAppearanceChanged : 1; 
+        unsigned int viewGeneratorAppearanceCompletionCalledWithinRunTransition : 1; 
+        unsigned int viewGeneratorNewChange : 1; 
+        unsigned int hasTemplateLayoutView : 2; 
+        unsigned int ignoresTemplateLayoutView : 2; 
+        unsigned int hasMirrorTransform : 1; 
+        unsigned int needsContentsFormatUpdate : 1; 
+    }  _viewFlags;
+    BOOL  _wantsDeepColorDrawing;
+    UIWindow * _window;
 }
 
 @property (setter=PG_setAllowsEdgeAntialiasing:, nonatomic) BOOL PG_allowsEdgeAntialiasing;
+@property (setter=PG_setAllowsGroupBlending:, nonatomic) BOOL PG_allowsGroupBlending;
 @property (setter=PG_setAnchorPoint:, nonatomic) struct CGPoint { float x1; float x2; } PG_anchorPoint;
 @property (setter=PG_setCompositingFilter:, nonatomic, retain) id PG_compositingFilter;
 @property (setter=PG_setCornerRadius:, nonatomic) float PG_cornerRadius;
@@ -164,17 +190,28 @@
 @property (nonatomic, readonly) CNContactStyle *_cnui_contactStyle;
 @property (nonatomic, readonly, retain) NSArray *_constraintsExceptingSubviewAutoresizingConstraints;
 @property (setter=_setContinuousCornerRadius:, nonatomic) float _continuousCornerRadius;
+@property (setter=_setCornerRadius:, nonatomic) float _cornerRadius;
 @property (nonatomic) unsigned int _countOfFocusedAncestorTrackingViewsInSubtree;
 @property (nonatomic) unsigned int _countOfMotionEffectsInSubtree;
+@property (setter=_setDisableLayoutFlushingCount:, nonatomic) int _disableLayoutFlushingCount;
 @property (setter=_setDontUpdateInferredLayoutMargins:, nonatomic) BOOL _dontUpdateInferredLayoutMargins;
+@property (setter=_setHasMirrorTransform:, nonatomic) BOOL _hasMirrorTransform;
 @property (nonatomic, readonly) int _hiddenManagedByLayoutArrangementCount;
+@property (setter=_setIgnoresTemplateLayoutView:, nonatomic) BOOL _ignoresTemplateLayoutView;
 @property (setter=_setInferredLayoutMargins:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _inferredLayoutMargins;
 @property (nonatomic, readonly) UIKBRenderConfig *_inheritedRenderConfig;
 @property (setter=_setInteractionTintColor:, nonatomic, retain) UIColor *_interactionTintColor;
 @property (setter=_setInternalConstraints:, nonatomic, retain) NSMutableArray *_internalConstraints;
+@property (nonatomic, readonly) BOOL _isInLayoutSubviews;
+@property (nonatomic, readonly) BOOL _isUnsatisfiableConstraintsLoggingSuspended;
 @property (nonatomic, readonly) int _keyboardOrientation;
 @property (setter=_setLayoutDebuggingIdentifier:, nonatomic, copy) NSString *_layoutDebuggingIdentifier;
 @property (setter=_setLayoutEngine:, nonatomic, retain) NSISEngine *_layoutEngine;
+@property (nonatomic, readonly) int _lfld_count;
+@property (nonatomic, readonly) NSString *_lfld_currentLayoutMethodName;
+@property (nonatomic, readonly) NSMutableArray *_lfld_geometryChangeRecords;
+@property (nonatomic, readonly) NSMutableSet *_lfld_setNeedsLayoutCallStacks;
+@property (nonatomic, readonly) NSMutableArray *_lfld_variableChangeRecords;
 @property (nonatomic, readonly) BOOL _lightStyleRenderConfig;
 @property (nonatomic, readonly, retain) MKMapView *_mapKit_mapView;
 @property (nonatomic, readonly, retain) CALayer *_mapkit_currentLayer;
@@ -183,25 +220,37 @@
 @property (setter=_setMayRemainFocused:, nonatomic) BOOL _mayRemainFocused;
 @property (nonatomic, readonly, retain) NSISVariable *_minXVariable;
 @property (nonatomic, readonly, retain) NSISVariable *_minYVariable;
+@property (setter=_setMultilineContextWidth:, nonatomic) float _multilineContextWidth;
 @property (nonatomic, readonly, retain) NSMutableArray *_mutableLayoutArrangements;
 @property (nonatomic, readonly, retain) NSMutableArray *_mutableLayoutGuides;
+@property (setter=_setNeedsContentsFormatUpdate:, nonatomic) BOOL _needsContentsFormatUpdate;
 @property (nonatomic, readonly) int _pendingHiddenCount;
+@property (setter=_setPreferedContentsFormat:, nonatomic) int _preferedContentsFormat;
 @property (getter=_presentationControllerToNotifyOnLayoutSubviews, setter=_setPresentationControllerToNotifyOnLayoutSubviews:, nonatomic, retain) UIPresentationController *_presentationControllerToNotifyOnLayoutSubviews;
 @property (nonatomic, readonly) CABasicAnimation *_pu_referenceBasicAnimationForCurrentAnimation;
 @property (setter=_setRawLayoutMargins:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _rawLayoutMargins;
 @property (nonatomic, readonly) struct CGSize { float x1; float x2; } _sensitivitySize;
+@property (nonatomic, readonly) BOOL _sf_hasLandscapeAspectRatio;
+@property (nonatomic, readonly) BOOL _sf_isFullScreenWidth;
 @property (nonatomic, readonly) BOOL _sf_usesLeftToRightLayout;
 @property (setter=_setShouldArchiveUIAppearanceTags:, nonatomic) BOOL _shouldArchiveUIAppearanceTags;
 @property (nonatomic, readonly) BOOL _shouldReverseLayoutDirection;
+@property (nonatomic, readonly) NSMapTable *_stashedLayoutVariableObservations;
+@property (setter=_setTemplateLayoutView:, nonatomic, retain) UIView *_templateLayoutView;
 @property (nonatomic, readonly) _UITouchForceObservable *_touchForceObservable;
 @property (setter=_setTracksFocusedAncestors:, nonatomic) BOOL _tracksFocusedAncestors;
 @property (getter=_userInterfaceIdiom, setter=_setUserInterfaceIdiom:, nonatomic) int _userInterfaceIdiom;
 @property (nonatomic, readonly) BOOL _wantsGeometryChangeNotification;
-@property (nonatomic) int action;
+@property (readonly, copy) NSArray *allSubviews;
+@property (nonatomic) BOOL allowsBaselineOffsetApproximation;
 @property (nonatomic, readonly) MPArtworkCatalog *artworkCatalog;
 @property (getter=_backgroundColorSystemColorName, setter=_setBackgroundColorSystemColorName:, nonatomic, retain) NSString *backgroundColorSystemColorName;
+@property (getter=isBaselineRelativeAlignmentRectInsets, nonatomic) BOOL baselineRelativeAlignmentRectInsets;
 @property (readonly) NSLayoutYAxisAnchor *bottomAnchor;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } bounds;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } boundsCenter;
+@property (nonatomic, readonly) BOOL cam_isHidden;
+@property (nonatomic, readonly) BOOL canBecomeFocused;
 @property (nonatomic) struct CGPoint { float x1; float x2; } center;
 @property (readonly) NSLayoutXAxisAnchor *centerXAnchor;
 @property (readonly) NSLayoutYAxisAnchor *centerYAnchor;
@@ -210,27 +259,47 @@
 @property (getter=_contentSizeNotificationToken, setter=_setContentSizeNotificationToken:, nonatomic, retain) id contentSizeNotificationToken;
 @property (nonatomic, readonly) CALayer *currentLayer;
 @property (getter=_currentScreenScale, nonatomic, readonly) float currentScreenScale;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } customAlignmentRectInsets;
+@property (nonatomic) float customBaselineOffsetFromBottom;
+@property (nonatomic) float customFirstBaselineOffsetFromContentTop;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, retain) UIColor *debugHighlight;
 @property (nonatomic) BOOL deliversButtonsForGesturesToSuperview;
 @property (nonatomic) BOOL deliversTouchesForGesturesToSuperview;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) int effectiveUserInterfaceLayoutDirection;
 @property (readonly) NSLayoutYAxisAnchor *firstBaselineAnchor;
 @property (getter=isFocused, nonatomic, readonly) BOOL focused;
+@property (getter=_focusedItemRegionContainer, nonatomic, readonly) <_UIFocusRegionContainer> *focusedItemRegionContainer;
+@property (nonatomic, readonly) UIView *focusedView;
 @property (nonatomic) BOOL gesturesEnabled;
 @property (readonly) unsigned int hash;
 @property (readonly) NSLayoutDimension *heightAnchor;
+@property (getter=bs_isHitTestingDisabled, setter=bs_setHitTestingDisabled:, nonatomic) BOOL hitTestingDisabled;
 @property (nonatomic) struct CGPoint { float x1; float x2; } integralCenter;
 @property (nonatomic, retain) UIColor *interactionTintColor;
+@property (setter=is_setBlurRadius:, nonatomic) float is_blurRadius;
 @property (readonly) NSLayoutYAxisAnchor *lastBaselineAnchor;
 @property (nonatomic, readonly) CALayer *layer;
 @property (setter=_setLayoutMarginsGuide:, nonatomic, retain) UILayoutGuide *layoutMarginsGuide;
 @property (readonly) NSLayoutXAxisAnchor *leadingAnchor;
 @property (readonly) NSLayoutXAxisAnchor *leftAnchor;
+@property (getter=_linearFocusMovementSequences, nonatomic, readonly, copy) NSArray *linearFocusMovementSequences;
 @property (getter=_maskView, setter=_setMaskView:, nonatomic, retain) UIView *maskView;
 @property (getter=_monitorsSubtree, setter=_setMonitorsSubtree:, nonatomic) BOOL monitorsSubtree;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } music_inheritedLayoutInsets;
+@property (setter=music_setLayoutInsets:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } music_layoutInsets;
 @property (setter=naui_setDynamicFontTextStyleDescriptor:, nonatomic, retain) NAUITextStyleDescriptor *naui_dynamicFontTextStyleDescriptor;
+@property (getter=_parentFocusEnvironment, nonatomic, readonly) <UIFocusEnvironment> *parentFocusEnvironment;
+@property (getter=_parentFocusRegionContainer, nonatomic, readonly) <_UIFocusRegionContainerInternal> *parentFocusRegionContainer;
+@property (nonatomic, readonly, copy) NSArray *preferredFocusEnvironments;
+@property (getter=_preferredFocusMovementStyle, nonatomic, readonly) int preferredFocusMovementStyle;
+@property (nonatomic, readonly) <UIFocusContainer> *preferredFocusedItem;
 @property (nonatomic, readonly) UIView *preferredFocusedView;
+@property (nonatomic, retain) UIStoryboardPreviewingSegueTemplateStorage *previewingSegueTemplateStorage;
+@property (nonatomic, readonly) BOOL pu_hasHiddenAncestor;
+@property (nonatomic, readonly) float px_screenScale;
+@property (setter=px_setSpec:, nonatomic, retain) PXViewSpec *px_spec;
 @property (setter=rc_setAutoUpdatingTextStyle:, nonatomic) NSString *rc_autoUpdatingTextStyle;
 @property (setter=rc_setCharge:, nonatomic) float rc_charge;
 @property (setter=_setReadableContentGuide:, nonatomic, retain) UILayoutGuide *readableContentGuide;
@@ -246,10 +315,10 @@
 @property (readonly) NSLayoutXAxisAnchor *trailingAnchor;
 @property (nonatomic, readonly) UITraitCollection *traitCollection;
 @property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transform;
-@property (getter=_isUnsatisfiableConstraintsLoggingSuspended, setter=_setUnsatisfiableConstraintsLoggingSuspended:, nonatomic) BOOL unsatisfiableConstraintsLoggingSuspended;
 @property (getter=isUserInteractionEnabled, nonatomic) BOOL userInteractionEnabled;
 @property (getter=_viewDelegate, setter=_setViewDelegate:, nonatomic) UIViewController *viewDelegate;
 @property (nonatomic) BOOL viewTraversalMark;
+@property (nonatomic) BOOL wantsDeepColorDrawing;
 @property (readonly) NSLayoutDimension *widthAnchor;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
@@ -285,43 +354,54 @@
 + (double)_durationForRotationFromInterfaceOrientation:(int)arg1 toInterfaceOrientation:(int)arg2 withBaseDuration:(double)arg3;
 + (double)_durationOfSpringAnimationWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 velocity:(float)arg4;
 + (id)_enableAnimationTracking;
++ (id)_enableAnimationTracking:(BOOL)arg1;
++ (BOOL)_enableLegacyRTL;
 + (BOOL)_enableRTL;
 + (void)_enableToolsDebugAlignmentRects:(BOOL)arg1;
 + (void)_enableToolsDebugColorViewBounds:(BOOL)arg1;
-+ (void)_enableToolsDebugFocusItems:(BOOL)arg1;
 + (void)_endDisablingPromoteDescendantToFirstResponder;
 + (void)_endSuspendingMotionEffectsForReason:(id)arg1;
 + (void)_finalizeStoppedAnimationWithUUID:(id)arg1 reverseAnimation:(BOOL)arg2;
++ (void)_finalizeStoppedAnimationWithUUID:(id)arg1 reverseAnimation:(BOOL)arg2 state:(id)arg3 performCompletionsImmediately:(BOOL)arg4;
 + (void)_finishAnimationTracking;
 + (BOOL)_hasActiveAnimationContext;
++ (BOOL)_hostLayoutEngineOnlyTAMIC_YES;
 + (void)_inheritAnimationParameters;
 + (void)_initializeForIdiom:(int)arg1;
 + (BOOL)_invalidatesViewUponCreation;
++ (BOOL)_isAccessingModel;
 + (BOOL)_isAddingResponderToTree;
 + (BOOL)_isAnimationTracking;
 + (BOOL)_isInAnimationBlock;
++ (BOOL)_isInAnimationBlockWithAnimationsEnabled;
++ (float)_layoutEngineResolution;
++ (BOOL)_legacyRTLPreferenceEnabled;
 + (id)_motionEffectEngine;
 + (BOOL)_motionEffectsEnabled;
 + (BOOL)_motionEffectsSupported;
++ (BOOL)_overridesTraitCollectionDidChange;
 + (void)_performBlockDelayingTriggeringResponderEvents:(id /* block */)arg1;
 + (void)_performBlockwithAutomaticAppearanceDisabled:(id /* block */)arg1;
++ (void)_performForcedAppearanceModifications:(id /* block */)arg1;
 + (void)_performInitializationForIdiomIfNeccessary:(int)arg1;
 + (void)_performSystemAppearanceModifications:(id /* block */)arg1;
 + (id)_performWithAnimationTracking:(id /* block */)arg1;
 + (void)_performWithDurationOverride:(double)arg1 animations:(id /* block */)arg2;
++ (void)_performWithState:(id)arg1 trackingIdentifier:(id)arg2 duration:(double)arg3 delay:(double)arg4 animations:(id /* block */)arg5;
 + (void)_performWithoutAnimation:(id /* block */)arg1;
 + (BOOL)_preventsAppearanceProxyCustomization;
 + (void)_recenterMotionEffects;
 + (void)_registerClassForIdiomInitializationIfNeccessary;
 + (void)_removeHierarchyTrackingVisitor:(id)arg1;
++ (void)_resetHostLayoutEngineOnlyTAMIC_YES;
 + (BOOL)_retroactivelyRequiresConstraintBasedLayout;
-+ (void)_reverseAnimationWithUUID:(id)arg1 duration:(double)arg2 curve:(int)arg3;
 + (void)_setAlongsideAnimations:(id /* block */)arg1;
 + (void)_setAnimatedPropertiesEnabled:(BOOL)arg1;
 + (void)_setAnimationAttributes:(id)arg1;
 + (void)_setAnimationAttributes:(id)arg1 skipDelegateAssignment:(BOOL)arg2;
 + (void)_setAnimationFilter:(int)arg1 forView:(id)arg2;
 + (void)_setAnimationFilterValue:(float)arg1;
++ (void)_setHostLayoutEngineOnlyTAMIC_YES;
 + (void)_setInvalidatesViewUponCreation:(BOOL)arg1;
 + (void)_setIsResponderAncestorOfFirstResponder:(BOOL)arg1 startingAtFirstResponder:(id)arg2;
 + (void)_setShouldEnableUIKitParallaxEffects:(BOOL)arg1;
@@ -331,14 +411,17 @@
 + (BOOL)_shouldEnableUIKitDefaultParallaxEffects;
 + (id)_startAnimationTracking;
 + (void)_stopAnimationWithUUID:(id)arg1;
++ (void)_testIfFirstView:(id)arg1 secondView:(id)arg2 areDescendantsOfView:(id)arg3 results:(BOOL)arg4;
 + (id)_tintColorForStyle:(int)arg1;
 + (BOOL)_tintColorUpdating;
 + (BOOL)_toolsDebugAlignmentRects;
 + (BOOL)_toolsDebugColorViewBounds;
-+ (BOOL)_toolsDebugFocusItems;
++ (BOOL)_toolsDebugShouldDetectClippedViews;
 + (id)_topMostView:(id)arg1 reverse:(BOOL)arg2;
 + (void)_transitionFromView:(id)arg1 toView:(id)arg2 duration:(double)arg3 options:(unsigned int)arg4 animations:(id /* block */)arg5 completion:(id /* block */)arg6;
++ (void)_updateModelValuesForAnimationWithUUID:(id)arg1 useInitialValues:(BOOL)arg2 animatable:(BOOL)arg3 stateBlock:(id /* block */)arg4 animationBlock:(id /* block */)arg5;
 + (id)_viewWithLayoutConstraints;
++ (BOOL)_wantsDeepColorByDefault;
 + (void)addKeyframeWithRelativeStartTime:(double)arg1 relativeDuration:(double)arg2 animations:(id /* block */)arg3;
 + (void)animateKeyframesWithDuration:(double)arg1 delay:(double)arg2 options:(unsigned int)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
 + (void)animateWithDuration:(double)arg1 animations:(id /* block */)arg2;
@@ -363,7 +446,14 @@
 + (void)flush;
 + (double)inheritedAnimationDuration;
 + (Class)layerClass;
++ (void)mapTrackedAnimations:(id)arg1 withBlock:(id /* block */)arg2;
++ (void)modifyTrackedAnimations:(id)arg1 removeOnCompletion:(BOOL)arg2 animationFactory:(id /* block */)arg3 block:(id /* block */)arg4;
++ (void)modifyTrackedAnimations:(id)arg1 removeOnCompletion:(BOOL)arg2 copyAnimation:(BOOL)arg3 block:(id /* block */)arg4;
++ (void)performRunTransitions:(id /* block */)arg1;
 + (void)performSystemAnimation:(unsigned int)arg1 onViews:(id)arg2 options:(unsigned int)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
++ (void)performWithModelChanges:(id /* block */)arg1;
++ (void)performWithPropertyAccessMode:(int)arg1 block:(id /* block */)arg2;
++ (void)performWithVisualChanges:(id /* block */)arg1;
 + (void)performWithoutAnimation:(id /* block */)arg1;
 + (BOOL)requiresConstraintBasedLayout;
 + (void)setAnimationAutoreverses:(BOOL)arg1;
@@ -390,11 +480,15 @@
 + (void)transitionFromView:(id)arg1 toView:(id)arg2 duration:(double)arg3 options:(unsigned int)arg4 completion:(id /* block */)arg5;
 + (void)transitionWithView:(id)arg1 duration:(double)arg2 options:(unsigned int)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
 + (int)userInterfaceLayoutDirectionForSemanticContentAttribute:(int)arg1;
++ (int)userInterfaceLayoutDirectionForSemanticContentAttribute:(int)arg1 relativeToLayoutDirection:(int)arg2;
 
 - (void).cxx_destruct;
+- (BOOL)_UIViewDebuggingIsViewClipping;
 - (id)__darkSystemColorForColor:(id)arg1;
+- (void)__updateContentsFormatForLayer:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_accessoryViewFrame;
 - (void)_accumulateViewConstraintsIntoArray:(id)arg1;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_actualFocusRegionFrameInScreen:(id)arg1;
 - (void)_addCenterExpressionToExpression:(id)arg1 isVertical:(BOOL)arg2;
 - (void)_addConstraint:(id)arg1;
 - (void)_addConstraintPendingAnimatedChanges:(id)arg1;
@@ -412,12 +506,12 @@
 - (id)_allLayoutEngines;
 - (BOOL)_allowsArchivingAsSubview;
 - (BOOL)_allowsFocusToLeaveViaHeading:(unsigned int)arg1;
+- (BOOL)_allowsLinkPreviewInteractionInViewServices;
 - (BOOL)_alwaysHandleInteractionEvents;
 - (BOOL)_alwaysHandleScrollerMouseEvent;
 - (BOOL)_ancestorDefinesTintAdjustmentMode;
 - (BOOL)_ancestorDefinesTintColor;
 - (void)_ancestorDidUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
-- (id)_ancestorSharedWithView:(id)arg1;
 - (void)_ancestorWillUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (void)_animateToScrollPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)_animateZoomFailureToWindowPoint:(struct CGPoint { float x1; float x2; })arg1 scale:(float)arg2 duration:(float)arg3;
@@ -430,8 +524,7 @@
 - (BOOL)_appliesExclusiveTouchToSubviewTree;
 - (void)_applyAppearanceInvocations;
 - (void)_applyAutoresizingMaskWithOldSuperviewSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)_applyISEngineLayoutToSubviewsSkippingSubview:(id)arg1;
-- (void)_applyISEngineLayoutValues;
+- (void)_applyISEngineLayoutValuesToBoundsOnly:(BOOL)arg1;
 - (BOOL)_applyKeyPathsAndRelativeValues:(id)arg1 forMotionEffect:(id)arg2;
 - (void)_applyScreenScaleToContentScaleFactorIfNotSpecifiedByDeveloperTargetScreen:(id)arg1;
 - (BOOL)_areAccessibilityButtonShapesEnabled;
@@ -465,25 +558,31 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_boundsForAlignmentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)_boundsHeightVariable;
 - (id)_boundsWidthVariable;
+- (BOOL)_cachedTraitCollectionIsValid;
 - (float)_calculatedIntrinsicHeight;
 - (struct CGSize { float x1; float x2; })_calculatedSystemLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3 hasIntentionallyCollapsedHeight:(BOOL*)arg4;
 - (BOOL)_canBeParentTraitEnvironment;
 - (BOOL)_canBeReusedInPickerView;
 - (BOOL)_canBecomeFirstResponderWhenPossible;
 - (BOOL)_canBecomeLayoutEngineDelegate;
-- (BOOL)_canBecomePreferredFocusedView;
 - (BOOL)_canDrawContent;
 - (BOOL)_canHandleStatusBarTouchAtLocation:(struct CGPoint { float x1; float x2; })arg1;
+- (BOOL)_canSkipTraitsAndOverlayUpdatesForViewControllerToNotifyOnLayoutResetState:(BOOL)arg1;
 - (BOOL)_canStartRotationFromEvent:(struct __GSEvent { }*)arg1;
 - (BOOL)_canStartZoomFromEvent:(struct __GSEvent { }*)arg1;
 - (id)_centerExpressionInContainer:(id)arg1 vertical:(BOOL)arg2 contentInsetScale:(float)arg3;
 - (id)_childFocusRegions;
+- (id)_childFocusRegionsInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_cleanUpLayoutArrangements;
 - (void)_clearAnimationFilters;
 - (void)_clearBecomeFirstResponderWhenCapable;
 - (void)_clearBecomeFirstResponderWhenCapableOnSubtree;
+- (void)_clearConstraintsBrokenWhileUnsatisfiableConstraintsLoggingSuspended;
+- (void)_clearLayoutVariableObservationsOnlyToSupportTAMICChange:(BOOL)arg1;
 - (int)_clipCorners;
 - (int)_clipCornersOfView:(id)arg1;
+- (id)_clippedViewHierarchyDescription;
+- (BOOL)_clippingDetected;
 - (void)_collectKeyViews:(id)arg1;
 - (id)_colorViewBoundsOverlayCreateIfNecessary:(BOOL)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_compatibleBounds;
@@ -495,6 +594,7 @@
 - (id)_constraintForIdentifier:(id)arg1;
 - (id)_constraintsArray;
 - (id)_constraintsBrokenWhileUnsatisfiableConstraintsLoggingSuspended;
+- (id)_constraintsBrokenWhileUnsatisfiableConstraintsLoggingSuspendedCreateIfNecessary:(BOOL)arg1;
 - (id)_constraintsEquivalentToAutoresizingMask;
 - (id)_constraintsExceptingSubviewAutoresizingConstraints;
 - (id)_constraintsValidityDescription;
@@ -505,6 +605,7 @@
 - (void)_constraints_viewGeometryDidChange;
 - (void)_constraints_willChangeAutoresizingConstraintsArrayForContainedView:(id)arg1;
 - (BOOL)_containedInAbsoluteResponderChain;
+- (id)_containerForContentSizeConstraints;
 - (int)_containerStyle;
 - (id)_containingScrollView;
 - (BOOL)_containsPreferredFocusableView;
@@ -517,6 +618,7 @@
 - (id)_contentSizeConstraints;
 - (id)_contentSizeNotificationToken;
 - (id)_contentWidthVariable;
+- (int)_contentsFormatForNonDeepDrawing;
 - (float)_continuousCornerRadius;
 - (BOOL)_controlsOwnScaleFactor;
 - (struct CGPoint { float x1; float x2; })_convertOffset:(struct CGPoint { float x1; float x2; })arg1 fromView:(id)arg2;
@@ -525,6 +627,7 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_convertViewPointToSceneSpaceForKeyboard:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (float)_convertVisualAltitude:(float)arg1 fromView:(id)arg2;
 - (float)_convertVisualAltitude:(float)arg1 toView:(id)arg2;
+- (float)_cornerRadius;
 - (unsigned int)_countOfFocusedAncestorTrackingViewsInSubtree;
 - (unsigned int)_countOfMotionEffectsInSubtree;
 - (void*)_createIOSurfaceWithPadding:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
@@ -536,8 +639,12 @@
 - (id)_currentFocusAnimationCoordinator;
 - (float)_currentScreenScale;
 - (int)_currentUserInterfaceIdiom;
+- (id)_debuggableDescriptionForConstraintsAffectingAxis:(int)arg1;
+- (id)_debuggableDescriptionForConstraintsAffectingHorizontalAxis;
+- (id)_debuggableDescriptionForConstraintsAffectingVerticalAxis;
 - (void)_decrementHiddenManagedByLayoutArrangementCount;
 - (void)_decrementPendingHiddenCount;
+- (void)_decrementUnsatisfiableConstraintsLoggingSuspensionCount;
 - (struct CGSize { float x1; float x2; })_defaultContentCompressionResistancePriorities;
 - (struct CGSize { float x1; float x2; })_defaultContentHuggingPriorities;
 - (id)_defaultLayoutDescription;
@@ -548,6 +655,7 @@
 - (void)_descendent:(id)arg1 didMoveFromSuperview:(id)arg2 toSuperview:(id)arg3;
 - (void)_descendent:(id)arg1 willMoveFromSuperview:(id)arg2 toSuperview:(id)arg3;
 - (id)_descriptionForLayoutTrace;
+- (void)_detectAndHandleClippedView;
 - (void)_didAddDependentConstraint:(id)arg1;
 - (void)_didChangeFromIdiom:(int)arg1 onScreen:(id)arg2 traverseHierarchy:(BOOL)arg3;
 - (void)_didChangeFromIdiomOnScreen:(id)arg1 traverseHierarchy:(BOOL)arg2;
@@ -560,6 +668,7 @@
 - (id)_dimensionExpressionInContainer:(id)arg1 vertical:(BOOL)arg2 useContentVariables:(BOOL)arg3;
 - (BOOL)_disableGeometryObserverNotification;
 - (void)_disableLayoutFlushing;
+- (int)_disableLayoutFlushingCount;
 - (id)_disabledColor;
 - (void)_discardLayoutEngine:(id)arg1;
 - (void)_dispatchMotionEffectsVisitorWithDelta:(int)arg1;
@@ -569,11 +678,14 @@
 - (BOOL)_drawViewHierarchyInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)_drawsAsBackdropOverlay;
 - (id)_dummyFittingSizeInfo;
+- (void)_dumpClippedViewWithScreenshotIfNecessary;
 - (id)_edgeExpressionInContainer:(id)arg1 vertical:(BOOL)arg2 max:(BOOL)arg3 contentInsetScale:(float)arg4;
 - (unsigned int)_effectiveAutoresizingMask;
 - (void)_effectiveAutoresizingMask_autoresizesSubviewsChanged;
 - (void)_enableLayerKitPatternDrawing:(BOOL)arg1;
 - (void)_enableLayoutFlushing;
+- (id)_enclosingInterfaceActionGroupView;
+- (id)_enclosingInterfaceActionRepresentationView;
 - (id)_enclosingScrollableScrollerIncludingSelf;
 - (id)_enclosingScrollerIncludingSelf;
 - (id)_encodableSubviews;
@@ -581,8 +693,11 @@
 - (void)_encodeFrameWithCoder:(id)arg1;
 - (void)_endOcclusion:(id)arg1;
 - (void)_endSuspendingMotionEffects;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_engineFrameAtScreenScaleForItem:(id)arg1 inEngine:(id)arg2;
 - (void)_engineHostConstraints_frameDidChange;
+- (id)_engineHostingWidthConstraint;
 - (void)_enumerateDescendentViews:(id /* block */)arg1;
+- (void)_evaluateContentsFormat;
 - (BOOL)_fakeShouldAnimatePropertyWithKey:(id)arg1;
 - (id)_findFirstSubviewWantingToBecomeFirstResponder;
 - (void)_finishTemporaryInternalConstraints:(id)arg1 withEngine:(id)arg2;
@@ -591,9 +706,10 @@
 - (id)_firstResponder;
 - (void)_flushConstraintsPendingAnimatedChanges;
 - (id)_focusDebugOverlayParentView;
-- (id)_focusItemsOverlayCreateIfNecessary:(BOOL)arg1;
 - (BOOL)_focusRegionCanBecomeFocused;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_focusRegionContainerFrameInScreen:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_focusRegionFrame;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_focusRegionFrameInScreen:(id)arg1;
 - (id)_focusRegionGuides;
 - (BOOL)_focusRegionIsEligibleForFocus;
 - (id)_focusRegionItem;
@@ -601,10 +717,13 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_focusableContentMargins;
 - (void)_focusedAncestorDidChange:(id)arg1;
 - (void)_focusedAncestorWillChange:(id)arg1;
+- (id)_focusedItemRegionContainer;
 - (int)_focusedSound;
 - (void)_focusedViewDidChange:(id)arg1;
 - (void)_focusedViewWillChange:(id)arg1;
+- (BOOL)_forceLayoutEngineSolutionInRationalEdges;
 - (BOOL)_forwardsSystemLayoutFittingSizeToContentView:(id)arg1;
+- (id)_fulfillPromisedFocusRegion;
 - (id)_generateBackdropMaskImage;
 - (id)_generateBackdropMaskViewForFlag:(int)arg1;
 - (id)_generateContentSizeConstraints;
@@ -613,26 +732,38 @@
 - (void)_gestureEnded:(struct __GSEvent { }*)arg1;
 - (id)_gestureInfo;
 - (id)_gestureRecognizers;
+- (void)_handleDoubleUpdateConstraintsIfNecessary;
+- (void)_handleLayoutArrangementConstraintsIfNecessary;
+- (void)_handleLayoutEngineHostingConstraintsIfNecessary;
+- (void)_handleSizeConstraintsAsAppropriate;
 - (BOOL)_hasAutolayoutHeightConstraint;
 - (BOOL)_hasCustomAutolayoutNeighborSpacing;
+- (BOOL)_hasFocusableContents;
 - (BOOL)_hasLayoutArrangements;
 - (BOOL)_hasLayoutEngine;
+- (BOOL)_hasMirrorTransform;
 - (BOOL)_hasNormalTintAdjustmentMode;
 - (BOOL)_hasOpaqueBackground;
+- (BOOL)_hasTransparentBackground;
 - (int)_hiddenManagedByLayoutArrangementCount;
 - (int)_hiddenManagementCountForKey:(const char *)arg1 bitFlagValue:(BOOL)arg2;
 - (id)_hierarchyRepresentation;
 - (id)_hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2 windowServerHitTestWindow:(id)arg3;
 - (BOOL)_hostsLayoutEngine;
+- (BOOL)_hostsLayoutEngineAllowsTAMIC_NO;
 - (id)_idleModeLayoutAttributes;
+- (BOOL)_ignoresTemplateLayoutView;
 - (float)_imageButtonMargin;
 - (id)_imageFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)_imageSnapshotCapturedAllContent;
 - (void)_incrementHiddenManagedByLayoutArrangementCount;
 - (void)_incrementPendingHiddenCount;
+- (void)_incrementUnsatisfiableConstraintsLoggingSuspensionCount;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_inferredLayoutMargins;
 - (void)_informContainerThatSubviewsNeedUpdateConstraints;
 - (void)_informContainerThatSubviewsNeedUpdateConstraintsNeedingLayout:(BOOL)arg1;
+- (void)_informSuperviewChainThatDescendantNeedsDoubleUpdateConstraintsPass;
+- (void)_informSuperviewChainThatStrictDescendantNeedsDoubleUpdateConstraintsIsInvalidIncludingSelf:(BOOL)arg1;
 - (id)_inheritedInteractionTintColor;
 - (id)_inheritedRenderConfig;
 - (id)_initWithLayer:(id)arg1;
@@ -644,9 +775,10 @@
 - (id)_interceptMouseEvent:(struct __GSEvent { }*)arg1;
 - (id)_internalConstraints;
 - (float)_internalScaleForScale:(float)arg1;
-- (void)_internalUpdateConstraintsIfNeededAccumulatingViewsNeedingSecondPassAndViewsNeedingBaselineUpdate:(id)arg1 forSecondPass:(BOOL)arg2;
+- (BOOL)_intrinsicContentSizeConstraintsAreClean;
 - (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
 - (struct CGSize { float x1; float x2; })_intrinsicSizeWithinSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)_invalidateAppearance;
 - (void)_invalidateAppearanceForSubviewsOfClass:(Class)arg1;
 - (void)_invalidateAppearanceForTraitCollection:(id)arg1;
 - (void)_invalidateAutoresizingConstraints;
@@ -659,7 +791,6 @@
 - (BOOL)_isAlphaHittableAndHasAlphaHittableAncestors;
 - (BOOL)_isAncestorOfFirstResponder;
 - (BOOL)_isChargeEnabled;
-- (BOOL)_isContainedInUCB;
 - (BOOL)_isDeallocating;
 - (BOOL)_isEligibleForFocus;
 - (BOOL)_isFloatingLayoutItem;
@@ -671,10 +802,13 @@
 - (BOOL)_isInAnimatedLayout;
 - (BOOL)_isInExclusiveTouchSubviewTree;
 - (BOOL)_isInHierarchyAllowingMotionEffects;
+- (BOOL)_isInLayoutSubviews;
 - (BOOL)_isInTransitionBlock;
 - (BOOL)_isInVisibleHierarchy;
 - (BOOL)_isInteractiveElement;
+- (BOOL)_isLayoutEngineSuspended;
 - (BOOL)_isMemberOfViewControllerHierarchy:(id)arg1;
+- (BOOL)_isPromiseFocusRegion;
 - (BOOL)_isRootForKeyResponderCycle;
 - (BOOL)_isRubberBanding;
 - (BOOL)_isScrollingEnabled;
@@ -698,16 +832,35 @@
 - (BOOL)_layoutEngine_didAddLayoutConstraint:(id)arg1 roundingAdjustment:(float)arg2 mutuallyExclusiveConstraints:(id*)arg3;
 - (void)_layoutEngine_willRemoveLayoutConstraint:(id)arg1;
 - (void)_layoutEngine_windowDidChange;
-- (void)_layoutMarginsDidChange;
+- (unsigned int)_layoutHash;
+- (id)_layoutHashesStackCreateIfNeeded:(BOOL)arg1;
+- (void)_layoutMarginsDidChangeFromOldMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (id)_layoutVariablesWithAmbiguousValue;
 - (id)_legendEntryForDescriptionForLayout;
+- (void)_lfld_addGeometryChangeRecordWithPropertyName:(id)arg1 value:(id)arg2;
+- (void)_lfld_addSetNeedsLayoutCallStack:(id)arg1;
+- (void)_lfld_addVariableChangeRecordForVariable:(id)arg1 inLayoutEngine:(id)arg2;
+- (int)_lfld_count;
+- (id)_lfld_currentLayoutMethodName;
+- (id)_lfld_description;
+- (void)_lfld_discardLastCurrentLayoutMethodName;
+- (id)_lfld_geometryChangeRecords;
+- (void)_lfld_incrementCount;
+- (id)_lfld_minimalDescription;
+- (void)_lfld_prepareToResetCountIfNecessary;
+- (void)_lfld_pushCurrentLayoutMethodName:(id)arg1;
+- (void)_lfld_resetCount;
+- (id)_lfld_setNeedsLayoutCallStacks;
+- (id)_lfld_variableChangeRecords;
 - (BOOL)_lightStyleRenderConfig;
 - (id)_lowerExpressionOneLevelWithCurrentXExpression:(id)arg1 YExpression:(id)arg2 vertical:(BOOL)arg3 container:(id)arg4;
 - (void)_makeSubtreePerformSelector:(SEL)arg1 withObject:(id)arg2;
 - (void)_makeSubtreePerformSelector:(SEL)arg1 withObject:(id)arg2 withObject:(id)arg3 copySublayers:(BOOL)arg4;
-- (void)_makeTemporaryInternalConstraintsWithEngine:(id)arg1 ignoreAutoresizingMaskConstraints:(BOOL)arg2 returningConstraintsForViewsNeedingSecondPass:(id*)arg3;
+- (void)_makeTemporaryInternalConstraintsWithEngine:(id)arg1 ignoreAutoresizingMaskConstraints:(BOOL)arg2 returningConstraintsForViewsNeedingSecondPass:(id*)arg3 currentTargetWidth:(float)arg4;
+- (void)_markClippingDetected;
 - (id)_maskView;
 - (BOOL)_mayRemainFocused;
+- (void)_mergeConstraintsBrokenWhileUnsatisfiableConstraintsLoggingSuspendedToAncestor:(id)arg1;
 - (id)_minXVariable;
 - (id)_minYVariable;
 - (float)_minimumZoomScaleDelta;
@@ -715,11 +868,14 @@
 - (id)_motionEffects;
 - (BOOL)_motionEffectsAreSuspended;
 - (void)_movedToFront;
+- (float)_multilineContextWidth;
 - (id)_mutableLayoutArrangements;
 - (id)_mutableLayoutArrangementsCreateIfNecessary;
 - (id)_mutableLayoutGuides;
 - (id)_mutableLayoutGuidesCreateIfNecessary;
+- (BOOL)_needsContentsFormatUpdate;
 - (BOOL)_needsDoubleUpdateConstraintsPass;
+- (void)_needsDoubleUpdateConstraintsPassMayHaveChangedFrom:(BOOL)arg1;
 - (BOOL)_needsLayoutOnAnimatedBoundsChangeForNewBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)_needsLayoutOnAnimatedFrameChangeForNewFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)_nextKeyResponder;
@@ -731,27 +887,39 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_nsis_bounds;
 - (void)_nsis_center:(struct CGPoint { float x1; float x2; }*)arg1 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2 inEngine:(id)arg3;
 - (void)_nsis_center:(struct CGPoint { float x1; float x2; }*)arg1 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2 inEngine:(id)arg3 forLayoutGuide:(id)arg4;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_nsis_compatibleBoundsInEngine:(id)arg1;
 - (struct CGSize { float x1; float x2; })_nsis_contentSize;
 - (struct CGPoint { float x1; float x2; })_nsis_origin;
 - (void)_nsis_origin:(struct CGPoint { float x1; float x2; }*)arg1 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2 inEngine:(id)arg3;
 - (unsigned int)_numberOfColumns:(BOOL)arg1;
+- (void)_oldEngineHostConstraints_frameDidChange;
 - (void)_oldUpdateLayoutEngineHostConstraints;
 - (BOOL)_old_nsli_lowerAttribute:(int)arg1 intoExpression:(id)arg2 withCoefficient:(float)arg3 forConstraint:(id)arg4;
+- (BOOL)_overridesTraitCollectionDidChange;
 - (id)_parallaxMotionEffect;
 - (id)_parentFocusEnvironment;
+- (id)_parentFocusRegionContainer;
 - (void)_parentalLayoutEngineDidChangeTo:(id)arg1;
 - (int)_pendingHiddenCount;
 - (void)_performUpdatesForPossibleChangesOfIdiom:(int)arg1 orScreen:(id)arg2 traverseHierarchy:(BOOL)arg3;
+- (void)_popDisableLayoutFlushing;
 - (void)_populateArchivedSubviews:(id)arg1;
 - (void)_populateEngineWithConstraintsForViewSubtree:(id)arg1 forComputingFittingSizeOfView:(id)arg2;
 - (void)_postMovedFromSuperview:(id)arg1;
 - (BOOL)_potentiallyHasDanglyConstraints;
+- (BOOL)_preWhitetailUsesAutoresizingConstraints;
+- (int)_preferedContentsFormat;
 - (id)_preferredConfigurationForFocusAnimation:(int)arg1 inContext:(id)arg2;
 - (double)_preferredDurationForFocusAnimation:(int)arg1 inContext:(id)arg2;
 - (float)_preferredDurationScaleFactorForFocusAnimation:(int)arg1 inContext:(id)arg2;
 - (struct CGSize { float x1; float x2; })_preferredLayoutEngineToUserScalingCoefficients;
+- (float)_preferredMaxLayoutWidth;
+- (void)_prepareForFirstIntrinsicContentSizeCalculation;
+- (void)_prepareForSecondIntrinsicContentSizeCalculationWithLayoutEngineBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_prepareToAppearInNavigationItem:(id)arg1 onLeft:(BOOL)arg2;
 - (id)_presentationControllerToNotifyOnLayoutSubviews;
+- (id)_previewingSegueTemplateStorageForLocation:(struct CGPoint { float x1; float x2; })arg1 inView:(id)arg2;
+- (id)_previousFittingSizeInfo;
 - (id)_previousKeyResponder;
 - (id)_primitiveContentCompressionResistancePrioritiesValue;
 - (id)_primitiveContentHuggingPrioritiesValue;
@@ -760,24 +928,32 @@
 - (void)_processDidChangeRecursivelyFromOldTraits:(id)arg1 toCurrentTraits:(id)arg2 forceNotification:(BOOL)arg3;
 - (void)_promoteSelfOrDescendantToFirstResponderIfNecessary;
 - (float)_proportionalFillLengthForOrderedArrangement:(id)arg1 relevantParentAxis:(int)arg2;
+- (void)_pushDisableLayoutFlushing;
+- (void)_pushLayoutHash;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_rawLayoutMargins;
 - (void)_rebuildLayoutFromScratch;
+- (void)_recalculateStrictDescendantNeedsDoubleUpdateConstraints;
 - (void)_receiveVisitor:(id)arg1;
 - (BOOL)_recordBaselineLoweringInfo;
 - (void)_recordConstraintBrokenWhileUnsatisfiableConstraintsLoggingSuspended:(id)arg1;
 - (id)_recursiveAutolayoutTraceAtLevel:(int)arg1;
-- (void)_recursiveCollectTemporaryInternalConstraintsWithEngine:(id)arg1 ignoreAutoresizingMaskConstraints:(BOOL)arg2 returningConstraintsForViewsNeedingSecondPass:(id*)arg3;
+- (void)_recursiveCollectTemporaryInternalConstraintsWithEngine:(id)arg1 ignoreAutoresizingMaskConstraints:(BOOL)arg2 returningConstraintsForViewsNeedingSecondPass:(id*)arg3 currentTargetWidth:(float)arg4;
 - (id)_recursiveConstraintsTraceAtLevel:(int)arg1;
+- (void)_recursiveInvalidateDescendantsNeedingDoubleUpdateConstraints;
 - (id)_recursiveLayoutEngineDescription;
+- (void)_recursiveUpdateConstraintsIfNeededCollectingViews:(id)arg1 forSecondPass:(BOOL)arg2;
 - (void)_recursivelyConsiderResumingMotionEffects;
 - (void)_recursivelyNameLayerTree;
 - (void)_recursivelyReconsiderMotionEffectSuspension;
 - (void)_recursivelySetHiddenForBackdropMaskViews:(BOOL)arg1;
 - (void)_recursivelySuspendMotionEffects;
 - (void)_reestablishConstraintsForTransformChange;
-- (void*)_referenceView;
+- (id)_referenceView;
+- (id)_regionForFocusedItem:(id)arg1 inScreen:(id)arg2;
 - (void)_registerAsReferenceView;
 - (void)_registerForGeometryChanges;
+- (void)_relaxLayoutEngineHostConstraints;
+- (void)_relaxLayoutEngineHostConstraintsForAxis:(int)arg1;
 - (void)_removeAlignmentDebuggingOverlays;
 - (void)_removeAllAnimations:(BOOL)arg1;
 - (void)_removeAutolayoutSizingConstraints;
@@ -785,7 +961,6 @@
 - (void)_removeColorViewBoundsOverlays;
 - (void)_removeConstraint:(id)arg1;
 - (void)_removeFirstResponderFromSubtree;
-- (void)_removeFocusItemOverlayViews;
 - (void)_removeGeometryChangeObserver:(id)arg1;
 - (void)_removeLayoutArrangement:(id)arg1;
 - (void)_removeMotionEffect:(id)arg1;
@@ -795,13 +970,19 @@
 - (void)_renderSnapshotWithRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2;
 - (void)_replaceLayer:(id)arg1;
 - (id)_representationOfHierarchyForXcode;
+- (BOOL)_requiresIntersectionWithFocusMapSearchArea;
+- (void)_resetClippingDetected;
 - (void)_resetContentRect;
 - (void)_resetContentStretch;
+- (void)_resetLayoutEngineHostConstraints;
+- (void)_resetLayoutEngineHostConstraintsForAxis:(int)arg1;
+- (void)_resetToBeginningOfDoublePass;
 - (void)_resetZoomingWithEvent:(struct __GSEvent { }*)arg1;
 - (void)_resizeWithOldSuperviewSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)_resizeWithOldSuperviewSize_ancient:(struct CGSize { float x1; float x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderExternalTouchRectForWindow:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderSelectionRectForWindow:(id)arg1;
+- (void)_resumeLayoutEngine;
 - (id)_rootForKeyResponderCycle;
 - (id)_rootInputWindowController;
 - (id)_rootView;
@@ -816,6 +997,8 @@
 - (id)_scrollViewWantingUpdateInConstraint:(id)arg1;
 - (id)_scroller;
 - (struct CGSize { float x1; float x2; })_scrollerContentSize;
+- (void)_searchForFocusRegionsInContext:(id)arg1;
+- (void)_sendUpdateConstraintsIfNecessaryForSecondPass:(BOOL)arg1;
 - (struct CGSize { float x1; float x2; })_sensitivitySize;
 - (void)_setAccessoryViewFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_setAncestorDefinesTintAdjustmentMode:(BOOL)arg1;
@@ -848,19 +1031,25 @@
 - (void)_setContentStretchInPixels:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forContentSize:(struct CGSize { float x1; float x2; })arg2 shouldTile:(BOOL)arg3;
 - (void)_setContentsTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
 - (void)_setContinuousCornerRadius:(float)arg1;
+- (void)_setCornerRadius:(float)arg1;
 - (void)_setDelaysTouchesForSystemGestures:(BOOL)arg1;
+- (void)_setDisableLayoutFlushingCount:(int)arg1;
 - (void)_setDontUpdateInferredLayoutMargins:(BOOL)arg1;
 - (void)_setDrawsAsBackdropOverlay:(BOOL)arg1;
 - (void)_setDrawsAsBackdropOverlayWithBlendMode:(int)arg1;
+- (void)_setFirstResponder:(id)arg1;
 - (void)_setFocusableContentMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_setFrameForBackdropMaskViews:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_setFrameForBackdropMaskViews:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 convertFrame:(BOOL)arg2;
 - (void)_setGestureInfoZoomScale:(float)arg1;
+- (void)_setHasMirrorTransform:(BOOL)arg1;
 - (void)_setHiddenForBackdropMaskViews:(BOOL)arg1;
 - (void)_setHiddenForReuse:(BOOL)arg1;
 - (void)_setHostsLayoutEngine:(BOOL)arg1;
 - (void)_setIdleModeLayoutAttributes:(id)arg1;
+- (void)_setIgnoresTemplateLayoutView:(BOOL)arg1;
 - (void)_setInAnimatedLayout:(BOOL)arg1;
+- (void)_setInSecondConstraintsPass:(BOOL)arg1;
 - (void)_setInferredLayoutMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_setInteractionTintColor:(id)arg1;
 - (void)_setInterceptMouseEvent:(BOOL)arg1;
@@ -869,15 +1058,21 @@
 - (void)_setLayoutDebuggingIdentifier:(id)arg1;
 - (void)_setLayoutEngine:(id)arg1;
 - (void)_setLayoutEngineHostConstraints:(id)arg1;
+- (void)_setLayoutEngineSuspended:(BOOL)arg1;
 - (void)_setLayoutMarginsGuide:(id)arg1;
 - (void)_setMaskView:(id)arg1;
 - (void)_setMayRemainFocused:(BOOL)arg1;
 - (void)_setMonitorsSubtree:(BOOL)arg1;
+- (void)_setMultilineContextWidth:(float)arg1;
+- (void)_setNeedsContentsFormatUpdate;
+- (void)_setNeedsContentsFormatUpdate:(BOOL)arg1;
 - (void)_setNeedsNonDeferredFocusUpdate;
 - (void)_setNeedsUpdateConstraints;
 - (void)_setNeedsUpdateConstraintsNeedingLayout:(BOOL)arg1;
 - (void)_setPotentiallyHasDanglyConstraints:(BOOL)arg1;
+- (void)_setPreferedContentsFormat:(int)arg1;
 - (void)_setPresentationControllerToNotifyOnLayoutSubviews:(id)arg1;
+- (void)_setPreviousFittingSizeInfo:(id)arg1;
 - (void)_setPrimitiveContentCompressionResistancePrioritiesValue:(id)arg1;
 - (void)_setPrimitiveContentHuggingPrioritiesValue:(id)arg1;
 - (void)_setRawLayoutMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
@@ -888,12 +1083,12 @@
 - (void)_setShouldRasterize:(BOOL)arg1;
 - (void)_setSpeedBumpEdges:(unsigned int)arg1;
 - (void)_setSubviewWantsAutolayoutTripWantsAutolayout:(BOOL)arg1;
+- (void)_setTemplateLayoutView:(id)arg1;
 - (void)_setTracksFocusedAncestors:(BOOL)arg1;
 - (void)_setTraitStorageConstraints:(id)arg1;
 - (void)_setTraitStorageList:(id)arg1;
 - (void)_setTraitStorageSubviews:(id)arg1;
 - (void)_setTransformForBackdropMaskViews:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
-- (void)_setUnsatisfiableConstraintsLoggingSuspended:(BOOL)arg1;
 - (void)_setUserInterfaceIdiom:(int)arg1;
 - (void)_setViewDelegate:(id)arg1;
 - (void)_setViewsJostledDuringUpdateConstraintsPass:(id)arg1;
@@ -912,15 +1107,25 @@
 - (BOOL)_shouldNotifyGeometryObservers;
 - (BOOL)_shouldResignFirstResponderWithInteractionDisabled;
 - (BOOL)_shouldReverseLayoutDirection;
+- (BOOL)_shouldSearchForFocusRegionsInContext:(id)arg1;
+- (BOOL)_shouldSkipNormalLayoutForSakeOfTemplateLayout;
+- (BOOL)_shouldSuspendLayoutEngine;
 - (BOOL)_shouldTryPromoteDescendantToFirstResponder;
 - (BOOL)_shouldUpdateFocusInContext:(id)arg1;
+- (BOOL)_shouldUseKeyboardBackground;
 - (unsigned int)_speedBumpEdges;
 - (void)_startGesture:(int)arg1 event:(struct __GSEvent { }*)arg2;
+- (void)_startObservingVariablesOnlyToSupportTAMICChange:(BOOL)arg1;
 - (BOOL)_startRotationFromEvent:(struct __GSEvent { }*)arg1;
 - (BOOL)_startZoomFromEvent:(struct __GSEvent { }*)arg1;
+- (id)_stashedLayoutVariableObservations;
+- (id)_stashedLayoutVariableObservationsCreateIfNecessary;
 - (void)_stopGesture:(int)arg1 event:(struct __GSEvent { }*)arg2;
+- (void)_stopObservingVariablesOnlyToSupportTAMICChange:(BOOL)arg1;
 - (void)_stopRotationFromEvent:(struct __GSEvent { }*)arg1;
 - (void)_stopZoomFromEvent:(struct __GSEvent { }*)arg1;
+- (BOOL)_strictDescendantNeedsDoubleUpdateConstraints;
+- (void)_strokeClippedViewIfNecessary;
 - (int)_style;
 - (BOOL)_subclassImplementsDrawRect;
 - (BOOL)_subclassImplementsIntrinsicContentSize;
@@ -928,14 +1133,15 @@
 - (BOOL)_subclassImplementsViewForBaselineLayout;
 - (void)_subscribeToScrollNotificationsIfNecessary:(id)arg1;
 - (id)_subviewAtIndex:(int)arg1;
+- (BOOL)_subviewWantsAutolayout;
 - (id)_superDescription;
 - (BOOL)_supportsBecomeFirstResponderWhenPossible;
 - (BOOL)_supportsContentDimensionVariables;
 - (void)_switchToLayoutEngine:(id)arg1;
-- (id)_syntheticTouch;
-- (id)_syntheticUIEventWithGSEvent:(struct __GSEvent { }*)arg1 touchPhase:(int)arg2;
+- (void)_synchronizeAutoLayoutWithCALayoutForHierarchyChangeIfApplicable;
 - (struct CGSize { float x1; float x2; })_systemLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
 - (struct CGSize { float x1; float x2; })_systemLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3 hasIntentionallyCollapsedHeight:(BOOL*)arg4;
+- (id)_templateLayoutView;
 - (float)_textButtonMargin;
 - (id)_tintColorArchivingKey;
 - (int)_topToBottomLeftToRightViewCompare:(id)arg1;
@@ -955,30 +1161,45 @@
 - (id)_uiib_layoutEngineCreatingIfNecessary;
 - (void)_uiib_setHostsLayoutEngine:(BOOL)arg1;
 - (BOOL)_uiib_tryToAddConstraint:(id)arg1 roundingAdjustment:(float)arg2 mutuallyExclusiveConstraints:(id*)arg3;
+- (id)_uili_existingBaseFrameVariables;
+- (id)_uili_existingLayoutVariables;
+- (id)_uili_observableLayoutEngineForBaseFrameVariables:(BOOL)arg1;
+- (void)_uili_removeLayoutVariableObservationsOnlyToSupportTAMICChange:(BOOL)arg1;
+- (BOOL)_uili_requiresObservationForVariable:(id)arg1;
+- (void)_uili_stashLayoutVariableObservation:(id)arg1 forVariable:(id)arg2;
 - (BOOL)_unapplyMotionEffect:(id)arg1;
+- (id)_undimmedTintColor;
 - (void)_unregisterAllMotionEffects;
 - (void)_unregisterAsReferenceView;
 - (void)_unregisterForGeometryChanges;
 - (void)_unregisterFromAnimators;
+- (void)_unstrokeClippedViewIfNecessary;
 - (void)_unsubscribeToScrollNotificationsIfNecessary:(id)arg1;
 - (void)_updateAutoresizingConstraints;
 - (void)_updateBackdropMaskFrames;
 - (void)_updateBackdropMaskViewsInScrollView:(id)arg1;
 - (void)_updateConstraintsAsNecessaryAndApplyLayoutFromEngine;
 - (void)_updateConstraintsAtEngineLevelIfNeeded;
-- (void)_updateConstraintsIfNeeded;
-- (void)_updateConstraintsIfNeededAccumulatingViewsNeedingSecondPassAndViewsNeedingBaselineUpdate:(id)arg1 forSecondPass:(BOOL)arg2;
+- (void)_updateConstraintsAtEngineLevelIfNeededWithViewForVariableChangeNotifications:(id)arg1;
+- (void)_updateConstraintsIfNeededCollectingViews:(id)arg1 forSecondPass:(BOOL)arg2;
+- (void)_updateConstraintsIfNeededWithViewForVariableChangeNotifications:(id)arg1;
 - (void)_updateContentSizeConstraints;
-- (void)_updateFocusItemOverlayViews;
+- (void)_updateDirectionalConstraintsIfNeeded;
 - (void)_updateInferredLayoutMargins;
 - (void)_updateLayoutEngineHostConstraints;
 - (void)_updateLayoutMarginsGuideConstraintsIfApplicable;
 - (void)_updateNeedsDisplayOnBoundsChange;
 - (void)_updateParallaxEffectWithAltitude:(float)arg1 bias:(struct CGSize { float x1; float x2; })arg2;
+- (void)_updateSubviewFramesFromTemplateLayoutView:(id)arg1;
+- (void)_updateSystemConstraints;
+- (void)_updateTemplateViewLayoutIfNeeded;
 - (BOOL)_useContentDimensionVariablesForConstraintLowering;
 - (int)_userInterfaceIdiom;
 - (BOOL)_usesAutoresizingConstraints;
+- (BOOL)_usesHostedLayoutEngineForFittingSizeCalculation;
 - (BOOL)_usesLayoutEngineHostingConstraints;
+- (void)_validateLayoutHashHasChangedWithLayoutTime:(double)arg1;
+- (id)_variantOfColor:(id)arg1 forKey:(const void*)arg2 withCreationBlock:(id /* block */)arg3;
 - (void)_vendedBaselineViewDidMoveForFirst:(BOOL)arg1;
 - (void)_vendedBaselineViewParametersDidChange;
 - (id)_viewControllerForAncestor;
@@ -998,11 +1219,15 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_visualAltitudeSensitiveBoundsWithVisualAltitude:(float)arg1 edges:(unsigned int)arg2;
 - (BOOL)_wantsAutolayout;
 - (BOOL)_wantsBaselineUpdatingFollowingConstraintsPass;
+- (BOOL)_wantsDeepDrawing;
 - (BOOL)_wantsGeometryChangeNotification;
 - (BOOL)_wantsReapplicationOfAutoLayoutWithLayoutDirtyOnEntry:(BOOL)arg1;
 - (void)_webCustomViewWasAddedAsSubviewOfView:(id)arg1;
 - (void)_webCustomViewWasRemovedFromSuperview:(id)arg1;
 - (void)_webCustomViewWillBeRemovedFromSuperview;
+- (id)_whyIsThisViewNotEligibleForFocus;
+- (id)_whyIsThisViewNotEligibleForFocusWithLinePrefix:(id)arg1;
+- (id)_whyIsThisViewNotFocusable;
 - (void)_willChangeToIdiom:(int)arg1 onScreen:(id)arg2;
 - (void)_willChangeToIdiom:(int)arg1 onScreen:(id)arg2 traverseHierarchy:(BOOL)arg3;
 - (void)_willChangeToIdiomOnScreen:(id)arg1 traverseHierarchy:(BOOL)arg2;
@@ -1036,6 +1261,8 @@
 - (float)alpha;
 - (void)animator:(id)arg1 startAnimation:(id)arg2;
 - (void)animator:(id)arg1 stopAnimation:(id)arg2;
+- (void)applyUpdatesRecursively;
+- (void)applyUpdatesRecursively:(BOOL)arg1 subHierarchyAppearanceState:(int)arg2 immediateAnimated:(BOOL)arg3 newChange:(BOOL)arg4;
 - (id)autorelease;
 - (BOOL)autoresizesSubviews;
 - (unsigned int)autoresizingMask;
@@ -1058,6 +1285,7 @@
 - (int)compareTextEffectsOrdering:(id)arg1;
 - (id)constraints;
 - (id)constraintsAffectingLayoutForAxis:(int)arg1;
+- (id)constraintsAffectingLayoutForAxis:(int)arg1 ofItem:(id)arg2;
 - (void)constraintsDidChangeInEngine:(id)arg1;
 - (BOOL)containsView:(id)arg1;
 - (float)contentCompressionResistancePriorityForAxis:(int)arg1;
@@ -1091,6 +1319,8 @@
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forViewPrintFormatter:(id)arg2;
 - (BOOL)drawViewHierarchyInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)drawViewHierarchyInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 afterScreenUpdates:(BOOL)arg2;
+- (int)effectiveUserInterfaceLayoutDirection;
+- (void)emptySubviewsOfGeneratorSubhierarchy;
 - (int)enabledGestures;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)endEditing:(BOOL)arg1;
@@ -1120,6 +1350,8 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })hitRect;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
+- (BOOL)inFullyAppearedState;
+- (BOOL)inFullyDisappearedState;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -1147,6 +1379,7 @@
 - (BOOL)isUserInteractionEnabled;
 - (id)lastBaselineAnchor;
 - (id)layer;
+- (void)layerWillDraw:(id)arg1;
 - (void)layoutBelowIfNeeded;
 - (id)layoutGuides;
 - (void)layoutIfNeeded;
@@ -1177,6 +1410,7 @@
 - (unsigned int)nsli_autoresizingMask;
 - (id)nsli_boundsHeightVariable;
 - (id)nsli_boundsWidthVariable;
+- (BOOL)nsli_canHostIndependentVariableAnchor;
 - (id)nsli_contentHeightVariable;
 - (id)nsli_contentWidthVariable;
 - (struct CGSize { float x1; float x2; })nsli_convertSizeFromEngineSpace:(struct CGSize { float x1; float x2; })arg1;
@@ -1185,9 +1419,13 @@
 - (BOOL)nsli_descriptionIncludesPointer;
 - (struct CGSize { float x1; float x2; })nsli_engineToUserScalingCoefficients;
 - (struct CGSize { float x1; float x2; })nsli_engineToUserScalingCoefficientsInEngine:(id)arg1;
+- (id)nsli_heightVariable;
 - (id)nsli_installedConstraints;
 - (BOOL)nsli_isCollectingConstraintChangesForLaterCoordinatedFlush:(id)arg1;
 - (BOOL)nsli_isFlipped;
+- (BOOL)nsli_isLegalConstraintItem;
+- (BOOL)nsli_isRTL;
+- (id)nsli_layoutAnchorForAttribute:(int)arg1;
 - (id)nsli_layoutEngine;
 - (BOOL)nsli_lowerAttribute:(int)arg1 intoExpression:(id)arg2 withCoefficient:(float)arg3 container:(id)arg4;
 - (BOOL)nsli_lowerAttribute:(int)arg1 intoExpression:(id)arg2 withCoefficient:(float)arg3 forConstraint:(id)arg4;
@@ -1198,13 +1436,24 @@
 - (BOOL)nsli_removeConstraint:(id)arg1;
 - (BOOL)nsli_resolvedValue:(float*)arg1 forSymbolicConstant:(id)arg2 inConstraint:(id)arg3 error:(id*)arg4;
 - (id)nsli_superitem;
+- (id)nsli_widthVariable;
 - (struct CGPoint { float x1; float x2; })origin;
+- (void)performCompletionAppearanceCallbacksForSubHierarchy;
+- (void)performCompletionAppearanceCallbacksForSubview:(id)arg1;
+- (void)performCompletionCallbacksPending:(BOOL)arg1;
+- (void)performForSubviewsInAllVisualStates:(id /* block */)arg1;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (struct CGPoint { float x1; float x2; })position;
+- (id)preferredFocusEnvironments;
 - (id)preferredFocusedItem;
 - (id)preferredFocusedView;
+- (void)prepareViewVisualStateOfViewSubhierarchy;
 - (BOOL)preservesSuperviewLayoutMargins;
+- (id)previewingSegueTemplateStorage;
+- (id)previousViewModel;
+- (id)previousVisualState;
+- (void)pushVisualStateRecursively;
 - (id)readableContentGuide;
 - (id)recursiveDescription;
 - (void)recursivelyForceDisplayIfNeeded;
@@ -1222,6 +1471,9 @@
 - (id)resizableSnapshotViewFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withCapInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
 - (void)resizeSubviewsWithOldSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)resizeWithOldSuperviewSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)resolvePendingAppearanceCallbacks;
+- (void)resolvePendingAppearanceCallbacksRecursivelyInSubHierarchy;
+- (void)resolvePendingDisappearanceCallbacksRecursively;
 - (void)restoreUserActivityState:(id)arg1;
 - (id)retain;
 - (unsigned int)retainCount;
@@ -1230,7 +1482,13 @@
 - (float)rotationDegrees;
 - (id)scriptingInfoWithChildren;
 - (int)semanticContentAttribute;
+- (void)sendAppearanceCallbacksForAppearingViewWithSubHierarchyAppearanceState:(int)arg1 animated:(BOOL)arg2 appearingType:(int)arg3;
+- (void)sendAppearanceCallbacksForDisappearingViewWithSubHierarchyAppearanceState:(int)arg1 animated:(BOOL)arg2;
 - (void)sendSubviewToBack:(id)arg1;
+- (void)sendViewDidAppearAnimated:(BOOL)arg1;
+- (void)sendViewDidDisappearAnimated:(BOOL)arg1;
+- (void)sendViewWillAppearAnimated:(BOOL)arg1;
+- (void)sendViewWillDisappearAnimated:(BOOL)arg1;
 - (void)setAlpha:(float)arg1;
 - (void)setAutoresizesSubviews:(BOOL)arg1;
 - (void)setAutoresizingMask:(unsigned int)arg1;
@@ -1274,10 +1532,14 @@
 - (void)setNeedsLayout;
 - (void)setNeedsPreferredFocusedItemUpdate;
 - (void)setNeedsUpdateConstraints;
+- (void)setNeedsUpdateViewHierarchy;
+- (void)setNeedsUpdateViewHierarchyIfSizeChanged;
 - (void)setOpaque:(BOOL)arg1;
 - (void)setOrigin:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setPosition:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setPreservesSuperviewLayoutMargins:(BOOL)arg1;
+- (void)setPreviewingSegueTemplateStorage:(id)arg1;
+- (void)setPreviousVisualState:(id)arg1;
 - (void)setRotationBy:(float)arg1;
 - (void)setRotationDegrees:(float)arg1 duration:(double)arg2;
 - (void)setSemanticContentAttribute:(int)arg1;
@@ -1292,7 +1554,12 @@
 - (void)setUserInteractionEnabled:(BOOL)arg1;
 - (void)setValue:(id)arg1 forGestureAttribute:(int)arg2;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
+- (void)setViewGenerationInfo:(id)arg1;
+- (void)setViewGenerator:(id)arg1;
 - (void)setViewTraversalMark:(BOOL)arg1;
+- (void)setViewsWithPendingAppearanceCompletionCallbacks:(id)arg1;
+- (void)setVisualState:(id)arg1;
+- (void)setWantsDeepColorDrawing:(BOOL)arg1;
 - (void)set_countOfFocusedAncestorTrackingViewsInSubtree:(unsigned int)arg1;
 - (void)set_countOfMotionEffectsInSubtree:(unsigned int)arg1;
 - (BOOL)shouldChangeFocusedItem:(id)arg1;
@@ -1306,15 +1573,16 @@
 - (id)snapshot;
 - (id)snapshotView;
 - (id)snapshotViewAfterScreenUpdates:(BOOL)arg1;
-- (void)startHeartbeat:(SEL)arg1 inRunLoopMode:(id)arg2;
+- (void)solutionDidChangeInEngine:(id)arg1;
+- (id)stateData;
 - (int)stateForGestureType:(int)arg1;
-- (void)stopHeartbeat:(SEL)arg1;
 - (id)subviews;
 - (id)superview;
 - (struct CGSize { float x1; float x2; })systemLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1;
 - (struct CGSize { float x1; float x2; })systemLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
 - (int)tag;
 - (id)tapDelegate;
+- (BOOL)temporaryAppearanceStateClean;
 - (int)textEffectsVisibilityLevel;
 - (int)textEffectsVisibilityLevelInKeyboardWindow;
 - (id)textInputView;
@@ -1330,6 +1598,8 @@
 - (void)updateConstraints;
 - (void)updateConstraintsIfNeeded;
 - (void)updateFocusIfNeeded;
+- (id)updateIfNeeded;
+- (void)updateIfNeededRecursively;
 - (void)updatePreferredFocusedItemIfNeeded;
 - (void)updateUserActivityState:(id)arg1;
 - (BOOL)useBlockyMagnificationInClassic;
@@ -1338,11 +1608,19 @@
 - (id)viewForBaselineLayout;
 - (id)viewForFirstBaselineLayout;
 - (id)viewForLastBaselineLayout;
+- (id)viewGenerationInfo;
+- (id)viewGenerator;
+- (int)viewGeneratorAppearanceState;
+- (BOOL)viewGeneratorNewChange;
+- (id)viewPresentation;
 - (id)viewPrintFormatter;
 - (BOOL)viewTraversalMark;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (id)viewWithTag:(int)arg1;
+- (id)viewsWithPendingAppearanceCompletionCallbacks;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleBounds;
+- (id)visualState;
+- (BOOL)wantsDeepColorDrawing;
 - (id)widthAnchor;
 - (void)willMoveToSuperview:(id)arg1;
 - (void)willMoveToWindow:(id)arg1;
@@ -1365,9 +1643,11 @@
 - (void)_cnui_applyContactStyleStark;
 - (id)_cnui_contactStyle;
 - (void)abSetLayoutDebuggingColor:(id)arg1;
+- (id)tintColorOverride;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
++ (void)_mapkit_animateWithDuration:(double)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
 + (id)_mapkit_currentAnimationTimingFunction;
 + (BOOL)_mapkit_shouldAdoptImplicitAnimationParameters;
 + (void)_maps_setDoesNotTranslateAutoresizingConstraintsForViewsDictionary:(id)arg1;
@@ -1384,7 +1664,10 @@
 - (id)_mapkit_currentLayer;
 - (struct CADoubleRect { struct CADoublePoint { double x_1_1_1; double x_1_1_2; } x1; struct CADoubleSize { double x_2_1_1; double x_2_1_2; } x2; })_mapkit_doubleFrame;
 - (struct CGSize { float x1; float x2; })_mapkit_fittingSize;
+- (void)_mapkit_insertSubview:(id)arg1 atIndex:(int)arg2;
+- (void)_mapkit_insertSubviewAboveAllOtherSubviews:(id)arg1;
 - (void)_mapkit_insertSubviewBelowAllOtherSubviews:(id)arg1;
+- (BOOL)_mapkit_isDescendantOfView:(id)arg1;
 - (void)_mapkit_layoutIfNeeded;
 - (float)_mapkit_leadingMargin;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_mapkit_rectWithSize:(struct CGSize { float x1; float x2; })arg1 XCoordinate:(float)arg2 atDistance:(float)arg3 inDirection:(int)arg4 fromEdge:(int)arg5;
@@ -1396,47 +1679,19 @@
 - (struct CGSize { float x1; float x2; })_mapkit_sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (void)_mapkit_sizeToFit;
 - (float)_mapkit_trailingMargin;
+- (void)infoCardThemeChanged:(id)arg1;
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
 - (id)artworkCatalog;
 - (void)clearArtworkCatalogs;
-- (id)mpAncestorViewController;
-- (id)mpFirstLabelSubview;
-- (void)mpPerformRecursiveBlock:(id /* block */)arg1;
-- (void)mpSetFrameOrigin:(struct CGPoint { float x1; float x2; })arg1;
-- (void)mpSetFrameSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)setFrameEndX:(float)arg1 y:(float)arg2;
-- (void)setFrameHeight:(float)arg1;
-- (void)setFrameOrigin:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setFrameSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)setFrameWidth:(float)arg1;
-- (void)setFrameX:(float)arg1;
-- (void)setFrameY:(float)arg1;
 
 // Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
 
 - (float)mf_currentScreenScale;
 - (id)mf_enclosingScrollView;
 - (id)mf_frontSibling;
-
-// Image: /System/Library/Frameworks/PassKit.framework/PassKit
-
-+ (void)_pkui_animateUsingFactory:(id)arg1 withDelay:(double)arg2 options:(unsigned int)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
-+ (void)pkui_animateUsingOptions:(unsigned int)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
-+ (void)pkui_animateUsingOptions:(unsigned int)arg1 delay:(double)arg2 animations:(id /* block */)arg3 completion:(id /* block */)arg4;
-+ (void)pkui_animateUsingOptions:(unsigned int)arg1 delay:(double)arg2 velocity:(float)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
-
-- (void)addDefaultTransformSpringWithStartTime:(float)arg1;
-- (void)addDefaultTranslationSpringWithVelocity:(float)arg1 startTime:(float)arg2;
-- (void)addTransformSpringWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 startTime:(float)arg4 timing:(id)arg5;
-- (void)addTranslationSpringWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 startTime:(float)arg4 timing:(id)arg5;
-- (void)addTranslationSpringWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 startTime:(float)arg4 velocity:(float)arg5 timing:(id)arg6;
-- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; void*x29; void*x30; void*x31; void*x32; void*x33; void*x34; void*x35; void*x36; void*x37; void*x38; void*x39; void*x40; void*x41; void*x42; void*x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; unsigned char x58; void*x59; unsigned short x60; void*x61; short x62; void*x63; void*x64; void*x65; void*x66; unsigned long x67; int x68; unsigned int x69/* : ? */; const void*x70; const void*x71; void*x72; void*x73; const int x74; void x75; void*x76; void*x77; void*x78; void*x79; const void*x80; void*x81; void*x82; void*x83; out const void*x84; short x85; void*x86; void*x87; void*x88; out unsigned short x89; void*x90; const void x91; int x92; BOOL x93; void*x94; short x95; void*x96; float x97; const void*x98; void*x99; void*x100; void*x101; out const void*x102; void*x103; void*x104; void*x105; out unsigned short x106; void*x107; const void x108; int x109; BOOL x110; void*x111; short x112; void*x113; void*x114; void*x115; void*x116; void*x117; void*x118; void*x119; void*x120; void*x121; void*x122; void*x123; void*x124; void*x125; void*x126; short x127; void*x128; void*x129; void*x130; void*x131; short x132; void*x133; void*x134; const void*x135; unsigned int x136; in float x137; out void*x138; out out void*x139; unsigned short x140; BOOL x141; void*x142; long x143; void*x144; SEL x145; void*x146; void*x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; void*x156; void*x157; void*x158; void*x159; void*x160; void*x161; void*x162; void*x163; void*x164; void*x165; void*x166; void*x167; void*x168; BOOL x169; out in void*x170; void*x171; in void*x172; unsigned short x173; void*x174; const void*x175; void*x176; BOOL x177; void*x178; void*x179; void*x180; void*x181; void*x182; void*x183; void*x184; void*x185; void*x186; void*x187; void*x188; void*x189; void*x190; void*x191; void*x192; void*x193; void*x194; void*x195; void*x196; void*x197; unsigned short x198; void*x199; short x200; void*x201; void*x202; void*x203; void*x204; unsigned long x205; int x206; unsigned int x207/* : ? */; const void*x208; const void*x209; void*x210; void*x211; const void*x212; void*x213; void*x214; void*x215; out const void*x216; short x217; void*x218; unsigned char x219; out const void*x220; long doublex221; void*x222; void*x223; void*x224; void*x225; float x226; const void*x227; void*x228; void*x229; void*x230; out const void*x231; void*x232; unsigned char x233; out const void*x234; long doublex235; void*x236; void*x237; void*x238; void*x239; void*x240; void*x241; void*x242; long long x243; }*)arg1;
-- (id)pk_childrenForAppearance;
-- (void)pkui_shakeWithCompletion:(id /* block */)arg1;
-- (id)pkui_translationAnimation;
-- (id)pkui_viewControllerFromResponderChain;
+- (void)mf_setAsSourceForPopoverPresentationController:(id)arg1;
 
 // Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
 
@@ -1444,6 +1699,7 @@
 + (void)_pu_animateViews:(id)arg1 withAnimationBlock:(id /* block */)arg2 completionHandler:(id /* block */)arg3;
 + (void)_pu_animateWithDuration:(double)arg1 enforced:(BOOL)arg2 animations:(id /* block */)arg3 completion:(id /* block */)arg4;
 + (void)ph_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 withDuration:(double)arg5 delay:(double)arg6 usingSpringWithDamping:(float)arg7 initialVelocity:(struct PHDisplayVelocity { float x1; float x2; float x3; float x4; })arg8 options:(unsigned int)arg9 completion:(id /* block */)arg10;
++ (id)ph_videoOverlayButton;
 + (void)pu_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 usingDefaultDampedSpringWithDelay:(double)arg5 initialVelocity:(struct PUDisplayVelocity { float x1; float x2; float x3; float x4; })arg6 options:(unsigned int)arg7 completion:(id /* block */)arg8;
 + (void)pu_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 usingSpringWithDuration:(double)arg5 delay:(double)arg6 options:(unsigned int)arg7 mass:(float)arg8 stiffness:(float)arg9 damping:(float)arg10 initialVelocity:(struct PUDisplayVelocity { float x1; float x2; float x3; float x4; })arg11 completion:(id /* block */)arg12;
 + (void)pu_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 withDuration:(double)arg5 delay:(double)arg6 usingSpringWithDamping:(float)arg7 initialVelocity:(struct PUDisplayVelocity { float x1; float x2; float x3; float x4; })arg8 options:(unsigned int)arg9 completion:(id /* block */)arg10;
@@ -1464,7 +1720,13 @@
 - (void)pu_animateBarTransitionWithContext:(id)arg1;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })pu_convertTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1 fromView:(id)arg2;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })pu_convertTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1 toView:(id)arg2;
+- (BOOL)pu_hasHiddenAncestor;
+- (void)pu_removeAllGeometryAnimationsRecursively:(BOOL)arg1;
 - (void)pu_setCenterAndBoundsForFrameRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+
+// Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
+
+- (void)QL_setAnchorPointAndUpdatePosition:(struct CGPoint { float x1; float x2; })arg1;
 
 // Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
 
@@ -1474,6 +1736,9 @@
 
 + (void)sf_animate:(BOOL)arg1 usingDefaultTimingWithOptions:(unsigned int)arg2 animations:(id /* block */)arg3 completion:(id /* block */)arg4;
 
+- (float)_sf_convertY:(float)arg1 toCoordinateSpace:(id)arg2;
+- (BOOL)_sf_hasLandscapeAspectRatio;
+- (BOOL)_sf_isFullScreenWidth;
 - (BOOL)_sf_usesLeftToRightLayout;
 - (void)ss_setUntransformedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })ss_untransformedFrame;
@@ -1486,6 +1751,7 @@
 
 // Image: /System/Library/Frameworks/iAd.framework/iAd
 
+- (BOOL)_iAd_isFeldsparClientVisibleFast;
 - (BOOL)_iAd_isVisible:(id /* block */)arg1;
 - (BOOL)_iAd_isVisibleFast;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_iAd_screenFrame;
@@ -1552,6 +1818,30 @@
 - (id)akEnclosingScrollView;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })akVisibleRect;
 
+// Image: /System/Library/PrivateFrameworks/AppSupportUI.framework/AppSupportUI
+
+- (BOOL)allowsBaselineOffsetApproximation;
+- (id)containerViewInfoCreateIfNeeded:(BOOL)arg1;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })customAlignmentRectInsets;
+- (float)customBaselineOffsetFromBottom;
+- (float)customFirstBaselineOffsetFromContentTop;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })effectiveAlignmentRectInsets;
+- (float)effectiveBaselineOffsetFromContentBottom;
+- (float)effectiveFirstBaselineOffsetFromContentTop;
+- (struct CGSize { float x1; float x2; })effectiveLayoutSizeFittingSize:(struct CGSize { float x1; float x2; })arg1;
+- (BOOL)isBaselineRelativeAlignmentRectInsets;
+- (BOOL)isLayoutSizeDependentOnPerpendicularAxis;
+- (void)setAllowsBaselineOffsetApproximation:(BOOL)arg1;
+- (void)setBaselineRelativeAlignmentRectInsets:(BOOL)arg1;
+- (void)setCustomAlignmentRectInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (void)setCustomBaselineOffsetFromBottom:(float)arg1;
+- (void)setCustomFirstBaselineOffsetFromContentTop:(float)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BaseBoardUI.framework/BaseBoardUI
+
+- (BOOL)bs_isHitTestingDisabled;
+- (void)bs_setHitTestingDisabled:(BOOL)arg1;
+
 // Image: /System/Library/PrivateFrameworks/CameraKit.framework/CameraKit
 
 + (double)cam_setHiddenAnimationDuration;
@@ -1572,17 +1862,27 @@
 
 // Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
 
-+ (double)cam_setHiddenAnimationDuration;
++ (void)cam_ceilBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 andRoundCenter:(struct CGPoint { float x1; float x2; }*)arg2 toViewScale:(id)arg3;
++ (void)cam_convertRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 toCeiledBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2 andRoundedCenter:(struct CGPoint { float x1; float x2; }*)arg3 toViewScale:(id)arg4;
++ (double)cam_setHiddenDefaultAnimationDuration;
 + (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })cam_transformForInterfaceOrientation:(int)arg1;
 
 - (void)cam_ensureSubview:(id)arg1;
+- (BOOL)cam_isHidden;
 - (BOOL)cam_isOnScreen:(id)arg1;
 - (BOOL)cam_isOnScreen:(id)arg1;
+- (BOOL)cam_isPoint:(struct CGPoint { float x1; float x2; })arg1 withinBoundsWithPadding:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
+- (BOOL)cam_isPoint:(struct CGPoint { float x1; float x2; })arg1 withinBoundsWithPadding:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2 checkVisibility:(BOOL)arg3 recursive:(BOOL)arg4;
+- (void)cam_removeAnimationForKey:(id)arg1 setToCurrentPresentationValue:(BOOL)arg2;
+- (void)cam_removeAnimationsForKeys:(id)arg1 setToCurrentPresentationValues:(BOOL)arg2;
 - (void)cam_rotateWithInterfaceOrientation:(int)arg1 animated:(BOOL)arg2;
+- (void)cam_setBorder;
 - (void)cam_setBorderColor:(id)arg1;
 - (void)cam_setBorderColor:(id)arg1 width:(float)arg2;
 - (void)cam_setHidden:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)cam_setHidden:(BOOL)arg1 delay:(double)arg2 animated:(BOOL)arg3;
+- (void)cam_setHidden:(BOOL)arg1 animationDuration:(double)arg2;
+- (void)cam_setHidden:(BOOL)arg1 animationDuration:(double)arg2 delay:(double)arg3;
+- (void)cam_setHidden:(BOOL)arg1 animationDuration:(double)arg2 delay:(double)arg3 completion:(id /* block */)arg4;
 
 // Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
 
@@ -1591,6 +1891,8 @@
 - (BOOL)__ck_containsFirstResponder;
 - (struct CGSize { float x1; float x2; })__ck_frameSizeForAlignmentRectSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)layoutGradientViewsIfNeeded;
+- (void)messageAcknowledgmentBounceView:(id /* block */)arg1;
+- (void)messageAcknowledgmentShrinkViewToPoint:(struct CGPoint { float x1; float x2; })arg1 completion:(id /* block */)arg2;
 - (BOOL)pointMostlyInside:(struct CGPoint { float x1; float x2; })arg1 threshold:(float)arg2 velocity:(struct CGPoint { float x1; float x2; })arg3;
 - (void)setGradientViewsNeedLayout;
 
@@ -1598,6 +1900,12 @@
 
 - (id)currentLayer;
 - (id)rotateView:(id)arg1 byAngle:(float)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ControlCenterUIKit.framework/ControlCenterUIKit
+
+- (id)ccuiPunchOutMaskForView:(id)arg1;
+- (id)ccuiPunchOutMaskedContainer;
+- (BOOL)ccuiSupportsDelayedTouchesByContainingScrollViewForGesture:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/FMCoreUI.framework/FMCoreUI
 
@@ -1624,6 +1932,20 @@
 
 - (void)centerHorizontalInView:(id)arg1;
 - (void)centerVerticalInView:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
++ (void)fiui_animateIfNeededWithDuration:(double)arg1 animations:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
+
+- (void)_music_layoutInsets_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
+- (void)_music_layoutInsets_didMoveToSuperview;
+- (void)_music_updateInheritedLayoutInsets;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })music_inheritedLayoutInsets;
+- (void)music_inheritedLayoutInsetsDidChange;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })music_layoutInsets;
+- (void)music_setLayoutInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 
 // Image: /System/Library/PrivateFrameworks/GameCenterPrivateUI.framework/GameCenterPrivateUI
 
@@ -1662,21 +1984,55 @@
 - (struct CGPoint { float x1; float x2; })integralCenter;
 - (void)setIntegralCenter:(struct CGPoint { float x1; float x2; })arg1;
 
-// Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
 
+- (id)hk_addConstraintsWithFormat:(id)arg1 options:(unsigned int)arg2 metrics:(id)arg3 views:(id)arg4;
 - (id)hk_addConstraintsWithFormat:(id)arg1 options:(unsigned int)arg2 views:(id)arg3;
 - (id)hk_addEqualsConstraintWithItem:(id)arg1 attribute:(int)arg2 relatedTo:(id)arg3 attribute:(int)arg4 constant:(float)arg5;
 - (id)hk_addEqualsConstraintWithItem:(id)arg1 attribute:(int)arg2 relatedTo:(id)arg3 constant:(float)arg4;
+- (BOOL)hk_isLeftToRight;
+
+// Image: /System/Library/PrivateFrameworks/HomeUI.framework/HomeUI
+
+- (void)hu_autoSizeByConstrainingWidth:(float)arg1;
+- (struct CGPoint { float x1; float x2; })hu_centerInGlobalCoordinateSpace;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })hu_frameInGlobalCoordinateSpace;
+- (void)hu_traverseViewHierarchy:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/LinkPresentation.framework/LinkPresentation
+
+- (float)_lp_backingScaleFactor;
+- (void)_lp_bringSubviewToFront:(id)arg1;
+- (void)_lp_insertSubview:(id)arg1 aboveSubview:(id)arg2;
+- (void)_lp_insertSubview:(id)arg1 belowSubview:(id)arg2;
+- (BOOL)_lp_isLTR;
+- (void)_lp_setBackgroundColor:(id)arg1;
+- (void)_lp_setCornerRadius:(float)arg1;
+- (void)_lp_setNeedsLayout;
+- (void)_lp_setOpacity:(float)arg1;
 
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
 
++ (void)MPU_animateWithDuration:(double)arg1 delay:(double)arg2 options:(unsigned int)arg3 animationFactory:(id)arg4 animations:(id /* block */)arg5 completion:(id /* block */)arg6;
+
+- (void)MPU_applyBoundsAndCenterForUntransformedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)MPU_vibrantContentEffectView;
 - (id)initForAutolayout;
 
+// Image: /System/Library/PrivateFrameworks/MaterialKit.framework/MaterialKit
+
+- (void)mt_applyVibrantStyling:(id)arg1;
+- (void)mt_removeAllVibrantStyling;
+
 // Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
 
+- (struct CGPoint { float x1; float x2; })boundsCenter;
 - (void)mt_concatPixelAlignedTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
 - (void)mt_setPixelAlignedCenter:(struct CGPoint { float x1; float x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
+- (void)ntk_setBoundsAndPositionFromFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 
 // Image: /System/Library/PrivateFrameworks/NetAppsUtilitiesUI.framework/NetAppsUtilitiesUI
 
@@ -1694,6 +2050,7 @@
 - (id)naui_descendantsWithAmbiguousLayout;
 - (id)naui_dynamicFontTextStyleDescriptor;
 - (BOOL)naui_isProperDescendantOfView:(id)arg1;
+- (void)naui_performAnimateableConstraintChanges:(id /* block */)arg1;
 - (void)naui_reloadDynamicFontWithTextStyleDescriptor:(id)arg1;
 - (void)naui_removeConstraint:(id)arg1;
 - (void)naui_removeConstraints:(id)arg1;
@@ -1705,22 +2062,57 @@
 - (void)naui_setNamedConstraints:(id)arg1 forName:(id)arg2;
 - (void)naui_showAllViewBoundsRecursively:(BOOL)arg1;
 
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (void)ic_animateWithDuration:(double)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
++ (void)ic_performWithoutAnimation:(id /* block */)arg1;
+
+- (float)ic_backingScaleFactor;
+
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 
 - (void)addBorderWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PDFKit.framework/PDFKit
+
+- (id)PDFKitEnclosingScrollView;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (void)_pkui_animateUsingFactory:(id)arg1 withDelay:(double)arg2 options:(unsigned int)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
++ (void)pkui_animateUsingOptions:(unsigned int)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
++ (void)pkui_animateUsingOptions:(unsigned int)arg1 delay:(double)arg2 animations:(id /* block */)arg3 completion:(id /* block */)arg4;
++ (void)pkui_animateUsingOptions:(unsigned int)arg1 delay:(double)arg2 velocity:(float)arg3 animations:(id /* block */)arg4 completion:(id /* block */)arg5;
+
+- (void)addDefaultTransformSpringWithStartTime:(float)arg1;
+- (void)addDefaultTranslationSpringWithVelocity:(float)arg1 startTime:(float)arg2;
+- (void)addTransformSpringWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 startTime:(float)arg4 timing:(id)arg5;
+- (void)addTranslationSpringWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 startTime:(float)arg4 timing:(id)arg5;
+- (void)addTranslationSpringWithMass:(float)arg1 stiffness:(float)arg2 damping:(float)arg3 startTime:(float)arg4 velocity:(float)arg5 timing:(id)arg6;
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })pkui_readableContentBoundsWithMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (bool)pkui_setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 position:(struct CGPoint { float x1; float x2; })arg2 animated:(bool)arg3;
+- (bool)pkui_setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 animated:(bool)arg2;
+- (void)pkui_shakeWithCompletion:(id /* block */)arg1;
+- (id)pkui_translationAnimation;
+- (id)pkui_viewControllerFromResponderChain;
 
 // Image: /System/Library/PrivateFrameworks/Pegasus.framework/Pegasus
 
 + (void)PG_animateUsingDefaultDampedSpringWithInitialSpringVelocity:(float)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
 + (void)PG_animateUsingDefaultTimingWithAnimations:(id /* block */)arg1 completion:(id /* block */)arg2;
++ (void)PG_animateUsingDefaultTimingWithOptions:(unsigned int)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
 + (void)PG_performWithoutAnimation:(id /* block */)arg1;
 + (void)PG_transitionViews:(id)arg1 hidden:(BOOL)arg2 animated:(BOOL)arg3;
 
 - (BOOL)PG_allowsEdgeAntialiasing;
+- (BOOL)PG_allowsGroupBlending;
 - (struct CGPoint { float x1; float x2; })PG_anchorPoint;
 - (id)PG_compositingFilter;
 - (float)PG_cornerRadius;
 - (void)PG_setAllowsEdgeAntialiasing:(BOOL)arg1;
+- (void)PG_setAllowsGroupBlending:(BOOL)arg1;
 - (void)PG_setAnchorPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)PG_setCompositingFilter:(id)arg1;
 - (void)PG_setCornerRadius:(float)arg1;
@@ -1729,12 +2121,38 @@
 // Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
 
 + (double)pl_setHiddenAnimationDuration;
++ (struct CGSize { float x1; float x2; })pl_videoOverlayButtonSize;
 + (id)pl_videoOverlayButtonWithStyle:(int)arg1;
 
 - (void)pl_drawBorderWithColor:(id)arg1 width:(float)arg2;
 - (BOOL)pl_isOnScreen:(id)arg1;
 - (void)pl_setHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)pl_setHidden:(BOOL)arg1 delay:(double)arg2 animated:(BOOL)arg3;
+
+// Image: /System/Library/PrivateFrameworks/PhotosPlayer.framework/PhotosPlayer
+
+- (id)is_actionForKey:(id)arg1;
+- (float)is_blurRadius;
+- (void)is_setBlurRadius:(float)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (void)_px_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 withInitialVelocity:(struct PXDisplayVelocity { float x1; float x2; float x3; float x4; })arg5 usingSpringAnimation:(id /* block */)arg6 completion:(id /* block */)arg7;
++ (void)px_animateUsingDefaultDampedEaseInEaseOutWithDuration:(double)arg1 animations:(id /* block */)arg2 completion:(id /* block */)arg3;
++ (void)px_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 usingDefaultDampedSpringWithDelay:(double)arg5 initialVelocity:(struct PXDisplayVelocity { float x1; float x2; float x3; float x4; })arg6 options:(unsigned int)arg7 completion:(id /* block */)arg8;
++ (void)px_animateView:(id)arg1 toCenter:(struct CGPoint { float x1; float x2; })arg2 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg4 withDuration:(double)arg5 delay:(double)arg6 usingSpringWithDamping:(float)arg7 initialVelocity:(struct PXDisplayVelocity { float x1; float x2; float x3; float x4; })arg8 options:(unsigned int)arg9 completion:(id /* block */)arg10;
++ (void)px_preloadResourcesForVideoOverlayButtonWithStyle:(int)arg1;
++ (struct CGSize { float x1; float x2; })px_videoOverlayButtonSize;
++ (id)px_videoOverlayButtonWithStyle:(int)arg1;
++ (id)px_videoOverlayButtonWithStyle:(int)arg1 allowBackdropStatisticsSupression:(BOOL)arg2;
+
+- (void)px_animateAlpha:(BOOL)arg1 transformType:(int)arg2 withZoomTransitionContext:(id)arg3;
+- (void)px_animateWithZoomTransitionContext:(id)arg1;
+- (void)px_enumerateDescendantSubviewsWithBlock:(id /* block */)arg1;
+- (float)px_screenScale;
+- (void)px_setSpec:(id)arg1;
+- (id)px_spec;
+- (void)px_transferToSuperview:(id)arg1 forZoomTransitionWithContex:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
 
@@ -1748,9 +2166,48 @@
 - (id)viewsAbove;
 - (id)viewsUnder;
 
+// Image: /System/Library/PrivateFrameworks/SearchUI.framework/SearchUI
+
+- (id)containerView;
+- (BOOL)isContainedByItem:(id)arg1;
+- (id)view;
+
 // Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
 
++ (BOOL)siriChevronShouldBeOnLeadingSide;
+
 - (void)recursive_setSemanticContentAttribute:(int)arg1;
+- (id)siriui_addHeightConstraint:(float)arg1;
+- (id)siriui_addHeightConstraint:(float)arg1 priority:(float)arg2;
+- (id)siriui_addWidthConstraint:(float)arg1;
+- (id)siriui_addWidthConstraint:(float)arg1 priority:(float)arg2;
+- (id)siriui_centerHorizontallyWithItem:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_centerVerticallyWithItem:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_centerVerticallyWithView:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinBottomTo:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinBottomTo:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinBottomToTopOf:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinBottomToTopOf:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinLastBaselineToFirstBaseline:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinLeadingTo:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinLeadingToLeadingEdgeOf:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinLeadingToLeadingEdgeOf:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinLeadingToTrailingEdgeOf:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinLeadingToTrailingEdgeOf:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinToLayoutGuide:(id)arg1;
+- (id)siriui_pinToSuperviewWithEdgeInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (id)siriui_pinTopTo:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinTopTo:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinTrailingTo:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinTrailingToLeadingEdgeOf:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinTrailingToLeadingEdgeOf:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+- (id)siriui_pinTrailingToTrailingEdgeOf:(id)arg1 withMargin:(float)arg2;
+- (id)siriui_pinTrailingToTrailingEdgeOf:(id)arg1 withMargin:(float)arg2 priority:(float)arg3;
+
+// Image: /System/Library/PrivateFrameworks/SiriUICore.framework/SiriUICore
+
+- (void)suic_recursiveSetSemanticContentAttribute:(int)arg1;
+- (void)suic_updateViewHierarchyToUseSiriLanguageSemanticContentAttribute;
 
 // Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
 
@@ -1761,10 +2218,6 @@
 - (id)snapshot;
 - (id)snapshot:(BOOL)arg1;
 
-// Image: /System/Library/PrivateFrameworks/SpotlightUI.framework/SpotlightUI
-
-- (void)setHiddenForAutoLayout:(BOOL)arg1;
-
 // Image: /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
 
 - (void)sbui_drawEagerly;
@@ -1773,10 +2226,52 @@
 
 - (void)sb_setBoundsAndPositionFromFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+
+- (id)_SKUIView;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })defaultPresentationPosition;
+- (id)skui_apparentBackgroundColor;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (void)didSelect;
+- (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2 withAnimationCoordinator:(id)arg3;
+- (void)setValue:(id)arg1 forTVViewStyle:(id)arg2;
+- (void)transferLayoutStylesFromElement:(id)arg1;
+- (id)tv_AccessibilityText;
+- (int)tv_alignment;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_alignmentInsetsForExpectedWidth:(float)arg1;
+- (id)tv_backgroundColor;
+- (int)tv_contentAlignment;
+- (unsigned int)tv_elementType;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_focusMargin;
+- (id)tv_highlightColor;
+- (float)tv_interitemSpacing;
+- (float)tv_itemHeight;
+- (float)tv_itemWidth;
+- (float)tv_lineSpacing;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_margin;
+- (BOOL)tv_marqueeOnHighlight;
+- (float)tv_maxHeight;
+- (float)tv_maxWidth;
+- (float)tv_minHeight;
+- (float)tv_minWidth;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tv_padding;
+- (int)tv_position;
+- (void)tv_setAccessibilityText:(id)arg1;
+- (void)tv_setSiriData:(id)arg1;
+- (void)tv_setValue:(id)arg1 forTVViewTag:(id)arg2;
+- (BOOL)tv_showOnHighlight;
+- (id)tv_siriData;
+- (struct CGSize { float x1; float x2; })tv_sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (struct CGSize { float x1; float x2; })tv_sizeThatFits:(struct CGSize { float x1; float x2; })arg1 withSizeCalculation:(id /* block */)arg2;
+- (id)tv_valueForTVViewTag:(id)arg1;
+- (id)valueForTVViewStyle:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
 
-- (int)action;
-- (void)setAction:(int)arg1;
++ (void)tpSetSemanticContentAttribute_recursive:(int)arg1 startingAtView:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
 
@@ -1812,18 +2307,14 @@
 - (BOOL)_accessibilityAllowsSiblingsWhenOvergrown;
 - (struct CGSize { float x1; float x2; })_accessibilityFrameExpansion;
 - (BOOL)_accessibilityIsSortingInUpperFrame;
-- (BOOL)_accessibilityObscuresScreen;
 - (BOOL)_accessibilityOverridesInvalidFrames;
 - (void)_accessibilitySetAllowsSiblingsWhenOvergrown:(BOOL)arg1;
 - (void)_accessibilitySetFrameExpansion:(struct CGSize { float x1; float x2; })arg1;
 - (void)_accessibilitySetIsSortingInUpperFrame:(BOOL)arg1;
-- (void)_accessibilitySetObscuresScreen:(BOOL)arg1;
-- (void)_accessibilitySetStoredObscuresScreen:(id)arg1;
 - (void)_accessibilitySetViewIsVisible:(BOOL)arg1;
 - (BOOL)_accessibilityShouldBeAddedToViewChildrenWithOptions:(id)arg1;
 - (BOOL)_accessibilityShouldBeProcessed:(id)arg1;
 - (BOOL)_accessibilityShouldUseSupplementaryViews;
-- (id)_accessibilityStoredObscuresScreen;
 - (id)_accessibilitySubviews;
 - (id)_accessibilitySubviewsForGettingElementsWithOptions:(id)arg1;
 - (id)_accessibilityViewChildrenWithOptions:(id)arg1;
@@ -1868,6 +2359,13 @@
 - (void)rc_setNamedConstraints:(id)arg1 forName:(id)arg2;
 - (void)rc_showAllViewBoundsRecursively:(BOOL)arg1;
 - (void)rc_updateConstraintsAndLayoutSubtree;
+
+// Image: /System/Library/PrivateFrameworks/Widgets.framework/Widgets
+
+- (void)_wg_innerWalkSubviewTreeWithBlock:(id /* block */)arg1 stop:(BOOL*)arg2;
+- (BOOL)wg_imageContentsDrawWithinBounds;
+- (BOOL)wg_supportsBottomCornerRadiusGivenRootView:(id)arg1 withCornerRadius:(float)arg2 supportedCorners:(unsigned int*)arg3;
+- (void)wg_walkSubviewTreeWithBlock:(id /* block */)arg1;
 
 // Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
 

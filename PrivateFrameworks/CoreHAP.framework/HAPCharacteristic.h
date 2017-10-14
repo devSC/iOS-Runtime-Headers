@@ -3,40 +3,48 @@
  */
 
 @interface HAPCharacteristic : NSObject {
-    BOOL _eventNotificationsEnabled;
-    NSNumber *_instanceID;
-    HAPCharacteristicMetadata *_metadata;
-    unsigned int _properties;
-    HAPService *_service;
-    BOOL _shouldValidateValueAfterReading;
-    NSString *_type;
-    id _value;
-    unsigned long long _valueUpdateTime;
+    HAPCharacteristicMetadata * _accessoryMetadata;
+    BOOL  _eventNotificationsEnabled;
+    NSNumber * _instanceID;
+    HAPCharacteristicMetadata * _metadata;
+    unsigned int  _properties;
+    HAPService * _service;
+    BOOL  _shouldValidateValueAfterReading;
+    NSNumber * _stateNumber;
+    NSString * _type;
+    id  _value;
+    NSDate * _valueUpdatedTime;
 }
 
+@property (nonatomic, readonly) HAPCharacteristicMetadata *accessoryMetadata;
+@property (setter=setCBCharacteristic:, nonatomic, retain) CBCharacteristic *cbCharacteristic;
 @property (nonatomic) BOOL eventNotificationsEnabled;
 @property (nonatomic, copy) NSNumber *instanceID;
-@property (nonatomic, retain) HAPCharacteristicMetadata *metadata;
+@property (nonatomic, copy) HAPCharacteristicMetadata *metadata;
 @property (nonatomic) unsigned int properties;
 @property (nonatomic) HAPService *service;
 @property (nonatomic) BOOL shouldValidateValueAfterReading;
+@property (nonatomic, readonly) NSNumber *stateNumber;
 @property (nonatomic, readonly) BOOL supportsAdditionalAuthorizationData;
 @property (nonatomic, copy) NSString *type;
 @property (setter=setValue:, nonatomic, copy) id value;
-@property (nonatomic) unsigned long long valueUpdateTime;
+@property (nonatomic, retain) NSDate *valueUpdatedTime;
 
 - (void).cxx_destruct;
 - (id)_generateValidMetadata:(id)arg1;
 - (void)_updateMetadata:(id)arg1 withProvidedMetadata:(id)arg2;
+- (id)accessoryMetadata;
+- (id)cbCharacteristic;
 - (id)description;
 - (BOOL)eventNotificationsEnabled;
-- (id)initWithType:(id)arg1 instanceID:(id)arg2 value:(id)arg3 properties:(unsigned int)arg4 eventNotificationsEnabled:(BOOL)arg5 metadata:(id)arg6;
+- (id)initWithType:(id)arg1 instanceID:(id)arg2 value:(id)arg3 stateNumber:(id)arg4 properties:(unsigned int)arg5 eventNotificationsEnabled:(BOOL)arg6 metadata:(id)arg7;
 - (id)instanceID;
 - (BOOL)isEqualToCharacteristic:(id)arg1;
 - (id)metadata;
 - (unsigned int)properties;
 - (id)propertiesDescription;
 - (id)service;
+- (void)setCBCharacteristic:(id)arg1;
 - (void)setEventNotificationsEnabled:(BOOL)arg1;
 - (void)setInstanceID:(id)arg1;
 - (void)setMetadata:(id)arg1;
@@ -45,12 +53,13 @@
 - (void)setShouldValidateValueAfterReading:(BOOL)arg1;
 - (void)setType:(id)arg1;
 - (void)setValue:(id)arg1;
-- (void)setValueUpdateTime:(unsigned long long)arg1;
+- (void)setValueUpdatedTime:(id)arg1;
 - (BOOL)shouldValidateValueAfterReading;
+- (id)stateNumber;
 - (BOOL)supportsAdditionalAuthorizationData;
 - (id)type;
 - (id)validateValue:(id)arg1 outValue:(id*)arg2;
 - (id)value;
-- (unsigned long long)valueUpdateTime;
+- (id)valueUpdatedTime;
 
 @end

@@ -3,35 +3,35 @@
  */
 
 @interface NEFilterSocketFlow : NEFilterFlow <NSCopying, NSSecureCoding> {
-    int _epid;
-    unsigned char _euuid;
+    int  _epid;
+    unsigned char  _euuid;
     struct sockaddr_storage { 
         unsigned char ss_len; 
         unsigned char ss_family; 
         BOOL __ss_pad1[6]; 
         long long __ss_align; 
         BOOL __ss_pad2[112]; 
-    } _lastLocalAddress;
+    }  _lastLocalAddress;
     struct sockaddr_storage { 
         unsigned char ss_len; 
         unsigned char ss_family; 
         BOOL __ss_pad1[6]; 
         long long __ss_align; 
         BOOL __ss_pad2[112]; 
-    } _lastRemoteAddress;
-    NWEndpoint *_localEndpoint;
-    int _pid;
-    NWEndpoint *_remoteEndpoint;
-    int _socketFamily;
-    int _socketProtocol;
-    int _socketType;
-    unsigned char _uuid;
+    }  _lastRemoteAddress;
+    NWEndpoint * _localEndpoint;
+    int  _pid;
+    NWEndpoint * _remoteEndpoint;
+    int  _socketFamily;
+    int  _socketProtocol;
+    int  _socketType;
+    unsigned char  _uuid;
 }
 
 @property int epid;
-@property (readonly) NWEndpoint *localEndpoint;
+@property (copy) NWEndpoint *localEndpoint;
 @property int pid;
-@property (readonly) NWEndpoint *remoteEndpoint;
+@property (copy) NWEndpoint *remoteEndpoint;
 @property int socketFamily;
 @property int socketProtocol;
 @property int socketType;
@@ -51,7 +51,9 @@
 - (int)pid;
 - (id)remoteEndpoint;
 - (void)setEpid:(int)arg1;
+- (void)setLocalEndpoint:(id)arg1;
 - (void)setPid:(int)arg1;
+- (void)setRemoteEndpoint:(id)arg1;
 - (void)setSocketFamily:(int)arg1;
 - (void)setSocketProtocol:(int)arg1;
 - (void)setSocketType:(int)arg1;

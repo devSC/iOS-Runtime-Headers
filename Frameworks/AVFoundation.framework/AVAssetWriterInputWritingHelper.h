@@ -3,12 +3,12 @@
  */
 
 @interface AVAssetWriterInputWritingHelper : AVAssetWriterInputHelper <AVAssetWriterInputMediaDataRequesterDelegate, AVKeyPathDependencyHost, AVWeakObservable> {
-    AVFigAssetWriterTrack *_assetWriterTrack;
-    AVAssetWriterInputPassDescription *_currentPassDescription;
-    AVKeyPathDependencyManager *_keyPathDependencyManager;
-    AVAssetWriterInputMediaDataRequester *_mediaDataRequester;
-    BOOL _observingSelf;
-    struct __CVPixelBufferPool { } *_pixelBufferPool;
+    AVFigAssetWriterTrack * _assetWriterTrack;
+    AVAssetWriterInputPassDescription * _currentPassDescription;
+    AVKeyPathDependencyManager * _keyPathDependencyManager;
+    AVAssetWriterInputMediaDataRequester * _mediaDataRequester;
+    BOOL  _observingSelf;
+    struct __CVPixelBufferPool { } * _pixelBufferPool;
 }
 
 @property (getter=_assetWriterTrack, nonatomic, readonly) AVFigAssetWriterTrack *assetWriterTrack;
@@ -17,8 +17,6 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
-
-+ (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
 
 - (id)_assetWriterTrack;
 - (void)_attachToMediaDataRequester:(id)arg1;
@@ -31,6 +29,7 @@
 - (BOOL)canPerformMultiplePasses;
 - (id)currentPassDescription;
 - (void)dealloc;
+- (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
 - (void)didStartInitialSession;
 - (void)finalize;
 - (id)initWithConfigurationState:(id)arg1;
@@ -47,7 +46,6 @@
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(id /* block */)arg2;
 - (void)setCurrentPassDescription:(id)arg1;
 - (int)status;
-- (int)trackID;
 - (id)transitionToAndReturnTerminalHelperWithTerminalStatus:(int)arg1;
 
 @end

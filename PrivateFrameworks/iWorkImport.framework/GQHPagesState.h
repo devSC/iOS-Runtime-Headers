@@ -3,31 +3,31 @@
  */
 
 @interface GQHPagesState : GQHState <GQWrapPointGenerator> {
-    long mAttachmentIdCounter;
-    struct __CFArray { } *mAttachmentPositions;
-    GQDSStyle *mCurrentBaseParagraphStyle;
-    GQDSStyle *mCurrentBaseSpanStyle;
-    struct __CFString { } *mCurrentCachedParagraphClass;
-    struct __CFString { } *mCurrentCachedSpanClass;
-    BOOL mCurrentFrameHasSandbagFloats;
-    int mCurrentHintColumnIndex;
-    int mCurrentHintPageIndex;
-    GQHStyle *mCurrentLayoutStyle;
-    int mCurrentPageIndex;
-    GQHStyle *mCurrentParagraphStyle;
-    GQDSStyle *mCurrentSectionStyle;
-    GQHStyle *mCurrentSpanStyle;
-    GQWrapPointSet *mCurrentWrapPointSet;
-    BOOL mDidFindContainerHint;
-    BOOL mDidInsertPageHeader;
-    struct __CFDictionary { } *mDrawablePagesOrderToCssZOrderClassMap;
-    long mFirstAttachmentId;
-    struct __CFDictionary { } *mFloatingDrawables;
-    struct __CFDictionary { } *mFooters;
-    BOOL mHasLayoutDrawables;
-    int mHeaderFooterPageNumber;
-    struct __CFDictionary { } *mHeaders;
-    BOOL mIsMappingHeadersFooters;
+    long  mAttachmentIdCounter;
+    struct __CFArray { } * mAttachmentPositions;
+    GQDSStyle * mCurrentBaseParagraphStyle;
+    GQDSStyle * mCurrentBaseSpanStyle;
+    struct __CFString { } * mCurrentCachedParagraphClass;
+    struct __CFString { } * mCurrentCachedSpanClass;
+    BOOL  mCurrentFrameHasSandbagFloats;
+    int  mCurrentHintColumnIndex;
+    int  mCurrentHintPageIndex;
+    GQHStyle * mCurrentLayoutStyle;
+    int  mCurrentPageIndex;
+    GQHStyle * mCurrentParagraphStyle;
+    GQDSStyle * mCurrentSectionStyle;
+    GQHStyle * mCurrentSpanStyle;
+    GQWrapPointSet * mCurrentWrapPointSet;
+    BOOL  mDidFindContainerHint;
+    BOOL  mDidInsertPageHeader;
+    struct __CFDictionary { } * mDrawablePagesOrderToCssZOrderClassMap;
+    long  mFirstAttachmentId;
+    struct __CFDictionary { } * mFloatingDrawables;
+    struct __CFDictionary { } * mFooters;
+    BOOL  mHasLayoutDrawables;
+    int  mHeaderFooterPageNumber;
+    struct __CFDictionary { } * mHeaders;
+    BOOL  mIsMappingHeadersFooters;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -37,23 +37,23 @@
             float width; 
             float height; 
         } size; 
-    } mLastFrame;
-    GQDWPContainerHint *mLastInsertedContainerHint;
-    BOOL mMappingFloatingDrawables;
-    int mMode;
+    }  mLastFrame;
+    GQDWPContainerHint * mLastInsertedContainerHint;
+    BOOL  mMappingFloatingDrawables;
+    int  mMode;
     struct CGSize { 
         float width; 
         float height; 
-    } mPageSize;
-    struct __CFDictionary { } *mPageWrapPointsMap;
-    int mProgressiveIndex;
-    struct __CFArray { } *mSectionStyles;
-    BOOL mSplitNextAttachment;
-    int mStartPageAt;
-    int mStartPageAtValueChangedAtPageIndex;
-    BOOL mStartedPage;
-    BOOL mStartedSection;
-    struct __CFArray { } *mTocHrefStack;
+    }  mPageSize;
+    struct __CFDictionary { } * mPageWrapPointsMap;
+    int  mProgressiveIndex;
+    struct __CFArray { } * mSectionStyles;
+    BOOL  mSplitNextAttachment;
+    int  mStartPageAt;
+    int  mStartPageAtValueChangedAtPageIndex;
+    BOOL  mStartedPage;
+    BOOL  mStartedSection;
+    struct __CFArray { } * mTocHrefStack;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -129,6 +129,6 @@
 - (unsigned int)tocDepth;
 - (BOOL)useOutline;
 - (id)wrapPointSetForPage:(int)arg1;
-- (const struct set<GQUtility::ObjcSharedPtr<GQDWrapPoint>, GQUtility::NSObjectComparator<GQDWrapPoint>, std::__1::allocator<GQUtility::ObjcSharedPtr<GQDWrapPoint> > > { struct __tree<GQUtility::ObjcSharedPtr<GQDWrapPoint>, GQUtility::NSObjectComparator<GQDWrapPoint>, std::__1::allocator<GQUtility::ObjcSharedPtr<GQDWrapPoint> > > { struct __tree_node<GQUtility::ObjcSharedPtr<GQDWrapPoint>, void *> {} *x_1_1_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<GQUtility::ObjcSharedPtr<GQDWrapPoint>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_3_1; } x_2_2_1; } x_1_1_2; struct __compressed_pair<unsigned long, GQUtility::NSObjectComparator<GQDWrapPoint> > { unsigned long x_3_2_1; struct NSObjectComparator<GQDWrapPoint> { SEL x_2_3_1; } x_3_2_2; } x_1_1_3; } x1; }*)wrapPoints;
+- (const struct set<GQUtility::ObjcSharedPtr<GQDWrapPoint>, GQUtility::NSObjectComparator<GQDWrapPoint>, std::__1::allocator<GQUtility::ObjcSharedPtr<GQDWrapPoint> > > { struct __tree<GQUtility::ObjcSharedPtr<GQDWrapPoint>, GQUtility::NSObjectComparator<GQDWrapPoint>, std::__1::allocator<GQUtility::ObjcSharedPtr<GQDWrapPoint> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> {} *x_1_1_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<GQUtility::ObjcSharedPtr<GQDWrapPoint>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_3_1; } x_2_2_1; } x_1_1_2; struct __compressed_pair<unsigned long, GQUtility::NSObjectComparator<GQDWrapPoint> > { unsigned long x_3_2_1; struct NSObjectComparator<GQDWrapPoint> { SEL x_2_3_1; } x_3_2_2; } x_1_1_3; } x1; }*)wrapPoints;
 
 @end

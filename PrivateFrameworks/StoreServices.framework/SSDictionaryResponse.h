@@ -3,7 +3,7 @@
  */
 
 @interface SSDictionaryResponse : NSObject <NSCopying> {
-    NSDictionary *_dictionary;
+    NSDictionary * _dictionary;
 }
 
 @property (nonatomic, readonly) NSArray *actions;
@@ -13,12 +13,12 @@
 @property (getter=isSupportedProtocolVersion, nonatomic, readonly) BOOL supportedProtocolVersion;
 @property (nonatomic, readonly) NSURL *versionMismatchURL;
 
+- (void).cxx_destruct;
 - (id)_copyAccount;
 - (id)_valueForProtocolKey:(id)arg1;
 - (id)actions;
 - (id)actionsWithActionType:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)failureType;
 - (id)init;
 - (id)initWithResponseDictionary:(id)arg1;

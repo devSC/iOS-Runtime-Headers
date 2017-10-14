@@ -3,12 +3,11 @@
  */
 
 @interface GEOPlaceDataDBWriter : GEODBWriter {
-    BOOL _canCreateDebugTable;
-    struct sqlite3_stmt { } *_sqlDeleteAllPhoneNumbers;
-    struct sqlite3_stmt { } *_sqlDeleteKeyStringForMUID;
-    struct sqlite3_stmt { } *_sqlDeletePlaceDataForMUID;
-    struct sqlite3_stmt { } *_sqlInsertKeyString;
-    struct sqlite3_stmt { } *_sqlInsertPhoneNumber;
+    struct sqlite3_stmt { } * _sqlDeleteAllPhoneNumbers;
+    struct sqlite3_stmt { } * _sqlDeleteKeyStringForMUID;
+    struct sqlite3_stmt { } * _sqlDeletePlaceDataForMUID;
+    struct sqlite3_stmt { } * _sqlInsertKeyString;
+    struct sqlite3_stmt { } * _sqlInsertPhoneNumber;
 }
 
 - (void)_createKeyStringTable;
@@ -22,6 +21,7 @@
 - (void)deleteComponentForKey:(union _GEOPlaceDataComponentKey { struct { unsigned long long x_1_1_1; unsigned short x_1_1_2; unsigned short x_1_1_3; unsigned int x_1_1_4; } x1; struct { unsigned int x_2_1_1; unsigned int x_2_1_2; unsigned int x_2_1_3; unsigned int x_2_1_4; } x2; })arg1;
 - (void)deletePhoneNumberMapping;
 - (void)deletePlaceDataForMUID:(unsigned long long)arg1;
+- (void)flushPendingWritesSynchronously;
 - (id)initWithPath:(id)arg1;
 - (void)performStatementPreparationTasks;
 - (void)performTableCreationTasks;

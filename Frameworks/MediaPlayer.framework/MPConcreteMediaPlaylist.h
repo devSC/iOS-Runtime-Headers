@@ -3,16 +3,19 @@
  */
 
 @interface MPConcreteMediaPlaylist : MPMediaPlaylist <NSCoding, NSCopying> {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    void *_clusterPlaylist;
-    MPMediaQuery *_itemsQuery;
-    NSMutableDictionary *_properties;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    void * _clusterPlaylist;
+    MPMediaQuery * _itemsQuery;
+    NSMutableDictionary * _properties;
 }
 
 - (void).cxx_destruct;
+- (BOOL)_allowsEditing;
 - (void)_updateLibraryForPlaylistEdit:(id)arg1;
 - (void)addItem:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)addItemWithProductID:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)addItems:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)addMediaItems:(id)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)beginGeneratingGeniusClusterItemsWithSeedItems:(id)arg1 error:(id*)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
@@ -36,6 +39,8 @@
 - (void)removeFirstItem;
 - (void)removeItems:(id)arg1 atFilteredIndexes:(id)arg2 completionBlock:(id /* block */)arg3;
 - (id)representativeItem;
+- (void)setItems:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)setItemsWithPersistentIDs:(id)arg1 completionBlock:(id /* block */)arg2;
 - (BOOL)setValue:(id)arg1 forProperty:(id)arg2;
 - (void)setValue:(id)arg1 forProperty:(id)arg2 withCompletionBlock:(id /* block */)arg3;
 - (id)valueForProperty:(id)arg1;

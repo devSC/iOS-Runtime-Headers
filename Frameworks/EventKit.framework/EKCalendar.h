@@ -3,71 +3,24 @@
  */
 
 @interface EKCalendar : EKObject {
-    struct CGColor { } *_color;
-    BOOL _isMain;
-    unsigned long _loadFlags;
+    unsigned int  _cachedJunkStatus;
+    struct CGColor { } * _color;
+    BOOL  _isMain;
+    unsigned long  _loadFlags;
 }
 
 @property (nonatomic) struct CGColor { }*CGColor;
-@property (nonatomic, copy) NSSet *alarms;
-@property (nonatomic, copy) NSSet *allAlarms;
 @property (nonatomic, readonly) unsigned int allowedEntityTypes;
 @property (nonatomic, readonly) BOOL allowsContentModifications;
-@property (nonatomic, readonly) BOOL allowsEvents;
-@property (nonatomic, readonly) BOOL allowsIgnoringSharedEventChangeNotifications;
-@property (nonatomic, readonly) BOOL allowsTasks;
-@property (nonatomic, readonly) BOOL automaticEventLocationGeocodingAllowed;
+@property (nonatomic) unsigned int cachedJunkStatus;
 @property (nonatomic, readonly) NSString *calendarIdentifier;
-@property (nonatomic, readonly) BOOL canBePublished;
-@property (nonatomic, readonly) BOOL canBeShared;
-@property (nonatomic, readonly) NSString *colorString;
-@property (nonatomic, copy) NSData *digest;
-@property (nonatomic) int displayOrder;
-@property (nonatomic, copy) NSString *externalID;
-@property (nonatomic, copy) NSString *externalModificationTag;
-@property (nonatomic, readonly) NSURL *externalURI;
-@property (nonatomic, readonly) BOOL hasEvents;
-@property (nonatomic, readonly) BOOL hasTasks;
 @property (getter=isImmutable, nonatomic, readonly) BOOL immutable;
-@property (nonatomic) unsigned int invitationStatus;
-@property (nonatomic, readonly) BOOL isDefaultCalendarForSource;
-@property (nonatomic, readonly) BOOL isFacebookBirthdayCalendar;
-@property (nonatomic, readonly) BOOL isFamilyCalendar;
-@property (nonatomic, readonly) BOOL isHidden;
-@property (nonatomic, readonly) BOOL isHolidaySubscribedCalendar;
-@property (nonatomic) BOOL isIgnoringEventAlerts;
-@property (nonatomic) BOOL isIgnoringSharedCalendarNotifications;
+@property (nonatomic) BOOL isDefaultSchedulingCalendar;
 @property (nonatomic) BOOL isMainCalendarForSource;
-@property (nonatomic, readonly) BOOL isMarkedImmutableSharees;
-@property (nonatomic, readonly) BOOL isMarkedUndeletable;
-@property (nonatomic, readonly) BOOL isMutableSuggestionsCalendar;
-@property (nonatomic) BOOL isPublished;
-@property (nonatomic, readonly) BOOL isSharingInvitation;
-@property (nonatomic, readonly) BOOL isSuggestionsCalendar;
 @property (nonatomic) unsigned long loadFlags;
-@property (nonatomic, copy) NSURL *ownerIdentityAddress;
-@property (nonatomic, copy) NSString *ownerIdentityDisplayName;
-@property (nonatomic, copy) NSString *ownerIdentityEmail;
-@property (nonatomic, copy) NSString *ownerIdentityFirstName;
-@property (nonatomic, copy) NSString *ownerIdentityLastName;
-@property (nonatomic, readonly) BOOL prohibitsScheduling;
-@property (nonatomic, readonly) NSString *publishedURL;
-@property (nonatomic, readonly) BOOL schedulingProhibited;
-@property (nonatomic, copy) NSURL *selfIdentityAddress;
-@property (nonatomic, copy) NSString *selfIdentityDisplayName;
-@property (nonatomic, copy) NSString *selfIdentityEmail;
-@property (nonatomic, copy) NSString *selfIdentityFirstName;
-@property (nonatomic, copy) NSString *selfIdentityLastName;
-@property (nonatomic, copy) NSURL *sharedOwnerAddress;
-@property (nonatomic, readonly) NSString *sharedOwnerEmail;
-@property (nonatomic, copy) NSString *sharedOwnerName;
-@property (nonatomic, copy) NSArray *sharees;
-@property (nonatomic) unsigned int sharingInvitationResponse;
-@property (nonatomic) unsigned int sharingStatus;
 @property (nonatomic, retain) EKSource *source;
 @property (getter=isSubscribed, nonatomic, readonly) BOOL subscribed;
 @property (nonatomic, readonly) unsigned int supportedEventAvailabilities;
-@property (nonatomic, copy) NSString *symbolicColorName;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) int type;
 
@@ -86,19 +39,22 @@
 - (void)addSharee:(id)arg1;
 - (id)alarms;
 - (id)allAlarms;
+- (BOOL)allowEvents;
+- (BOOL)allowReminders;
 - (unsigned int)allowedEntityTypes;
 - (BOOL)allowsContentModifications;
-- (BOOL)allowsEvents;
 - (BOOL)allowsIgnoringSharedEventChangeNotifications;
-- (BOOL)allowsTasks;
+- (BOOL)allowsScheduling;
 - (BOOL)automaticEventLocationGeocodingAllowed;
 - (id)bulkRequests;
+- (unsigned int)cachedJunkStatus;
 - (id)calendarIdentifier;
 - (BOOL)canBePublished;
 - (BOOL)canBeShared;
 - (void)clearInvitationStatus;
 - (id)colorString;
 - (BOOL)commit:(id*)arg1;
+- (BOOL)couldBeJunk;
 - (void)dealloc;
 - (id)description;
 - (id)digest;
@@ -114,7 +70,7 @@
 - (id)init;
 - (unsigned int)invitationStatus;
 - (BOOL)isAlarmAcknowledgedPropertyDirty;
-- (BOOL)isDefaultCalendarForSource;
+- (BOOL)isDefaultSchedulingCalendar;
 - (BOOL)isFacebookBirthdayCalendar;
 - (BOOL)isFamilyCalendar;
 - (BOOL)isHidden;
@@ -129,6 +85,8 @@
 - (BOOL)isPublished;
 - (BOOL)isSharingInvitation;
 - (BOOL)isSubscribed;
+- (BOOL)isSubscribedHolidayCalendar;
+- (BOOL)isSuggestedEventCalendar;
 - (BOOL)isSuggestionsCalendar;
 - (id)lazyLoadRelationForKey:(id)arg1;
 - (unsigned long)loadFlags;
@@ -138,7 +96,7 @@
 - (id)ownerIdentityFirstName;
 - (id)ownerIdentityLastName;
 - (BOOL)prohibitsScheduling;
-- (id)publishedURL;
+- (id)publishURL;
 - (id)pushKey;
 - (BOOL)refresh;
 - (BOOL)remove:(id*)arg1;
@@ -147,24 +105,29 @@
 - (void)removeAllSnoozedAlarms;
 - (void)removeSharee:(id)arg1;
 - (void)reset;
-- (BOOL)schedulingProhibited;
 - (id)selfIdentityAddress;
 - (id)selfIdentityDisplayName;
 - (id)selfIdentityEmail;
 - (id)selfIdentityFirstName;
 - (id)selfIdentityLastName;
+- (id)sendersEmail;
 - (void)setAlarms:(id)arg1;
 - (void)setAllAlarms:(id)arg1;
+- (void)setAllowReminders:(BOOL)arg1;
+- (void)setAllowsEvents:(BOOL)arg1;
 - (void)setBulkRequests:(id)arg1;
 - (void)setCGColor:(struct CGColor { }*)arg1;
+- (void)setCachedJunkStatus:(unsigned int)arg1;
 - (void)setColorString:(id)arg1;
 - (void)setDigest:(id)arg1;
 - (void)setDisplayOrder:(int)arg1;
 - (void)setExternalID:(id)arg1;
 - (void)setExternalModificationTag:(id)arg1;
 - (void)setInvitationStatus:(unsigned int)arg1;
+- (void)setIsDefaultSchedulingCalendar:(BOOL)arg1;
 - (void)setIsIgnoringEventAlerts:(BOOL)arg1;
 - (void)setIsIgnoringSharedCalendarNotifications:(BOOL)arg1;
+- (void)setIsJunk:(BOOL)arg1;
 - (void)setIsMainCalendarForSource:(BOOL)arg1;
 - (void)setIsPublished:(BOOL)arg1;
 - (void)setLoadFlags:(unsigned long)arg1;
@@ -173,6 +136,7 @@
 - (void)setOwnerIdentityEmail:(id)arg1;
 - (void)setOwnerIdentityFirstName:(id)arg1;
 - (void)setOwnerIdentityLastName:(id)arg1;
+- (void)setPublishURL:(id)arg1;
 - (void)setPushKey:(id)arg1;
 - (void)setSelfIdentityAddress:(id)arg1;
 - (void)setSelfIdentityDisplayName:(id)arg1;
@@ -191,6 +155,7 @@
 - (id)sharedOwnerAddress;
 - (id)sharedOwnerEmail;
 - (id)sharedOwnerName;
+- (id)sharedOwnerURL;
 - (id)sharees;
 - (unsigned int)sharingInvitationResponse;
 - (unsigned int)sharingStatus;
@@ -199,7 +164,9 @@
 - (id)source;
 - (id)subcalAccountID;
 - (unsigned int)supportedEventAvailabilities;
+- (BOOL)supportsJunkReporting;
 - (id)symbolicColorName;
+- (id)syncHash;
 - (id)title;
 - (int)type;
 - (BOOL)validate:(id*)arg1;
@@ -207,5 +174,10 @@
 // Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
 
 - (id)uiColor;
+
+// Image: /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Frameworks/PhotosGraph.framework/Frameworks/MediaMiningKit.framework/MediaMiningKit
+
+- (BOOL)hasSharees;
+- (id)shareesAndOwner;
 
 @end

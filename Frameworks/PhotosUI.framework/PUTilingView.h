@@ -3,50 +3,47 @@
  */
 
 @interface PUTilingView : UIScrollView {
-    PUTileTree *__activeTileControllers;
-    PUTileTree *__detachedTileControllers;
-    PUTileTree *__inactiveTileControllers;
-    BOOL __needsUpdateLayout;
-    BOOL __needsUpdateLayoutCoordinateSystem;
-    BOOL __needsUpdateLayoutVisibleRect;
-    BOOL __needsUpdateReferencedCoordinateSystems;
-    BOOL __needsUpdateReferencedDataSources;
-    BOOL __needsUpdateScrollViewProperties;
-    BOOL __needsUpdateTileControllers;
-    BOOL __needsUpdateTileControllersVisibleRect;
-    float __pagingFrictionAdjustment;
-    float __pagingSpringPullAdjustment;
-    PUTilingLayout *__pendingLayout;
-    NSMutableArray *__pendingUpdateItems;
-    BOOL __performingBatchUpdates;
-    int __reasonForNextLayoutCoordinateSystemUpdate;
-    NSMutableSet *__referencedCoordinateSystems;
-    NSMutableDictionary *__referencedDataSourcesByIdentifiers;
-    PUReuseQueue *__tileControllerReuseQueue;
-    PUTileTransitionCoordinator *__tileTransitionCoordinatorForNextLayout;
-    <PUTilingCoordinateSystem> *_contentCoordinateSystem;
-    <PUTilingCoordinateSystem> *_fixedCoordinateSystem;
-    PUTilingLayout *_layout;
-    <PUTilingViewLayoutDelegate> *_layoutDelegate;
-    struct { 
-        BOOL respondsToDidLayoutTileControllers; 
-    } _layoutDelegateFlags;
+    PUTileTree * __activeTileControllers;
+    PUTileTree * __detachedTileControllers;
+    PUTileTree * __inactiveTileControllers;
+    BOOL  __needsUpdateLayout;
+    BOOL  __needsUpdateLayoutCoordinateSystem;
+    BOOL  __needsUpdateLayoutVisibleRect;
+    BOOL  __needsUpdateReferencedCoordinateSystems;
+    BOOL  __needsUpdateReferencedDataSources;
+    BOOL  __needsUpdateScrollViewProperties;
+    BOOL  __needsUpdateTileControllers;
+    BOOL  __needsUpdateTileControllersVisibleRect;
+    float  __pagingFrictionAdjustment;
+    float  __pagingSpringPullAdjustment;
+    PUTilingLayout * __pendingLayout;
+    NSMutableArray * __pendingUpdateItems;
+    BOOL  __performingBatchUpdates;
+    NSMutableDictionary * __postLayoutBlocks;
+    int  __reasonForNextLayoutCoordinateSystemUpdate;
+    NSMutableSet * __referencedCoordinateSystems;
+    NSMutableDictionary * __referencedDataSourcesByIdentifiers;
+    PUReuseQueue * __tileControllerReuseQueue;
+    PUTileTransitionCoordinator * __tileTransitionCoordinatorForNextLayout;
+    <PUTilingCoordinateSystem> * _contentCoordinateSystem;
+    <PUTilingCoordinateSystem> * _fixedCoordinateSystem;
+    PUTilingLayout * _layout;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _loadingInsets;
-    id /* block */ _onNextTileControllersUpdateBlock;
-    <PUTilingViewScrollDelegate> *_scrollDelegate;
+    }  _loadingInsets;
+    id /* block */  _onNextTileControllersUpdateBlock;
+    <PUTilingViewScrollDelegate> * _scrollDelegate;
     struct { 
         BOOL respondsToScrollInfoWithLayout; 
         BOOL respondsToInitialVisibleOriginWithLayout; 
         BOOL respondsToTargetVisibleOriginForProposedVisibleOrigin; 
-    } _scrollDelegateFlags;
-    PUTileAnimator *_tileAnimator;
-    <PUTilingViewTileSource> *_tileSource;
-    <PUTilingViewTileTransitionDelegate> *_tileTransitionDelegate;
+    }  _scrollDelegateFlags;
+    PUTileAnimator * _tileAnimator;
+    <PUTilingViewTileSource> * _tileSource;
+    <PUTilingViewTileTransitionDelegate> * _tileTransitionDelegate;
     struct { 
         BOOL respondsToDataSourceConverterForTransitionFromLayoutToLayout; 
         BOOL respondsToTileTransitionCoordinatorForTransitionFromLayoutWithContext; 
@@ -54,14 +51,15 @@
         BOOL respondsToTileTransitionCoordinatorForChangeFromFrame; 
         BOOL respondsToTileTransitionCoordinatorForReattachedTileControllers; 
         BOOL respondsToTileTransitionCoordinatorForLayoutInvalidationContext; 
-    } _tileTransitionDelegateFlags;
-    <PUTilingViewTileUseDelegate> *_tileUseDelegate;
+        BOOL respondsToCanBypass20069585Check; 
+    }  _tileTransitionDelegateFlags;
+    <PUTilingViewTileUseDelegate> * _tileUseDelegate;
     struct { 
         BOOL respondsToWillStartUsingTileController; 
         BOOL respondsToDidStopUsingTileController; 
         BOOL respondsToDidUpdateTileControllers; 
         BOOL respondsToDidEndAnimatingTileControllers; 
-    } _tileUseDelegateFlags;
+    }  _tileUseDelegateFlags;
 }
 
 @property (nonatomic, readonly) PUTileTree *_activeTileControllers;
@@ -80,6 +78,7 @@
 @property (setter=_setPendingLayout:, nonatomic, retain) PUTilingLayout *_pendingLayout;
 @property (nonatomic, readonly) NSMutableArray *_pendingUpdateItems;
 @property (getter=_isPerformingBatchUpdates, setter=_setPerformingBatchUpdates:, nonatomic) BOOL _performingBatchUpdates;
+@property (nonatomic, readonly) NSMutableDictionary *_postLayoutBlocks;
 @property (setter=_setReasonForNextLayoutCoordinateSystemUpdate:, nonatomic) int _reasonForNextLayoutCoordinateSystemUpdate;
 @property (nonatomic, readonly) NSMutableSet *_referencedCoordinateSystems;
 @property (nonatomic, readonly) NSMutableDictionary *_referencedDataSourcesByIdentifiers;
@@ -88,8 +87,7 @@
 @property (nonatomic, readonly) <PUTilingCoordinateSystem> *contentCoordinateSystem;
 @property (nonatomic, readonly) <PUTilingCoordinateSystem> *fixedCoordinateSystem;
 @property (nonatomic, readonly) BOOL isAnyTileControllerAnimating;
-@property (nonatomic, retain) PUTilingLayout *layout;
-@property (nonatomic) <PUTilingViewLayoutDelegate> *layoutDelegate;
+@property (setter=_setLayout:, nonatomic, retain) PUTilingLayout *layout;
 @property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } loadingInsets;
 @property (nonatomic, copy) id /* block */ onNextTileControllersUpdateBlock;
 @property (nonatomic) <PUTilingViewScrollDelegate> *scrollDelegate;
@@ -131,10 +129,12 @@
 - (float)_pagingSpringPullAdjustment;
 - (id)_pendingLayout;
 - (id)_pendingUpdateItems;
+- (id)_postLayoutBlocks;
 - (int)_reasonForNextLayoutCoordinateSystemUpdate;
 - (id)_referencedCoordinateSystems;
 - (id)_referencedDataSourcesByIdentifiers;
 - (void)_registerDataSource:(id)arg1;
+- (void)_runPostLayoutBlocks;
 - (void)_setLayout:(id)arg1;
 - (void)_setNeedsUpdate;
 - (void)_setNeedsUpdateLayout:(BOOL)arg1;
@@ -183,7 +183,6 @@
 - (void)invalidateLayout:(id)arg1 withContext:(id)arg2;
 - (BOOL)isAnyTileControllerAnimating;
 - (id)layout;
-- (id)layoutDelegate;
 - (void)layoutSubviews;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })loadingInsets;
 - (void)moveItemFromIndexPath:(id)arg1 toIndexPath:(id)arg2 dataSource:(id)arg3;
@@ -191,12 +190,12 @@
 - (void)performBatchUpdates:(id /* block */)arg1;
 - (id)presentedTileControllerWithIndexPath:(id)arg1 kind:(id)arg2 dataSourceIdentifier:(id)arg3;
 - (void)reattachTileControllers:(id)arg1 withContext:(id)arg2;
+- (void)registerPostLayoutBlock:(id /* block */)arg1 forIdentifier:(id)arg2;
 - (void)registerTileControllerClass:(Class)arg1 forReuseIdentifier:(id)arg2;
 - (void)reloadItemAtIndexPath:(id)arg1 dataSource:(id)arg2;
 - (id)scrollDelegate;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setLayoutDelegate:(id)arg1;
 - (void)setLoadingInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setOnNextTileControllersUpdateBlock:(id /* block */)arg1;
 - (void)setScrollDelegate:(id)arg1;

@@ -2,24 +2,33 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@interface IKJSITunesStore : IKJSObject <IKJSITunesStore, JSExport> {
-    int _bagOperationLock;
-    NSString *_cookieURL;
-    id _isURLBagDidLoadToken;
-    NSNumber *_lastAccountDSID;
-    SSMetricsController *_metricsController;
-    ISLoadURLBagOperation *_pendingBagOperation;
-    id _ssAccountStoreChangedToken;
-    NSString *_storeFrontSuffix;
+@interface IKJSITunesStore : IKJSObject <IKJSITunesStore, NSObject, _IKJSITunesStore, _IKJSITunesStoreProxy> {
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _bagOperationLock;
+    NSString * _cookieURL;
+    id  _isURLBagDidLoadToken;
+    NSNumber * _lastAccountDSID;
+    NSDictionary * _lastKnownStatusDictionary;
+    SSMetricsController * _metricsController;
+    ISLoadURLBagOperation * _pendingBagOperation;
+    id  _ssAccountStoreChangedToken;
+    NSString * _storeFrontSuffix;
+    id  _subscriptionStatusDidChangeToken;
 }
 
 @property (nonatomic, readonly) NSString *DSID;
 @property (nonatomic, readonly) NSDictionary *accountInfo;
 @property (nonatomic, retain) id cookie;
 @property (nonatomic, retain) NSString *cookieURL;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isManagedAppleID, nonatomic, readonly) BOOL managedAppleID;
 @property (nonatomic, readonly) NSString *networkConnectionType;
 @property (nonatomic) ISLoadURLBagOperation *pendingBagOperation;
 @property (nonatomic, retain) NSString *storefront;
+@property (readonly) Class superclass;
 @property (nonatomic, readonly) NSString *userAgent;
 
 + (id)_URLBagContext;
@@ -30,10 +39,12 @@
 - (id)DSID;
 - (void)_accountStoreChanged;
 - (void)_bagDidLoadNotification:(id)arg1;
+- (void)_subscriptionStatusChanged;
 - (id)_subscriptionStatusDictionaryWithStatus:(id)arg1 isFinal:(BOOL)arg2;
 - (void)_updateBag:(BOOL)arg1;
 - (void)_updateWithBag:(id)arg1;
 - (id)accountInfo;
+- (id)asPrivateIKJSITunesStore;
 - (void)authenticate:(id)arg1 :(id)arg2;
 - (void)clearCookies;
 - (id)cookie;
@@ -46,6 +57,7 @@
 - (void)getServiceEligibility:(id)arg1 :(id)arg2;
 - (id)initWithAppContext:(id)arg1;
 - (void)invalidateBag;
+- (BOOL)isManagedAppleID;
 - (void)loadStoreContent:(id)arg1 :(id)arg2;
 - (id)makeStoreXMLHttpRequest;
 - (id)networkConnectionType;

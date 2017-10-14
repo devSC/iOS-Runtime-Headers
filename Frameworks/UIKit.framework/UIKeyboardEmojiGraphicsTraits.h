@@ -3,33 +3,31 @@
  */
 
 @interface UIKeyboardEmojiGraphicsTraits : NSObject {
-    float _alertTextWidth;
-    float _categoryHeaderFontSize;
-    float _categoryHeaderHeight;
-    float _categoryHeaderLeftPadding;
-    float _categorySelectedCirPadding;
-    float _categorySelectedCirWidth;
-    float _columnOffset;
-    float _emojiKeyWidth;
+    float  _alertTextWidth;
+    float  _categoryHeaderFontSize;
+    float  _categoryHeaderHeight;
+    float  _categoryHeaderLeftPadding;
+    float  _categorySelectedCirWidth;
+    float  _columnOffset;
+    float  _emojiKeyWidth;
     struct CGSize { 
         float width; 
         float height; 
-    } _fakeEmojiKeySize;
-    float _inputViewLeftMostPadding;
-    float _inputViewRightMostPadding;
-    float _minimumInteritemSpacing;
-    float _minimumLineSpacing;
-    int _prepolulatedRecentCount;
-    float _rightBiasPercentage;
-    float _scrubViewTopPadding;
-    float _sectionOffset;
+    }  _fakeEmojiKeySize;
+    float  _inputViewLeftMostPadding;
+    float  _inputViewRightMostPadding;
+    float  _minimumInteritemSpacing;
+    float  _minimumLineSpacing;
+    int  _prepolulatedRecentCount;
+    float  _rightBiasPercentage;
+    float  _scrubViewTopPadding;
+    float  _sectionOffset;
 }
 
 @property (nonatomic, readonly) float alertTextWidth;
 @property (nonatomic, readonly) float categoryHeaderFontSize;
 @property (nonatomic, readonly) float categoryHeaderHeight;
 @property (nonatomic, readonly) float categoryHeaderLeftPadding;
-@property (nonatomic, readonly) float categorySelectedCirPadding;
 @property (nonatomic, readonly) float categorySelectedCirWidth;
 @property (nonatomic, readonly) float columnOffset;
 @property (nonatomic, readonly) float emojiKeyWidth;
@@ -49,7 +47,6 @@
 - (float)categoryHeaderFontSize;
 - (float)categoryHeaderHeight;
 - (float)categoryHeaderLeftPadding;
-- (float)categorySelectedCirPadding;
 - (float)categorySelectedCirWidth;
 - (float)columnOffset;
 - (float)emojiKeyWidth;

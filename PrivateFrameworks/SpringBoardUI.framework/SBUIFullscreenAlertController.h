@@ -3,16 +3,17 @@
  */
 
 @interface SBUIFullscreenAlertController : UIViewController <NSCopying> {
-    NSString *_activationContext;
-    NSNumber *_animationStartTime;
-    NSInvocation *_pendingDeactivationInvocation;
-    BOOL _shouldAnimateIn;
+    NSString * _activationContext;
+    NSNumber * _animationStartTime;
+    NSInvocation * _pendingDeactivationInvocation;
+    BOOL  _shouldAnimateIn;
 }
 
 @property (nonatomic, retain) NSString *activationContext;
 @property (nonatomic, retain) NSNumber *animationStartTime;
 @property (nonatomic) BOOL shouldAnimateIn;
 
+- (void).cxx_destruct;
 - (id)activationContext;
 - (BOOL)allowStackingOfAlert:(id)arg1;
 - (BOOL)allowSuspension;
@@ -20,7 +21,6 @@
 - (void)animateViewOut;
 - (id)animationStartTime;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (BOOL)definesPresentationContext;
 - (void)didFinishLaunchingFrontmost;
 - (void)didReceiveMemoryWarning;

@@ -3,45 +3,44 @@
  */
 
 @interface PUFeedTextCell : PUFeedCell {
-    UIButton *__button;
-    UILabel *__detailLabel;
-    UIImageView *__iconImageView;
-    UILabel *__label;
-    NSAttributedString *_attributedDetailText;
-    NSAttributedString *_attributedText;
-    int _buttonHorizontalAlignment;
+    UIButton * __button;
+    UILabel * __detailLabel;
+    UIImageView * __iconImageView;
+    UILabel * __label;
+    NSAttributedString * _attributedDetailText;
+    NSAttributedString * _attributedText;
+    int  _buttonHorizontalAlignment;
     struct UIOffset { 
         float horizontal; 
         float vertical; 
-    } _buttonOffset;
-    float _buttonPadding;
-    int _buttonSize;
-    int _buttonType;
+    }  _buttonOffset;
+    float  _buttonPadding;
+    int  _buttonSize;
+    int  _buttonType;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _contentInsets;
-    PUFeedTextCellContentView *_contentView;
-    UIImage *_iconImage;
-    int _iconLocation;
+    }  _contentInsets;
+    UIImage * _iconImage;
+    int  _iconLocation;
     struct UIOffset { 
         float horizontal; 
         float vertical; 
-    } _iconOffset;
+    }  _iconOffset;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _iconPadding;
-    int _numberOfDetailTextLines;
-    int _numberOfTextLines;
-    BOOL _shouldUseOpaqueBackground;
-    int _tappableArea;
-    int _textAlignment;
-    float _textDetailTextSpacing;
+    }  _iconPadding;
+    int  _numberOfDetailTextLines;
+    int  _numberOfTextLines;
+    BOOL  _shouldUseOpaqueBackground;
+    int  _tappableArea;
+    int  _textAlignment;
+    float  _textDetailTextSpacing;
 }
 
 @property (setter=_setButton:, nonatomic, retain) UIButton *_button;
@@ -94,7 +93,6 @@
 - (int)buttonSize;
 - (int)buttonType;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInsets;
-- (id)contentView;
 - (id)iconImage;
 - (int)iconLocation;
 - (struct UIOffset { float x1; float x2; })iconOffset;

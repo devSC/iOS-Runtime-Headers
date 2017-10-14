@@ -5,14 +5,16 @@
 @interface AWDCoreRoutineModelClusterMovementNoiseSet : PBCodable <NSCopying> {
     struct { 
         unsigned int timestamp : 1; 
-    } _has;
-    NSMutableArray *_instances;
-    unsigned long long _timestamp;
+    }  _has;
+    NSMutableArray * _instances;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic, retain) NSMutableArray *instances;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)instanceType;
 
 - (void)addInstance:(id)arg1;
 - (void)clearInstances;

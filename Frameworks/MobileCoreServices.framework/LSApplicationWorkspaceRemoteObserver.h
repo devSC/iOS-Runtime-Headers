@@ -2,13 +2,23 @@
    Image: /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
  */
 
-@interface LSApplicationWorkspaceRemoteObserver : LSApplicationWorkspaceObserver {
-    NSHashTable *_observers;
-    BOOL _observinglsd;
-    NSObject<OS_dispatch_queue> *_progressSubscriptionsQueue;
+@interface LSApplicationWorkspaceRemoteObserver : NSObject <LSInternalWorkspaceObserverProtocol, NSSecureCoding> {
+    NSHashTable * _observers;
+    BOOL  _observinglsd;
+    NSObject<OS_dispatch_queue> * _progressSubscriptionsQueue;
+    NSUUID * _uuid;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSUUID *uuid;
+
++ (BOOL)supportsSecureCoding;
+
 - (void)addLocalObserver:(id)arg1;
+- (void)applicationIconDidChange:(id)arg1;
 - (void)applicationInstallsArePrioritized:(id)arg1 arePaused:(id)arg2;
 - (void)applicationInstallsDidCancel:(id)arg1;
 - (void)applicationInstallsDidChange:(id)arg1;
@@ -17,6 +27,7 @@
 - (void)applicationInstallsDidResume:(id)arg1;
 - (void)applicationInstallsDidStart:(id)arg1;
 - (void)applicationInstallsDidUpdateIcon:(id)arg1;
+- (void)applicationStateDidChange:(id)arg1;
 - (void)applicationsDidFailToInstall:(id)arg1;
 - (void)applicationsDidFailToUninstall:(id)arg1;
 - (void)applicationsDidInstall:(id)arg1;
@@ -25,14 +36,19 @@
 - (void)applicationsWillUninstall:(id)arg1;
 - (unsigned int)currentObserverCount;
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isObservinglsd;
 - (id)localObservers;
+- (BOOL)messageObserversWithSelector:(SEL)arg1 andApps:(id)arg2;
 - (void)networkUsageChanged:(BOOL)arg1;
 - (void)pluginsDidInstall:(id)arg1;
 - (void)pluginsDidUninstall:(id)arg1;
 - (void)pluginsWillUninstall:(id)arg1;
 - (void)removeLocalObserver:(id)arg1;
 - (void)setObservinglsd:(BOOL)arg1;
+- (void)setUuid:(id)arg1;
+- (id)uuid;
 
 @end

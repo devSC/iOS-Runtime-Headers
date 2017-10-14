@@ -3,12 +3,12 @@
  */
 
 @interface PUBrowsingBackgroundTileViewController : PUTileViewController <PUBrowsingViewModelChangeObserver> {
-    _UIContentUnavailableView *__emptyPlaceholderView;
-    BOOL __needsUpdateColor;
-    id /* block */ __nextColorUpdateAnimatorBlock;
-    UIColor *_backgroundColorOverride;
-    BOOL _shouldDisplayEmptyPlaceholder;
-    PUBrowsingViewModel *_viewModel;
+    _UIContentUnavailableView * __emptyPlaceholderView;
+    BOOL  __needsUpdateColor;
+    id /* block */  __nextColorUpdateAnimatorBlock;
+    UIColor * _backgroundColorOverride;
+    BOOL  _shouldDisplayEmptyPlaceholder;
+    PUBrowsingViewModel * _viewModel;
 }
 
 @property (setter=_setEmptyPlaceholderView:, nonatomic, retain) _UIContentUnavailableView *_emptyPlaceholderView;
@@ -35,11 +35,11 @@
 - (void)_updateEmptyPlaceholderAnimated:(BOOL)arg1;
 - (void)applyLayoutInfo:(id)arg1;
 - (id)backgroundColorOverride;
-- (void)loadView;
 - (void)setBackgroundColorOverride:(id)arg1;
 - (void)setShouldDisplayEmptyPlaceholder:(BOOL)arg1;
 - (void)setViewModel:(id)arg1;
 - (BOOL)shouldDisplayEmptyPlaceholder;
+- (void)viewDidLoad;
 - (id)viewModel;
 - (void)viewModel:(id)arg1 didChange:(id)arg2;
 

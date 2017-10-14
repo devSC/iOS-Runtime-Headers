@@ -3,7 +3,7 @@
  */
 
 @interface MCMDMClient : NSObject {
-    NSXPCConnection *_xpcConnection;
+    NSXPCConnection * _xpcConnection;
 }
 
 @property (nonatomic, retain) NSXPCConnection *xpcConnection;
@@ -18,11 +18,18 @@
 - (void)dealloc;
 - (BOOL)isActivationLockAllowedWhileSupervised;
 - (BOOL)isManagedByMDM;
+- (void)migrateMDMWithContext:(int)arg1 completion:(id /* block */)arg2;
 - (void)notifyNewConfiguration;
+- (void)processDeviceRequest:(id)arg1 completion:(id /* block */)arg2;
+- (id)processDeviceRequest:(id)arg1 outError:(id*)arg2;
+- (void)processUserRequest:(id)arg1 completion:(id /* block */)arg2;
+- (id)processUserRequest:(id)arg1 outError:(id*)arg2;
 - (void)retryNotNowResponse;
 - (void)scheduleTokenUpdate;
+- (void)scheduleTokenUpdateIfNecessary;
 - (void)setXpcConnection:(id)arg1;
 - (void)simulatePush;
+- (void)simulatePushIfNetworkTetheredWithCompletion:(id /* block */)arg1;
 - (void)uprootMDM;
 - (id)xpcConnection;
 

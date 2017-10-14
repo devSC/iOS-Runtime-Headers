@@ -3,16 +3,16 @@
  */
 
 @interface SKUIGridViewElementPageSection : SKUIStorePageSection <SKUIArtworkRequestDelegate, SKUICollectionDOMFeatureTargetting, SKUIGridViewElementPageSectionConfigurationDataSource> {
-    IKColor *_backgroundColor;
-    SKUIViewElementLayoutContext *_cellLayoutContext;
-    float _cellPaddingInteriorHorizontal;
-    float _cellPaddingLeftEdgeHorizontal;
-    float _cellPaddingRightEdgeHorizontal;
-    SKUIGridViewElementPageSectionConfiguration *_configuration;
-    BOOL _editing;
-    NSArray *_indexPathsForBackgroundItems;
-    int _lastNeedsMoreCount;
-    NSArray *_viewElements;
+    IKColor * _backgroundColor;
+    SKUIViewElementLayoutContext * _cellLayoutContext;
+    float  _cellPaddingInteriorHorizontal;
+    float  _cellPaddingLeftEdgeHorizontal;
+    float  _cellPaddingRightEdgeHorizontal;
+    SKUIGridViewElementPageSectionConfiguration * _configuration;
+    BOOL  _editing;
+    NSArray * _indexPathsForBackgroundItems;
+    int  _lastNeedsMoreCount;
+    NSArray * _viewElements;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -54,10 +54,10 @@
 - (BOOL)isEditing;
 - (int)numberOfCells;
 - (void)prefetchResourcesWithReason:(int)arg1;
-- (id)previewViewControllerForIndexPath:(id)arg1;
-- (BOOL)previewsSupportedForIndexPath:(id)arg1;
+- (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint { float x1; float x2; })arg2;
 - (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;
 - (void)reloadVisibleCellsWithReason:(int)arg1;
+- (BOOL)requestLayoutWithReloadReason:(int)arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })sectionContentInset;
 - (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (id)targetScrollingIndexPathForElementWithIndexBarEntryID:(id)arg1 relativeSectionIndex:(int)arg2;

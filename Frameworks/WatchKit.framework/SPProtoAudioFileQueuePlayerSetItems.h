@@ -3,12 +3,14 @@
  */
 
 @interface SPProtoAudioFileQueuePlayerSetItems : PBCodable <NSCopying> {
-    NSString *_identifier;
-    NSMutableArray *_playerItemIdentifiers;
+    NSString * _identifier;
+    NSMutableArray * _playerItemIdentifiers;
 }
 
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSMutableArray *playerItemIdentifiers;
+
++ (Class)playerItemIdentifiersType;
 
 - (void).cxx_destruct;
 - (void)addPlayerItemIdentifiers:(id)arg1;

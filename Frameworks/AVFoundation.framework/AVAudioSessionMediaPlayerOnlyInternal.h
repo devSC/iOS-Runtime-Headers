@@ -3,14 +3,15 @@
  */
 
 @interface AVAudioSessionMediaPlayerOnlyInternal : NSObject {
-    NSDictionary *activationContext;
-    NSString *category;
-    <AVAudioSessionDelegateMediaPlayerOnly> *delegate;
-    struct OpaqueFigPlayer { } *figPlayer;
-    BOOL isActive;
-    BOOL isAppAudioSession;
-    NSString *mode;
-    AVWeakReference *weakReference;
+    NSDictionary * activationContext;
+    NSString * category;
+    <AVAudioSessionDelegateMediaPlayerOnly> * delegate;
+    struct OpaqueFigPlayer { } * figPlayer;
+    BOOL  isActive;
+    BOOL  isAppAudioSession;
+    NSString * mode;
+    BOOL  usingLongFormAudio;
+    AVWeakReference * weakReference;
 }
 
 @end

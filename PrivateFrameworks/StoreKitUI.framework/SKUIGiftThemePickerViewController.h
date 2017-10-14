@@ -3,14 +3,14 @@
  */
 
 @interface SKUIGiftThemePickerViewController : SKUIGiftStepViewController <SKUIGiftConfigurationObserver, UICollectionViewDataSource, UICollectionViewDelegate> {
-    BOOL _animatingScrollView;
-    SKUIGiftThemeCollectionView *_collectionView;
-    SKUIGiftThemePickerFlowLayout *_flowLayout;
-    UIImage *_itemImage;
-    UIPageControl *_pageControl;
-    int _selectedThemeIndex;
-    UITapGestureRecognizer *_tapGestureRecognizer;
-    NSArray *_themes;
+    BOOL  _animatingScrollView;
+    SKUIGiftThemeCollectionView * _collectionView;
+    SKUIGiftThemePickerFlowLayout * _flowLayout;
+    UIImage * _itemImage;
+    UIPageControl * _pageControl;
+    int  _selectedThemeIndex;
+    UITapGestureRecognizer * _tapGestureRecognizer;
+    NSArray * _themes;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -21,9 +21,11 @@
 - (void).cxx_destruct;
 - (void)_backgroundTapAction:(id)arg1;
 - (float)_cardHeight:(id)arg1;
+- (float)_cardWidth;
 - (id)_collectionView;
 - (float)_collectionViewWidth:(id)arg1;
 - (id)_flowLayout;
+- (BOOL)_isIPadLarge;
 - (void)_layoutCollectionViewWithTraits:(id)arg1;
 - (void)_nextAction:(id)arg1;
 - (float)_scrollInsetHorizontal:(id)arg1;

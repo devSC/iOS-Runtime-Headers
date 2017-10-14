@@ -3,17 +3,16 @@
  */
 
 @interface EKPersistentObject : NSObject {
-    NSMutableDictionary *_committedProperties;
-    NSMutableSet *_dirtyProperties;
-    EKEventStore *_eventStore;
-    unsigned int _flags;
-    struct __CFDictionary { } *_loadedProperties;
+    NSMutableDictionary * _committedProperties;
+    NSMutableSet * _dirtyProperties;
+    EKEventStore * _eventStore;
+    unsigned int  _flags;
+    NSMapTable * _loadedProperties;
     struct _opaque_pthread_mutex_t { 
         long __sig; 
         BOOL __opaque[40]; 
-    } _lock;
-    id _objectID;
-    NSMutableDictionary *_referencers;
+    }  _lock;
+    id  _objectID;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *committedProperties;
@@ -23,12 +22,11 @@
 + (id)defaultPropertiesToLoad;
 + (id)relations;
 
+- (void).cxx_destruct;
 - (void)_addDirtyProperty:(id)arg1;
 - (void)_addObjectCore:(id)arg1 toValues:(id)arg2 relation:(id)arg3;
-- (void)_addReference:(id)arg1 forKey:(id)arg2;
 - (BOOL)_areDefaultPropertiesLoaded;
-- (void)_clearReferences;
-- (void)_clearWeakRelations;
+- (void)_createLoadedPropertiesIfNeeded;
 - (void)_fastpathSetProperty:(id)arg1 forKey:(id)arg2 isRelation:(BOOL)arg3;
 - (BOOL)_isPendingDelete;
 - (BOOL)_isPendingInsert;
@@ -44,7 +42,6 @@
 - (id)_relationForKey:(id)arg1;
 - (void)_releaseLoadedProperties;
 - (void)_removeObjectCore:(id)arg1 fromValues:(id)arg2 relation:(id)arg3;
-- (void)_removeReference:(id)arg1 forKey:(id)arg2;
 - (void)_setDefaultPropertiesLoaded:(BOOL)arg1;
 - (void)_setEventStore:(id)arg1;
 - (void)_setObjectID:(id)arg1;

@@ -3,16 +3,16 @@
  */
 
 @interface CNAccountsAndGroupsItem : NSObject {
-    BOOL _bypassIfUnique;
-    NSArray *_childItems;
-    int _containerType;
-    NSString *_identifier;
-    NSString *_name;
-    id /* block */ _nameProvider;
-    CNAccountsAndGroupsItem *_parentItem;
-    BOOL _selected;
-    BOOL _soloSelect;
-    int _type;
+    BOOL  _bypassIfUnique;
+    NSArray * _childItems;
+    int  _containerType;
+    NSString * _identifier;
+    NSString * _name;
+    id /* block */  _nameProvider;
+    CNAccountsAndGroupsItem * _parentItem;
+    BOOL  _selected;
+    BOOL  _soloSelect;
+    int  _type;
 }
 
 @property (nonatomic) BOOL bypassIfUnique;
@@ -20,7 +20,7 @@
 @property (nonatomic) int containerType;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, copy) id /* block */ nameProvider;
+@property (nonatomic, readonly, copy) id /* block */ nameProvider;
 @property (nonatomic) CNAccountsAndGroupsItem *parentItem;
 @property (getter=isSelected, nonatomic) BOOL selected;
 @property (nonatomic) BOOL soloSelect;
@@ -33,8 +33,9 @@
 - (id)childItems;
 - (int)containerType;
 - (id)identifier;
-- (id)initWithType:(int)arg1;
+- (id)initWithType:(int)arg1 nameProvider:(id /* block */)arg2;
 - (BOOL)isSelected;
+- (int)localizedCompare:(id)arg1;
 - (id)name;
 - (id /* block */)nameProvider;
 - (id)parentItem;
@@ -43,7 +44,6 @@
 - (void)setContainerType:(int)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setName:(id)arg1;
-- (void)setNameProvider:(id /* block */)arg1;
 - (void)setParentItem:(id)arg1;
 - (void)setSelected:(BOOL)arg1;
 - (void)setSoloSelect:(BOOL)arg1;

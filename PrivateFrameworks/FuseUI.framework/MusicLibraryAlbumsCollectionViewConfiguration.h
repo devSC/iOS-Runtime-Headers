@@ -3,10 +3,12 @@
  */
 
 @interface MusicLibraryAlbumsCollectionViewConfiguration : MusicLibraryBrowseCollectionViewConfiguration {
-    NSMutableSet *_additionalQueryFilterPredicates;
-    BOOL _forMainAlbumsList;
-    BOOL _includeCompilations;
+    NSMutableSet * _additionalQueryFilterPredicates;
+    BOOL  _forMainAlbumsList;
+    BOOL  _includeCompilations;
 }
+
++ (void)populateHorizontalLayoutInterpolatorsOnCollectionViewDescriptor:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)_detailViewControllerForAlbumPersistentID:(unsigned long long)arg1 sourceViewController:(id)arg2;

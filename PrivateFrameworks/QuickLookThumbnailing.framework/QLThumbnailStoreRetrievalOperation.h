@@ -3,17 +3,21 @@
  */
 
 @interface QLThumbnailStoreRetrievalOperation : NSOperation {
-    QLThumbnailAddition *_addition;
-    BOOL _allowsThumbnailGeneration;
-    NSURL *_destinationURL;
-    NSURL *_documentURL;
-    NSError *_error;
-    BOOL _executing;
-    BOOL _finished;
-    BOOL _generateThumbnailsAtBackgroundPriority;
-    <QLThumbnailGenerationRequest> *_thumbnailRequest;
+    QLThumbnailAddition * _addition;
+    BOOL  _allowsThumbnailGeneration;
+    NSURL * _destinationURL;
+    NSURL * _documentURL;
+    NSError * _error;
+    BOOL  _executing;
+    BOOL  _finished;
+    BOOL  _generateThumbnailsAtBackgroundPriority;
+    NSObject<OS_os_activity> * _generationActivity;
+    NSObject<OS_os_activity> * _retrievalActivity;
+    <QLThumbnailGenerationRequest><NSXPCProxyCreating> * _thumbnailRequest;
+    BOOL  _thumbnailWasJustAutomaticallyGenerated;
 }
 
+@property (readonly) QLThumbnailAddition *addition;
 @property BOOL allowsThumbnailGeneration;
 @property (retain) NSError *error;
 @property (getter=isExecuting, nonatomic) BOOL executing;
@@ -23,6 +27,7 @@
 @property (readonly) NSData *serializedQuickLookMetadataDictionary;
 @property (readonly) NSDictionary *thumbnailImagesDictionary;
 @property (readonly) BOOL thumbnailWasAutomaticallyGenerated;
+@property (readonly) BOOL thumbnailWasJustAutomaticallyGenerated;
 
 + (BOOL)canMostRecentClientsGenerateThumbnailsForUTI:(id)arg1;
 
@@ -31,6 +36,7 @@
 - (BOOL)_finishIfCancelled;
 - (void)_finishWithError:(id)arg1;
 - (void)_generateThumbnail;
+- (id)addition;
 - (void)afterThumbnailIsPutInGenstore;
 - (BOOL)allowsThumbnailGeneration;
 - (void)cancel;
@@ -44,6 +50,7 @@
 - (BOOL)isConcurrent;
 - (BOOL)isExecuting;
 - (BOOL)isFinished;
+- (id)issueSandboxExtension;
 - (void)main;
 - (id)serializedQuickLookMetadataDictionary;
 - (void)setAllowsThumbnailGeneration:(BOOL)arg1;
@@ -54,5 +61,6 @@
 - (void)start;
 - (id)thumbnailImagesDictionary;
 - (BOOL)thumbnailWasAutomaticallyGenerated;
+- (BOOL)thumbnailWasJustAutomaticallyGenerated;
 
 @end

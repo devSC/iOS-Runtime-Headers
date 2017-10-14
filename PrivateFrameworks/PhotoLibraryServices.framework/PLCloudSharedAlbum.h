@@ -3,7 +3,7 @@
  */
 
 @interface PLCloudSharedAlbum : PLManagedAlbum <PLCloudSharedAlbumProtocol> {
-    BOOL _deleteFromDBOnly;
+    BOOL  _deleteFromDBOnly;
 }
 
 @property (nonatomic, readonly) unsigned int approximateCount;
@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString *cloudOwnerFirstName;
 @property (nonatomic, retain) NSString *cloudOwnerFullName;
 @property (nonatomic, retain) NSString *cloudOwnerHashedPersonID;
+@property (nonatomic) BOOL cloudOwnerIsWhitelisted;
 @property (nonatomic, retain) NSString *cloudOwnerLastName;
 @property (nonatomic, retain) NSString *cloudPersonID;
 @property (nonatomic, retain) NSNumber *cloudPublicURLEnabled;

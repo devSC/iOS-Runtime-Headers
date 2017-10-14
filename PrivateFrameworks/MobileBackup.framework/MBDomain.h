@@ -3,34 +3,34 @@
  */
 
 @interface MBDomain : NSObject {
-    int _fileDescriptor;
-    int _fileDescriptorRefCount;
-    BOOL _hasExternalConfig;
-    BOOL _isExternalConfig;
-    NSString *_name;
-    NSDictionary *_relativePathAggregateDictionaryGroups;
-    NSDictionary *_relativePathDomainRedirects;
-    NSSet *_relativePathsNotToBackup;
-    NSSet *_relativePathsNotToBackupAndRestoreToAppleTVs;
-    NSSet *_relativePathsNotToBackupToDrive;
-    NSSet *_relativePathsNotToBackupToService;
-    NSSet *_relativePathsNotToCheckIfModifiedDuringBackup;
-    NSSet *_relativePathsNotToMigrate;
-    NSSet *_relativePathsNotToRemoveIfNotRestored;
-    NSSet *_relativePathsNotToRestore;
-    NSSet *_relativePathsNotToRestoreToIPods;
-    NSSet *_relativePathsOfSystemFilesToAlwaysRemoveOnRestore;
-    NSSet *_relativePathsOfSystemFilesToAlwaysRestore;
-    NSSet *_relativePathsToBackgroundRestore;
-    NSSet *_relativePathsToBackupAndRestore;
-    NSSet *_relativePathsToBackupIgnoringProtectionClass;
-    NSSet *_relativePathsToOnlyBackupEncrypted;
-    NSSet *_relativePathsToRemoveOnRestore;
-    NSSet *_relativePathsToRestoreOnly;
-    NSSet *_relativePathsToRestoreOnlyFromService;
-    NSString *_rootPath;
-    BOOL _shouldDigest;
-    BOOL _shouldRestoreRelativeSymlinks;
+    int  _fileDescriptor;
+    int  _fileDescriptorRefCount;
+    BOOL  _hasExternalConfig;
+    BOOL  _isExternalConfig;
+    NSString * _name;
+    NSDictionary * _relativePathAggregateDictionaryGroups;
+    NSDictionary * _relativePathDomainRedirects;
+    NSSet * _relativePathsNotToBackup;
+    NSSet * _relativePathsNotToBackupAndRestoreToAppleTVs;
+    NSSet * _relativePathsNotToBackupToDrive;
+    NSSet * _relativePathsNotToBackupToService;
+    NSSet * _relativePathsNotToCheckIfModifiedDuringBackup;
+    NSSet * _relativePathsNotToMigrate;
+    NSSet * _relativePathsNotToRemoveIfNotRestored;
+    NSSet * _relativePathsNotToRestore;
+    NSSet * _relativePathsNotToRestoreToIPods;
+    NSSet * _relativePathsOfSystemFilesToAlwaysRemoveOnRestore;
+    NSSet * _relativePathsOfSystemFilesToAlwaysRestore;
+    NSSet * _relativePathsToBackgroundRestore;
+    NSSet * _relativePathsToBackupAndRestore;
+    NSSet * _relativePathsToBackupIgnoringProtectionClass;
+    NSSet * _relativePathsToOnlyBackupEncrypted;
+    NSSet * _relativePathsToRemoveOnRestore;
+    NSSet * _relativePathsToRestoreOnly;
+    NSSet * _relativePathsToRestoreOnlyFromService;
+    NSString * _rootPath;
+    BOOL  _shouldDigest;
+    BOOL  _shouldRestoreRelativeSymlinks;
 }
 
 @property (getter=isAppDomain, nonatomic, readonly) BOOL appDomain;
@@ -69,6 +69,8 @@
 @property (nonatomic, readonly) NSString *rootPath;
 @property (nonatomic) BOOL shouldDigest;
 @property (nonatomic) BOOL shouldRestoreRelativeSymlinks;
+@property (getter=isSystemContainerDomain, nonatomic, readonly) BOOL systemContainerDomain;
+@property (getter=isSystemSharedContainerDomain, nonatomic, readonly) BOOL systemSharedContainerDomain;
 
 + (BOOL)_boolFromValue:(id)arg1 forKey:(id)arg2;
 + (id)_dictionaryOfStringsToStringFromValue:(id)arg1 forKey:(id)arg2;
@@ -88,24 +90,28 @@
 + (BOOL)isAppPlaceholderName:(id)arg1;
 + (BOOL)isAppPluginName:(id)arg1;
 + (BOOL)isContainerName:(id)arg1;
++ (BOOL)isSystemContainerName:(id)arg1;
 + (BOOL)isSystemName:(id)arg1;
++ (BOOL)isSystemSharedContainerName:(id)arg1;
 + (id)nameWithAppID:(id)arg1;
 + (id)placeholderNameWithAppID:(id)arg1;
 + (BOOL)shouldRestoreRelativeSymlinksForDomainName:(id)arg1;
++ (id)systemContainerDomainWithIdentifier:(id)arg1 rootPath:(id)arg2;
 + (id)systemDomains;
 + (id)systemDomainsByName;
 + (double)systemDomainsMaxSupportedVersion;
 + (double)systemDomainsMinSupportedVersion;
 + (double)systemDomainsVersion;
++ (id)systemSharedContainerDomainWithIdentifier:(id)arg1 rootPath:(id)arg2;
 
 - (void)_releaseFileDescriptor;
-- (void)_simulateCrashWithMessage:(id)arg1;
 - (int)compare:(id)arg1;
 - (id)containerID;
 - (int)containerType;
 - (void)dealloc;
 - (id)description;
 - (int)fileDescriptor;
+- (int)fileDescriptorWithSnapshotPath:(id)arg1;
 - (BOOL)hasExternalConfig;
 - (BOOL)hasRootPath;
 - (unsigned int)hash;
@@ -118,6 +124,8 @@
 - (BOOL)isGroupAppDomain;
 - (BOOL)isPlaceholderAppDomain;
 - (BOOL)isPluginAppDomain;
+- (BOOL)isSystemContainerDomain;
+- (BOOL)isSystemSharedContainerDomain;
 - (BOOL)isUninstalledAppDomain;
 - (BOOL)loadDomainFromExternalPlist:(id)arg1;
 - (BOOL)loadSystemDomainFromPlist:(id)arg1;

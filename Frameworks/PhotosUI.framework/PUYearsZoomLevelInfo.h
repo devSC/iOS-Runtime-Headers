@@ -3,8 +3,8 @@
  */
 
 @interface PUYearsZoomLevelInfo : PUGridZoomLevelInfo <PUSectionedGridLayoutDelegate> {
-    NSMutableDictionary *_resultsForCollectionList;
-    PHFetchResult *_yearsFetchResult;
+    NSMutableDictionary * _resultsForCollectionList;
+    PHFetchResult * _yearsFetchResult;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -19,10 +19,12 @@
 - (double)cellAspectRatioHint;
 - (int)cellFillMode;
 - (void)configureSectionHeaderView:(id)arg1 forVisualSection:(int)arg2;
+- (unsigned int)dateRangeFormatterPreset;
 - (id)diagnosticsProviderForVisualSection:(int)arg1;
 - (id)displayTitle;
-- (id)imageDataForAsset:(id)arg1 itemContentScale:(float)arg2 imageWidth:(int*)arg3 imageHeight:(int*)arg4 bytesPerRow:(int*)arg5 dataWidth:(int*)arg6 dataHeight:(int*)arg7 imageDataOffset:(int*)arg8;
+- (void)getPhotosDataSource:(id*)arg1 displayTitleInfo:(id*)arg2 forDetailsForVisualSection:(int)arg3;
 - (int)imageDeliveryMode;
+- (struct CGSize { float x1; float x2; })imageRequestItemSize;
 - (id)initWithZoomLevel:(unsigned int)arg1 zoomLevelManager:(id)arg2 baseZoomLevelInfo:(id)arg3;
 - (int)maxRowsPerSection;
 - (void)modelDidChange:(id)arg1;

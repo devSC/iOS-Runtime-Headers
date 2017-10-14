@@ -3,19 +3,24 @@
  */
 
 @interface UIPDFPageImageCache : NSObject {
-    UIPDFDocument *_document;
-    unsigned int _jobCount;
-    id *_jobsByPage;
-    id *_jobsPrioritized;
-    int _lock;
-    unsigned int _lookAhead;
-    unsigned int _nextJobIndex;
-    unsigned int _pageCount;
-    NSOperationQueue *_renderQueue;
+    UIPDFDocument * _document;
+    unsigned int  _jobCount;
+    id * _jobsByPage;
+    id * _jobsPrioritized;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
+    unsigned int  _lookAhead;
+    float  _lookAheadResolution;
+    unsigned int  _nextJobIndex;
+    unsigned int  _pageCount;
+    NSOperationQueue * _renderQueue;
+    int  jobsComplete;
 }
 
 @property (readonly) UIPDFDocument *document;
 @property (readonly) unsigned int lookAhead;
+@property (readonly) float lookAheadResolution;
 @property (readonly) unsigned int pageCount;
 
 - (void)addRenderJob:(id)arg1;
@@ -28,9 +33,11 @@
 - (void)didReceiveMemoryWarning:(id)arg1;
 - (id)document;
 - (id)getImageIfAvailableForPage:(unsigned int)arg1;
+- (int)getRenderQueueJobsCount;
 - (id)initWithDocument:(id)arg1;
-- (id)initWithDocument:(id)arg1 cacheCount:(unsigned int)arg2 lookAhead:(unsigned int)arg3;
+- (id)initWithDocument:(id)arg1 cacheCount:(unsigned int)arg2 lookAhead:(unsigned int)arg3 withLookAheadResolution:(float)arg4;
 - (unsigned int)lookAhead;
+- (float)lookAheadResolution;
 - (unsigned int)pageCount;
 
 @end

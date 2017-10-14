@@ -3,12 +3,12 @@
  */
 
 @interface PLCPLDownloadContext : NSObject {
-    BOOL _completed;
-    NSError *_error;
-    double _progress;
-    NSString *_resourceTypeDescription;
-    NSString *_taskIdentifier;
-    double _updateLastQueuedTime;
+    BOOL  _completed;
+    NSError * _error;
+    double  _progress;
+    NSString * _resourceTypeDescription;
+    NSString * _taskIdentifier;
+    double  _updateLastQueuedTime;
 }
 
 @property BOOL completed;
@@ -31,6 +31,7 @@
 - (void)setTaskIdentifier:(id)arg1;
 - (void)setUpdateLastQueuedTime:(double)arg1;
 - (id)taskIdentifier;
+- (void)updateFromDownloadStatusUserInfo:(id)arg1;
 - (double)updateLastQueuedTime;
 
 @end

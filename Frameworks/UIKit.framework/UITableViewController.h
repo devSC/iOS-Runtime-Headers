@@ -3,16 +3,16 @@
  */
 
 @interface UITableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITableViewFocusDelegateLegacy, UIViewControllerPreviewingDelegate, UIViewControllerPreviewingDelegate_Deprecated, _UIKeyboardAutoRespondingScrollViewController> {
-    _UIFilteredDataSource *_filteredDataSource;
-    int _filteredDataType;
-    UIAutoRespondingScrollViewControllerKeyboardSupport *_keyboardSupport;
-    UITableViewDataSource *_staticDataSource;
+    _UIFilteredDataSource * _filteredDataSource;
+    int  _filteredDataType;
+    UIAutoRespondingScrollViewControllerKeyboardSupport * _keyboardSupport;
+    UITableViewDataSource * _staticDataSource;
     struct { 
         unsigned int clearsSelectionOnViewWillAppear : 1; 
         unsigned int insetsApplied : 1; 
         unsigned int adjustingInsets : 1; 
-    } _tableViewControllerFlags;
-    int _tableViewStyle;
+    }  _tableViewControllerFlags;
+    int  _tableViewStyle;
 }
 
 @property (nonatomic) BOOL clearsSelectionOnViewWillAppear;
@@ -24,6 +24,8 @@
 @property (getter=_staticDataSource, setter=_setStaticDataSource:, nonatomic, retain) UITableViewDataSource *staticDataSource;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UITableView *tableView;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 - (void).cxx_destruct;
 - (void)_applyDefaultDataSourceToTable:(id)arg1;
@@ -76,5 +78,11 @@
 - (void)willPresentPreviewViewController:(id)arg1 forLocation:(struct CGPoint { float x1; float x2; })arg2 inSourceView:(id)arg3;
 - (void)willPresentPreviewViewController:(id)arg1 forPosition:(struct CGPoint { float x1; float x2; })arg2 inSourceView:(id)arg3;
 - (void)willPresentPreviewViewController:(id)arg1 forRowAtIndexPath:(id)arg2;
+
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
+- (void)_cnui_beginRefreshingWithDuration:(double)arg1;
+- (void)_cnui_updateAccountsRefreshControl;
+- (void)refreshAccountsNow:(id)arg1;
 
 @end

@@ -3,7 +3,7 @@
  */
 
 @interface NSPersistentStoreRequest : NSObject <NSCopying> {
-    NSArray *_affectedStores;
+    NSArray * _affectedStores;
 }
 
 @property (nonatomic, retain) NSArray *affectedStores;
@@ -11,6 +11,8 @@
 
 + (void)initialize;
 
+- (BOOL)_secureOperation;
+- (void)_setSecureOperation:(BOOL)arg1;
 - (id)affectedStores;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

@@ -3,15 +3,16 @@
  */
 
 @interface SUBManager : NSObject {
-    <SUBManagerDelegate> *_delegate;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSObject<OS_xpc_object> *_serverConnection;
+    <SUBManagerDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSObject<OS_xpc_object> * _serverConnection;
 }
 
 @property (nonatomic) <SUBManagerDelegate> *delegate;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
 @property (nonatomic, retain) NSObject<OS_xpc_object> *serverConnection;
 
+- (void).cxx_destruct;
 - (void)_forwardDownloadProgress:(id)arg1;
 - (void)_forwardInstallResult:(id)arg1;
 - (void)_forwardInstallationCanProceed:(id)arg1;

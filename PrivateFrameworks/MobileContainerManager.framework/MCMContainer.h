@@ -3,10 +3,11 @@
  */
 
 @interface MCMContainer : NSObject {
-    int _containerClass;
-    NSString *_identifier;
-    struct container_object { } *_thisContainer;
-    NSUUID *_uuid;
+    int  _containerClass;
+    NSString * _identifier;
+    struct container_object { } * _thisContainer;
+    unsigned int  _userId;
+    NSUUID * _uuid;
 }
 
 @property (nonatomic, readonly) int containerClass;
@@ -27,6 +28,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)destroyContainerWithCompletion:(id /* block */)arg1;
+- (unsigned long long)diskUsageWithError:(id*)arg1;
 - (struct container_object { }*)getLowLevelContainerObject;
 - (unsigned int)hash;
 - (id)identifier;
@@ -34,7 +36,7 @@
 - (id)infoValueForKey:(id)arg1 error:(id*)arg2;
 - (id)init;
 - (id)initWithIdentifier:(id)arg1 createIfNecessary:(BOOL)arg2 existed:(BOOL*)arg3 temp:(BOOL)arg4 error:(id*)arg5;
-- (id)initWithIdentifier:(id)arg1 uuid:(id)arg2 containerClass:(int)arg3 error:(id*)arg4;
+- (id)initWithIdentifier:(id)arg1 userId:(unsigned int)arg2 uuid:(id)arg3 containerClass:(int)arg4 error:(id*)arg5;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isTemporary;
 - (void)markDeleted;

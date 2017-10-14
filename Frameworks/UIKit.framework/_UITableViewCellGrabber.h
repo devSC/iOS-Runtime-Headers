@@ -3,16 +3,17 @@
  */
 
 @interface _UITableViewCellGrabber : UIControl {
-    UITableViewCell *_cell;
+    UITableViewCell * _cell;
     struct CGPoint { 
         float x; 
         float y; 
-    } _downPoint;
+    }  _downPoint;
 }
 
 + (id)grabberImage;
 
 - (void).cxx_destruct;
+- (id)__scalarStatisticsForUserTouchUpInsideEvent;
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (void)cancelTrackingWithEvent:(id)arg1;
 - (BOOL)continueTrackingWithTouch:(id)arg1 withEvent:(id)arg2;

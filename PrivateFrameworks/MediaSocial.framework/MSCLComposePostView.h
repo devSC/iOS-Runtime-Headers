@@ -3,23 +3,22 @@
  */
 
 @interface MSCLComposePostView : UIScrollView <NSLayoutManagerDelegate, UITextViewDelegate> {
-    int _allowedCharacterCount;
-    UIButton *_attachmentButton;
-    NSMutableArray *_attachmentViews;
-    UILabel *_characterCountLabel;
-    <MSCLComposePostViewDataSource> *_dataSource;
-    <MSCLComposePostViewDelegate> *_delegate;
-    NSArray *_footerViews;
-    NSArray *_headerViews;
-    int _numberOfAttachments;
+    int  _allowedCharacterCount;
+    UIButton * _attachmentButton;
+    NSMutableArray * _attachmentViews;
+    UILabel * _characterCountLabel;
+    <MSCLComposePostViewDataSource> * _dataSource;
+    NSArray * _footerViews;
+    NSArray * _headerViews;
+    int  _numberOfAttachments;
     struct CGPoint { 
         float x; 
         float y; 
-    } _preCompletionContentOffset;
-    NSArray *_scrollableHeaderViews;
-    UITapGestureRecognizer *_tapRecognizer;
-    UIViewController *_textCompletionViewController;
-    MSCLTokenTextView *_textView;
+    }  _preCompletionContentOffset;
+    NSArray * _scrollableHeaderViews;
+    UITapGestureRecognizer * _tapRecognizer;
+    UIViewController * _textCompletionViewController;
+    MSCLTokenTextView * _textView;
 }
 
 @property (nonatomic) int allowedCharacterCount;
@@ -52,7 +51,6 @@
 - (BOOL)becomeFirstResponder;
 - (id)dataSource;
 - (void)dealloc;
-- (id)delegate;
 - (id)footerViews;
 - (id)headerViews;
 - (void)hideTextCompletionViewControllerAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
@@ -65,7 +63,6 @@
 - (void)setAllowedCharacterCount:(int)arg1;
 - (void)setAttachmentViews:(id)arg1;
 - (void)setDataSource:(id)arg1;
-- (void)setDelegate:(id)arg1;
 - (void)setFooterViews:(id)arg1;
 - (void)setHeaderViews:(id)arg1;
 - (void)setScrollableHeaderViews:(id)arg1;

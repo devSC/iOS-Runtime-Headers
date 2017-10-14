@@ -3,12 +3,13 @@
  */
 
 @interface _CDBatterySaver : NSObject {
-    NSXPCConnection *_connection;
+    NSXPCConnection * _connection;
 }
 
 + (id)batterySaver;
 
 - (void).cxx_destruct;
+- (void)dealloc;
 - (int)getPowerMode;
 - (id)init;
 - (int)setMode:(int)arg1;

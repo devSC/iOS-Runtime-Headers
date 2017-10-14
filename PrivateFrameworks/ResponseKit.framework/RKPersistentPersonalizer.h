@@ -3,15 +3,17 @@
  */
 
 @interface RKPersistentPersonalizer : NSObject {
-    NSURL *_dynamicDataURL;
-    NSString *_languageID;
-    NSLocale *_languageLocale;
-    NSDate *_lastDynamicDataCreationCheckDate;
-    NSDate *_lastObservedDynamicDataCreationDate;
-    void *_model;
-    NSMutableDictionary *_synonyms;
+    <RKDisplayStringsProvider> * _displayStringsProvider;
+    NSURL * _dynamicDataURL;
+    NSString * _languageID;
+    NSLocale * _languageLocale;
+    NSDate * _lastDynamicDataCreationCheckDate;
+    NSDate * _lastObservedDynamicDataCreationDate;
+    void * _model;
+    NSMutableDictionary * _synonyms;
 }
 
+@property (readonly) <RKDisplayStringsProvider> *displayStringsProvider;
 @property (retain) NSURL *dynamicDataURL;
 @property (retain) NSString *languageID;
 @property (retain) NSLocale *languageLocale;
@@ -26,12 +28,14 @@
 - (void).cxx_destruct;
 - (void*)createLanguageModel;
 - (void)dealloc;
+- (id)displayStringsProvider;
 - (id)dynamicDataCreationDate;
 - (id)dynamicDataURL;
 - (void)flushDynamicData;
 - (id)headwordsForSynonym:(id)arg1;
 - (id)headwordsForSynonymPrefix:(id)arg1;
-- (id)initWithLanguageIdentifier:(id)arg1 andDynamicDataURL:(id)arg2;
+- (id)init;
+- (id)initWithLanguageIdentifier:(id)arg1 andDynamicDataURL:(id)arg2 displayStringsProvider:(id)arg3;
 - (void)initializeDynamicLanguageModel;
 - (id)languageID;
 - (id)languageLocale;

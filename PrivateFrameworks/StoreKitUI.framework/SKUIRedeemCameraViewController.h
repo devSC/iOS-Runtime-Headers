@@ -3,15 +3,16 @@
  */
 
 @interface SKUIRedeemCameraViewController : SKUIRedeemStepViewController <CRCodeRedeemerControllerDelegate, SKUIRedeemCameraViewControllerDelegate, SKUIRedeemCameraViewDelegate> {
-    BOOL _alreadyPushed;
-    CRCodeRedeemerController *_camera;
-    int _category;
-    <SKUIRedeemCameraViewControllerDelegate> *_delegate;
-    UIBarButtonItem *_flipButton;
-    BOOL _fullscreen;
-    NSString *_initialCode;
-    UIBarButtonItem *_redeemButton;
-    SKUIRedeem *_successfulRedeem;
+    UIBarButtonItem * _activityBarButtonItem;
+    BOOL  _alreadyPushed;
+    CRCodeRedeemerController * _camera;
+    int  _category;
+    <SKUIRedeemCameraViewControllerDelegate> * _delegate;
+    UIBarButtonItem * _flipButton;
+    BOOL  _fullscreen;
+    NSString * _initialCode;
+    UIBarButtonItem * _redeemButton;
+    SKUIRedeem * _successfulRedeem;
 }
 
 @property (nonatomic, readonly) int category;
@@ -33,6 +34,7 @@
 - (void)_redeemAction:(id)arg1;
 - (void)_redeemDidFinish:(id)arg1 error:(id)arg2;
 - (void)_setEnabled:(BOOL)arg1;
+- (void)_updateRightBarButtonItemsForRedeemInputState:(int)arg1;
 - (void)cancelRedeemerViewForSKUIRedeemCameraView:(id)arg1;
 - (int)category;
 - (void)codeRedeemerController:(id)arg1 didEndWithInfo:(id)arg2;

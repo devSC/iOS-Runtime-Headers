@@ -3,22 +3,24 @@
  */
 
 @interface DAStatusReport : NSObject {
-    NSString *_accountType;
-    NSNumber *_averageHBI;
-    NSDate *_creationDate;
-    NSString *_displayName;
-    NSNumber *_downloadedElements;
-    NSNumber *_failedNetworkRequests;
-    NSNumber *_failedProtocolRequests;
-    NSNumber *_falseMoreAvailableCount;
-    int _numHBIDataPoints;
-    NSString *_persistentUUID;
-    NSString *_protocolVersion;
-    NSNumber *_successfulRequests;
-    BOOL _syncingAllowed;
-    NSNumber *_timeInNetworking;
-    NSNumber *_timeSpan;
-    NSNumber *_uploadedElements;
+    NSString * _accountType;
+    NSNumber * _averageHBI;
+    NSDate * _creationDate;
+    NSString * _displayName;
+    NSNumber * _downloadedElements;
+    NSNumber * _failedNetworkRequests;
+    NSNumber * _failedProtocolRequests;
+    NSNumber * _falseMoreAvailableCount;
+    NSDate * _lastFailureDate;
+    NSDate * _lastSuccessDate;
+    int  _numHBIDataPoints;
+    NSString * _persistentUUID;
+    NSString * _protocolVersion;
+    NSNumber * _successfulRequests;
+    BOOL  _syncingAllowed;
+    NSNumber * _timeInNetworking;
+    NSNumber * _timeSpan;
+    NSNumber * _uploadedElements;
 }
 
 @property (nonatomic, retain) NSString *accountType;
@@ -29,6 +31,8 @@
 @property (nonatomic, retain) NSNumber *failedNetworkRequests;
 @property (nonatomic, retain) NSNumber *failedProtocolRequests;
 @property (nonatomic, retain) NSNumber *falseMoreAvailableCount;
+@property (nonatomic, retain) NSDate *lastFailureDate;
+@property (nonatomic, retain) NSDate *lastSuccessDate;
 @property (nonatomic) int numHBIDataPoints;
 @property (nonatomic, retain) NSString *persistentUUID;
 @property (nonatomic, retain) NSString *protocolVersion;
@@ -51,6 +55,8 @@
 - (id)falseMoreAvailableCount;
 - (id)init;
 - (id)initWithDictionaryRepresentation:(id)arg1;
+- (id)lastFailureDate;
+- (id)lastSuccessDate;
 - (void)mergeStatusReport:(id)arg1;
 - (void)noteFailedNetworkRequest;
 - (void)noteFailedProtocolRequest;
@@ -70,6 +76,8 @@
 - (void)setFailedNetworkRequests:(id)arg1;
 - (void)setFailedProtocolRequests:(id)arg1;
 - (void)setFalseMoreAvailableCount:(id)arg1;
+- (void)setLastFailureDate:(id)arg1;
+- (void)setLastSuccessDate:(id)arg1;
 - (void)setNumHBIDataPoints:(int)arg1;
 - (void)setPersistentUUID:(id)arg1;
 - (void)setProtocolVersion:(id)arg1;

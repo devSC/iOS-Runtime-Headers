@@ -3,22 +3,23 @@
  */
 
 @interface PUIrisSettings : PUSettings {
-    BOOL _audioEnabled;
-    float _playbackPostDuration;
-    float _playbackPreDuration;
-    double _playbackTransitionCrossfadeDelay;
-    double _settleTransitionDuration;
-    BOOL _shouldAlwaysBadge;
-    BOOL _showCrossfadeBorder;
-    BOOL _showDebugInfo;
-    BOOL _showVideoBorder;
-    float _transitionBlurRadius;
-    double _transitionDuration;
-    float _transitionScale;
-    BOOL _useForceTouchInitiatedPlayback;
-    BOOL _useTransition;
-    BOOL _useVitalityBuffer;
-    BOOL _vitalityAllowed;
+    BOOL  _audioEnabled;
+    float  _playbackPostDuration;
+    float  _playbackPreDuration;
+    double  _playbackTransitionCrossfadeDelay;
+    double  _settleTransitionDuration;
+    BOOL  _shouldAlwaysBadge;
+    BOOL  _showCrossfadeBorder;
+    BOOL  _showDebugInfo;
+    BOOL  _showStatusBorder;
+    BOOL  _showVideoBorder;
+    float  _transitionBlurRadius;
+    double  _transitionDuration;
+    float  _transitionScale;
+    BOOL  _useForceTouchInitiatedPlayback;
+    BOOL  _useTransition;
+    BOOL  _useVitalityBuffer;
+    BOOL  _vitalityAllowed;
 }
 
 @property (getter=isAudioEnabled, nonatomic) BOOL audioEnabled;
@@ -29,6 +30,7 @@
 @property (nonatomic) BOOL shouldAlwaysBadge;
 @property (nonatomic) BOOL showCrossfadeBorder;
 @property (nonatomic) BOOL showDebugInfo;
+@property (getter=showStatusBorder, nonatomic) BOOL showStatusBorder;
 @property (nonatomic) BOOL showVideoBorder;
 @property (nonatomic) float transitionBlurRadius;
 @property (nonatomic) double transitionDuration;
@@ -58,6 +60,7 @@
 - (void)setShouldAlwaysBadge:(BOOL)arg1;
 - (void)setShowCrossfadeBorder:(BOOL)arg1;
 - (void)setShowDebugInfo:(BOOL)arg1;
+- (void)setShowStatusBorder:(BOOL)arg1;
 - (void)setShowVideoBorder:(BOOL)arg1;
 - (void)setTransitionBlurRadius:(float)arg1;
 - (void)setTransitionDuration:(double)arg1;
@@ -70,6 +73,7 @@
 - (BOOL)shouldAlwaysBadge;
 - (BOOL)showCrossfadeBorder;
 - (BOOL)showDebugInfo;
+- (BOOL)showStatusBorder;
 - (BOOL)showVideoBorder;
 - (float)transitionBlurRadius;
 - (double)transitionDuration;

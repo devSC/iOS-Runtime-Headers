@@ -3,13 +3,18 @@
  */
 
 @interface CADisplayLink : NSObject {
-    void *_impl;
+    void * _impl;
 }
 
 @property (nonatomic, readonly) CADisplay *display;
 @property (nonatomic, readonly) double duration;
 @property (nonatomic) int frameInterval;
+@property (nonatomic, readonly) double heartbeatRate;
+@property (nonatomic, readonly) double maximumRefreshRate;
+@property (nonatomic, readonly) int minimumFrameDuration;
 @property (getter=isPaused, nonatomic) BOOL paused;
+@property (nonatomic) int preferredFramesPerSecond;
+@property (nonatomic, readonly) double targetTimestamp;
 @property (nonatomic, readonly) double timestamp;
 @property (nonatomic, retain) id userInfo;
 
@@ -18,24 +23,35 @@
 + (id)displayLinkWithDisplay:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
 + (id)displayLinkWithTarget:(id)arg1 selector:(SEL)arg2;
 
-- (id)_initWithDisplayLinkItem:(struct DisplayLinkItem { struct Display {} *x1; void *x2; SEL x3; void *x4; int x5; struct Mutex { struct _opaque_pthread_mutex_t { long x_1_2_1; BOOL x_1_2_2[40]; } x_6_1_1; } x6; struct Condition { struct _opaque_pthread_cond_t { long x_1_2_1; BOOL x_1_2_2[24]; } x_7_1_1; } x7; struct _opaque_pthread_t {} *x8; id x9; /* Warning: Unrecognized filer type: 'R' using 'void*' */ void*x10; void*x11; float x12; void*x13; unsigned char x14; SEL x15; SEL x16; long doublex17; int x18; short x19; void*x20; long x21; void*x22; void*x23; SEL x24; SEL x25; long doublex26; int x27; short x28; void*x29; long x30; void*x31; void*x32; unsigned long x33; int x34; in void*x35; void*x36; void*x37; struct DisplayLink {} *x38; }*)arg1;
+- (id)_initWithDisplayLinkItem:(struct DisplayLinkItem { struct Display {} *x1; void *x2; SEL x3; void *x4; int x5; int x6; struct Mutex { struct _opaque_pthread_mutex_t { long x_1_2_1; BOOL x_1_2_2[40]; } x_7_1_1; } x7; struct Condition { struct _opaque_pthread_cond_t { long x_1_2_1; BOOL x_1_2_2[24]; } x_8_1_1; } x8; struct _opaque_pthread_t {} *x9; id x10; /* Warning: Unrecognized filer type: 'R' using 'void*' */ void*x11; void*x12; float x13; void*x14; unsigned char x15; SEL x16; SEL x17; long doublex18; int x19; short x20; void*x21; long x22; void*x23; void*x24; SEL x25; SEL x26; long doublex27; int x28; short x29; void*x30; long x31; void*x32; void*x33; unsigned long x34; int x35; in void*x36; void*x37; void*x38; struct DisplayLink {} *x39; }*)arg1;
+- (int)actualFramesPerSecond;
 - (void)addToRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)dealloc;
 - (id)display;
 - (double)duration;
 - (int)frameInterval;
+- (double)heartbeatRate;
 - (void)invalidate;
 - (BOOL)isPaused;
+- (double)maximumRefreshRate;
+- (int)minimumFrameDuration;
+- (int)preferredFramesPerSecond;
 - (void)removeFromRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)setFrameInterval:(int)arg1;
 - (void)setPaused:(BOOL)arg1;
+- (void)setPreferredFramesPerSecond:(int)arg1;
 - (void)setUserInfo:(id)arg1;
+- (double)targetTimestamp;
 - (double)timestamp;
 - (id)userInfo;
 
 // Image: /System/Library/PrivateFrameworks/NetAppsUtilitiesUI.framework/NetAppsUtilitiesUI
 
 + (id)naui_displayLinkWithWeakTarget:(id)arg1 selector:(SEL)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_displayLinkWithWeakTarget:(id)arg1 selector:(SEL)arg2;
 
 // Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
 

@@ -2,21 +2,45 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@interface SGDetectedAttributeDissector : SGPipelineDissector
+@interface SGDetectedAttributeDissector : SGPipelineDissector {
+    SGAppleDirectory * _appleDirectory;
+    PMLAWDSessionTracker * _awdSessionTracker;
+    unsigned int  _selfIdentificationMessageCount;
+}
 
+@property (nonatomic) unsigned int selfIdentificationMessageCount;
+
++ (void)clearConversationCache;
++ (id)currentPatterns;
 + (void)initialize;
 + (BOOL)isAddressContext:(id)arg1;
++ (BOOL)isMaybeNameContext:(id)arg1;
++ (BOOL)isNameRequest:(id)arg1;
 + (BOOL)isPhoneContext:(id)arg1;
++ (unsigned int)supervisionTypeIfFoundByPrevModel:(BOOL)arg1 isKnownContact:(BOOL)arg2 isKnownInternal:(BOOL)arg3;
 
+- (void).cxx_destruct;
+- (id)_extractEmailishTokenFromMailHeader:(id)arg1;
+- (id)_makeAlnum:(id)arg1;
+- (id)_makeSimplifiedListIdEmail:(id)arg1;
 - (id)detailTypeFromPrefix:(id)arg1;
 - (id)detailTypeFromPrefix:(id)arg1 detectedLabelPointer:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2;
 - (id)detectionFromBodyDDMatch:(id)arg1 onEntity:(id)arg2;
 - (id)detectionFromSignatureDDMatch:(id)arg1 onEntity:(id)arg2 detectedLabelRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 lastClaimedLabelRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg4;
-- (void)dissectInternal:(id)arg1;
+- (void)dissectInternal:(id)arg1 inContext:(id)arg2;
 - (id)filterDangerousSigAddressDetections:(id)arg1 onEntity:(id)arg2;
-- (id)filterDangerousSigDetections:(id)arg1 onEntity:(id)arg2;
-- (id)filterDangerousSigEmailDetections:(id)arg1 onEntity:(id)arg2;
+- (id)filterDangerousSigDetections:(id)arg1 onEntity:(id)arg2 inContext:(id)arg3;
+- (id)filterDangerousSigEmailDetections:(id)arg1 onEntity:(id)arg2 inContext:(id)arg3;
 - (id)filterDangerousSigPhoneDetections:(id)arg1 onEntity:(id)arg2;
 - (id)getLineContaining:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 inText:(id)arg2;
+- (void)handleTextMessageSelfIdentification:(id)arg1;
+- (id)init;
+- (id)initWithAWDTracker:(id)arg1 appleDirectory:(id)arg2;
+- (BOOL)isAppleInternalConversation:(id)arg1;
+- (BOOL)isAuthorOfEntity:(id)arg1 knownContactWithPhonenumber:(id)arg2;
+- (BOOL)isEmail:(id)arg1 appleInternalContactWithPhonenumber:(id)arg2;
+- (id)processTextMessageConversation:(id)arg1 messageIndex:(unsigned int)arg2;
+- (unsigned int)selfIdentificationMessageCount;
+- (void)setSelfIdentificationMessageCount:(unsigned int)arg1;
 
 @end

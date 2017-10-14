@@ -6,17 +6,16 @@
     struct { 
         unsigned int locationBucket : 1; 
         unsigned int uiTarget : 1; 
-    } _has;
-    int _locationBucket;
-    GEOMapLaunchDetails *_mapLaunchDetails;
-    GEOPlaceActionDetails *_placeActionDetails;
-    NSString *_providerId;
-    GEORouteDetails *_routeDetails;
-    GEOMapsServerMetadata *_serverMetadata;
-    GEOTransitAppLaunchDetails *_transitAppLaunchDetails;
-    int _uiTarget;
-    NSString *_usageEventKey;
-    NSString *_usageEventValue;
+    }  _has;
+    int  _locationBucket;
+    GEOMapLaunchDetails * _mapLaunchDetails;
+    GEOPlaceActionDetails * _placeActionDetails;
+    NSString * _providerId;
+    GEORouteDetails * _routeDetails;
+    GEOMapsServerMetadata * _serverMetadata;
+    int  _uiTarget;
+    NSString * _usageEventKey;
+    NSString * _usageEventValue;
 }
 
 @property (nonatomic) BOOL hasLocationBucket;
@@ -25,7 +24,6 @@
 @property (nonatomic, readonly) BOOL hasProviderId;
 @property (nonatomic, readonly) BOOL hasRouteDetails;
 @property (nonatomic, readonly) BOOL hasServerMetadata;
-@property (nonatomic, readonly) BOOL hasTransitAppLaunchDetails;
 @property (nonatomic) BOOL hasUiTarget;
 @property (nonatomic, readonly) BOOL hasUsageEventKey;
 @property (nonatomic, readonly) BOOL hasUsageEventValue;
@@ -35,11 +33,12 @@
 @property (nonatomic, retain) NSString *providerId;
 @property (nonatomic, retain) GEORouteDetails *routeDetails;
 @property (nonatomic, retain) GEOMapsServerMetadata *serverMetadata;
-@property (nonatomic, retain) GEOTransitAppLaunchDetails *transitAppLaunchDetails;
 @property (nonatomic) int uiTarget;
 @property (nonatomic, retain) NSString *usageEventKey;
 @property (nonatomic, retain) NSString *usageEventValue;
 
+- (int)StringAsLocationBucket:(id)arg1;
+- (int)StringAsUiTarget:(id)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -51,13 +50,13 @@
 - (BOOL)hasProviderId;
 - (BOOL)hasRouteDetails;
 - (BOOL)hasServerMetadata;
-- (BOOL)hasTransitAppLaunchDetails;
 - (BOOL)hasUiTarget;
 - (BOOL)hasUsageEventKey;
 - (BOOL)hasUsageEventValue;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (int)locationBucket;
+- (id)locationBucketAsString:(int)arg1;
 - (id)mapLaunchDetails;
 - (void)mergeFrom:(id)arg1;
 - (id)placeActionDetails;
@@ -73,12 +72,11 @@
 - (void)setProviderId:(id)arg1;
 - (void)setRouteDetails:(id)arg1;
 - (void)setServerMetadata:(id)arg1;
-- (void)setTransitAppLaunchDetails:(id)arg1;
 - (void)setUiTarget:(int)arg1;
 - (void)setUsageEventKey:(id)arg1;
 - (void)setUsageEventValue:(id)arg1;
-- (id)transitAppLaunchDetails;
 - (int)uiTarget;
+- (id)uiTargetAsString:(int)arg1;
 - (id)usageEventKey;
 - (id)usageEventValue;
 - (void)writeTo:(id)arg1;

@@ -3,23 +3,24 @@
  */
 
 @interface SYTransportLog : NSObject {
-    NSString *_facility;
-    NSString *_rootPath;
+    NSString * _facility;
+    NSObject<OS_os_log> * _log;
+    NSObject<OS_os_log> * _oslog;
 }
 
 @property (nonatomic, copy) NSString *facility;
+@property (nonatomic, readonly) NSObject<OS_os_log> *oslog;
 
-+ (id)_logPath;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (BOOL)_ensureFolder;
-- (void)_logMessage:(id)arg1 file:(const char *)arg2 line:(int)arg3 function:(const char *)arg4;
-- (id)_setupLog;
+- (void)_createLog;
+- (void)_logOSMessage:(const char *)arg1 args:(void*)arg2 returnAddress:(void*)arg3;
 - (id)facility;
 - (id)init;
 - (void)logMessage:(id)arg1;
 - (void)logMessage:(id)arg1 args:(void*)arg2;
+- (id)oslog;
 - (void)setFacility:(id)arg1;
 
 @end

@@ -3,10 +3,10 @@
  */
 
 @interface AFUIAudioPlayer : NSObject <AVAudioPlayerDelegate> {
-    NSUUID *_conversationItemIdentifier;
-    <AFUIAudioPlayerDelegate> *_delegate;
-    AceObject *_playbackCommand;
-    AVAudioPlayer *_player;
+    NSUUID * _conversationItemIdentifier;
+    <AFUIAudioPlayerDelegate> * _delegate;
+    AceObject * _playbackCommand;
+    AVAudioPlayer * _player;
 }
 
 @property (nonatomic) NSUUID *conversationItemIdentifier;
@@ -22,6 +22,8 @@
 + (id)voicemailPlayer;
 
 - (void).cxx_destruct;
+- (id)_audioCategory;
+- (unsigned int)_audioOptions;
 - (id)_audioURL;
 - (id)_player;
 - (void)_setPlayer:(id)arg1;

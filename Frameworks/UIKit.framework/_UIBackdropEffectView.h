@@ -2,12 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UIBackdropEffectView : UIView {
-    CABackdropLayer *_backdropLayer;
-    float _zoom;
+@interface _UIBackdropEffectView : UIView <CABackdropLayerDelegate> {
+    CABackdropLayer * _backdropLayer;
+    float  _zoom;
 }
 
 @property (nonatomic, retain) CABackdropLayer *backdropLayer;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 @property (nonatomic) float zoom;
 
 + (Class)layerClass;
@@ -21,6 +25,7 @@
 - (void)setBackdropLayer:(id)arg1;
 - (void)setZoom:(float)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
+- (void)willMoveToWindow:(id)arg1;
 - (float)zoom;
 
 @end

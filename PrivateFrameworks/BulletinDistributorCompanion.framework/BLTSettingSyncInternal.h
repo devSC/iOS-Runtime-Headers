@@ -2,63 +2,41 @@
    Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
  */
 
-@interface BLTSettingSyncInternal : NSObject <BLTSettingSyncing, MCProfileConnectionObserver> {
-    BLTSettingSyncServer *_connection;
-    BOOL _dndEnabled;
-    BOOL _dndStateUpdatedAtLeastOnce;
-    BOOL _isDNDMirrorEnabled;
-    BOOL _isWristDetectDisabled;
-    NPSManager *_npsManager;
-    BBObserver *_observer;
-    BLTSectionConfiguration *_sectionConfiguration;
-    BBSettingsGateway *_settingsGateway;
+@interface BLTSettingSyncInternal : NSObject <BLTSettingSyncing> {
+    BLTSettingSyncServer * _connection;
+    BLTDNDSync * _dndSync;
+    BLTSectionConfiguration * _sectionConfiguration;
+    BBSettingsGateway * _settingsGateway;
+    BLTWristStateObserver * _wristStateObserver;
 }
 
 @property (nonatomic, retain) BLTSettingSyncServer *connection;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) BLTDNDSync *dndSync;
 @property (readonly) unsigned int hash;
-@property (nonatomic) BOOL isDNDMirrorEnabled;
 @property (nonatomic, readonly) BOOL isWristDetectDisabled;
-@property (nonatomic, retain) NPSManager *npsManager;
-@property (nonatomic, retain) BBObserver *observer;
+@property (nonatomic, readonly) BLTSectionConfiguration *sectionConfiguration;
 @property (nonatomic, retain) BBSettingsGateway *settingsGateway;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (BOOL)_isWristDetectionDisabled;
 - (id)_overriddenSectionInfoForSectionID:(id)arg1;
-- (void)_updateWristDetectSetting;
-- (BOOL)_wristDetectionDisabledPreference;
-- (BOOL)_wristDetectionEnabledRestriction;
 - (id)connection;
 - (void)dealloc;
 - (void)disableStandaloneTestMode;
+- (id)dndSync;
 - (void)enableStandaloneTestModeWithMinimumSendDelay:(unsigned int)arg1 maximumSendDelay:(unsigned int)arg2 minimumResponseDelay:(unsigned int)arg3 maximumResponseDelay:(unsigned int)arg4;
-- (id)init;
-- (BOOL)isDNDMirrorEnabled;
+- (id)initWithSectionConfiguration:(id)arg1;
 - (BOOL)isWristDetectDisabled;
-- (id)npsManager;
-- (id)observer;
-- (void)profileConnectionDidReceiveRestrictionChangedNotification:(id)arg1 userInfo:(id)arg2;
-- (void)removeDNDHandlers;
-- (void)setBehaviorOverrideStatus:(int)arg1;
-- (void)setBehaviorOverrideTypes:(unsigned int)arg1;
-- (void)setBehaviorOverrides:(id)arg1;
+- (void)removeSectionWithSectionID:(id)arg1;
+- (id)sectionConfiguration;
 - (void)setConnection:(id)arg1;
-- (void)setDNDHandlers;
-- (void)setDoNotDisturb:(BOOL)arg1 updateSettings:(BOOL)arg2;
-- (void)setIsDNDMirrorEnabled:(BOOL)arg1;
-- (void)setNpsManager:(id)arg1;
-- (void)setObserver:(id)arg1;
-- (void)setPrivilegedSenderTypes:(unsigned int)arg1;
+- (void)setDndSync:(id)arg1;
 - (void)setSectionInfo:(id)arg1 completion:(id /* block */)arg2;
 - (void)setSectionSubtypeParametersIcon:(id)arg1 forSectionID:(id)arg2 forSubtypeID:(int)arg3;
 - (void)setSettingsGateway:(id)arg1;
 - (id)settingsGateway;
-- (void)updateDNDMirrorState;
-- (void)updateDNDState;
-- (unsigned int)willNanoPresentNotificationForSectionID:(id)arg1 subsectionIDs:(id)arg2;
-- (unsigned int)willNanoPresentNotificationForSectionID:(id)arg1 subsectionIDs:(id)arg2 subtype:(int)arg3 considerSubtype:(BOOL)arg4;
+- (unsigned int)willNanoPresentNotificationForSectionID:(id)arg1 subsectionIDs:(id)arg2 subtype:(int)arg3;
 
 @end

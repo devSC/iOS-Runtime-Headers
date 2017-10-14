@@ -3,23 +3,24 @@
  */
 
 @interface DAAccount : NSObject {
-    NSArray *_appIdsForPasswordPrompt;
-    ACAccount *_backingAccountInfo;
-    NSString *_clientToken;
-    NSMapTable *_consumers;
-    NSMutableDictionary *_dataclassPropertyURLsByDataclass;
-    BOOL _hasInitted;
-    BOOL _isValidating;
-    unsigned long long _lastQueryStartedTime;
-    NSMutableArray *_pendingQueries;
-    NSObject<OS_dispatch_queue> *_pendingQueryQueue;
-    BOOL _shouldFailAllTasks;
-    BOOL _shouldUseOpportunisticSockets;
-    DAStatusReport *_statusReport;
-    struct __CFURLStorageSession { } *_storageSession;
-    DATaskManager *_taskManager;
-    DATrustHandler *_trustHandler;
-    BOOL _wasUserInitiated;
+    NSArray * _appIdsForPasswordPrompt;
+    ACAccount * _backingAccountInfo;
+    NSString * _clientToken;
+    NSMapTable * _consumers;
+    NSMutableDictionary * _dataclassPropertyURLsByDataclass;
+    BOOL  _hasInitted;
+    BOOL  _isValidating;
+    unsigned long long  _lastQueryStartedTime;
+    NSMutableArray * _pendingQueries;
+    NSObject<OS_dispatch_queue> * _pendingQueryQueue;
+    BOOL  _shouldFailAllTasks;
+    BOOL  _shouldUseOpportunisticSockets;
+    NSString * _sourceApplicationBundleIdentifier;
+    DAStatusReport * _statusReport;
+    struct __CFURLStorageSession { } * _storageSession;
+    DATaskManager * _taskManager;
+    DATrustHandler * _trustHandler;
+    BOOL  _wasUserInitiated;
 }
 
 @property (nonatomic, copy) NSString *accountDescription;
@@ -56,6 +57,7 @@
 @property (nonatomic, readonly) BOOL shouldFailAllTasks;
 @property (nonatomic) BOOL shouldUseOpportunisticSockets;
 @property (nonatomic, retain) NSData *signingIdentityPersistentReference;
+@property (nonatomic, copy) NSString *sourceApplicationBundleIdentifier;
 @property (nonatomic, retain) DAStatusReport *statusReport;
 @property (nonatomic, readonly) DATaskManager *taskManager;
 @property (nonatomic, retain) DATrustHandler *trustHandler;
@@ -64,6 +66,8 @@
 @property (nonatomic, readonly) NSString *userAgentHeader;
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic) BOOL wasUserInitiated;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
 
 + (id)_leafAccountTypes;
 + (id)daAccountSubclassWithBackingAccountInfo:(id)arg1;
@@ -88,6 +92,7 @@
 - (id)accountID;
 - (int)accountIntPropertyForKey:(id)arg1;
 - (id)accountPropertyForKey:(id)arg1;
+- (id)accountTypeIdentifier;
 - (id)addUsernameToURL:(id)arg1;
 - (id)additionalHeaderValues;
 - (id)appIdsForPasswordPrompt;
@@ -189,6 +194,7 @@
 - (void)removeClientCertificateData;
 - (void)removeConsumerForTask:(id)arg1;
 - (void)removeDBSyncData;
+- (id)reportShareRequestAsJunkForCalendar:(id)arg1 consumer:(id)arg2;
 - (id)requestCalendarAvailabilityForStartDate:(id)arg1 endDate:(id)arg2 ignoredEventID:(id)arg3 addresses:(id)arg4 consumer:(id)arg5;
 - (void)resetAccountID;
 - (BOOL)resetCertWarnings;
@@ -233,6 +239,7 @@
 - (void)setShouldDoInitialAutodiscovery:(BOOL)arg1;
 - (void)setShouldUseOpportunisticSockets:(BOOL)arg1;
 - (oneway void)setSigningIdentityPersistentReference:(id)arg1;
+- (void)setSourceApplicationBundleIdentifier:(id)arg1;
 - (void)setStatusReport:(id)arg1;
 - (void)setToDosNumberOfPastDaysToSync:(int)arg1;
 - (void)setTrustHandler:(id)arg1;
@@ -247,6 +254,7 @@
 - (BOOL)shouldUseOpportunisticSockets;
 - (void)shutdown;
 - (id)signingIdentityPersistentReference;
+- (id)sourceApplicationBundleIdentifier;
 - (id)spinnerIdentifiers;
 - (id)stateString;
 - (id)statusReport;
@@ -268,6 +276,7 @@
 - (int)toDosNumberOfPastDaysToSync;
 - (id)trustHandler;
 - (id)unactionableICSRepresentationForMetaData:(id)arg1 inFolderWithId:(id)arg2 outSummary:(id*)arg3;
+- (void)updateExistingAccountProperties;
 - (void)updateOofSettingsWithParams:(id)arg1 consumer:(id)arg2;
 - (BOOL)upgradeAccount;
 - (id)urlFromDataclassPropertiesForDataclass:(id)arg1;
@@ -279,5 +288,19 @@
 - (id)usernameWithoutDomain;
 - (BOOL)wasUserInitiated;
 - (void)webLoginRequestedAtURL:(id)arg1 reasonString:(id)arg2 completionBlock:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DABookmarkDAV.framework/DABookmarkDAV
+
+- (BOOL)isBookmarkDAVAccount;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DACardDAV.framework/DACardDAV
+
+- (BOOL)isCardDAVAccount;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DADaemonSupport.framework/DADaemonSupport
+
+- (Class)agentClass;
+- (void)deviceDidWake;
+- (void)deviceWillSleep;
 
 @end

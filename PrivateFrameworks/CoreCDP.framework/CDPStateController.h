@@ -2,21 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CoreCDP.framework/CoreCDP
  */
 
-@interface CDPStateController : NSObject {
-    CDPContext *_context;
-    <CDPStateUIProvider> *_uiProvider;
-}
+@interface CDPStateController : CDPController
 
-@property (nonatomic, readonly) CDPContext *context;
-@property (nonatomic, retain) <CDPStateUIProvider> *uiProvider;
-
-- (void).cxx_destruct;
-- (id)context;
+- (void)finishOfflineLocalSecretChangeWithCompletion:(id /* block */)arg1;
+- (void)generateNewRecoveryKey:(id /* block */)arg1;
 - (void)handleCloudDataProtectionStateWithCompletion:(id /* block */)arg1;
-- (id)initWithContext:(id)arg1;
+- (void)handleURLActionWithInfo:(id)arg1;
+- (void)handleURLActionWithInfo:(id)arg1 completion:(id /* block */)arg2;
 - (void)localSecretChangedTo:(id)arg1 secretType:(unsigned int)arg2 completion:(id /* block */)arg3;
-- (void)setUiProvider:(id)arg1;
-- (BOOL)shouldAllowCDPEnrollment;
-- (id)uiProvider;
+- (void)recoverAndSynchronizeWithSquirrel:(id /* block */)arg1;
+- (void)recoverWithSquirrel:(id /* block */)arg1;
+- (void)repairCloudDataProtectionStateWithCompletion:(id /* block */)arg1;
+- (BOOL)shouldPerformRepair:(id*)arg1;
 
 @end

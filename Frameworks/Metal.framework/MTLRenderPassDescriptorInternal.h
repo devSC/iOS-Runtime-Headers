@@ -8,29 +8,35 @@
         <MTLBuffer> *visibilityResultBuffer; 
         unsigned int framebufferWidth; 
         unsigned int framebufferHeight; 
+        BOOL fineGrainedBackgroundVisibilityEnabled; 
         BOOL ditherEnabled; 
-        BOOL expandedClipRange; 
-    } _private;
+        BOOL openGLModeEnabled; 
+    }  _private;
 }
 
 + (id)renderPassDescriptor;
 
-- (const struct MTLRenderPassDescriptorPrivate { id x1; unsigned int x2; unsigned int x3; BOOL x4; BOOL x5; }*)_descriptorPrivate;
+- (const struct MTLRenderPassDescriptorPrivate { id x1; unsigned int x2; unsigned int x3; BOOL x4; BOOL x5; BOOL x6; }*)_descriptorPrivate;
 - (id)colorAttachments;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)depthAttachment;
 - (id)description;
-- (BOOL)expandedClipRange;
+- (BOOL)fineGrainedBackgroundVisibilityEnabled;
+- (id)formattedDescription:(unsigned int)arg1;
 - (unsigned int)framebufferHeight;
 - (unsigned int)framebufferWidth;
 - (unsigned int)hash;
 - (id)init;
+- (BOOL)isDitherEnabled;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)openGLModeEnabled;
 - (void)setDepthAttachment:(id)arg1;
-- (void)setExpandedClipRange:(BOOL)arg1;
+- (void)setDitherEnabled:(BOOL)arg1;
+- (void)setFineGrainedBackgroundVisibilityEnabled:(BOOL)arg1;
 - (void)setFramebufferHeight:(unsigned int)arg1;
 - (void)setFramebufferWidth:(unsigned int)arg1;
+- (void)setOpenGLModeEnabled:(BOOL)arg1;
 - (void)setStencilAttachment:(id)arg1;
 - (void)setVisibilityResultBuffer:(id)arg1;
 - (id)stencilAttachment;

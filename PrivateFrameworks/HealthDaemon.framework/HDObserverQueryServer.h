@@ -3,8 +3,8 @@
  */
 
 @interface HDObserverQueryServer : HDQueryServer {
-    NSNumber *_anchor;
-    BOOL _deliverOnUnlock;
+    NSNumber * _anchor;
+    BOOL  _deliverOnUnlock;
 }
 
 @property (nonatomic, readonly) NSNumber *anchor;
@@ -20,6 +20,6 @@
 - (void)database:(id)arg1 protectedDataDidBecomeAvailable:(BOOL)arg2;
 - (BOOL)deliverOnUnlock;
 - (void)samplesAdded:(id)arg1 anchor:(id)arg2;
-- (void)samplesOfTypeWereRemoved:(id)arg1 anchor:(id)arg2;
+- (void)samplesOfTypesWereRemoved:(id)arg1 anchor:(id)arg2;
 
 @end

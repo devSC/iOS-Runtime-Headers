@@ -3,33 +3,33 @@
  */
 
 @interface PLAlbumStreamingOptionsViewController : UIViewController <PLComposeRecipientViewControllerDelegate, PLInvitationRecordsObserver, UITableViewDataSource, UITableViewDelegate> {
-    NSString *__lastMultiContributorsSectionFooterTitle;
-    NSString *__lastPublicURLSectionFooterTitle;
-    PLCloudSharedAlbumInvitationRecord *__selectedSubscriberInvitationRecord;
-    BOOL __shouldScrollToTopOnNextViewLayout;
-    unsigned int _addSubscribersRow;
-    BOOL _adjustedInsetsForKeyboard;
-    PLCloudSharedAlbum *_album;
-    BOOL _albumIsFamilyStream;
-    NSString *_albumName;
-    UIBarButtonItem *_cancelButton;
-    PLComposeRecipientViewController *_composeRecipientController;
-    <PLAlbumStreamingOptionsViewControllerDelegate> *_delegate;
-    UIBarButtonItem *_doneButton;
-    ACAccountStore *_familyAccountStore;
-    AAUIProfilePictureStore *_familyMemberPictureStore;
-    NSArray *_familyMembers;
-    NSMutableDictionary *_familyProfilePictures;
-    NSOperationQueue *_familyRequestQueue;
-    BOOL _isPresentedModally;
-    UITableView *_optionsTableView;
-    BOOL _showShareLink;
-    BOOL _streamOwner;
-    NSArray *_visibleInvitationRecords;
-    NSString *_visiblePublicURL;
-    UISwitch *_wantsAcceptCloudNotificationSwitch;
-    UISwitch *_wantsMultipleContributorsSwitch;
-    UISwitch *_wantsPublicWebsiteSwitch;
+    NSString * __lastMultiContributorsSectionFooterTitle;
+    NSString * __lastPublicURLSectionFooterTitle;
+    PLCloudSharedAlbumInvitationRecord * __selectedSubscriberInvitationRecord;
+    BOOL  __shouldScrollToTopOnNextViewLayout;
+    unsigned int  _addSubscribersRow;
+    BOOL  _adjustedInsetsForKeyboard;
+    PLCloudSharedAlbum * _album;
+    BOOL  _albumIsFamilyStream;
+    NSString * _albumName;
+    UIBarButtonItem * _cancelButton;
+    PLComposeRecipientViewController * _composeRecipientController;
+    <PLAlbumStreamingOptionsViewControllerDelegate> * _delegate;
+    UIBarButtonItem * _doneButton;
+    ACAccountStore * _familyAccountStore;
+    AAUIProfilePictureStore * _familyMemberPictureStore;
+    NSArray * _familyMembers;
+    NSMutableDictionary * _familyProfilePictures;
+    NSOperationQueue * _familyRequestQueue;
+    BOOL  _isPresentedModally;
+    UITableView * _optionsTableView;
+    BOOL  _showShareLink;
+    BOOL  _streamOwner;
+    NSArray * _visibleInvitationRecords;
+    NSString * _visiblePublicURL;
+    UISwitch * _wantsAcceptCloudNotificationSwitch;
+    UISwitch * _wantsMultipleContributorsSwitch;
+    UISwitch * _wantsPublicWebsiteSwitch;
 }
 
 @property (setter=_setLastMultiContributorsSectionFooterTitle:, nonatomic, copy) NSString *_lastMultiContributorsSectionFooterTitle;
@@ -65,8 +65,8 @@
 - (id)_lastMultiContributorsSectionFooterTitle;
 - (id)_lastPublicURLSectionFooterTitle;
 - (BOOL)_multipleContributorsEnabled;
-- (id)_newPersonViewControllerWithEmail:(id)arg1 phone:(id)arg2 firstName:(id)arg3 lastName:(id)arg4 canResendInvitation:(BOOL)arg5 canRemoveSubscriber:(BOOL)arg6;
-- (void*)_personMatchingEmail:(id)arg1 orPhone:(id)arg2 matchingProperty:(out int*)arg3 matchingValueIdentifier:(out int*)arg4;
+- (id)_personMatchingEmail:(id)arg1 orPhone:(id)arg2 withFirstName:(id)arg3 lastName:(id)arg4 outMatchingKey:(id*)arg5 outMatchingIdentifier:(id*)arg6 keysToFetch:(id)arg7;
+- (id)_personViewControllerWithEmail:(id)arg1 phone:(id)arg2 firstName:(id)arg3 lastName:(id)arg4 canResendInvitation:(BOOL)arg5 canRemoveSubscriber:(BOOL)arg6;
 - (BOOL)_publicURLEnabled;
 - (void)_removeSelectedSubscriber;
 - (void)_resendInvitationToSelectedSubscriber;

@@ -3,8 +3,8 @@
  */
 
 @interface SSDownloadAsset : SSEntity {
-    int _assetType;
-    SSURLRequestProperties *_localProperties;
+    int  _assetType;
+    SSURLRequestProperties * _localProperties;
 }
 
 @property (readonly, retain) NSURLRequest *URLRequest;
@@ -26,6 +26,7 @@
 - (id)URLRequestProperties;
 - (id)_copyURLRequestProperties;
 - (int)_legacyAssetType;
+- (id)_localProperties;
 - (void)_resetLocalIVars;
 - (int)assetType;
 - (long long)bytesDownloaded;

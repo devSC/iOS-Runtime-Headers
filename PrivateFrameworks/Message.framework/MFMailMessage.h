@@ -2,16 +2,46 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@interface MFMailMessage : MFMessage {
-    MFMessageInfo *_info;
-    unsigned long long _messageFlags;
-    unsigned long long _modSequenceNumber;
-    BOOL _shouldUseMailDrop;
-    unsigned char _subjectPrefixLength;
+@interface MFMailMessage : MFMessage <ECMessage, MFBaseMessage, MFMailboxPredictionMessage> {
+    MFMessageInfo * _info;
+    unsigned long long  _messageFlags;
+    unsigned long long  _modSequenceNumber;
+    BOOL  _shouldUseMailDrop;
+    unsigned char  _subjectPrefixLength;
 }
 
+@property (nonatomic, readonly) BOOL answered;
+@property (nonatomic, readonly, copy) NSArray *cc;
+@property (nonatomic, readonly) long long conversationHash;
+@property (nonatomic, readonly) long long conversationID;
+@property (nonatomic, readonly) BOOL conversationMuted;
+@property (nonatomic, readonly) BOOL conversationVIP;
+@property (nonatomic, readonly) NSDate *dateReceived;
+@property (nonatomic, readonly) unsigned int dateReceivedInterval;
+@property (nonatomic, readonly) unsigned int dateSentInterval;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) BOOL deleted;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL flagged;
+@property (nonatomic, readonly, copy) NSArray *from;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL junk;
+@property (getter=isKnownToHaveAttachments, nonatomic, readonly) BOOL knownToHaveAttachments;
+@property (nonatomic, readonly, copy) NSArray *listUnsubscribe;
+@property (nonatomic, readonly) <ECMailbox> *mailbox;
+@property (nonatomic, readonly) unsigned int mailboxID;
+@property (nonatomic, readonly) <ECMimePart> *messageBody;
+@property (nonatomic, readonly) long long messageIDHash;
 @property unsigned long long modSequenceNumber;
+@property (nonatomic, readonly, copy) NSString *persistentID;
+@property (nonatomic, readonly) BOOL read;
+@property (nonatomic, readonly, copy) NSString *remoteID;
+@property (nonatomic, readonly) BOOL senderVIP;
 @property (nonatomic) BOOL shouldUseMailDrop;
+@property (nonatomic, readonly, copy) NSString *subject;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSArray *to;
+@property (nonatomic, readonly) unsigned long uid;
 
 // Image: /System/Library/PrivateFrameworks/Message.framework/Message
 
@@ -22,12 +52,23 @@
 
 - (id)URL;
 - (id)account;
+- (BOOL)answered;
 - (id)bestAlternativePart;
 - (id)bestAlternativePart:(BOOL*)arg1;
+- (id)ccAddressList;
 - (unsigned long long)conversationFlags;
+- (BOOL)conversationMuted;
+- (BOOL)conversationVIP;
 - (id)copyMessageInfo;
 - (void)dealloc;
+- (BOOL)deleted;
 - (id)externalConversationID;
+- (id)firstSenderAddress;
+- (BOOL)flagged;
+- (id)from;
+- (BOOL)isKnownToHaveAttachments;
+- (BOOL)junk;
+- (id)listUnsubscribe;
 - (void)loadCachedHeaderValuesFromHeaders:(id)arg1;
 - (id)loadMeetingData;
 - (id)loadMeetingExternalID;
@@ -46,7 +87,9 @@
 - (unsigned short)numberOfAttachments;
 - (id)originalMailboxURL;
 - (int)priority;
+- (BOOL)read;
 - (id)remoteMailboxURL;
+- (BOOL)senderVIP;
 - (void)setConversationFlags:(unsigned long long)arg1;
 - (void)setMessageFlags:(unsigned long long)arg1;
 - (void)setMessageFlagsWithoutCommitting:(unsigned long long)arg1;
@@ -62,9 +105,11 @@
 - (id)subject;
 - (id)subjectAndPrefixLength:(unsigned int*)arg1;
 - (id)subjectNotIncludingReAndFwdPrefix;
+- (id)toAddressList;
 
 // Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
 
++ (void)_loadMailCoreFramework;
 + (id)sg_messageWithRFC822Data:(id)arg1;
 
 - (id)sg_bestAlternativePart;

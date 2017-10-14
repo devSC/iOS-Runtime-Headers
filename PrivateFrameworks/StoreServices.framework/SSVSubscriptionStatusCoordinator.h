@@ -3,15 +3,14 @@
  */
 
 @interface SSVSubscriptionStatusCoordinator : NSObject {
-    SSVSubscriptionStatusRequest *_activeRequest;
-    NSObject<OS_dispatch_queue> *_callbackQueue;
-    BOOL _didReset;
-    NSObject<OS_dispatch_queue> *_dispatchQueue;
-    SSVFamilyNotificationObserver *_familyNotificationObserver;
-    SSVSubscriptionStatus *_lastKnownStatus;
-    NSDate *_lastStatusDate;
-    int _notificationToken;
-    NSMutableArray *_statusBlocks;
+    SSVSubscriptionStatusRequest * _activeRequest;
+    NSObject<OS_dispatch_queue> * _callbackQueue;
+    BOOL  _didReset;
+    NSObject<OS_dispatch_queue> * _dispatchQueue;
+    SSVSubscriptionStatus * _lastKnownStatus;
+    NSDate * _lastStatusDate;
+    int  _notificationToken;
+    NSMutableArray * _statusBlocks;
 }
 
 @property (readonly, copy) SSVSubscriptionStatus *lastKnownStatus;
@@ -20,11 +19,11 @@
 + (id)sharedCoordinator;
 
 - (void).cxx_destruct;
+- (id)_copyStatusDateFromUserDefaults;
 - (id)_copyStatusFromUserDefaults;
 - (id)_copyValidStatusForStatus:(id)arg1;
 - (void)_deviceStoreFrontChangedNotification;
 - (void)_externalChangeNotification;
-- (void)_familyDidChangeNotification;
 - (void)_fireStatusBlocksWithStatus:(id)arg1 isFinal:(BOOL)arg2 error:(id)arg3;
 - (void)_handleRequestResponseWithStatus:(id)arg1 isFinal:(BOOL)arg2 error:(id)arg3;
 - (void)_invalidateLastKnownStatus;

@@ -3,22 +3,24 @@
  */
 
 @interface WBSCloudHistoryConfiguration : NSObject {
-    unsigned int _maximumRequestCharacterCount;
-    NSString *_multipleDeviceFetchChangesThrottlingPolicyString;
-    NSString *_multipleDeviceSaveChangesThrottlingPolicyString;
-    NSString *_singleDeviceFetchChangesThrottlingPolicyString;
-    NSString *_singleDeviceSaveChangesThrottlingPolicyString;
-    NSString *_syncCircleSizeRetrievalThrottlingPolicyString;
-    unsigned int _syncWindow;
+    unsigned int  _maximumRequestCharacterCount;
+    NSString * _multipleDeviceFetchChangesThrottlingPolicyString;
+    NSString * _multipleDeviceSaveChangesThrottlingPolicyString;
+    NSString * _singleDeviceFetchChangesThrottlingPolicyString;
+    NSString * _singleDeviceSaveChangesThrottlingPolicyString;
+    NSString * _syncCircleSizeRetrievalThrottlingPolicyString;
+    double  _syncWindow;
 }
 
 @property unsigned int maximumRequestCharacterCount;
 @property (retain) NSString *multipleDeviceFetchChangesThrottlingPolicyString;
 @property (retain) NSString *multipleDeviceSaveChangesThrottlingPolicyString;
+@property (readonly) BOOL shouldBatchSaveRecords;
+@property (readonly) BOOL shouldUseLongLivedOperationsToSaveRecords;
 @property (retain) NSString *singleDeviceFetchChangesThrottlingPolicyString;
 @property (retain) NSString *singleDeviceSaveChangesThrottlingPolicyString;
 @property (retain) NSString *syncCircleSizeRetrievalThrottlingPolicyString;
-@property unsigned int syncWindow;
+@property double syncWindow;
 
 - (void).cxx_destruct;
 - (void)_applyBuiltInConfiguration:(id)arg1;
@@ -39,10 +41,12 @@
 - (void)setSingleDeviceFetchChangesThrottlingPolicyString:(id)arg1;
 - (void)setSingleDeviceSaveChangesThrottlingPolicyString:(id)arg1;
 - (void)setSyncCircleSizeRetrievalThrottlingPolicyString:(id)arg1;
-- (void)setSyncWindow:(unsigned int)arg1;
+- (void)setSyncWindow:(double)arg1;
+- (BOOL)shouldBatchSaveRecords;
+- (BOOL)shouldUseLongLivedOperationsToSaveRecords;
 - (id)singleDeviceFetchChangesThrottlingPolicyString;
 - (id)singleDeviceSaveChangesThrottlingPolicyString;
 - (id)syncCircleSizeRetrievalThrottlingPolicyString;
-- (unsigned int)syncWindow;
+- (double)syncWindow;
 
 @end

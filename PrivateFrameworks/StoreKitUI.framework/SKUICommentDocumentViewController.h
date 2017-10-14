@@ -3,10 +3,10 @@
  */
 
 @interface SKUICommentDocumentViewController : SKUIViewController <SKUIArtworkRequestDelegate, SKUICommentDelegate, SKUIDocumentViewController, SKUILayoutCacheDelegate> {
-    SKUIMediaSocialAuthor *_authorForActiveAccount;
-    SKUIStackDocumentViewController *_childViewController;
-    NSArray *_commenters;
-    BOOL _didShowKeyboard;
+    SKUIMediaSocialAuthor * _authorForActiveAccount;
+    SKUIStackDocumentViewController * _childViewController;
+    NSArray * _commenters;
+    BOOL  _didShowKeyboard;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -16,16 +16,16 @@
             float width; 
             float height; 
         } size; 
-    } _keyboardRect;
-    BOOL _keyboardVisible;
-    SKUIViewElementLayoutContext *_layoutContext;
-    NSMutableSet *_observedArtworkRequestIDs;
-    SKUICommentPostBarView *_postView;
-    BOOL _scrollNewCommentToView;
-    int _selectedCommenter;
-    SKUIStackTemplateElement *_stackTemplateElement;
-    SKUICommentTemplateViewElement *_templateElement;
-    SKUILayoutCache *_textLayoutCache;
+    }  _keyboardRect;
+    BOOL  _keyboardVisible;
+    SKUIViewElementLayoutContext * _layoutContext;
+    NSMutableSet * _observedArtworkRequestIDs;
+    SKUICommentPostBarView * _postView;
+    BOOL  _scrollNewCommentToView;
+    int  _selectedCommenter;
+    SKUIStackTemplateElement * _stackTemplateElement;
+    SKUICommentTemplateViewElement * _templateElement;
+    SKUILayoutCache * _textLayoutCache;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -36,9 +36,8 @@
 - (void).cxx_destruct;
 - (id)_backgroundColor;
 - (void)_changeCommenter;
-- (void)_checkSubscriptionStatus:(id)arg1 isFinal:(BOOL)arg2 error:(id)arg3;
+- (void)_checkAdminStatus;
 - (id)_getSelectedCommenter;
-- (void)_getSubscriptionStatus;
 - (void)_keyboardDidHideChangeNotification:(id)arg1;
 - (void)_keyboardWillChangeFrameNotification:(id)arg1;
 - (void)_keyboardWillChangeNotification:(id)arg1 accountForGuideLines:(BOOL)arg2 applyKeyboardOffset:(BOOL)arg3;

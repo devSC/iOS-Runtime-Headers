@@ -3,7 +3,7 @@
  */
 
 @interface MPMediaEntity : NSObject <MusicEntityValueProviding, NSCopying, NSSecureCoding> {
-    MIPMultiverseIdentifier *_multiverseIdentifier;
+    MIPMultiverseIdentifier * _multiverseIdentifier;
 }
 
 @property (nonatomic, readonly) MPUContentItemIdentifierCollection *MPU_contentItemIdentifierCollection;
@@ -33,6 +33,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)enumerateValuesForProperties:(id)arg1 usingBlock:(id /* block */)arg2;
+- (id)genericModelObjectWithRequestedProperties:(id)arg1;
 - (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithMultiverseIdentifier:(id)arg1;
@@ -52,9 +53,9 @@
 
 // Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
 
-+ (id)_customPropertyHandlersCollection;
-+ (void)registerCustomProperty:(id)arg1 withValueHandler:(id /* block */)arg2;
-+ (void)registerSupportedCustomProperties;
++ (id)customPropertyHandlersCollection;
++ (void)registerSupportedCustomPropertiesWithHandlersCollection:(id)arg1;
++ (BOOL)supportsConcurrentLoadingOfEntityProperties;
 
 - (id)_valuesForRegularEntityProperties:(id)arg1;
 - (id)entityUniqueIdentifier;

@@ -3,20 +3,20 @@
  */
 
 @interface SKUIStorePageSectionContext : NSObject {
-    SKUIMetricsImpressionSession *_activeMetricsImpressionSession;
-    float _activePageWidth;
-    UICollectionView *_collectionView;
-    SKUIColorScheme *_colorScheme;
-    int _defaultPinningTransitionStyle;
-    SKUIItemOfferButtonAppearance *_itemOfferButtonAppearance;
-    float _landscapePageWidth;
-    int _layoutStyle;
-    SKUIMetricsController *_metricsController;
-    SKUIStorePageSectionsViewController *_parentViewController;
-    UIColor *_placeholderColor;
-    float _portraitPageWidth;
-    SKUIResourceLoader *_resourceLoader;
-    SKUILayoutCache *_textLayoutCache;
+    SKUIMetricsImpressionSession * _activeMetricsImpressionSession;
+    float  _activePageWidth;
+    UICollectionView * _collectionView;
+    SKUIColorScheme * _colorScheme;
+    int  _defaultPinningTransitionStyle;
+    SKUIItemOfferButtonAppearance * _itemOfferButtonAppearance;
+    float  _landscapePageWidth;
+    int  _layoutStyle;
+    SKUIMetricsController * _metricsController;
+    SKUIStorePageSectionsViewController * _parentViewController;
+    UIColor * _placeholderColor;
+    float  _portraitPageWidth;
+    SKUIResourceLoader * _resourceLoader;
+    SKUILayoutCache * _textLayoutCache;
 }
 
 @property (nonatomic, readonly) SKUIMetricsImpressionSession *activeMetricsImpressionSession;
@@ -25,6 +25,7 @@
 @property (nonatomic, readonly) UICollectionView *collectionView;
 @property (nonatomic, readonly) SKUIColorScheme *colorScheme;
 @property (nonatomic, readonly) int defaultPinningTransitionStyle;
+@property (nonatomic, readonly) float horizontalPadding;
 @property (nonatomic, readonly) SKUIItemOfferButtonAppearance *itemOfferButtonAppearance;
 @property (nonatomic, readonly) float landscapePageWidth;
 @property (nonatomic, readonly) int layoutStyle;
@@ -54,6 +55,7 @@
 - (id)collectionView;
 - (id)colorScheme;
 - (int)defaultPinningTransitionStyle;
+- (float)horizontalPadding;
 - (id)init;
 - (id)itemOfferButtonAppearance;
 - (float)landscapePageWidth;

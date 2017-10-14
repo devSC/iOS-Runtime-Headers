@@ -3,15 +3,23 @@
  */
 
 @interface _ATXGlobals : NSObject {
-    NSDictionary *_parameters;
+    NSDictionary * _parameters;
 }
 
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
+- (double)airplaneModeLaunchDecayHalflife;
 - (double)appLaunchDecayHalflife;
+- (double)dayOfWeekLaunchDecayHalflife;
+- (int)extraAppsToLog;
 - (id)init;
 - (id)initWithAssetClass:(Class)arg1;
+- (double)launchSequenceDecayHalflife;
+- (double)sessionObjectLogSamplingRate;
+- (double)shadowLogSamplingRate;
 - (double)spotlightLaunchDecayHalflife;
+- (double)trendingLaunchDecayHalflife;
+- (double)wifiSSIDLaunchDecayHalflife;
 
 @end

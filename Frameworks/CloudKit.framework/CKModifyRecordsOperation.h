@@ -3,22 +3,26 @@
  */
 
 @interface CKModifyRecordsOperation : CKDatabaseOperation {
-    NSMutableDictionary *_assetsByRecordIDAndRecordKey;
-    BOOL _atomic;
-    NSData *_clientChangeTokenData;
-    NSDictionary *_conflictLosersToResolveByRecordID;
-    NSMutableArray *_deletedRecordIDs;
-    id /* block */ _modifyRecordsCompletionBlock;
-    id /* block */ _perRecordCompletionBlock;
-    id /* block */ _perRecordProgressBlock;
-    NSMutableDictionary *_recordErrors;
-    NSArray *_recordIDsToDelete;
-    NSDictionary *_recordIDsToDeleteToEtags;
-    NSMutableDictionary *_recordsByRecordIDs;
-    NSArray *_recordsToSave;
-    int _savePolicy;
-    NSMutableArray *_savedRecords;
-    BOOL _shouldOnlySaveAssetContent;
+    NSMutableDictionary * _assetsByRecordIDAndRecordKey;
+    BOOL  _atomic;
+    NSData * _clientChangeTokenData;
+    NSDictionary * _conflictLosersToResolveByRecordID;
+    NSMutableArray * _deletedRecordIDs;
+    id /* block */  _modifyRecordsCompletionBlock;
+    NSMutableSet * _packagesToDestroy;
+    id /* block */  _perRecordCompletionBlock;
+    id /* block */  _perRecordProgressBlock;
+    NSDictionary * _pluginFieldsForRecordDeletesByID;
+    NSMutableDictionary * _recordErrors;
+    NSArray * _recordIDsToDelete;
+    NSDictionary * _recordIDsToDeleteToEtags;
+    NSMutableDictionary * _recordsByRecordIDs;
+    id /* block */  _recordsInFlightBlock;
+    NSArray * _recordsToSave;
+    int  _savePolicy;
+    NSMutableArray * _savedRecords;
+    BOOL  _shouldOnlySaveAssetContent;
+    BOOL  _shouldReportRecordsInFlight;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *assetsByRecordIDAndRecordKey;
@@ -27,16 +31,20 @@
 @property (nonatomic, retain) NSDictionary *conflictLosersToResolveByRecordID;
 @property (nonatomic, retain) NSMutableArray *deletedRecordIDs;
 @property (nonatomic, copy) id /* block */ modifyRecordsCompletionBlock;
+@property (nonatomic, retain) NSMutableSet *packagesToDestroy;
 @property (nonatomic, copy) id /* block */ perRecordCompletionBlock;
 @property (nonatomic, copy) id /* block */ perRecordProgressBlock;
+@property (nonatomic, copy) NSDictionary *pluginFieldsForRecordDeletesByID;
 @property (nonatomic, retain) NSMutableDictionary *recordErrors;
 @property (nonatomic, copy) NSArray *recordIDsToDelete;
 @property (nonatomic, copy) NSDictionary *recordIDsToDeleteToEtags;
 @property (nonatomic, retain) NSMutableDictionary *recordsByRecordIDs;
+@property (nonatomic, copy) id /* block */ recordsInFlightBlock;
 @property (nonatomic, copy) NSArray *recordsToSave;
 @property (nonatomic) int savePolicy;
 @property (nonatomic, retain) NSMutableArray *savedRecords;
 @property (nonatomic) BOOL shouldOnlySaveAssetContent;
+@property (nonatomic) BOOL shouldReportRecordsInFlight;
 
 // Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
@@ -45,23 +53,31 @@
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
 - (void)_trackAssetsToUpload;
-- (unsigned long long)activityStart;
+- (id)activityCreate;
 - (id)assetsByRecordIDAndRecordKey;
 - (BOOL)atomic;
+- (BOOL)claimPackagesInRecord:(id)arg1 error:(id*)arg2;
 - (id)clientChangeTokenData;
 - (id)conflictLosersToResolveByRecordID;
 - (id)deletedRecordIDs;
+- (void)destroyPackages:(id)arg1;
+- (void)destroyPackagesInRecords:(id)arg1;
+- (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (BOOL)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordsToSave:(id)arg1 recordIDsToDelete:(id)arg2;
 - (id /* block */)modifyRecordsCompletionBlock;
+- (id)packagesToDestroy;
 - (id /* block */)perRecordCompletionBlock;
 - (id /* block */)perRecordProgressBlock;
 - (void)performCKOperation;
+- (id)pluginFieldsForRecordDeletesByID;
 - (id)recordErrors;
 - (id)recordIDsToDelete;
 - (id)recordIDsToDeleteToEtags;
 - (id)recordsByRecordIDs;
+- (id /* block */)recordsInFlightBlock;
 - (id)recordsToSave;
 - (int)savePolicy;
 - (id)savedRecords;
@@ -71,17 +87,22 @@
 - (void)setConflictLosersToResolveByRecordID:(id)arg1;
 - (void)setDeletedRecordIDs:(id)arg1;
 - (void)setModifyRecordsCompletionBlock:(id /* block */)arg1;
+- (void)setPackagesToDestroy:(id)arg1;
 - (void)setPerRecordCompletionBlock:(id /* block */)arg1;
 - (void)setPerRecordProgressBlock:(id /* block */)arg1;
+- (void)setPluginFieldsForRecordDeletesByID:(id)arg1;
 - (void)setRecordErrors:(id)arg1;
 - (void)setRecordIDsToDelete:(id)arg1;
 - (void)setRecordIDsToDeleteToEtags:(id)arg1;
 - (void)setRecordsByRecordIDs:(id)arg1;
+- (void)setRecordsInFlightBlock:(id /* block */)arg1;
 - (void)setRecordsToSave:(id)arg1;
 - (void)setSavePolicy:(int)arg1;
 - (void)setSavedRecords:(id)arg1;
 - (void)setShouldOnlySaveAssetContent:(BOOL)arg1;
+- (void)setShouldReportRecordsInFlight:(BOOL)arg1;
 - (BOOL)shouldOnlySaveAssetContent;
+- (BOOL)shouldReportRecordsInFlight;
 
 // Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
 

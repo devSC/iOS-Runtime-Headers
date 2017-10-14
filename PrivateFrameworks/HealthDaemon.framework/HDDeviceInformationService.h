@@ -3,13 +3,13 @@
  */
 
 @interface HDDeviceInformationService : HDHealthService {
-    NSMutableDictionary *_characteristics;
-    BOOL _deviceInformationHasBeenLoaded;
-    NSMutableArray *_pendingDeviceInformationLoadedBlocks;
-    NSMutableSet *_propertiesLeftToFetch;
-    HDHealthDevicePropertyManager *_propertyManager;
-    NSMutableDictionary *_propertyValues;
-    NSObject<OS_dispatch_queue> *_queue;
+    NSMutableDictionary * _characteristics;
+    BOOL  _deviceInformationHasBeenLoaded;
+    NSMutableArray * _pendingDeviceInformationLoadedBlocks;
+    NSMutableSet * _propertiesLeftToFetch;
+    HDHealthServicePropertyManager * _propertyManager;
+    NSMutableDictionary * _propertyValues;
+    NSObject<OS_dispatch_queue> * _queue;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *characteristics;
@@ -20,7 +20,7 @@
 @property (readonly) NSString *modelNumber;
 @property (nonatomic, retain) NSMutableArray *pendingDeviceInformationLoadedBlocks;
 @property (nonatomic, retain) NSMutableSet *propertiesLeftToFetch;
-@property (nonatomic) HDHealthDevicePropertyManager *propertyManager;
+@property (nonatomic) HDHealthServicePropertyManager *propertyManager;
 @property (nonatomic, retain) NSMutableDictionary *propertyValues;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
 @property (readonly) NSString *serialNumber;

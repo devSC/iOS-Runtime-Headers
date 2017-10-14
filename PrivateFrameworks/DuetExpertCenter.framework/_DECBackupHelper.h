@@ -3,8 +3,7 @@
  */
 
 @interface _DECBackupHelper : NSObject {
-    _DKDataProtectionStateMonitor *_dataProtection;
-    NSFileManager *_fm;
+    NSFileManager * _fm;
 }
 
 + (id)sharedInstance;
@@ -17,6 +16,7 @@
 - (BOOL)canRestore;
 - (BOOL)createBackupDirectoriesIfMissing;
 - (BOOL)finishBackup;
+- (void)fixupDataProtection;
 - (id)init;
 - (BOOL)isClassCLocked;
 - (BOOL)markRestoreAsNotDone;

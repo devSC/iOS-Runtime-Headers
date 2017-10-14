@@ -3,18 +3,20 @@
  */
 
 @interface MFDAMailAccountSyncConsumer : MFDAMailAccountConsumer <DAMailboxRequestConsumer, DAMailboxStreamingContentConsumer> {
-    NSString *_accountID;
-    NSMutableData *_bodyData;
-    NSArray *_consumers;
-    BOOL _firstSyncBatch;
-    MFActivityMonitor *_monitor;
-    BOOL _moreAvailable;
-    BOOL _receivedFirstItem;
-    NSArray *_requests;
-    int _serverErrors;
-    id _streamConsumer;
-    int _syncKeyResets;
-    NSString *_tag;
+    NSConditionLock * _accountHierarchyLock;
+    NSString * _accountID;
+    NSMutableData * _bodyData;
+    NSArray * _consumers;
+    BOOL  _firstSyncBatch;
+    MFActivityMonitor * _monitor;
+    BOOL  _moreAvailable;
+    BOOL  _receivedFirstItem;
+    NSArray * _requests;
+    int  _serverErrors;
+    id  _streamConsumer;
+    int  _syncKeyResets;
+    NSMutableDictionary * _syncResponseConsumersByMessageId;
+    NSString * _tag;
 }
 
 @property (nonatomic, readonly) BOOL moreAvailable;
@@ -22,6 +24,7 @@
 @property (nonatomic, readonly) NSString *tag;
 
 - (void)_setTag:(id)arg1;
+- (void)accountHierarchyChanged:(id)arg1;
 - (id)actionsConsumer;
 - (void)consumeData:(char *)arg1 length:(int)arg2 format:(int)arg3 mailMessage:(id)arg4;
 - (void)dealloc;
@@ -31,6 +34,7 @@
 - (BOOL)moreAvailable;
 - (id)originalThreadMonitor;
 - (void)partialResultsForMailbox:(id)arg1 actions:(id)arg2 responses:(id)arg3 percentComplete:(double)arg4 moreAvailable:(BOOL)arg5;
+- (BOOL)refreshFolderHierarchyAndWait:(unsigned int)arg1;
 - (void)reset;
 - (void)resultsForMailbox:(id)arg1 newTag:(id)arg2 actions:(id)arg3 responses:(id)arg4 percentComplete:(double)arg5 moreAvailable:(BOOL)arg6 sentBytesCount:(unsigned int)arg7 receivedBytesCount:(unsigned int)arg8;
 - (void)setStreamConsumer:(id)arg1;

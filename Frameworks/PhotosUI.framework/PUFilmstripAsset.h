@@ -3,12 +3,12 @@
  */
 
 @interface PUFilmstripAsset : NSObject <PUDisplayAsset> {
-    AVAsset *__asset;
-    BOOL __isSourceTimeAccurate;
-    double __normalizedTime;
-    unsigned int _pixelHeight;
-    unsigned int _pixelWidth;
-    double _sourceTime;
+    AVAsset * __asset;
+    BOOL  __isSourceTimeAccurate;
+    double  __normalizedTime;
+    unsigned int  _pixelHeight;
+    unsigned int  _pixelWidth;
+    double  _sourceTime;
 }
 
 @property (setter=_setAsset:, nonatomic) AVAsset *_asset;
@@ -22,10 +22,12 @@
 @property (nonatomic, readonly) double duration;
 @property (getter=isFavorite, nonatomic, readonly) BOOL favorite;
 @property (nonatomic, readonly) unsigned int fullsizeDataFormat;
+@property (nonatomic, readonly) BOOL hasPhotoColorAdjustments;
 @property (readonly) unsigned int hash;
 @property (nonatomic, readonly) BOOL isPhotoIrisPlaceholder;
 @property (nonatomic, readonly) BOOL isTemporaryPlaceholder;
 @property (nonatomic, readonly) NSString *localizedGeoDescription;
+@property (nonatomic, readonly) CLLocation *location;
 @property (nonatomic, readonly) unsigned int mediaType;
 @property (nonatomic, readonly) NSDate *modificationDate;
 @property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } photoIrisStillDisplayTime;
@@ -49,6 +51,7 @@
 - (id)creationDate;
 - (double)duration;
 - (unsigned int)fullsizeDataFormat;
+- (BOOL)hasPhotoColorAdjustments;
 - (unsigned int)hash;
 - (id)init;
 - (id)initWithNormalizedTime:(double)arg1 asset:(id)arg2;
@@ -59,6 +62,7 @@
 - (BOOL)isTemporaryPlaceholder;
 - (void)loadSourceTimeWithCompletionHandler:(id /* block */)arg1;
 - (id)localizedGeoDescription;
+- (id)location;
 - (unsigned int)mediaType;
 - (id)modificationDate;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })photoIrisStillDisplayTime;

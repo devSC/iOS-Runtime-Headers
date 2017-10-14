@@ -3,19 +3,19 @@
  */
 
 @interface PLCameraImportItem : NSObject {
-    NSString *_basePath;
-    NSString *_identifier;
-    NSError *_importError;
-    BOOL _metadataRequested;
-    NSString *_parentFolder;
-    NSMutableDictionary *_representationsMapping;
-    BOOL _shouldImport;
-    UIImage *_thumbnail;
-    NSData *_thumbnailData;
-    BOOL _thumbnailRequested;
-    int _thumbnailState;
-    NSString *eventName;
-    PLManagedAsset *importedAsset;
+    NSString * _basePath;
+    NSString * _identifier;
+    NSError * _importError;
+    BOOL  _metadataRequested;
+    NSString * _parentFolder;
+    NSMutableDictionary * _representationsMapping;
+    BOOL  _shouldImport;
+    UIImage * _thumbnail;
+    NSData * _thumbnailData;
+    BOOL  _thumbnailRequested;
+    int  _thumbnailState;
+    NSString * eventName;
+    PLManagedAsset * importedAsset;
 }
 
 @property (nonatomic, retain) NSString *basePath;
@@ -27,6 +27,8 @@
 @property (nonatomic) BOOL shouldImport;
 @property (nonatomic, readonly, retain) UIImage *thumbnail;
 @property (nonatomic, retain) NSData *thumbnailData;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
 
 - (void)_addRepresentation:(id)arg1;
 - (id)_fileExtensionForTypeWithSelector:(SEL)arg1;
@@ -84,5 +86,9 @@
 - (id)thumbnail;
 - (id)thumbnailData;
 - (int)thumbnailState;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_extenstion;
 
 @end

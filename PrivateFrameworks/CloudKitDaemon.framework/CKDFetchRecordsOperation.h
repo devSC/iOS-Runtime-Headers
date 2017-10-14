@@ -3,31 +3,36 @@
  */
 
 @interface CKDFetchRecordsOperation : CKDDatabaseOperation {
-    unsigned int _URLOptions;
-    NSSet *_assetFieldNamesToPublishURLs;
-    CKDRecordCache *_cache;
-    NSMutableDictionary *_cachedRecords;
-    NSSet *_desiredKeySet;
-    NSDictionary *_desiredPackageFileIndices;
-    NSMapTable *_downloadTasksByRecordID;
-    NSMutableDictionary *_errorsByRecordID;
-    NSObject<OS_dispatch_group> *_fetchRecordsGroup;
-    BOOL _forcePCSDecrypt;
-    NSArray *_fullRecordsToFetch;
-    id /* block */ _recordFetchCompletionBlock;
-    id /* block */ _recordFetchProgressBlock;
-    NSDictionary *_recordIDsToETags;
-    NSArray *_recordIDsToFetch;
-    NSDictionary *_recordIDsToVersionETags;
-    unsigned int _requestedTTL;
-    BOOL _shouldFetchAssetContent;
-    NSDictionary *_signaturesOfAssetsByRecordIDAndKey;
-    BOOL _useCachedEtags;
-    NSDictionary *_webSharingIdentityDataByRecordID;
+    unsigned int  _URLOptions;
+    NSSet * _assetFieldNamesToPublishURLs;
+    NSDictionary * _assetTransferOptionsByRecordTypeAndKey;
+    CKDRecordCache * _cache;
+    NSMutableDictionary * _cachedRecords;
+    CKDDecryptRecordsOperation * _decryptOperation;
+    NSSet * _desiredKeySet;
+    NSDictionary * _desiredPackageFileIndices;
+    NSMapTable * _downloadTasksByRecordID;
+    NSMutableDictionary * _errorsByRecordID;
+    NSObject<OS_dispatch_group> * _fetchRecordsGroup;
+    BOOL  _forcePCSDecrypt;
+    NSArray * _fullRecordsToFetch;
+    id /* block */  _recordFetchCommandBlock;
+    id /* block */  _recordFetchCompletionBlock;
+    id /* block */  _recordFetchProgressBlock;
+    NSDictionary * _recordIDsToETags;
+    NSArray * _recordIDsToFetch;
+    NSDictionary * _recordIDsToVersionETags;
+    unsigned int  _requestedTTL;
+    BOOL  _shouldFetchAssetContent;
+    BOOL  _shouldFetchAssetContentInMemory;
+    NSDictionary * _signaturesOfAssetsByRecordIDAndKey;
+    BOOL  _useCachedEtags;
+    NSDictionary * _webSharingIdentityDataByRecordID;
 }
 
 @property (nonatomic) unsigned int URLOptions;
 @property (nonatomic, retain) NSSet *assetFieldNamesToPublishURLs;
+@property (nonatomic, retain) NSDictionary *assetTransferOptionsByRecordTypeAndKey;
 @property (nonatomic, retain) CKDRecordCache *cache;
 @property (nonatomic, retain) NSMutableDictionary *cachedRecords;
 @property (nonatomic, retain) NSSet *desiredKeySet;
@@ -37,6 +42,9 @@
 @property (nonatomic, retain) NSObject<OS_dispatch_group> *fetchRecordsGroup;
 @property (nonatomic) BOOL forcePCSDecrypt;
 @property (nonatomic, retain) NSArray *fullRecordsToFetch;
+@property (nonatomic, readonly) BOOL hasRecordDecryptOperation;
+@property (nonatomic, readonly) CKDDecryptRecordsOperation *recordDecryptOperation;
+@property (nonatomic, copy) id /* block */ recordFetchCommandBlock;
 @property (nonatomic, copy) id /* block */ recordFetchCompletionBlock;
 @property (nonatomic, copy) id /* block */ recordFetchProgressBlock;
 @property (nonatomic, retain) NSDictionary *recordIDsToETags;
@@ -44,6 +52,7 @@
 @property (nonatomic, retain) NSDictionary *recordIDsToVersionETags;
 @property (nonatomic) unsigned int requestedTTL;
 @property (nonatomic) BOOL shouldFetchAssetContent;
+@property (nonatomic) BOOL shouldFetchAssetContentInMemory;
 @property (nonatomic, retain) NSDictionary *signaturesOfAssetsByRecordIDAndKey;
 @property (nonatomic) BOOL useCachedEtags;
 @property (nonatomic, retain) NSDictionary *webSharingIdentityDataByRecordID;
@@ -56,12 +65,14 @@
 - (void)_didDownloadAssetsWithError:(id)arg1;
 - (void)_downloadAssets;
 - (void)_fetchRecords;
+- (void)_findCurrentUserParticipantOnShare:(id)arg1 identityDelegate:(id)arg2;
 - (void)_finishAllDownloadTasksWithError:(id)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleRecordFetch:(id)arg1 recordID:(id)arg2 etagMatched:(BOOL)arg3 responseCode:(id)arg4;
-- (BOOL)_prepareAsset:(id)arg1 record:(id)arg2 recordKey:(id)arg3 signature:(id)arg4;
-- (unsigned long long)activityStart;
+- (BOOL)_prepareAsset:(id)arg1 record:(id)arg2 recordKey:(id)arg3 signature:(id)arg4 assetTransferOptions:(id)arg5;
+- (id)activityCreate;
 - (id)assetFieldNamesToPublishURLs;
+- (id)assetTransferOptionsByRecordTypeAndKey;
 - (id)cache;
 - (id)cachedRecords;
 - (id)desiredKeySet;
@@ -73,10 +84,13 @@
 - (void)finishWithError:(id)arg1;
 - (BOOL)forcePCSDecrypt;
 - (id)fullRecordsToFetch;
+- (BOOL)hasRecordDecryptOperation;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 - (void)main;
 - (BOOL)makeStateTransition;
 - (id)nameForState:(unsigned int)arg1;
+- (id)recordDecryptOperation;
+- (id /* block */)recordFetchCommandBlock;
 - (id /* block */)recordFetchCompletionBlock;
 - (id /* block */)recordFetchProgressBlock;
 - (id)recordIDsToETags;
@@ -84,6 +98,7 @@
 - (id)recordIDsToVersionETags;
 - (unsigned int)requestedTTL;
 - (void)setAssetFieldNamesToPublishURLs:(id)arg1;
+- (void)setAssetTransferOptionsByRecordTypeAndKey:(id)arg1;
 - (void)setCache:(id)arg1;
 - (void)setCachedRecords:(id)arg1;
 - (void)setDesiredKeySet:(id)arg1;
@@ -94,6 +109,7 @@
 - (void)setFetchRecordsGroup:(id)arg1;
 - (void)setForcePCSDecrypt:(BOOL)arg1;
 - (void)setFullRecordsToFetch:(id)arg1;
+- (void)setRecordFetchCommandBlock:(id /* block */)arg1;
 - (void)setRecordFetchCompletionBlock:(id /* block */)arg1;
 - (void)setRecordFetchProgressBlock:(id /* block */)arg1;
 - (void)setRecordIDsToETags:(id)arg1;
@@ -101,11 +117,13 @@
 - (void)setRecordIDsToVersionETags:(id)arg1;
 - (void)setRequestedTTL:(unsigned int)arg1;
 - (void)setShouldFetchAssetContent:(BOOL)arg1;
+- (void)setShouldFetchAssetContentInMemory:(BOOL)arg1;
 - (void)setSignaturesOfAssetsByRecordIDAndKey:(id)arg1;
 - (void)setURLOptions:(unsigned int)arg1;
 - (void)setUseCachedEtags:(BOOL)arg1;
 - (void)setWebSharingIdentityDataByRecordID:(id)arg1;
 - (BOOL)shouldFetchAssetContent;
+- (BOOL)shouldFetchAssetContentInMemory;
 - (id)signaturesOfAssetsByRecordIDAndKey;
 - (BOOL)useCachedEtags;
 - (id)webSharingIdentityDataByRecordID;

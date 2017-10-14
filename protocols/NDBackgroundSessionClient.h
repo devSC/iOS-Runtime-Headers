@@ -7,7 +7,7 @@
 
 - (void)backgroundAVAssetDownloadTask:(unsigned int)arg1 didLoadTimeRange:(NSValue *)arg2 totalTimeRangesLoaded:(NSArray *)arg3 timeRangeExpectedToLoad:(NSValue *)arg4;
 - (void)backgroundAVAssetDownloadTask:(unsigned int)arg1 didReceiveDownloadToken:(unsigned long long)arg2;
-- (void)backgroundAVAssetDownloadTask:(unsigned int)arg1 didResolveMediaSelectionProperyList:(NSDictionary *)arg2;
+- (void)backgroundAVAssetDownloadTask:(void *)arg1 didResolveMediaSelectionProperyList:(void *)arg2 reply:(void *)arg3; // needs 3 arg types, found 7: unsigned int, id, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)backgroundAVAssetDownloadTaskDidUpdateProgress:(unsigned int)arg1 totalBytesWritten:(unsigned long long)arg2 totalBytesExpectedToWrite:(unsigned long long)arg3;
 - (void)backgroundDataTask:(void *)arg1 didReceiveData:(void *)arg2 withReply:(void *)arg3; // needs 3 arg types, found 7: unsigned int, NSData *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)backgroundDataTaskDidBecomeDownloadTask:(unsigned int)arg1;
@@ -17,7 +17,8 @@
 - (void)backgroundSessionDidFinishAppWake:(void *)arg1 reply:(void *)arg2; // needs 2 arg types, found 6: NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)backgroundSessionDidStartAppWake:(void *)arg1 reply:(void *)arg2; // needs 2 arg types, found 6: NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)backgroundTask:(void *)arg1 _willSendRequestForEstablishedConnection:(void *)arg2 reply:(void *)arg3; // needs 3 arg types, found 9: unsigned int, NSURLRequest *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSURLRequest *, NSFileHandle *, void*
-- (void)backgroundTask:(void *)arg1 didCompleteWithError:(void *)arg2 timingData:(void *)arg3 reply:(void *)arg4; // needs 4 arg types, found 8: unsigned int, NSError *, NSDictionary *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
+- (void)backgroundTask:(void *)arg1 didCompleteWithError:(void *)arg2 info:(void *)arg3 reply:(void *)arg4; // needs 4 arg types, found 8: unsigned int, NSError *, NSDictionary *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
+- (void)backgroundTask:(void *)arg1 didFinishCollectingMetrics:(void *)arg2 reply:(void *)arg3; // needs 3 arg types, found 7: unsigned int, NSURLSessionTaskMetrics *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)backgroundTask:(void *)arg1 didReceiveChallenge:(void *)arg2 reply:(void *)arg3; // needs 3 arg types, found 9: unsigned int, NSURLAuthenticationChallenge *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, int, NSURLCredential *, void*
 - (void)backgroundTask:(unsigned int)arg1 didReceiveResponse:(NSURLResponse *)arg2 timingData:(NSDictionary *)arg3;
 - (void)backgroundTask:(void *)arg1 didReceiveResponse:(void *)arg2 timingData:(void *)arg3 reply:(void *)arg4; // needs 4 arg types, found 9: unsigned int, NSURLResponse *, NSDictionary *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, int, void*

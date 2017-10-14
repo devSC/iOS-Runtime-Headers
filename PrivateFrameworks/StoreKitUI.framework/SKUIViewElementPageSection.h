@@ -3,22 +3,23 @@
  */
 
 @interface SKUIViewElementPageSection : SKUIStorePageSection <SKUIArtworkRequestDelegate> {
-    Class _cellClass;
+    Class  _cellClass;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _cellContentInset;
-    SKUIViewElementLayoutContext *_cellLayoutContext;
-    float _firstSectionTopInset;
-    SKUICollectionViewCell<SKUIViewElementView> *_lastCell;
-    BOOL _rendersWithPerspective;
-    NSString *_reuseIdentifier;
-    float _sectionBottomInset;
+    }  _cellContentInset;
+    SKUIViewElementLayoutContext * _cellLayoutContext;
+    float  _firstSectionTopInset;
+    SKUICollectionViewCell<SKUIViewElementView> * _lastCell;
+    BOOL  _rendersWithPerspective;
+    NSString * _reuseIdentifier;
+    float  _sectionBottomInset;
 }
 
 @property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) float defaultVerticalInset;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
@@ -42,6 +43,7 @@
 - (void)collectionViewWillDisplayCellForItemAtIndexPath:(id)arg1;
 - (float)contentInsetAdjustmentForCollectionView:(id)arg1;
 - (int)defaultItemPinningStyle;
+- (float)defaultVerticalInset;
 - (void)entityProvider:(id)arg1 didInvalidateWithContext:(id)arg2;
 - (void)expandEditorialForLabelElement:(id)arg1 indexPath:(id)arg2;
 - (void)getModalSourceViewForViewElement:(id)arg1 completionBlock:(id /* block */)arg2;
@@ -50,8 +52,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })pinningContentInsetForItemAtIndexPath:(id)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)prefetchResourcesWithReason:(int)arg1;
-- (id)previewViewControllerForIndexPath:(id)arg1;
-- (BOOL)previewsSupportedForIndexPath:(id)arg1;
+- (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint { float x1; float x2; })arg2;
 - (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })sectionContentInset;
 - (BOOL)updateCellWithIndexPath:(id)arg1 itemState:(id)arg2 animated:(BOOL)arg3;

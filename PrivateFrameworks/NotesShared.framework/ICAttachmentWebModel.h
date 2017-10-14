@@ -3,16 +3,16 @@
  */
 
 @interface ICAttachmentWebModel : ICAttachmentModel <WKNavigationDelegate, WKScriptMessageHandler> {
-    id /* block */ _pendingFetchCompletionHandler;
-    WKWebView *_webView;
+    id /* block */  _pendingFetchCompletionHandler;
+    WKWebView * _webView;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
-@property (nonatomic, copy) id /* block */ pendingFetchCompletionHandler;
+@property (copy) id /* block */ pendingFetchCompletionHandler;
 @property (readonly) Class superclass;
-@property (nonatomic, retain) WKWebView *webView;
+@property (retain) WKWebView *webView;
 
 + (id)contentInfoTextWithAttachmentCount:(unsigned int)arg1;
 + (id)sharedWKProcessPool;
@@ -22,7 +22,7 @@
 - (void)downloadWebIcons:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)fetchMetadataFromURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)generateAsynchronousPreviews;
-- (void)generatePreviews;
+- (void)generatePreviewsInOperation:(id)arg1;
 - (id /* block */)genericBrickThumbnailCreator;
 - (id /* block */)genericListThumbnailCreator;
 - (BOOL)hasPreviews;
@@ -32,6 +32,7 @@
 - (void)saveWebIcons:(id)arg1;
 - (void)setPendingFetchCompletionHandler:(id /* block */)arg1;
 - (void)setWebView:(id)arg1;
+- (BOOL)showThumbnailInNoteList;
 - (id)standardWebIconsForURL:(id)arg1;
 - (void)userContentController:(id)arg1 didReceiveScriptMessage:(id)arg2;
 - (id)webView;

@@ -3,9 +3,9 @@
  */
 
 @interface PUMapItem : NSObject {
-    NSDate *_dateCreated;
-    NSObject<NSCopying> *_itemId;
-    CLLocation *_location;
+    NSDate * _dateCreated;
+    NSObject<NSCopying> * _itemId;
+    CLLocation * _location;
 }
 
 @property (nonatomic, copy) NSDate *dateCreated;
@@ -28,6 +28,5 @@
 - (void)setDateCreated:(id)arg1;
 - (void)setItemId:(id)arg1;
 - (void)setLocation:(id)arg1;
-- (id)thumbnailImage;
 
 @end

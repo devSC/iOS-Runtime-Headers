@@ -3,12 +3,12 @@
  */
 
 @interface WBSReaderFontManager : NSObject {
-    NSString *_languageTag;
-    NSArray *_validatedFonts;
+    NSString * _languageTag;
+    NSArray * _validatedFonts;
 }
 
 @property (readonly) NSArray *fonts;
-@property (readonly) NSString *languageTag;
+@property (readonly, copy) NSString *languageTag;
 
 - (void).cxx_destruct;
 - (id)defaultFontForLanguageTag:(id)arg1;

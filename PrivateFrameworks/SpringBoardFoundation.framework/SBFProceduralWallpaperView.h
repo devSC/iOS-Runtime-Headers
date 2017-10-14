@@ -3,13 +3,15 @@
  */
 
 @interface SBFProceduralWallpaperView : SBFWallpaperView <SBFProceduralWallpaperDelegate> {
-    UIImage *_blur;
-    struct _CAImageQueue { } *_blurQueue;
-    NSTimer *_colorSampleTimer;
-    NSDictionary *_options;
-    BOOL _pausedForThermalReasons;
-    <SBFProceduralWallpaper> *_proceduralWallpaper;
-    int _thermalNotificationToken;
+    UIImage * _blur;
+    struct _CAImageQueue { } * _blurQueue;
+    UIImage * _cachedUnblurredImage;
+    CADisplayLink * _cachedUnblurredImageDisplayLinkObserver;
+    NSTimer * _colorSampleTimer;
+    NSDictionary * _options;
+    BOOL  _pausedForThermalReasons;
+    <SBFProceduralWallpaper> * _proceduralWallpaper;
+    int  _thermalNotificationToken;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -20,7 +22,9 @@
 + (BOOL)_allowsParallax;
 + (BOOL)_allowsRasterization;
 
+- (void).cxx_destruct;
 - (id)_blurredImage;
+- (void)_cachedUnbluredImageDidInvalidate;
 - (id)_computeAverageColor;
 - (BOOL)_deviceMayRotate;
 - (void)_handleVariantChange;
@@ -35,9 +39,10 @@
 - (void)_updateSampleTimer;
 - (void)dealloc;
 - (BOOL)hasBeenInvalidated;
+- (BOOL)hasContentOutsideVisibleBounds;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 proceduralWallpaper:(id)arg2 options:(id)arg3 variant:(int)arg4;
 - (void)invalidate;
-- (BOOL)isDisplayingWallpaper:(id)arg1 forVariant:(int)arg2 options:(id)arg3;
+- (BOOL)isDisplayingWallpaperWithConfiguration:(id)arg1 forVariant:(int)arg2;
 - (void)layoutSubviews;
 - (BOOL)needsImmediateLayoutBeforeRotation;
 - (id)options;
@@ -46,7 +51,9 @@
 - (void)setContinuousColorSamplingEnabled:(BOOL)arg1;
 - (void)setRotating:(BOOL)arg1;
 - (void)setWallpaperAnimationEnabled:(BOOL)arg1;
+- (id)snapshotImage;
 - (void)wallpaper:(id)arg1 didComputeAverageColor:(id)arg2 forRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (void)wallpaper:(id)arg1 didGenerateBlur:(struct __IOSurface { }*)arg2 forRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
+- (int)wallpaperType;
 
 @end

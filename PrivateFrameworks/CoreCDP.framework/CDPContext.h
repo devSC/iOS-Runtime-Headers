@@ -2,19 +2,32 @@
    Image: /System/Library/PrivateFrameworks/CoreCDP.framework/CoreCDP
  */
 
-@interface CDPContext : NSObject {
-    BOOL __useSecureBackupCachedPassphrase;
-    NSString *_appleID;
-    NSDictionary *_authenticationResults;
-    NSString *_cachedLocalSecret;
-    unsigned int _cachedLocalSecretType;
-    BOOL _didUseSMSVerification;
-    NSNumber *_dsid;
-    BOOL _isHSA2Account;
-    NSString *_password;
-    NSString *_passwordEquivToken;
+@interface CDPContext : NSObject <NSCopying, NSSecureCoding> {
+    BOOL  __alwaysCreateEscrowRecord;
+    <CDPAuthProviderInternal> * __authProvider;
+    NSString * __recoveryToken;
+    BOOL  __useSecureBackupCachedPassphrase;
+    NSString * _appleID;
+    NSDictionary * _authenticationResults;
+    NSString * _cachedLocalSecret;
+    unsigned int  _cachedLocalSecretType;
+    BOOL  _didUseSMSVerification;
+    NSNumber * _dsid;
+    KCAESGCMDuplexSession * _duplexSession;
+    NSString * _findMyiPhoneUUID;
+    BOOL  _guestMode;
+    BOOL  _idmsRecovery;
+    BOOL  _isHSA2Account;
+    NSString * _password;
+    NSString * _passwordEquivToken;
+    AKCircleRequestContext * _resumeContext;
+    BOOL  _supportsSkipSignIn;
+    int  _type;
 }
 
+@property (nonatomic) BOOL _alwaysCreateEscrowRecord;
+@property (nonatomic, retain) <CDPAuthProviderInternal> *_authProvider;
+@property (nonatomic, copy) NSString *_recoveryToken;
 @property (nonatomic) BOOL _useSecureBackupCachedPassphrase;
 @property (nonatomic, copy) NSString *appleID;
 @property (nonatomic, copy) NSDictionary *authenticationResults;
@@ -22,31 +35,73 @@
 @property (nonatomic) unsigned int cachedLocalSecretType;
 @property (nonatomic) BOOL didUseSMSVerification;
 @property (nonatomic, copy) NSNumber *dsid;
+@property (nonatomic, retain) KCAESGCMDuplexSession *duplexSession;
+@property (copy) NSString *findMyiPhoneUUID;
+@property (nonatomic) BOOL guestMode;
+@property (nonatomic) BOOL idmsRecovery;
 @property (nonatomic) BOOL isHSA2Account;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *passwordEquivToken;
+@property (nonatomic, retain) AKCircleRequestContext *resumeContext;
+@property BOOL supportsSkipSignIn;
+@property (nonatomic) int type;
+
+// Image: /System/Library/PrivateFrameworks/CoreCDP.framework/CoreCDP
+
++ (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (BOOL)_alwaysCreateEscrowRecord;
+- (id)_authProvider;
+- (id)_recoveryToken;
 - (BOOL)_useSecureBackupCachedPassphrase;
 - (id)appleID;
 - (id)authenticationResults;
 - (id)cachedLocalSecret;
 - (unsigned int)cachedLocalSecretType;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (BOOL)desiresAllRecords;
 - (BOOL)didUseSMSVerification;
 - (id)dsid;
+- (id)duplexSession;
+- (void)encodeWithCoder:(id)arg1;
+- (id)findMyiPhoneUUID;
+- (BOOL)guestMode;
+- (BOOL)idmsRecovery;
+- (id)init;
 - (id)initWithAuthenticationResults:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isHSA2Account;
 - (id)password;
 - (id)passwordEquivToken;
+- (void)purgeResumeData;
+- (id)resumeContext;
 - (void)setAppleID:(id)arg1;
 - (void)setAuthenticationResults:(id)arg1;
 - (void)setCachedLocalSecret:(id)arg1;
 - (void)setCachedLocalSecretType:(unsigned int)arg1;
 - (void)setDidUseSMSVerification:(BOOL)arg1;
 - (void)setDsid:(id)arg1;
+- (void)setDuplexSession:(id)arg1;
+- (void)setFindMyiPhoneUUID:(id)arg1;
+- (void)setGuestMode:(BOOL)arg1;
+- (void)setIdmsRecovery:(BOOL)arg1;
 - (void)setIsHSA2Account:(BOOL)arg1;
 - (void)setPassword:(id)arg1;
 - (void)setPasswordEquivToken:(id)arg1;
+- (void)setResumeContext:(id)arg1;
+- (void)setSupportsSkipSignIn:(BOOL)arg1;
+- (void)setType:(int)arg1;
+- (void)set_alwaysCreateEscrowRecord:(BOOL)arg1;
+- (void)set_authProvider:(id)arg1;
+- (void)set_recoveryToken:(id)arg1;
 - (void)set_useSecureBackupCachedPassphrase:(BOOL)arg1;
+- (BOOL)supportsSkipSignIn;
+- (int)type;
+- (void)updateWithAuthenticationResults:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreCDPInternal.framework/CoreCDPInternal
+
+- (void)reauthenticateUserWithCompletion:(id /* block */)arg1;
 
 @end

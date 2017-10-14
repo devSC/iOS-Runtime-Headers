@@ -3,7 +3,7 @@
  */
 
 @interface HKQuantitySample : HKSample <HDCoding> {
-    HKQuantity *_quantity;
+    HKQuantity * _quantity;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -16,7 +16,6 @@
 // Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
 
 + (BOOL)_isConcreteObjectClass;
-+ (id)_quantitySampleWithUUID:(id)arg1 metadata:(id)arg2 sourceBundleIdentifier:(id)arg3 creationDate:(id)arg4 quantityType:(id)arg5 startDate:(id)arg6 endDate:(id)arg7 quantity:(id)arg8;
 + (id)quantitySampleWithType:(id)arg1 quantity:(id)arg2 startDate:(id)arg3 endDate:(id)arg4;
 + (id)quantitySampleWithType:(id)arg1 quantity:(id)arg2 startDate:(id)arg3 endDate:(id)arg4 device:(id)arg5 metadata:(id)arg6;
 + (id)quantitySampleWithType:(id)arg1 quantity:(id)arg2 startDate:(id)arg3 endDate:(id)arg4 metadata:(id)arg5;

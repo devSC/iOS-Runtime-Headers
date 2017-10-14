@@ -3,18 +3,12 @@
  */
 
 @interface EKReminder : EKCalendarItem {
-    BOOL hadRecurrences;
+    BOOL  _hadRecurrences;
 }
 
-@property (nonatomic, copy) NSURL *action;
-@property (nonatomic, readonly) EKAlarm *bestDisplayAlarm;
 @property (getter=isCompleted, nonatomic) BOOL completed;
 @property (nonatomic, copy) NSDate *completionDate;
-@property (nonatomic) unsigned int displayOrder;
-@property (nonatomic, readonly) NSDate *dueDate;
 @property (nonatomic, copy) NSDateComponents *dueDateComponents;
-@property (nonatomic) BOOL hadRecurrences;
-@property (nonatomic, readonly) EKObjectID *parentID;
 @property (nonatomic) unsigned int priority;
 @property (nonatomic, copy) NSDateComponents *startDateComponents;
 
@@ -27,12 +21,12 @@
 - (void)clearParentID;
 - (BOOL)commit:(id*)arg1;
 - (id)completionDate;
-- (void)dealloc;
 - (id)description;
 - (unsigned int)displayOrder;
 - (id)dueDate;
 - (id)dueDateComponents;
 - (id)externalURI;
+- (id)firstAlertDate;
 - (BOOL)hadRecurrences;
 - (id)initWithPersistentObject:(id)arg1;
 - (BOOL)isCompleted;
@@ -41,7 +35,9 @@
 - (void)setCompleted:(BOOL)arg1;
 - (void)setCompletionDate:(id)arg1;
 - (void)setDisplayOrder:(unsigned int)arg1;
+- (void)setDueDate:(id)arg1;
 - (void)setDueDateComponents:(id)arg1;
+- (void)setFirstAlertDate:(id)arg1;
 - (void)setHadRecurrences:(BOOL)arg1;
 - (void)setStartDateComponents:(id)arg1;
 - (void)setTimeZone:(id)arg1;

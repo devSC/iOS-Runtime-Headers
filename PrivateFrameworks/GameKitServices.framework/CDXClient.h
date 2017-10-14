@@ -3,6 +3,7 @@
  */
 
 @interface CDXClient : NSObject {
+    struct addrinfo { int x1; int x2; int x3; int x4; unsigned int x5; char *x6; struct sockaddr {} *x7; struct addrinfo {} *x8; } * cdxMappedIPv4Addr;
     struct sockaddr_in { 
         unsigned char sin_len; 
         unsigned char sin_family; 
@@ -11,29 +12,29 @@
             unsigned int s_addr; 
         } sin_addr; 
         BOOL sin_zero[8]; 
-    } cdxaddr_ipv4;
-    <CDXClientDelegate> *delegate_;
-    NSError *error_;
-    int fd_;
-    int holePunchAttemptCount_;
-    double holePunchInterval_;
-    unsigned long long holePunchSID_;
-    NSObject<OS_dispatch_source> *holePunchTimer_;
-    unsigned short localPort_;
-    void *padding_;
-    unsigned short port_;
-    id /* block */ preblobCallback_;
-    BOOL preblobIsUpToDate_;
-    NSData *preblob_;
-    unsigned long long prevHolePunchSID_;
-    NSObject<OS_dispatch_queue> *queue_;
-    int restartCount_;
-    struct __CFRunLoopSource { } *scDynamicStoreRunLoopSource_;
-    struct __SCDynamicStore { } *scDynamicStore_;
-    NSString *server_;
-    NSMutableDictionary *sessionLookup_;
-    NSObject<OS_dispatch_source> *source_;
-    BOOL willReconfigureShortly_;
+    }  cdxaddr_ipv4;
+    <CDXClientDelegate> * delegate_;
+    NSError * error_;
+    int  fd_;
+    int  holePunchAttemptCount_;
+    double  holePunchInterval_;
+    unsigned long long  holePunchSID_;
+    NSObject<OS_dispatch_source> * holePunchTimer_;
+    unsigned short  localPort_;
+    void * padding_;
+    unsigned short  port_;
+    id /* block */  preblobCallback_;
+    BOOL  preblobIsUpToDate_;
+    NSData * preblob_;
+    unsigned long long  prevHolePunchSID_;
+    NSObject<OS_dispatch_queue> * queue_;
+    int  restartCount_;
+    struct __CFRunLoopSource { } * scDynamicStoreRunLoopSource_;
+    struct __SCDynamicStore { } * scDynamicStore_;
+    NSString * server_;
+    NSMutableDictionary * sessionLookup_;
+    NSObject<OS_dispatch_source> * source_;
+    BOOL  willReconfigureShortly_;
 }
 
 @property (nonatomic) <CDXClientDelegate> *delegate;
@@ -45,6 +46,8 @@
 + (id)sharedClient;
 
 - (id)createSessionWithTicket:(id)arg1 sessionKey:(id)arg2;
+- (const struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)currentSockAddr;
+- (unsigned char)currentSockAddrLen;
 - (void)dealloc;
 - (id)delegate;
 - (id)error;
@@ -53,6 +56,7 @@
 - (id)initWithOptions:(id)arg1 delegate:(id)arg2;
 - (void)invalidate;
 - (void)invalidateSession:(id)arg1;
+- (void)mapIPv4AddrToIPv6:(struct sockaddr_in { unsigned char x1; unsigned char x2; unsigned short x3; struct in_addr { unsigned int x_4_1_1; } x4; BOOL x5[8]; }*)arg1;
 - (void)networkDidChange;
 - (id)preblob;
 - (id /* block */)preblobCallback;

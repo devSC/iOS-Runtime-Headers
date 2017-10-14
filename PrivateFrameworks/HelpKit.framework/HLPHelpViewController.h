@@ -2,26 +2,32 @@
    Image: /System/Library/PrivateFrameworks/HelpKit.framework/HelpKit
  */
 
-@interface HLPHelpViewController : UIViewController <HLPHelpTableOfContentViewControllerDelegate, HLPHelpTopicViewControllerDelegate, HLPReachabilityManagerDelegate> {
-    <HLPHelpViewControllerDelegate> *_delegate;
-    BOOL _displayHelpTopicsOnly;
-    HLPHelpBookController *_helpBookController;
-    NSURL *_helpBookURL;
-    BOOL _hideDoneButton;
-    NSString *_identifier;
-    HLPHelpLoadingView *_loadingView;
-    NSURL *_localHelpBookFileURL;
-    NSMutableDictionary *_localHelpBookNameIDMap;
-    HLPHelpLocaleController *_localeListController;
-    HLPReachabilityManager *_reachabilityManager;
-    NSString *_selectedHelpTopicID;
-    NSString *_selectedHelpTopicName;
-    BOOL _showTopicViewOnLoad;
-    NSString *_subpath;
-    HLPHelpTableOfContentViewController *_tableOfContentViewController;
-    HLPHelpTopicViewController *_topicViewController;
-    HLPHelpUsageController *_usageController;
-    NSString *_version;
+@interface HLPHelpViewController : UIViewController <HLPHelpLoadingViewDelegate, HLPHelpTableOfContentViewControllerDelegate, HLPHelpTopicViewControllerDelegate, HLPReachabilityManagerDelegate> {
+    <HLPHelpViewControllerDelegate> * _delegate;
+    BOOL  _displayHelpTopicsOnly;
+    UIBarButtonItem * _doneBarButtonItem;
+    NSString * _helpBookBasePath;
+    HLPHelpBookController * _helpBookController;
+    NSURL * _helpBookURL;
+    NSString * _helpbookVersion;
+    BOOL  _hideDoneButton;
+    NSString * _identifier;
+    HLPHelpLoadingView * _loadingView;
+    NSURL * _localHelpBookFileURL;
+    NSMutableDictionary * _localHelpBookNameIDMap;
+    HLPHelpLocaleController * _localeListController;
+    NSArray * _preferredLanguagesOverride;
+    HLPReachabilityManager * _reachabilityManager;
+    NSString * _selectedHelpTopicID;
+    NSString * _selectedHelpTopicName;
+    BOOL  _showTopicNameAsTitle;
+    BOOL  _showTopicViewOnLoad;
+    BOOL  _showingHelpTopic;
+    NSString * _subpath;
+    HLPHelpTableOfContentViewController * _tableOfContentViewController;
+    HLPHelpTopicViewController * _topicViewController;
+    HLPHelpUsageController * _usageController;
+    NSString * _version;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -33,9 +39,11 @@
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, retain) HLPHelpLoadingView *loadingView;
 @property (nonatomic, copy) NSURL *localHelpBookFileURL;
+@property (nonatomic, copy) NSArray *preferredLanguagesOverride;
 @property (nonatomic, retain) HLPReachabilityManager *reachabilityManager;
 @property (nonatomic, copy) NSString *selectedHelpTopicID;
 @property (nonatomic, copy) NSString *selectedHelpTopicName;
+@property (nonatomic) BOOL showTopicNameAsTitle;
 @property (nonatomic) BOOL showTopicViewOnLoad;
 @property (nonatomic, copy) NSString *subpath;
 @property (readonly) Class superclass;
@@ -44,6 +52,7 @@
 
 + (id)helpViewController;
 + (id)helpViewControllerWithIdentifier:(id)arg1 version:(id)arg2;
++ (id)helpViewControllerWithLocalHelpBookFileURL:(id)arg1;
 + (id)helpViewControllerWithTitle:(id)arg1 identifier:(id)arg2 version:(id)arg3;
 + (id)helpViewControllerWithTitle:(id)arg1 identifier:(id)arg2 version:(id)arg3 subpath:(id)arg4;
 
@@ -56,6 +65,7 @@
 - (void)helpTopicViewController:(id)arg1 failToLoadWithError:(id)arg2;
 - (void)helpTopicViewController:(id)arg1 selectedHelpTopicItem:(id)arg2;
 - (void)helpTopicViewControllerDoneButtonTapped:(id)arg1;
+- (void)helpTopicViewControllerShowHelpBookInfo:(id)arg1;
 - (void)helpTopicViewControllerTableOfContentButtonTapped:(id)arg1;
 - (BOOL)hideDoneButton;
 - (id)identifier;
@@ -64,6 +74,7 @@
 - (id)loadingView;
 - (id)localHelpBookFileURL;
 - (void)popWelcomeTopicView;
+- (id)preferredLanguagesOverride;
 - (id)reachabilityManager;
 - (void)reachabilityManagerConnectionStatusChanged:(id)arg1 connected:(BOOL)arg2;
 - (id)selectedHelpTopicID;
@@ -74,23 +85,31 @@
 - (void)setIdentifier:(id)arg1;
 - (void)setLoadingView:(id)arg1;
 - (void)setLocalHelpBookFileURL:(id)arg1;
+- (void)setPreferredLanguagesOverride:(id)arg1;
 - (void)setReachabilityManager:(id)arg1;
 - (void)setSelectedHelpTopicID:(id)arg1;
 - (void)setSelectedHelpTopicName:(id)arg1;
+- (void)setShowTopicNameAsTitle:(BOOL)arg1;
 - (void)setShowTopicViewOnLoad:(BOOL)arg1;
 - (void)setSubpath:(id)arg1;
 - (void)setTableOfContentViewController:(id)arg1;
 - (void)setVersion:(id)arg1;
 - (void)setupTableContentViewController;
-- (void)showHelpTopicItem:(id)arg1 animate:(BOOL)arg2;
+- (void)showHelpBookInfo:(id)arg1;
+- (void)showHelpTopicItem:(id)arg1 anchor:(id)arg2 animate:(BOOL)arg3;
 - (void)showMessageForError:(id)arg1;
+- (BOOL)showTopicNameAsTitle;
+- (void)showTopicView;
 - (BOOL)showTopicViewOnLoad;
 - (id)subpath;
 - (id)tableOfContentViewController;
 - (void)tableOfContentViewController:(id)arg1 showHelpTopicItem:(id)arg2;
+- (void)tableOfContentViewControllerShowHelpBookInfo:(id)arg1;
 - (id)topicIDForTopicName:(id)arg1 locale:(id)arg2;
 - (void)updateDoneButton;
+- (void)updateTOCButton;
 - (id)version;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 

@@ -3,14 +3,15 @@
  */
 
 @interface UIStatusBarSignalStrengthItemView : UIStatusBarItemView {
-    BOOL _enableRSSI;
-    BOOL _showRSSI;
-    int _signalStrengthBars;
-    int _signalStrengthRaw;
+    BOOL  _enableRSSI;
+    BOOL  _showRSSI;
+    int  _signalStrengthBars;
+    int  _signalStrengthRaw;
 }
 
 - (id)_stringForRSSI;
 - (id)contentsImage;
+- (float)extraLeftPadding;
 - (float)extraRightPadding;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (BOOL)updateForNewData:(id)arg1 actions:(int)arg2;

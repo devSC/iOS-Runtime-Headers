@@ -3,12 +3,23 @@
  */
 
 @interface NSUserDefaults : NSObject {
-    id _private;
-    void *_reserved;
+    struct __CFString { } * _container_;
+    struct __CFString { } * _identifier_;
+    id  _kvo_;
+    void * _reserved;
 }
+
+// Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+
+- (struct __CFString { }*)_container;
+- (struct __CFString { }*)_identifier;
+- (BOOL)_observingCFPreferences;
+- (void)_setContainer:(struct __CFURL { }*)arg1;
+- (void)_setIdentifier:(struct __CFString { }*)arg1;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
++ (id)_copyStandardUserDefaultsIfPresent;
 + (void)_ensureAndLockPreferredLanguageLock;
 + (void)_web_addDefaultsChangeObserver;
 + (void)_web_defaultsDidChange;
@@ -27,6 +38,7 @@
 - (id)dictionaryForKey:(id)arg1;
 - (id)dictionaryRepresentation;
 - (double)doubleForKey:(id)arg1;
+- (void)finalize;
 - (float)floatForKey:(id)arg1;
 - (id)init;
 - (id)initWithSuiteName:(id)arg1;
@@ -54,6 +66,7 @@
 - (void)setLong:(long long)arg1 forKey:(id)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2 inDomain:(id)arg3;
+- (void)setObservationInfo:(void*)arg1;
 - (void)setPersistentDomain:(id)arg1 forName:(id)arg2;
 - (void)setSearchList:(id)arg1;
 - (void)setURL:(id)arg1 forKey:(id)arg2;
@@ -73,12 +86,17 @@
 
 // Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
 
++ (id)_sf_safariDefaults;
+
+- (id)_sf_dateForKey:(id)arg1;
+- (BOOL)_sf_javaScriptCanOpenWindowsAutomatically;
+- (BOOL)_sf_javaScriptEnabled;
+- (void)_sf_registerSafariDefaults;
 - (id)_sf_stringForKey:(id)arg1 defaultValue:(id)arg2;
+- (BOOL)_sf_warnAboutFraudulentWebsites;
 
 // Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
 
-+ (id)_akColorForData:(id)arg1;
-+ (id)_akFontForData:(id)arg1;
 + (id)akDataForColor:(id)arg1;
 + (id)akDataForFont:(id)arg1;
 + (id)akDataForTextAttributes:(id)arg1;
@@ -89,6 +107,10 @@
 - (void)akSetFont:(id)arg1 forKey:(id)arg2;
 - (void)akSetTextAttributes:(id)arg1 forKey:(id)arg2;
 - (id)akTextAttributesForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+
+- (BOOL)defaultExists:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
 
@@ -120,8 +142,9 @@
 
 // Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
 
-+ (void)FU_backupStandardUserDefaultsKey:(id)arg1;
 + (id)_npsManager;
++ (void)fu_backupStandardUserDefaultsKey:(id)arg1;
++ (void)fu_synchronizeStandardUserDefaultsKey:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
 
@@ -143,6 +166,10 @@
 // Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
 
 + (id)_webkit_preferredLanguageCode;
+
+// Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
+
++ (id)webui_defaults;
 
 // Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
 

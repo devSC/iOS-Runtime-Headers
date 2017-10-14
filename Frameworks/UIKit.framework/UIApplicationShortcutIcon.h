@@ -3,7 +3,7 @@
  */
 
 @interface UIApplicationShortcutIcon : NSObject <NSCopying> {
-    SBSApplicationShortcutIcon *_sbsShortcutIcon;
+    SBSApplicationShortcutIcon * _sbsShortcutIcon;
 }
 
 @property (nonatomic, readonly) SBSApplicationShortcutIcon *sbsShortcutIcon;
@@ -11,8 +11,10 @@
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)iconWithCustomImage:(id)arg1;
++ (id)iconWithCustomImage:(id)arg1 isTemplate:(BOOL)arg2;
 + (id)iconWithTemplateImageName:(id)arg1;
 + (id)iconWithType:(int)arg1;
++ (int)sbsIconTypeForIconType:(int)arg1;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;

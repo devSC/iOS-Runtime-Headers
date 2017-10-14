@@ -3,19 +3,20 @@
  */
 
 @interface RTCReporting : NSObject {
-    NSXPCConnection *_connection;
-    int _counter;
-    NSArray *_enabledBackendNames;
-    int _intervalMultiplier;
-    id /* block */ _loggingBlock;
-    NSMutableDictionary *_periodicServiceDict;
-    NSObject<OS_dispatch_queue> *_reportingQueue;
-    NSObject<OS_dispatch_source> *_timer;
+    NSXPCConnection * _connection;
+    int  _counter;
+    NSArray * _enabledBackendNames;
+    int  _intervalMultiplier;
+    id /* block */  _loggingBlock;
+    NSMutableDictionary * _periodicServiceDict;
+    NSObject<OS_dispatch_queue> * _reportingQueue;
+    NSObject<OS_dispatch_source> * _timer;
 }
 
 @property (nonatomic, copy) id /* block */ messageLoggingBlock;
 
 + (id)getPersistentIdentifierForDNU:(BOOL)arg1;
++ (id)newHierarchyTokenFromParentToken:(id)arg1;
 + (void)regeneratePersistentIdentifierForDNU:(BOOL)arg1;
 + (BOOL)sendMsgToServer:(int)arg1 serverStoreBagName:(id)arg2 defaultSvrIP:(id)arg3 defaultSvrPort:(unsigned short)arg4 componentType:(int)arg5 version:(unsigned short)arg6 sessionID:(unsigned int)arg7 eventID:(unsigned short)arg8 method:(unsigned short)arg9 respCode:(unsigned short)arg10 dict:(id)arg11;
 + (BOOL)sendOneMessageWithSessionInfo:(id)arg1 userInfo:(id)arg2 category:(unsigned short)arg3 type:(unsigned short)arg4 payload:(id)arg5 error:(id*)arg6;
@@ -23,7 +24,9 @@
 - (void)_myPeriodicTask:(unsigned short)arg1 type:(unsigned short)arg2;
 - (void)dealloc;
 - (void)fetchReportingStatesWithUserInfo:(id)arg1 fetchComplete:(id /* block */)arg2;
+- (void)finishSession;
 - (BOOL)flushMessages;
+- (void)flushMessagesWithCompletion:(id /* block */)arg1;
 - (int)getUploadflag;
 - (id)initWithSessionInfo:(id)arg1 userInfo:(id)arg2 frameworksToCheck:(id)arg3;
 - (id)initWithSessionInfo:(id)arg1 userInfo:(id)arg2 frameworksToCheck:(id)arg3 aggregationBlock:(id /* block */)arg4;

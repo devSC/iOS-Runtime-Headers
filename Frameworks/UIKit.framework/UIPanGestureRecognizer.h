@@ -3,37 +3,37 @@
  */
 
 @interface UIPanGestureRecognizer : UIGestureRecognizer {
-    float _allowableSeparation;
-    unsigned int _canPanHorizontally;
-    unsigned int _canPanVertically;
+    float  _allowableSeparation;
+    unsigned int  _canPanHorizontally;
+    unsigned int  _canPanVertically;
     struct CGPoint { 
         float x; 
         float y; 
-    } _digitizerLocation;
-    unsigned int _failsPastHysteresisWithoutMinTouches;
-    unsigned int _failsPastMaxTouches;
+    }  _digitizerLocation;
+    unsigned int  _failsPastHysteresisWithoutMinTouches;
+    unsigned int  _failsPastMaxTouches;
     struct CGPoint { 
         float x; 
         float y; 
-    } _firstSceneReferenceLocation;
-    float _hysteresis;
-    unsigned int _ignoresStationaryTouches;
+    }  _firstSceneReferenceLocation;
+    float  _hysteresis;
+    unsigned int  _ignoresStationaryTouches;
     struct CGPoint { 
         float x; 
         float y; 
-    } _lastSceneReferenceLocation;
-    unsigned int _lastTouchCount;
-    double _lastTouchTime;
+    }  _lastSceneReferenceLocation;
+    unsigned int  _lastTouchCount;
+    double  _lastTouchTime;
     struct CGPoint { 
         float x; 
         float y; 
-    } _lastUnadjustedSceneReferenceLocation;
-    unsigned int _maximumNumberOfTouches;
-    unsigned int _minimumNumberOfTouches;
-    NSMutableArray *_movingTouches;
-    id _previousVelocitySample;
-    NSMutableArray *_touches;
-    id _velocitySample;
+    }  _lastUnadjustedSceneReferenceLocation;
+    unsigned int  _maximumNumberOfTouches;
+    unsigned int  _minimumNumberOfTouches;
+    NSMutableArray * _movingTouches;
+    id  _previousVelocitySample;
+    NSMutableArray * _touches;
+    id  _velocitySample;
 }
 
 @property (getter=_previousVelocitySample, readonly) UIPanGestureVelocitySample *_previousVelocitySample;
@@ -46,6 +46,7 @@
 + (BOOL)_shouldDefaultToTouches;
 
 - (void).cxx_destruct;
+- (id)_activeTouches;
 - (struct CGPoint { float x1; float x2; })_adjustSceneReferenceLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (float)_allowableSeparation;
 - (BOOL)_canPanHorizontally;

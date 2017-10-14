@@ -3,8 +3,8 @@
  */
 
 @interface CKRepairZonePCSOperation : CKDatabaseOperation {
-    NSArray *_zoneIDs;
-    id /* block */ _zoneRepairedBlock;
+    NSArray * _zoneIDs;
+    id /* block */  _zoneRepairedBlock;
 }
 
 @property (nonatomic, retain) NSArray *zoneIDs;
@@ -12,8 +12,10 @@
 
 - (void).cxx_destruct;
 - (void)_handleProgressCallback:(id)arg1;
-- (unsigned long long)activityStart;
+- (id)activityCreate;
+- (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (BOOL)hasCKOperationCallbacksSet;
 - (id)initWithZoneIDsToRepair:(id)arg1;
 - (void)performCKOperation;
 - (void)setZoneIDs:(id)arg1;

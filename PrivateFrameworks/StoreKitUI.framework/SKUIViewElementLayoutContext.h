@@ -3,27 +3,32 @@
  */
 
 @interface SKUIViewElementLayoutContext : NSObject {
-    float _activePageWidth;
-    NSMutableDictionary *_aggregateValues;
-    <SKUIArtworkRequestDelegate> *_artworkRequestDelegate;
-    NSString *_backdropGroupName;
-    SKUIBadgeTextAttachmentLoader *_badgeImageLoader;
-    NSMapTable *_blurColors;
-    MPUBorderDrawingCache *_borderDrawingCache;
-    SKUIClientContext *_clientContext;
-    unsigned int _containerViewElementType;
-    float _displayScale;
-    NSMapTable *_editorialLayouts;
-    NSHashTable *_expandedEditorialLayouts;
-    SKUIItemOfferButton *_itemOfferButton;
-    NSMutableDictionary *_itemOfferButtonSizes;
-    SKUIViewElementTextLayoutCache *_labelLayoutCache;
-    NSMutableSet *_observedArtworkRequestIDs;
-    UIViewController *_parentViewController;
-    UIColor *_placeholderColor;
-    NSMapTable *_placeholderImages;
-    SKUIResourceLoader *_resourceLoader;
-    UIColor *_tintColor;
+    float  _activePageWidth;
+    NSMutableDictionary * _aggregateValues;
+    <SKUIArtworkRequestDelegate> * _artworkRequestDelegate;
+    NSString * _backdropGroupName;
+    SKUIBadgeTextAttachmentLoader * _badgeImageLoader;
+    NSMapTable * _blurColors;
+    MPUBorderDrawingCache * _borderDrawingCache;
+    SKUIClientContext * _clientContext;
+    unsigned int  _containerViewElementType;
+    float  _displayScale;
+    NSMapTable * _editorialLayouts;
+    NSHashTable * _expandedEditorialLayouts;
+    SKUIItemOfferButton * _itemOfferButton;
+    NSMutableDictionary * _itemOfferButtonSizes;
+    SKUIViewElementTextLayoutCache * _labelLayoutCache;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    }  _largeScreenElementPadding;
+    NSMutableSet * _observedArtworkRequestIDs;
+    UIViewController * _parentViewController;
+    UIColor * _placeholderColor;
+    SKUIResourceLoader * _resourceLoader;
+    UIColor * _tintColor;
 }
 
 @property (nonatomic) float activePageWidth;
@@ -35,8 +40,10 @@
 @property (nonatomic) unsigned int containerViewElementType;
 @property (nonatomic) float displayScale;
 @property (nonatomic, retain) SKUIViewElementTextLayoutCache *labelLayoutCache;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } largeScreenElementPadding;
 @property (nonatomic) UIViewController *parentViewController;
 @property (nonatomic, retain) UIColor *placeholderColor;
+@property (nonatomic, readonly) NSCache *placeholderImageCache;
 @property (nonatomic, retain) SKUIResourceLoader *resourceLoader;
 @property (nonatomic, retain) UIColor *tintColor;
 
@@ -57,6 +64,7 @@
 - (id)borderDrawingCache;
 - (id)clientContext;
 - (unsigned int)containerViewElementType;
+- (id)dataConsumerForImageElement:(id)arg1;
 - (void)dealloc;
 - (float)defaultItemWidthForViewElement:(id)arg1;
 - (float)displayScale;
@@ -70,15 +78,18 @@
 - (void)invalidateAllEditorialLayouts;
 - (BOOL)isEditorialLayoutExpanded:(id)arg1;
 - (id)labelLayoutCache;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })largeScreenElementPadding;
 - (BOOL)loadImageForArtwork:(id)arg1 dataConsumer:(id)arg2 reason:(int)arg3;
 - (BOOL)loadImageForArtwork:(id)arg1 reason:(int)arg2;
 - (BOOL)loadImageForBadgeElement:(id)arg1 reason:(int)arg2;
 - (BOOL)loadImageForImageElement:(id)arg1 reason:(int)arg2;
+- (BOOL)loadImageForImageElement:(id)arg1 reason:(int)arg2 dataConsumer:(id)arg3;
 - (BOOL)loadTemplatedImageForBadgeElement:(id)arg1 reason:(int)arg2;
 - (int)maxWidthForElement:(id)arg1 withDefaultWidth:(int)arg2;
 - (id)parentViewController;
 - (id)placeholderColor;
-- (id)placeholderImageForImageElement:(id)arg1;
+- (id)placeholderImageCache;
+- (id)placeholderImageForImageElement:(id)arg1 dataConsumer:(id)arg2;
 - (id)placeholderImageForSize:(struct CGSize { float x1; float x2; })arg1;
 - (BOOL)prefetchResourcesForViewElement:(id)arg1 reason:(int)arg2;
 - (id)requestIdentifierForArtwork:(id)arg1;
@@ -94,6 +105,7 @@
 - (void)setContainerViewElementType:(unsigned int)arg1;
 - (void)setDisplayScale:(float)arg1;
 - (void)setLabelLayoutCache:(id)arg1;
+- (void)setLargeScreenElementPaddingFromContext:(id)arg1;
 - (void)setParentViewController:(id)arg1;
 - (void)setPlaceholderColor:(id)arg1;
 - (void)setResourceLoader:(id)arg1;

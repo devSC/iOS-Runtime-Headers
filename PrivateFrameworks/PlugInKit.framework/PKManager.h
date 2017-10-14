@@ -3,7 +3,7 @@
  */
 
 @interface PKManager : NSObject {
-    PKDaemonClient *_client;
+    PKDaemonClient * _client;
 }
 
 @property (retain) PKDaemonClient *client;
@@ -24,7 +24,9 @@
 - (void)registerPlugInsInBundle:(id)arg1 result:(id /* block */)arg2;
 - (void)releaseHold:(id)arg1;
 - (void)setClient:(id)arg1;
+- (void)terminatePlugInsInApplication:(id)arg1 options:(int)arg2 result:(id /* block */)arg3;
 - (void)unregisterPlugInAtURL:(id)arg1 result:(id /* block */)arg2;
 - (void)unregisterPlugInsInBundle:(id)arg1 result:(id /* block */)arg2;
+- (void)updateExtensionStatesForPlugIns:(id)arg1 result:(id /* block */)arg2;
 
 @end

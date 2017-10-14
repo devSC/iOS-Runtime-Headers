@@ -12,7 +12,7 @@
 - (<CNContactDataSourceDelegate> *)delegate;
 - (NSIndexPath *)indexPathForContact:(CNContact *)arg1;
 - (NSArray *)indexSections;
-- (NSString *)meContactIdentifier;
+- (NSString *)mainStorePreferredForNameMeContactIdentifier;
 - (NSArray *)sections;
 - (void)setDelegate:(id <CNContactDataSourceDelegate>)arg1;
 
@@ -24,13 +24,10 @@
 - (CNContactFilter *)filter;
 - (void)invalidate;
 - (BOOL)isLoading;
-- (CNContact *)meContact;
-- (CNContact *)meContactWithKeysToFetch:(NSArray *)arg1;
 - (void)reload;
 - (void)reset;
 - (void)setContactFormatter:(CNContactFormatter *)arg1;
 - (void)setFilter:(CNContactFilter *)arg1;
-- (BOOL)setMeContact:(CNContact *)arg1 error:(id*)arg2;
 - (BOOL)shouldReturnToAccountsAndGroupsViewAfterSearchIsCanceled;
 - (CNContactStore *)store;
 

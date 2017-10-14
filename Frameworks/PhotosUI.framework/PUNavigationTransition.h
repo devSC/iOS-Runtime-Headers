@@ -3,11 +3,11 @@
  */
 
 @interface PUNavigationTransition : PUViewControllerTransition {
-    int __operation;
-    UINavigationController *_navigationController;
-    double _popDuration;
-    double _pushDuration;
-    BOOL _wasStatusBarHiddenBeforeTransition;
+    int  __operation;
+    UINavigationController * _navigationController;
+    double  _popDuration;
+    double  _pushDuration;
+    BOOL  _wasStatusBarHiddenBeforeTransition;
 }
 
 @property (setter=_setOperation:, nonatomic) int _operation;
@@ -26,6 +26,7 @@
 - (void)cancelInteractiveTransition;
 - (void)completeInteractiveOperation:(int)arg1 finished:(BOOL)arg2;
 - (void)completeTransition:(BOOL)arg1;
+- (void)didCompleteTransitionAnimation;
 - (void)finishInteractiveTransition;
 - (id)initWithDuration:(double)arg1;
 - (id)initWithPushDuration:(double)arg1 popDuration:(double)arg2;

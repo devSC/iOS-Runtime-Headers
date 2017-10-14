@@ -3,30 +3,30 @@
  */
 
 @interface DevicePINController : PSDetailController {
-    BOOL _allowOptionsButton;
-    UIBarButtonItem *_cancelButton;
-    UIBarButtonItem *_doneButton;
-    NSString *_doneButtonTitle;
-    NSString *_error1;
-    NSString *_error2;
-    BOOL _hasBeenDismissed;
-    BOOL _hidesCancelButton;
-    BOOL _hidesNavigationButtons;
-    NSString *_lastEntry;
-    int _mode;
-    UIBarButtonItem *_nextButton;
-    NSNumber *_numericPIN;
-    NSString *_oldPassword;
-    id _pinDelegate;
-    NSNumber *_pinLength;
-    NSNumber *_requiresKeyboard;
-    NSDictionary *_sepLockInfo;
-    long _sepOnceToken;
-    BOOL _shouldDismissWhenDone;
-    NSNumber *_simplePIN;
-    int _substate;
-    BOOL _success;
-    BOOL _useSEPLockInfo;
+    BOOL  _allowOptionsButton;
+    UIBarButtonItem * _cancelButton;
+    UIBarButtonItem * _doneButton;
+    NSString * _doneButtonTitle;
+    NSString * _error1;
+    NSString * _error2;
+    BOOL  _hasBeenDismissed;
+    BOOL  _hidesCancelButton;
+    BOOL  _hidesNavigationButtons;
+    NSString * _lastEntry;
+    int  _mode;
+    UIBarButtonItem * _nextButton;
+    NSNumber * _numericPIN;
+    NSString * _oldPassword;
+    id  _pinDelegate;
+    NSNumber * _pinLength;
+    NSNumber * _requiresKeyboard;
+    NSDictionary * _sepLockInfo;
+    long  _sepOnceToken;
+    BOOL  _shouldDismissWhenDone;
+    NSNumber * _simplePIN;
+    int  _substate;
+    BOOL  _success;
+    BOOL  _useSEPLockInfo;
 }
 
 @property (nonatomic) BOOL allowOptionsButton;
@@ -46,15 +46,19 @@
 - (void)_adjustUnblockTime;
 - (BOOL)_asyncSetPinCompatible;
 - (void)_clearBlockedState;
+- (id)_createAndShowAnimatedNavBarSpinner;
 - (void)_dismiss;
 - (int)_getScreenType;
 - (void)_invalidateSEPLockInfo;
+- (void)_preflightPasswordForWeakness:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)_removePinWithOldPassword:(id)arg1;
 - (void)_rereadBlockedState;
 - (double)_secondsToBlockForFailedAttempts:(long)arg1;
 - (id)_sepLockInfo;
 - (void)_setNumberOfFailedAttempts:(long)arg1;
 - (void)_setPINPaneToSimple:(BOOL)arg1 simpleLength:(int)arg2 numeric:(BOOL)arg3 requiresKeyboard:(int)arg4;
 - (void)_setUnblockTime:(double)arg1;
+- (BOOL)_shouldCheckForWeakness;
 - (BOOL)_shouldShowOptionsButton;
 - (void)_showFailedAttempts;
 - (void)_showPINConfirmationError;

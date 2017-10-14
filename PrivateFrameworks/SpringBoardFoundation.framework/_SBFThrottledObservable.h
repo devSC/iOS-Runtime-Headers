@@ -3,15 +3,16 @@
  */
 
 @interface _SBFThrottledObservable : SBFObservable {
-    <SBFCancelable> *_delayToken;
-    BOOL _hasResult;
-    double _interval;
-    <SBFObservable> *_observable;
-    id _result;
-    unsigned int _resultCounter;
-    <SBFScheduler> *_scheduler;
+    <SBFCancelable> * _delayToken;
+    BOOL  _hasResult;
+    double  _interval;
+    <SBFObservable> * _observable;
+    id  _result;
+    unsigned int  _resultCounter;
+    <SBFScheduler> * _scheduler;
 }
 
+- (void).cxx_destruct;
 - (void)_cancel;
 - (void)_clearResult;
 - (void)_sendCompletionToObsever:(id)arg1;

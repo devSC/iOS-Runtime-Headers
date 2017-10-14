@@ -3,12 +3,12 @@
  */
 
 @interface _CNABPredicateObservable : CNObservable <ABPredicateDelegate> {
-    void *_addressBook;
-    CNCancelationToken *_cancelationToken;
-    <CNObserver> *_observer;
-    unsigned int _options;
-    ABPredicate *_predicate;
-    unsigned int _sortOrdering;
+    void * _addressBook;
+    CNCancelationToken * _cancelationToken;
+    <CNObserver> * _observer;
+    unsigned int  _options;
+    ABPredicate * _predicate;
+    unsigned int  _sortOrdering;
 }
 
 @property (nonatomic) void*addressBook;
@@ -23,6 +23,7 @@
 @property (readonly) Class superclass;
 
 + (id)globalQueue;
++ (id)observableWithPredicates:(id)arg1 sortOrdering:(unsigned int)arg2 options:(unsigned int)arg3 addressBook:(void*)arg4;
 
 - (void*)addressBook;
 - (id)cancelationToken;

@@ -3,9 +3,9 @@
  */
 
 @interface FBSApplicationDataStore : NSObject {
-    NSString *_bundleId;
-    FBSApplicationDataStoreRepositoryClient *_client;
-    BOOL _clientNeedsCheckin;
+    NSString * _bundleId;
+    <FBSApplicationDataStoreRepositoryClient> * _client;
+    BOOL  _clientNeedsCheckin;
 }
 
 @property (nonatomic, readonly, retain) NSString *bundleID;
@@ -16,13 +16,12 @@
 + (void)setPrefetchedKeys:(id)arg1;
 + (id)storeForApplication:(id)arg1;
 + (void)synchronize;
++ (void)synchronizeWithCompletion:(id /* block */)arg1;
 
 - (id)_initWithBundleId:(id)arg1 client:(id)arg2;
 - (id)_makeSafe:(id)arg1 forType:(Class)arg2;
 - (id)archivedObjectForKey:(id)arg1;
 - (void)archivedObjectForKey:(id)arg1 withResult:(id /* block */)arg2;
-- (id)archivedXPCCodableObjectForKey:(id)arg1 ofType:(Class)arg2;
-- (void)archivedXPCCodableObjectForKey:(id)arg1 ofType:(Class)arg2 withResult:(id /* block */)arg3;
 - (id)bundleID;
 - (void)dealloc;
 - (id)init;
@@ -36,7 +35,6 @@
 - (id)safeObjectForKey:(id)arg1 ofType:(Class)arg2;
 - (void)safeObjectForKey:(id)arg1 ofType:(Class)arg2 withResult:(id /* block */)arg3;
 - (void)setArchivedObject:(id)arg1 forKey:(id)arg2;
-- (void)setArchivedXPCCodableObject:(id)arg1 forKey:(id)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 
 @end

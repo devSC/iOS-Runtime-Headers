@@ -3,19 +3,21 @@
  */
 
 @interface ICCloudConfiguration : NSObject {
-    NSTimer *_downloadTimer;
-    unsigned int _maxAttachmentsPerNote;
-    unsigned int _maxInlineAssetSizeBytes;
-    NSNumber *_maximumAttachmentSizeMB;
-    NSString *_minimumClientVersion;
-    double _pollingInterval;
-    unsigned int _resultsLimitPerSyncOperation;
-    ICCloudThrottlingPolicy *_throttlingPolicy;
+    NSTimer * _downloadTimer;
+    unsigned int  _maxAttachmentsPerNote;
+    unsigned int  _maxInlineAssetSizeBytes;
+    unsigned int  _maxSubAttachmentsPerAttachment;
+    NSNumber * _maximumAttachmentSizeMB;
+    NSString * _minimumClientVersion;
+    double  _pollingInterval;
+    unsigned int  _resultsLimitPerSyncOperation;
+    ICCloudThrottlingPolicy * _throttlingPolicy;
 }
 
 @property (nonatomic, retain) NSTimer *downloadTimer;
 @property (nonatomic) unsigned int maxAttachmentsPerNote;
 @property (nonatomic) unsigned int maxInlineAssetSizeBytes;
+@property (nonatomic) unsigned int maxSubAttachmentsPerAttachment;
 @property (nonatomic, retain) NSNumber *maximumAttachmentSizeMB;
 @property (nonatomic, copy) NSString *minimumClientVersion;
 @property (nonatomic) double pollingInterval;
@@ -23,7 +25,9 @@
 @property (nonatomic, retain) ICCloudThrottlingPolicy *throttlingPolicy;
 
 + (id)availableConfigurationURLs;
++ (id)cachedConfigurationURL;
 + (id)defaultConfigurationURL;
++ (BOOL)isConfigurationValid:(id)arg1;
 + (void)setDefaultConfigurationURL:(id)arg1;
 + (id)sharedConfiguration;
 
@@ -37,6 +41,7 @@
 - (void)loadLocalConfigurationFile;
 - (unsigned int)maxAttachmentsPerNote;
 - (unsigned int)maxInlineAssetSizeBytes;
+- (unsigned int)maxSubAttachmentsPerAttachment;
 - (id)maximumAttachmentSizeMB;
 - (id)minimumClientVersion;
 - (double)pollingInterval;
@@ -45,6 +50,7 @@
 - (void)setDownloadTimer:(id)arg1;
 - (void)setMaxAttachmentsPerNote:(unsigned int)arg1;
 - (void)setMaxInlineAssetSizeBytes:(unsigned int)arg1;
+- (void)setMaxSubAttachmentsPerAttachment:(unsigned int)arg1;
 - (void)setMaximumAttachmentSizeMB:(id)arg1;
 - (void)setMinimumClientVersion:(id)arg1;
 - (void)setPollingInterval:(double)arg1;

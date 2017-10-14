@@ -3,13 +3,13 @@
  */
 
 @interface AWDPowerBBAppRRCMetrics : PBCodable <NSCopying> {
-    NSMutableArray *_appConnStats;
+    NSMutableArray * _appConnStats;
     struct { 
         unsigned int timestamp : 1; 
         unsigned int numRRCConnections : 1; 
-    } _has;
-    unsigned int _numRRCConnections;
-    unsigned long long _timestamp;
+    }  _has;
+    unsigned int  _numRRCConnections;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic, retain) NSMutableArray *appConnStats;
@@ -17,6 +17,8 @@
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic) unsigned int numRRCConnections;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)appConnStatsType;
 
 - (void)addAppConnStats:(id)arg1;
 - (id)appConnStats;

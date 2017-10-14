@@ -3,8 +3,8 @@
  */
 
 @interface _UIFocusPointToPointScrollAnimator : NSObject <_UIFocusScrollAnimator> {
-    float _defaultConvergenceRate;
-    CAMediaTimingFunction *_fancyTimingFunction;
+    float  _defaultConvergenceRate;
+    CAMediaTimingFunction * _fancyTimingFunction;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -18,6 +18,7 @@
 - (float)_animationDurationForDistance:(float)arg1 convergenceRate:(float)arg2;
 - (void)cancelPeekAdjustmentForScrollView:(id)arg1 performRollback:(BOOL)arg2;
 - (void)cancelScrollingForScrollView:(id)arg1;
+- (struct CGPoint { float x1; float x2; })currentVelocityForScrollView:(id)arg1;
 - (float)defaultConvergenceRate;
 - (id)init;
 - (BOOL)isAnimatingScrollView:(id)arg1;
@@ -25,5 +26,7 @@
 - (void)setDefaultConvergenceRate:(float)arg1;
 - (void)setPeekOffsetAdjustment:(struct CGPoint { float x1; float x2; })arg1 forScrollView:(id)arg2;
 - (void)setTargetContentOffset:(struct CGPoint { float x1; float x2; })arg1 forScrollView:(id)arg2 convergenceRate:(float)arg3 completion:(id /* block */)arg4;
+- (struct CGPoint { float x1; float x2; })targetContentOffsetForScrollView:(id)arg1;
+- (struct CGPoint { float x1; float x2; })velocityToScrollFromOffset:(struct CGPoint { float x1; float x2; })arg1 toOffset:(struct CGPoint { float x1; float x2; })arg2;
 
 @end

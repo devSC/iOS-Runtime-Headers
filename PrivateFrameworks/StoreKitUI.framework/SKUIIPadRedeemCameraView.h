@@ -3,13 +3,13 @@
  */
 
 @interface SKUIIPadRedeemCameraView : UIView <UITextFieldDelegate> {
-    <SKUIRedeemCameraViewDelegate> *_delegate;
-    SKUIRedeemTextField *_inputAccessoryTextField;
-    SKUIRedeemCameraLandingView *_landingView;
-    UIView *_redeemerView;
-    UIScrollView *_scrollView;
-    UIButton *_termsButton;
-    SKUIRedeemTextField *_textField;
+    <SKUIRedeemCameraViewDelegate> * _delegate;
+    SKUIRedeemTextField * _inputAccessoryTextField;
+    SKUIRedeemCameraLandingView * _landingView;
+    UIView * _redeemerView;
+    UIScrollView * _scrollView;
+    UIButton * _termsButton;
+    SKUIRedeemTextField * _textField;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *text;
 
 - (void).cxx_destruct;
+- (float)_adjustVerticalSpacingForHeight:(float)arg1;
 - (void)_hideKeyboard;
 - (void)_landingButtonAction:(id)arg1;
 - (id)_newTextFieldWithClientContext:(id)arg1 placeholderColor:(id)arg2;

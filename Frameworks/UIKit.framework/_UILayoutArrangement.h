@@ -3,21 +3,21 @@
  */
 
 @interface _UILayoutArrangement : NSObject <_UILAPropertySource> {
-    BOOL _awaitingAnimationLayoutPass;
-    int _axis;
-    UIView *_canvas;
-    NSMutableArray *_canvasConnectionConstraints;
-    _UILAConfigurationHistory *_configurationHistory;
-    NSMutableSet *_hiddenItems;
-    NSMutableSet *_incomingItems;
-    BOOL _layoutFillsCanvas;
-    BOOL _layoutUsesCanvasMarginsWhenFilling;
-    NSMutableArray *_mutableItems;
-    NSMutableSet *_newlyHiddenItems;
-    NSMutableSet *_newlyUnhiddenItems;
-    NSMutableSet *_outgoingItems;
-    _UILayoutSpacer *_spanningLayoutGuide;
-    _UILAConfigurationHistory *_unanimatedConfigurationTarget;
+    BOOL  _awaitingAnimationLayoutPass;
+    int  _axis;
+    UIView * _canvas;
+    NSMutableArray * _canvasConnectionConstraints;
+    _UILAConfigurationHistory * _configurationHistory;
+    NSMutableSet * _hiddenItems;
+    NSMutableSet * _incomingItems;
+    BOOL  _layoutFillsCanvas;
+    BOOL  _layoutUsesCanvasMarginsWhenFilling;
+    NSMutableArray * _mutableItems;
+    NSMutableSet * _newlyHiddenItems;
+    NSMutableSet * _newlyUnhiddenItems;
+    NSMutableSet * _outgoingItems;
+    _UILayoutSpacer * _spanningLayoutGuide;
+    _UILAConfigurationHistory * _unanimatedConfigurationTarget;
 }
 
 @property (nonatomic, readonly) BOOL _awaitingAnimationLayoutPass;
@@ -72,6 +72,7 @@
 - (id)_outgoingItems;
 - (id)_propertySource;
 - (void)_registerAnimationRequest;
+- (void)_removeSpanningLayoutGuide;
 - (void)_respondToChangesWithIncomingItem:(id)arg1 outgoingItem:(id)arg2 newlyHiddenItem:(id)arg3 newlyUnhiddenItem:(id)arg4;
 - (void)_setMutableItems:(id)arg1;
 - (void)_setUnanimatedConfigurationTarget:(id)arg1;

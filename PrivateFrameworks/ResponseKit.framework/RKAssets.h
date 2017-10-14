@@ -8,10 +8,12 @@
 + (id)appreciationKeywords;
 + (id)categoryKeywordMap;
 + (id)constantClasses;
++ (id)contractedResponses;
 + (id)fixedPhrases;
++ (id)localizedStrings;
++ (id)momentsPhrases;
 + (id)polarTagKeywords;
 + (id)sensitiveSubjectRegularExpressionPatterns;
-+ (id)stringsFromTable:(id)arg1 forLanguageIdentifier:(id)arg2;
 + (id)synonyms;
 
 @end

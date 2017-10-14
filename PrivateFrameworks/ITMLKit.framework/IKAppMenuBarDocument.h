@@ -3,15 +3,15 @@
  */
 
 @interface IKAppMenuBarDocument : NSObject <IKDOMFeature, IKJSMenuBarDocumentAppBridge> {
-    IKAppContext *_appContext;
-    <IKAppMenuBarDocumentDelegate> *_delegate;
-    NSMutableDictionary *_documentOptionsByEntityUniqueIdentifier;
-    NSMutableDictionary *_documentsByEntityUniqueIdentifier;
-    NSString *_featureName;
-    NSMutableDictionary *_jsDocumentsByEntityUniqueIdentifier;
-    IKViewElement *_menuBarElement;
-    IKDOMNode *_parentDOMNode;
-    <NSCopying> *_selectedEntityUniqueIdentifier;
+    IKAppContext * _appContext;
+    <IKAppMenuBarDocumentDelegate> * _delegate;
+    NSMutableDictionary * _documentOptionsByEntityUniqueIdentifier;
+    NSMutableDictionary * _documentsByEntityUniqueIdentifier;
+    NSString * _featureName;
+    NSMutableDictionary * _jsDocumentsByEntityUniqueIdentifier;
+    IKViewElement * _menuBarElement;
+    IKDOMNode * _parentDOMNode;
+    <NSCopying> * _selectedEntityUniqueIdentifier;
 }
 
 @property (nonatomic, readonly) IKAppContext *appContext;
@@ -21,7 +21,7 @@
 @property (nonatomic, readonly, copy) NSString *featureName;
 @property (readonly) unsigned int hash;
 @property (nonatomic) IKViewElement *menuBarElement;
-@property (nonatomic, readonly) IKViewElement *selectedMenuItem;
+@property (nonatomic, retain) IKViewElement *selectedMenuItem;
 @property (readonly) Class superclass;
 
 + (id)makeFeatureJSObjectForFeature:(id)arg1;
@@ -41,8 +41,10 @@
 - (void)jsMenuBarDocument:(id)arg1 setSelectedEntityUniqueIdentifier:(id)arg2 withOptions:(id)arg3;
 - (id)menuBarElement;
 - (void)migrateToViewElement:(id)arg1;
+- (id)selectedItemForJsMenuBarDocument:(id)arg1;
 - (id)selectedMenuItem;
 - (void)setDelegate:(id)arg1;
 - (void)setMenuBarElement:(id)arg1;
+- (void)setSelectedMenuItem:(id)arg1;
 
 @end

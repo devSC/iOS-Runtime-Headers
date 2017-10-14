@@ -3,17 +3,19 @@
  */
 
 @interface PKRemoteDataAccessor : PKDataAccessor {
-    PKPassLibrary *_library;
-    NSString *_objectUniqueID;
+    PKPassLibrary * _library;
+    NSString * _objectUniqueID;
 }
 
-@property (nonatomic, readonly, retain) PKPassLibrary *library;
-@property (nonatomic, readonly, retain) NSString *objectUniqueID;
+@property (nonatomic, readonly) PKPassLibrary *library;
+@property (nonatomic, readonly) NSString *objectUniqueID;
 
+- (void).cxx_destruct;
 - (id)archiveData;
 - (void)contentWithCompletion:(id /* block */)arg1;
-- (void)dealloc;
+- (id)dataForBundleResourceNamed:(id)arg1 withExtension:(id)arg2;
 - (id)displayProfileOfType:(int)arg1;
+- (id)imageSetForType:(int)arg1 screenScale:(float)arg2 suffix:(id)arg3 displayProfile:(id)arg4 preheat:(BOOL)arg5;
 - (void)imageSetForType:(int)arg1 screenScale:(float)arg2 suffix:(id)arg3 displayProfile:(id)arg4 preheat:(BOOL)arg5 withCompletion:(id /* block */)arg6;
 - (id)initWithLibrary:(id)arg1 objectUniqueID:(id)arg2;
 - (id)library;

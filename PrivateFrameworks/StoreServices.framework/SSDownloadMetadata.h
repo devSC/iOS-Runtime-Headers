@@ -3,9 +3,9 @@
  */
 
 @interface SSDownloadMetadata : NSObject <NSCoding, NSCopying, SSXPCCoding> {
-    NSMutableDictionary *_dictionary;
-    int _keyStyle;
-    NSLock *_lock;
+    NSMutableDictionary * _dictionary;
+    int  _keyStyle;
+    NSLock * _lock;
 }
 
 @property (readonly) NSArray *MD5HashStrings;
@@ -28,6 +28,7 @@
 @property (retain) NSString *genre;
 @property unsigned long long genreIdentifier;
 @property (readonly) unsigned int hash;
+@property (copy) NSURL *hlsPlaylistURL;
 @property unsigned long long itemIdentifier;
 @property int keyStyle;
 @property (retain) NSString *kind;
@@ -44,10 +45,12 @@
 @property (retain) NSDate *releaseDate;
 @property (retain) NSString *releaseDateString;
 @property (retain) NSNumber *releaseYear;
+@property (copy) NSNumber *rentalID;
 @property (copy) id requiredDeviceCapabilities;
 @property (copy) NSString *shortDescription;
 @property BOOL shouldDownloadAutomatically;
 @property (retain) NSArray *sinfs;
+@property (getter=isSoftwareKind, readonly) BOOL softwareKind;
 @property (retain) NSString *sortArtistName;
 @property (retain) NSString *sortCollectionName;
 @property (retain) NSString *sortTitle;
@@ -61,6 +64,7 @@
 @property (retain) NSString *transactionIdentifier;
 @property (copy) NSURL *transitMapDataURL;
 @property (getter=isTvTemplate) BOOL tvTemplate;
+@property (getter=isVideosKind, readonly) BOOL videosKind;
 
 - (id)MD5HashStrings;
 - (id)_assetDictionary;
@@ -98,8 +102,10 @@
 - (id)dictionary;
 - (id)documentTargetIdentifier;
 - (id)downloadKey;
+- (id)downloadPermalink;
 - (id)downloaderAccountIdentifier;
 - (id)durationInMilliseconds;
+- (id)enableExtensions;
 - (void)encodeWithCoder:(id)arg1;
 - (id)episodeIdentifier;
 - (id)episodeSortIdentifier;
@@ -108,6 +114,8 @@
 - (id)fullSizeImageURL;
 - (id)genre;
 - (unsigned long long)genreIdentifier;
+- (BOOL)hasMessagesExtension;
+- (id)hlsPlaylistURL;
 - (id)indexInCollection;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
@@ -122,16 +130,25 @@
 - (BOOL)isDeviceBasedVPP;
 - (BOOL)isExplicitContent;
 - (BOOL)isHighDefinition;
+- (BOOL)isMusicShow;
 - (BOOL)isRedownloadDownload;
 - (BOOL)isRental;
 - (BOOL)isSample;
+- (BOOL)isSharedResource;
+- (BOOL)isSoftwareKind;
 - (BOOL)isTvTemplate;
+- (BOOL)isVideosKind;
 - (unsigned long long)itemIdentifier;
 - (int)keyStyle;
 - (id)kind;
 - (id)launchExtrasUrl;
+- (BOOL)launchProhibited;
 - (id)longDescription;
 - (id)longSeasonDescription;
+- (id)messagesArtworkURL;
+- (id)movementCount;
+- (id)movementName;
+- (id)movementNumber;
 - (id)networkName;
 - (id)newDownloadProperties;
 - (id)numberOfBytesToHash;
@@ -145,11 +162,13 @@
 - (id)preferredAssetFlavor;
 - (id)primaryAssetDictionary;
 - (id)primaryAssetURL;
+- (id)publicationVersion;
 - (id)purchaseDate;
 - (id)redownloadActionParameters;
 - (id)releaseDate;
 - (id)releaseDateString;
 - (id)releaseYear;
+- (id)rentalID;
 - (id)requiredDeviceCapabilities;
 - (unsigned long long)sagaIdentifier;
 - (id)seasonNumber;
@@ -175,7 +194,9 @@
 - (void)setDictionary:(id)arg1;
 - (void)setDocumentTargetIdentifier:(id)arg1;
 - (void)setDownloadKey:(id)arg1;
+- (void)setDownloadPermalink:(id)arg1;
 - (void)setDurationInMilliseconds:(id)arg1;
+- (void)setEnableExtensions:(id)arg1;
 - (void)setEpisodeIdentifier:(id)arg1;
 - (void)setEpisodeSortIdentifier:(id)arg1;
 - (void)setEpubRightsData:(id)arg1;
@@ -184,15 +205,20 @@
 - (void)setFullSizeImageURL:(id)arg1;
 - (void)setGenre:(id)arg1;
 - (void)setGenreIdentifier:(unsigned long long)arg1;
+- (void)setHasMessagesExtension:(BOOL)arg1;
 - (void)setHighDefinition:(BOOL)arg1;
+- (void)setHlsPlaylistURL:(id)arg1;
 - (void)setIndexInCollection:(id)arg1;
 - (void)setItemIdentifier:(unsigned long long)arg1;
 - (void)setKeyStyle:(int)arg1;
 - (void)setKind:(id)arg1;
 - (void)setLaunchExtrasUrl:(id)arg1;
+- (void)setLaunchProhibited:(BOOL)arg1;
 - (void)setLongDescription:(id)arg1;
 - (void)setLongSeasonDescription:(id)arg1;
 - (void)setMD5HashStrings:(id)arg1 numberOfBytesToHash:(id)arg2;
+- (void)setMessagesArtworkURL:(id)arg1;
+- (void)setMusicShow:(BOOL)arg1;
 - (void)setNetworkName:(id)arg1;
 - (void)setNumberOfCollectionsInCollectionGroup:(id)arg1;
 - (void)setNumberOfItemsInCollection:(id)arg1;
@@ -203,6 +229,7 @@
 - (void)setPreOrderIdentifier:(unsigned long long)arg1;
 - (void)setPreferredAssetFlavor:(id)arg1;
 - (void)setPrimaryAssetURL:(id)arg1;
+- (void)setPublicationVersion:(id)arg1;
 - (void)setPurchaseDate:(id)arg1;
 - (void)setRedownloadActionParameters:(id)arg1;
 - (void)setRedownloadDownload:(BOOL)arg1;
@@ -210,11 +237,13 @@
 - (void)setReleaseDateString:(id)arg1;
 - (void)setReleaseYear:(id)arg1;
 - (void)setRental:(BOOL)arg1;
+- (void)setRentalID:(id)arg1;
 - (void)setRequiredDeviceCapabilities:(id)arg1;
 - (void)setSagaIdentifier:(unsigned long long)arg1;
 - (void)setSample:(BOOL)arg1;
 - (void)setSeasonNumber:(id)arg1;
 - (void)setSeriesName:(id)arg1;
+- (void)setSharedResource:(BOOL)arg1;
 - (void)setShortDescription:(id)arg1;
 - (void)setShouldDownloadAutomatically:(BOOL)arg1;
 - (void)setSinfs:(id)arg1;
@@ -236,6 +265,7 @@
 - (void)setViewStoreItemURL:(id)arg1;
 - (id)shortDescription;
 - (BOOL)shouldDownloadAutomatically;
+- (id)showComposer;
 - (id)sinfs;
 - (id)sortArtistName;
 - (id)sortCollectionName;
@@ -253,5 +283,6 @@
 - (id)variantIdentifier;
 - (id)videoDetailsDictionary;
 - (id)viewStoreItemURL;
+- (id)workName;
 
 @end

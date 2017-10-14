@@ -2,17 +2,22 @@
    Image: /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
  */
 
-@interface PLGatekeeperClient : NSObject {
-    NSArray *_previewAssetLocalIdentifiers;
-    NSArray *_previewRenderedContentURLs;
-    NSObject<OS_dispatch_queue> *_serialReplyQueue;
-    NSObject<OS_xpc_object> *connection;
+@interface PLGatekeeperClient : NSObject <PLAssetsdClientService> {
+    PLAssetsdClientServiceReceiver * _clientServiceReceiver;
+    NSArray * _previewAssetLocalIdentifiers;
+    NSArray * _previewRenderedContentURLs;
+    NSObject<OS_dispatch_queue> * _serialReplyQueue;
+    NSObject<OS_xpc_object> * connection;
 }
 
 @property (nonatomic) NSObject<OS_xpc_object> *connection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property (nonatomic, retain) NSArray *previewAssetLocalIdentifiers;
 @property (nonatomic, readonly) unsigned int previewRenderedContentURLCount;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *replyQueue;
+@property (readonly) Class superclass;
 
 + (id)securityPolicyErrorForMissingEntitlement:(id)arg1;
 + (id)sharedInstance;
@@ -27,11 +32,12 @@
 - (unsigned long long)attemptToPurgeSharedAssetsExceptForRecentlyViewedAssets;
 - (unsigned long long)attemptToPurgeSharedAssetsSpace:(unsigned long long)arg1;
 - (void)automaticallyDeleteEmptyAlbum:(id)arg1;
+- (void)backupChangeStore;
 - (void)batchSaveAssetsWithJobDictionaries:(id)arg1 handler:(id /* block */)arg2;
-- (id)cacheDeleteDebug:(id)arg1;
 - (void)cancelCPLDownloadImageDataWithVirtualTaskIdentifiers:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)cancelCPLDownloadWithContext:(id)arg1;
 - (void)cleanupForStoreDemoMode;
+- (BOOL)cleanupInvalidIgnoreDatesWithError:(id*)arg1;
 - (void)cleanupModelForDataMigration;
 - (void)clearAllBulletinsWithLastClearedRecordID:(unsigned int)arg1;
 - (void)clearChangeStore;
@@ -46,11 +52,12 @@
 - (id)deviceSpecificReplyQueue;
 - (id)dictionaryWithContentsOfMediaFilePath:(id)arg1;
 - (void)downloadAsset:(id)arg1 withCloudPlaceholderKind:(unsigned int)arg2 shouldPrioritize:(BOOL)arg3 shouldExtendTimer:(BOOL)arg4;
-- (void)downloadCloudPhotoLibraryAsset:(id)arg1 resourceType:(unsigned int)arg2 highPriority:(BOOL)arg3;
-- (void)downloadCloudPhotoLibraryAsset:(id)arg1 resourceType:(unsigned int)arg2 highPriority:(BOOL)arg3 trackCPLDownload:(BOOL)arg4 completion:(id /* block */)arg5;
+- (void)downloadCloudPhotoLibraryAsset:(id)arg1 resourceType:(unsigned int)arg2 highPriority:(BOOL)arg3 trackCPLDownload:(BOOL)arg4 downloadIsTransient:(BOOL)arg5 proposedTaskIdentifier:(id)arg6 completion:(id /* block */)arg7;
+- (void)downloadStatusForIdentifier:(id)arg1 progress:(double)arg2 completed:(BOOL)arg3 data:(id)arg4 error:(id)arg5;
 - (void)dropSearchIndexWithCompletion:(id /* block */)arg1;
 - (void)dumpCloudPhotosStatusIncludingDaemon:(BOOL)arg1;
 - (id)dumpMetadataForMomentsWithOutputPath:(id)arg1;
+- (void)dumpPhotoAnalysisStatusWithCompletion:(id /* block */)arg1;
 - (id)emailAddressForKey:(int)arg1;
 - (void)enableCloudPhotos:(BOOL)arg1;
 - (void)enablePhotostreamsWithStreamID:(id)arg1;
@@ -60,7 +67,7 @@
 - (id)fileURLForAssetURL:(id)arg1 withAdjustments:(BOOL)arg2;
 - (id)fileURLForNewAssetWithType:(unsigned int)arg1 extension:(id)arg2;
 - (void)finalizeOTARestoreRecreatingAlbums:(BOOL)arg1;
-- (void)getCPLRemainingUploadCountsWithHandler:(id /* block */)arg1;
+- (void)generateOnDemandResourcesForAsset:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)getCPLState;
 - (int)getCurrentApplicationBadgeCount;
 - (id)getCurrentBulletins;
@@ -69,6 +76,7 @@
 - (void)getCurrentTransferTotalSize:(id /* block */)arg1;
 - (id)getKeywordsForAssetWithUUID:(id)arg1;
 - (void)getLibrarySizes:(id /* block */)arg1;
+- (id)getPhotoLibraryStoreXPCListenerEndpoint;
 - (void)getPhotosAndVideosCountWithHandler:(id /* block */)arg1;
 - (id)getPhotosXPCEndpoint;
 - (void)getSandboxExtensionForPath:(id)arg1 completionHandler:(id /* block */)arg2;
@@ -87,40 +95,51 @@
 - (int)keyForEmailAddress:(id)arg1;
 - (void)launchAssetsd;
 - (id)locationShiftStatus;
+- (void)markPersonAsNeedingKeyFace:(id)arg1 synchronously:(BOOL)arg2;
+- (BOOL)markStatesProcessedForWorkerType:(short)arg1 error:(id*)arg2;
+- (int)migrateCloudFaces;
 - (id)momentAnalysisStatus;
 - (id)momentGenerationStatus;
 - (void)pauseCloudPhotos;
 - (id)personInfoDictionaryForPersonID:(id)arg1;
+- (void)prefetchResourcesForMemories:(id)arg1;
 - (void)prepareRevertToOriginalForAsset:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)previewAssetLocalIdentifiers;
 - (id)previewRenderedContentURLAtIndex:(unsigned int)arg1;
 - (unsigned int)previewRenderedContentURLCount;
 - (void)privateDownloadCloudPhotoLibraryAsset:(id)arg1 resourceType:(unsigned int)arg2 highPriority:(BOOL)arg3;
+- (void)pruneAssets:(id)arg1 resourceTypes:(id)arg2;
 - (void)purgeExpiredOutboundSharingAssets;
 - (unsigned long long)purgeableSharedAssetsSpace;
+- (void)rampingRequestForResourceType:(unsigned int)arg1 numRequested:(unsigned int)arg2 withCompletionHandler:(id /* block */)arg3;
 - (void)rebuildAllThumbnails;
 - (void)rebuildCloudFeed;
 - (void)rebuildMomentLists;
 - (void)rebuildMomentsIncremental:(BOOL)arg1;
+- (void)rebuildSearchIndexWithCompletion:(id /* block */)arg1;
 - (void)recoverFromCrashIfNeeded;
+- (void)registerSceneTaxonomySHA:(id)arg1;
 - (void)reloadMomentGenerationOptions;
+- (void)removeAnalysisRecordsForDeletedAssets:(id)arg1 forWorkerType:(short)arg2;
 - (void)removeLocalDuplicates;
 - (void)repairPotentialModelCorruption;
 - (void)repairSingletonObjects;
 - (id)replyQueue;
+- (void)reportAsJunkPhotoStreamInvitationForAlbumWithCloudGUID:(id)arg1;
 - (void)requestAccessWithHandler:(id /* block */)arg1;
 - (void)requestAdjustmentDataForAsset:(id)arg1 withDataBlob:(BOOL)arg2 networkAccessAllowed:(BOOL)arg3 trackCPLDownload:(BOOL)arg4 handler:(id /* block */)arg5;
 - (void)requestCPLDownloadImageDataForAssets:(id)arg1 format:(int)arg2 doneTokens:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)requestImageDataForAsset:(id)arg1 format:(int)arg2 allowPlaceholder:(BOOL)arg3 wantURLOnly:(BOOL)arg4 networkAccessAllowed:(BOOL)arg5 trackCPLDownload:(BOOL)arg6 handler:(id /* block */)arg7;
 - (void)requestMasterThumbnailForAssetUUID:(id)arg1 handler:(id /* block */)arg2;
-- (void)requestVideoURLForAsset:(id)arg1 format:(int)arg2 networkAccessAllowed:(BOOL)arg3 streamingAllowed:(BOOL)arg4 trackCPLDownload:(BOOL)arg5 handler:(id /* block */)arg6;
+- (void)requestVideoURLForAsset:(id)arg1 format:(int)arg2 networkAccessAllowed:(BOOL)arg3 streamingAllowed:(BOOL)arg4 restrictToPlayable:(BOOL)arg5 trackCPLDownload:(BOOL)arg6 handler:(id /* block */)arg7;
 - (void)resetDupesAnalysis;
+- (BOOL)resetPendingAnalysisStatesWithError:(id*)arg1;
 - (void)revertToOriginalForAsset:(id)arg1;
-- (void)runPeriodicMaintenanceTasks;
 - (id)sandboxExtensionForAssetResourcePath:(id)arg1;
 - (void)saveAssetWithJobDictionary:(id)arg1 handler:(id /* block */)arg2 imageSurface:(struct __IOSurface { }*)arg3 previewImageSurface:(struct __IOSurface { }*)arg4;
 - (void)sendDaemonJob:(id)arg1 replyHandler:(id /* block */)arg2;
 - (id)sendQueue;
+- (void)sendResponse:(BOOL)arg1 toPhotoStreamInvitationForAlbumWithCloudGUID:(id)arg2;
 - (void)setConnection:(id)arg1;
 - (void)setExternalUsageIntent:(unsigned int)arg1 forAssetWithURL:(id)arg2 handler:(id /* block */)arg3;
 - (BOOL)setKeywords:(id)arg1 forAssetWithUUID:(id)arg2;
@@ -137,12 +156,12 @@
 - (void)updateCameraPreviewWellImage:(id)arg1;
 - (void)updateLocationDataForAssetUUID:(id)arg1;
 - (void)updateModelAfterOTARestore;
-- (void)updateRestoredAssetWithUUID:(id)arg1 paths:(id)arg2;
+- (void)updateRestoredAssetWithUUID:(id)arg1 paths:(id)arg2 fixAddedDate:(BOOL)arg3;
 - (void)updateSharedAlbumsCachedServerConfigurationLimits;
-- (void)updateStatusOfCPLDownloadWithContext:(id)arg1;
 - (void)updateThumbnailsForPhotos:(id)arg1 waitForReply:(BOOL)arg2 assignNewIndex:(BOOL)arg3 forceRefresh:(BOOL)arg4;
-- (void)waitForSearchIndexExistence;
+- (void)updateUnverifiedFaceCountThreshold;
+- (void)userViewedBulletinWithRecordID:(unsigned int)arg1;
+- (void)waitForSearchIndexExistenceWithCompletion:(id /* block */)arg1;
 - (void)waitUntilConnectionSendsAllMessages;
-- (void)writeDataInBackground:(id)arg1 toFileURL:(id)arg2;
 
 @end

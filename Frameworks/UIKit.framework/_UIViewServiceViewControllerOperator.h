@@ -3,44 +3,46 @@
  */
 
 @interface _UIViewServiceViewControllerOperator : UIViewController <_UIHostedTextServiceSessionDelegate, _UIViewServiceDeputy, _UIViewServiceDeputyRotationSource, _UIViewServiceDummyPopoverControllerDelegate, _UIViewServiceViewControllerOperator_RemoteViewControllerInterface> {
-    BOOL __automatic_invalidation_invalidated;
-    int __automatic_invalidation_retainCount;
-    id /* block */ __traitsDidChangeHandler;
-    id /* block */ __traitsWillChangeHandler;
-    BOOL _canShowTextServices;
-    <_UIViewServiceViewControllerOperatorDelegate> *_delegate;
-    NSMutableArray *_deputyRotationDelegates;
-    BOOL _disableAutomaticKeyboardBehavior;
-    UIPopoverController *_displayedPopoverController;
-    _UIViewServiceDummyPopoverController *_dummyPopoverController;
-    unsigned int _hostAccessibilityServerPort;
+    BOOL  __automatic_invalidation_invalidated;
+    int  __automatic_invalidation_retainCount;
+    id /* block */  __traitsDidChangeHandler;
+    id /* block */  __traitsWillChangeHandler;
+    BOOL  _canShowTextServices;
+    NSMutableArray * _deferredToViewDidAppear;
+    <_UIViewServiceViewControllerOperatorDelegate> * _delegate;
+    NSMutableArray * _deputyRotationDelegates;
+    BOOL  _disableAutomaticKeyboardBehavior;
+    UIPopoverController * _displayedPopoverController;
+    _UIViewServiceDummyPopoverController * _dummyPopoverController;
+    long  _editAlertToken;
+    NSUndoManager * _editAlertUndoManager;
+    unsigned int  _hostAccessibilityServerPort;
     struct { 
         unsigned int val[8]; 
-    } _hostAuditToken;
-    NSString *_hostBundleID;
-    int _hostPID;
-    float _hostStatusBarHeight;
-    int _hostStatusBarOrientation;
-    UIActionSheet *_hostedActionSheet;
-    _UIHostedWindow *_hostedWindow;
-    _UIAsyncInvocation *_invalidationInvocation;
-    BOOL _isResigningFirstResponderFromHostNotification;
-    UIViewController *_localViewController;
+    }  _hostAuditToken;
+    NSString * _hostBundleID;
+    int  _hostPID;
+    float  _hostStatusBarHeight;
+    int  _hostStatusBarOrientation;
+    UIActionSheet * _hostedActionSheet;
+    _UIHostedWindow * _hostedWindow;
+    _UIAsyncInvocation * _invalidationInvocation;
+    UIViewController * _localViewController;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _localViewControllerRequestedInsets;
-    NSArray *_plugInScenes;
-    _UIAsyncInvocation *_prepareForDisconnectionInvocation;
-    NSString *_presentationControllerClassName;
-    id _remoteViewControllerProxyToOperator;
-    id _remoteViewControllerProxyToViewController;
-    BOOL _serviceInPopover;
-    unsigned int _supportedOrientations;
-    _UIHostedTextServiceSession *_textServiceSession;
-    _UIViewControllerOneToOneTransitionContext *_viewControllerTransitioningContext;
+    }  _localViewControllerRequestedInsets;
+    NSArray * _plugInScenes;
+    _UIAsyncInvocation * _prepareForDisconnectionInvocation;
+    NSString * _presentationControllerClassName;
+    id  _remoteViewControllerProxyToOperator;
+    id  _remoteViewControllerProxyToViewController;
+    BOOL  _serviceInPopover;
+    unsigned int  _supportedOrientations;
+    _UIHostedTextServiceSession * _textServiceSession;
+    _UIViewControllerOneToOneTransitionContext * _viewControllerTransitioningContext;
 }
 
 @property (setter=_setTraitsDidChangeHandler:, nonatomic, copy) id /* block */ _traitsDidChangeHandler;
@@ -56,6 +58,7 @@
 
 - (void).cxx_destruct;
 - (int)__automatic_invalidation_logic;
+- (void)__cancelAlertActionWithToken:(long)arg1;
 - (void)__createViewController:(id)arg1 withAppearanceSerializedRepresentations:(id)arg2 legacyAppearance:(BOOL)arg3 hostAccessibilityServerPort:(id)arg4 canShowTextServices:(BOOL)arg5 replyHandler:(id /* block */)arg6;
 - (void)__createViewController:(id)arg1 withContextToken:(id)arg2 fbsDisplays:(id)arg3 appearanceSerializedRepresentations:(id)arg4 legacyAppearance:(BOOL)arg5 traitCollection:(id)arg6 initialInterfaceOrientation:(int)arg7 hostAccessibilityServerPort:(id)arg8 canShowTextServices:(BOOL)arg9 replyHandler:(id /* block */)arg10;
 - (void)__dimmingViewWasTapped;
@@ -87,15 +90,19 @@
 - (void)__hostedActionSheetDidPresent;
 - (BOOL)__knownPresentationWithoutPresentationControllerInstance;
 - (void)__prepareForDisconnectionWithCompletionHandler:(id /* block */)arg1;
+- (void)__redoActionWithToken:(long)arg1;
 - (void)__restoreStateForSession:(id)arg1 restorationAnchor:(id)arg2;
 - (void)__saveStateForSession:(id)arg1 restorationAnchor:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)__scrollToTopFromTouchAtViewLocation:(struct CGPoint { float x1; float x2; })arg1 resultHandler:(id /* block */)arg2;
 - (void)__setContentSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)__setContentSize:(struct CGSize { float x1; float x2; })arg1 withFence:(id)arg2;
 - (void)__setHostTintColor:(id)arg1 tintAdjustmentMode:(int)arg2;
 - (void)__setHostTraitCollection:(id)arg1 deferIfAnimated:(BOOL)arg2;
 - (void)__setHostViewUnderlapsStatusBar:(BOOL)arg1;
 - (void)__setServiceInPopover:(BOOL)arg1;
+- (void)__showEditAlertView;
 - (void)__textServiceDidDismiss;
+- (void)__undoActionWithToken:(long)arg1;
 - (id)_appearanceSource;
 - (BOOL)_canShowTextServices;
 - (id)_dataFromPressesEvent:(id)arg1;
@@ -119,10 +126,12 @@
 - (BOOL)_presentActionSheet:(id)arg1 inView:(id)arg2 fromYCoordinate:(float)arg3;
 - (id)_presentationControllerClassName;
 - (id)_queue;
+- (void)_sendFocusMovementAction:(id)arg1;
 - (id)_sessionForStateRestoration:(id)arg1;
 - (void)_setTraitsDidChangeHandler:(id /* block */)arg1;
 - (void)_setTraitsWillChangeHandler:(id /* block */)arg1;
 - (BOOL)_shouldForwardLegacyRotationOnly;
+- (id)_showServiceForText:(id)arg1 selectedTextRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 type:(int)arg3 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4 inView:(id)arg5;
 - (id)_showServiceForText:(id)arg1 type:(int)arg2 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 inView:(id)arg4;
 - (id)_supportedInterfaceOrientationsForViewController:(id)arg1;
 - (id /* block */)_traitsDidChangeHandler;
@@ -144,6 +153,7 @@
 - (BOOL)canPerformAction:(SEL)arg1 withSender:(id)arg2;
 - (id)childViewControllerForStatusBarHidden;
 - (id)childViewControllerForStatusBarStyle;
+- (id)childViewControllerForWhitePointAdaptivityStyle;
 - (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (void)dealloc;
 - (id)delegate;
@@ -153,9 +163,10 @@
 - (void)establishViewControllerDeputyWithProxy:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)invalidate;
 - (void)loadView;
+- (void)motionEnded:(int)arg1 withEvent:(id)arg2;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)preferredContentSizeDidChangeForChildContentContainer:(id)arg1;
-- (id)preferredFocusedItem;
+- (id)preferredFocusEnvironments;
 - (void)pressesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)pressesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)pressesChanged:(id)arg1 withEvent:(id)arg2;
@@ -165,6 +176,7 @@
 - (unsigned int)retainCount;
 - (void)setDelegate:(id)arg1;
 - (void)setNeedsStatusBarAppearanceUpdate;
+- (void)setNeedsWhitePointAdaptivityStyleUpdate;
 - (BOOL)shouldAutomaticallyForwardAppearanceMethods;
 - (BOOL)shouldAutomaticallyForwardRotationMethods;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
@@ -172,5 +184,6 @@
 - (void)systemLayoutFittingSizeDidChangeForChildViewController:(id)arg1;
 - (void)viewDidLoad;
 - (void)viewWillMoveToWindow:(id)arg1;
+- (void)window:(id)arg1 statusBarWillChangeFromHeight:(float)arg2 toHeight:(float)arg3;
 
 @end

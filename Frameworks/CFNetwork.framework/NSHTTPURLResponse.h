@@ -3,7 +3,7 @@
  */
 
 @interface NSHTTPURLResponse : NSURLResponse {
-    NSHTTPURLResponseInternal *_httpInternal;
+    NSHTTPURLResponseInternal * _httpInternal;
 }
 
 @property (readonly, copy) NSDictionary *allHeaderFields;
@@ -33,14 +33,20 @@
 
 // Image: /System/Library/Frameworks/Social.framework/Social
 
++ (id)sl_twitterErrorMessageFromResponseObject:(id)arg1;
 + (id)sl_twitterResponseObjectErrorCode:(id)arg1;
 
 - (int)sl_twitterResponseType:(id)arg1;
+- (int)sl_twitterResponseTypeFromResponseObject:(id)arg1 looseAuthFailureMatching:(BOOL)arg2;
 
 // Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
 
 - (double)_maxAge;
 - (id)getSAPSignature;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pk_valueForHTTPHeaderField:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
 

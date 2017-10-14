@@ -3,10 +3,10 @@
  */
 
 @interface MPRemoteCommandEvent : NSObject {
-    MPRemoteCommand *_command;
-    NSString *_contextID;
-    NSDictionary *_mediaRemoteOptions;
-    double _timestamp;
+    MPRemoteCommand * _command;
+    NSString * _contextID;
+    NSDictionary * _mediaRemoteOptions;
+    double  _timestamp;
 }
 
 @property (nonatomic, readonly) MPRemoteCommand *command;
@@ -16,10 +16,12 @@
 
 - (void).cxx_destruct;
 - (id)command;
+- (id)contentItemID;
 - (id)contextID;
 - (id)init;
 - (id)initWithCommand:(id)arg1 mediaRemoteType:(unsigned int)arg2 options:(id)arg3;
 - (id)mediaRemoteOptions;
+- (id)playbackQueueOffset;
 - (double)timestamp;
 
 @end

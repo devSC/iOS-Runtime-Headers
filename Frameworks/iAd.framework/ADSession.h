@@ -3,14 +3,20 @@
  */
 
 @interface ADSession : NSObject <ADAdSheetConnectionDelegate, ADAdSheetProxyDelegate, ADSession_RPC> {
-    NSMutableArray *_adSpaces;
-    BOOL _applicationCanReceiveBackgroundAds;
-    int _classicUnavailableToken;
-    ADAdSheetConnection *_connection;
+    NSMutableArray * _adSpaces;
+    BOOL  _applicationCanReceiveBackgroundAds;
+    NSString * _bundleIdentifier;
+    BOOL  _canUpdateFrequencyCap;
+    BOOL  _canUpdateToroClickData;
+    int  _classicUnavailableToken;
+    ADAdSheetConnection * _connection;
 }
 
 @property (nonatomic, retain) NSMutableArray *adSpaces;
 @property (nonatomic) BOOL applicationCanReceiveBackgroundAds;
+@property (nonatomic, retain) NSString *bundleIdentifier;
+@property BOOL canUpdateFrequencyCap;
+@property BOOL canUpdateToroClickData;
 @property (nonatomic) int classicUnavailableToken;
 @property (nonatomic, retain) ADAdSheetConnection *connection;
 @property (readonly, copy) NSString *debugDescription;
@@ -21,11 +27,24 @@
 
 + (id)sharedInstance;
 
+- (id)_adSpaceForIdentifier:(id)arg1;
 - (void)_appDidBecomeActive;
 - (id)_linkedOnVersion;
-- (void)_remote_heartbeatTokenDidChange:(id)arg1 expirationDate:(double)arg2 error:(id)arg3;
+- (void)_remote_actionViewControllerReadyForPresentationForAdSpaceWithIdentifier:(id)arg1;
+- (void)_remote_adImpressionDidLoadWithPublicAttributes:(id)arg1 identifier:(id)arg2;
+- (void)_remote_closeClientAdSpaceWithIdentifier:(id)arg1;
+- (void)_remote_contentProxyURLDidChange:(id)arg1;
+- (void)_remote_creativeWithAdSpaceIdentifier:(id)arg1 didFailWithError:(id)arg2;
+- (void)_remote_dismissViewControllerForAdSpaceWithIdentifier:(id)arg1;
+- (void)_remote_dismissViewControllerForAdSpaceWithIdentifier:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (void)_remote_openURL:(id)arg1 forAdSpaceWithIdentifier:(id)arg2;
 - (void)_remote_policyEngineDidIdleDisable;
+- (void)_remote_requestViewControllerWithClassName:(id)arg1 forAdSpaceControllerWithIdentifier:(id)arg2 forAdSpaceWithIdentifier:(id)arg3;
+- (void)_remote_setRequiresFastVisibilityTestOnly:(BOOL)arg1 withIdentifier:(id)arg2;
+- (void)_remote_updateActionViewControllerOrientation:(unsigned int)arg1 forAdSpaceWithIdentifier:(id)arg2;
+- (void)_reportAdSubscriptionEvent:(id)arg1;
 - (void)adSheetConnectionEstablished;
+- (void)adSheetConnectionInterrupted;
 - (void)adSheetConnectionLost;
 - (id)adSheetMachServiceName;
 - (id)adSpaces;
@@ -33,6 +52,9 @@
 - (void)addClientToSegments:(id)arg1 replaceExisting:(BOOL)arg2 privateSegment:(BOOL)arg3;
 - (id)additionalAdSheetLaunchOptions;
 - (BOOL)applicationCanReceiveBackgroundAds;
+- (id)bundleIdentifier;
+- (BOOL)canUpdateFrequencyCap;
+- (BOOL)canUpdateToroClickData;
 - (int)classicUnavailableToken;
 - (void)configureConnection:(id)arg1;
 - (id)connection;
@@ -40,19 +62,33 @@
 - (id)init;
 - (void)lookupAdConversionDetails:(id /* block */)arg1;
 - (void)performWhenConnected:(id /* block */)arg1;
+- (void)prepareForAdRequests;
+- (void)refreshTargetingData;
 - (void)registerAdSpace:(id)arg1;
 - (void)reportPrerollRequest;
-- (void)requestAdsForContext:(id)arg1 creativeTypes:(id)arg2 completionHandler:(id /* block */)arg3;
-- (void)requestAdsForContext:(id)arg1 serverURL:(id)arg2 creativeTypes:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)requestAttributionDetailsWithBlock:(id /* block */)arg1;
+- (void)requestSponsoredSearchData:(id /* block */)arg1;
+- (void)requestSponsoredSearchDataAndRequestID:(id /* block */)arg1;
+- (void)requestSponsoredSearchURL:(id /* block */)arg1;
+- (void)requestTrendingSearchData:(id /* block */)arg1;
+- (void)requestTrendingSearchURL:(id /* block */)arg1;
+- (void)requestUserTargetingIdentifier:(id /* block */)arg1;
 - (id)rpcProxy;
 - (id)rpcProxyWithErrorHandler:(id /* block */)arg1;
+- (void)segmentDataForSignedInUserWithBlock:(id /* block */)arg1;
 - (void)setAdSpaces:(id)arg1;
 - (void)setApplicationCanReceiveBackgroundAds:(BOOL)arg1;
+- (void)setBundleIdentifier:(id)arg1;
+- (void)setCanUpdateFrequencyCap:(BOOL)arg1;
+- (void)setCanUpdateToroClickData:(BOOL)arg1;
 - (void)setClassicUnavailableToken:(int)arg1;
 - (void)setConnection:(id)arg1;
 - (BOOL)shouldConnectToAdSheet;
 - (BOOL)shouldLaunchAdSheet;
 - (void)unregisterAdSpace:(id)arg1;
+- (void)updateDPIDWithAction:(unsigned int)arg1;
+- (void)updateSponsoredFrequencyCapData:(id)arg1;
+- (void)updateToroClickData:(id)arg1;
+- (void)updateTrendingFrequencyCapData:(id)arg1;
 
 @end

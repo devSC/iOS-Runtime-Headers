@@ -3,17 +3,17 @@
  */
 
 @interface AUAudioUnitBusArray : NSObject <NSFastEnumeration> {
-    int _busType;
-    NSMutableArray *_busses;
-    BOOL _countChangeable;
+    int  _busType;
+    NSMutableArray * _busses;
+    BOOL  _countChangeable;
     struct vector<BusPropertyObserver, std::__1::allocator<BusPropertyObserver> > { 
         struct BusPropertyObserver {} *__begin_; 
         struct BusPropertyObserver {} *__end_; 
         struct __compressed_pair<BusPropertyObserver *, std::__1::allocator<BusPropertyObserver> > { 
             struct BusPropertyObserver {} *__first_; 
         } __end_cap_; 
-    } _observers;
-    AUAudioUnit *_ownerAudioUnit;
+    }  _observers;
+    AUAudioUnit * _ownerAudioUnit;
 }
 
 @property (nonatomic, readonly) int busType;
@@ -29,6 +29,7 @@
 - (unsigned int)count;
 - (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
+- (void)indexBusses;
 - (id)init;
 - (id)initWithAudioUnit:(id)arg1 busType:(int)arg2;
 - (id)initWithAudioUnit:(id)arg1 busType:(int)arg2 busses:(id)arg3;

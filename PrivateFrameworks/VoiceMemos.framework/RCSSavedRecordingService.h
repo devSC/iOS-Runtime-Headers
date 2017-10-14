@@ -3,15 +3,15 @@
  */
 
 @interface RCSSavedRecordingService : NSObject <RCSSavedRecordingServiceClientProtocol, RCSSavedRecordingServiceProtocol> {
-    NSObject<OS_dispatch_queue> *_completionQueue;
-    NSSet *_compositionAVURLsBeingExported;
-    int _compositionAVURLsBeingExportedDistributedNotificationToken;
-    NSSet *_compositionAVURLsBeingModified;
-    int _compositionAVURLsBeingModifiedDistributedNotificationToken;
-    NSMutableDictionary *_pendingServiceCompletionHandlers;
-    NSObject<OS_dispatch_queue> *_serialQueue;
-    <RCSSavedRecordingServiceProtocol> *_serviceProxy;
-    NSXPCConnection *_xpcConnection;
+    NSObject<OS_dispatch_queue> * _completionQueue;
+    NSSet * _compositionAVURLsBeingExported;
+    int  _compositionAVURLsBeingExportedDistributedNotificationToken;
+    NSSet * _compositionAVURLsBeingModified;
+    int  _compositionAVURLsBeingModifiedDistributedNotificationToken;
+    NSMutableDictionary * _pendingServiceCompletionHandlers;
+    NSObject<OS_dispatch_queue> * _serialQueue;
+    <RCSSavedRecordingServiceProtocol> * _serviceProxy;
+    NSXPCConnection * _xpcConnection;
 }
 
 @property (nonatomic, retain) NSSet *compositionAVURLsBeingExported;
@@ -56,6 +56,7 @@
 - (oneway void)prepareToPreviewCompositionAVURL:(id)arg1 accessRequestHandler:(id /* block */)arg2;
 - (oneway void)prepareToTrimCompositionAVURL:(id)arg1 accessRequestHandler:(id /* block */)arg2;
 - (oneway void)reloadExistingSearchMetadataWithCompletionBlock:(id /* block */)arg1;
+- (oneway void)removeAllUserDataWithCompletion:(id /* block */)arg1;
 - (id)serviceProxy;
 - (void)setCompositionAVURLsBeingExported:(id)arg1;
 - (void)setCompositionAVURLsBeingModified:(id)arg1;

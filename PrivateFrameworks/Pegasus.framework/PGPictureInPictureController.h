@@ -3,19 +3,19 @@
  */
 
 @interface PGPictureInPictureController : NSObject <NSXPCListenerDelegate, PGPictureInPictureRemoteObjectDelegate> {
-    PGPictureInPictureApplication *_activePictureInPictureApplication;
-    PGPictureInPictureRemoteObject *_activePictureInPictureRemoteObject;
-    <PGPictureInPictureControllerDelegate> *_delegate;
+    PGPictureInPictureApplication * _activePictureInPictureApplication;
+    PGPictureInPictureRemoteObject * _activePictureInPictureRemoteObject;
+    <PGPictureInPictureControllerDelegate> * _delegate;
     struct { 
         unsigned int pictureInPictureController_didCreatePictureInPictureViewController : 1; 
         unsigned int pictureInPictureController_willDestroyPictureInPictureViewController : 1; 
-    } _delegateRespondsTo;
-    NSXPCListener *_listener;
-    NSObject<OS_dispatch_queue> *_listenerQueue;
-    BOOL _pictureInPictureActive;
-    NSArray *_pictureInPictureApplications;
-    NSMutableArray *_pictureInPictureRemoteObjects;
-    PGPictureInPictureRemoteObject *_suspenedPictureInPictureRemoteObject;
+    }  _delegateRespondsTo;
+    NSXPCListener * _listener;
+    NSObject<OS_dispatch_queue> * _listenerQueue;
+    BOOL  _pictureInPictureActive;
+    NSSet * _pictureInPictureApplications;
+    NSMutableSet * _pictureInPictureRemoteObjects;
+    PGPictureInPictureRemoteObject * _suspenedPictureInPictureRemoteObject;
 }
 
 @property (nonatomic, readonly) PGPictureInPictureApplication *activePictureInPictureApplication;
@@ -24,10 +24,9 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (getter=isPictureInPictureActive, nonatomic, readonly) BOOL pictureInPictureActive;
-@property (nonatomic, readonly) NSArray *pictureInPictureApplications;
+@property (nonatomic, readonly) NSSet *pictureInPictureApplications;
 @property (readonly) Class superclass;
 
-+ (void)initialize;
 + (BOOL)isPictureInPictureSupported;
 
 - (void).cxx_destruct;

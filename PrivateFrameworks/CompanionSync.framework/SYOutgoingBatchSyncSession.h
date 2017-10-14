@@ -3,25 +3,28 @@
  */
 
 @interface SYOutgoingBatchSyncSession : SYSession {
-    NSMutableIndexSet *_ackedBatchIndices;
-    unsigned long long _activity;
-    unsigned long long _batchIndex;
-    BOOL _canRestart;
-    BOOL _canRollback;
-    BOOL _cancelled;
-    BOOL _errorIsLocal;
-    BOOL _hasSentEnd;
-    NSObject<OS_dispatch_source> *_sessionTimer;
-    int _state;
-    NSObject<OS_dispatch_source> *_stateUpdateSource;
-    _SYMessageTimerTable *_timers;
+    NSMutableIndexSet * _ackedBatchIndices;
+    unsigned long long  _batchIndex;
+    BOOL  _canRestart;
+    BOOL  _canRollback;
+    BOOL  _cancelled;
+    _SYCountedSemaphore * _changeConcurrencySemaphore;
+    NSObject<OS_dispatch_queue> * _changeFetcherQueue;
+    NSObject<OS_os_activity> * _changeWaitActivity;
+    BOOL  _errorIsLocal;
+    BOOL  _hasSentEnd;
+    NSObject<OS_os_activity> * _sessionActivity;
+    double  _sessionStartTime;
+    NSObject<OS_dispatch_source> * _sessionTimer;
+    int  _state;
+    NSObject<OS_dispatch_source> * _stateUpdateSource;
+    _SYMessageTimerTable * _timers;
 }
 
 - (void).cxx_destruct;
 - (void)_fetchNextBatch;
 - (BOOL)_handleBatchAck:(id)arg1 error:(id*)arg2;
 - (BOOL)_handleBatchSyncEndResponse:(id)arg1 error:(id*)arg2;
-- (void)_handleError:(id)arg1;
 - (void)_installStateListener;
 - (void)_installTimers;
 - (void)_messageExpiredWithSeqno:(unsigned long long)arg1 identifier:(id)arg2;
@@ -36,13 +39,16 @@
 - (void)_sessionComplete;
 - (void)_setMessageTimerForSeqno:(unsigned long long)arg1;
 - (void)_setStateQuietly:(int)arg1;
+- (void)_setupChangeConcurrency;
+- (void)_waitForMessageWindow;
 - (BOOL)canRestart;
 - (BOOL)canRollback;
-- (void)cancel;
+- (void)cancelWithError:(id)arg1;
 - (id)initWithService:(id)arg1;
 - (BOOL)isResetSync;
 - (BOOL)isSending;
 - (unsigned int)protocolVersion;
+- (double)remainingSessionTime;
 - (void)setCanRestart:(BOOL)arg1;
 - (void)setCanRollback:(BOOL)arg1;
 - (void)setState:(int)arg1;

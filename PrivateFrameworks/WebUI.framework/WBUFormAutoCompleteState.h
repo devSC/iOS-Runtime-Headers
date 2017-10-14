@@ -2,21 +2,25 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@interface WBUFormAutoCompleteState : NSObject <UIActionSheetDelegate, WBUCreditCardCaptureViewControllerDelegate> {
-    int _action;
-    BOOL _canAutoComplete;
-    NSArray *_credentialMatches;
-    id /* block */ _creditCardCaptureCompletionHandler;
-    WBUFormDataController *_dataController;
-    NSDictionary *_formAnnotations;
-    NSDictionary *_formMetadata;
-    unsigned int _formType;
-    NSDictionary *_formValues;
-    BOOL _gatheringFormValues;
-    NSMutableDictionary *_matchesByCompletion;
-    WBSMultiRoundAutoFillManager *_multiRoundAutoFillManager;
-    NSArray *_relatedCredentialMatches;
-    NSDictionary *_textFieldMetadata;
+@interface WBUFormAutoCompleteState : NSObject <CNContactPickerDelegate, WBUContactAutoFillViewControllerFiller, WBUCreditCardCaptureViewControllerDelegate> {
+    BOOL  _URLIsAllowedByWhiteList;
+    int  _action;
+    BOOL  _canAutoComplete;
+    NSArray * _credentialMatches;
+    id /* block */  _creditCardCaptureCompletionHandler;
+    id /* block */  _customAutoFillContactCompletionHandler;
+    WBUFormDataController * _dataController;
+    id /* block */  _displayOtherContactsCompletionHandler;
+    NSDictionary * _formAnnotations;
+    WBSFormMetadata * _formMetadata;
+    unsigned int  _formType;
+    NSDictionary * _formValues;
+    BOOL  _gatheringFormValues;
+    BOOL  _hasDeterminedIfURLIsAllowedByWhiteList;
+    NSMutableDictionary * _matchesByCompletion;
+    WBSMultiRoundAutoFillManager * _multiRoundAutoFillManager;
+    NSArray * _relatedCredentialMatches;
+    NSDictionary * _textFieldMetadata;
 }
 
 @property (nonatomic) WBUFormDataController *dataController;
@@ -25,10 +29,12 @@
 @property (nonatomic, readonly) <WBUFormAutoFillFrameHandle> *frame;
 @property (readonly) unsigned int hash;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL textFieldLooksLikeCreditCardNumericFormField;
 @property (nonatomic, readonly) NSString *textFieldValue;
 @property (nonatomic, readonly) UIView<WBUFormAutoFillWebView> *webView;
 
 + (BOOL)_shouldSaveCredentialsInProtectionSpace:(id)arg1;
++ (void)getMatchesFromFormProtectionSpace:(id)arg1 matchesFromOtherProtectionSpaces:(id)arg2 withFormURL:(id)arg3 credentialMatches:(id)arg4 lastGeneratedPassword:(id)arg5 currentUser:(id)arg6 currentPassword:(id)arg7;
 
 - (void).cxx_destruct;
 - (int)_action;
@@ -36,20 +42,22 @@
 - (void)_autoFillCreditCardData;
 - (void)_autoFillFormWithCreditCardData:(id)arg1;
 - (void)_autoFillValues:(id)arg1 setAutoFilled:(BOOL)arg2;
+- (void)_autoFillWithSet:(id)arg1;
 - (BOOL)_canAutoFillCreditCardData;
 - (void)_captureCreditCardDataWithCameraAndFill;
 - (void)_ensureFormMetadata;
 - (void)_gatherFormValuesWithCompletionHandler:(id /* block */)arg1;
 - (void)_generateAndSuggestPasswordWithCompletionHandler:(id /* block */)arg1;
-- (void)_getLoginFormUser:(id*)arg1 password:(id*)arg2 userIsAutoFilled:(BOOL*)arg3 passwordIsAutoFilled:(BOOL*)arg4;
 - (void)_getShouldOfferForgetPassword:(BOOL*)arg1 savePassword:(BOOL*)arg2;
 - (BOOL)_hasMatchWithUser:(id)arg1 password:(id)arg2;
 - (id)_matchesForPartialString:(id)arg1;
+- (void)_offerToAutoFillContact;
 - (void)_offerToAutoFillFromPotentialCredentialMatches;
 - (void)_offerToForgetSavedPassword:(id)arg1 completionHandler:(id /* block */)arg2;
 - (int)_passwordGenerationAssistanceAction;
 - (BOOL)_passwordGenerationAssistanceAutoFillButtonEnabled;
 - (void)_performAutoFill;
+- (void)_presentViewController:(id)arg1 presentingViewController:(id)arg2 animated:(BOOL)arg3 completion:(id /* block */)arg4;
 - (void)_setUpMultiRoundAutoFillManagerIfNecessary;
 - (void)_setUserAndPasswordFieldsAutoFilled:(BOOL)arg1 clearPasswordField:(BOOL)arg2;
 - (BOOL)_shouldAllowGeneratedPassword;
@@ -58,27 +66,42 @@
 - (BOOL)_textFieldIsEmptyPasswordField;
 - (BOOL)_textFieldLooksLikeCreditCardFormField;
 - (void)_updateAutoFillButton;
+- (id)_viewControllerToPresentFrom;
 - (void)acceptedAutoFillWord:(id)arg1;
-- (void)annotateForm:(id)arg1 withValues:(id)arg2;
+- (void)annotateForm:(int)arg1 withValues:(id)arg2;
 - (void)autoFill;
-- (void)autoFillGeneratedPassword:(id)arg1 inForm:(double)arg2;
+- (void)autoFillDisplayData:(id)arg1 setAutoFilled:(BOOL)arg2;
+- (void)autoFillGeneratedPassword:(id)arg1 inForm:(int)arg2;
 - (void)autoFillValues:(id)arg1 setAutoFilled:(BOOL)arg2 andFocusField:(id)arg3;
+- (void)autoFillValues:(id)arg1 setAutoFilled:(BOOL)arg2 andFocusFieldAfterFilling:(BOOL)arg3 fieldToFocus:(id)arg4;
+- (void)contactPicker:(id)arg1 didSelectContact:(id)arg2;
+- (void)contactPickerDidCancel:(id)arg1;
 - (void)creditCardCaptureViewController:(id)arg1 didCaptureCreditCard:(id)arg2;
 - (void)creditCardCaptureViewControllerDidCancel:(id)arg1;
 - (id)dataController;
 - (void)dealloc;
+- (void)dismissCustomAutoFill;
 - (void)fetchFormMetadataWithCompletion:(id /* block */)arg1;
+- (void)fillCredential:(id)arg1 setAutoFilled:(BOOL)arg2;
 - (void)fillGeneratedPassword:(id)arg1 inField:(id)arg2;
 - (id)frame;
+- (void)getLoginFormUser:(id*)arg1 password:(id*)arg2 userIsAutoFilled:(BOOL*)arg3 passwordIsAutoFilled:(BOOL*)arg4;
 - (void)getTextFieldMetadata:(id*)arg1 formMetadata:(id*)arg2;
 - (BOOL)hasCurrentSuggestions;
+- (BOOL)hasPotentialLoginCredentialsForLoginForm;
 - (id)initWithFormDataController:(id)arg1;
 - (void)invalidate;
+- (void)performAutoFillWithMatchSelections:(id)arg1 doNotFill:(id)arg2 contact:(id)arg3;
+- (id)potentialCredentialMatches;
 - (void)setAutoFillButtonTitle:(id)arg1;
 - (void)setDataController:(id)arg1;
 - (void)setFormControls:(id)arg1 areAutoFilled:(BOOL)arg2 clearField:(id)arg3;
+- (void)setShowingKeyboardInputView:(BOOL)arg1;
+- (void)showOtherContactOptions;
 - (id)suggestionsForString:(id)arg1;
+- (void)switchToCustomInputViewWithMatches:(id)arg1 contact:(id)arg2;
 - (void)textDidChangeInForm:(id)arg1 textField:(id)arg2;
+- (BOOL)textFieldLooksLikeCreditCardNumericFormField;
 - (id)textFieldValue;
 - (id)titleOfAutoFillButton;
 - (id)webView;

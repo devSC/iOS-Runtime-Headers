@@ -3,17 +3,21 @@
  */
 
 @interface HKUnit : NSObject <NSCopying, NSSecureCoding> {
-    _HKFactorization *_baseUnitReduction;
-    _HKFactorization *_dimensionReduction;
-    long _reduceToken;
-    double _reducedProportionalSize;
-    double _scaleOffset;
+    _HKFactorization * _baseUnitReduction;
+    _HKFactorization * _dimensionReduction;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _dimensionReductionLock;
+    double  _reducedProportionalSize;
+    double  _scaleOffset;
 }
 
 @property (nonatomic, readonly) _HKFactorization *_baseUnits;
 @property (nonatomic, readonly) _HKDimension *dimension;
 @property (nonatomic, readonly) double scaleOffset;
 @property (readonly) NSString *unitString;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
 
 + (id)_distanceUnitForLocale:(id)arg1;
 + (id)_foodEnergyUnitForLocale:(id)arg1;
@@ -83,9 +87,11 @@
 - (id)_baseUnits;
 - (id)_computeBaseUnitReductionAndProportionalSize:(out double*)arg1 withCycleSet:(id)arg2;
 - (id)_dimensionReduction;
+- (id)_foundationUnit;
 - (id)_init;
 - (BOOL)_isCompatibleWithDimension:(id)arg1;
 - (BOOL)_isCompatibleWithUnit:(id)arg1;
+- (BOOL)_isMetricDistance;
 - (void)_reduceIfNecessaryWithCycleSet:(id)arg1;
 - (double)_reducedProportionalSize;
 - (double)_valueByConvertingValue:(double)arg1 toUnit:(id)arg2;
@@ -104,5 +110,9 @@
 - (id)unitMultipliedByUnit:(id)arg1;
 - (id)unitRaisedToPower:(int)arg1;
 - (id)unitString;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
++ (id)fiui_bpmUnit;
 
 @end

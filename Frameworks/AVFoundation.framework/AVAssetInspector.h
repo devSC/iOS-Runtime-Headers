@@ -16,12 +16,14 @@
 @property (nonatomic, readonly) AVMetadataItem *creationDate;
 @property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } duration;
 @property (getter=isExportable, nonatomic, readonly) BOOL exportable;
+@property (nonatomic, readonly) NSString *identifyingTag;
 @property (nonatomic, readonly) NSString *identifyingTagClass;
 @property (getter=_instanceIdentifier, nonatomic, readonly) NSString *instanceIdentifier;
 @property (nonatomic, readonly) NSString *lyrics;
 @property (getter=_mediaSelectionGroupDictionaries, nonatomic, readonly) NSArray *mediaSelectionGroupDictionaries;
 @property (nonatomic, readonly) struct CGSize { float x1; float x2; } naturalSize;
 @property (nonatomic, readonly) int naturalTimeScale;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } overallDurationHint;
 @property (getter=isPlayable, nonatomic, readonly) BOOL playable;
 @property (nonatomic, readonly) float preferredRate;
 @property (nonatomic, readonly) float preferredSoundCheckVolumeNormalization;
@@ -46,6 +48,7 @@
 - (id)creationDate;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })duration;
 - (BOOL)hasProtectedContent;
+- (id)identifyingTag;
 - (id)identifyingTagClass;
 - (BOOL)isCompatibleWithAirPlayVideo;
 - (BOOL)isCompatibleWithSavedPhotosAlbum;
@@ -58,6 +61,7 @@
 - (id)metadataForFormat:(id)arg1;
 - (struct CGSize { float x1; float x2; })naturalSize;
 - (int)naturalTimeScale;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })overallDurationHint;
 - (float)preferredRate;
 - (float)preferredSoundCheckVolumeNormalization;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })preferredTransform;

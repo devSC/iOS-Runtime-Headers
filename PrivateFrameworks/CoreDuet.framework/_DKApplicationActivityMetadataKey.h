@@ -6,7 +6,10 @@
 
 + (id)activityType;
 + (id)expirationDate;
++ (id)isPubliclyIndexable;
 + (id)itemIdentifier;
++ (id)itemRelatedContentURL;
++ (id)itemRelatedUniqueIdentifier;
 + (id)title;
 
 @end

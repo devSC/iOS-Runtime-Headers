@@ -3,9 +3,9 @@
  */
 
 @interface NFSecureElementSession : NFSession <NFAppletCollection, NFSecureElementSessionCallbacks> {
-    NSMutableDictionary *_appletsById;
-    BOOL _hasApplets;
-    NFSecureElement *_secureElement;
+    NSMutableDictionary * _appletsById;
+    BOOL  _hasApplets;
+    NFSecureElement * _secureElement;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -23,6 +23,7 @@
 - (BOOL)deleteApplets:(id)arg1 queueServerConnection:(BOOL)arg2;
 - (void)didExitRestrictedMode;
 - (id)dumpDomain:(unsigned char)arg1;
+- (BOOL)getCryptogram:(id*)arg1 challengeResponse:(id*)arg2;
 - (id)getOSUpdateLog;
 - (id)initWithSecureElement:(id)arg1;
 - (id)restrictedModeLog;
@@ -31,5 +32,6 @@
 - (id)signChallenge:(id)arg1;
 - (id)stateInformation;
 - (id)transceive:(id)arg1;
+- (unsigned int)validateSEPairing;
 
 @end

@@ -3,13 +3,13 @@
  */
 
 @interface SBUIScene : NSObject <BSDescriptionProviding, FBSceneClient> {
-    FBSSceneClientSettings *_clientSettings;
-    FBSDisplay *_display;
-    NSString *_identifier;
-    NSMutableSet *_layers;
-    <FBSceneHost> *_sceneHost;
-    FBSSceneSettings *_settings;
-    BOOL _valid;
+    FBSSceneClientSettings * _clientSettings;
+    FBSDisplay * _display;
+    NSString * _identifier;
+    NSMutableSet * _layers;
+    <FBSceneHost> * _sceneHost;
+    FBSSceneSettings * _settings;
+    BOOL  _valid;
 }
 
 @property (copy) FBSSceneClientSettings *clientSettings;
@@ -23,15 +23,16 @@
 @property (readonly) Class superclass;
 @property (getter=isValid, nonatomic, readonly) BOOL valid;
 
+- (void).cxx_destruct;
 - (void)attachLayer:(id)arg1;
 - (id)clientSettings;
-- (void)dealloc;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;
 - (void)detachLayer:(id)arg1;
 - (id)display;
 - (unsigned int)hash;
+- (void)host:(id)arg1 configureWithDefinition:(id)arg2 parameters:(id)arg3;
 - (void)host:(id)arg1 configureWithInitialClientSettings:(id)arg2;
 - (void)host:(id)arg1 didInvalidateWithTransitionContext:(id)arg2 completion:(id /* block */)arg3;
 - (void)host:(id)arg1 didReceiveActions:(id)arg2;

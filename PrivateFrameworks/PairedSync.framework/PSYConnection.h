@@ -3,10 +3,10 @@
  */
 
 @interface PSYConnection : NSObject {
-    NSXPCConnection *_connection;
-    <PSYConnectionDelegate> *_delegate;
-    PSYOptions *_options;
-    BOOL _valid;
+    NSXPCConnection * _connection;
+    <PSYConnectionDelegate> * _delegate;
+    PSYOptions * _options;
+    BOOL  _valid;
 }
 
 @property (nonatomic, retain) NSXPCConnection *connection;
@@ -15,9 +15,6 @@
 @property (getter=isValid, nonatomic, readonly) BOOL valid;
 
 - (void).cxx_destruct;
-- (void)_handleConnectionInterruption;
-- (void)_handleConnectionInvalidation;
-- (void)_resumeConnectionIfPossible;
 - (id)connection;
 - (id)delegate;
 - (id)init;

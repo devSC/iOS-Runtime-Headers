@@ -2,25 +2,22 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@interface PUIrisImageTileViewController : PUImageTileViewController <ISPlayerViewDelegate, _UISettingsKeyObserver> {
-    ISPlayerView *__irisPlayerView;
-    ISPlayerView *__irisPlayerViewWithVitalityEnabled;
-    BOOL __needUpdateIrisContent;
-    BOOL __needsUpdateIrisPlayerView;
-    BOOL _canLoadIrisContent;
-    <PUIrisImageTileViewControllerDelegate> *_delegate;
+@interface PUIrisImageTileViewController : PUImageTileViewController <PHLivePhotoViewDelegate, PHLivePhotoViewDelegatePrivate> {
+    PHLivePhotoView * __livePhotoView;
+    <PUIrisImageTileViewControllerDelegate> * _delegate;
     struct { 
         BOOL respondsToDidBeginPlaying; 
         BOOL respondsToWillEndPlaying; 
         BOOL respondsToDidEndPlaying; 
-    } _delegateFlags;
+        BOOL respondsToDidEndVitality; 
+        BOOL respondsToDidBeginHinting; 
+        BOOL respondsToViewHostingGestureRecognizers; 
+        BOOL respondsToDelegateForGestureRecognizer; 
+    }  _delegateFlags;
+    id /* block */  _ppt_didEndPlayingHandler;
 }
 
-@property (setter=_setIrisPlayerView:, nonatomic, retain) ISPlayerView *_irisPlayerView;
-@property (setter=_setIrisPlayerViewWithVitalityEnabled:, nonatomic, retain) ISPlayerView *_irisPlayerViewWithVitalityEnabled;
-@property (setter=_setNeedsUpdateIrisContent:, nonatomic) BOOL _needUpdateIrisContent;
-@property (setter=_setNeedsUpdateIrisPlayerView:, nonatomic) BOOL _needsUpdateIrisPlayerView;
-@property (nonatomic) BOOL canLoadIrisContent;
+@property (nonatomic, readonly) PHLivePhotoView *_livePhotoView;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <PUIrisImageTileViewControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -29,39 +26,26 @@
 
 - (void).cxx_destruct;
 - (void)_assetFocusValueDidChange;
-- (void)_assetIsInFocusChanged;
 - (void)_handleBrowsingIrisPlayer:(id)arg1 didChange:(id)arg2;
-- (void)_invalidateIrisContent;
-- (void)_invalidateIrisPlayerView;
-- (id)_irisPlayerView;
-- (id)_irisPlayerViewWithVitalityEnabled;
-- (BOOL)_needUpdateIrisContent;
-- (BOOL)_needsIrisUpdate;
-- (BOOL)_needsUpdateIrisPlayerView;
-- (void)_playerViewReadinessDidChange;
-- (void)_setIrisPlayerView:(id)arg1;
-- (void)_setIrisPlayerViewWithVitalityEnabled:(id)arg1;
-- (void)_setNeedsUpdateIrisContent:(BOOL)arg1;
-- (void)_setNeedsUpdateIrisPlayerView:(BOOL)arg1;
-- (void)_updateIrisContentIfNeeded;
-- (void)_updateIrisIfNeeded;
-- (void)_updateIrisPlayerViewIfNeeded;
-- (void)_updateIrisPlayerViewWithVitalityEnabled;
-- (void)_updatePlayerViewScrubOffset;
+- (id)_livePhotoView;
+- (void)_playVitalityHintIfNeeded;
+- (void)_setLivePhotoView:(id)arg1;
+- (void)_updateLivePhotoViewVitalityEnabled;
+- (void)_updatePlaybackGestureRecognizer;
+- (void)_updatePlayerViewInteractivePlaybackAllowed;
+- (void)addToTilingView:(id)arg1;
+- (void)applyLayoutInfo:(id)arg1;
 - (void)assetViewModelDidChange;
-- (void)becomeReusable;
-- (BOOL)canLoadIrisContent;
-- (void)dealloc;
 - (id)delegate;
-- (id)irisPlayerView:(id)arg1 delegateForGestureRecognizer:(id)arg2;
-- (id)irisPlayerViewViewHostingGestureRecognizers:(id)arg1;
-- (void)loadView;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
-- (void)playerViewPlaybackStateDidChange:(id)arg1;
+- (void)livePhotoView:(id)arg1 didEndPlaybackWithStyle:(int)arg2;
+- (void)livePhotoView:(id)arg1 willBeginPlaybackWithStyle:(int)arg2;
+- (void)livePhotoViewDidBeginHinting:(id)arg1;
+- (void)livePhotoViewDidEndPlayingVitality:(id)arg1;
+- (id)loadView;
+- (void)ppt_playLivePhotoWithCompletionHandler:(id /* block */)arg1;
+- (void)removeAllAnimations;
 - (void)setAssetViewModel:(id)arg1;
-- (void)setCanLoadIrisContent:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)settings:(id)arg1 changedValueForKey:(id)arg2;
 - (void)viewModel:(id)arg1 didChange:(id)arg2;
 
 @end

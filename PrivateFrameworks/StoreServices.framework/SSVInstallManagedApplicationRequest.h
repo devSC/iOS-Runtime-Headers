@@ -3,11 +3,11 @@
  */
 
 @interface SSVInstallManagedApplicationRequest : SSRequest <SSXPCCoding> {
-    NSString *_bundleIdentifier;
-    NSString *_bundleVersion;
-    NSNumber *_externalVersionIdentifier;
-    NSString *_itemIdentifier;
-    BOOL _skipDownloads;
+    NSString * _bundleIdentifier;
+    NSString * _bundleVersion;
+    NSNumber * _externalVersionIdentifier;
+    NSString * _itemIdentifier;
+    BOOL  _skipDownloads;
 }
 
 @property (nonatomic, copy) NSString *bundleIdentifier;
@@ -36,6 +36,7 @@
 - (void)setSkipDownloads:(BOOL)arg1;
 - (BOOL)skipDownloads;
 - (void)startWithDetailedResponseBlock:(id /* block */)arg1;
+- (void)startWithMetadataResponseBlock:(id /* block */)arg1;
 - (void)startWithResponseBlock:(id /* block */)arg1;
 
 @end

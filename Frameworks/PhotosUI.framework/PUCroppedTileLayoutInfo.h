@@ -8,17 +8,17 @@
         float left; 
         float bottom; 
         float right; 
-    } _cropInsets;
+    }  _cropInsets;
 }
 
-@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } cropInsets;
+@property (setter=_setCropInsets:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } cropInsets;
 
 - (void)_setCropInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (id)clone;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })cropInsets;
 - (id)description;
-- (id)initWithIndexPath:(id)arg1 tileKind:(id)arg2 dataSourceIdentifier:(id)arg3 center:(struct CGPoint { float x1; float x2; })arg4 size:(struct CGSize { float x1; float x2; })arg5 alpha:(float)arg6 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg7 zPosition:(float)arg8 coordinateSystem:(id)arg9;
-- (id)initWithIndexPath:(id)arg1 tileKind:(id)arg2 dataSourceIdentifier:(id)arg3 center:(struct CGPoint { float x1; float x2; })arg4 size:(struct CGSize { float x1; float x2; })arg5 cropInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg6 alpha:(float)arg7 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg8 zPosition:(float)arg9 coordinateSystem:(id)arg10;
+- (id)initWithTileIdentifier:(id)arg1 center:(struct CGPoint { float x1; float x2; })arg2 size:(struct CGSize { float x1; float x2; })arg3 alpha:(float)arg4 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg5 zPosition:(float)arg6 contentsRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg7 coordinateSystem:(id)arg8;
+- (id)initWithTileIdentifier:(id)arg1 center:(struct CGPoint { float x1; float x2; })arg2 size:(struct CGSize { float x1; float x2; })arg3 cropInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg4 alpha:(float)arg5 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg6 zPosition:(float)arg7 contentsRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg8 coordinateSystem:(id)arg9;
 - (BOOL)isGeometryEqualToLayoutInfo:(id)arg1;
 - (id)layoutInfoByInterpolatingWithLayoutInfo:(id)arg1 mixFactor:(float)arg2 coordinateSystem:(id)arg3;
 

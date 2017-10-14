@@ -3,11 +3,11 @@
  */
 
 @interface WebGeolocationPosition : NSObject {
-    WebGeolocationPositionInternal *_internal;
+    WebGeolocationPositionInternal * _internal;
 }
 
 - (void)dealloc;
-- (id)initWithGeolocationPosition:(struct PassRefPtr<WebCore::GeolocationPosition> { struct GeolocationPosition {} *x1; })arg1;
+- (id)initWithGeolocationPosition:(struct RefPtr<WebCore::GeolocationPosition> { struct GeolocationPosition {} *x1; })arg1;
 - (id)initWithTimestamp:(double)arg1 latitude:(double)arg2 longitude:(double)arg3 accuracy:(double)arg4;
 
 @end

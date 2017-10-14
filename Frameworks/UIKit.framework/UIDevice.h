@@ -3,7 +3,7 @@
  */
 
 @interface UIDevice : NSObject {
-    float _batteryLevel;
+    float  _batteryLevel;
     struct { 
         unsigned int batteryMonitoringEnabled : 1; 
         unsigned int proximityMonitoringEnabled : 1; 
@@ -13,8 +13,8 @@
         unsigned int proximityState : 1; 
         unsigned int hasTouchPadOverride : 1; 
         unsigned int hasTouchPad : 1; 
-    } _deviceFlags;
-    int _numDeviceOrientationObservers;
+    }  _deviceFlags;
+    int  _numDeviceOrientationObservers;
 }
 
 @property (setter=_setBacklightLevel:, nonatomic) float _backlightLevel;
@@ -22,6 +22,7 @@
 @property (getter=isBatteryMonitoringEnabled, nonatomic) BOOL batteryMonitoringEnabled;
 @property (nonatomic, readonly) int batteryState;
 @property (nonatomic, readonly, retain) NSString *buildVersion;
+@property (getter=_feedbackSupportLevel, nonatomic, readonly) int feedbackSupportLevel;
 @property (getter=isGeneratingDeviceOrientationNotifications, nonatomic, readonly) BOOL generatesDeviceOrientationNotifications;
 @property (nonatomic, readonly) NSUUID *identifierForVendor;
 @property (nonatomic, readonly) NSString *localizedModel;
@@ -49,12 +50,13 @@
 - (void)_clearGraphicsQualityOverride;
 - (id)_deviceInfoForKey:(struct __CFString { }*)arg1;
 - (void)_enableDeviceOrientationEvents:(BOOL)arg1;
+- (int)_feedbackSupportLevel;
 - (int)_graphicsQuality;
 - (BOOL)_hasGraphicsQualityOverride;
 - (BOOL)_hasTouchPad;
 - (BOOL)_isSystemSoundEnabled;
-- (BOOL)_isTTYEnabled;
 - (int)_keyboardGraphicsQuality;
+- (int)_nativeScreenGamut;
 - (void)_playInputDeleteSound;
 - (void)_playInputSelectSound;
 - (void)_playSystemSound:(unsigned long)arg1;
@@ -69,8 +71,8 @@
 - (void)_setHasTouchPad:(BOOL)arg1;
 - (void)_setProximityState:(BOOL)arg1;
 - (float)_softwareDimmingAlpha;
+- (BOOL)_supportsDeepColor;
 - (BOOL)_supportsForceTouch;
-- (BOOL)_supportsHapticFeedback;
 - (id)_tapticEngine;
 - (void)_unregisterForSystemSounds:(id)arg1;
 - (void)_updateSystemSoundActiveStatus:(id)arg1;
@@ -99,10 +101,22 @@
 - (id)uniqueIdentifier;
 - (int)userInterfaceIdiom;
 
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (int)initialLayoutStyle;
+
+// Image: /System/Library/PrivateFrameworks/DrawingKit.framework/DrawingKit
+
+- (BOOL)dk_deviceSupportsGL;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)fc_platformString;
+
 // Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
 
 - (struct CGSize { float x1; float x2; })_notesDeviceDrawingSize;
-- (BOOL)_notesDeviceSupportsBodyLettpress;
+- (BOOL)_notesDeviceSupportsLetterpress;
 - (BOOL)_notesLowEndHardware;
 - (id)_notesProductType;
 
@@ -119,9 +133,16 @@
 - (id)_currentProduct;
 - (id)_deviceInfoForKey:(struct __CFString { }*)arg1;
 - (int)_graphicsQualityIncludingMediumN41:(BOOL)arg1;
+- (id)_highQualityDevicesForHomeFolders;
+- (id)_lowQualityDevicesForDashBoardPresentation;
+- (id)_lowQualityDevicesForHomescreenFolders;
+- (id)_lowQualityDevicesForSearchTransitions;
 - (id)_mediumQualityProductsIncludingN41:(BOOL)arg1;
 - (int)sbf_bannerGraphicsQuality;
 - (int)sbf_controlCenterGraphicsQuality;
+- (int)sbf_dashBoardPresentationGraphicsQuality;
+- (int)sbf_homeScreenFolderGraphicsQuality;
+- (int)sbf_searchTransitionGraphicsQuality;
 
 // Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
 

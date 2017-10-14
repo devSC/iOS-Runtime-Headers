@@ -3,13 +3,14 @@
  */
 
 @interface NGSInternalSettingsManager : NSObject {
-    NSMutableArray *_glanceDefinitions;
-    BOOL _hasSettings;
-    NSMutableDictionary *_installStatesByGlanceID;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSString *_selectedGlanceIdentifier;
-    NSArray *_storedSettings;
-    NPSManager *_syncManager;
+    NSArray * _blacklistedWatchKitIDs;
+    NSMutableArray * _glanceDefinitions;
+    BOOL  _hasSettings;
+    NSMutableDictionary * _installStatesByGlanceID;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSString * _selectedGlanceIdentifier;
+    NSArray * _storedSettings;
+    NPSManager * _syncManager;
 }
 
 @property (nonatomic, readonly) unsigned int glanceCount;
@@ -20,6 +21,7 @@
 - (void).cxx_destruct;
 - (unsigned int)_glanceCount;
 - (BOOL)_hasSettings;
+- (void)_loadBlacklistedWatchKitIDs;
 - (void)_mergeAdditionalGlanceDefinitionsIntoArray:(id)arg1;
 - (unsigned int)_numberOfActiveGlances;
 - (void)_saveSettings;
@@ -44,6 +46,8 @@
 - (BOOL)hasMaximumNumberOfActiveGlances;
 - (BOOL)hasSettings;
 - (id)init;
+- (void)invalidateAndReloadSettings;
+- (BOOL)isWatchKitBundleIDBlacklisted:(id)arg1;
 - (void)loadSettings;
 - (void)moveGlanceDefinitionFromIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2;
 - (id)queue;

@@ -3,8 +3,8 @@
  */
 
 @interface CNPropertyNoteCell : CNPropertyCell {
-    UILabel *_labelLabel;
-    UITextView *_textView;
+    UILabel * _labelLabel;
+    UITextView * _textView;
 }
 
 @property (nonatomic, readonly) UILabel *labelLabel;
@@ -23,6 +23,7 @@
 - (void)setTextView:(id)arg1;
 - (void)setValueTextAttributes:(id)arg1;
 - (BOOL)shouldPerformDefaultAction;
+- (BOOL)supportsTintColorValue;
 - (id)textView;
 - (void)textViewChanged:(id)arg1;
 - (void)textViewEditingDidEnd:(id)arg1;

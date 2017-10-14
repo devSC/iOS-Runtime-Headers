@@ -3,8 +3,8 @@
  */
 
 @interface TSUQuicklookAssetColorMap : NSObject {
-    NSString *mAppAssetPath;
-    NSMutableDictionary *mAssetMap;
+    NSString * mAppAssetPath;
+    NSMutableDictionary * mAssetMap;
 }
 
 @property (nonatomic, retain) NSString *appAssetPath;
@@ -13,6 +13,7 @@
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)colorForResource:(id)arg1;
 + (BOOL)hasAppAssets;
++ (id)locatorForSageChartTextureSet:(id)arg1 image:(id)arg2;
 + (id)quicklookAssetMap;
 
 - (id)appAssetPath;

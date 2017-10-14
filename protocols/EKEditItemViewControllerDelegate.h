@@ -10,7 +10,8 @@
 
 @optional
 
-- (BOOL)editItemViewControllerCommit:(EKEditItemViewController *)arg1;
+- (BOOL)editItemIsExternallyOrganized;
+- (BOOL)editItemViewControllerSave:(EKEditItemViewController *)arg1;
 - (void)editItemViewControllerWantsKeyboardPinned:(BOOL)arg1;
 
 @end

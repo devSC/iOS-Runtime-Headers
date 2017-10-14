@@ -3,19 +3,24 @@
  */
 
 @interface GEOPDDepartureSequence : PBCodable <NSCopying> {
-    NSMutableArray *_departureFrequencys;
-    NSMutableArray *_departures;
-    NSString *_directionNameString;
+    NSMutableArray * _departureFrequencys;
+    NSMutableArray * _departures;
+    NSString * _directionNameString;
     struct { 
         unsigned int lineId : 1; 
         unsigned int stopId : 1; 
-    } _has;
-    NSString *_headsignString;
-    unsigned long long _lineId;
-    struct { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; } *_operatingHours;
-    unsigned int _operatingHoursCount;
-    unsigned int _operatingHoursSpace;
-    unsigned long long _stopId;
+    }  _has;
+    NSString * _headsignString;
+    unsigned long long  _lineId;
+    struct { 
+        unsigned long long *list; 
+        unsigned int count; 
+        unsigned int size; 
+    }  _nextStopIds;
+    struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; } * _operatingHours;
+    unsigned int  _operatingHoursCount;
+    unsigned int  _operatingHoursSpace;
+    unsigned long long  _stopId;
 }
 
 @property (nonatomic, retain) NSMutableArray *departureFrequencys;
@@ -27,15 +32,22 @@
 @property (nonatomic) BOOL hasStopId;
 @property (nonatomic, retain) NSString *headsignString;
 @property (nonatomic) unsigned long long lineId;
-@property (nonatomic, readonly) struct { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*operatingHours;
+@property (nonatomic, readonly) unsigned long long*nextStopIds;
+@property (nonatomic, readonly) unsigned int nextStopIdsCount;
+@property (nonatomic, readonly) struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*operatingHours;
 @property (nonatomic, readonly) unsigned int operatingHoursCount;
 @property (nonatomic) unsigned long long stopId;
 
++ (Class)departureFrequencyType;
++ (Class)departureType;
+
 - (void)addDeparture:(id)arg1;
 - (void)addDepartureFrequency:(id)arg1;
-- (void)addOperatingHours:(struct { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
+- (void)addNextStopId:(unsigned long long)arg1;
+- (void)addOperatingHours:(struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
 - (void)clearDepartureFrequencys;
 - (void)clearDepartures;
+- (void)clearNextStopIds;
 - (void)clearOperatingHours;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -58,8 +70,11 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)lineId;
 - (void)mergeFrom:(id)arg1;
-- (struct { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)operatingHours;
-- (struct { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })operatingHoursAtIndex:(unsigned int)arg1;
+- (unsigned long long)nextStopIdAtIndex:(unsigned int)arg1;
+- (unsigned long long*)nextStopIds;
+- (unsigned int)nextStopIdsCount;
+- (struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)operatingHours;
+- (struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })operatingHoursAtIndex:(unsigned int)arg1;
 - (unsigned int)operatingHoursCount;
 - (BOOL)readFrom:(id)arg1;
 - (void)setDepartureFrequencys:(id)arg1;
@@ -69,7 +84,8 @@
 - (void)setHasStopId:(BOOL)arg1;
 - (void)setHeadsignString:(id)arg1;
 - (void)setLineId:(unsigned long long)arg1;
-- (void)setOperatingHours:(struct { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)arg1 count:(unsigned int)arg2;
+- (void)setNextStopIds:(unsigned long long*)arg1 count:(unsigned int)arg2;
+- (void)setOperatingHours:(struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)arg1 count:(unsigned int)arg2;
 - (void)setStopId:(unsigned long long)arg1;
 - (unsigned long long)stopId;
 - (void)writeTo:(id)arg1;

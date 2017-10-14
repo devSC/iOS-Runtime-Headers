@@ -6,18 +6,18 @@
     struct { 
         unsigned int timestamp : 1; 
         unsigned int instances : 1; 
-    } _has;
-    int _instances;
-    NSMutableArray *_keywords;
-    NSString *_radarAttachmentFilename;
-    NSMutableArray *_radarAttachmentTypes;
-    NSString *_radarAttachmentUUID;
-    NSString *_radarComponent;
-    NSString *_radarDescription;
-    NSString *_radarSignature;
-    NSString *_radarTitle;
-    NSString *_radarVersion;
-    unsigned long long _timestamp;
+    }  _has;
+    int  _instances;
+    NSMutableArray * _keywords;
+    NSString * _radarAttachmentFilename;
+    NSMutableArray * _radarAttachmentTypes;
+    NSString * _radarAttachmentUUID;
+    NSString * _radarComponent;
+    NSString * _radarDescription;
+    NSString * _radarSignature;
+    NSString * _radarTitle;
+    NSString * _radarVersion;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) BOOL hasInstances;
@@ -40,6 +40,9 @@
 @property (nonatomic, retain) NSString *radarTitle;
 @property (nonatomic, retain) NSString *radarVersion;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)keywordsType;
++ (Class)radarAttachmentTypesType;
 
 - (void)addKeywords:(id)arg1;
 - (void)addRadarAttachmentTypes:(id)arg1;

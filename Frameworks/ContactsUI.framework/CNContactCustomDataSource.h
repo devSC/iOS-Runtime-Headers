@@ -3,14 +3,14 @@
  */
 
 @interface CNContactCustomDataSource : NSObject <CNContactChangesObserver, CNContactDataSource> {
-    NSMutableArray *_allContacts;
-    BOOL _autoUpdateContacts;
-    CNContactFilter *_filter;
-    NSArray *_filteredContacts;
-    NSMapTable *_identifiersToIndexes;
-    NSArray *_keysToFetch;
-    BOOL _observingContacts;
-    <CNContactDataSourceDelegate> *delegate;
+    NSMutableArray * _allContacts;
+    BOOL  _autoUpdateContacts;
+    CNContactFilter * _filter;
+    NSArray * _filteredContacts;
+    NSMapTable * _identifiersToIndexes;
+    NSArray * _keysToFetch;
+    BOOL  _observingContacts;
+    <CNContactDataSourceDelegate> * delegate;
 }
 
 @property (nonatomic, retain) NSMutableArray *allContacts;
@@ -30,8 +30,7 @@
 @property (nonatomic, retain) NSMapTable *identifiersToIndexes;
 @property (nonatomic, readonly) NSArray *indexSections;
 @property (nonatomic, retain) NSArray *keysToFetch;
-@property (nonatomic, readonly) CNContact *meContact;
-@property (nonatomic, readonly) NSString *meContactIdentifier;
+@property (nonatomic, readonly) NSString *mainStorePreferredForNameMeContactIdentifier;
 @property (nonatomic) BOOL observingContacts;
 @property (nonatomic, readonly) NSArray *sections;
 @property (nonatomic, readonly) BOOL shouldReturnToAccountsAndGroupsViewAfterSearchIsCanceled;
@@ -64,7 +63,7 @@
 - (id)initWithContacts:(id)arg1 keysToFetch:(id)arg2;
 - (id)initWithContacts:(id)arg1 keysToFetch:(id)arg2 filter:(id)arg3;
 - (id)keysToFetch;
-- (id)meContactIdentifier;
+- (id)mainStorePreferredForNameMeContactIdentifier;
 - (BOOL)observingContacts;
 - (id)sections;
 - (void)setAllContacts:(id)arg1;

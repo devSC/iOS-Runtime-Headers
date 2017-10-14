@@ -3,9 +3,9 @@
  */
 
 @interface UIKeyboardInputManagerMux : NSObject {
-    NSMutableArray *_clients;
-    <_UIIVCResponseDelegateImpl> *_responseDelegate;
-    <TIKeyboardInputManager> *_systemInputManager;
+    NSMutableArray * _clients;
+    <_UIIVCResponseDelegateImpl> * _responseDelegate;
+    <TIKeyboardInputManager> * _systemInputManager;
 }
 
 @property (nonatomic, readonly) BOOL hasSystemInputManager;
@@ -30,7 +30,7 @@
 - (id)responseDelegate;
 - (void)setResponseDelegate:(id)arg1;
 - (void)setSystemInputManager:(id)arg1;
-- (void)setSystemInputManagerFromKeyboardState:(id)arg1;
+- (void)setSystemInputManagerFromKeyboardState:(id)arg1 devicePasscodeEntry:(BOOL)arg2;
 - (id)systemInputManager;
 - (void)updateClientResponseDelegatesWithDelegate:(id)arg1;
 

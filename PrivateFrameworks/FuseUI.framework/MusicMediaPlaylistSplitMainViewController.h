@@ -3,15 +3,17 @@
  */
 
 @interface MusicMediaPlaylistSplitMainViewController : MusicMediaProductSplitMainViewController <MusicMediaPickerDelegate> {
-    NSString *_curatorStoreID;
-    MusicProductDescription *_editedPlaylistDescription;
-    NSNumber *_editedPlaylistPublicState;
-    NSNumber *_editedPlaylistVisibleState;
+    NSString * _curatorStoreID;
+    MusicProductDescription * _editedPlaylistDescription;
+    NSNumber * _editedPlaylistPublicState;
+    NSNumber * _editedPlaylistVisibleState;
+    NSNumber * _parentFolderPersistentID;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSNumber *parentFolderPersistentID;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
@@ -22,6 +24,8 @@
 - (void)_configureProductAdditionalMetadataViewController:(id)arg1;
 - (BOOL)_isCuratorPlaylist;
 - (id)_loadProductTracklistTableViewConfigurationWithTracklistEntityProvider:(id)arg1;
+- (void)_prepareToCommitEditingWithBagDictionary:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_prepareToCommitEditingWithCompletionHandler:(id /* block */)arg1;
 - (void)_resetAdditionalMetadataViewController:(id)arg1;
 - (void)_setEditedValue:(id)arg1 forProperty:(id)arg2 onPlaylist:(id)arg3 withSuccessfullyEditedPropertiesAccumulatorDictionary:(id)arg4;
 - (void)_updateEditableComponents;
@@ -29,6 +33,7 @@
 - (id)initWithContainerEntityProvider:(id)arg1 tracklistEntityProvider:(id)arg2 clientContext:(id)arg3 presentationSource:(int)arg4 forContentCreation:(BOOL)arg5;
 - (id)initWithContainerEntityProvider:(id)arg1 tracklistEntityProvider:(id)arg2 clientContext:(id)arg3 presentationSource:(int)arg4 forContentCreation:(BOOL)arg5 curatorStoreID:(id)arg6;
 - (void)mediaPickerNavigationController:(id)arg1 didFinishWithSelectedEntities:(id)arg2;
+- (id)parentFolderPersistentID;
 - (void)productAdditionalMetadataViewControllerDidSelectAddSongsButton:(id)arg1;
 - (void)productAdditionalMetadataViewControllerDidUpdateProductDescription:(id)arg1;
 - (void)productAdditionalMetadataViewControllerDidUpdatePublicSwitchState:(id)arg1;
@@ -36,5 +41,6 @@
 - (BOOL)productAdditionalMetadataViewControllerShouldDeferContentHeightAnimationUpdates:(id)arg1;
 - (void)setEditedContentArtworkImage:(id)arg1;
 - (void)setEditedContentTitle:(id)arg1;
+- (void)setParentFolderPersistentID:(id)arg1;
 
 @end

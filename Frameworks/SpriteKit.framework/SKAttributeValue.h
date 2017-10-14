@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@interface SKAttributeValue : NSObject {
-    int _type;
-    float floatValues;
-    unsigned short halfFloatValues;
+@interface SKAttributeValue : NSObject <NSCoding> {
+    int  _type;
+    float  floatValues;
+    unsigned short  halfFloatValues;
 }
 
 @property (nonatomic) float floatValue;
@@ -20,8 +20,10 @@
 + (id)valueWithVectorFloat4;
 
 - (BOOL)copyValueTo:(void*)arg1 type:(int)arg2 count:(unsigned int)arg3;
+- (void)encodeWithCoder:(id)arg1;
 - (float)floatValue;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (void)setFloatValue:(float)arg1;
 - (void)setVectorFloat2Value;
 - (void)setVectorFloat3Value;

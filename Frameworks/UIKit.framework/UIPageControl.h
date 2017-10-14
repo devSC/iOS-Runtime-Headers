@@ -3,23 +3,23 @@
  */
 
 @interface UIPageControl : UIControl {
-    UIVisualEffectView *_backgroundVisualEffectView;
-    int _currentPage;
-    UIImage *_currentPageImage;
-    NSMutableArray *_currentPageImages;
-    UIColor *_currentPageIndicatorTintColor;
-    int _displayedPage;
-    NSMutableArray *_indicators;
-    int _lastUserInterfaceIdiom;
-    _UILegibilitySettings *_legibilitySettings;
-    int _numberOfPages;
+    UIVisualEffectView * _backgroundVisualEffectView;
+    int  _currentPage;
+    UIImage * _currentPageImage;
+    NSMutableArray * _currentPageImages;
+    UIColor * _currentPageIndicatorTintColor;
+    int  _displayedPage;
+    NSMutableArray * _indicators;
+    int  _lastUserInterfaceIdiom;
+    _UILegibilitySettings * _legibilitySettings;
+    int  _numberOfPages;
     struct { 
         unsigned int hideForSinglePage : 1; 
         unsigned int defersCurrentPageDisplay : 1; 
-    } _pageControlFlags;
-    UIImage *_pageImage;
-    NSMutableArray *_pageImages;
-    UIColor *_pageIndicatorTintColor;
+    }  _pageControlFlags;
+    UIImage * _pageImage;
+    NSMutableArray * _pageImages;
+    UIColor * _pageIndicatorTintColor;
 }
 
 @property (nonatomic) int currentPage;
@@ -34,6 +34,7 @@
 + (BOOL)doesOverrideMethod:(SEL)arg1 inBaseClass:(Class)arg2;
 
 - (void).cxx_destruct;
+- (id)__scalarStatisticsForUserValueChangedEvent;
 - (id)_activePageIndicatorImage;
 - (void)_cachePageIndicatorImages;
 - (id)_cachedPageIndicatorCurrentImageForPage:(int)arg1;

@@ -3,24 +3,28 @@
  */
 
 @interface NFAWDVersionInfo : NSObject <NFAWDEventProtocol> {
-    AWDNFCVersions *_metric;
-    unsigned int nfccFWRevision;
-    unsigned int nfccFWVersion;
-    unsigned int nfccHWVersion;
-    unsigned int nfccMWVersion;
-    unsigned int nfccROMVersion;
-    unsigned int seDeviceType;
-    unsigned int seFWVersion;
-    unsigned int seHWVersion;
-    unsigned int seMigrationInst;
-    unsigned int seMigrationPkgs;
-    unsigned int seMigrationState;
-    unsigned int seOSMode;
-    NSString *sePlatformId;
-    unsigned int seRefCount;
-    unsigned int seRestrictedMode;
-    unsigned int seSeqCount;
-    unsigned int seSignKeyType;
+    AWDNFCVersions * _metric;
+    unsigned int  _nfccFWRevision;
+    unsigned int  _nfccFWVersion;
+    unsigned int  _nfccHWVersion;
+    unsigned int  _nfccMWVersion;
+    unsigned int  _nfccROMVersion;
+    unsigned int  _seDeviceType;
+    unsigned int  _seFWVersion;
+    unsigned int  _seHWVersion;
+    unsigned int  _seMigrationInst;
+    unsigned int  _seMigrationPkgs;
+    unsigned int  _seMigrationState;
+    unsigned int  _seOSMode;
+    unsigned int  _seRefCount;
+    unsigned int  _seRestrictedMode;
+    unsigned int  _seSeqCount;
+    unsigned int  _seSignKeyType;
+    unsigned int  _seosHWVersion;
+    unsigned int  _seosMigrationState;
+    unsigned int  _seosOSMode;
+    unsigned int  _seosOSVersion;
+    unsigned int  _seosSignKeyType;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -44,6 +48,12 @@
 @property (nonatomic) unsigned int seRestrictedMode;
 @property (nonatomic) unsigned int seSeqCount;
 @property (nonatomic) unsigned int seSignKeyType;
+@property (nonatomic) unsigned int seosHWVersion;
+@property (nonatomic) unsigned int seosMigrationState;
+@property (nonatomic) unsigned int seosOSMode;
+@property (nonatomic) unsigned int seosOSVersion;
+@property (nonatomic, retain) NSString *seosPlatformID;
+@property (nonatomic) unsigned int seosSignKeyType;
 @property (readonly) Class superclass;
 
 - (void)dealloc;
@@ -68,6 +78,12 @@
 - (unsigned int)seRestrictedMode;
 - (unsigned int)seSeqCount;
 - (unsigned int)seSignKeyType;
+- (unsigned int)seosHWVersion;
+- (unsigned int)seosMigrationState;
+- (unsigned int)seosOSMode;
+- (unsigned int)seosOSVersion;
+- (id)seosPlatformID;
+- (unsigned int)seosSignKeyType;
 - (void)setMetric:(id)arg1;
 - (void)setNfccFWRevision:(unsigned int)arg1;
 - (void)setNfccFWVersion:(unsigned int)arg1;
@@ -86,5 +102,11 @@
 - (void)setSeRestrictedMode:(unsigned int)arg1;
 - (void)setSeSeqCount:(unsigned int)arg1;
 - (void)setSeSignKeyType:(unsigned int)arg1;
+- (void)setSeosHWVersion:(unsigned int)arg1;
+- (void)setSeosMigrationState:(unsigned int)arg1;
+- (void)setSeosOSMode:(unsigned int)arg1;
+- (void)setSeosOSVersion:(unsigned int)arg1;
+- (void)setSeosPlatformID:(id)arg1;
+- (void)setSeosSignKeyType:(unsigned int)arg1;
 
 @end

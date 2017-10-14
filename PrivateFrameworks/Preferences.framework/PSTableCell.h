@@ -3,26 +3,28 @@
  */
 
 @interface PSTableCell : UITableViewCell {
-    int _alignment;
-    BOOL _cellEnabled;
-    BOOL _checked;
-    UIImageView *_checkedImageView;
-    PSTableCellHighlightContext *_customHighlightContext;
-    BOOL _forceHideDisclosureIndicator;
-    NSString *_hiddenTitle;
-    BOOL _isCopyable;
-    BOOL _lazyIcon;
-    NSString *_lazyIconAppID;
-    BOOL _lazyIconDontUnload;
-    BOOL _lazyIconForceSynchronous;
-    UILongPressGestureRecognizer *_longTapRecognizer;
-    SEL _pAction;
-    id _pTarget;
-    BOOL _reusedCell;
-    BOOL _shouldHideTitle;
-    PSSpecifier *_specifier;
-    int _type;
-    id _value;
+    int  _alignment;
+    BOOL  _cellEnabled;
+    BOOL  _checked;
+    UIImageView * _checkedImageView;
+    PSTableCellHighlightContext * _customHighlightContext;
+    BOOL  _forceHideDisclosureIndicator;
+    NSString * _hiddenTitle;
+    BOOL  _isCopyable;
+    BOOL  _lazyIcon;
+    NSString * _lazyIconAppID;
+    BOOL  _lazyIconDontUnload;
+    BOOL  _lazyIconForceSynchronous;
+    NSURL * _lazyIconURL;
+    UILongPressGestureRecognizer * _longTapRecognizer;
+    SEL  _pAction;
+    id  _pTarget;
+    BOOL  _reusedCell;
+    BOOL  _shouldHideTitle;
+    PSSpecifier * _specifier;
+    int  _type;
+    NSURLSession * _urlSession;
+    id  _value;
 }
 
 @property (nonatomic) BOOL forceHideDisclosureIndicator;
@@ -49,6 +51,7 @@
 - (id)_disclosureChevronImage:(BOOL)arg1;
 - (void)_invalidateHighlightContext;
 - (void)_updateAccessoryTypeForSpecifier:(id)arg1;
+- (id)_urlSession;
 - (SEL)action;
 - (id)blankIcon;
 - (BOOL)canBeChecked;

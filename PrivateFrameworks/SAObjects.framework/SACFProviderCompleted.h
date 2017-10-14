@@ -4,14 +4,18 @@
 
 @interface SACFProviderCompleted : SACFAbstractClientCommandCompleted
 
-@property (nonatomic, copy) NSString *results;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)providerCompleted;
 + (id)providerCompletedWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
-- (id)results;
-- (void)setResults:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriClientFlow.framework/SiriClientFlow
+
++ (id)clientProviderCompletedWithRefId:(id)arg1 status:(int)arg2 executionResults:(id)arg3 logs:(id)arg4;
++ (id)failureResponseWithAceId:(id)arg1 logs:(id)arg2;
++ (id)successResponseWithAceId:(id)arg1 logs:(id)arg2;
 
 @end

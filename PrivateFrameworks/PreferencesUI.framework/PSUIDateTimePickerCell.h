@@ -3,8 +3,10 @@
  */
 
 @interface PSUIDateTimePickerCell : PSTableCell {
-    UIDatePicker *_datePicker;
+    UIDatePicker * _datePicker;
 }
+
++ (float)preferredHeight;
 
 - (void).cxx_destruct;
 - (id)datePicker;

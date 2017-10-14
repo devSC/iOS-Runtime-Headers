@@ -3,20 +3,20 @@
  */
 
 @interface SCROBrailleDisplay : NSObject <SCROBrailleDisplayCommandDispatcherDelegate> {
-    BOOL _automaticBrailleTranslationEnabled;
-    struct __CFRunLoopTimer { } *_blinkerEventTimer;
-    BOOL _blinkingEnabled;
-    <SCROBrailleDriverProtocol> *_brailleDriver;
-    int _brailleInputMode;
-    SCROBrailleLine *_brailleLine;
-    <SCROBrailleDisplayCommandDispatcherProtocol> *_commandDispatcher;
-    NSLock *_contentLock;
-    int _contractionMode;
-    <SCROBrailleDisplayDelegate> *_delegate;
-    BOOL _delegateWantsDisplayCallback;
-    NSString *_driverIdentifier;
-    NSString *_driverModelIdentifier;
-    SCROBrailleEventDispatcher *_eventDispatcher;
+    BOOL  _automaticBrailleTranslationEnabled;
+    struct __CFRunLoopTimer { } * _blinkerEventTimer;
+    BOOL  _blinkingEnabled;
+    <SCROBrailleDriverProtocol> * _brailleDriver;
+    int  _brailleInputMode;
+    SCROBrailleLine * _brailleLine;
+    <SCROBrailleDisplayCommandDispatcherProtocol> * _commandDispatcher;
+    NSLock * _contentLock;
+    int  _contractionMode;
+    <SCROBrailleDisplayDelegate> * _delegate;
+    BOOL  _delegateWantsDisplayCallback;
+    NSString * _driverIdentifier;
+    NSString * _driverModelIdentifier;
+    SCROBrailleEventDispatcher * _eventDispatcher;
     struct { 
         double quietSince; 
         double busySince; 
@@ -48,33 +48,34 @@
         double lastBrailleChordPosted; 
         double brailleCharExponentialMovingAverage; 
         double brailleTranslationTimeout; 
-    } _input;
-    BOOL _inputAllowed;
-    SCROBrailleLine *_inputBrailleLine;
-    int _inputContractionMode;
-    BOOL _inputEightDot;
-    BOOL _inputEnabled;
-    struct __CFRunLoopTimer { } *_inputEventTimer;
-    <SCROIOElementProtocol> *_ioElement;
-    BOOL _isInBrailleEntryMode;
-    BOOL _isValid;
-    int _mainSize;
-    BOOL _needsUpdating;
-    BOOL _postsKeyboardEvents;
-    struct __CFRunLoop { } *_runLoop;
-    BOOL _shouldBatchUpdates;
-    BOOL _showEightDot;
+    }  _input;
+    BOOL  _inputAllowed;
+    SCROBrailleLine * _inputBrailleLine;
+    int  _inputContractionMode;
+    BOOL  _inputEightDot;
+    BOOL  _inputEnabled;
+    struct __CFRunLoopTimer { } * _inputEventTimer;
+    <SCROIOElementProtocol> * _ioElement;
+    BOOL  _isInBrailleEntryMode;
+    BOOL  _isValid;
+    int  _mainSize;
+    BOOL  _needsUpdating;
+    BOOL  _postsKeyboardEvents;
+    struct __CFRunLoop { } * _runLoop;
+    BOOL  _shouldBatchUpdates;
+    BOOL  _showEightDot;
     struct { 
         NSData *realData; 
         NSData *virtualData; 
         NSData *aggregatedData; 
         int virtualAlignment; 
         int masterStatusCellIndex; 
-    } _status;
-    int _statusSize;
+    }  _status;
+    int  _statusSize;
 }
 
 @property (nonatomic) BOOL automaticBrailleTranslationEnabled;
+@property (nonatomic, readonly) unsigned long long brailleLineGenerationID;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) BOOL delegateWantsDisplayCallback;
 @property (readonly, copy) NSString *description;
@@ -82,6 +83,7 @@
 @property (nonatomic) BOOL inputAllowed;
 @property (nonatomic) int inputContractionMode;
 @property (nonatomic) BOOL inputEightDot;
+@property (nonatomic, readonly) int lineOffset;
 @property (readonly) Class superclass;
 
 + (BOOL)brailleDriverClassIsValid:(Class)arg1;
@@ -129,6 +131,7 @@
 - (BOOL)automaticBrailleTranslationEnabled;
 - (void)beginUpdates;
 - (id)brailleInputManager;
+- (unsigned long long)brailleLineGenerationID;
 - (id)configuration;
 - (void)dealloc;
 - (BOOL)delegateWantsDisplayCallback;
@@ -157,6 +160,7 @@
 - (BOOL)isLoaded;
 - (BOOL)isValid;
 - (id)lineDescriptor;
+- (int)lineOffset;
 - (int)mainSize;
 - (long)masterStatusCellIndex;
 - (void)panLeft;

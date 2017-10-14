@@ -3,9 +3,12 @@
  */
 
 @interface SYSendingSession : SYSession {
-    NSMutableIndexSet *_ackedBatchIndices;
-    unsigned long long _activity;
-    unsigned long long _batchIndex;
+    NSMutableIndexSet * _ackedBatchIndices;
+    unsigned long long  _batchIndex;
+    struct NSMutableDictionary { Class x1; } * _batchObjectIDsByBatchIndex;
+    _SYCountedSemaphore * _changeConcurrencySemaphore;
+    NSObject<OS_dispatch_queue> * _changeFetcherQueue;
+    NSObject<OS_os_activity> * _changeWaitActivity;
     struct { 
         unsigned int state : 4; 
         unsigned int canRestart : 1; 
@@ -19,27 +22,30 @@
         unsigned int remoteEndSent : 1; 
         unsigned int remoteEndConfirmed : 1; 
         unsigned int localErrorOccurred : 1; 
-    } _flags;
-    int _flagsLock;
-    NSObject<OS_dispatch_source> *_messageTimer;
-    NSObject<OS_dispatch_source> *_sessionTimer;
-    NSObject<OS_dispatch_source> *_stateUpdateSource;
+    }  _flags;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _flagsLock;
+    NSObject<OS_dispatch_source> * _messageTimer;
+    NSObject<OS_os_activity> * _sessionActivity;
+    double  _sessionStartTime;
+    NSObject<OS_dispatch_source> * _sessionTimer;
+    NSObject<OS_dispatch_source> * _stateUpdateSource;
 }
 
 - (void).cxx_destruct;
 - (void)_confirmedEnd;
 - (void)_confirmedStart;
+- (void)_continue;
 - (void)_fetchNextBatch;
 - (void)_handleEndSession:(id)arg1 response:(id)arg2 completion:(id /* block */)arg3;
 - (BOOL)_handleEndSessionResponse:(id)arg1 error:(id*)arg2;
-- (void)_handleError:(id)arg1;
 - (void)_handleRestartSession:(id)arg1 response:(id)arg2 completion:(id /* block */)arg3;
 - (BOOL)_handleRestartSessionResponse:(id)arg1 error:(id*)arg2;
 - (BOOL)_handleStartSessionResponse:(id)arg1 error:(id*)arg2;
 - (void)_handleSyncBatch:(id)arg1 response:(id)arg2 completion:(id /* block */)arg3;
 - (BOOL)_handleSyncBatchResponse:(id)arg1 error:(id*)arg2;
 - (BOOL)_hasSentEnd;
-- (BOOL)_hasValidSessionID:(id)arg1 response:(id)arg2 completion:(id /* block */)arg3;
 - (void)_installStateListener;
 - (void)_installTimers;
 - (BOOL)_localErrorOccurred;
@@ -63,13 +69,17 @@
 - (void)_setLocalErrorOccurred;
 - (void)_setMessageTimer;
 - (void)_setStateQuietly:(int)arg1;
+- (void)_setupChangeConcurrency;
+- (void)_startFailedForStateChangeWithError:(id)arg1;
 - (void)_tweakMessageHeader:(id)arg1;
+- (void)_waitForMessageWindow;
 - (BOOL)canRestart;
 - (BOOL)canRollback;
-- (void)cancel;
+- (void)cancelWithError:(id)arg1;
 - (id)initWithService:(id)arg1 isReset:(BOOL)arg2;
 - (BOOL)isResetSync;
 - (BOOL)isSending;
+- (double)remainingSessionTime;
 - (void)setCanRestart:(BOOL)arg1;
 - (void)setCanRollback:(BOOL)arg1;
 - (void)setState:(int)arg1;

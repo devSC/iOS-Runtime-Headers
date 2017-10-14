@@ -3,19 +3,18 @@
  */
 
 @interface GEOLocationShiftRequest : PBRequest <NSCopying> {
-    struct { 
+    struct GEOPixelPoint { 
         double _x; 
         double _y; 
         int _z; 
         struct { 
             unsigned int z : 1; 
         } _has; 
-    } _pixel;
+    }  _pixel;
 }
 
-@property (nonatomic) struct { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; } x4; } pixel;
+@property (nonatomic) struct GEOPixelPoint { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; } x4; } pixel;
 
-- (struct { double x1; double x2; })coordinate;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -23,11 +22,11 @@
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
-- (struct { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; } x4; })pixel;
+- (struct GEOPixelPoint { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; } x4; })pixel;
 - (BOOL)readFrom:(id)arg1;
 - (unsigned int)requestTypeCode;
 - (Class)responseClass;
-- (void)setPixel:(struct { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; } x4; })arg1;
+- (void)setPixel:(struct GEOPixelPoint { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; } x4; })arg1;
 - (void)writeTo:(id)arg1;
 
 @end

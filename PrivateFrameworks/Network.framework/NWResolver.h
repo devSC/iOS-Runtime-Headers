@@ -3,12 +3,12 @@
  */
 
 @interface NWResolver : NSObject {
-    NWEndpoint *_endpoint;
-    NSArray *_internalResolvedEndpointArray;
-    NSSet *_internalResolvedEndpoints;
-    NSObject<OS_nw_resolver> *_internalResolver;
-    int _internalStatus;
-    NWParameters *_parameters;
+    NWEndpoint * _endpoint;
+    NSArray * _internalResolvedEndpointArray;
+    NSSet * _internalResolvedEndpoints;
+    NSObject<OS_nw_resolver> * _internalResolver;
+    int  _internalStatus;
+    NWParameters * _parameters;
 }
 
 @property (readonly) NWEndpoint *endpoint;
@@ -17,16 +17,19 @@
 @property (readonly) NSObject<OS_nw_resolver> *internalResolver;
 @property int internalStatus;
 @property (readonly) NWParameters *parameters;
-@property (readonly) NSArray *resolvedEndpointArray;
-@property (readonly) NSSet *resolvedEndpoints;
-@property (readonly) int status;
+@property (nonatomic, readonly) NSArray *resolvedEndpointArray;
+@property (nonatomic, readonly) NSSet *resolvedEndpoints;
+@property (nonatomic, readonly) int status;
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 
 - (void).cxx_destruct;
+- (id)copyResolvedEndpointArray;
+- (id)copyResolvedEndpoints;
 - (void)dealloc;
 - (id)endpoint;
 - (id)initWithEndpoint:(id)arg1 parameters:(id)arg2;
+- (id)initWithPath:(id)arg1;
 - (id)internalResolvedEndpointArray;
 - (id)internalResolvedEndpoints;
 - (id)internalResolver;
@@ -37,6 +40,7 @@
 - (void)setInternalResolvedEndpointArray:(id)arg1;
 - (void)setInternalResolvedEndpoints:(id)arg1;
 - (void)setInternalStatus:(int)arg1;
+- (void)setUpdateHandler;
 - (int)status;
 
 @end

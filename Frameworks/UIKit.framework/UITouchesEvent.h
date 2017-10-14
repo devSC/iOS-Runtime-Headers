@@ -3,20 +3,22 @@
  */
 
 @interface UITouchesEvent : UIEvent {
-    struct __CFDictionary { } *_coalescedTouches;
-    struct __CFDictionary { } *_finalTouches;
-    struct __CFDictionary { } *_gestureRecognizersByWindow;
-    struct __CFDictionary { } *_keyedTouches;
-    struct __CFDictionary { } *_keyedTouchesByWindow;
-    NSMapTable *_latentSystemGestureWindows;
-    struct __CFDictionary { } *_observedTouches;
-    struct __CFDictionary { } *_predictedTouches;
-    _UITouchPredictionManager *_predictionManager;
-    NSMutableSet *_touches;
+    struct __CFDictionary { } * _coalescedTouches;
+    struct __CFDictionary { } * _finalTouches;
+    struct __CFDictionary { } * _gestureRecognizersByWindow;
+    struct __CFDictionary { } * _keyedTouches;
+    struct __CFDictionary { } * _keyedTouchesByWindow;
+    NSMapTable * _latentSystemGestureWindows;
+    struct __CFDictionary { } * _observedTouches;
+    struct __CFDictionary { } * _predictedTouches;
+    _UITouchPredictionManager * _predictionManager;
+    long  _singleAllowableExternalTouchPathIndex;
+    NSMutableSet * _touches;
 }
 
 @property (nonatomic, readonly) double _initialTouchTimestamp;
 @property (nonatomic, readonly) unsigned int _windowServerHitTestContextId;
+@property (nonatomic) long singleAllowableExternalTouchPathIndex;
 
 - (void).cxx_destruct;
 - (void)_addCoalescedTouch:(id)arg1 forIndex:(long)arg2 hidEvent:(struct __IOHIDEvent { }*)arg3;
@@ -63,6 +65,8 @@
 - (void)dealloc;
 - (id)description;
 - (id)predictedTouchesForTouch:(id)arg1;
+- (void)setSingleAllowableExternalTouchPathIndex:(long)arg1;
+- (long)singleAllowableExternalTouchPathIndex;
 - (id)touchesForGestureRecognizer:(id)arg1;
 - (id)touchesForView:(id)arg1;
 - (id)touchesForWindow:(id)arg1;

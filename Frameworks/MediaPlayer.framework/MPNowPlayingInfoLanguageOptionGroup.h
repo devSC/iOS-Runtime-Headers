@@ -3,7 +3,7 @@
  */
 
 @interface MPNowPlayingInfoLanguageOptionGroup : NSObject {
-    void *_mrLanguageOptionGroup;
+    void * _mrLanguageOptionGroup;
 }
 
 @property (nonatomic, readonly) BOOL allowEmptySelection;
@@ -15,6 +15,7 @@
 - (void)dealloc;
 - (id)defaultLanguageOption;
 - (id)initWithLanguageOptions:(id)arg1 defaultLanguageOption:(id)arg2 allowEmptySelection:(BOOL)arg3;
+- (id)initWithMRLanguageOptionGroup:(void*)arg1;
 - (id)languageOptions;
 - (void*)mrLanguageOptionGroup;
 

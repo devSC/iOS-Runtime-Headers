@@ -3,15 +3,15 @@
  */
 
 @interface MPMediaChapter : NSObject {
-    MPMediaLibraryArtworkDataSource *_artworkDataSource;
-    MPMediaLibraryArtworkRequest *_artworkRequest;
-    int _chapterType;
-    unsigned int _indexInChaptersWithAnyType;
-    unsigned int _indexInChaptersWithSameType;
-    double _playbackDuration;
-    double _playbackTime;
-    id _value;
-    id /* block */ _valueLoader;
+    MPMediaLibraryArtworkDataSource * _artworkDataSource;
+    MPMediaLibraryArtworkRequest * _artworkRequest;
+    int  _chapterType;
+    unsigned int  _indexInChaptersWithAnyType;
+    unsigned int  _indexInChaptersWithSameType;
+    double  _playbackDuration;
+    double  _playbackTime;
+    id  _value;
+    id /* block */  _valueLoader;
 }
 
 @property (nonatomic) MPMediaLibraryArtworkDataSource *artworkDataSource;
@@ -23,6 +23,8 @@
 @property (nonatomic) double playbackTime;
 @property (nonatomic, retain) id value;
 @property (nonatomic, copy) id /* block */ valueLoader;
+
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
 - (void).cxx_destruct;
 - (int)_sortByChapterIndex:(id)arg1;
@@ -50,5 +52,9 @@
 - (id)title;
 - (id)value;
 - (id /* block */)valueLoader;
+
+// Image: /System/Library/PrivateFrameworks/WatchListKitUI.framework/WatchListKitUI
+
+- (id)wlk_dictionaryRepresentation;
 
 @end

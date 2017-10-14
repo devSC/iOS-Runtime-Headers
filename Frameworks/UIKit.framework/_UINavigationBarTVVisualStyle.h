@@ -6,11 +6,13 @@
 
 - (float)barHeight;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })buttonContentEdgeInsets;
+- (id)buttonFontForStyle:(int)arg1;
 - (float)buttonHeight;
 - (float)buttonImagePadding;
 - (float)interItemSpace;
 - (float)leftTitleMargin;
 - (float)navigationItemBaselineOffset;
+- (id)timingFunctionForAnimationInView:(id)arg1 withKeyPath:(id)arg2 isInteractive:(BOOL)arg3;
 - (float)topMargin;
 
 @end

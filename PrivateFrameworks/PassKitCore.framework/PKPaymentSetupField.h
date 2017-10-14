@@ -3,20 +3,22 @@
  */
 
 @interface PKPaymentSetupField : NSObject {
-    <NSObject><NSCopying> *_currentValue;
-    BOOL _currentValueFromCameraCapture;
-    NSString *_defaultValue;
-    NSString *_displayFormat;
-    NSString *_identifier;
-    NSString *_localizedDisplayName;
-    NSString *_localizedPlaceholder;
-    NSDictionary *_rawConfigurationDictionary;
-    BOOL _requiresSecureSubmission;
-    NSString *_submissionDestination;
-    NSString *_submissionKey;
+    <NSObject><NSCopying> * _currentValue;
+    BOOL  _currentValueFromCameraCapture;
+    NSString * _defaultValue;
+    NSString * _displayFormat;
+    NSString * _identifier;
+    NSString * _localizedDisplayName;
+    NSString * _localizedPlaceholder;
+    BOOL  _optional;
+    NSDictionary * _rawConfigurationDictionary;
+    BOOL  _requiresSecureSubmission;
+    NSString * _submissionDestination;
+    NSString * _submissionKey;
 }
 
 @property (getter=isBuiltIn, nonatomic, readonly) BOOL builtIn;
+@property (nonatomic, readonly, copy) NSString *compactLocalizedDisplayName;
 @property (nonatomic, copy) <NSObject><NSCopying> *currentValue;
 @property (getter=isCurrentValueFromCameraCapture, nonatomic) BOOL currentValueFromCameraCapture;
 @property (nonatomic, copy) NSString *defaultValue;
@@ -25,6 +27,7 @@
 @property (nonatomic, readonly, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *localizedDisplayName;
 @property (nonatomic, copy) NSString *localizedPlaceholder;
+@property (getter=isOptional, nonatomic) BOOL optional;
 @property (nonatomic, readonly, copy) NSDictionary *rawConfigurationDictionary;
 @property (nonatomic) BOOL requiresSecureSubmission;
 @property (nonatomic, copy) NSString *submissionDestination;
@@ -37,14 +40,16 @@
 + (id)paymentSetupFieldWithIdentifier:(id)arg1 type:(unsigned int)arg2;
 + (id)sampleCustomPaymentSetupFields;
 
+- (void).cxx_destruct;
 - (void)_setLocalizedDisplayName:(id)arg1;
+- (id)compactLocalizedDisplayName;
 - (id)currentValue;
 - (id)dateFieldObject;
-- (void)dealloc;
 - (id)defaultValue;
 - (id)displayFormat;
 - (id)displayString;
 - (unsigned int)fieldType;
+- (id)footerFieldObject;
 - (id)identifier;
 - (id)init;
 - (id)initWithIdentifier:(id)arg1;
@@ -53,8 +58,10 @@
 - (BOOL)isBuiltIn;
 - (BOOL)isCurrentValueFromCameraCapture;
 - (BOOL)isFieldTypeDate;
+- (BOOL)isFieldTypeFooter;
 - (BOOL)isFieldTypeLabel;
 - (BOOL)isFieldTypeText;
+- (BOOL)isOptional;
 - (id)labelFieldObject;
 - (id)localizedDisplayName;
 - (id)localizedPlaceholder;
@@ -67,6 +74,7 @@
 - (void)setDisplayFormat:(id)arg1;
 - (void)setLocalizedDisplayName:(id)arg1;
 - (void)setLocalizedPlaceholder:(id)arg1;
+- (void)setOptional:(BOOL)arg1;
 - (void)setRequiresSecureSubmission:(BOOL)arg1;
 - (void)setSubmissionDestination:(id)arg1;
 - (void)setSubmissionKey:(id)arg1;

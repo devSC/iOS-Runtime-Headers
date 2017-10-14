@@ -3,11 +3,10 @@
  */
 
 @interface IKCSSDeclaration : NSObject {
-    NSString *_aliasedName;
-    BOOL _important;
-    NSString *_name;
-    NSString *_stringValue;
-    unsigned int _type;
+    NSString * _aliasedName;
+    BOOL  _important;
+    NSString * _name;
+    unsigned int  _type;
 }
 
 @property (nonatomic, retain) NSString *aliasedName;

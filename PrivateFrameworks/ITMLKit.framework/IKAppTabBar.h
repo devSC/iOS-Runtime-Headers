@@ -3,8 +3,8 @@
  */
 
 @interface IKAppTabBar : NSObject {
-    <IKAppTabBarController> *_controller;
-    IKJSTabBar *_jsTabBar;
+    <IKAppTabBarController> * _controller;
+    IKJSTabBar * _jsTabBar;
 }
 
 @property (nonatomic, readonly) <IKAppTabBarController> *controller;
@@ -14,7 +14,6 @@
 - (id)controller;
 - (id)initWithTabBarController:(id)arg1;
 - (id)jsTabBar;
-- (void)onReload;
 - (void)onSelect;
 - (void)setJsTabBar:(id)arg1;
 

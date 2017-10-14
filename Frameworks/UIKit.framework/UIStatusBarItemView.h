@@ -3,15 +3,18 @@
  */
 
 @interface UIStatusBarItemView : UIView {
-    BOOL _allowsUpdates;
-    float _currentOverlap;
-    UIStatusBarForegroundStyleAttributes *_foregroundStyle;
-    struct CGContext { } *_imageContext;
-    float _imageContextScale;
-    UIStatusBarItem *_item;
-    UIStatusBarLayoutManager *_layoutManager;
-    _UILegibilityView *_legibilityView;
-    BOOL _visible;
+    BOOL  _allowsUpdates;
+    float  _currentOverlap;
+    UIStatusBarForegroundStyleAttributes * _foregroundStyle;
+    struct CGContext { } * _imageContext;
+    float  _imageContextScale;
+    UIStatusBarItem * _item;
+    _UILegibilityImageSet * _lastGeneratedTextImage;
+    float  _lastGeneratedTextImageLetterSpacing;
+    NSString * _lastGeneratedTextImageText;
+    UIStatusBarLayoutManager * _layoutManager;
+    _UILegibilityView * _legibilityView;
+    BOOL  _visible;
 }
 
 @property (nonatomic) BOOL allowsUpdates;
@@ -28,9 +31,12 @@
 - (float)addContentOverlap:(float)arg1;
 - (float)adjustFrameToNewSize:(float)arg1;
 - (BOOL)allowsUpdates;
+- (BOOL)allowsUserInteraction;
 - (BOOL)animatesDataChange;
 - (void)beginDisablingRasterization;
 - (void)beginImageContextWithMinimumWidth:(float)arg1;
+- (id)cachedImageWithText:(id)arg1 truncatedWithEllipsesAtMaxWidth:(float)arg2 letterSpacing:(float)arg3;
+- (void)clearCachedTextImage;
 - (id)contentsImage;
 - (float)currentLeftOverlap;
 - (float)currentOverlap;
@@ -42,6 +48,7 @@
 - (float)extraLeftPadding;
 - (float)extraRightPadding;
 - (id)foregroundStyle;
+- (id)foregroundView;
 - (id)imageFromImageContextClippedToWidth:(float)arg1;
 - (id)imageWithShadowNamed:(id)arg1;
 - (id)imageWithText:(id)arg1;
@@ -52,6 +59,7 @@
 - (float)legibilityStrength;
 - (int)legibilityStyle;
 - (float)maximumOverlap;
+- (float)neededSizeForImageSet:(id)arg1;
 - (void)performPendedActions;
 - (float)resetContentOverlap;
 - (void)setAllowsUpdates:(BOOL)arg1;
@@ -63,6 +71,7 @@
 - (float)setStatusBarData:(id)arg1 actions:(int)arg2;
 - (void)setVisible:(BOOL)arg1;
 - (void)setVisible:(BOOL)arg1 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 duration:(double)arg3;
+- (void)setVisible:(BOOL)arg1 settingAlpha:(BOOL)arg2;
 - (float)shadowPadding;
 - (float)standardPadding;
 - (int)textAlignment;
@@ -70,6 +79,7 @@
 - (int)textStyle;
 - (float)updateContentsAndWidth;
 - (BOOL)updateForNewData:(id)arg1 actions:(int)arg2;
+- (void)updateForNewStyle:(id)arg1;
 - (void)willMoveToWindow:(id)arg1;
 
 @end

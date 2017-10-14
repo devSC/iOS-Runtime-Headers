@@ -3,17 +3,16 @@
  */
 
 @interface EKUIYearMonthView : UIView {
-    NSCalendar *_calendar;
-    EKCalendarDate *_calendarDate;
-    int _daysInWeek;
-    EKCalendarDate *_endCalendarDate;
-    int _firstDayIndex;
-    NSSet *_firstOfOverlayMonthIndices;
-    NSSet *_firstOfOverlayYearIndices;
-    NSString *_monthString;
-    EKUIOverlayCalendarSignificantDatesProvider *_overlaySignificantDatesProvider;
-    float _smallestUsedFontSize;
-    int _todayIndex;
+    NSCalendar * _calendar;
+    EKCalendarDate * _calendarDate;
+    int  _daysInWeek;
+    EKCalendarDate * _endCalendarDate;
+    int  _firstDayIndex;
+    NSSet * _firstOfOverlayMonthIndices;
+    NSSet * _firstOfOverlayYearIndices;
+    NSString * _monthString;
+    EKUIOverlayCalendarSignificantDatesProvider * _overlaySignificantDatesProvider;
+    int  _todayIndex;
 }
 
 @property (nonatomic, readonly) NSCalendar *calendar;
@@ -91,6 +90,7 @@
 - (struct CGPoint { float x1; float x2; })headerOrigin;
 - (float)headerXAdjust;
 - (id)initWithCalendarDate:(id)arg1 calendar:(id)arg2;
+- (void)localeChanged;
 - (id)monthString;
 - (BOOL)opaque;
 - (void)overlaySignificantDatesChangedInRange:(id)arg1;

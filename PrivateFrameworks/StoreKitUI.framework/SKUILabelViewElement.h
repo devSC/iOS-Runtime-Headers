@@ -3,21 +3,22 @@
  */
 
 @interface SKUILabelViewElement : SKUIViewElement <SKUILinkHandler> {
-    NSArray *_badges;
-    BOOL _containsLinks;
-    NSMutableDictionary *_domObjectsToViewElements;
-    BOOL _hasValidEntityText;
-    int _labelViewStyle;
-    int _linkCounter;
-    <SKUILinkHandler> *_linkDelegate;
-    NSMutableDictionary *_linkToViewButtonElements;
-    NSString *_moreButtonTitle;
-    int _numberOfLines;
-    SKUIViewElementText *_text;
-    NSArray *_trailingBadges;
-    IKDOMElement *_xml;
+    int  _badgePlacement;
+    NSArray * _badges;
+    BOOL  _containsLinks;
+    NSMutableDictionary * _domObjectsToViewElements;
+    int  _labelViewStyle;
+    int  _linkCounter;
+    <SKUILinkHandler> * _linkDelegate;
+    NSMutableDictionary * _linkToViewButtonElements;
+    NSString * _moreButtonTitle;
+    int  _numberOfLines;
+    SKUIViewElementText * _text;
+    NSArray * _trailingBadges;
+    IKDOMElement * _xml;
 }
 
+@property (nonatomic, readonly) int badgePlacement;
 @property (nonatomic, readonly) NSArray *badges;
 @property (nonatomic) BOOL containsLinks;
 @property (readonly, copy) NSString *debugDescription;
@@ -34,17 +35,16 @@
 + (BOOL)shouldParseChildDOMElements;
 
 - (void).cxx_destruct;
-- (void)_createText;
-- (void)_loadEntityValuesIfNeeded;
+- (void)_createText:(id)arg1;
 - (id)_stringFromDateElement:(id)arg1;
 - (id)_stringFromDurationElement:(id)arg1;
 - (id)_stringFromNumberElement:(id)arg1;
 - (void)_walkDOM:(id)arg1 parent:(id)arg2 elementFactory:(id)arg3;
 - (id)applyUpdatesWithElement:(id)arg1;
+- (int)badgePlacement;
 - (id)badges;
 - (BOOL)containsLinks;
-- (id)entityValueProperties;
-- (void)entityValueProviderDidChange;
+- (void)dealloc;
 - (id)initWithDOMElement:(id)arg1 parent:(id)arg2 elementFactory:(id)arg3;
 - (int)labelViewStyle;
 - (id)linkDelegate;

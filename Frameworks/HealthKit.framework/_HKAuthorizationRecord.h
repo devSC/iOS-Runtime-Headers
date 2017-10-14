@@ -3,9 +3,9 @@
  */
 
 @interface _HKAuthorizationRecord : NSObject <NSCopying, NSSecureCoding> {
-    long long _objectAnchor;
-    int _request;
-    int _status;
+    long long  _objectAnchor;
+    int  _request;
+    int  _status;
 }
 
 @property (readonly) long long objectAnchor;
@@ -23,9 +23,11 @@
 - (BOOL)isCompatibleStatus:(int)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (long long)objectAnchor;
+- (BOOL)readingEnabled;
 - (int)request;
 - (BOOL)requestedReading;
 - (BOOL)requestedSharing;
+- (BOOL)sharingEnabled;
 - (int)status;
 
 @end

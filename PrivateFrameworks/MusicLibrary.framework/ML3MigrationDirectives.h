@@ -3,17 +3,18 @@
  */
 
 @interface ML3MigrationDirectives : NSObject {
-    int _currentUserVersion;
-    BOOL _forceUpdateOriginals;
-    BOOL _needsAnalyze;
-    BOOL _needsToAutogenerateArtworkVariants;
-    BOOL _needsToRecreateIndexes;
-    BOOL _needsToRecreateTriggers;
-    BOOL _needsToReloadContainerMediaTypes;
-    BOOL _needsToReloadStoreBookmarkMetadataIdentifiers;
-    BOOL _needsToRemoveLocationsForItemsMissingAssets;
-    BOOL _needsToUpdateSortMap;
-    int _originalUserVersion;
+    int  _currentUserVersion;
+    BOOL  _forceUpdateOriginals;
+    BOOL  _needsAnalyze;
+    BOOL  _needsToAutogenerateArtworkVariants;
+    BOOL  _needsToRecreateIndexes;
+    BOOL  _needsToRecreateTriggers;
+    BOOL  _needsToReloadCollectionRepresentativeItems;
+    BOOL  _needsToReloadContainerMediaTypes;
+    BOOL  _needsToReloadStoreBookmarkMetadataIdentifiers;
+    BOOL  _needsToRemoveLocationsForItemsMissingAssets;
+    BOOL  _needsToUpdateSortMap;
+    int  _originalUserVersion;
 }
 
 @property (nonatomic) int currentUserVersion;
@@ -22,6 +23,7 @@
 @property (nonatomic) BOOL needsToAutogenerateArtworkVariants;
 @property (nonatomic) BOOL needsToRecreateIndexes;
 @property (nonatomic) BOOL needsToRecreateTriggers;
+@property (nonatomic) BOOL needsToReloadCollectionRepresentativeItems;
 @property (nonatomic) BOOL needsToReloadContainerMediaTypes;
 @property (nonatomic) BOOL needsToReloadStoreBookmarkMetadataIdentifiers;
 @property (nonatomic) BOOL needsToRemoveLocationsForItemsMissingAssets;
@@ -35,6 +37,7 @@
 - (BOOL)needsToAutogenerateArtworkVariants;
 - (BOOL)needsToRecreateIndexes;
 - (BOOL)needsToRecreateTriggers;
+- (BOOL)needsToReloadCollectionRepresentativeItems;
 - (BOOL)needsToReloadContainerMediaTypes;
 - (BOOL)needsToReloadStoreBookmarkMetadataIdentifiers;
 - (BOOL)needsToRemoveLocationsForItemsMissingAssets;
@@ -46,6 +49,7 @@
 - (void)setNeedsToAutogenerateArtworkVariants:(BOOL)arg1;
 - (void)setNeedsToRecreateIndexes:(BOOL)arg1;
 - (void)setNeedsToRecreateTriggers:(BOOL)arg1;
+- (void)setNeedsToReloadCollectionRepresentativeItems:(BOOL)arg1;
 - (void)setNeedsToReloadContainerMediaTypes:(BOOL)arg1;
 - (void)setNeedsToReloadStoreBookmarkMetadataIdentifiers:(BOOL)arg1;
 - (void)setNeedsToRemoveLocationsForItemsMissingAssets:(BOOL)arg1;

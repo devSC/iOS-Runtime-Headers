@@ -3,8 +3,8 @@
  */
 
 @interface SKUIStoreDialogController : NSObject <UIAlertViewDelegate> {
-    NSMutableArray *_alerts;
-    NSMutableArray *_dialogs;
+    NSMutableArray * _alerts;
+    NSMutableArray * _dialogs;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -18,5 +18,6 @@
 - (void)alertViewCancel:(id)arg1;
 - (id)init;
 - (void)presentDialog:(id)arg1;
+- (void)presentDialog:(id)arg1 fromViewController:(id)arg2;
 
 @end

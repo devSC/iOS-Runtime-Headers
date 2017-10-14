@@ -3,9 +3,9 @@
  */
 
 @interface MFDataMessageStore : MFMessageStore {
-    NSData *_data;
-    Class _messageClass;
-    NSString *_storagePath;
+    NSData * _data;
+    Class  _messageClass;
+    NSString * _storagePath;
 }
 
 - (id)_cachedBodyDataForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
@@ -21,6 +21,7 @@
 - (id)initWithData:(id)arg1;
 - (id)mailboxUid;
 - (id)message;
+- (BOOL)messageCanBeTriaged:(id)arg1;
 - (void)setMessageClass:(Class)arg1;
 - (void)setStoragePath:(id)arg1;
 - (id)storagePath;

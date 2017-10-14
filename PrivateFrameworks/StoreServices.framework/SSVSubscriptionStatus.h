@@ -3,22 +3,26 @@
  */
 
 @interface SSVSubscriptionStatus : NSObject <NSCopying, SSXPCCoding> {
-    unsigned long long _acceptedStoreTermsVersion;
-    NSNumber *_accountIdentifier;
-    NSArray *_accountPermissions;
-    int _accountStatus;
-    int _carrierBundlingStatus;
-    NSString *_cellularOperatorName;
-    BOOL _discoveryModeEligible;
-    BOOL _familyOrganizer;
-    BOOL _familySubscription;
-    BOOL _hasFamily;
-    BOOL _hasFamilyMembers;
-    unsigned long long _latestStoreTermsVersion;
-    NSString *_phoneNumber;
-    NSString *_sessionIdentifier;
-    double _subscriptionExpirationTime;
-    BOOL _subscriptionPurchaser;
+    unsigned long long  _acceptedStoreTermsVersion;
+    NSNumber * _accountIdentifier;
+    NSArray * _accountPermissions;
+    int  _accountStatus;
+    int  _carrierBundlingStatus;
+    NSString * _cellularOperatorName;
+    BOOL  _discoveryModeEligible;
+    BOOL  _familyOrganizer;
+    BOOL  _familySubscription;
+    BOOL  _freeTrialIneligible;
+    BOOL  _hasFamily;
+    BOOL  _hasFamilyMembers;
+    BOOL  _hasOfflineSlot;
+    BOOL  _hasOfflineSlots;
+    unsigned long long  _latestStoreTermsVersion;
+    NSString * _phoneNumber;
+    NSDictionary * _rawResponseData;
+    NSString * _sessionIdentifier;
+    double  _subscriptionExpirationTime;
+    BOOL  _subscriptionPurchaser;
 }
 
 @property (nonatomic, readonly) unsigned long long MP_capabilities;
@@ -33,11 +37,15 @@
 @property (getter=isDiscoveryModeEligible, nonatomic) BOOL discoveryModeEligible;
 @property (getter=isFamilyOrganizer, nonatomic) BOOL familyOrganizer;
 @property (getter=isFamilySubscription, nonatomic) BOOL familySubscription;
+@property (getter=isFreeTrialIneligible, nonatomic) BOOL freeTrialIneligible;
 @property (nonatomic) BOOL hasFamily;
 @property (nonatomic) BOOL hasFamilyMembers;
+@property (nonatomic, readonly) BOOL hasOfflineSlot;
+@property (nonatomic) BOOL hasOfflineSlots;
 @property (readonly) unsigned int hash;
 @property (nonatomic) unsigned long long latestStoreTermsVersion;
 @property (nonatomic, copy) NSString *phoneNumber;
+@property (nonatomic, copy) NSDictionary *rawResponseData;
 @property (nonatomic, copy) NSString *sessionIdentifier;
 @property (getter=isSubscribed, nonatomic) BOOL subscribed;
 @property (nonatomic, copy) NSDate *subscriptionExpirationDate;
@@ -57,17 +65,22 @@
 - (id)copyUserDefaultsRepresentation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;
+- (id)description;
 - (BOOL)hasFamily;
 - (BOOL)hasFamilyMembers;
+- (BOOL)hasOfflineSlot;
+- (BOOL)hasOfflineSlots;
 - (id)initWithUserDefaultsRepresentation:(id)arg1;
 - (id)initWithXPCEncoding:(id)arg1;
 - (BOOL)isDiscoveryModeEligible;
 - (BOOL)isFamilyOrganizer;
 - (BOOL)isFamilySubscription;
+- (BOOL)isFreeTrialIneligible;
 - (BOOL)isSubscribed;
 - (BOOL)isSubscriptionPurchaser;
 - (unsigned long long)latestStoreTermsVersion;
 - (id)phoneNumber;
+- (id)rawResponseData;
 - (void)resetAccountBasedProperties;
 - (void)resetCarrierBundlingProperties;
 - (id)sessionIdentifier;
@@ -80,10 +93,13 @@
 - (void)setDiscoveryModeEligible:(BOOL)arg1;
 - (void)setFamilyOrganizer:(BOOL)arg1;
 - (void)setFamilySubscription:(BOOL)arg1;
+- (void)setFreeTrialIneligible:(BOOL)arg1;
 - (void)setHasFamily:(BOOL)arg1;
 - (void)setHasFamilyMembers:(BOOL)arg1;
+- (void)setHasOfflineSlots:(BOOL)arg1;
 - (void)setLatestStoreTermsVersion:(unsigned long long)arg1;
 - (void)setPhoneNumber:(id)arg1;
+- (void)setRawResponseData:(id)arg1;
 - (void)setSessionIdentifier:(id)arg1;
 - (void)setSubscribed:(BOOL)arg1;
 - (void)setSubscriptionExpirationDate:(id)arg1;

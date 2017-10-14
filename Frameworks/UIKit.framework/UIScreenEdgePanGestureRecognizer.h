@@ -3,7 +3,7 @@
  */
 
 @interface UIScreenEdgePanGestureRecognizer : UIPanGestureRecognizer <_UIScreenEdgePanRecognizerDelegate> {
-    _UIScreenEdgePanRecognizer *_recognizer;
+    _UIScreenEdgePanRecognizer * _recognizer;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -13,6 +13,7 @@
 @property (readonly) Class superclass;
 
 + (BOOL)_shouldDefaultToTouches;
++ (BOOL)_shouldSupportStylusTouches;
 
 - (void).cxx_destruct;
 - (float)_edgeRegionSize;

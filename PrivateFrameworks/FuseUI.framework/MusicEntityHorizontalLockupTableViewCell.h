@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
  */
 
-@interface MusicEntityHorizontalLockupTableViewCell : UITableViewCell <MusicEntityContentDescriptorViewConfiguring, MusicEntityHorizontalLockupViewDelegate, MusicEntityViewPlaybackStatusObserving> {
-    MusicEntityHorizontalLockupView *_lockupView;
+@interface MusicEntityHorizontalLockupTableViewCell : UITableViewCell <MusicEntityContentDescriptorViewConfiguring, MusicEntityHorizontalLockupViewDelegate> {
+    BOOL  _entityDisabled;
+    MusicEntityHorizontalLockupView * _lockupView;
 }
 
 @property (nonatomic, retain) MusicEntityViewContentDescriptor *contentDescriptor;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (getter=isEntityDisabled, nonatomic) BOOL entityDisabled;
 @property (nonatomic, retain) <MusicEntityValueProviding> *entityValueProvider;
 @property (readonly) unsigned int hash;
 @property (nonatomic, readonly) MusicEntityHorizontalLockupView *lockupView;
@@ -21,6 +23,7 @@
 - (void)_updateDisclosureIndicator;
 - (void)_updateHighlightColorsForView:(id)arg1 highlighted:(BOOL)arg2;
 - (void)_updateHighlightStateAnimated:(BOOL)arg1;
+- (void)_updateLockupViewBackgroundColor;
 - (id)contentDescriptor;
 - (void)dealloc;
 - (id)entityValueProvider;
@@ -30,6 +33,7 @@
 - (void)horizontalLockupViewDidSelectContextualActionsButton:(id)arg1;
 - (BOOL)horizontalLockupViewShouldLayoutAsEditing:(id)arg1;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
+- (BOOL)isEntityDisabled;
 - (void)layoutSubviews;
 - (id)lockupView;
 - (void)setBackgroundColor:(id)arg1;
@@ -37,7 +41,7 @@
 - (void)setEntityDisabled:(BOOL)arg1;
 - (void)setEntityValueProvider:(id)arg1;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setPlaybackStatus:(id)arg1;
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)updateForAsynchronousPropertyLoadCompleted;
 
 @end

@@ -3,13 +3,14 @@
  */
 
 @interface HMLocationEvent : HMEvent <NSSecureCoding, _HMLocationHandlerDelegate> {
-    int _locationAuthorization;
-    CLRegion *_region;
+    int  _locationAuthorization;
+    CLRegion * _region;
 }
 
 @property (nonatomic) int locationAuthorization;
 @property (nonatomic, retain) CLRegion *region;
 
++ (id)createWithDictionary:(id)arg1 home:(id)arg2;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;

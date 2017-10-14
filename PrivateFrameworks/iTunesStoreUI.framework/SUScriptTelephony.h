@@ -3,8 +3,8 @@
  */
 
 @interface SUScriptTelephony : SUScriptObject {
-    NSObject<OS_dispatch_queue> *_telephonyQueue;
-    struct __CTServerConnection { } *_telephonyServer;
+    NSObject<OS_dispatch_queue> * _telephonyQueue;
+    struct __CTServerConnection { } * _telephonyServer;
 }
 
 @property (getter=isCellularRoaming, nonatomic, readonly) id cellularRoaming;
@@ -20,6 +20,7 @@
 + (id)webScriptNameForSelector:(SEL)arg1;
 
 - (void).cxx_destruct;
+- (BOOL)_checkIfIsAllowed;
 - (id)_className;
 - (id)attributeKeys;
 - (id)countryCode;

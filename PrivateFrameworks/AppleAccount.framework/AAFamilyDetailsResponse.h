@@ -3,17 +3,19 @@
  */
 
 @interface AAFamilyDetailsResponse : AAResponse {
-    BOOL _canAddChildMembers;
-    BOOL _canAddMembers;
-    NSString *_childAccountButtonTitle;
-    NSString *_childAccountPrompt;
-    NSArray *_invites;
-    AAFamilyMember *_me;
-    NSArray *_members;
-    AAFamilyMember *_organizer;
-    NSArray *_pendingMembers;
+    NSString * _addMemberInstructions;
+    BOOL  _canAddChildMembers;
+    BOOL  _canAddMembers;
+    NSString * _childAccountButtonTitle;
+    NSString * _childAccountPrompt;
+    NSArray * _invites;
+    AAFamilyMember * _me;
+    NSArray * _members;
+    AAFamilyMember * _organizer;
+    NSArray * _pendingMembers;
 }
 
+@property (nonatomic, readonly) NSString *addMemberInstructions;
 @property (nonatomic, readonly) BOOL canAddChildMembers;
 @property (nonatomic, readonly) BOOL canAddMembers;
 @property (nonatomic, readonly) NSString *childAccountButtonTitle;
@@ -29,6 +31,7 @@
 @property (nonatomic, readonly) NSArray *pendingMembers;
 
 - (void).cxx_destruct;
+- (id)addMemberInstructions;
 - (BOOL)canAddChildMembers;
 - (BOOL)canAddMembers;
 - (id)childAccountButtonTitle;

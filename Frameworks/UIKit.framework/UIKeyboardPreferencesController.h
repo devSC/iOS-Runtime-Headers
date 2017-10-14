@@ -5,28 +5,34 @@
 @interface UIKeyboardPreferencesController : NSObject
 
 @property int handBias;
+@property (nonatomic, readonly) UIKeyboardPreferencesController<TIPreferencesControllerActions> *preferencesActions;
 
-+ (void)handleSpecificHardwareKeyboard;
 + (id)sharedPreferencesController;
 
+- (void)_configurePreferences;
+- (BOOL)allEnabledInputModesAreValid;
 - (BOOL)boolForKey:(int)arg1;
-- (BOOL)costlyCapture;
+- (BOOL)boolForPreferenceKey:(id)arg1;
 - (void)dealloc;
+- (void)forwardInvocation:(id)arg1;
 - (int)handBias;
 - (id)init;
-- (BOOL)isKeyLockedDown:(int)arg1;
+- (BOOL)isPreferenceKeyLockedDown:(id)arg1;
+- (id)methodSignatureForSelector:(SEL)arg1;
+- (id)preferencesActions;
 - (void)preferencesControllerChanged:(id)arg1;
-- (void)releaseDontSynchronizePreferences;
+- (BOOL)respondsToSelector:(SEL)arg1;
 - (float)rivenSizeFactor:(float)arg1;
 - (void)saveInputModes:(id)arg1;
 - (void)setHandBias:(int)arg1;
-- (void)setInputModeLastUsed:(id)arg1;
 - (void)setLanguageAwareInputModeLastUsed:(id)arg1;
 - (void)setValue:(id)arg1 forKey:(int)arg2;
+- (void)setValue:(id)arg1 forPreferenceKey:(id)arg2;
 - (BOOL)spaceConfirmationEnabled;
 - (void)synchronizePreferences;
 - (void)touchSynchronizePreferencesTimer;
 - (BOOL)typologyEnabled;
 - (id)valueForKey:(int)arg1;
+- (id)valueForPreferenceKey:(id)arg1;
 
 @end

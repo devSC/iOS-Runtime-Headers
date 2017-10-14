@@ -3,18 +3,13 @@
  */
 
 @interface RUIFooterElement : RUIElement {
-    NSURL *_linkURL;
-    NSString *_text;
+    RemoteUISectionFooter * _footerView;
 }
-
-@property (nonatomic, copy) NSURL *linkURL;
-@property (nonatomic, copy) NSString *text;
 
 - (void).cxx_destruct;
 - (void)configureView:(id)arg1;
+- (int)labelAlignment;
 - (id)linkURL;
-- (void)setLinkURL:(id)arg1;
-- (void)setText:(id)arg1;
-- (id)text;
+- (void)setEnabled:(BOOL)arg1;
 
 @end

@@ -3,20 +3,22 @@
  */
 
 @interface SiriUISiriStatusView : UIView <SUICFlamesViewDelegate, SiriUISiriStatusViewProtocol, UIGestureRecognizerDelegate> {
-    <SiriUISiriStatusViewAnimationDelegate> *_animationDelegate;
-    UIButton *_button;
-    int _deferredFlamesViewState;
-    <SiriUISiriStatusViewDelegate> *_delegate;
-    float _disabledMicOpacity;
-    UIView *_flamesContainerView;
-    SUICFlamesView *_flamesView;
-    BOOL _flamesViewDeferred;
-    float _flamesViewWidth;
-    double _lastStateChangeTime;
-    UILongPressGestureRecognizer *_longPressRecognizer;
-    UIImageView *_micGlyphImageView;
-    int _mode;
-    UIScreen *_screen;
+    <SiriUISiriStatusViewAnimationDelegate> * _animationDelegate;
+    UIButton * _button;
+    SiriUIConfiguration * _configuration;
+    int  _deferredFlamesViewState;
+    <SiriUISiriStatusViewDelegate> * _delegate;
+    float  _disabledMicOpacity;
+    UIView * _flamesContainerView;
+    SUICFlamesView * _flamesView;
+    BOOL  _flamesViewDeferred;
+    float  _flamesViewWidth;
+    BOOL  _inUITrackingMode;
+    double  _lastStateChangeTime;
+    UILongPressGestureRecognizer * _longPressRecognizer;
+    UIImageView * _micGlyphImageView;
+    int  _mode;
+    UIScreen * _screen;
 }
 
 @property (nonatomic) <SiriUISiriStatusViewAnimationDelegate> *animationDelegate;
@@ -28,6 +30,7 @@
 @property (nonatomic) BOOL flamesViewDeferred;
 @property (nonatomic) float flamesViewWidth;
 @property (readonly) unsigned int hash;
+@property (getter=isInUITrackingMode, nonatomic) BOOL inUITrackingMode;
 @property (nonatomic) int mode;
 @property (readonly) Class superclass;
 
@@ -54,7 +57,8 @@
 - (float)flamesViewWidth;
 - (void)forceMicVisible:(BOOL)arg1;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 screen:(id)arg2;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 screen:(id)arg2 configuration:(id)arg3;
+- (BOOL)isInUITrackingMode;
 - (void)layoutSubviews;
 - (int)mode;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
@@ -63,6 +67,7 @@
 - (void)setDisabledMicOpacity:(float)arg1;
 - (void)setFlamesViewDeferred:(BOOL)arg1;
 - (void)setFlamesViewWidth:(float)arg1;
+- (void)setInUITrackingMode:(BOOL)arg1;
 - (void)setMode:(int)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 

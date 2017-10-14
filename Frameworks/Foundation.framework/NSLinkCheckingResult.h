@@ -6,9 +6,11 @@
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    } _range;
-    NSURL *_url;
+    }  _range;
+    NSURL * _url;
 }
+
++ (BOOL)supportsSecureCoding;
 
 - (id)URL;
 - (BOOL)_adjustRangesWithOffset:(int)arg1;

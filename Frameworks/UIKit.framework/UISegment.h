@@ -3,19 +3,20 @@
  */
 
 @interface UISegment : UIImageView {
-    _UISegmentedControlAppearanceStorage *_appearanceStorage;
-    NSString *_badgeValue;
-    _UIBadgeView *_badgeView;
-    int _barStyle;
+    _UISegmentedControlAppearanceStorage * _appearanceStorage;
+    NSString * _badgeValue;
+    _UIBadgeView * _badgeView;
+    int  _barStyle;
     struct CGSize { 
         float width; 
         float height; 
-    } _contentOffset;
-    UIView *_info;
-    NSArray *_infoConstraints;
-    id _objectValue;
-    float _requestedScaleFactor;
-    unsigned int _rightSegmentState;
+    }  _contentOffset;
+    _UIFloatingContentView * _floatingContentView;
+    UIView * _info;
+    NSArray * _infoConstraints;
+    id  _objectValue;
+    float  _requestedScaleFactor;
+    unsigned int  _rightSegmentState;
     struct { 
         unsigned int style : 3; 
         unsigned int size : 2; 
@@ -28,8 +29,8 @@
         unsigned int isMomentary : 1; 
         unsigned int wasSelected : 1; 
         unsigned int needsBackgroundAndContentViewUpdate : 1; 
-    } _segmentFlags;
-    float _width;
+    }  _segmentFlags;
+    float  _width;
 }
 
 @property (setter=_setInfoConstraints:, nonatomic, copy) NSArray *_infoConstraints;
@@ -53,6 +54,7 @@
 - (id)_dividerImageIsCustom:(BOOL*)arg1;
 - (id)_effectiveContentView;
 - (id)_encodableSubviews;
+- (id)_floatingContentView;
 - (void)_forceInfoDisplay;
 - (BOOL)_hasSelectedColor;
 - (float)_idealWidth;
@@ -65,6 +67,7 @@
 - (void)_positionInfo;
 - (void)_positionInfoWithoutAnimation;
 - (id)_preferredConfigurationForFocusAnimation:(int)arg1 inContext:(id)arg2;
+- (id)_segmentLabel;
 - (unsigned int)_segmentState;
 - (void)_setEnabledAppearance:(BOOL)arg1;
 - (void)_setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
@@ -73,6 +76,7 @@
 - (id)_tintColorArchivingKey;
 - (void)_updateBackgroundAndContentViews;
 - (void)_updateBackgroundAndContentViewsIfNeeded;
+- (void)_updateFloatingContentControlState:(unsigned int)arg1 context:(id)arg2 withAnimationCoordinator:(id)arg3 animated:(BOOL)arg4;
 - (void)_updateTextColors;
 - (void)animateAdd:(BOOL)arg1;
 - (void)animateRemoveForWidth:(float)arg1;
@@ -83,12 +87,11 @@
 - (struct CGSize { float x1; float x2; })contentSize;
 - (int)controlSize;
 - (void)dealloc;
-- (void)didUpdateFocusFromView:(id)arg1;
+- (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (id)disabledTextColor;
 - (void)encodeWithCoder:(id)arg1;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
-- (id)infoName;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithInfo:(id)arg1 style:(int)arg2 size:(int)arg3 barStyle:(int)arg4 tintColor:(id)arg5 appearanceStorage:(id)arg6 position:(unsigned int)arg7 autosizeText:(BOOL)arg8;
 - (void)insertDividerView;
@@ -119,6 +122,7 @@
 - (void)setWasSelected:(BOOL)arg1;
 - (BOOL)showDivider;
 - (void)tintColorDidChange;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateConstraints;
 - (void)updateDividerViewForChangedSegment:(id)arg1;
 - (void)updateForAppearance:(id)arg1 style:(int)arg2;

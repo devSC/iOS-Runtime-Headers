@@ -3,15 +3,16 @@
  */
 
 @interface AXRemoteElement : NSObject {
-    id _accessibilityContainer;
-    NSMutableSet *_allChildren;
-    unsigned int _contextId;
-    BOOL _deniesDirectAppConnection;
-    unsigned int _machPort;
-    BOOL _onClientSide;
-    <AXRemoteElementChildrenDelegate> *_remoteChildrenDelegate;
-    int _remotePid;
-    NSString *_uuid;
+    id  _accessibilityContainer;
+    NSMutableSet * _allChildren;
+    unsigned int  _contextId;
+    BOOL  _deniesDirectAppConnection;
+    unsigned int  _machPort;
+    BOOL  _onClientSide;
+    <AXRemoteElementChildrenDelegate> * _remoteChildrenDelegate;
+    int  _remotePid;
+    NSObject<OS_dispatch_queue> * _remoteQueue;
+    NSString * _uuid;
 }
 
 @property (nonatomic) id accessibilityContainer;
@@ -21,6 +22,7 @@
 @property (nonatomic) BOOL onClientSide;
 @property (nonatomic) <AXRemoteElementChildrenDelegate> *remoteChildrenDelegate;
 @property (nonatomic) int remotePid;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *remoteQueue;
 @property (nonatomic, retain) NSString *uuid;
 @property (nonatomic, readonly) unsigned long long uuidHash;
 
@@ -31,6 +33,7 @@
 + (id)remoteElementForBlock:(id /* block */)arg1;
 + (id)remoteElementForContextId:(unsigned int)arg1;
 
+- (void).cxx_destruct;
 - (id)_accessibilityActiveKeyboard;
 - (id)_accessibilityFirstElement;
 - (void)_accessibilityIncreaseSelection:(id)arg1;
@@ -39,7 +42,7 @@
 - (id)_accessibilitySortedElementsWithin;
 - (id)_accessibilityTextOperations;
 - (id)_accessibilityTextViewTextOperationResponder;
-- (id)_remoteElementWithAttribute:(int)arg1;
+- (id)_remoteElementWithAttribute:(int)arg1 limitToRemoteSubviews:(BOOL)arg2;
 - (id)accessibilityContainer;
 - (id)accessibilityContainerElements;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })accessibilityFrame;
@@ -53,6 +56,7 @@
 - (void)platformCleanup;
 - (id)remoteChildrenDelegate;
 - (int)remotePid;
+- (id)remoteQueue;
 - (void)setAccessibilityContainer:(id)arg1;
 - (void)setContextId:(unsigned int)arg1;
 - (void)setDeniesDirectAppConnection:(BOOL)arg1;
@@ -60,6 +64,7 @@
 - (void)setOnClientSide:(BOOL)arg1;
 - (void)setRemoteChildrenDelegate:(id)arg1;
 - (void)setRemotePid:(int)arg1;
+- (void)setRemoteQueue:(id)arg1;
 - (void)setUuid:(id)arg1;
 - (void)unregister;
 - (id)uuid;

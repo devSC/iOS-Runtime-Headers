@@ -3,12 +3,12 @@
  */
 
 @interface ATConnection : NSObject <ATConnectionDelegate> {
-    BOOL _atcRunning;
-    int _atcRunningToken;
-    NSObject<ATConnectionDelegate> *_delegate;
-    BOOL _registerForStatus;
-    NSMutableArray *_registeredDataclasses;
-    NSXPCConnection *_xpcConnection;
+    BOOL  _atcRunning;
+    int  _atcRunningToken;
+    NSObject<ATConnectionDelegate> * _delegate;
+    BOOL  _registerForStatus;
+    NSMutableArray * _registeredDataclasses;
+    NSXPCConnection * _xpcConnection;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -25,11 +25,12 @@
 - (void)connection:(id)arg1 updatedAssets:(id)arg2;
 - (void)connection:(id)arg1 updatedProgress:(id)arg2;
 - (void)connectionWasInterrupted:(id)arg1;
-- (void)dataMigrationFinished;
 - (void)dealloc;
 - (id)delegate;
 - (id)getAssetMetrics;
+- (BOOL)getDataRestoreIsComplete;
 - (id)init;
+- (void)initiateAssetDownloadSessionsWithCompletion:(id /* block */)arg1;
 - (BOOL)isSyncing:(BOOL*)arg1 automatically:(BOOL*)arg2 wirelessly:(BOOL*)arg3;
 - (void)keepATCAlive:(BOOL)arg1;
 - (void)lowBatteryNotification;
@@ -38,6 +39,7 @@
 - (void)purgePartialAsset:(id)arg1 forDataclass:(id)arg2;
 - (void)registerForAssetProgressForDataclass:(id)arg1;
 - (void)registerForStatus;
+- (void)requestKeybagSyncToPairedDevice;
 - (void)requestSyncForLibrary:(id)arg1;
 - (void)requestSyncForPairedDeviceWithPriority:(int)arg1;
 - (id)restoreDeviceWithIdentifier:(id)arg1;

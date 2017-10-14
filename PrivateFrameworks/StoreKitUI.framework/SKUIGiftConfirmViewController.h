@@ -3,16 +3,19 @@
  */
 
 @interface SKUIGiftConfirmViewController : SKUIGiftStepViewController {
-    SKUIGiftConfirmView *_confirmView;
-    BOOL _isShowingConfirmation;
-    SKUIGiftPurchaseRequest *_purchaseRequest;
-    SKUIFocusedTouchGestureRecognizer *_touchRecognizer;
+    SKUIGiftConfirmView * _confirmView;
+    BOOL  _isShowingConfirmation;
+    SKUIGiftPurchaseRequest * _purchaseRequest;
+    SKUIFocusedTouchGestureRecognizer * _touchRecognizer;
 }
 
 - (void).cxx_destruct;
 - (void)_buyButtonAction:(id)arg1;
+- (id)_buyButtonTitle;
 - (void)_cancelBuyConfirmation:(id)arg1;
+- (id)_confirmButtonTitle;
 - (void)_finishPurchaseWithResult:(BOOL)arg1 errorMessage:(id)arg2;
+- (id)_newBuyBarButtonItemWithTitle:(id)arg1;
 - (void)_purchaseGift;
 - (void)_removeCancelGestureRecognizer;
 - (void)_setShowingConfirmation:(BOOL)arg1 animated:(BOOL)arg2;

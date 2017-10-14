@@ -3,27 +3,33 @@
  */
 
 @interface FigCaptureSourceConfiguration : NSObject <FigXPCCoding, NSCopying> {
-    BOOL _applyMaxIntegrationTimeOverrideWhenAvailable;
-    BOOL _automaticallyEnablesLowLightBoostWhenAvailable;
-    NSDictionary *_faceDetectionConfiguration;
-    int _imageControlMode;
-    FigCaptureSourceFormat *_requiredFormat;
-    float _requiredMaxFrameRate;
-    float _requiredMinFrameRate;
-    BOOL _sensorHDREnabled;
-    struct OpaqueFigCaptureSource { } *_source;
-    NSDictionary *_sourceAttributes;
-    NSString *_sourceID;
-    int _sourceType;
-    float _videoZoomFactor;
-    float _videoZoomRampAcceleration;
+    BOOL  _applyMaxIntegrationTimeOverrideWhenAvailable;
+    BOOL  _autoShallowDepthOfFieldEffectEnabled;
+    BOOL  _automaticallyEnablesLowLightBoostWhenAvailable;
+    int  _colorSpace;
+    NSDictionary * _faceDetectionConfiguration;
+    BOOL  _hasSetVideoZoomFactorOnCaptureSource;
+    int  _imageControlMode;
+    FigCaptureSourceFormat * _requiredFormat;
+    float  _requiredMaxFrameRate;
+    float  _requiredMinFrameRate;
+    BOOL  _sensorHDREnabled;
+    struct OpaqueFigCaptureSource { } * _source;
+    NSDictionary * _sourceAttributes;
+    NSString * _sourceID;
+    int  _sourceType;
+    float  _videoZoomFactor;
+    float  _videoZoomRampAcceleration;
 }
 
 @property (nonatomic) BOOL applyMaxIntegrationTimeOverrideWhenAvailable;
+@property (nonatomic) BOOL autoShallowDepthOfFieldEffectEnabled;
 @property (nonatomic) BOOL automaticallyEnablesLowLightBoostWhenAvailable;
+@property (nonatomic) int colorSpace;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSDictionary *faceDetectionConfiguration;
+@property (nonatomic) BOOL hasSetVideoZoomFactorOnCaptureSource;
 @property (readonly) unsigned int hash;
 @property (nonatomic) int imageControlMode;
 @property (nonatomic, retain) FigCaptureSourceFormat *requiredFormat;
@@ -47,12 +53,15 @@
 - (int)_sourceToken;
 - (id)_sourceUID;
 - (BOOL)applyMaxIntegrationTimeOverrideWhenAvailable;
+- (BOOL)autoShallowDepthOfFieldEffectEnabled;
 - (BOOL)automaticallyEnablesLowLightBoostWhenAvailable;
+- (int)colorSpace;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;
 - (void)dealloc;
 - (id)description;
 - (id)faceDetectionConfiguration;
+- (BOOL)hasSetVideoZoomFactorOnCaptureSource;
 - (int)imageControlMode;
 - (id)initWithSource:(struct OpaqueFigCaptureSource { }*)arg1;
 - (id)initWithSourceType:(int)arg1;
@@ -63,8 +72,11 @@
 - (float)requiredMinFrameRate;
 - (BOOL)sensorHDREnabled;
 - (void)setApplyMaxIntegrationTimeOverrideWhenAvailable:(BOOL)arg1;
+- (void)setAutoShallowDepthOfFieldEffectEnabled:(BOOL)arg1;
 - (void)setAutomaticallyEnablesLowLightBoostWhenAvailable:(BOOL)arg1;
+- (void)setColorSpace:(int)arg1;
 - (void)setFaceDetectionConfiguration:(id)arg1;
+- (void)setHasSetVideoZoomFactorOnCaptureSource:(BOOL)arg1;
 - (void)setImageControlMode:(int)arg1;
 - (void)setRequiredFormat:(id)arg1;
 - (void)setRequiredMaxFrameRate:(float)arg1;

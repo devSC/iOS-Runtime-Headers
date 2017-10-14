@@ -3,10 +3,12 @@
  */
 
 @interface MecabraCandidate : NSObject <NSCopying> {
-    void *_rawCandidate;
+    void * _rawCandidate;
 }
 
 @property (nonatomic, readonly) NSString *analysisString;
+@property (nonatomic, readonly) NSDictionary *attributes;
+@property (nonatomic, readonly) NSString *category;
 @property (nonatomic, readonly) NSString *convertedAnalysisString;
 @property (nonatomic, readonly) NSString *dictionaryReading;
 @property (nonatomic, readonly) BOOL isAutocorrectedCandidate;
@@ -15,19 +17,23 @@
 @property (nonatomic, readonly) BOOL isExtensionCandidate;
 @property (nonatomic, readonly) BOOL isFuzzyMatchCandidate;
 @property (nonatomic, readonly) BOOL isLearningDictionaryCandidate;
+@property (nonatomic, readonly) BOOL isOTAWordlistCandidate;
 @property (nonatomic, readonly) BOOL isPersonName;
 @property (nonatomic, readonly) BOOL isPredictionCandidate;
 @property (nonatomic, readonly) BOOL isSyntheticCandidate;
 @property (nonatomic, readonly) BOOL isUserWordCandidate;
 @property (nonatomic, readonly) struct MecabraCandidateBase { int (**x1)(); int x2; }*rawCandidate;
 @property (nonatomic, readonly) struct ConversionCandidate { int (**x1)(); int x2; }*rawConversionCandidate;
+@property (nonatomic, readonly) NSString *string;
 @property (nonatomic, readonly) NSString *surface;
 @property (nonatomic, readonly) int type;
 @property (nonatomic, readonly) unsigned int wordCount;
 
-+ (id)syntheticCandidateFromWords:(id)arg1 withLexicon:(struct Lexicon { int (**x1)(); void *x2; void *x3; }*)arg2 language:(int)arg3;
++ (id)syntheticCandidateFromWords:(id)arg1 withLexicon:(struct Lexicon { void *x1; void *x2; }*)arg2 language:(int)arg3;
 
 - (id)analysisString;
+- (id)attributes;
+- (id)category;
 - (id)convertedAnalysisString;
 - (id)convertedAnalysisStringForFirstSyllable;
 - (struct __CFArray { }*)copySyllableLengthArrayForWordAtIndex:(unsigned int)arg1;
@@ -46,6 +52,7 @@
 - (BOOL)isExtensionCandidate;
 - (BOOL)isFuzzyMatchCandidate;
 - (BOOL)isLearningDictionaryCandidate;
+- (BOOL)isOTAWordlistCandidate;
 - (BOOL)isPersonName;
 - (BOOL)isPredictionCandidate;
 - (BOOL)isSyntheticCandidate;
@@ -59,7 +66,9 @@
 - (struct MecabraCandidateBase { int (**x1)(); int x2; }*)rawCandidate;
 - (struct ConversionCandidate { int (**x1)(); int x2; }*)rawConversionCandidate;
 - (unsigned short)rcAttrAtIndex:(unsigned int)arg1;
+- (BOOL)setDisplayString:(struct __CFString { }*)arg1;
 - (void)setWeight:(unsigned int)arg1;
+- (id)string;
 - (id)surface;
 - (id)syllabifiedAnalysisString;
 - (id)syllabifiedConvertedAnalysisString;
@@ -72,6 +81,7 @@
 - (int)type;
 - (int)weight;
 - (unsigned int)wordCount;
+- (unsigned short)wordDictionaryReadingLengthAtIndex:(unsigned int)arg1;
 - (id)wordIDs;
 - (BOOL)wordIsFromSystemDictionaryAtIndex:(unsigned int)arg1;
 - (unsigned short)wordLengthAtIndex:(unsigned int)arg1;

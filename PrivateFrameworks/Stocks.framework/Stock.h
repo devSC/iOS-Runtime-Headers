@@ -3,41 +3,44 @@
  */
 
 @interface Stock : NSObject {
-    NSString *_averageVolume;
-    NSString *_change;
-    StockChartData *_chartDataArray;
-    NSString *_companyName;
-    StockDataSource *_dataSource;
-    NSString *_dividendYield;
-    Exchange *_exchange;
-    NSString *_high;
-    NSURL *_infoURL;
-    NSString *_low;
-    NSString *_marketcap;
-    NSString *_open;
-    NSString *_peRatio;
-    NSString *_price;
-    unsigned int _pricePrecision;
-    NSString *_shortCompanyName;
-    NSString *_symbol;
-    NSString *_symbolType;
-    double _timeMetadataLastUpdated;
-    double _timeQuoteLastUpdated;
-    BOOL _transient;
-    NSString *_volume;
-    NSString *_yearHigh;
-    NSString *_yearLow;
+    NSString * _averageVolume;
+    NSString * _change;
+    StockChartData * _chartDataArray;
+    NSString * _companyName;
+    NSString * _currency;
+    StockDataSource * _dataSource;
+    NSString * _dividendYield;
+    Exchange * _exchange;
+    NSString * _high;
+    NSURL * _infoURL;
+    NSString * _low;
+    NSString * _marketcap;
+    NSString * _open;
+    NSString * _peRatio;
+    NSString * _price;
+    unsigned int  _pricePrecision;
+    NSString * _shortCompanyName;
+    NSString * _symbol;
+    NSString * _symbolType;
+    double  _timeMetadataLastUpdated;
+    double  _timeQuoteLastUpdated;
+    BOOL  _transient;
+    NSString * _volume;
+    NSString * _yearHigh;
+    NSString * _yearLow;
 }
 
 @property (nonatomic, retain) NSString *averageVolume;
 @property (nonatomic, retain) NSString *change;
 @property (nonatomic, retain) NSString *companyName;
+@property (nonatomic, retain) NSString *currency;
 @property (nonatomic, retain) StockDataSource *dataSource;
 @property (nonatomic, retain) NSString *dividendYield;
 @property (nonatomic, retain) Exchange *exchange;
 @property (nonatomic, retain) NSString *high;
 @property (nonatomic, retain) NSURL *infoURL;
 @property (nonatomic, retain) NSString *low;
+@property (nonatomic, readonly) NSString *marketStatusDescription;
 @property (nonatomic, retain) NSString *marketcap;
 @property (nonatomic, retain) NSString *open;
 @property (nonatomic, retain) NSString *peRatio;
@@ -83,6 +86,7 @@
 - (BOOL)changeIsZero;
 - (id)chartDataForInterval:(int)arg1;
 - (id)companyName;
+- (id)currency;
 - (id)dataSource;
 - (void)dealloc;
 - (id)description;
@@ -107,6 +111,7 @@
 - (id)listNameWithMaxIndexNameLength:(unsigned int)arg1;
 - (id)low;
 - (BOOL)marketIsOpen;
+- (id)marketStatusDescription;
 - (id)marketcap;
 - (id)open;
 - (id)peRatio;
@@ -118,6 +123,7 @@
 - (void)setChange:(id)arg1;
 - (void)setChartData:(id)arg1 forInterval:(int)arg2;
 - (void)setCompanyName:(id)arg1;
+- (void)setCurrency:(id)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setDividendYield:(id)arg1;
 - (void)setExchange:(id)arg1;

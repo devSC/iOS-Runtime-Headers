@@ -3,30 +3,30 @@
  */
 
 @interface NEVPNProtocol : NSObject <NEConfigurationLegacySupport, NEConfigurationValidating, NEPrettyDescription, NSCopying, NSSecureCoding> {
-    NEDNSSettings *_DNSSettings;
-    BOOL _disconnectOnIdle;
-    int _disconnectOnIdleTimeout;
-    BOOL _disconnectOnLogout;
-    BOOL _disconnectOnSleep;
-    BOOL _disconnectOnUserSwitch;
-    BOOL _disconnectOnWake;
-    int _disconnectOnWakeTimeout;
-    NSUUID *_identifier;
-    NEIdentityKeychainItem *_identity;
-    NSData *_identityDataHash;
-    BOOL _identityDataImported;
-    NSData *_identityDataInternal;
-    NSString *_identityDataPassword;
-    NEKeychainItem *_identityDataPasswordKeychainItem;
-    NSString *_keychainAccessGroup;
-    int _keychainDomain;
-    NSString *_passwordEncryption;
-    NEKeychainItem *_passwordKeychainItem;
-    NSData *_passwordReference;
-    NEProxySettings *_proxySettings;
-    NSString *_serverAddress;
-    int _type;
-    NSString *_username;
+    NEDNSSettings * _DNSSettings;
+    BOOL  _disconnectOnIdle;
+    int  _disconnectOnIdleTimeout;
+    BOOL  _disconnectOnLogout;
+    BOOL  _disconnectOnSleep;
+    BOOL  _disconnectOnUserSwitch;
+    BOOL  _disconnectOnWake;
+    int  _disconnectOnWakeTimeout;
+    NSUUID * _identifier;
+    NEIdentityKeychainItem * _identity;
+    NSData * _identityDataHash;
+    BOOL  _identityDataImported;
+    NSData * _identityDataInternal;
+    NSString * _identityDataPassword;
+    NEKeychainItem * _identityDataPasswordKeychainItem;
+    NSString * _keychainAccessGroup;
+    int  _keychainDomain;
+    NSString * _passwordEncryption;
+    NEKeychainItem * _passwordKeychainItem;
+    NSData * _passwordReference;
+    NEProxySettings * _proxySettings;
+    NSString * _serverAddress;
+    int  _type;
+    NSString * _username;
 }
 
 @property (copy) NEDNSSettings *DNSSettings;
@@ -95,11 +95,12 @@
 - (id)keychainAccessGroup;
 - (int)keychainDomain;
 - (void)migratePasswordsFromPreferences:(struct __SCPreferences { }*)arg1;
+- (BOOL)needToUpdateKeychain;
 - (id)passwordEncryption;
 - (id)passwordKeychainItem;
 - (id)passwordReference;
 - (id)proxySettings;
-- (void)removeKeychainItemsInDomain:(int)arg1;
+- (void)removeKeychainItemsInDomain:(int)arg1 keepIdentity:(bool)arg2;
 - (id)serverAddress;
 - (void)setDNSSettings:(id)arg1;
 - (void)setDisconnectOnIdle:(BOOL)arg1;

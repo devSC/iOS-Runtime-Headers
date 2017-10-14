@@ -3,22 +3,20 @@
  */
 
 @interface _DECServer : NSObject <_DECServer> {
-    unsigned int _categories;
-    NSXPCConnection *_connection;
-    NSString *_identifier;
-    <_DECFilter> *_predictionFilter;
-    _DECPredictionMap *_predictionsContributed;
-    NSObject<OS_dispatch_queue> *_queue;
-    _DECServerResponder *_responder;
-    _DECPredictionCache *_resultCache;
-    int _type;
+    unsigned int  _categories;
+    NSXPCConnection * _connection;
+    struct NSString { Class x1; } * _identifier;
+    <_DECFilter> * _predictionFilter;
+    NSObject<OS_dispatch_queue> * _queue;
+    _DECServerResponder * _responder;
+    _DECPredictionCache * _resultCache;
+    int  _type;
 }
 
 @property (nonatomic, readonly) unsigned int categories;
 @property (nonatomic, readonly) NSXPCConnection *connection;
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, retain) <_DECFilter> *predictionFilter;
-@property (nonatomic, readonly) _DECPredictionMap *predictionsContributed;
 @property (nonatomic, readonly) int type;
 
 + (id)_defaultRestorationDirectory;
@@ -29,21 +27,23 @@
 - (id)_restorationPath;
 - (unsigned int)categories;
 - (id)connection;
-- (id)identifier;
+- (void)decDeviceIdWithReply:(id /* block */)arg1;
+- (struct NSString { Class x1; }*)identifier;
 - (id)initWithConnection:(id)arg1 responder:(id)arg2;
-- (void)initializeCacheWithWarmUpHandler:(id /* block */)arg1;
 - (void)invalidate;
 - (id)predictionFilter;
+- (void)predictionForCategories:(unsigned int)arg1 consumer:(unsigned int)arg2 criteria:(id)arg3 limit:(unsigned int)arg4 backgroundQuery:(BOOL)arg5 completionHandler:(id /* block */)arg6;
+- (void)predictionForCategories:(unsigned int)arg1 consumer:(unsigned int)arg2 criteria:(id)arg3 limit:(unsigned int)arg4 providesFeedback:(BOOL)arg5 reply:(id /* block */)arg6;
 - (void)predictionForCategories:(unsigned int)arg1 consumer:(unsigned int)arg2 limit:(unsigned int)arg3 completionHandler:(id /* block */)arg4;
-- (void)predictionForCategories:(unsigned int)arg1 consumer:(unsigned int)arg2 limit:(unsigned int)arg3 prewarm:(BOOL)arg4 completionHandler:(id /* block */)arg5;
 - (void)predictionForCategories:(unsigned int)arg1 consumer:(unsigned int)arg2 limit:(unsigned int)arg3 providesFeedback:(BOOL)arg4 reply:(id /* block */)arg5;
-- (id)predictionsContributed;
 - (void)prewarmPredictionForCategories:(unsigned int)arg1 consumer:(unsigned int)arg2 reply:(id /* block */)arg3;
-- (void)registerClient:(int)arg1 category:(unsigned int)arg2 identifier:(id)arg3 reply:(id /* block */)arg4;
+- (void)provideAppWidgetFeedback:(id)arg1 consumerType:(unsigned int)arg2 reply:(id /* block */)arg3;
+- (void)provideZkwSpotlightFeedback:(id)arg1 consumerType:(unsigned int)arg2 reply:(id /* block */)arg3;
+- (void)registerClient:(int)arg1 category:(unsigned int)arg2 identifier:(struct NSString { Class x1; }*)arg3 reply:(id /* block */)arg4;
 - (void)setPrediction:(id)arg1 category:(unsigned int)arg2 consumer:(unsigned int)arg3 reply:(id /* block */)arg4;
 - (void)setPredictionFilter:(id)arg1;
 - (int)type;
-- (void)userAbandoned:(id)arg1 resultIdentifier:(id)arg2 metadata:(id)arg3 reply:(id /* block */)arg4;
-- (void)userEngaged:(id)arg1 resultIdentifier:(id)arg2 metadata:(id)arg3 reply:(id /* block */)arg4;
+- (void)userAbandoned:(id)arg1 result:(id)arg2 metadata:(id)arg3 reply:(id /* block */)arg4;
+- (void)userEngaged:(id)arg1 result:(id)arg2 metadata:(id)arg3 reply:(id /* block */)arg4;
 
 @end

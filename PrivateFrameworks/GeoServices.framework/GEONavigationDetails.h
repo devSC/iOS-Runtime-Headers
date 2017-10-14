@@ -3,26 +3,27 @@
  */
 
 @interface GEONavigationDetails : NSObject {
-    unsigned int _annoucementStage;
-    GEOCompanionRouteDetails *_companionRoute;
-    GEOCompanionRouteStatus *_companionStatus;
-    NSString *_destinationName;
-    int _displayStep;
-    double _distanceRemainingOnRoute;
-    double _distanceToManeuverEnd;
-    double _distanceToManeuverStart;
-    double _distanceToRoute;
-    BOOL _guidancePromptsEnabled;
-    GEOLocation *_location;
-    BOOL _locationUnreliable;
-    int _navigationState;
-    unsigned int _nextAnnoucementStage;
-    double _remainingTime;
-    GEOComposedRoute *_route;
-    GEORouteMatch *_routeMatch;
-    GEONavigationRouteSummary *_routeSummary;
-    double _timeUntilNextAnnouncement;
-    GEONavigationRouteTransitSummary *_transitSummary;
+    unsigned int  _annoucementStage;
+    GEOCompanionRouteDetails * _companionRoute;
+    GEOCompanionRouteStatus * _companionStatus;
+    NSString * _destinationName;
+    int  _displayStep;
+    double  _distanceRemainingOnRoute;
+    double  _distanceToManeuverEnd;
+    double  _distanceToManeuverStart;
+    double  _distanceToRoute;
+    <GEOServerFormattedStepStringFormatter> * _formatter;
+    BOOL  _guidancePromptsEnabled;
+    GEOLocation * _location;
+    BOOL  _locationUnreliable;
+    int  _navigationState;
+    unsigned int  _nextAnnoucementStage;
+    double  _remainingTime;
+    GEOComposedRoute * _route;
+    GEORouteMatch * _routeMatch;
+    GEONavigationRouteSummary * _routeSummary;
+    double  _timeUntilNextAnnouncement;
+    GEONavigationRouteTransitSummary * _transitSummary;
 }
 
 @property (nonatomic) unsigned int announcementStage;
@@ -34,6 +35,7 @@
 @property (nonatomic) double distanceToManeuverEnd;
 @property (nonatomic) double distanceToManeuverStart;
 @property (nonatomic) double distanceToRoute;
+@property (nonatomic, readonly) <GEOServerFormattedStepStringFormatter> *formatter;
 @property (nonatomic) BOOL guidancePromptsEnabled;
 @property (nonatomic, retain) GEOLocation *location;
 @property (nonatomic) BOOL locationUnreliable;
@@ -56,8 +58,9 @@
 - (double)distanceToManeuverEnd;
 - (double)distanceToManeuverStart;
 - (double)distanceToRoute;
+- (id)formatter;
 - (BOOL)guidancePromptsEnabled;
-- (id)initWithDestinationName:(id)arg1;
+- (id)initWithDestinationName:(id)arg1 stringFormatter:(id)arg2;
 - (id)location;
 - (BOOL)locationUnreliable;
 - (int)navigationState;

@@ -3,12 +3,11 @@
  */
 
 @interface MSCLFacebookServiceSetupTableViewSection : MSCLSocialServiceSetupTableViewSection {
-    int _displayState;
+    int  _displayState;
 }
 
 - (int)_cellTypeForIndexPath:(id)arg1;
 - (void)_openFacebookSettingsTitleKey:(id)arg1 messageKey:(id)arg2 parentViewController:(id)arg3;
-- (id)_selectedFacebookPageForAccount:(id)arg1;
 - (void)_updateDisplayStateForce:(BOOL)arg1;
 - (id)initWithService:(id)arg1 accountStore:(id)arg2;
 - (id)performActionForIndexPath:(id)arg1 parentViewController:(id)arg2;

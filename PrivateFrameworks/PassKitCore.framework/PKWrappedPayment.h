@@ -3,22 +3,30 @@
  */
 
 @interface PKWrappedPayment : NSObject <NSSecureCoding> {
-    NSData *_transactionData;
-    NSString *_transactionIdentifier;
+    PKSecureElementCertificateSet * _certificates;
+    NSData * _transactionData;
+    NSString * _transactionIdentifier;
+    NSData * _transactionInstructionsSignature;
 }
 
+@property (nonatomic, copy) PKSecureElementCertificateSet *certificates;
 @property (nonatomic, copy) NSData *transactionData;
 @property (nonatomic, copy) NSString *transactionIdentifier;
+@property (nonatomic, copy) NSData *transactionInstructionsSignature;
 
 + (BOOL)supportsSecureCoding;
 
-- (void)dealloc;
+- (void).cxx_destruct;
+- (id)certificates;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)setCertificates:(id)arg1;
 - (void)setTransactionData:(id)arg1;
 - (void)setTransactionIdentifier:(id)arg1;
+- (void)setTransactionInstructionsSignature:(id)arg1;
 - (id)transactionData;
 - (id)transactionIdentifier;
+- (id)transactionInstructionsSignature;
 
 @end

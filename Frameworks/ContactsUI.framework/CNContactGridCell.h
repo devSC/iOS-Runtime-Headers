@@ -3,28 +3,28 @@
  */
 
 @interface CNContactGridCell : UICollectionViewCell {
-    NSArray *_actionCategories;
-    CNContactGridClippingView *_actionsClippingView;
-    UIView *_actionsContainerView;
-    CNQuickActionsManager *_actionsManager;
-    CNQuickActionsView *_actionsView;
+    NSArray * _actionCategories;
+    CNContactGridClippingView * _actionsClippingView;
+    UIView * _actionsContainerView;
+    CNQuickActionsManager * _actionsManager;
+    CNQuickActionsView * _actionsView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _avatarMargins;
+    }  _avatarMargins;
     struct CGSize { 
         float width; 
         float height; 
-    } _avatarSize;
-    CNAvatarView *_avatarView;
-    CNContactFormatter *_contactFormatter;
-    <CNAvatarViewDelegate><CNQuickActionsViewDelegate> *_delegate;
-    int _monogrammerStyle;
-    UILabel *_nameLabel;
-    NSDictionary *_nameTextAttributes;
-    BOOL _showsContactOnTap;
+    }  _avatarSize;
+    CNAvatarView * _avatarView;
+    CNContactFormatter * _contactFormatter;
+    <CNAvatarViewDelegate><CNQuickActionsViewDelegate> * _delegate;
+    int  _monogrammerStyle;
+    UILabel * _nameLabel;
+    NSDictionary * _nameTextAttributes;
+    BOOL  _showsContactOnTap;
 }
 
 @property (nonatomic, copy) NSArray *actionCategories;
@@ -62,11 +62,11 @@
 - (id)contact;
 - (id)contactFormatter;
 - (id)delegate;
-- (BOOL)isHighlighted;
 - (float)maximumActionsWidth;
 - (int)monogrammerStyle;
 - (id)nameLabel;
 - (id)nameTextAttributes;
+- (id)preferredLayoutAttributesFittingAttributes:(id)arg1;
 - (void)setActionCategories:(id)arg1;
 - (void)setActionsClippingView:(id)arg1;
 - (void)setActionsContainerView:(id)arg1;
@@ -78,7 +78,6 @@
 - (void)setContact:(id)arg1;
 - (void)setContactFormatter:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setHighlighted:(BOOL)arg1;
 - (void)setMonogrammerStyle:(int)arg1;
 - (void)setNameLabel:(id)arg1;
 - (void)setNameTextAttributes:(id)arg1;

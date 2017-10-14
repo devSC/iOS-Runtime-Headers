@@ -3,7 +3,8 @@
  */
 
 @interface MKTransitLoadingTableViewCell : MKCustomSeparatorTableViewCell {
-    UIActivityIndicatorView *_loadingIndicator;
+    UIActivityIndicatorView * _loadingIndicator;
+    _MKUILabel * _loadingLabel;
 }
 
 - (void).cxx_destruct;

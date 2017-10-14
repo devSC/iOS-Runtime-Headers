@@ -12,9 +12,10 @@
             float width; 
             float height; 
         } size; 
-    } _cachedFrame;
-    AXElement *_cachedRemoteParent;
-    AXElement *_cachedRemoteParentForContextID;
+    }  _cachedFrame;
+    struct CGPath { } * _cachedPath;
+    AXElement * _cachedRemoteParent;
+    AXElement * _cachedRemoteParentForContextID;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -24,10 +25,10 @@
             float width; 
             float height; 
         } size; 
-    } _cachedVisibleFrame;
-    AXElementGroup *_parentGroup;
-    BOOL _representsScannerGroup;
-    AXUIElement *_uiElement;
+    }  _cachedVisibleFrame;
+    AXElementGroup * _parentGroup;
+    BOOL  _representsScannerGroup;
+    AXUIElement * _uiElement;
 }
 
 @property (nonatomic, readonly) AXElement *accessibilityUIServerApplication;
@@ -37,6 +38,7 @@
 @property (nonatomic, retain) AXElement *autoscrollTarget;
 @property (nonatomic, readonly) NSString *bundleId;
 @property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } cachedFrame;
+@property (nonatomic, retain) struct CGPath { }*cachedPath;
 @property (nonatomic, retain) AXElement *cachedRemoteParent;
 @property (nonatomic, retain) AXElement *cachedRemoteParentForContextID;
 @property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } cachedVisibleFrame;
@@ -56,6 +58,7 @@
 @property (nonatomic, readonly) AXElement *firstElementInApplication;
 @property (nonatomic, readonly) AXElement *firstElementInApplicationForFocus;
 @property (nonatomic, readonly) AXElement *firstResponder;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } focusableFrameForZoom;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
 @property (nonatomic, readonly) BOOL hasTextEntry;
 @property (nonatomic, readonly) BOOL hasVariantKeys;
@@ -72,6 +75,7 @@
 @property (nonatomic, readonly) BOOL isScannerElement;
 @property (nonatomic, readonly) BOOL isScreenLocked;
 @property (nonatomic, readonly) BOOL isSpringBoard;
+@property (nonatomic, readonly) BOOL isSystemApplication;
 @property (nonatomic, readonly) BOOL isSystemWideElement;
 @property (nonatomic, readonly) BOOL isTouchContainer;
 @property (nonatomic, readonly) BOOL isValid;
@@ -89,8 +93,11 @@
 @property (nonatomic, readonly) AXElement *remoteParent;
 @property (nonatomic, readonly) BOOL representsScannerGroup;
 @property (nonatomic, readonly) int scannerActivateBehavior;
+@property (nonatomic, readonly) int scanningBehaviorTraits;
 @property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } selectedTextRange;
 @property (nonatomic, readonly) NSDictionary *semanticContext;
+@property (nonatomic, readonly) NSArray *siriContentElementsWithSemanticContext;
+@property (nonatomic, readonly) NSArray *siriContentNativeFocusableElements;
 @property (nonatomic, readonly) AXElement *springBoardApplication;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSArray *supportedGestures;
@@ -114,7 +121,9 @@
 + (id)elementWithUIElement:(id)arg1;
 + (id)elementsWithUIElements:(id)arg1;
 + (id)primaryApp;
++ (void)registerNotifications:(id)arg1 withIdentifier:(id)arg2 withHandler:(id /* block */)arg3;
 + (id)systemWideElement;
++ (void)unregisterNotifications:(id)arg1;
 
 - (id)_axElementsForAXUIElements:(id)arg1;
 - (id)_elementForAttribute:(int)arg1 shouldUpdateCache:(BOOL)arg2 shouldFetchAttributes:(BOOL)arg3;
@@ -131,6 +140,7 @@
 - (id)autoscrollTarget;
 - (id)bundleId;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })cachedFrame;
+- (struct CGPath { }*)cachedPath;
 - (id)cachedRemoteParent;
 - (id)cachedRemoteParentForContextID;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })cachedVisibleFrame;
@@ -142,6 +152,9 @@
 - (BOOL)canScrollInAtLeastOneDirection;
 - (struct CGPoint { float x1; float x2; })centerPoint;
 - (id)children;
+- (void)clearCachedFrame:(BOOL)arg1 cachedVisibleFrame:(BOOL)arg2;
+- (id)containerTypes;
+- (struct CGPath { }*)convertPath:(struct CGPath { }*)arg1 fromContextId:(unsigned int)arg2;
 - (struct CGPoint { float x1; float x2; })convertPoint:(struct CGPoint { float x1; float x2; })arg1 fromContextId:(unsigned int)arg2;
 - (struct CGPoint { float x1; float x2; })convertPoint:(struct CGPoint { float x1; float x2; })arg1 toContextId:(unsigned int)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })convertRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 fromContextId:(unsigned int)arg2;
@@ -165,6 +178,7 @@
 - (id)firstElementInApplicationForFocus;
 - (id)firstResponder;
 - (id)firstResponderForFocus;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })focusableFrameForZoom;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
 - (BOOL)hasAllTraits:(unsigned long long)arg1;
 - (BOOL)hasAnyTraits:(unsigned long long)arg1;
@@ -194,6 +208,7 @@
 - (BOOL)isScannerElement;
 - (BOOL)isScreenLocked;
 - (BOOL)isSpringBoard;
+- (BOOL)isSystemApplication;
 - (BOOL)isSystemWideElement;
 - (BOOL)isTouchContainer;
 - (BOOL)isValid;
@@ -206,8 +221,6 @@
 - (id)nativeFocusPreferredElement;
 - (id)nativeFocusableElements;
 - (id)nextElementsWithCount:(unsigned int)arg1;
-- (id)opaqueElementInDirection:(int)arg1 startElement:(id)arg2 searchTraits:(unsigned long long)arg3;
-- (id)opaqueParent;
 - (id)parent;
 - (id)parentGroup;
 - (struct CGPath { }*)path;
@@ -235,9 +248,11 @@
 - (BOOL)pressTVStopButton;
 - (BOOL)pressTVUpButton;
 - (id)previousElementsWithCount:(unsigned int)arg1;
+- (id)remoteApplication;
 - (id)remoteParent;
 - (BOOL)representsScannerGroup;
 - (int)scannerActivateBehavior;
+- (int)scanningBehaviorTraits;
 - (struct __AXUIElement { }*)scrollAncestorForScrollAction:(int)arg1;
 - (void)scrollToBottom;
 - (void)scrollToTop;
@@ -248,6 +263,7 @@
 - (void)setAssistiveTechFocused:(BOOL)arg1;
 - (void)setAutoscrollTarget:(id)arg1;
 - (void)setCachedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setCachedPath:(struct CGPath { }*)arg1;
 - (void)setCachedRemoteParent:(id)arg1;
 - (void)setCachedRemoteParentForContextID:(id)arg1;
 - (void)setCachedVisibleFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -257,19 +273,32 @@
 - (void)setSelectedTextRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)setUiElement:(id)arg1;
 - (void)setValue:(id)arg1;
+- (id)siriContentElementsWithSemanticContext;
+- (id)siriContentNativeFocusableElements;
 - (id)springBoardApplication;
 - (id)supportedGestures;
 - (BOOL)supportsAction:(int)arg1;
 - (id)systemApplication;
+- (BOOL)systemPressTVDownButton;
+- (BOOL)systemPressTVHomeButton;
+- (BOOL)systemPressTVLeftButton;
+- (BOOL)systemPressTVMenuButton;
+- (BOOL)systemPressTVPlayPauseButton;
+- (BOOL)systemPressTVRightButton;
+- (BOOL)systemPressTVSelectButton;
+- (BOOL)systemPressTVSiriButton;
+- (BOOL)systemPressTVUpButton;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })textCursorFrame;
 - (id)textOperations;
 - (id)touchContainer;
 - (unsigned long long)traits;
 - (id)typingCandidates;
 - (id)uiElement;
+- (void)updateCache:(int)arg1;
 - (id)url;
 - (id)value;
 - (id)variantKeys;
+- (BOOL)viewHierarchyHasNativeFocus;
 - (id)visibleElements;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleFrame;
 - (struct CGPoint { float x1; float x2; })visiblePoint;

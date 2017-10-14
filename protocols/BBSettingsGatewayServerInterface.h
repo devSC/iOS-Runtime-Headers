@@ -6,6 +6,7 @@
 @required
 
 - (void)getBehaviorOverridesEffectiveWhileUnlockedWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSNumber *, NSError *, void*
+- (void)getBehaviorOverridesEnabledAndEffectiveDateWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, int, NSDate *, void*
 - (void)getBehaviorOverridesEnabledWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSNumber *, NSError *, void*
 - (void)getBehaviorOverridesWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSArray *, NSError *, void*
 - (void)getPrivilegedSenderAddressBookGroupRecordIDAndNameWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSArray *, NSError *, void*
@@ -15,8 +16,10 @@
 - (void)getSectionInfoForSectionIDs:(void *)arg1 withHandler:(void *)arg2; // needs 2 arg types, found 7: NSSet *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSArray *, void*
 - (void)getSectionInfoWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSArray *, NSError *, void*
 - (void)getSectionOrderRuleWithHandler:(void *)arg1; // needs 1 arg types, found 7: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSNumber *, NSError *, void*
+- (void)requestQuietModeOverrideAssertionWithCompletion:(void *)arg1; // needs 1 arg types, found 6: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, BSAction *, void*
+- (void)setActiveBehaviorOverrideTypesChangeAssertionCountUpdatesEnabled:(BOOL)arg1;
 - (void)setActiveBehaviorOverrideTypesChangeUpdatesEnabled:(BOOL)arg1;
-- (void)setBehaviorOverrideStatus:(int)arg1 source:(unsigned int)arg2;
+- (void)setBehaviorOverrideStatus:(int)arg1 effectiveDate:(NSDate *)arg2 source:(unsigned int)arg3;
 - (void)setBehaviorOverrideStatusChangeUpdatesEnabled:(BOOL)arg1;
 - (void)setBehaviorOverrides:(NSArray *)arg1 source:(unsigned int)arg2;
 - (void)setBehaviorOverridesChangeUpdatesEnabled:(BOOL)arg1;

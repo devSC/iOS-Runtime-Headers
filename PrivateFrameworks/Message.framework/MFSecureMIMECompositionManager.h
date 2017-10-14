@@ -3,25 +3,25 @@
  */
 
 @interface MFSecureMIMECompositionManager : NSObject {
-    NSMutableDictionary *_certificatesByRecipient;
-    <MFSecureMIMECompositionManagerDelegate> *_delegate;
-    struct __SecIdentity { } *_encryptionIdentity;
-    MFError *_encryptionIdentityError;
-    int _encryptionPolicy;
-    int _encryptionStatus;
-    unsigned int _encryptionStatusSemaphore;
-    NSMutableDictionary *_errorsByRecipient;
-    BOOL _invalidated;
-    NSLock *_lock;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSMutableSet *_recipients;
-    MailAccount *_sendingAccount;
-    NSString *_sendingAddress;
-    struct __SecIdentity { } *_signingIdentity;
-    MFError *_signingIdentityError;
-    int _signingPolicy;
-    int _signingStatus;
-    unsigned int _signingStatusSemaphore;
+    NSMutableDictionary * _certificatesByRecipient;
+    <MFSecureMIMECompositionManagerDelegate> * _delegate;
+    struct __SecIdentity { } * _encryptionIdentity;
+    MFError * _encryptionIdentityError;
+    int  _encryptionPolicy;
+    int  _encryptionStatus;
+    unsigned int  _encryptionStatusSemaphore;
+    NSMutableDictionary * _errorsByRecipient;
+    BOOL  _invalidated;
+    NSLock * _lock;
+    NSObject<OS_dispatch_queue> * _queue;
+    NSMutableSet * _recipients;
+    MailAccount * _sendingAccount;
+    NSString * _sendingAddress;
+    struct __SecIdentity { } * _signingIdentity;
+    MFError * _signingIdentityError;
+    int  _signingPolicy;
+    int  _signingStatus;
+    unsigned int  _signingStatusSemaphore;
 }
 
 @property <MFSecureMIMECompositionManagerDelegate> *delegate;
@@ -39,6 +39,7 @@
 
 - (void)_determineEncryptionStatusWithNewRecipients:(id)arg1;
 - (void)_determineEncryptionStatusWithSendingAddress:(id)arg1;
+- (void)_determineRevocationStatusWithIdentity:(struct __SecIdentity { }*)arg1 sendingAddress:(id)arg2;
 - (void)_determineSigningStatusWithSendingAddress:(id)arg1;
 - (void)_notifyDelegateEncryptionStatusDidChange:(int)arg1 certsByRecipient:(id)arg2 errorsByRecipient:(id)arg3 identity:(struct __SecIdentity { }*)arg4 error:(id)arg5;
 - (void)_notifyDelegateSigningStatusDidChange:(int)arg1 identity:(struct __SecIdentity { }*)arg2 error:(id)arg3;

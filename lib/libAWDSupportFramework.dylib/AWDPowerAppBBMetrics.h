@@ -3,16 +3,18 @@
  */
 
 @interface AWDPowerAppBBMetrics : PBCodable <NSCopying> {
-    NSMutableArray *_appPowers;
+    NSMutableArray * _appPowers;
     struct { 
         unsigned int timestamp : 1; 
-    } _has;
-    unsigned long long _timestamp;
+    }  _has;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic, retain) NSMutableArray *appPowers;
 @property (nonatomic) BOOL hasTimestamp;
 @property (nonatomic) unsigned long long timestamp;
+
++ (Class)appPowerType;
 
 - (void)addAppPower:(id)arg1;
 - (id)appPowerAtIndex:(unsigned int)arg1;

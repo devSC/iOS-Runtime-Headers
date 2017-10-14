@@ -3,20 +3,20 @@
  */
 
 @interface SSDownloadManager : NSObject {
-    NSObject<OS_dispatch_queue> *_accessQueue;
-    NSArray *_activeDownloads;
-    BOOL _activeDownloadsChanged;
-    NSObject<OS_dispatch_queue> *_backgroundQueue;
-    SSXPCConnection *_connection;
-    NSArray *_downloads;
-    BOOL _downloadsChanged;
-    BOOL _isUsingNetwork;
-    int _launchNotificationToken;
-    SSXPCConnection *_observerConnection;
-    NSObject<OS_dispatch_queue> *_observerQueue;
-    struct __CFArray { } *_observers;
-    SSDownloadManagerOptions *_options;
-    NSMutableSet *_removedDownloads;
+    NSObject<OS_dispatch_queue> * _accessQueue;
+    NSArray * _activeDownloads;
+    BOOL  _activeDownloadsChanged;
+    NSObject<OS_dispatch_queue> * _backgroundQueue;
+    SSXPCConnection * _connection;
+    NSArray * _downloads;
+    BOOL  _downloadsChanged;
+    BOOL  _isUsingNetwork;
+    int  _launchNotificationToken;
+    SSXPCConnection * _observerConnection;
+    NSObject<OS_dispatch_queue> * _observerQueue;
+    NSHashTable * _observers;
+    SSDownloadManagerOptions * _options;
+    NSMutableSet * _removedDownloads;
 }
 
 @property (readonly) NSArray *activeDownloads;
@@ -40,6 +40,7 @@
 + (id)softwareDownloadKinds;
 + (id)softwareDownloadManager;
 
+- (void).cxx_destruct;
 - (id)_XPCConnection;
 - (void)_connectAfterDaemonLaunch;
 - (void)_connectAsObserver;
@@ -53,7 +54,7 @@
 - (void)_handleDownloadsRemoved:(id)arg1;
 - (void)_handleMessage:(id)arg1 fromServerConnection:(id)arg2;
 - (void)_handleReply:(id)arg1 forDownloads:(id)arg2 message:(id)arg3 isRetry:(BOOL)arg4 block:(id /* block */)arg5;
-- (id)_initSSDownloadManager;
+- (id)_initSSDownloadManagerWithOptions:(id)arg1;
 - (void)_insertDownloads:(id)arg1 before:(id)arg2 after:(id)arg3 completionBlock:(id /* block */)arg4;
 - (void)_loadDownloadKindsUsingNetwork;
 - (void)_moveDownload:(id)arg1 before:(id)arg2 after:(id)arg3 completionBlock:(id /* block */)arg4;
@@ -65,6 +66,7 @@
 - (void)_sendMessage:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (void)_sendMessageToObservers:(SEL)arg1;
 - (void)_sendObserverConnection;
+- (BOOL)_supportsSoftwareKind;
 - (void)_willFinishDownloads:(id)arg1;
 - (id)activeDownloads;
 - (void)addDownloads:(id)arg1 completionBlock:(id /* block */)arg2;

@@ -3,8 +3,8 @@
  */
 
 @interface CHSharedAddressBook : CHSynchronizedLoggable {
-    void *_addressBook;
-    NSMutableDictionary *_addressBookCache;
+    void * _addressBook;
+    NSMutableDictionary * _addressBookCache;
 }
 
 @property void*addressBook;
@@ -15,6 +15,7 @@
 - (void).cxx_destruct;
 - (void*)addressBook;
 - (id)addressBookCache;
+- (void)cleanUpAddressBookCache_sync;
 - (void)createAddressBook;
 - (void)dealloc;
 - (id)description;

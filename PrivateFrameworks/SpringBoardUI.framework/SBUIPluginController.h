@@ -3,13 +3,18 @@
  */
 
 @interface SBUIPluginController : NSObject <SBPluginBundleController> {
-    <SBUIPluginControllerHost> *_host;
-    BOOL _isVisible;
+    <SBUIPluginControllerHost> * _host;
+    BOOL  _isVisible;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property (nonatomic) <SBUIPluginControllerHost> *host;
+@property (readonly) Class superclass;
 @property (getter=isVisible, nonatomic) BOOL visible;
 
+- (void).cxx_destruct;
 - (void)cancelPendingActivationEvent:(int)arg1;
 - (BOOL)handleActivationEvent:(int)arg1 eventSource:(int)arg2 context:(void*)arg3;
 - (void)handleBluetoothDismissal;
@@ -29,6 +34,7 @@
 - (void)registeredWithHost;
 - (void)setHost:(id)arg1;
 - (void)setVisible:(BOOL)arg1;
+- (BOOL)shouldBreadcrumbLaunchedApplicationWithBundleIdentifier:(id)arg1;
 - (BOOL)supportedAndEnabled;
 - (id)viewControllerForActivationContext:(id)arg1;
 - (void)viewPartiallyRevealedWithPercentRevealed:(float)arg1;

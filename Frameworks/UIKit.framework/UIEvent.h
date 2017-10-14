@@ -3,18 +3,19 @@
  */
 
 @interface UIEvent : NSObject {
-    struct __GSEvent { } *_gsEvent;
-    struct __IOHIDEvent { } *_hidEvent;
-    double _timestamp;
+    struct __GSEvent { } * _gsEvent;
+    struct __IOHIDEvent { } * _hidEvent;
+    double  _timestamp;
 }
 
+@property (nonatomic, readonly) NSSet *allTouches;
 @property (nonatomic, readonly) int subtype;
 @property (nonatomic, readonly) double timestamp;
 @property (nonatomic, readonly) int type;
 
-- (id)_allPhysicalButtons;
 - (struct CGPoint { float x1; float x2; })_digitizerLocation;
 - (unsigned int)_focusHeading;
+- (id)_gestureRecognizersForWindow:(id)arg1;
 - (struct __GSEvent { }*)_gsEvent;
 - (struct __IOHIDEvent { }*)_hidEvent;
 - (id)_init;
@@ -23,8 +24,6 @@
 - (id)_modifiedInput;
 - (int)_modifierFlags;
 - (int)_moveDirection;
-- (id)_physicalButtonsForGestureRecognizer:(id)arg1;
-- (id)_physicalButtonsForResponder:(id)arg1;
 - (id)_screen;
 - (void)_sendEventToResponder:(id)arg1;
 - (void)_setGSEvent:(struct __GSEvent { }*)arg1;

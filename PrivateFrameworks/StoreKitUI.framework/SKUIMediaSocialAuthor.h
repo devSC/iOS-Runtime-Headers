@@ -3,13 +3,13 @@
  */
 
 @interface SKUIMediaSocialAuthor : NSObject <NSCopying> {
-    NSString *_authorType;
-    NSString *_dsid;
-    NSString *_identifier;
-    NSString *_name;
-    NSArray *_permissions;
-    NSDictionary *_storePlatformData;
-    NSURL *_thumbnailImageURL;
+    NSString * _authorType;
+    NSString * _dsid;
+    NSString * _identifier;
+    NSString * _name;
+    NSArray * _permissions;
+    NSDictionary * _storePlatformData;
+    NSURL * _thumbnailImageURL;
 }
 
 @property (nonatomic, copy) NSString *authorType;
@@ -19,6 +19,8 @@
 @property (nonatomic, copy) NSArray *permissions;
 @property (nonatomic, copy) NSDictionary *storePlatformData;
 @property (nonatomic, copy) NSURL *thumbnailImageURL;
+
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
 
 - (void).cxx_destruct;
 - (id)authorType;
@@ -39,5 +41,9 @@
 - (void)setThumbnailImageURL:(id)arg1;
 - (id)storePlatformData;
 - (id)thumbnailImageURL;
+
+// Image: /System/Library/PrivateFrameworks/MediaSocial.framework/MediaSocial
+
++ (id)mzse2QueryKeyForAuthorType:(id)arg1;
 
 @end

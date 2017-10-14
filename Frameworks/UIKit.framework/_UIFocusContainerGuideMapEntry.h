@@ -3,8 +3,8 @@
  */
 
 @interface _UIFocusContainerGuideMapEntry : _UIFocusRegionMapEntry {
-    float _axisAlignedDistanceFromFocusedRect;
-    UIFocusContainerGuide *_focusContainerGuide;
+    float  _axisAlignedDistanceFromFocusedRect;
+    UIFocusContainerGuide * _focusContainerGuide;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,7 +14,7 @@
             float width; 
             float height; 
         } size; 
-    } _focusContainmentFrame;
+    }  _focusContainmentFrame;
 }
 
 @property (nonatomic) float axisAlignedDistanceFromFocusedRect;
@@ -23,13 +23,14 @@
 
 - (void).cxx_destruct;
 - (float)axisAlignedDistanceFromFocusedRect;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)drawVisualRepresentationInContext:(struct CGContext { }*)arg1 imageFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (id)focusContainerGuide;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })focusContainmentFrame;
-- (id)mapEntrySliceWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setAxisAlignedDistanceFromFocusedRect:(float)arg1;
 - (void)setFocusContainerGuide:(id)arg1;
 - (void)setFocusContainmentFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)visualRepresentationColor;
 
 @end

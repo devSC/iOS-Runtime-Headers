@@ -3,34 +3,45 @@
  */
 
 @interface PUGridZoomLevelInfo : NSObject <PUGridRenderedStripDataSource, PUPhotosSectionHeaderViewDelegate, PUSectionedGridLayoutDelegate> {
-    PUGridZoomLevelInfo *_baseZoomLevelInfo;
-    PHCachingImageManager *_cachingImageManager;
-    PUSectionedGridLayout *_collectionViewLayout;
-    PUGridRenderedStrip *_currentRenderedStrip;
-    NSString *_displayTitle;
-    int _maxRowsPerSection;
-    float _pendingContentWidth;
-    BOOL _summarizeSections;
+    PUGridZoomLevelInfo * _baseZoomLevelInfo;
+    PHCachingImageManager * _cachingImageManager;
+    PUSectionedGridLayout * _collectionViewLayout;
+    PUGridRenderedStrip * _currentRenderedStrip;
+    NSString * _displayTitle;
     struct CGSize { 
         float width; 
         float height; 
-    } _thumbnailImageSize;
-    BOOL _useFloatingHeaderGroupName;
-    unsigned int _zoomLevel;
-    PUMomentsZoomLevelManager *_zoomLevelManager;
-    PUZoomableGridViewController *_zoomableGridViewController;
+    }  _lastItemPixelSize;
+    int  _maxRowsPerSection;
+    float  _pendingContentWidth;
+    PHAssetResourceQualityClass * _qualityClass;
+    BOOL  _summarizeSections;
+    struct CGSize { 
+        float width; 
+        float height; 
+    }  _thumbnailImageSize;
+    BOOL  _useFloatingHeaderGroupName;
+    unsigned int  _zoomLevel;
+    PUMomentsZoomLevelManager * _zoomLevelManager;
+    PUZoomableGridViewController * _zoomableGridViewController;
 }
 
 @property (nonatomic, readonly) struct __CFString { }*aggregateLevelKey;
 @property (nonatomic, readonly) PUGridZoomLevelInfo *baseZoomLevelInfo;
 @property (nonatomic, readonly) PHCachingImageManager *cachingImageManager;
+@property (nonatomic, readonly) int cellFillMode;
 @property (nonatomic, readonly) PUSectionedGridLayout *collectionViewLayout;
+@property (nonatomic, readonly) unsigned int dateRangeFormatterPreset;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSString *displayTitle;
 @property (readonly) unsigned int hash;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } imageRequestItemSize;
+@property (nonatomic, readonly) float itemContentScale;
+@property (nonatomic) struct CGSize { float x1; float x2; } lastItemPixelSize;
 @property (nonatomic, readonly) int maxRowsPerSection;
 @property (nonatomic) float pendingContentWidth;
+@property (nonatomic, retain) PHAssetResourceQualityClass *qualityClass;
 @property (nonatomic, readonly) NSString *renderedStripsElementKind;
 @property (nonatomic, readonly) NSString *sectionHeaderElementKind;
 @property (nonatomic) BOOL summarizeSections;
@@ -45,6 +56,7 @@
 @property (nonatomic, readonly) PUZoomableGridViewController *zoomableGridViewController;
 
 - (void).cxx_destruct;
+- (unsigned int)_detailViewSourceOriginWithZoomLevel:(unsigned int)arg1;
 - (void)_updateBackdropGroupNameForHeaderView:(id)arg1;
 - (struct __CFString { }*)aggregateLevelKey;
 - (id)assetsToDisplayInMapForVisualSection:(int)arg1;
@@ -56,20 +68,27 @@
 - (BOOL)configureGridCell:(id)arg1 forIndexPath:(id)arg2;
 - (void)configureSectionHeaderView:(id)arg1 forVisualSection:(int)arg2;
 - (BOOL)configureSupplementaryView:(id)arg1 ofKind:(id)arg2 forIndexPath:(id)arg3 animated:(BOOL)arg4;
+- (unsigned int)dateRangeFormatterPreset;
 - (id)diagnosticsProviderForVisualSection:(int)arg1;
 - (void)didFinishZoomLevelTransition;
 - (void)didTapHeaderView:(id)arg1;
 - (id)displayTitle;
+- (void)getPhotosDataSource:(id*)arg1 displayTitleInfo:(id*)arg2 forDetailsForVisualSection:(int)arg3;
 - (void)headerView:(id)arg1 actionButtonPressed:(id)arg2;
 - (id)imageDataForAsset:(id)arg1 itemContentScale:(float)arg2 imageWidth:(int*)arg3 imageHeight:(int*)arg4 bytesPerRow:(int*)arg5 dataWidth:(int*)arg6 dataHeight:(int*)arg7 imageDataOffset:(int*)arg8;
 - (int)imageDeliveryMode;
+- (struct CGSize { float x1; float x2; })imageRequestItemSize;
 - (id)initWithZoomLevel:(unsigned int)arg1 zoomLevelManager:(id)arg2 baseZoomLevelInfo:(id)arg3;
+- (float)itemContentScale;
+- (struct CGSize { float x1; float x2; })lastItemPixelSize;
 - (int)maxRowsPerSection;
 - (void)modelDidChange:(id)arg1;
 - (id)newCollectionViewLayout;
 - (float)pendingContentWidth;
 - (void)prepareForTransitionFromZoomLevelInfo:(id)arg1 animated:(BOOL)arg2 interactive:(BOOL)arg3;
 - (void)prepareForTransitionToZoomLevelInfo:(id)arg1 animated:(BOOL)arg2 interactive:(BOOL)arg3;
+- (void)pushPhotosDetailsViewForVisualSection:(int)arg1 animated:(BOOL)arg2;
+- (id)qualityClass;
 - (void)registerReusableViewClassesForCollectionView:(id)arg1;
 - (void)renderedStrip:(id)arg1 enumerateAssetsForVisualSection:(int)arg2 inVisualItemRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3 usingBlock:(id /* block */)arg4;
 - (id)renderedStrip:(id)arg1 imageDataForAsset:(id)arg2 imageWidth:(int*)arg3 imageHeight:(int*)arg4 bytesPerRow:(int*)arg5 dataWidth:(int*)arg6 dataHeight:(int*)arg7 imageDataOffset:(int*)arg8;
@@ -83,7 +102,9 @@
 - (id)sectionedGridLayoutAnchorItemForAdjustingContentOffset:(id)arg1;
 - (id)sectionedGridLayoutName:(id)arg1;
 - (BOOL)sectionedGridLayoutTransitionAutoAdjustContentOffsetEnabled:(id)arg1;
+- (void)setLastItemPixelSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setPendingContentWidth:(float)arg1;
+- (void)setQualityClass:(id)arg1;
 - (void)setSummarizeSections:(BOOL)arg1;
 - (void)setUseFloatingHeaderGroupName:(BOOL)arg1;
 - (void)setZoomableGridViewController:(id)arg1;

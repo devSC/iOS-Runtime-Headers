@@ -3,17 +3,17 @@
  */
 
 @interface MPURatingControl : UIControl {
-    <MPURatingControlDelegate> *_delegate;
+    <MPURatingControlDelegate> * _delegate;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    } _hitTestEdgeInsets;
-    NSMutableArray *_imageViews;
-    UIPanGestureRecognizer *_panGestureRecognizer;
-    float _rating;
-    UITapGestureRecognizer *_tapGestureRecognizer;
+    }  _hitTestEdgeInsets;
+    NSMutableArray * _imageViews;
+    UIPanGestureRecognizer * _panGestureRecognizer;
+    float  _rating;
+    UITapGestureRecognizer * _tapGestureRecognizer;
 }
 
 @property (nonatomic) <MPURatingControlDelegate> *delegate;
@@ -26,6 +26,7 @@
 - (void).cxx_destruct;
 - (void)_handlePanGesture:(id)arg1;
 - (void)_handleTapGesture:(id)arg1;
+- (void)_updateImageView:(id)arg1 proposedImage:(id)arg2 filled:(BOOL)arg3;
 - (void)_updateImageViewsForRatingAnimated:(BOOL)arg1;
 - (id)delegate;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })hitTestEdgeInsets;
@@ -39,5 +40,6 @@
 - (void)setRating:(float)arg1;
 - (void)setRating:(float)arg1 animated:(BOOL)arg2;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (void)viewDidMoveToSuperview;
 
 @end

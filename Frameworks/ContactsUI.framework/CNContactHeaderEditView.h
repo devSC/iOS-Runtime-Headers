@@ -3,9 +3,9 @@
  */
 
 @interface CNContactHeaderEditView : CNContactHeaderView <CNPropertyGroupItemDelegate, UITableViewDataSource, UITableViewDelegate> {
-    NSArray *_editingGroups;
-    UITableView *_editingTable;
-    <CNPropertyCellDelegate> *_namePropertyDelegate;
+    NSArray * _editingGroups;
+    UITableView * _editingTable;
+    <CNPropertyCellDelegate> * _namePropertyDelegate;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -18,7 +18,7 @@
 + (id)contactHeaderViewWithContact:(id)arg1 editingGroups:(id)arg2;
 
 - (void).cxx_destruct;
-- (id)_phoneticNameForValue:(id)arg1 isFamilyName:(BOOL)arg2;
+- (id)_phoneticNameForValue:(id)arg1 property:(id)arg2;
 - (BOOL)becomeFirstResponder;
 - (id)editingGroups;
 - (BOOL)hasPhoto;

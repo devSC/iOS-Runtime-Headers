@@ -3,9 +3,9 @@
  */
 
 @interface HDHealthExtensionsPlugin : NSObject <HDDiagnosticObject, HDHealthPlugin, NSXPCListenerDelegate> {
-    <HDHealthDaemon> *_healthDaemon;
-    NSXPCListener *_listener;
-    NSMutableArray *_servers;
+    <HDHealthDaemon> * _healthDaemon;
+    NSXPCListener * _listener;
+    NSMutableArray * _servers;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -17,6 +17,7 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)activate;
 - (void)dealloc;
 - (id)diagnosticDescription;
 - (id)healthDaemon;

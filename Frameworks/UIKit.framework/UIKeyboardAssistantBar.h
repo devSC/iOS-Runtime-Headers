@@ -3,25 +3,44 @@
  */
 
 @interface UIKeyboardAssistantBar : _UIGroupedBar {
-    BOOL _hideAssistantBar;
-    UIKeyboardBIUImageGenerator *m_BIUImageGenerator;
-    UITextInputAssistantItem *m_currentAssistantItem;
-    UITextInputAssistantItem *m_defaultAssistantItem;
-    UIBarButtonItemGroup *m_dismissGroup;
-    BOOL m_isLandscape;
-    BOOL m_lightKeyboard;
-    BOOL m_needsDismissButton;
-    UIBarButtonItemGroup *m_predictionGroup;
-    NSLayoutConstraint *m_predictionWidthConstraint;
-    BOOL m_useLargeButton;
+    BOOL  _hideAssistantBar;
+    BOOL  _shouldShow;
+    UIKeyboardBIUImageGenerator * m_BIUImageGenerator;
+    UITextInputAssistantItem * m_currentAssistantItem;
+    UITextInputAssistantItem * m_defaultAssistantItem;
+    UIBarButtonItem * m_dismissButton;
+    UIBarButtonItemGroup * m_dismissGroup;
+    BOOL  m_isLandscape;
+    BOOL  m_lightKeyboard;
+    BOOL  m_needsDismissButton;
+    BOOL  m_needsUpdateBarOnMoveToWindow;
+    UIBarButtonItemGroup * m_predictionGroup;
+    NSLayoutConstraint * m_predictionWidthConstraint;
+    BOOL  m_show;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    }  m_splitGap;
+    BOOL  m_suppressAXSHairlineThickening;
+    BOOL  m_useLargeButton;
+    int  m_validateGuard;
+    UIBarButtonItem * m_writeboardButton;
 }
 
 @property (nonatomic) BOOL hideAssistantBar;
+@property (nonatomic) BOOL shouldShow;
 @property (nonatomic) BOOL show;
 
 + (id)activeInstance;
 + (float)assistantBarHeight;
 + (id)sharedInstance;
++ (float)sideBarWidthForOrientation:(int)arg1;
 
 - (id)BIUGenerator;
 - (SEL)action:(int)arg1;
@@ -37,13 +56,16 @@
 - (void)assistantRedo;
 - (void)assistantUnderline;
 - (void)assistantUndo;
+- (void)assistantWriteboard;
 - (id)barButtonItem:(unsigned int)arg1;
 - (BOOL)canPerformAction:(int)arg1;
 - (id)currentAssistantItem;
 - (void)dealloc;
 - (id)defaultAssistantItem;
+- (void)didMoveToWindow;
 - (void)dimKeys:(id)arg1;
 - (BOOL)disabledByPrediction;
+- (BOOL)enableInputClicksWhenVisible;
 - (BOOL)enabled;
 - (void)executeAction:(int)arg1;
 - (BOOL)hasCustomButtons;
@@ -51,17 +73,23 @@
 - (BOOL)hideAssistantBar;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)newAssistantItemWithDefaultItems;
+- (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
+- (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)setHideAssistantBar:(BOOL)arg1;
 - (void)setInputAssistantButtonItems;
 - (void)setInputAssistantButtonItemsForResponder:(id)arg1;
+- (void)setShouldShow:(BOOL)arg1;
 - (void)setShow:(BOOL)arg1;
+- (BOOL)shouldShow;
 - (BOOL)show;
+- (void)showKeyboard:(id)arg1;
 - (BOOL)showSwitch;
-- (float)sideBarWidth;
+- (float)sideBarWidthForOrientation:(int)arg1;
 - (BOOL)statisticForCalloutBarButtonSelection:(id)arg1;
 - (void)statisticForShortcutBarHideWithSwitcher;
 - (void)updateBar;
 - (void)updateBar:(BOOL)arg1;
 - (void)updateButtons;
+- (void)updatePredictionViewForCustomButtons;
 
 @end

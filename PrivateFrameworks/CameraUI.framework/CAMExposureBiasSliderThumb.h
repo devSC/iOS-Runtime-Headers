@@ -3,7 +3,7 @@
  */
 
 @interface CAMExposureBiasSliderThumb : UIView {
-    float _normalizedExposureValue;
+    float  _normalizedExposureValue;
 }
 
 @property (nonatomic, readonly) float maxRadius;
@@ -19,5 +19,6 @@
 - (float)normalizedExposureValue;
 - (void)setNormalizedExposureValue:(float)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (void)tintColorDidChange;
 
 @end

@@ -3,8 +3,8 @@
  */
 
 @interface AKAppleIDAuthenticationWatchBuddyContext : AKAppleIDAuthenticationInAppContext <RemoteUIControllerDelegate> {
-    NSString *_password;
-    RUIStyle *_remoteUIStyle;
+    NSString * _password;
+    RUIStyle * _remoteUIStyle;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -15,7 +15,6 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)didReceiveObjectModel:(id)arg1;
 - (void)dismissBasicLoginUIWithCompletion:(id /* block */)arg1;
 - (id)password;
 - (void)presentBasicLoginUIWithCompletion:(id /* block */)arg1;

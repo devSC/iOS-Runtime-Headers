@@ -3,10 +3,12 @@
  */
 
 @interface SPProtoCacheAssets : PBCodable <NSCopying> {
-    NSMutableArray *_assets;
+    NSMutableArray * _assets;
 }
 
 @property (nonatomic, retain) NSMutableArray *assets;
+
++ (Class)assetsType;
 
 - (void).cxx_destruct;
 - (void)addAssets:(id)arg1;

@@ -3,14 +3,14 @@
  */
 
 @interface GEOTransitRoutePreloader : GEORoutePreloader {
-    GEOTransitDecoderData *_decoderData;
-    double _endRoutePosition;
-    NSTimer *_geodCrashTimer;
-    int _indexOfLastStepWithPreparedBatch;
-    double _radialDistanceToImplicateTilesMeters;
-    _GEOTransitRoutePreloaderData *_reserved;
-    GEOTransitSuggestedRoute *_suggestedRoute;
-    GEOMapServiceTraits *_traits;
+    GEOTransitDecoderData * _decoderData;
+    double  _endRoutePosition;
+    NSTimer * _geodCrashTimer;
+    int  _indexOfLastStepWithPreparedBatch;
+    double  _radialDistanceToImplicateTilesMeters;
+    _GEOTransitRoutePreloaderData * _reserved;
+    GEOTransitSuggestedRoute * _suggestedRoute;
+    GEOMapServiceTraits * _traits;
 }
 
 - (void)_cancelAllBatches;
@@ -19,7 +19,7 @@
 - (void)_ignoreAlreadyRequestedTilesAndUpdateGlobalListWithNonDuplicatesForTileKeyList:(id)arg1;
 - (void)_loadPlacecardsForBatch:(id)arg1;
 - (void)_loadTilesForBatch:(id)arg1;
-- (void)_makeBatchForTilesAroundStationsForAllSteps:(id)arg1;
+- (void)_makeBatchForTilesAroundStationsForSteps:(id)arg1;
 - (void)_makeBatchesForSteps:(id)arg1;
 - (void)_makePreloadBatchForGraph;
 - (void)_makePreloadBatchForPlaceDataOnSteps:(id)arg1;
